@@ -1,0 +1,36 @@
+name: TheBitLab Python vertical slice
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-vertical-slice:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout python-docente
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned TheBitLab baseline
+        uses: actions/checkout@v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
+          path: _thebitlab-platform
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate first Python vertical slice
+        run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
