@@ -13,7 +13,9 @@
         "ASSESSMENT_CALENDAR.md",
         "PY2_01_SPEC.md",
         "PY2_02_SPEC.md",
-        "PY2_03_SPEC.md"
+        "PY2_03_SPEC.md",
+        "PY2_04_SPEC.md",
+        "PY2_05_SPEC.md"
       ],
       "indexing_status": "ready"
     },
@@ -41,97 +43,19 @@
       "weekly_hours": 3,
       "weeks": 33,
       "udas": [
-        {
-          "id": "py2-01",
-          "title": "Problem solving, algoritmi e flow chart",
-          "path": "Stage A / PY2-01",
-          "weeks": 3,
-          "items": []
-        },
-        {
-          "id": "py2-02",
-          "title": "Primi programmi Python",
-          "path": "Stage A / PY2-02",
-          "weeks": 2,
-          "items": []
-        },
-        {
-          "id": "py2-03",
-          "title": "Selezione e logica",
-          "path": "Stage A / PY2-03",
-          "weeks": 3,
-          "items": []
-        },
-        {
-          "id": "py2-04",
-          "title": "Iterazione e pattern algoritmici",
-          "path": "Stage A / PY2-04",
-          "weeks": 4,
-          "items": []
-        },
-        {
-          "id": "py2-05",
-          "title": "Funzioni, decomposizione e testing",
-          "path": "Stage A / PY2-05",
-          "weeks": 4,
-          "items": []
-        },
-        {
-          "id": "checkpoint-a",
-          "title": "Checkpoint A - consolidamento primo nucleo",
-          "path": "Checkpoint / A",
-          "weeks": 1,
-          "items": []
-        },
-        {
-          "id": "py2-06",
-          "title": "Stringhe come sequenze",
-          "path": "Stage A / PY2-06",
-          "weeks": 3,
-          "items": []
-        },
-        {
-          "id": "py2-07",
-          "title": "Liste, tuple e dati tabellari",
-          "path": "Stage A / PY2-07",
-          "weeks": 3,
-          "items": []
-        },
-        {
-          "id": "checkpoint-b",
-          "title": "Checkpoint B - laboratorio strutture sequenziali",
-          "path": "Checkpoint / B",
-          "weeks": 1,
-          "items": []
-        },
-        {
-          "id": "py2-08",
-          "title": "Set, dizionari e modellazione dei dati",
-          "path": "Stage A / PY2-08",
-          "weeks": 3,
-          "items": []
-        },
-        {
-          "id": "py2-09",
-          "title": "Persistenza ed errori prevedibili",
-          "path": "Stage A / PY2-09",
-          "weeks": 1,
-          "items": []
-        },
-        {
-          "id": "py2-10",
-          "title": "Classi, oggetti e capstone",
-          "path": "Stage A / PY2-10",
-          "weeks": 4,
-          "items": []
-        },
-        {
-          "id": "checkpoint-c",
-          "title": "Checkpoint C - finalizzazione, recupero o enrichment",
-          "path": "Checkpoint / C",
-          "weeks": 1,
-          "items": []
-        }
+        {"id": "py2-01", "title": "Problem solving, algoritmi e flow chart", "path": "Stage A / PY2-01", "weeks": 3, "items": []},
+        {"id": "py2-02", "title": "Primi programmi Python", "path": "Stage A / PY2-02", "weeks": 2, "items": []},
+        {"id": "py2-03", "title": "Selezione e logica", "path": "Stage A / PY2-03", "weeks": 3, "items": []},
+        {"id": "py2-04", "title": "Iterazione e pattern algoritmici", "path": "Stage A / PY2-04", "weeks": 4, "items": []},
+        {"id": "py2-05", "title": "Funzioni, decomposizione e testing", "path": "Stage A / PY2-05", "weeks": 4, "items": []},
+        {"id": "checkpoint-a", "title": "Checkpoint A - consolidamento primo nucleo", "path": "Checkpoint / A", "weeks": 1, "items": []},
+        {"id": "py2-06", "title": "Stringhe come sequenze", "path": "Stage A / PY2-06", "weeks": 3, "items": []},
+        {"id": "py2-07", "title": "Liste, tuple e dati tabellari", "path": "Stage A / PY2-07", "weeks": 3, "items": []},
+        {"id": "checkpoint-b", "title": "Checkpoint B - laboratorio strutture sequenziali", "path": "Checkpoint / B", "weeks": 1, "items": []},
+        {"id": "py2-08", "title": "Set, dizionari e modellazione dei dati", "path": "Stage A / PY2-08", "weeks": 3, "items": []},
+        {"id": "py2-09", "title": "Persistenza ed errori prevedibili", "path": "Stage A / PY2-09", "weeks": 1, "items": []},
+        {"id": "py2-10", "title": "Classi, oggetti e capstone", "path": "Stage A / PY2-10", "weeks": 4, "items": []},
+        {"id": "checkpoint-c", "title": "Checkpoint C - finalizzazione, recupero o enrichment", "path": "Checkpoint / C", "weeks": 1, "items": []}
       ]
     }
   ]
