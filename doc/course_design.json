@@ -1,0 +1,134 @@
+{
+  "sources": [
+    {
+      "id": "python-secondo-design",
+      "label": "Python secondo - design e mappa moduli",
+      "type": "markdown",
+      "provider": "local",
+      "path": "tracks/secondo",
+      "files": [
+        "MODULE_MAP.md",
+        "COURSE_DESIGN.md",
+        "DELIVERY_PROFILE.md",
+        "ASSESSMENT_CALENDAR.md"
+      ],
+      "indexing_status": "ready"
+    },
+    {
+      "id": "python-curriculum-design",
+      "label": "Python curriculum - architettura e roadmap",
+      "type": "markdown",
+      "provider": "local",
+      "path": "doc",
+      "files": [
+        "COURSE_ARCHITECTURE.md",
+        "CURRICULUM_ROADMAP.md",
+        "APPROVED_DECISIONS_2026_2027.md",
+        "CROSS_COURSE_CURRICULA.md"
+      ],
+      "indexing_status": "ready"
+    }
+  ],
+  "years": [
+    {
+      "id": "python-secondo-2026-2027",
+      "title": "Python - Secondo anno 2026/27",
+      "description": "Track da zero assoluto a programmazione strutturata, strutture dati e OOP fondamentale. 33 settimane, 2 ore teoria attiva + 1 ora laboratorio; curriculum a spirale con test e debugging precoci.",
+      "weekly_hours": 3,
+      "weeks": 33,
+      "udas": [
+        {
+          "id": "py2-01",
+          "title": "Problem solving, algoritmi e flow chart",
+          "path": "Stage A / PY2-01",
+          "weeks": 3,
+          "items": []
+        },
+        {
+          "id": "py2-02",
+          "title": "Primi programmi Python",
+          "path": "Stage A / PY2-02",
+          "weeks": 2,
+          "items": []
+        },
+        {
+          "id": "py2-03",
+          "title": "Selezione e logica",
+          "path": "Stage A / PY2-03",
+          "weeks": 3,
+          "items": []
+        },
+        {
+          "id": "py2-04",
+          "title": "Iterazione e pattern algoritmici",
+          "path": "Stage A / PY2-04",
+          "weeks": 4,
+          "items": []
+        },
+        {
+          "id": "py2-05",
+          "title": "Funzioni, decomposizione e testing",
+          "path": "Stage A / PY2-05",
+          "weeks": 4,
+          "items": []
+        },
+        {
+          "id": "checkpoint-a",
+          "title": "Checkpoint A - consolidamento primo nucleo",
+          "path": "Checkpoint / A",
+          "weeks": 1,
+          "items": []
+        },
+        {
+          "id": "py2-06",
+          "title": "Stringhe come sequenze",
+          "path": "Stage A / PY2-06",
+          "weeks": 3,
+          "items": []
+        },
+        {
+          "id": "py2-07",
+          "title": "Liste, tuple e dati tabellari",
+          "path": "Stage A / PY2-07",
+          "weeks": 3,
+          "items": []
+        },
+        {
+          "id": "checkpoint-b",
+          "title": "Checkpoint B - laboratorio strutture sequenziali",
+          "path": "Checkpoint / B",
+          "weeks": 1,
+          "items": []
+        },
+        {
+          "id": "py2-08",
+          "title": "Set, dizionari e modellazione dei dati",
+          "path": "Stage A / PY2-08",
+          "weeks": 3,
+          "items": []
+        },
+        {
+          "id": "py2-09",
+          "title": "Persistenza ed errori prevedibili",
+          "path": "Stage A / PY2-09",
+          "weeks": 1,
+          "items": []
+        },
+        {
+          "id": "py2-10",
+          "title": "Classi, oggetti e capstone",
+          "path": "Stage A / PY2-10",
+          "weeks": 4,
+          "items": []
+        },
+        {
+          "id": "checkpoint-c",
+          "title": "Checkpoint C - finalizzazione, recupero o enrichment",
+          "path": "Checkpoint / C",
+          "weeks": 1,
+          "items": []
+        }
+      ]
+    }
+  ]
+}
