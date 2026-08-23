@@ -1,49 +1,58 @@
 # Python Activity / runtime contract — DRAFT
 
-Questo documento definisce il profilo didattico iniziale delle Activity Python di `python-docente` sopra i contratti esistenti TheBitLab. Non introduce un nuovo runner.
+Questo documento definisce i profili didattici/grading Python di `python-docente` sopra i contratti TheBitLab. Non introduce runner paralleli: P1–P4 devono condividere il core Python grader e il medesimo sandbox autorevole; `romeo-sim` resta un runtime plugin di dominio separato.
 
 ## Principio
 
-Per il core beginner usare il runner Python già presente in TheBitLab:
-
 ```text
 Activity 1.0
-→ scaffold student
-→ main.py
-→ Python runner core
-→ sandbox Docker autorevole
-→ test deterministici
-→ report
+→ scaffold studente
+→ profilo di evidence/grading adeguato all'outcome
+→ sandbox Docker autorevole quando esegue codice non fidato
+→ confronto trusted host-side
+→ report redatto allo studente
 ```
 
-`romeo-sim` e altri runtime plugin restano per domini speciali; non sono necessari per un normale esercizio Python.
+Non adattare artificialmente l'obiettivo didattico al solo grader disponibile. Se una capability non esiste ancora, usare evidence manuale/formativa esplicita oppure bloccare l'Activity che la richiede.
 
 ## Baseline
 
 - linguaggio: `python`;
 - baseline didattica: Python 3.12;
-- source iniziale: `main.py`;
-- grading autorevole: Docker sandbox TheBitLab;
-- grading locale: solo feedback formativo/test pubblico, non confine di sicurezza;
-- rete grading: disabilitata;
-- AI: disabilitata nelle Activity fondazionali salvo policy esplicita futura.
+- grading autorevole di codice non fidato: sandbox TheBitLab;
+- rete grading: disabilitata salvo futuro contratto specifico;
+- teacher expected values/fixture segrete restano trusted host-side quando possibile;
+- AI: disabilitata nelle Activity fondazionali salvo policy futura esplicita;
+- pytest non è prerequisito del secondo anno: il framework entra più avanti nel curriculum professionale.
 
-## Profilo P0 — trace/manual evidence
+---
 
-Per attività in cui il codice non deve essere eseguito o il focus è la previsione:
+# P0 — trace / manual evidence
+
+Per attività in cui il focus è previsione, spiegazione, progettazione o scelta:
 
 - grading automatico facoltativo;
-- evidence manuale/rubric;
-- possibile tabella di trace/output previsto;
-- nessun tentativo di simulare una valutazione semantica con test fragili.
+- rubric/manual evidence;
+- tabelle di trace, diagrammi, spiegazioni e scelta dei costrutti;
+- niente fake autograding semantico basato su regex/euristiche fragili.
 
-Usi: M04/M05 trace, spiegazione errori, scelta di una soluzione.
+Usi:
 
-## Profilo P1 — single-file stdin/stdout
+- algoritmi/flow chart;
+- trace;
+- motivazione `for` vs `while`;
+- scelta struttura dati;
+- qualità della decomposizione/refactoring.
 
-È il profilo core da PY2-02 fino a quando i problemi restano programmi lineari/strutturati a singolo file.
+---
 
-Activity:
+# P1 — single-file stdin/stdout
+
+**Stato piattaforma:** runner generico già esistente; vertical slice del corso ancora da certificare end-to-end in `python-docente#7`.
+
+È il profilo iniziale per programmi completi a singolo file.
+
+Concept Activity:
 
 ```json
 {
@@ -64,101 +73,15 @@ Activity:
 }
 ```
 
-### Regole P1
+## Regole P1
 
-1. Un solo file sorgente.
+1. Un solo file sorgente nel profilo iniziale.
 2. I test confrontano output deterministico.
-3. Evitare prompt interattivi non richiesti dal contratto.
-4. Usare almeno un caso normale e, quando utile, edge/negative case.
-5. Gli expected output/test case completi restano teacher-side; lo scaffold studente riceve metadata redatti.
-6. Il codice studente non deve dipendere da rete, filesystem esterno o pacchetti non dichiarati.
-7. Timeout e limiti sono proprietà del runner/piattaforma, non della lesson.
-
-## Perché non usiamo subito pytest
-
-Lo studente non deve imparare infrastruttura di test prima di aver capito input/output, funzioni e casi di test.
-
-Progressione didattica:
-
-```text
-casi su carta
-→ stdin/stdout
-→ assert
-→ test di funzioni
-→ test di oggetti
-→ pytest professionale
-```
-
-TheBitLab può usare infrastruttura nascosta internamente, ma la lesson non anticipa concetti non necessari.
-
-## Profilo P2 — function behavior (da progettare)
-
-Quando arriviamo a PY2-05/M13–M16 servirà poter verificare direttamente funzioni senza obbligare ogni soluzione a passare dall'I/O testuale.
-
-Requisiti futuri:
-
-- import sicuro del modulo studente;
-- chiamate a funzioni dichiarate;
-- expected return / expected exception;
-- isolamento Docker identico;
-- test pubblici/privati;
-- niente import-time side effect richiesto;
-- report comprensibile allo studente.
-
-P2 **non è requisito di PY2-02** e non va implementato prematuramente.
-
-## Profilo P3 — object behavior (futuro)
-
-Per OOP:
-
-- istanziazione classi;
-- metodi/stato osservabile;
-- invarianti comportamentali;
-- test di più istanze;
-- eventuale composizione.
-
-Anche P3 resta futuro e deve riusare lo stesso sandbox boundary.
-
-## Output contract beginner
-
-Per grading deterministico preferire programmi che non stampano testo accessorio.
-
-Esempio:
-
-```python
-numero = int(input())
-print(numero * 2)
-```
-
-non:
-
-```python
-numero = int(input("Inserisci un numero: "))
-print("Il doppio è", numero * 2)
-```
-
-quando il focus è il calcolo.
-
-La seconda forma potrà essere usata in Activity dove l'interfaccia testuale è esplicitamente parte del requisito e l'expected output la include.
-
-## Error handling
-
-Nelle prime UDA il runner deve mostrare in modo utile:
-
-- non-zero exit;
-- stderr/traceback bounded;
-- timeout;
-- output differente dall'atteso.
-
-La lesson insegna gradualmente a leggere gli errori; il runner non deve trasformare automaticamente il traceback in una soluzione.
-
-## Activity taxonomy
-
-- A: trace/observe — spesso manuale o semi-deterministico;
-- B: modifica controllata — ottimo primo uso P1;
-- C: implementazione — P1;
-- D: debug — P1 o rubric + P1;
-- E/F: possono richiedere più file/runtime e vanno introdotte solo con contratto piattaforma adeguato.
+3. Evitare prompt/accessori quando non sono parte del requisito.
+4. Usare più casi significativi; uno starter volutamente incompleto deve essere discriminato dai test.
+5. Expected output/test completi restano teacher-side; scaffold e report studente devono essere redatti.
+6. Nessuna dipendenza implicita da rete/filesystem esterno/package non dichiarati.
+7. Timeout/CPU/memoria sono proprietà del runner/piattaforma.
 
 ## Primo vertical slice
 
@@ -168,34 +91,215 @@ Activity:
 py2-activity-b-input-somma-001
 ```
 
-Scopo tecnico:
+TheBitLab baseline separata per questo corso:
 
-- verificare Activity 1.0;
-- scaffold `main.py`;
-- separazione asset student/teacher;
-- 3 test stdin/stdout;
-- grading sandbox;
-- report deterministico;
-- nessun AI feedback;
-- compatibilità Course Workspace.
+```text
+cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
+```
 
-Scopo didattico:
+Non modifica il pin congelato di TPSI5.
 
-- `input()`;
-- `int()`;
-- variabili;
-- operatore `+`;
-- `print()`;
-- modifica controllata.
+Gate: `python-docente#7`.
 
-## Gate prima di produzione massiva
+Nota CI corrente: i run Actions osservati hanno fallito **prima di eseguire qualunque step** su Ubuntu e Windows; quindi il vertical slice non è certificato e quel failure non è attribuito al corpo dello smoke. Non usare il vertical slice come autorizzazione alla produzione massiva finché #7 non è chiusa con evidenza reale.
 
-Non produrre decine di Activity Python finché il vertical slice non ha dimostrato:
+---
 
-1. validazione Activity;
-2. scaffold senza leakage;
-3. esecuzione corretta su Python 3.12;
-4. grading Docker;
-5. report leggibile;
-6. apertura/assegnazione dal Course Workspace TheBitLab;
-7. workflow equivalente nel profilo classroom supportato.
+# P2 — function behavior
+
+**Issue piattaforma:** `TheBitPoets/2cornot2c#756`.
+
+Necessario da PY2-05 quando l'outcome è una funzione/`return`, non un'interfaccia stdin/stdout.
+
+Target:
+
+```text
+student module
+→ sandbox
+→ locate top-level callable
+→ call(args, kwargs)
+→ return actual value / bounded exception descriptor
+→ trusted host compares with expected
+```
+
+## Vincoli
+
+- mai importare/eseguire codice studente nel processo trusted;
+- expected return/exception host-side;
+- worker riceve solo gli input della chiamata;
+- value codec deterministico e type-aware;
+- stdout/stderr solo diagnostica;
+- import-time side effects bounded da timeout;
+- missing/non-callable target = failure esplicito;
+- riuso identico del sandbox P1.
+
+Uso didattico:
+
+```text
+casi su carta
+→ assert
+→ direct function behavior P2
+→ pytest strutturato nei livelli professionali
+```
+
+---
+
+# P3 — object behavior
+
+**Issue piattaforma:** `TheBitPoets/2cornot2c#758`.
+
+Necessario per autograding generico di classi/istanze senza ricorrere a parsing del sorgente.
+
+Target:
+
+```text
+construct declared class
+→ call declared methods
+→ observe declared public state/property
+→ actual observations
+→ trusted host comparison
+```
+
+## Vincoli
+
+- istanziazione sempre nel sandbox;
+- expected values host-side;
+- osservazioni solo su nomi dichiarati e portabili;
+- private/dunder observation denied by default;
+- niente `eval` di espressioni teacher/student;
+- supporto a più istanze per verificarne indipendenza;
+- shared value codec con P2;
+- niente inspection della gerarchia come sostituto del comportamento.
+
+Romeo non usa P3 per la simulazione di dominio: le Activity robotiche restano su `romeo-sim` quando servono traiettoria/event log/stato finale.
+
+---
+
+# P4 — filesystem behavior
+
+**Issue piattaforma:** `TheBitPoets/2cornot2c#757`.
+
+Necessario per Activity in cui l'outcome è vero file I/O.
+
+Target:
+
+```text
+explicit read-only fixtures
++ student source
++ isolated bounded writable workdir
+→ sandbox execution
+→ bounded produced artifacts/manifest
+→ trusted host compares expected artifacts
+```
+
+## Vincoli
+
+- nessun mount del repository docente completo;
+- fixture dichiarate soltanto;
+- path relativi;
+- no symlink/path traversal/special files;
+- clean state per test;
+- limiti numero/dimensione input/output;
+- expected artifact contents host-side dove praticabile;
+- report senza path host sensibili;
+- distinguere normale `FileNotFoundError` dello studente da policy/infrastructure failure.
+
+Fino a P4 certificato, PY2-09 resta completabile con lab nel Classroom Environment + evidence manuale/formativa; non simulare il filesystem con stdin se cambia l'outcome.
+
+---
+
+# Runtime di dominio — Romeo
+
+Romeo resta fuori da P1–P4:
+
+```text
+Activity Romeo
+→ runtime.romeo-sim.v1
+→ TheBitLab runtime broker
+→ external Romeo plugin
+→ trajectory / event log / final state
+```
+
+Hardware fisico è una capability opzionale separata e non può essere requisito del core.
+
+---
+
+# Progressione didattica del testing
+
+```text
+problema + casi su carta
+→ expected input/output
+→ P1 stdin/stdout
+→ assert
+→ P2 function behavior
+→ P3 object behavior / P4 filesystem behavior quando l'outcome lo richiede
+→ pytest, fixtures, parametrize, integration/E2E nel percorso professionale
+```
+
+La piattaforma può usare infrastruttura interna più sofisticata senza obbligare lo studente a conoscerla prima del momento curricolare corretto.
+
+---
+
+# Output contract beginner P1
+
+Quando il focus è il calcolo:
+
+```python
+numero = int(input())
+print(numero * 2)
+```
+
+preferibile a:
+
+```python
+numero = int(input("Inserisci un numero: "))
+print("Il doppio è", numero * 2)
+```
+
+se il testo accessorio non fa parte della specifica.
+
+Quando l'interfaccia testuale è essa stessa requisito, il contratto può includere prompt/output completo.
+
+---
+
+# Error/reporting principles
+
+Student-facing report deve distinguere, dove applicabile:
+
+- output/return/state/artifact differente dall'atteso;
+- runtime error;
+- bounded traceback/exception;
+- timeout;
+- missing declared callable/class/artifact;
+- sandbox/policy violation;
+- runner/infrastructure unavailable.
+
+Il report deve aiutare a diagnosticare senza trasformarsi in generatore automatico della soluzione.
+
+---
+
+# Activity taxonomy e profili
+
+| Activity | Profilo tipico |
+|---|---|
+| A Observe/Trace | P0 |
+| B Controlled Change | P1/P2/P3/P4 secondo outcome |
+| C Implement | P1/P2/P3/P4 |
+| D Debug/Diagnose | P0 + profilo eseguibile appropriato |
+| E Mini-project | mix; evitare capability non certificate |
+| F Integrated Product | mix + rubric/manual evidence; Romeo può usare runtime plugin |
+
+Il livello A–F descrive la progressione didattica, non il tipo di runner.
+
+---
+
+# Gate prima di produzione massiva
+
+Non produrre decine di Activity Python finché:
+
+1. P1 vertical slice `python-docente#7` non ha evidence reale;
+2. le Activity che richiedono P2/P3/P4 dichiarano la capability oppure restano manual/formative;
+3. scaffold student/teacher separation è verificata;
+4. Classroom Environment è certificato secondo `python-docente#2` / `2cornot2c#753`;
+5. Course Workspace round-trip resta compatibile con `2cornot2c#755`;
+6. Romeo viene usato solo attraverso il runtime plugin certificato.
