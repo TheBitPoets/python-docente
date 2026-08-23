@@ -1,6 +1,6 @@
 # Python curriculum — roadmap generale (DRAFT)
 
-> Questa roadmap descrive l'intero percorso **da zero a Python professionale**. Il track di secondo anno seleziona soltanto la prima parte e ha un confine esplicito.
+> Questa roadmap descrive l'intero percorso **da zero a Python developer professionale**. Il track di secondo anno seleziona soltanto la prima parte e ha un confine esplicito.
 
 ## Stage A — Foundation: secondo anno
 
@@ -197,9 +197,10 @@ Pensato per anni successivi o studenti che proseguono.
 - package;
 - `__name__`;
 - import assoluti/relativi;
-- organizzazione di un progetto;
 - namespace;
-- dipendenze.
+- organizzazione di un progetto;
+- dipendenze tra moduli;
+- API pubblica di un package.
 
 ### B5 — Eccezioni e robustezza
 
@@ -236,149 +237,393 @@ Pensato per anni successivi o studenti che proseguono.
 - alberi e grafi introduttivi;
 - trade-off tempo/memoria.
 
+### B8 — Standard library essenziale
+
+- `collections`;
+- `itertools`;
+- `functools`;
+- `pathlib`;
+- `datetime`;
+- `enum`;
+- `dataclasses`;
+- `json`, `csv`;
+- `re`;
+- `argparse`;
+- `logging`;
+- `subprocess` come introduzione.
+
 ---
 
-## Stage C — Professional Python
+# Stage C — Professional Python Engineering
 
-### C1 — Type hints e contratti
+Questo stage non insegna solo nuove feature del linguaggio: insegna **come si costruisce, verifica, distribuisce, osserva e mantiene software Python reale**.
 
-- annotazioni;
-- collection generics;
-- unions/optional;
-- type aliases;
-- protocols;
+## C1 — Ambienti, interpreti e dipendenze
+
+- installazioni/versioni Python e selezione dell'interprete;
+- perché isolare i progetti;
+- `venv` come fondamento standard;
+- `pip` e package index;
+- version constraints;
+- dipendenze dirette vs transitive;
+- reproducibility e lock file;
+- development/test/docs dependency groups;
+- `pyproject.toml` come centro del progetto moderno;
+- workflow moderno con un project/dependency manager (candidato: `uv`), distinguendo sempre il concetto dallo strumento;
+- cache, ambienti CI e reproducibility cross-platform.
+
+## C2 — Struttura professionale di progetto e packaging
+
+- script vs application vs library;
+- flat layout vs `src/` layout;
+- package/module boundaries;
+- `pyproject.toml` metadata;
+- build backend;
+- entry points / CLI;
+- wheel e sdist;
+- editable installs;
+- semantic/versioning policy pragmatica;
+- TestPyPI/PyPI o registry privato;
+- trusted publishing/CI quando appropriato;
+- licensing e README di distribuzione.
+
+## C3 — Code quality toolchain
+
+- stile come automazione, non discussione manuale;
+- formatter;
+- linter;
+- import hygiene;
+- dead code / suspicious code checks;
+- target Python version;
+- configurazione centralizzata in `pyproject.toml`;
+- candidato toolchain moderno: Ruff per lint/format;
+- quality gate locale + CI;
+- pre-commit hooks come estensione.
+
+## C4 — Typing e contratti
+
+- type annotations;
+- generics delle collection;
+- union/optional;
+- literals e aliases;
+- callable types;
+- `TypedDict`;
+- dataclass + typing;
+- protocols e structural typing;
 - gradual typing;
-- checker statici.
+- type narrowing;
+- checker statici (Pyright/mypy come candidati);
+- typing di API pubbliche e library;
+- distinguere runtime validation e static typing.
 
-### C2 — Testing professionale
+## C5 — Testing professionale
 
-- unit/integration/E2E;
-- pytest;
-- fixture;
-- parametrizzazione;
-- mocking con criterio;
-- coverage;
-- property-based testing come estensione;
-- testability by design.
+Progressione:
 
-### C3 — Tooling e qualità
+```text
+assert semplici
+→ test di funzione
+→ pytest
+→ parametrizzazione
+→ fixture
+→ temp files / DB fixture
+→ mocking/monkeypatch con criterio
+→ integration tests
+→ E2E
+→ coverage
+→ property-based testing
+```
 
-- virtual environments;
-- `pyproject.toml`;
-- dependency management;
-- formatter/linter;
-- type checker;
-- Git e CI;
-- logging;
-- debugging con IDE/debugger;
-- profiling.
+Competenze:
 
-### C4 — I/O e formati reali
+- test pyramid e limiti del modello;
+- arrange/act/assert;
+- unit vs integration vs E2E;
+- determinismo e isolamento;
+- test doubles solo ai boundary opportuni;
+- pytest fixture e parametrizzazione;
+- testing di error paths;
+- database tests con transazioni/isolamento;
+- HTTP/API tests;
+- coverage come segnale, non obiettivo numerico cieco;
+- Hypothesis/property-based testing come livello avanzato;
+- testability by design;
+- regressions e CI.
+
+## C6 — Error handling, validation e configuration
+
+- error taxonomy;
+- exception boundaries;
+- custom exceptions;
+- input validation;
+- config file / environment / CLI precedence;
+- environment variables;
+- configuration objects;
+- secrets separati dalla configurazione ordinaria;
+- fail-fast startup validation;
+- graceful degradation quando appropriato;
+- retry solo per errori transitori.
+
+## C7 — File, serialization e data formats
 
 - `pathlib` avanzato;
+- encoding/Unicode;
 - CSV/JSON;
-- serialization;
-- regex;
-- Unicode;
-- date/time;
-- filesystem automation.
+- serialization/deserialization;
+- schema/versioning dei dati;
+- regex con criterio;
+- archivi/compressione come estensione;
+- atomic writes;
+- temporary files/directories;
+- streaming per file grandi.
 
-### C5 — Database
+## C8 — Database: DB-API e SQL prima dell'ORM
 
-- SQLite;
-- DB-API;
-- SQL parametrico;
-- transazioni;
-- repository/data access;
-- ORM come livello successivo, non sostituto della comprensione SQL.
+- database relazionali e responsabilità del DB;
+- SQLite per sviluppo/esercizi;
+- DB-API / `sqlite3`;
+- connessione/cursor/result;
+- SQL parametrico e SQL injection;
+- CRUD;
+- transazioni, commit/rollback;
+- constraints;
+- JOIN e query necessarie al codice applicativo;
+- connection lifetime;
+- repository/data-access boundary;
+- test del persistence layer.
 
-### C6 — HTTP, API e networking
+**Regola:** l'ORM non deve sostituire la comprensione di SQL e transazioni.
 
+## C9 — SQLAlchemy Core e ORM
+
+- Engine e connectivity;
+- Core expression language;
+- metadata/schema;
+- CRUD Core;
+- declarative mappings;
+- model/row distinction;
+- `Session` e unit of work;
+- identity map;
+- flush/commit/rollback;
+- query/select;
+- relazioni e join;
+- eager/lazy loading e problemi N+1;
+- transaction boundaries;
+- sync vs async DB access;
+- repository/service boundaries;
+- evitare il modello "ORM magic".
+
+## C10 — Schema migrations con Alembic
+
+- perché lo schema deve essere versionato;
+- migration environment;
+- revisioni;
+- upgrade/downgrade;
+- autogenerate e necessità di review;
+- data migration vs schema migration;
+- deploy order e backward compatibility;
+- migration test/smoke;
+- gestione sicura dei cambi distruttivi.
+
+## C11 — HTTP client, API e networking
+
+- URL/HTTP fundamentals;
 - client HTTP;
 - JSON API;
-- timeout/retry/error handling;
+- headers/status/error model;
+- timeout;
+- retry/backoff con criterio;
+- pagination;
+- auth client-side;
 - socket foundations;
-- API server con framework moderno come specializzazione.
+- API server come specializzazione (es. FastAPI);
+- validation/schema/OpenAPI nel track backend;
+- idempotenza e boundary design.
 
-### C7 — Concorrenza e async
+## C12 — Concorrenza, parallelismo e async
 
-- processi/thread/event loop;
+- sequential vs concurrent vs parallel;
 - I/O-bound vs CPU-bound;
+- thread/process;
 - `concurrent.futures`;
-- `asyncio`, coroutine, task;
-- cancellation/timeouts;
-- race conditions e synchronization basics.
+- event loop;
+- `async`/`await`;
+- coroutine/task;
+- cancellation e timeout;
+- synchronization/race conditions;
+- structured concurrency concepts;
+- async HTTP/DB dove realmente utile;
+- benchmark prima di scegliere il modello.
 
-### C8 — Packaging e distribuzione
+## C13 — Logging, observability e operations
 
-- struttura progetto;
-- build;
-- wheel/sdist;
-- metadata;
-- versioning;
-- pubblicazione privata/pubblica;
-- CLI installabili.
+- `logging` e livelli;
+- structured logging come estensione;
+- correlation/request IDs;
+- metriche;
+- tracing concettuale;
+- health/liveness/readiness;
+- diagnostics senza leak di segreti;
+- error reporting;
+- runbook operativo;
+- distinguere log applicativi, audit e telemetry.
 
-### C9 — Performance e memoria
+## C14 — Security engineering di base
+
+- input non fidato;
+- SQL injection e parameter binding;
+- command injection;
+- path traversal;
+- secret handling;
+- dependency vulnerabilities;
+- least privilege;
+- temp files sicuri;
+- deserialization risks;
+- logging di dati sensibili;
+- hashing/password concepts nel track web;
+- secure defaults e fail-closed behavior.
+
+## C15 — Performance e memoria
 
 - misurare prima di ottimizzare;
-- `timeit`/profiling;
+- `timeit`;
+- profiler;
+- memory awareness;
 - complessità;
-- allocazioni;
-- iterazione lazy;
 - scelta strutture dati;
-- caching con criterio.
+- lazy iteration;
+- batching;
+- caching con invalidation esplicita;
+- DB query performance;
+- evitare premature optimization.
 
-### C10 — Design e maintainability
+## C16 — CLI, OS integration e automation
+
+- `argparse` o framework CLI come specializzazione;
+- exit codes;
+- stdin/stdout/stderr;
+- environment;
+- filesystem;
+- `subprocess` sicuro;
+- signals/shutdown;
+- cron/scheduling concepts;
+- automazione ripetibile e idempotente.
+
+## C17 — Git, collaboration e CI/CD
+
+- branch/commit/merge/rebase a livello operativo;
+- pull request;
+- code review;
+- issue-driven work;
+- semantic commit discipline pragmatica;
+- CI matrix;
+- lint/type/test/build gates;
+- artifact generation;
+- release pipeline;
+- rollback concepts;
+- secrets in CI;
+- dependency/update automation.
+
+## C18 — Container e deployment
+
+- processo vs container;
+- Dockerfile;
+- image layers;
+- dependency/runtime separation;
+- non-root execution;
+- environment/config injection;
+- health check;
+- volumes/persistence;
+- networking essenziale;
+- immutable image/tag/digest concepts;
+- local compose come estensione;
+- deployment target specifico rinviato ai track applicativi.
+
+## C19 — Design e maintainability
 
 - cohesion/coupling;
+- separation of concerns;
+- dependency direction;
+- pure core / impure shell come pattern utile;
+- repository/service boundaries dove servono;
 - API design;
-- dependency inversion a livello pragmatico;
 - refactoring;
-- patterns solo quando risolvono un problema;
-- documentazione e manutenzione.
+- design patterns solo se risolvono un problema osservabile;
+- backward compatibility;
+- deprecation;
+- technical debt;
+- architectural decision records per scelte importanti.
+
+## C20 — Documentazione professionale
+
+- README operativo;
+- docstring utili;
+- API docs;
+- examples;
+- architecture docs;
+- changelog/release notes;
+- troubleshooting;
+- onboarding;
+- documentare il perché, non duplicare il codice.
 
 ---
 
-## Stage D — Applied Python / specializzazioni
+# Stage D — Applied Python / specializzazioni
+
+Il core professionale alimenta track applicativi. Nessun singolo sviluppatore deve diventare specialista in tutti, ma deve possedere i foundation comuni.
 
 Track selezionabili:
 
 - automazione e scripting;
 - web/API backend;
+- database/data access;
 - networking;
 - data engineering/data science;
 - cybersecurity/forensics in ambiente didattico sicuro;
 - robotica/IoT;
 - AI/ML;
 - sistemi distribuiti;
-- tooling/DevOps.
+- tooling/DevOps;
+- CLI developer tooling.
 
-## Capstone professionale
+---
 
-Il curriculum completo dovrebbe terminare con un prodotto che richieda:
+# Capstone professionale
+
+Il curriculum completo dovrebbe terminare con almeno un prodotto che richieda:
 
 ```text
-analisi
+analisi del problema
 → modello dati
-→ architettura
-→ package
+→ architettura/package boundaries
+→ ambiente riproducibile
+→ pyproject + dipendenze
 → typing
-→ test
-→ persistenza/I/O
-→ error handling
-→ logging
+→ lint/format
+→ unit/integration tests
+→ DB + SQL
+→ ORM + migration se appropriati
+→ API/CLI boundary
+→ error handling + configuration
+→ logging/health
 → CI
+→ package/container artifact
 → documentazione
-→ performance evidence
+→ performance/security evidence
 ```
 
-## Fonti guida
+Il capstone deve essere eseguibile da un altro sviluppatore partendo dal repository e dalle istruzioni, non solo sulla macchina dell'autore.
+
+---
+
+# Fonti guida
 
 - **Pensare in Python / Think Python**: problem solving e progressione beginner.
 - **Imparare Python / Learning Python**: copertura sistematica del core language.
 - **Fluent Python**: Python data model, idiomi, protocolli, funzioni, strutture dati e OOP pythonic.
 - **Python in a Nutshell**: riferimento tecnico compatto e ponte al professionale.
-- **Pluralsight Python Essentials / Python 3 / Core Python**: controllo di copertura e laboratori moderni.
-- **Documentazione ufficiale Python**: autorità normativa per sintassi, semantica e standard library.
+- **Pluralsight Python Essentials / Core Python e corsi specialistici**: gap check e laboratori moderni.
+- **Documentazione ufficiale Python e PyPA**: autorità normativa per linguaggio e packaging.
+- **SQLAlchemy/Alembic docs**: reference canonico per DB toolkit/ORM/migrazioni.
+- **pytest/Hypothesis docs**: reference per testing.
 - **friedpython**: source pack legacy da auditare, non curriculum canonico.
