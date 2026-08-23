@@ -22,7 +22,8 @@
     {"id": "python-ref-fluent-python", "kind": "book", "role": "teacher-reference", "provider": "oreilly", "title": "Fluent Python, 2nd Edition", "uri": "https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/", "access": "licensed-reference", "license_status": "licensed-reference-only"},
     {"id": "python-ref-nutshell", "kind": "book", "role": "teacher-reference", "provider": "oreilly", "title": "Python in a Nutshell, 4th Edition", "uri": "https://www.oreilly.com/library/view/python-in-a/9781098113544/", "access": "licensed-reference", "license_status": "licensed-reference-only"},
     {"id": "python-ref-docs", "kind": "documentation", "role": "technical-reference", "provider": "python", "title": "Python 3 documentation", "uri": "https://docs.python.org/3/", "access": "public", "license_status": "reference-and-license-aware-reuse"},
-    {"id": "python-ref-pluralsight", "kind": "course-catalog", "role": "teacher-reference", "provider": "pluralsight", "title": "Pluralsight Python learning catalog", "uri": "https://www.pluralsight.com/", "access": "licensed-reference", "license_status": "licensed-reference-only"}
+    {"id": "python-ref-pluralsight", "kind": "course-catalog", "role": "teacher-reference", "provider": "pluralsight", "title": "Pluralsight Python learning catalog", "uri": "https://www.pluralsight.com/", "access": "licensed-reference", "license_status": "licensed-reference-only"},
+    {"id": "python-ref-romeo", "kind": "repository", "role": "technical-reference", "provider": "github", "title": "TheBitPoets/romeo — piattaforma didattica e simulatore", "uri": "https://github.com/TheBitPoets/romeo/tree/45e5f7e131802fccc89358a23a25dbed1884bbfa", "access": "public", "license_status": "reference-to-pinned-apache2-code-and-cc-by-sa-course-material"}
   ],
   "sources": [
     {
@@ -38,6 +39,9 @@
         "COURSE_DESIGN.md",
         "DELIVERY_PROFILE.md",
         "ASSESSMENT_CALENDAR.md",
+        "ARCHITECTURE_REVIEW.md",
+        "GIT_G1_INTEGRATION.md",
+        "ROMEO_MAPPING.md",
         "PY2_01_SPEC.md",
         "PY2_02_SPEC.md",
         "PY2_03_SPEC.md",
