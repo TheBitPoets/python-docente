@@ -91,7 +91,8 @@
         "COURSE_DESIGN.md",
         "DELIVERY_PROFILE.md",
         "ASSESSMENT_CALENDAR.md",
-        "PY2_01_SPEC.md"
+        "PY2_01_SPEC.md",
+        "PY2_02_SPEC.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
@@ -108,7 +109,8 @@
         "COURSE_ARCHITECTURE.md",
         "CURRICULUM_ROADMAP.md",
         "APPROVED_DECISIONS_2026_2027.md",
-        "CROSS_COURSE_CURRICULA.md"
+        "CROSS_COURSE_CURRICULA.md",
+        "PYTHON_ACTIVITY_RUNTIME_CONTRACT.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
