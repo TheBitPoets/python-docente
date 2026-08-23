@@ -1,6 +1,17 @@
 {
   "sources": [
     {
+      "id": "python-course-content",
+      "label": "Python - lesson canoniche",
+      "type": "markdown",
+      "provider": "local",
+      "path": "content/python",
+      "files": [
+        "04_INTERPRETE_REPL_VALORI_IO.md"
+      ],
+      "indexing_status": "ready"
+    },
+    {
       "id": "python-secondo-design",
       "label": "Python secondo - design e mappa moduli",
       "type": "markdown",
