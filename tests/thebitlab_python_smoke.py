@@ -21,12 +21,17 @@ def fail(message: str) -> None:
     raise AssertionError(message)
 
 
-def run_module(platform: Path, module: str, *args: str) -> subprocess.CompletedProcess[str]:
+def run_module(
+    platform: Path,
+    module: str,
+    *args: str,
+    check: bool = True,
+) -> subprocess.CompletedProcess[str]:
     command = [sys.executable, "-m", module, *args]
     return subprocess.run(
         command,
         cwd=platform,
-        check=True,
+        check=check,
         capture_output=True,
         text=True,
     )
@@ -101,8 +106,12 @@ def assert_student_scaffold(scaffold: Path) -> None:
             fail(f"Marker riservato nello scaffold Activity: {marker}")
 
 
-def grade_source(platform: Path, source: Path, report: Path) -> dict:
-    run_module(
+def grade_source(
+    platform: Path,
+    source: Path,
+    report: Path,
+) -> tuple[int, dict]:
+    result = run_module(
         platform,
         "scripts.grade_activity",
         "--activity",
@@ -113,21 +122,41 @@ def grade_source(platform: Path, source: Path, report: Path) -> dict:
         "python",
         "--report",
         str(report),
+        check=False,
     )
-    return load_json(report)
+    if not report.is_file():
+        fail(
+            "grade_activity non ha scritto il report; "
+            f"exit={result.returncode}, stdout={result.stdout!r}, stderr={result.stderr!r}"
+        )
+    return result.returncode, load_json(report)
 
 
 def assert_solution_and_starter(platform: Path, temp: Path) -> None:
-    solution_report = grade_source(platform, SOLUTION, temp / "solution-report.json")
-    if solution_report.get("passed") is not True:
-        fail(f"La soluzione non passa: {solution_report}")
+    solution_exit, solution_report = grade_source(
+        platform,
+        SOLUTION,
+        temp / "solution-report.json",
+    )
+    if solution_exit != 0 or solution_report.get("passed") is not True:
+        fail(
+            "La soluzione non passa: "
+            f"exit={solution_exit}, report={solution_report}"
+        )
     summary = solution_report.get("summary") or {}
     if summary.get("passed") != 3 or summary.get("total") != 3:
         fail(f"Riepilogo soluzione inatteso: {summary}")
 
-    starter_report = grade_source(platform, STARTER, temp / "starter-report.json")
-    if starter_report.get("passed") is True:
-        fail("Lo starter passa tutti i test: i test non discriminano la modifica richiesta")
+    starter_exit, starter_report = grade_source(
+        platform,
+        STARTER,
+        temp / "starter-report.json",
+    )
+    if starter_exit == 0 or starter_report.get("passed") is True:
+        fail(
+            "Lo starter passa tutti i test: i test non discriminano "
+            "la modifica richiesta"
+        )
     starter_summary = starter_report.get("summary") or {}
     if starter_summary.get("total") != 3:
         fail(f"Lo starter non ha eseguito i tre test: {starter_summary}")
