@@ -27,6 +27,20 @@
   ],
   "sources": [
     {
+      "id": "python-course-content",
+      "kind": "source-package",
+      "label": "Python - lesson canoniche",
+      "type": "markdown",
+      "provider": "local",
+      "role": "approved-course-content",
+      "path": "content/python",
+      "files": [
+        "04_INTERPRETE_REPL_VALORI_IO.md"
+      ],
+      "license_status": "project-license-to-review",
+      "indexing_status": "ready"
+    },
+    {
       "id": "python-secondo-design",
       "kind": "source-package",
       "label": "Python secondo - design e mappa moduli",
@@ -75,7 +89,44 @@
       "indexing_status": "ready"
     }
   ],
-  "content_items": [],
+  "content_items": [
+    {
+      "id": "py2-m04-interprete-repl-io",
+      "kind": "module",
+      "path": "content/python/04_INTERPRETE_REPL_VALORI_IO.md",
+      "order": 4,
+      "status": "draft",
+      "curriculum_topics": [
+        "python-interpreter",
+        "repl",
+        "values-types",
+        "variables",
+        "input-output",
+        "type-conversion",
+        "beginner-debugging"
+      ],
+      "activity_ids": [
+        "py2-activity-b-input-somma-001"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "04_INTERPRETE_REPL_VALORI_IO.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 tutorial and built-in functions"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "values, variables, functions and debugging progression"
+        }
+      ]
+    }
+  ],
   "course_designs": [{"id": "python-secondo-2026-2027", "path": "doc/course_design.json", "status": "draft"}],
   "activity_roots": ["activities/python"],
   "policies": {
