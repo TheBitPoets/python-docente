@@ -75,7 +75,9 @@ def assert_slide_contract() -> None:
     slides = text(SLIDES)
     if not slides.startswith("---\nmarp: true"):
         fail("Deck M04 non è una sorgente Marp canonica")
-    slide_count = max(1, slides.count("\n---\n") - 1)
+    # Il primo '\n---\n' chiude il frontmatter; gli altri separano le slide.
+    # Quindi il numero totale di occorrenze coincide con il numero di slide.
+    slide_count = max(1, slides.count("\n---\n"))
     if not 12 <= slide_count <= 25:
         fail(f"Deck M04 fuori densità attesa: {slide_count} slide")
     for marker in (ACTIVITY_ID, "prima prevedi, poi esegui", "input()", "Error Clinic"):
