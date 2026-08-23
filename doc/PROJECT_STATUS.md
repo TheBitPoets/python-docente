@@ -2,101 +2,227 @@
 
 ## Current phase
 
-**Curriculum architecture / first vertical-spec design.**
+**Second-year curriculum freeze candidate + first authoring vertical slice.**
 
-Do not generate the full set of lessons, slides or Activities yet.
+The complete second-year architecture has been designed and reviewed. Do not mass-generate the remaining lessons/slides/Activities yet: first keep the M04 vertical slice and platform gates honest.
 
 ## Current branch
 
 `agent/course-architecture`
 
-## What exists
+Draft PR:
 
-### Curriculum / track
+`#1 — Draft Python curriculum architecture and second-year track`
 
-- overall course architecture;
-- full roadmap from beginner to professional Python;
-- second-year 33-week track;
-- detailed second-year module map M00–M30;
-- spiral curriculum model;
-- 2 theory-active + 1 lab delivery profile;
-- mandatory OOP boundary;
-- professional skills matrix;
-- assessment model + four-assessment calendar;
-- AI policy;
-- cross-course Git/Container boundary.
+---
 
-### Sources / provenance
+# Curriculum status
 
-- source catalog;
-- Think/Pensare in Python, Learning/Imparare Python, Fluent Python, Python in a Nutshell, Pluralsight and official docs roles;
-- `friedpython` source mapping/snapshot;
-- source → module → Activity planning matrix.
+## Complete second-year design
 
-### TheBitLab authoring compatibility
+The track has:
 
-- `doc/course_design.json` exists and contains the full 33-week UDA/checkpoint structure;
-- Course Design declares explicit local Markdown sources;
-- `content/python/content-pack.json` is a draft `thebitlab.content-pack.v1` manifest referencing the same Course Design;
-- `activities/python/` is the reserved Activity 1.0 root;
-- Content Pack sources and Course Design sources are kept semantically aligned;
-- `doc/THEBITLAB_AUTHORING_COMPATIBILITY.md` records the dashboard round-trip;
-- TheBitLab Course Board already supports external course workspaces through `--root`;
-- product-level `Open course` / bundle inspection is tracked by `TheBitPoets/2cornot2c#755`.
+- 33 weeks × 3 hours = 99 nominal hours;
+- 30 core weeks = 90 nominal hours;
+- 3 explicit checkpoint/buffer weeks = 9 hours;
+- real timetable model: 2 active-theory hours + 1 lab hour;
+- spiral method: test/trace/debug/naming/performance reasoning throughout;
+- M00–M30 module map;
+- all UDA specs `PY2_01_SPEC.md` … `PY2_10_SPEC.md`;
+- mandatory OOP in weeks 29–32;
+- no mandatory new prerequisite in week 33.
 
-### Platform decisions
+`tracks/secondo/ARCHITECTURE_REVIEW.md` confirms the load/dependency review and records the main density risk (PY2-07 lists/tuples), with explicit enrichment cuts before core alias/copy/data-model outcomes.
 
-- TheBitLab Classroom Environment is the only supported student environment;
-- Python 3.12 is the initial certified baseline;
-- standard Python REPL precedes scripts/VS Code; IPython optional;
-- target cross-platform Flowchart Lab; Flowgorithm optional Windows companion only;
-- Romeo is an external simulated applied thread/runtime, not the curriculum;
-- environment/Flowchart architecture is tracked by `TheBitPoets/2cornot2c#753` and draft PR `#754`.
+## Freeze candidate
 
-### First vertical specification
+`doc/CURRICULUM_FREEZE_CANDIDATE.md` now records the proposed stable curriculum decisions.
 
-- `tracks/secondo/PY2_01_SPEC.md` specifies the first UDA in detail;
-- M00–M03 objectives, misconceptions, active-theory rhythm, Activity A–E candidates, evidence, remediation/enrichment and platform fallback are defined;
-- the first UDA spec is already included in the Course Board/Content Pack source catalog.
+It is a **candidate**, not the final decision-owner freeze and not a Content Pack approval.
 
-## Open blockers before Content Pack 1.0 freeze
+The candidate freezes the proposed *what/sequence/outcomes* while leaving delivery tooling independently evolvable.
 
-1. implement/certify the cross-course Classroom Environment contract;
-2. implement/certify Flowchart Lab artifact + execution/evidence contract;
-3. define the Python Activity/runner contract and resource limits;
-4. certify managed VS Code host/guest workflow;
-5. complete selective Romeo mapping by module;
-6. review/finalize assessment rubric weights;
-7. convert final lesson Markdown into stable Course Design items;
-8. run a real Course Board `--root` round-trip smoke against `python-docente`;
-9. produce/review one small complete vertical slice before mass content production.
+---
 
-## Next Python design steps
+# UDA design status
 
-1. review PY2-01 specification as the template for subsequent UDA specs;
-2. define stable Activity IDs/contracts for PY2-01 without pretending Flowchart Lab is implemented;
-3. specify PY2-02 (REPL, first scripts, types/I/O, expressions, first tiny functions);
-4. define the minimal Python runner/autograding boundary for deterministic exercises;
-5. map Romeo only where it adds a genuine applied problem;
-6. after the first two UDA specs, reassess time/load before expanding to the whole course.
+- PY2-01: algorithms / pseudocode / flow chart / trace — specified;
+- PY2-02: REPL / first scripts / types / I/O / expressions — specified;
+- PY2-03: Boolean logic / selection / nested decision/refactor — specified;
+- PY2-04: while / for / patterns / nested loops / work intuition — specified;
+- PY2-05: functions / return / scope / top-down / assert / regression — specified;
+- PY2-06: strings / immutability / methods / text algorithms — specified;
+- PY2-07: lists / alias-copy / tuples / matrices — specified;
+- PY2-08: set / dict / frequency / nested models / data-structure choice — specified;
+- PY2-09: pathlib / text files / with / predictable error boundary — specified;
+- PY2-10: class / instance / init / state / composition / OOP capstone — specified.
 
-## External curricula queued
+---
 
-### Git
+# Git / Container
 
-A future separate progressive Git curriculum is planned for all school years. Python second year consumes only a small G1 slice (`status`, `diff`, `add`, `commit`, history concept). Existing teacher Git handouts will be requested when the Git curriculum or the concrete G1 micro-module enters production.
+## Git
 
-### Container
+Git is a separate future progressive curriculum. The Python second-year G1 integration is defined in:
 
-The future Container/Docker curriculum remains separate and is tracked in `kinderp/docker101#1`. Python professional stages consume container literacy but do not duplicate that course.
+`tracks/secondo/GIT_G1_INTEGRATION.md`
 
-## Explicit non-goals in the current phase
+Key decision:
 
-- no mass lesson generation;
-- no mass slide generation;
-- no importing all of `friedpython`;
-- no forcing Romeo into every module;
-- no treating Git/Container as duplicated sub-courses inside Python;
-- no freezing tool choices as if they were language concepts;
-- no claim that Flowchart Lab/VS Code/bundle UX is implemented merely because architecture exists;
-- no claim that the course is ready for students yet.
+```text
+weeks 13–16: status/diff
+Checkpoint A: first guided add/commit
+second semester: commit/checkpoint routine
+week 33: consolidation only, not first exposure
+```
+
+Teacher Git handouts are not needed yet. Request them when producing the definitive G1 lessons or when starting the standalone Git curriculum.
+
+## Container
+
+Container/Docker remains a separate future curriculum based on `kinderp/docker101` and its backlog issue #1. Python professional stages consume container literacy without duplicating that course.
+
+---
+
+# Romeo status
+
+`tracks/secondo/ROMEO_MAPPING.md` is complete and pins the audited Romeo reference.
+
+Strong selective mapping:
+
+- PY2-03 conditions;
+- PY2-04 loops;
+- PY2-05 functions/top-down/debug;
+- PY2-10 OOP/capstone.
+
+No forced Romeo mapping for strings/set-dict/files.
+
+`python-docente#4` is closed as mapping-complete.
+
+Runtime cross-profile certification remains a platform/delivery concern.
+
+---
+
+# Assessment status
+
+Assessment model/calendar are defined and `python-docente#5` is closed.
+
+Approved minimum:
+
+- one theory/written + one practical/practical-written assessment per quadrimester;
+- formative evidence continuously through trace/debug/Activity/projects;
+- autograding only for deterministic evidence; manual/rubric evidence remains first-class.
+
+---
+
+# TheBitLab authoring compatibility
+
+`python-docente` is a real Course Workspace candidate:
+
+- `doc/course_design.json` contains all 33 weeks/UDA/checkpoints;
+- all ten UDA specs + architecture review + Git/Romeo mappings are indexed;
+- `content/python/content-pack.json` is a draft `thebitlab.content-pack.v1`;
+- Course Board can target a checkout using `course_board_server.py --root <workspace>`;
+- repository remains mutable source of truth;
+- Git is history/review;
+- Course Bundle is immutable publication state.
+
+Product-level `Open course` / bundle-inspection UX remains `TheBitPoets/2cornot2c#755`.
+
+---
+
+# Python grading profiles
+
+Canonical design: `doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`.
+
+- P0 — manual/trace/design evidence;
+- P1 — single-file stdin/stdout; generic runner exists, consumer certification open;
+- P2 — function behavior, platform issue `2cornot2c#756`;
+- P3 — object behavior, platform issue `2cornot2c#758`;
+- P4 — filesystem behavior, platform issue `2cornot2c#757`;
+- Romeo — external `romeo-sim` runtime plugin for domain-specific evidence.
+
+Do not distort a P2/P3/P4 learning outcome into P1 merely because P1 exists.
+
+---
+
+# First technical Activity vertical slice
+
+Activity:
+
+`activities/python/py2-activity-b-input-somma-001/`
+
+Includes:
+
+- Activity 1.0 metadata;
+- starter `main.py`;
+- student `GUIDA.md`;
+- solution;
+- teacher notes;
+- three deterministic stdin/stdout cases.
+
+Certification issue:
+
+`python-docente#7`.
+
+Observed GitHub Actions runs currently fail before executing any workflow step on both Ubuntu/Windows, so they are classified as pre-execution infrastructure/policy failure, **not evidence that the smoke body failed**.
+
+No mass Activity production until #7 has real evidence.
+
+---
+
+# First authoring/content vertical slice
+
+M04 now has:
+
+- canonical lesson: `content/python/04_INTERPRETE_REPL_VALORI_IO.md`;
+- Marp slide source: `slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md`;
+- teacher runbook: `teacher/M04_RUNBOOK.md`;
+- linked Activity `py2-activity-b-input-somma-001`;
+- Content Pack `content_item` with provenance/reference mapping;
+- Course Board local Markdown source entry.
+
+This validates the **authoring shape**, not yet the live dashboard/runner execution.
+
+The Course Design UDA item is intentionally not hand-forged: the first real Course Board round-trip should populate/align it, so the dashboard workflow is actually tested.
+
+---
+
+# Open blockers
+
+## Curriculum decision
+
+- explicit decision-owner approval of `CURRICULUM_FREEZE_CANDIDATE.md` before marking architecture frozen.
+
+## Platform / delivery
+
+- `python-docente#2` — managed Classroom Environment certification;
+- `TheBitPoets/2cornot2c#753/#754` — environment contract + Flowchart Lab;
+- `TheBitPoets/2cornot2c#755` — Course Workspace/Open course UX;
+- `python-docente#6` — managed beginner REPL/editor workflow certification;
+- `python-docente#7` — P1 first Python vertical slice certification;
+- `TheBitPoets/2cornot2c#756` — P2 function behavior;
+- `TheBitPoets/2cornot2c#757` — P4 filesystem behavior;
+- `TheBitPoets/2cornot2c#758` — P3 object behavior;
+- Romeo simulator cross-profile certification.
+
+## Content production
+
+- individual audit of legacy `friedpython` exercises before import;
+- first real Course Board `--root` round-trip against M04;
+- M04 lesson/deck/runbook teacher review;
+- slide build/quality pipeline for this repo;
+- then M05 vertical slice continuation and controlled expansion.
+
+---
+
+# Explicit non-goals now
+
+- no claim that the course is classroom-ready;
+- no final Content Pack approval;
+- no mass lesson/slide/Activity generation before the first vertical slice gates;
+- no fake grading for unsupported P2/P3/P4 outcomes;
+- no hardware-dependent Romeo core;
+- no duplication of standalone Git/Container curricula;
+- no importing `friedpython` wholesale;
+- no reopening TPSI5 curriculum while solving Python platform needs.
