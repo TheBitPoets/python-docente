@@ -147,23 +147,46 @@ Riutilizzare, adattando la densità all'età:
 - TheBitLab handoff;
 - curriculum freeze vs delivery changelog.
 
+### R13 — IDE unico: VS Code, semplificato per il secondo anno
+
+Default proposto:
+
+- VS Code fin dall'inizio;
+- Python extension ufficiale;
+- profilo del corso minimale, senza estensioni AI durante le Activity valutative;
+- terminale, debugger e test introdotti progressivamente;
+- stesso ambiente riutilizzato nei livelli professional per virtual environment, pytest, linting, typing e Git.
+
+Motivo: evitare una migrazione artificiale da un IDE beginner-only a un ambiente professionale dopo pochi mesi. La complessità dell'interfaccia viene ridotta dalla configurazione del corso, non cambiando strumento.
+
 ## Decisioni che restano realmente aperte
 
-### O1 — Versione Python target 2026/27
+### O1 — Baseline Python 2026/27
 
-**Raccomandazione provvisoria:** scegliere una versione stabile compatibile con il runner TheBitLab e disponibile uniformemente nei laboratori, evitando di rendere il curriculum dipendente da feature troppo recenti.
+**Raccomandazione aggiornata:** separare il contratto del linguaggio dal runtime di laboratorio.
 
-Da verificare prima del freeze.
+```text
+core curriculum compatibility: Python 3.12–3.14
+reference/current local interpreter: Python 3.14.x
+TheBitLab runner: versione certificata separatamente
+CI curriculum: almeno Python 3.12 + 3.14
+```
 
-### O2 — Flow chart toolchain
+Il core di seconda non deve dipendere da feature introdotte soltanto in 3.13/3.14. In questo modo gli esempi restano riproducibili sul runner scolastico e contemporaneamente il corso può usare l'interprete stabile corrente sui PC.
 
-Possibile modello ibrido:
+Fatto tecnico rilevante al 2026-08-23: Python 3.14 è la serie stabile più recente; il TheBitLab corrente dichiara ancora `minimum-python = 3.11` e `recommended-python = 3.12`. Prima del freeze va eseguita una smoke reale su 3.14 e deciso il runner certificato di `python-docente`.
 
-- carta/lavagna per apprendimento immediato;
-- tool visuale per consegne strutturate;
-- formato versionabile soltanto quando non aumenta il carico cognitivo.
+### O2 — Flow chart workflow
 
-Da confrontare almeno: diagrams.net, Flowgorithm e Mermaid/alternative.
+**Raccomandazione aggiornata:** modello ibrido carta + Flowgorithm.
+
+1. carta/lavagna per imparare simboli e progettare senza dipendere dal software;
+2. Flowgorithm come tool digitale principale, perché permette esecuzione passo-passo, osservazione delle variabili e traduzione del diagramma anche verso Python;
+3. l'eventuale codice Python generato dal tool è materiale di confronto, non una consegna accettabile al posto della codifica dello studente;
+4. esportazione del diagramma come evidence; diagrams.net resta fallback grafico se Flowgorithm non è installabile;
+5. Mermaid non è richiesto ai principianti: potrà servire più avanti per documentazione versionabile.
+
+Questa proposta dipende da una conferma pratica: i PC del laboratorio devono poter eseguire/installare Flowgorithm.
 
 ### O3 — Progetto longitudinale
 
@@ -219,13 +242,28 @@ Non serve per congelare il secondo anno.
 
 La roadmap deve però continuare a contenere l'intero profilo professionale, così il materiale di seconda non crea vicoli ciechi o modelli che dovremo disimparare.
 
+### O8 — Vincoli reali del laboratorio scolastico
+
+Da raccogliere prima del freeze:
+
+- Windows/Linux e versioni;
+- diritti di installazione;
+- accesso Internet durante laboratorio/verifiche;
+- VS Code/Python già installati o immagine da predisporre;
+- possibilità di installare Flowgorithm;
+- disposizione delle 3 ore settimanali (3 consecutive, 2+1, altro);
+- uso individuale o condiviso delle postazioni.
+
+Questi dati non cambiano gli obiettivi del curriculum, ma cambiano molto la delivery e il tipo di Activity realisticamente sostenibile.
+
 ## Criterio di freeze
 
 Prima di creare in massa lesson/slide/Activity del Content Pack 1.0, devono essere risolte almeno:
 
-- O1 Python target;
+- O1 Python baseline/runner;
 - O2 flow chart workflow;
 - O3 progetto longitudinale;
-- O6 contract TheBitLab.
+- O6 contract TheBitLab;
+- O8 vincoli reali del laboratorio almeno per quanto noto.
 
 O4/O5 possono essere congelate come profili di delivery/tooling con più facilità di revisione rispetto al curriculum.
