@@ -90,7 +90,8 @@
         "MODULE_MAP.md",
         "COURSE_DESIGN.md",
         "DELIVERY_PROFILE.md",
-        "ASSESSMENT_CALENDAR.md"
+        "ASSESSMENT_CALENDAR.md",
+        "PY2_01_SPEC.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
