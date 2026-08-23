@@ -35,5 +35,8 @@ jobs:
           ref: cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
           path: _thebitlab-platform
 
+      - name: Validate Course Board external workspace round-trip
+        run: python tests/course_board_workspace_roundtrip.py --platform _thebitlab-platform
+
       - name: Validate first Python TheBitLab consumer
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
