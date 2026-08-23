@@ -42,7 +42,12 @@
         "PY2_02_SPEC.md",
         "PY2_03_SPEC.md",
         "PY2_04_SPEC.md",
-        "PY2_05_SPEC.md"
+        "PY2_05_SPEC.md",
+        "PY2_06_SPEC.md",
+        "PY2_07_SPEC.md",
+        "PY2_08_SPEC.md",
+        "PY2_09_SPEC.md",
+        "PY2_10_SPEC.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
