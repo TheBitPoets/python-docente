@@ -20,6 +20,14 @@ jobs:
       - name: Checkout python-docente
         uses: actions/checkout@v4
 
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate M04 authoring coherence
+        run: python tests/m04_vertical_slice_static.py
+
       - name: Checkout pinned TheBitLab baseline
         uses: actions/checkout@v4
         with:
@@ -27,10 +35,5 @@ jobs:
           ref: cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
           path: _thebitlab-platform
 
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Validate first Python vertical slice
+      - name: Validate first Python TheBitLab consumer
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
