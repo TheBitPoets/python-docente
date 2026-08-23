@@ -1,0 +1,134 @@
+{
+  "schema_version": "thebitlab.content-pack.v1",
+  "id": "python-curriculum-2026",
+  "title": "Python - curriculum da zero a professionale",
+  "version": "0.1.0",
+  "status": "draft",
+  "language": "it",
+  "audience": {
+    "school_level": "secondaria-secondo-grado",
+    "subject": "informatica",
+    "first_track_year": 2,
+    "scope": "multi-year"
+  },
+  "ownership": {
+    "content_origin": "original-course-material",
+    "redistribution_status": "project-license-to-review",
+    "editorial_copying_allowed": false
+  },
+  "references": [
+    {
+      "id": "python-ref-think-python",
+      "kind": "book",
+      "role": "teacher-reference",
+      "provider": "greenteapress",
+      "title": "Think Python / Pensare in Python",
+      "uri": "https://greenteapress.com/wp/think-python-3rd-edition/",
+      "access": "public-reference",
+      "license_status": "reference-license-aware-reuse"
+    },
+    {
+      "id": "python-ref-learning-python",
+      "kind": "book",
+      "role": "teacher-reference",
+      "provider": "oreilly",
+      "title": "Learning Python / Imparare Python",
+      "access": "licensed-reference",
+      "license_status": "licensed-reference-only"
+    },
+    {
+      "id": "python-ref-fluent-python",
+      "kind": "book",
+      "role": "teacher-reference",
+      "provider": "oreilly",
+      "title": "Fluent Python, 2nd Edition",
+      "uri": "https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/",
+      "access": "licensed-reference",
+      "license_status": "licensed-reference-only"
+    },
+    {
+      "id": "python-ref-nutshell",
+      "kind": "book",
+      "role": "teacher-reference",
+      "provider": "oreilly",
+      "title": "Python in a Nutshell, 4th Edition",
+      "uri": "https://www.oreilly.com/library/view/python-in-a/9781098113544/",
+      "access": "licensed-reference",
+      "license_status": "licensed-reference-only"
+    },
+    {
+      "id": "python-ref-docs",
+      "kind": "documentation",
+      "role": "technical-reference",
+      "provider": "python",
+      "title": "Python 3 documentation",
+      "uri": "https://docs.python.org/3/",
+      "access": "public",
+      "license_status": "reference-and-license-aware-reuse"
+    },
+    {
+      "id": "python-ref-pluralsight",
+      "kind": "course-catalog",
+      "role": "teacher-reference",
+      "provider": "pluralsight",
+      "title": "Pluralsight Python learning catalog",
+      "uri": "https://www.pluralsight.com/",
+      "access": "licensed-reference",
+      "license_status": "licensed-reference-only"
+    }
+  ],
+  "sources": [
+    {
+      "id": "python-secondo-design",
+      "kind": "source-package",
+      "label": "Python secondo - design e mappa moduli",
+      "type": "markdown",
+      "provider": "local",
+      "role": "course-design-source",
+      "path": "tracks/secondo",
+      "files": [
+        "MODULE_MAP.md",
+        "COURSE_DESIGN.md",
+        "DELIVERY_PROFILE.md",
+        "ASSESSMENT_CALENDAR.md"
+      ],
+      "license_status": "project-license-to-review",
+      "indexing_status": "ready"
+    },
+    {
+      "id": "python-curriculum-design",
+      "kind": "source-package",
+      "label": "Python curriculum - architettura e roadmap",
+      "type": "markdown",
+      "provider": "local",
+      "role": "course-design-source",
+      "path": "doc",
+      "files": [
+        "COURSE_ARCHITECTURE.md",
+        "CURRICULUM_ROADMAP.md",
+        "APPROVED_DECISIONS_2026_2027.md",
+        "CROSS_COURSE_CURRICULA.md"
+      ],
+      "license_status": "project-license-to-review",
+      "indexing_status": "ready"
+    }
+  ],
+  "content_items": [],
+  "course_designs": [
+    {
+      "id": "python-secondo-2026-2027",
+      "path": "doc/course_design.json",
+      "status": "draft"
+    }
+  ],
+  "activity_roots": [
+    "activities/python"
+  ],
+  "policies": {
+    "provenance_required": true,
+    "teacher_review_required_before_publish": true,
+    "student_teacher_asset_separation_required": true,
+    "ai_is_not_primary_source": true,
+    "restricted_source_copying_forbidden": true
+  }
+}
