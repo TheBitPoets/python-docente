@@ -63,6 +63,10 @@
   ],
   "source_refs": [
     {
+      "source_id": "python-course-content",
+      "href": "content/python/04_INTERPRETE_REPL_VALORI_IO.md#m04-interprete-repl-script-valori-e-inputoutput"
+    },
+    {
       "source_id": "python-secondo-design",
       "href": "tracks/secondo/PY2_02_SPEC.md#activity-candidate"
     }
