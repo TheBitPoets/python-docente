@@ -17,65 +17,12 @@
     "editorial_copying_allowed": false
   },
   "references": [
-    {
-      "id": "python-ref-think-python",
-      "kind": "book",
-      "role": "teacher-reference",
-      "provider": "greenteapress",
-      "title": "Think Python / Pensare in Python",
-      "uri": "https://greenteapress.com/wp/think-python-3rd-edition/",
-      "access": "public-reference",
-      "license_status": "reference-license-aware-reuse"
-    },
-    {
-      "id": "python-ref-learning-python",
-      "kind": "book",
-      "role": "teacher-reference",
-      "provider": "oreilly",
-      "title": "Learning Python / Imparare Python",
-      "access": "licensed-reference",
-      "license_status": "licensed-reference-only"
-    },
-    {
-      "id": "python-ref-fluent-python",
-      "kind": "book",
-      "role": "teacher-reference",
-      "provider": "oreilly",
-      "title": "Fluent Python, 2nd Edition",
-      "uri": "https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/",
-      "access": "licensed-reference",
-      "license_status": "licensed-reference-only"
-    },
-    {
-      "id": "python-ref-nutshell",
-      "kind": "book",
-      "role": "teacher-reference",
-      "provider": "oreilly",
-      "title": "Python in a Nutshell, 4th Edition",
-      "uri": "https://www.oreilly.com/library/view/python-in-a/9781098113544/",
-      "access": "licensed-reference",
-      "license_status": "licensed-reference-only"
-    },
-    {
-      "id": "python-ref-docs",
-      "kind": "documentation",
-      "role": "technical-reference",
-      "provider": "python",
-      "title": "Python 3 documentation",
-      "uri": "https://docs.python.org/3/",
-      "access": "public",
-      "license_status": "reference-and-license-aware-reuse"
-    },
-    {
-      "id": "python-ref-pluralsight",
-      "kind": "course-catalog",
-      "role": "teacher-reference",
-      "provider": "pluralsight",
-      "title": "Pluralsight Python learning catalog",
-      "uri": "https://www.pluralsight.com/",
-      "access": "licensed-reference",
-      "license_status": "licensed-reference-only"
-    }
+    {"id": "python-ref-think-python", "kind": "book", "role": "teacher-reference", "provider": "greenteapress", "title": "Think Python / Pensare in Python", "uri": "https://greenteapress.com/wp/think-python-3rd-edition/", "access": "public-reference", "license_status": "reference-license-aware-reuse"},
+    {"id": "python-ref-learning-python", "kind": "book", "role": "teacher-reference", "provider": "oreilly", "title": "Learning Python / Imparare Python", "access": "licensed-reference", "license_status": "licensed-reference-only"},
+    {"id": "python-ref-fluent-python", "kind": "book", "role": "teacher-reference", "provider": "oreilly", "title": "Fluent Python, 2nd Edition", "uri": "https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/", "access": "licensed-reference", "license_status": "licensed-reference-only"},
+    {"id": "python-ref-nutshell", "kind": "book", "role": "teacher-reference", "provider": "oreilly", "title": "Python in a Nutshell, 4th Edition", "uri": "https://www.oreilly.com/library/view/python-in-a/9781098113544/", "access": "licensed-reference", "license_status": "licensed-reference-only"},
+    {"id": "python-ref-docs", "kind": "documentation", "role": "technical-reference", "provider": "python", "title": "Python 3 documentation", "uri": "https://docs.python.org/3/", "access": "public", "license_status": "reference-and-license-aware-reuse"},
+    {"id": "python-ref-pluralsight", "kind": "course-catalog", "role": "teacher-reference", "provider": "pluralsight", "title": "Pluralsight Python learning catalog", "uri": "https://www.pluralsight.com/", "access": "licensed-reference", "license_status": "licensed-reference-only"}
   ],
   "sources": [
     {
@@ -93,7 +40,9 @@
         "ASSESSMENT_CALENDAR.md",
         "PY2_01_SPEC.md",
         "PY2_02_SPEC.md",
-        "PY2_03_SPEC.md"
+        "PY2_03_SPEC.md",
+        "PY2_04_SPEC.md",
+        "PY2_05_SPEC.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
@@ -118,16 +67,8 @@
     }
   ],
   "content_items": [],
-  "course_designs": [
-    {
-      "id": "python-secondo-2026-2027",
-      "path": "doc/course_design.json",
-      "status": "draft"
-    }
-  ],
-  "activity_roots": [
-    "activities/python"
-  ],
+  "course_designs": [{"id": "python-secondo-2026-2027", "path": "doc/course_design.json", "status": "draft"}],
+  "activity_roots": ["activities/python"],
   "policies": {
     "provenance_required": true,
     "teacher_review_required_before_publish": true,
