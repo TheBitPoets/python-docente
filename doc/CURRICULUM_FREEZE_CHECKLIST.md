@@ -1,8 +1,11 @@
 # Python curriculum — checklist freeze
 
+> **Curriculum architecture: FROZEN 2026-08-24.**  
+> Documento canonico: `doc/CURRICULUM_FREEZE_2026_2027.md`.
+
 Questa checklist distingue **curriculum architecture freeze** da **Content Pack 1.0 / classroom readiness**.
 
-## A. Curriculum architecture — candidate review
+## A. Curriculum architecture — FROZEN
 
 ### Architettura
 
@@ -12,7 +15,8 @@ Questa checklist distingue **curriculum architecture freeze** da **Content Pack 
 - [x] 3 checkpoint/buffer = 9 ore esplicite
 - [x] confine OOP di seconda definito e obbligatorio
 - [x] architecture load review completata (`tracks/secondo/ARCHITECTURE_REVIEW.md`)
-- [ ] decision owner approva esplicitamente `CURRICULUM_FREEZE_CANDIDATE.md`
+- [x] decision owner ha approvato esplicitamente il freeze il 2026-08-24
+- [x] freeze canonico registrato in `CURRICULUM_FREEZE_2026_2027.md`
 
 ### Metodo didattico
 
@@ -55,7 +59,7 @@ Questa checklist distingue **curriculum architecture freeze** da **Content Pack 
 - [x] inventory/audit tematico stringhe/liste/tuple/dict/file eseguito a livello architetturale
 - [ ] audit individuale degli esercizi `friedpython` prima dell'import effettivo
 
-L'ultimo punto **non blocca il freeze della struttura del curriculum**; blocca l'import/publish degli esercizi legacy non ancora revisionati.
+L'ultimo punto non riapre il curriculum congelato; blocca soltanto l'import/publish degli esercizi legacy non ancora revisionati.
 
 ---
 
@@ -68,10 +72,14 @@ L'ultimo punto **non blocca il freeze della struttura del curriculum**; blocca l
 - [x] tutte le SPEC PY2-01…PY2-10 indicizzate
 - [x] architecture review / Git mapping / Romeo mapping indicizzati
 - [x] first Activity P1 vertical slice materializzata
-- [ ] lesson M04 vertical slice prodotta/revisionata
-- [ ] slide M04 vertical slice prodotta/revisionata
-- [ ] Course Design item reale M04 round-trip testato nella dashboard
+- [x] lesson M04 vertical slice prodotta e revisionata a livello authoring
+- [x] slide M04 vertical slice prodotta e revisionata a livello authoring
+- [x] runbook docente M04 + indici student/teacher prodotti
+- [x] static QA M04 e Course Board workspace round-trip smoke scritti
+- [ ] Course Design item M04 round-trip eseguito con TheBitLab corrente
+- [ ] slide M04 build HTML/PDF/PPTX quality gate eseguito
 - [ ] quality CI del repo stabilizzata
+- [ ] teacher review finale M04 per promotion editoriale
 
 ---
 
@@ -86,24 +94,21 @@ L'ultimo punto **non blocca il freeze della struttura del curriculum**; blocca l
 - [ ] managed VS Code workflow certificato
 - [ ] Course Workspace `Open course` UX/round-trip certificato (`2cornot2c#755`)
 - [ ] P1 vertical slice certificato (`python-docente#7`)
+- [ ] GitHub Actions pre-execution blocker risolto (`python-docente#8`)
 - [ ] P2 function behavior implementato quando richiesto (`2cornot2c#756`)
 - [ ] P4 filesystem behavior implementato quando richiesto (`2cornot2c#757`)
 - [ ] P3 object behavior implementato quando richiesto (`2cornot2c#758`)
 - [ ] `romeo-sim` certificato nei profili Classroom Environment necessari
 
-P2/P3/P4 non devono bloccare la spiegazione dei rispettivi concetti: bloccano soltanto la promessa di autograding su quel profilo. Activity manual/formative rimangono possibili.
+P2/P3/P4 non bloccano la spiegazione dei rispettivi concetti: bloccano soltanto la promessa di autograding su quel profilo. Activity manual/formative rimangono possibili.
 
 ---
 
 # D. Gate
 
-## Curriculum architecture freeze
+## Curriculum architecture freeze — DONE
 
-Può avvenire quando:
-
-- A è completata;
-- il decision owner approva esplicitamente il candidate;
-- nessun nuovo gap core emerge dalla review.
+Completato il 2026-08-24. Le modifiche successive che cambiano outcome/prerequisiti/order/core devono passare come **curriculum change**.
 
 ## Content Pack `1.0.0 / approved`
 
