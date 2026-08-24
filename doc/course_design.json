@@ -40,11 +40,15 @@
     },
     {
       "id": "python-curriculum-design",
-      "label": "Python curriculum - architettura e roadmap",
+      "label": "Python curriculum - architettura, freeze e roadmap",
       "type": "markdown",
       "provider": "local",
       "path": "doc",
       "files": [
+        "CURRICULUM_FREEZE_2026_2027.md",
+        "CURRICULUM_FREEZE_CHECKLIST.md",
+        "PROJECT_STATUS.md",
+        "OPEN_DECISIONS.md",
         "COURSE_ARCHITECTURE.md",
         "CURRICULUM_ROADMAP.md",
         "APPROVED_DECISIONS_2026_2027.md",
