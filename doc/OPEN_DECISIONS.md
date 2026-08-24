@@ -1,96 +1,82 @@
-# Python curriculum — decisioni aperte (DRAFT)
+# Python curriculum — decision register
 
-Questo documento impedisce che scelte importanti vengano fatte implicitamente durante la produzione dei contenuti.
+> Second-year curriculum architecture **FROZEN 2026-08-24**.  
+> Canonical freeze: `doc/CURRICULUM_FREEZE_2026_2027.md`.
 
-## D1 — Versione Python target
+Questo file non deve riaprire decisioni congelate. Mantiene invece la distinzione fra decisioni **CLOSED/FROZEN**, scelte di **delivery ancora aperte** e decisioni dei track professionali/futuri.
 
-Da decidere prima del Content Pack 1.0.
+## D1 — Versione Python del track secondo — CLOSED
 
-Criteri:
+- baseline didattica certificabile iniziale: **Python 3.12**;
+- core scritto in modo conservativo/forward-compatible quando ragionevole;
+- nessun outcome dipende da feature 3.13/3.14 non necessarie;
+- patch/minor future del Classroom Environment sono delivery/tooling se non cambiano gli outcome.
 
-- versione stabile e supportata per tutto l'anno scolastico;
-- disponibilità uniforme su Windows/Linux e TheBitLab;
-- compatibilità con tooling e dipendenze del corso;
-- nessuna dipendenza didattica da feature troppo recenti se non necessarie.
+## D2 — Confine OOP del secondo anno — FROZEN
 
-## D2 — Confine OOP del secondo anno
+Core obbligatorio:
 
-Proposta corrente:
+- classi, istanze, attributi;
+- `self`, `__init__`, metodi;
+- stato/comportamento;
+- invarianti semplici;
+- più istanze indipendenti;
+- composizione/responsabilità;
+- capstone OOP.
 
-**core:** classi, istanze, attributi, `self`, `__init__`, metodi, stato/comportamento, composizione semplice, responsabilità di classe, mini-capstone.
+Enrichment: `__str__/__repr__`, properties, inheritance semplice, dataclass dopo classe esplicita.
 
-**extension:** `__str__/__repr__`, properties introduttive, inheritance semplice, dataclass come confronto.
+## D3 — Progetto applicativo — FROZEN
 
-Da approvare.
+Modello ibrido:
 
-## D3 — Progetto longitudinale
+```text
+problemi e micro-progetti generali
++ Romeo simulato come spine selettiva
++ capstone OOP Romeo o fallback generico equivalente
+```
 
-Candidati:
+Romeo non è il syllabus e hardware fisico non è requisito core.
 
-1. **Romeo / robot simulato**;
-2. applicazione CLI crescente;
-3. gioco/avventura testuale;
-4. dominio gestionale/dataset;
-5. micro-progetti + capstone finale senza un unico progetto annuale;
-6. modello ibrido: micro-progetti nel primo quadrimestre + Romeo/capstone nel secondo.
+## D4 — Flow chart — PEDAGOGY CLOSED / DELIVERY OPEN
 
-Criteri:
+Pedagogia congelata:
 
-- deve funzionare senza hardware fisico;
-- deve crescere insieme alle competenze;
-- non deve introdurre framework prima dei concetti fondamentali;
-- deve essere testabile in CI/TheBitLab almeno in parte;
-- deve motivare studenti di seconda.
+- carta/lavagna e simboli standard sempre validi;
+- target digitale: **TheBitLab Flowchart Lab cross-platform**;
+- Flowgorithm può essere companion Windows opzionale, mai requisito canonico.
 
-## D4 — Flow chart tooling
+Implementazione/certificazione: `2cornot2c#753/#754`.
 
-Da scegliere:
+## D5 — Git nel secondo anno — FROZEN
 
-- carta + simboli standard;
-- diagrams.net/draw.io;
-- Flowgorithm o strumento didattico equivalente;
-- Mermaid per versionabilità;
-- approccio misto.
+Git è curriculum separato; Python seconda consuma G1 progressivamente:
 
-Criteri: facilità per principianti, esportabilità, versionabilità, uso a scuola e valutazione.
+- `status`, `diff` da PY2-05;
+- `add`, `commit` al Checkpoint A;
+- history/log essenziale e checkpoint nel secondo semestre.
 
-## D5 — Introduzione di Git nel secondo anno
+Le dispense Git esistenti verranno auditate quando produrremo G1 definitivo o il corso Git autonomo.
 
-Opzioni:
+## D6 — Toolchain professionale — OPEN PER STAGE C, NON BLOCCA SECONDA
 
-- nessun Git nel core, repository gestito da piattaforma/docente;
-- Git minimo nel secondo quadrimestre (`clone/status/add/commit`);
-- Git come extension per studenti pronti.
+Concetti obbligatori nella roadmap professionale:
 
-Il curriculum professionale lo considera obbligatorio; resta da decidere quando introdurlo.
-
-## D6 — Toolchain professionale
-
-Concetti obbligatori:
-
-- `venv`/isolamento;
-- package/dependency management;
+- venv/isolamento;
+- dependency/project management;
 - `pyproject.toml`;
 - formatter/linter;
-- static type checker;
+- static typing;
 - pytest;
 - build/package.
 
-Candidati pratici attuali:
+Candidati pratici attuali: uv, Ruff, Pyright/mypy, pytest, Hypothesis, SQLAlchemy 2.x, Alembic.
 
-- project/dependency manager: **uv**;
-- lint/format: **Ruff**;
-- typing: **Pyright** o **mypy**;
-- tests: **pytest**;
-- property-based: **Hypothesis**;
-- DB/ORM: **SQLAlchemy 2.x**;
-- migrations: **Alembic**.
+Regola già fissata: **concept/standard first, tool second**. La selezione/versione concreta dei tool resta versionabile e non modifica il freeze di seconda.
 
-Regola proposta: insegnare prima lo standard/concept, poi il tool scelto. Tool sostituibili senza cambiare il curriculum.
+## D7 — Database pluriennale — ROADMAP CLOSED / DELIVERY FUTURA
 
-## D7 — Database nel percorso pluriennale
-
-Proposta:
+Progressione approvata:
 
 ```text
 SQL fundamentals
@@ -99,84 +85,104 @@ SQL fundamentals
 → SQLAlchemy Core
 → SQLAlchemy ORM
 → Alembic
-→ async DB in track avanzato
+→ async DB nel track avanzato
 ```
 
-Da coordinare con eventuale corso SQL/TPSI per evitare duplicazioni inutili mantenendo il curriculum Python autosufficiente.
+Resta da distribuire tra anni/corsi e coordinare con SQL/TPSI.
 
-## D8 — Testing: quanto presto?
+## D8 — Testing precoce — FROZEN
 
-Proposta:
+```text
+paper cases dal problem solving
+→ stdin/stdout
+→ assert + regression thinking
+→ function/object/filesystem behavior quando supportato
+→ pytest nel livello professionale
+```
 
-- secondo anno: casi di test fin dal problem solving; `assert`/test deterministici dopo le funzioni;
-- advanced: test suite strutturate;
-- professional: pytest, fixtures, parametrizzazione, integration/E2E, coverage, property-based.
+## D9 — `match/case` — FROZEN
 
-Da approvare come standard trasversale.
+Non sostituisce `if/elif/else`; solo enrichment successivo quando porta valore reale.
 
-## D9 — `match/case`
+## D10 — Comprehensions — FROZEN
 
-Proposta: non usarlo per evitare di imparare bene `if/elif/else`; introdurlo solo dopo la padronanza della selezione e come extension/pattern matching quando porta valore.
+Loop espliciti prima; comprehension semplice solo dopo padronanza del loop equivalente. Nested/advanced in Stage B.
 
-## D10 — Comprehensions
+## D11 — Set nel secondo anno — FROZEN
 
-Proposta: loop espliciti prima; comprehension semplice in seconda soltanto dopo piena padronanza dell'iterazione; comprehension annidate/avanzate in Stage B.
+Sì, come parte della competenza di scelta della struttura dati; meno peso di list/dict.
 
-## D11 — Set nel secondo anno
+## D12 — Eccezioni nel secondo anno — FROZEN
 
-Proposta: sì, perché completa la capacità di scegliere strutture dati e rende naturale membership/unicità. Meno tempo rispetto a liste/dict.
+Solo boundary essenziale per errori prevedibili, soprattutto input/file, senza trasformare la seconda in un corso sulle gerarchie di eccezioni. Advanced exception model in Stage B.
 
-## D12 — Eccezioni nel secondo anno
+## D13 — TheBitLab — ARCHITECTURE CLOSED / CERTIFICATION OPEN
 
-Proposta: solo `try/except` essenziale attorno a input/file e distinzione tra errori prevedibili e bug. Gerarchie, custom exceptions, `else/finally`, EAFP/LBYL in Stage B.
+Già fissato:
 
-## D13 — TheBitLab
+- Activity 1.0 + Content Pack v1 + Course Design v1;
+- Classroom Environment unico ambiente supportato;
+- Course Workspace mutabile / Course Bundle immutabile;
+- P0 manuale/trace;
+- P1 stdin/stdout;
+- P2 function behavior;
+- P3 object behavior;
+- P4 filesystem behavior;
+- `romeo-sim` come runtime plugin esterno.
 
-Da fissare dopo l'architettura:
+Aperti:
 
-- Activity schema/contract;
-- Python runner version;
-- sandbox policy;
-- autograding boundaries;
-- diagrammi/flow chart e spiegazioni come rubric/manual evidence;
-- import selettivo di `friedpython` come Activity.
+- `python-docente#2`, `#6`, `#7`, `#8`;
+- `2cornot2c#753/#754/#755/#756/#757/#758`;
+- certificazioni reali dei profili.
 
-Non progettare esercizi intorno a capability non ancora verificate.
+## D14 — Tassonomia — FROZEN
 
-## D14 — Tassonomia UDA/moduli
+Gerarchia:
 
-La roadmap Stage A contiene A0–A10, mentre il track secondo propone 11 UDA PY2-01..PY2-11. Da decidere se:
+```text
+Stage → UDA → moduli/lesson → Activity
+```
 
-- una UDA = una macro-area;
-- ogni UDA contiene più moduli/lesson;
-- mantenere numerazione indipendente per track e curriculum.
+Track seconda: **PY2-01…PY2-10 + tre checkpoint**, con M00–M30 come mappa modulare.
 
-Proposta: **Stage → UDA → moduli**, con 2–4 moduli per UDA quando serve. Evitare una lesson enorme per ogni UDA.
+## D15 — Slide/guide standard — CLOSED A LIVELLO AUTHORING
 
-## D15 — Standard slide e guide
+Standard TPSI5 adattato a seconda:
 
-Proposta: riutilizzare lo standard TPSI5:
+- lesson canonica per modulo;
+- deck per modulo, densità ridotta e più trace;
+- `student/README.md` e `teacher/README.md`;
+- runbook docente;
+- Activity A–F;
+- solution/reference e rubric/manual evidence;
+- QA/CI;
+- curriculum freeze vs delivery changes.
 
-- slide per modulo;
-- HTML/PDF/PPTX riproducibili;
-- `student/README.md`;
-- `teacher/README.md`;
-- lesson runbook;
-- assessment guide;
-- TheBitLab handoff;
-- delivery changelog;
-- curriculum freeze.
+La build finale HTML/PDF/PPTX e i quality gate restano delivery work.
 
-Da adattare a studenti più giovani: meno densità per slide, più trace visuale, animazione concettuale e problemi guidati.
+## D16 — Distribuzione Stage B/C negli anni successivi — OPEN
 
-## D16 — Livello “professionale” e track scolastici successivi
+Da decidere in seguito come distribuire il curriculum completo fra:
 
-La roadmap completa è più ampia di un singolo anno. Da decidere in seguito come distribuirla tra:
-
-- terzo anno;
-- quarto anno;
-- quinto anno;
+- terzo;
+- quarto;
+- quinto;
 - corsi opzionali;
-- percorsi personali avanzati.
+- percorsi avanzati.
 
-Non serve decidere questa distribuzione per approvare il track di seconda, ma non bisogna eliminare dalla roadmap le competenze future.
+Non riapre il freeze del secondo anno.
+
+---
+
+# Decisioni aperte che possono davvero richiedere scelta futura
+
+1. toolchain professionale concreta/versioni per Stage C;
+2. distribuzione Stage B/C tra terzo/quarto/quinto;
+3. forma finale del corso Git autonomo e progressione per anno;
+4. forma finale del corso Container/Docker;
+5. variante concreta del capstone OOP entro gli outcome congelati;
+6. selezione individuale degli esercizi `friedpython` dopo audit;
+7. pesi rubric finali entro il modello di valutazione già approvato.
+
+Nessuno di questi punti autorizza a modificare implicitamente il curriculum frozen di seconda.
