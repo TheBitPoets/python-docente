@@ -1,6 +1,6 @@
 # Python — guida docente
 
-> Stato: **curriculum freeze candidate / vertical slice draft**. Non dichiarare il corso pronto per studenti finché i gate di delivery non sono chiusi.
+> Stato: **curriculum FROZEN 2026/27 / vertical slice M04 draft under certification**. Non dichiarare il corso pronto per studenti finché i gate di delivery non sono chiusi.
 
 Questo indice è il punto di ingresso del docente per progettazione, conduzione e delivery.
 
@@ -8,12 +8,14 @@ Questo indice è il punto di ingresso del docente per progettazione, conduzione 
 
 Documenti da leggere nell'ordine:
 
-1. [`doc/CURRICULUM_FREEZE_CANDIDATE.md`](../doc/CURRICULUM_FREEZE_CANDIDATE.md) — cosa proponiamo di congelare a livello curricolare.
+1. [`doc/CURRICULUM_FREEZE_2026_2027.md`](../doc/CURRICULUM_FREEZE_2026_2027.md) — baseline curricolare congelata e change-control.
 2. [`tracks/secondo/ARCHITECTURE_REVIEW.md`](../tracks/secondo/ARCHITECTURE_REVIEW.md) — audit delle 33 settimane e del carico.
 3. [`tracks/secondo/COURSE_DESIGN.md`](../tracks/secondo/COURSE_DESIGN.md) e [`MODULE_MAP.md`](../tracks/secondo/MODULE_MAP.md) — struttura di seconda.
 4. [`tracks/secondo/ASSESSMENT_CALENDAR.md`](../tracks/secondo/ASSESSMENT_CALENDAR.md) — quattro prove principali e checkpoint.
 5. [`doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`](../doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md) — profili P0/P1/P2/P3/P4 e boundary del grading.
 6. [`doc/THEBITLAB_AUTHORING_COMPATIBILITY.md`](../doc/THEBITLAB_AUTHORING_COMPATIBILITY.md) — round-trip Course Workspace ↔ dashboard ↔ Git.
+
+Il precedente `CURRICULUM_FREEZE_CANDIDATE.md` resta traccia della fase di review; il documento `CURRICULUM_FREEZE_2026_2027.md` è ora quello autorevole.
 
 ## Vertical slice M04
 
@@ -27,6 +29,14 @@ Materiali canonici:
 - blocker CI pre-esecuzione: `python-docente#8`.
 
 Il runbook M04 contiene ritmo 2 ore teoria attiva + 1 laboratorio, misconception, remediation, enrichment, evidence e fallback se il grading P1 non è certificato.
+
+## Change-control curricolare
+
+Dopo il freeze non riaprire la struttura annuale per normali modifiche editoriali.
+
+Richiedono una **curriculum change** soltanto modifiche a outcome obbligatori, prerequisiti core, ordine necessario delle UDA, monte ore core sostanziale, OOP obbligatoria o ruolo curricolare di Git/Container/Romeo.
+
+Lesson, slide, Activity, rubric, tooling, runner e UX sono **delivery changes** se rispettano il freeze.
 
 ## Regola di delivery
 
@@ -111,7 +121,7 @@ Le dispense Git del docente verranno richieste quando inizierà la produzione de
 
 ## Criterio per continuare la produzione
 
-Prima di produrre in serie M05, M06... bisogna usare M04 per verificare il modello completo:
+Il curriculum è già congelato, ma prima della **produzione in serie** di lesson/slide/Activity bisogna usare M04 per verificare il modello completo:
 
 ```text
 lesson
@@ -124,5 +134,7 @@ lesson
 + student path
 + QA
 ```
+
+M05 può essere progettato/prodotto in modo controllato, ma la generazione massiva del resto del corso deve attendere l'evidenza del vertical slice.
 
 Un contenuto presente nel repository non equivale automaticamente a contenuto certificato per la classe.
