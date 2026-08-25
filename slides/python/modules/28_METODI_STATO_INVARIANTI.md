@@ -6,147 +6,245 @@ title: M28 — Metodi, stato e invarianti
 ---
 
 # M28 — Metodi, stato e invarianti
+## Proteggere il significato dell'oggetto
 
 PY2-10 — Classi, oggetti e capstone
 
 ---
 
-# Stato
+# Che cosa deve restare davvero?
 
-```python
-class Conto:
-    def __init__(self, saldo_iniziale):
-        self.saldo = saldo_iniziale
+```text
+stato
+metodo che osserva / modifica
+invariante
+transizione valida
+transizione rifiutata
+stato invariato sul rifiuto
+test di return/segnale + stato
 ```
 
-Gli attributi descrivono lo stato corrente.
+La forma usata per segnalare il fallimento dipende dal contratto.
 
 ---
 
-# Osservatore vs mutazione
+# Oggetto con stato
 
 ```python
-def saldo_corrente(self):
-    return self.saldo
+class Batteria:
+    def __init__(self, capacita):
+        self.capacita = capacita
+        self.livello = 0
 ```
 
-```python
-def deposita(self, importo):
-    self.saldo += importo
-```
+Lo stato rilevante include:
 
-Due responsabilità diverse.
+```text
+capacita
+livello
+```
 
 ---
 
 # Invariante
 
 ```text
-proprietà che deve restare vera negli stati validi
-```
-
-Esempio:
-
-```text
 0 <= livello <= capacita
 ```
+
+Deve restare vero dopo ogni operazione pubblica corretta.
+
+Un invariante è una proprietà del modello, non un `if` qualsiasi.
 
 ---
 
 # Costruzione valida
 
-`__init__` deve lasciare l'oggetto in uno stato utilizzabile secondo il contratto.
+`__init__` deve lasciare l'oggetto in uno stato che rispetta l'invariante.
 
----
+```python
+b = Batteria(100)
+```
 
-# Transizione controllata
+Atteso:
 
 ```text
-valida → cambia stato
-non valida → stato invariato + segnale di fallimento
+livello = 0
+capacita = 100
 ```
-
-Una policy semplice e testabile.
 
 ---
 
-# Metodo del dominio
-
-Meglio:
+# Metodo che osserva
 
 ```python
-aggiungi(quantita)
-consuma(quantita)
+def percentuale(self):
+    return self.livello / self.capacita * 100
 ```
 
-che setter generici usati senza regole.
+Legge lo stato senza modificarlo.
 
 ---
 
-# Testare lo stato
+# Metodo che modifica
 
 ```python
-assert s.aggiungi(4) is True
-assert s.livello == 4
-
-assert s.aggiungi(8) is False
-assert s.livello == 4
+def carica(self, quantita):
+    ...
 ```
 
-Il return da solo non basta.
+Una transizione modifica lo stato.
+
+Prima di applicarla dobbiamo verificare che il nuovo stato sia valido.
 
 ---
 
-# Casi limite
+# Validare prima di mutare
 
-- zero;
-- esattamente il limite;
-- oltre limite;
-- valore negativo;
-- transizione rifiutata.
+```python
+def carica(self, quantita):
+    if quantita < 0:
+        return False
+    if self.livello + quantita > self.capacita:
+        return False
 
-Gli invarianti suggeriscono i test.
+    self.livello += quantita
+    return True
+```
+
+Qui `True/False` è **una policy didattica possibile**.
+
+Il principio core è:
+
+```text
+transizione rifiutata
+→ stato invariato
+→ segnale coerente col contratto
+```
 
 ---
 
-# Istanze indipendenti
+# Test: non basta il return
 
-Modificare `a` non deve cambiare `b` se lo stato appartiene alle singole istanze.
+```python
+b = Batteria(10)
+
+assert b.carica(5) is True
+assert b.livello == 5
+```
+
+Testiamo anche lo stato risultante.
+
+---
+
+# Transizione rifiutata
+
+```python
+prima = b.livello
+esito = b.carica(100)
+
+assert esito is False
+assert b.livello == prima
+```
+
+Il secondo `assert` protegge l'invariante e l'atomicità del cambiamento.
+
+---
+
+# I confini nascono dall'invariante
+
+Se:
+
+```text
+0 <= livello <= capacita
+```
+
+casi naturali:
+
+```text
+0
+capacita
+capacita - 1
+oltre capacita
+quantita negativa
+```
+
+Gli invarianti aiutano a progettare test.
+
+---
+
+# Due istanze
+
+```python
+b1 = Batteria(10)
+b2 = Batteria(10)
+
+b1.carica(5)
+```
+
+Atteso:
+
+```text
+b1.livello = 5
+b2.livello = 0
+```
+
+L'indipendenza resta un outcome core.
+
+---
+
+# GUIDED EXPOSURE — policy alternative
+
+Il contratto potrebbe usare un altro segnale di fallimento in un livello futuro.
+
+Non memorizzare:
+
+```text
+metodo OOP corretto = sempre return False
+```
+
+Memorizza invece:
+
+```text
+regola del dominio
+→ transizione valida/rifiutata
+→ stato coerente
+```
+
+---
+
+# GUIDED EXPOSURE — `assert` interno
+
+Un `assert` interno può aiutare a verificare un'invariante durante sviluppo/esercitazione.
+
+Non sostituisce la gestione prevista degli input esterni.
 
 ---
 
 # Error Clinic
 
 - validazione dopo la mutazione;
-- stato invalido lasciato dopo fallimento;
-- attributo non inizializzato;
-- stato mutabile condiviso;
-- setter che bypassa regole;
-- test senza verifica stato.
+- rifiuto con stato già parzialmente cambiato;
+- test solo sul return;
+- setter che bypassa le regole;
+- due istanze che condividono stato per errore;
+- `False` trattato come unica API possibile.
 
 ---
 
-# Romeo
+# Minimum mastery checkpoint
 
-```text
-Robot → stato + metodi
-Missione → regole/obiettivi diversi
-```
+Sai:
 
-Domanda: quale regola appartiene a quale oggetto?
+1. indicare lo stato dell'oggetto?;
+2. scrivere un invariante?;
+3. distinguere osservazione e mutazione?;
+4. validare prima di cambiare?;
+5. preservare lo stato su rifiuto?;
+6. testare stato e segnale?;
+7. scegliere casi di confine dall'invariante?.
 
----
-
-# Checkpoint
-
-Sai spiegare:
-
-- stato;
-- osservatore/mutante;
-- invariante;
-- transizione;
-- test dello stato;
-- metodo del dominio.
+Property e policy avanzate non fanno parte del gate.
 
 ---
 
@@ -156,7 +254,7 @@ Sai spiegare:
 stato valido
 → metodo
 → transizione controllata
-→ nuovo stato valido
+→ stato ancora valido
 ```
 
-Prossimo: composizione e collaborazione.
+Prossimo: composizione e collaborazione tra oggetti.
