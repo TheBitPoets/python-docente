@@ -2,7 +2,7 @@
 
 ## Current phase
 
-**Curriculum FROZEN + core editorial authoring M04–M30 complete; delivery/QA phase.**
+**Curriculum FROZEN + core editorial authoring M04–M30 complete; semantic review / delivery QA phase.**
 
 Canonical freeze: `doc/CURRICULUM_FREEZE_2026_2027.md`  
 Decision-owner approval: **2026-08-24**.  
@@ -51,34 +51,27 @@ Student/teacher navigation arriva fino al capstone. La settimana 33 non introduc
 
 ---
 
-# 3. Semantic/didactic review — PY2-02 + PY2-03 COMPLETE
+# 3. Semantic review — PY2-02 + PY2-03 COMPLETE
 
-Review canonica:
+Documento:
 
 ```text
 doc/SEMANTIC_REVIEW_PY2_02_PY2_03_2026-08-25.md
-```
-
-Scope revisionato:
-
-```text
-M04–M08
-lesson + deck + runbook + SPEC
 ```
 
 Esito:
 
 ```text
 PY2-02 architecture/order     PASS
-M04 pacing                    PASS with explicit mastery gate
+M04 pacing                    PASS with mastery gate
 M05 pacing                    PASS after priority tiering
 PY2-03 architecture/order     PASS
-M06 pacing                    PASS with explicit mastery gate
+M06 pacing                    PASS with mastery gate
 M07 pacing                    PASS after short-circuit demotion
 M08 pacing                    PASS with De Morgan/mini-project optional
 ```
 
-Regola introdotta per la delivery:
+Regola introdotta stabilmente:
 
 ```text
 MUST MASTER
@@ -88,25 +81,98 @@ MUST MASTER
 
 Correzioni principali:
 
-- M04: `bool` resta preview; non si valuta la tassonomia completa degli errori;
-- M05: built-in secondarie fuori dal percorso temporizzato core; `min/max` non sostituiscono M11; aggiunto mastery gate;
-- M06: mastery gate esplicito su confronti/confini/if/trace;
-- M07: short-circuit declassato a enrichment; il core resta `elif` vs `if` indipendenti + `and/or/not` + intervalli/confini;
-- M08: De Morgan enrichment; mini-project estendibile; mastery gate sul path/validazione/refactoring.
+- M04: `bool` preview; niente tassonomia errori da memorizzare;
+- M05: built-in secondarie fuori dal core temporizzato; `min/max` non sostituiscono M11;
+- M06: gate su confronti/confini/if/trace;
+- M07: short-circuit enrichment;
+- M08: De Morgan enrichment; mini-project estendibile.
 
-Non è stato necessario riaprire il curriculum frozen.
+---
+
+# 4. Semantic review — PY2-04 COMPLETE
+
+Documento:
+
+```text
+doc/SEMANTIC_REVIEW_PY2_04_2026-08-25.md
+```
+
+Esito:
+
+```text
+PY2-04 architecture/order     PASS
+M09 pacing                    PASS with while-True demotion
+M10 pacing                    PASS with break/continue guided-only
+M11 pacing                    PASS as one state/invariant family
+M12 pacing                    PASS; complexity intuitive only
+```
+
+Progressione resa esplicita:
+
+```text
+M09  perché continuo / termino?
+M10  percorso noto o durata dinamica?
+M11  che cosa deve ricordare il ciclo?
+M12  che cosa accade con due dimensioni?
+```
+
+Correzioni principali:
+
+- M09: `while True`/`break` enrichment, non mastery;
+- M10: `break/continue` guided exposure, non gate;
+- M11: contatore/accumulatore/min-max/flag/ricerca insegnati come famiglia di **stato progressivo + invariante**, non ricette;
+- M12: `R×C`, reset al livello giusto e lavoro inutile core; niente Big-O formale.
+
+---
+
+# 5. Semantic review — PY2-05 + Checkpoint A COMPLETE
+
+Documento:
+
+```text
+doc/SEMANTIC_REVIEW_PY2_05_CHECKPOINT_A_2026-08-25.md
+```
+
+Esito:
+
+```text
+PY2-05 architecture/order       PASS
+M13 pacing                      PASS after retrieval + Git boundary fix
+M14 pacing                      PASS
+M15 pacing                      PASS with anti-bureaucracy rule
+M16 pacing                      PASS; P2 teacher/delivery-side
+Checkpoint A                    PASS after embedded-G1 clarification
+```
+
+Correzioni principali:
+
+- M13: formalizza la preview M05; `None`/predicate guided; nessun Git prima di M14;
+- M14: scope beginner, passaggio esplicito e composizione; Git status/diff guided;
+- M15: top-down proporzionato, niente documentazione fine a sé stessa;
+- M16: `assert`/regression/refactor core; P2 rimosso dal deck studente e confinato al delivery docente;
+- Checkpoint A: Git G1 dichiarato **embedded outcome subset**, non completamento del track standalone.
+
+Consumer Git machine-readable:
+
+```text
+config/git-g1-consumer.json
+mode = embedded-outcome-subset
+full_g1_track_completion_required = false
+full_canonical_lesson_completion_required = false
+```
+
+`tests/git_g1_consumer_contract.py` protegge anche questo boundary.
 
 Next semantic review:
 
 ```text
-PY2-04 — M09–M12
+PY2-06 — M17–M19
+PY2-07 — M20–M22 + Checkpoint B
 ```
-
-focus: terminazione, off-by-one, `while` vs `for`, pattern di stato, min/max progressivo, ricerca e cicli annidati.
 
 ---
 
-# 4. Unico buco editoriale core — PY2-01
+# 6. Unico buco editoriale core — PY2-01
 
 PY2-01 resta volutamente **SPEC-only** perché il workflow digitale flow chart dipende dal Flowchart Lab TheBitLab.
 
@@ -126,22 +192,14 @@ Blocker: `2cornot2c#753/#754`.
 
 ---
 
-# 5. Git G1 consumer — STRUCTURAL INTEGRATION COMPLETE
+# 7. Git G1 consumer — STRUCTURAL INTEGRATION COMPLETE
 
-Python seconda consuma il curriculum Git separato senza duplicarlo.
-
-Source of truth corrente:
+Source of truth:
 
 ```text
 TheBitPoets/git
 G1 candidate ref: 65d8aff8c9a590560c500762d4dc7378a3239bf2
 contract: doc/G1_CONSUMER_CONTRACT.md
-```
-
-Dipendenza locale machine-readable:
-
-```text
-config/git-g1-consumer.json
 ```
 
 Progressione:
@@ -157,32 +215,34 @@ secondo semestre
   G1.WORKFLOW.CHECKPOINT + G1.RECOVERY.BASIC — independent progressivo
 ```
 
-Canary Git Lab del corso Git:
+Canary Git Lab:
 
 ```text
 g1-stage-selettivo-001
 ```
 
-Platform Git Lab candidate verde:
+Platform candidate verde:
 
 ```text
 TheBitPoets/2cornot2c#761/#762
 24570f7a3af67634ec0cfbf54f486660359baaf2
 ```
 
-Aggiunto `tests/git_g1_consumer_contract.py` e relativo gate nella workflow privata per impedire divergenze future.
-
-Restano **delivery gates**, non design gaps:
+Restano delivery gates:
 
 - esecuzione reale del consumer test appena i runner privati tornano disponibili;
 - freeze/decision-owner finale G1 o accettazione esplicita del candidate ref per pilot;
-- rehearsal nel Classroom Environment/TheBitLab.
+- rehearsal Classroom Environment/TheBitLab.
 
 ---
 
-# 6. Golden technical vertical slice — M04 / P1
+# 8. Golden technical vertical slice — M04 / P1
 
-Activity: `py2-activity-b-input-somma-001`.
+Activity:
+
+```text
+py2-activity-b-input-somma-001
+```
 
 Canary contract:
 
@@ -198,11 +258,11 @@ Solo M04 materializza per ora una nuova Activity P1. Gli altri moduli mantengono
 
 ---
 
-# 7. Authoring automation / QA
+# 9. Authoring automation / QA
 
 - `tests/course_authoring_catalog.py` — catalogo scalabile dei moduli materializzati;
 - `scripts/sync_authoring_catalog.py` — parità Content Pack ↔ Course Board source list;
-- `tests/git_g1_consumer_contract.py` — contratto cross-course Python→Git G1;
+- `tests/git_g1_consumer_contract.py` — contratto Python→Git G1;
 - `tests/m04_vertical_slice_static.py` — golden M04;
 - `tests/m05_authoring_static.py` — QA pedagogica M05;
 - `tests/course_board_workspace_roundtrip.py` — external workspace save/reopen;
@@ -212,7 +272,7 @@ Il Content Pack resta il catalogo autorevole dei moduli materializzati.
 
 ---
 
-# 8. GitHub Actions blocker #8
+# 10. GitHub Actions blocker #8
 
 Root cause ristretto al layer pre-runner dei repository privati.
 
@@ -229,7 +289,7 @@ Un run che termina prima del runner non è evidence che i test abbiano passato o
 
 ---
 
-# 9. Grading profiles TheBitLab
+# 11. Grading profiles TheBitLab
 
 - P0 — manual/trace/design;
 - P1 — stdin/stdout;
@@ -242,7 +302,7 @@ Non adattare artificialmente un outcome P2/P3/P4 a P1 solo per ottenere un voto 
 
 ---
 
-# 10. Platform gates
+# 12. Platform gates
 
 - `python-docente#2` — managed Classroom Environment;
 - `python-docente#6` — beginner REPL/editor workflow;
@@ -257,7 +317,7 @@ Non adattare artificialmente un outcome P2/P3/P4 a P1 solo per ottenere un voto 
 
 ---
 
-# 11. Source audit / friedpython
+# 13. Source audit / friedpython
 
 Thematic inventory e snapshot sono pronti. Prima del riuso ogni esercizio/example deve essere auditato singolarmente, modernizzato e ricostruito con provenance. Nessun wholesale import.
 
@@ -265,27 +325,28 @@ Audit presenti includono liste/tuple, dict e file.
 
 ---
 
-# 12. Next work — priorità corrente
+# 14. Next work — priorità corrente
 
 Non generare altre lesson core M04–M30: esistono già.
 
 Ordine corrente:
 
-1. semantic review PY2-04 (M09–M12);
-2. poi PY2-05 e UDA successive;
-3. continuare stale-document cleanup quando emerge durante le review;
-4. chiudere il boundary PY2-01 (`2cornot2c#753/#754`) prima della materializzazione finale;
-5. risolvere #8 amministrativamente e far eseguire i gate già scritti;
-6. certificare M04/P1;
-7. pianificare/materializzare Activity per profilo, UDA per UDA;
-8. P2 prima delle Activity di function behavior;
-9. P4 prima delle Activity filesystem;
-10. P3 prima delle Activity OOP generiche;
-11. certificare `romeo-sim` prima delle missioni obbligatorie;
-12. slide build/artifact pipeline + teacher review;
-13. provenance/coverage finale;
-14. promozione Content Pack `1.0.0 / approved`;
-15. rehearsal reale TheBitLab e GO classroom.
+1. semantic review PY2-06 + PY2-07/Checkpoint B;
+2. poi PY2-08 + PY2-09;
+3. poi PY2-10 OOP/capstone + Checkpoint C;
+4. continuare stale-document cleanup quando emerge;
+5. chiudere il boundary PY2-01 prima della materializzazione finale;
+6. risolvere #8 e far eseguire i gate già scritti;
+7. certificare M04/P1;
+8. materializzare Activity per profilo, UDA per UDA;
+9. P2 prima delle Activity function behavior;
+10. P4 prima delle Activity filesystem;
+11. P3 prima delle Activity OOP generiche;
+12. certificare `romeo-sim` prima delle missioni obbligatorie;
+13. slide build/artifact pipeline + teacher review;
+14. provenance/coverage finale;
+15. promozione Content Pack `1.0.0 / approved`;
+16. rehearsal reale TheBitLab e GO classroom.
 
 ---
 
@@ -294,7 +355,9 @@ Ordine corrente:
 ```text
 Curriculum architecture        FROZEN ✅
 Editorial lessons M04-M30      COMPLETE 🟡 draft
-Semantic review PY2-02/03      COMPLETE 🟡 editorial
+Semantic review PY2-02/03      COMPLETE 🟡
+Semantic review PY2-04         COMPLETE 🟡
+Semantic review PY2-05 + A     COMPLETE 🟡
 Checkpoint A/B/C               COMPLETE 🟡 draft
 Git G1 structural consumer     COMPLETE 🟡 delivery evidence pending
 PY2-01 final editorial         BLOCKED/WAITING Flowchart Lab 🟡
