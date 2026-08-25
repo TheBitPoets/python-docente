@@ -51,7 +51,62 @@ Student/teacher navigation arriva fino al capstone. La settimana 33 non introduc
 
 ---
 
-# 3. Unico buco editoriale core — PY2-01
+# 3. Semantic/didactic review — PY2-02 + PY2-03 COMPLETE
+
+Review canonica:
+
+```text
+doc/SEMANTIC_REVIEW_PY2_02_PY2_03_2026-08-25.md
+```
+
+Scope revisionato:
+
+```text
+M04–M08
+lesson + deck + runbook + SPEC
+```
+
+Esito:
+
+```text
+PY2-02 architecture/order     PASS
+M04 pacing                    PASS with explicit mastery gate
+M05 pacing                    PASS after priority tiering
+PY2-03 architecture/order     PASS
+M06 pacing                    PASS with explicit mastery gate
+M07 pacing                    PASS after short-circuit demotion
+M08 pacing                    PASS with De Morgan/mini-project optional
+```
+
+Regola introdotta per la delivery:
+
+```text
+MUST MASTER
+→ GUIDED EXPOSURE
+→ ENRICHMENT / BACKUP
+```
+
+Correzioni principali:
+
+- M04: `bool` resta preview; non si valuta la tassonomia completa degli errori;
+- M05: built-in secondarie fuori dal percorso temporizzato core; `min/max` non sostituiscono M11; aggiunto mastery gate;
+- M06: mastery gate esplicito su confronti/confini/if/trace;
+- M07: short-circuit declassato a enrichment; il core resta `elif` vs `if` indipendenti + `and/or/not` + intervalli/confini;
+- M08: De Morgan enrichment; mini-project estendibile; mastery gate sul path/validazione/refactoring.
+
+Non è stato necessario riaprire il curriculum frozen.
+
+Next semantic review:
+
+```text
+PY2-04 — M09–M12
+```
+
+focus: terminazione, off-by-one, `while` vs `for`, pattern di stato, min/max progressivo, ricerca e cicli annidati.
+
+---
+
+# 4. Unico buco editoriale core — PY2-01
 
 PY2-01 resta volutamente **SPEC-only** perché il workflow digitale flow chart dipende dal Flowchart Lab TheBitLab.
 
@@ -71,7 +126,7 @@ Blocker: `2cornot2c#753/#754`.
 
 ---
 
-# 4. Git G1 consumer — STRUCTURAL INTEGRATION COMPLETE
+# 5. Git G1 consumer — STRUCTURAL INTEGRATION COMPLETE
 
 Python seconda consuma il curriculum Git separato senza duplicarlo.
 
@@ -125,7 +180,7 @@ Restano **delivery gates**, non design gaps:
 
 ---
 
-# 5. Golden technical vertical slice — M04 / P1
+# 6. Golden technical vertical slice — M04 / P1
 
 Activity: `py2-activity-b-input-somma-001`.
 
@@ -143,7 +198,7 @@ Solo M04 materializza per ora una nuova Activity P1. Gli altri moduli mantengono
 
 ---
 
-# 6. Authoring automation / QA
+# 7. Authoring automation / QA
 
 - `tests/course_authoring_catalog.py` — catalogo scalabile dei moduli materializzati;
 - `scripts/sync_authoring_catalog.py` — parità Content Pack ↔ Course Board source list;
@@ -157,7 +212,7 @@ Il Content Pack resta il catalogo autorevole dei moduli materializzati.
 
 ---
 
-# 7. GitHub Actions blocker #8
+# 8. GitHub Actions blocker #8
 
 Root cause ristretto al layer pre-runner dei repository privati.
 
@@ -174,7 +229,7 @@ Un run che termina prima del runner non è evidence che i test abbiano passato o
 
 ---
 
-# 8. Grading profiles TheBitLab
+# 9. Grading profiles TheBitLab
 
 - P0 — manual/trace/design;
 - P1 — stdin/stdout;
@@ -187,7 +242,7 @@ Non adattare artificialmente un outcome P2/P3/P4 a P1 solo per ottenere un voto 
 
 ---
 
-# 9. Platform gates
+# 10. Platform gates
 
 - `python-docente#2` — managed Classroom Environment;
 - `python-docente#6` — beginner REPL/editor workflow;
@@ -202,24 +257,24 @@ Non adattare artificialmente un outcome P2/P3/P4 a P1 solo per ottenere un voto 
 
 ---
 
-# 10. Source audit / friedpython
+# 11. Source audit / friedpython
 
 Thematic inventory e snapshot sono pronti. Prima del riuso ogni esercizio/example deve essere auditato singolarmente, modernizzato e ricostruito con provenance. Nessun wholesale import.
 
-Audit già presente per liste/tuple: `sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md`.
+Audit presenti includono liste/tuple, dict e file.
 
 ---
 
-# 11. Next work — priorità corrente
+# 12. Next work — priorità corrente
 
 Non generare altre lesson core M04–M30: esistono già.
 
-Ordine consigliato:
+Ordine corrente:
 
-1. completare audit/QA strutturale M04–M30 + checkpoint + navigazione;
-2. ripulire riferimenti editoriali obsoleti dopo l'integrazione Git G1;
-3. Flowchart Lab / Course Environment: chiudere il boundary PY2-01 (`2cornot2c#753/#754`);
-4. materializzare PY2-01 senza promettere capability inesistenti;
+1. semantic review PY2-04 (M09–M12);
+2. poi PY2-05 e UDA successive;
+3. continuare stale-document cleanup quando emerge durante le review;
+4. chiudere il boundary PY2-01 (`2cornot2c#753/#754`) prima della materializzazione finale;
 5. risolvere #8 amministrativamente e far eseguire i gate già scritti;
 6. certificare M04/P1;
 7. pianificare/materializzare Activity per profilo, UDA per UDA;
@@ -239,6 +294,7 @@ Ordine consigliato:
 ```text
 Curriculum architecture        FROZEN ✅
 Editorial lessons M04-M30      COMPLETE 🟡 draft
+Semantic review PY2-02/03      COMPLETE 🟡 editorial
 Checkpoint A/B/C               COMPLETE 🟡 draft
 Git G1 structural consumer     COMPLETE 🟡 delivery evidence pending
 PY2-01 final editorial         BLOCKED/WAITING Flowchart Lab 🟡
