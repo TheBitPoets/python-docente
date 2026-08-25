@@ -11,6 +11,59 @@ Stato: draft editoriale controllato.
 
 Far progettare le funzioni **prima** di implementarle tutte. Lo studente deve imparare a riconoscere responsabilità, input/output e relazioni tra funzioni, senza trasformare la progettazione in burocrazia.
 
+Regola:
+
+> il design deve ridurre il carico mentale del problema, non creare un secondo compito cartaceo parallelo al codice.
+
+---
+
+# Priorità didattica
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. individuare 2–4 responsabilità in un problema adeguato;
+2. dare un nome alle funzioni candidate prima dei corpi;
+3. proporre parametri e risultato atteso;
+4. separare input/output dalla logica quando porta testabilità;
+5. costruire un piccolo call graph;
+6. implementare e verificare una funzione alla volta;
+7. riconoscere una funzione che aggrega responsabilità non correlate.
+
+## GUIDED EXPOSURE
+
+- contratto intuitivo;
+- termini pre-condizione/post-condizione in linguaggio naturale;
+- `git diff` come lente sul refactoring/estrazione.
+
+## ENRICHMENT / BACKUP
+
+- confronto fra due decomposizioni plausibili;
+- smell più sottili;
+- contratti più ricchi;
+- call graph più articolati.
+
+---
+
+# Regola anti-burocrazia
+
+Per un esercizio piccolo non richiedere pagine di analisi.
+
+Quando serve pianificare una funzione, può bastare:
+
+```text
+nome
+responsabilità in una riga
+parametri
+return
+2–4 casi
+```
+
+Per problemi più grandi aggiungere il call graph o una breve mappa delle responsabilità.
+
+Non premiare la quantità di documentazione scollegata dalla qualità della decomposizione.
+
 ---
 
 # Ritmo consigliato — settimana 15
@@ -35,30 +88,39 @@ Mostrare una funzione che legge, calcola e stampa tutto e chiedere quali parti p
 
 ---
 
-# Ora teoria attiva 2 — contratti e call graph
+# Ora teoria attiva 2 — contratto e call graph
 
-## 0–20 min — contratto intuitivo
+## 0–18 min — contratto intuitivo
 
-Per ogni funzione:
+Per una funzione:
 
 ```text
 input
-vincoli
+vincoli essenziali
 output
-side effect sì/no
+side effect rilevante sì/no
 ```
 
-## 20–35 min — pre/post-condizioni
+Non richiedere questa scheda per funzioni ovvie di due righe: il contratto deve aiutare il ragionamento.
 
-Solo linguaggio naturale, niente formalismo pesante.
+## 18–30 min — pre/post-condizioni
 
-## 35–50 min — call graph
+Usare soltanto linguaggio naturale:
+
+```text
+prima della chiamata deve essere vero...
+dopo una chiamata corretta deve essere vero...
+```
+
+I termini sono guided exposure; l'obiettivo è chiarire i confini del comportamento.
+
+## 30–45 min — call graph
 
 Disegnare relazioni tra `main` e funzioni di logica.
 
-## 50–55 min — piano di implementazione
+## 45–55 min — piano di implementazione
 
-Scegliere quale funzione piccola testare per prima.
+Scegliere quale funzione piccola testare per prima e perché.
 
 ---
 
@@ -70,7 +132,7 @@ Raggruppare azioni della specifica in responsabilità.
 
 ## Fase B — firme
 
-Scrivere soltanto `def`, parametri e breve contratto.
+Scrivere `def`, parametri, return atteso e una riga di responsabilità.
 
 ## Fase C — una funzione alla volta
 
@@ -82,7 +144,7 @@ Partire da codice monolitico e isolare un calcolo coerente.
 
 ## Fase E — review con Git G1 Observe
 
-Se il profilo managed è disponibile, riusare gli outcome G1 già introdotti in M14:
+Se il profilo managed è disponibile, riusare:
 
 ```text
 G1.OBSERVE.STATUS
@@ -96,7 +158,23 @@ git status
 git diff
 ```
 
-La spiegazione di working tree/diff resta nel corso Git canonico `TheBitPoets/git` G1-M02/M03.
+La spiegazione di working tree/diff resta nel corso Git canonico. Non trasformare questa fase in una seconda lezione Git.
+
+---
+
+# Minimum mastery gate — prima di M16
+
+Considerare M15 consolidato quando lo studente riesce a:
+
+- proporre 2–4 responsabilità sensate;
+- scrivere firme con dati in ingresso e risultato atteso;
+- separare un calcolo testabile dall'I/O in un caso semplice;
+- disegnare un call graph piccolo;
+- scegliere quale funzione implementare/testare per prima;
+- estrarre una responsabilità coerente da codice monolitico;
+- spiegare in una frase perché la decomposizione aiuta.
+
+Non richiedere terminologia formale sulle pre/post-condizioni per superare il gate se il concetto è stato soltanto introdotto in forma guidata.
 
 ---
 
@@ -122,6 +200,10 @@ Non esiste una soglia magica di righe.
 
 Può funzionare, ma il corso chiede di ragionare su testabilità e separazione delle responsabilità.
 
+## M6 — più diagrammi/contratti = progettazione migliore
+
+No. Ogni artefatto deve aiutare una decisione reale sul codice.
+
 ---
 
 # Differenziazione
@@ -135,9 +217,9 @@ Può funzionare, ma il corso chiede di ragionare su testabilità e separazione d
 
 ## Enrichment
 
-- confrontare due decomposizioni plausibili;
-- discutere funzione troppo generica vs troppo frammentata;
-- progettare una variante con stessa logica ma input/output differenti;
+- due decomposizioni plausibili;
+- funzione troppo generica vs troppo frammentata;
+- stessa logica con input/output differenti;
 - giustificare l'ordine di implementazione.
 
 ---
@@ -148,7 +230,7 @@ Raccogliere almeno:
 
 - elenco responsabilità;
 - 2–4 firme;
-- un contratto intuitivo;
+- breve contratto quando utile;
 - call graph;
 - un refactoring osservato tramite `git diff` o confronto before/after.
 
@@ -158,7 +240,7 @@ Raccogliere almeno:
 
 M15 rende `git diff` pedagogicamente significativo ma non aggiunge nuovi outcome Git rispetto a M14. La dipendenza machine-readable resta `config/git-g1-consumer.json`.
 
-`add`, `diff --staged`, `commit`, `log/show` vengono formalizzati al Checkpoint A tramite le lesson G1-M04…M06 del corso Git, non tramite materiale duplicato in Python.
+`add`, `diff --staged`, `commit`, `log/show` arrivano al Checkpoint A attraverso il consumer embedded G1, non tramite materiale duplicato in Python.
 
 ---
 
@@ -176,7 +258,7 @@ M15 rende `git diff` pedagogicamente significativo ma non aggiunge nuovi outcome
 
 # Handoff a M16
 
-M15 definisce contratti e casi.
+M15 definisce responsabilità, contratti e casi.
 
 M16 rende i casi eseguibili con `assert` e introduce il ciclo:
 
