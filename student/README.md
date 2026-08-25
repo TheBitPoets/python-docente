@@ -31,53 +31,61 @@ Prima di Python impariamo a descrivere e verificare un algoritmo: input/output, 
 
 #### M04 — Interprete, REPL, script, valori e input/output
 
-1. Studia la lesson: [`content/python/04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md).
-2. Durante la lezione usa le slide/recap: [`slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md).
-3. Prima di eseguire il codice, scrivi sempre una previsione quando richiesto.
-4. Completa l'Activity B **“Completa la somma”** tramite l'assegnazione TheBitLab del docente.
-5. Leggi il report tecnico e correggi il programma senza aggiungere output non richiesto.
-6. Devi saper spiegare perché `input()` restituisce testo e perché la conversione è necessaria nel problema della somma.
+- Lesson: [`content/python/04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md)
+- Slide: [`slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md)
+- Activity canarino: `py2-activity-b-input-somma-001`
 
-Activity canonica del vertical slice:
-
-```text
-py2-activity-b-input-somma-001
-```
+Prima di eseguire il codice, scrivi sempre una previsione quando richiesto. Devi saper spiegare perché `input()` restituisce testo e perché una conversione è necessaria quando vuoi fare calcoli numerici.
 
 Lo studente deve ricevere lo **scaffold redatto** generato da TheBitLab, non navigare nelle cartelle `teacher/` o `solution/` del repository docente.
 
 #### M05 — Espressioni, operatori e prime funzioni
 
-Stato: **draft editoriale**; nessuna nuova Activity autogradata obbligatoria finché il canarino M04/P1 non è certificato.
+- Lesson: [`content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
+- Slide: [`slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
 
-1. Studia la lesson: [`content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md).
-2. Usa le slide: [`slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md).
-3. Prevedi valore e tipo prima di usare il REPL.
-4. Impara a scegliere fra `/`, `//` e `%` in base al problema, non per imitazione.
-5. Usa parentesi quando rendono il calcolo più esplicito.
-6. Scrivi una prima funzione pura piccola e verifica più casi.
-7. Devi saper spiegare il modello iniziale `return` → valore al chiamante e `print` → output.
+Prevedi valore e tipo prima del REPL. Impara a scegliere fra `/`, `//` e `%` in base al problema, usa parentesi quando chiariscono l'intenzione e introduci una prima funzione pura piccola. Devi saper spiegare il modello iniziale `return` → valore al chiamante e `print` → output.
 
-M05 propone esercizi pratici su quoziente/resto, tempo, precedenza, debug e prime funzioni, ma non richiede ancora pytest, scope avanzato o package.
+Nessuna nuova Activity autogradata obbligatoria viene aggiunta qui finché il canarino M04/P1 non è certificato.
 
 ### PY2-03 — Selezione e logica
 
 #### M06 — Booleani, confronti e prima selezione con `if`
 
-Stato: **draft editoriale**.
+- Lesson: [`content/python/06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md)
+- Slide: [`slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md)
 
-1. Studia la lesson: [`content/python/06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md).
-2. Usa le slide: [`slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md).
-3. Prima del codice traduci parole come `almeno`, `al massimo`, `più di`, `meno di` nell'operatore di confronto corretto.
-4. Per ogni soglia prova almeno un caso sotto, uno esattamente sul confine e uno sopra.
-5. Devi saper spiegare `=` vs `==`, il ruolo dell'indentazione e perché un ramo `if` può essere saltato senza che ci sia un errore.
-6. Il flow chart resta il modello della decisione: Python cambia la notazione, non la logica.
+Traduci parole come `almeno`, `al massimo`, `più di`, `meno di` nell'operatore corretto. Per ogni soglia prova un caso sotto, uno sul confine e uno sopra. Devi saper spiegare `=` vs `==`, il ruolo dell'indentazione e perché un ramo può essere saltato senza errore.
 
-Romeo può comparire solo come applicazione opzionale dopo gli esercizi generali, tramite `romeo-sim` certificato; non serve hardware fisico per comprendere M06.
+Romeo può comparire solo come applicazione opzionale, tramite `romeo-sim` certificato e senza hardware fisico obbligatorio.
 
-#### M07 — `elif`, casi esclusivi e logica composta
+#### M07 — `elif`, casi esclusivi e condizioni composte
 
-Stato: **prossimo modulo da materializzare**.
+- Lesson: [`content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
+- Slide: [`slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
+
+Domanda fondamentale:
+
+```text
+un solo risultato tra alternative?
+oppure
+più effetti che possono coesistere?
+```
+
+Da questa risposta scegli fra `if/elif/else` e più `if` indipendenti. Impara poi `and`, `or`, `not`, intervalli e confronti concatenati senza trasformarli in formule da memorizzare.
+
+#### M08 — Annidamento, validazione e refactoring
+
+- Lesson: [`content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
+- Slide: [`slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
+
+Impara a riconoscere quando una decisione dipende davvero da un'altra, a seguire i path di una selezione annidata e a validare un valore prima di classificarlo. In questa fase sappiamo **rilevare** un input fuori dominio, ma non ancora richiederlo di nuovo: la ripetizione arriverà con `while`.
+
+Un refactoring è corretto soltanto se i casi di test confermano che il comportamento richiesto è rimasto invariato.
+
+### PY2-04 — Iterazione e pattern algoritmici
+
+Il prossimo blocco materializzato partirà da M09: `while`, stato che cambia, terminazione e validazione ripetuta.
 
 ## Metodo del corso
 
