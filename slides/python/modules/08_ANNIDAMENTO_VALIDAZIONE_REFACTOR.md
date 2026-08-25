@@ -12,6 +12,23 @@ PY2-03 — Selezione e logica
 
 ---
 
+# Che cosa deve restare davvero?
+
+## MUST MASTER
+
+```text
+dipendenza reale tra decisioni
+path trace
+validazione prima della classificazione
+annidato vs condizione composta
+stessi test durante il refactoring
+motivazione della struttura
+```
+
+De Morgan è **enrichment**, non requisito del checkpoint.
+
+---
+
 # Problema iniziale
 
 ```text
@@ -259,7 +276,7 @@ Con `-1` classifichi prima di validare.
 
 ---
 
-# Path coverage
+# Coprire i percorsi importanti
 
 Credenziali/account:
 
@@ -271,7 +288,11 @@ P3 → credenziali true, account true
 
 Non contare solo quanti test hai.
 
-Chiedi: **quali percorsi coprono?**
+Chiedi:
+
+> quali risultati/percorsi sto realmente provando?
+
+Niente metriche di coverage in questa fase.
 
 ---
 
@@ -285,18 +306,6 @@ test prima
 ```
 
 I test proteggono anche quando miglioriamo il codice.
-
----
-
-# De Morgan: solo una lente
-
-Condizioni negate possono essere riscritte.
-
-Ma in questa fase:
-
-> niente algebra booleana “furba”.
-
-Prima linguaggio naturale + casi concreti.
 
 ---
 
@@ -327,7 +336,21 @@ input/output/vincoli
 → spiegazione della struttura
 ```
 
-Piccolo progetto, integrazione completa.
+Può proseguire come compito/recupero: non deve rubare tempo all'handoff a `while`.
+
+---
+
+# ENRICHMENT / BACKUP — De Morgan
+
+Condizioni negate possono essere riscritte.
+
+Ma in questa fase:
+
+> niente algebra booleana “furba”.
+
+Questa slide è facoltativa e non entra nell'exit gate di PY2-03.
+
+Prima vengono linguaggio naturale, path e casi concreti.
 
 ---
 
@@ -346,14 +369,17 @@ Niente hardware/networking e nessuna nuova Activity duplicata.
 
 ---
 
-# Checkpoint PY2-03
+# Minimum mastery checkpoint PY2-03
 
 1. Quando annidare?
 2. Quando `A and B` può sostituire un annidamento?
 3. Perché validare prima di classificare?
 4. Perché non ripetiamo ancora l'input?
-5. Che cosa significa preservare i test nel refactoring?
-6. Che cosa significa coprire i path principali?
+5. Come proteggi un refactoring con gli stessi casi?
+6. Quali percorsi distinti devi provare?
+7. Perché hai scelto proprio quella struttura?
+
+De Morgan e short-circuit non fanno parte del checkpoint ordinario.
 
 ---
 
