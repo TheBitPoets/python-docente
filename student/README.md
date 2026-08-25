@@ -28,64 +28,53 @@ Stato: **SPEC**, non ancora lesson finale. Prima di Python impariamo a descriver
 ### PY2-02 — Primi programmi Python
 
 #### M04 — Interprete, REPL, script, valori e input/output
-
-- Lesson: [`content/python/04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md)
-- Slide: [`slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md)
+- Lesson: [`04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md)
+- Slide: [`04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md)
 - Activity canarino: `py2-activity-b-input-somma-001`
 
-Prevedi prima di eseguire; spiega perché `input()` restituisce testo e quando serve una conversione.
-
 #### M05 — Espressioni, operatori e prime funzioni
-
-- Lesson: [`content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
-- Slide: [`slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
-
-Scegli `/`, `//`, `%` in base al problema, usa parentesi per chiarire l'intenzione e introduci una prima funzione pura con il modello `return` ≠ `print`.
+- Lesson: [`05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
+- Slide: [`05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
 
 ### PY2-03 — Selezione e logica
 
 #### M06 — Booleani, confronti e `if`
-
-- Lesson: [`content/python/06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md)
-- Slide: [`slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md)
-
-Traduci le soglie in confronti e testa sotto/sulla/sopra il confine. Comprendi `=` vs `==`, indentazione e ramo vero/falso.
+- Lesson: [`06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md)
+- Slide: [`06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md)
 
 #### M07 — `elif`, casi esclusivi e condizioni composte
-
-- Lesson: [`content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
-- Slide: [`slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
-
-Scegli fra una catena `if/elif/else` e più `if` indipendenti a partire dalla specifica. Impara `and`, `or`, `not` e intervalli.
+- Lesson: [`07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
+- Slide: [`07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
 
 #### M08 — Annidamento, validazione e refactoring
+- Lesson: [`08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
+- Slide: [`08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
 
-- Lesson: [`content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
-- Slide: [`slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
-
-Riconosci dipendenze reali tra decisioni, valida prima di classificare e usa gli stessi test per verificare un refactoring. Qui rileviamo input fuori dominio, ma non lo ripetiamo ancora.
+PY2-03 ti porta da una domanda vero/falso alla scelta consapevole tra `elif`, più `if` indipendenti, condizioni composte e annidamento. Un refactoring è corretto soltanto se conserva i casi di test e il comportamento richiesto.
 
 ### PY2-04 — Iterazione e pattern algoritmici
 
 #### M09 — `while`, stato, sentinelle e validazione ripetuta
+- Lesson: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
+- Slide: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../slides/python/modules/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
 
-- Lesson: [`content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
-- Slide: [`slides/python/modules/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../slides/python/modules/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
-
-Per ogni `while` devi saper identificare:
-
-```text
-stato iniziale
-condizione
-corpo
-aggiornamento
-```
-
-E soprattutto spiegare **perché può terminare**. Impari validazione ripetuta, sentinelle, casi zero/una/più iterazioni e debug dei cicli infiniti.
-
-`while True` + `break` è una variante successiva: non sostituisce la progettazione della terminazione.
+Per ogni `while` identifica stato iniziale, condizione, corpo e aggiornamento e spiega perché il ciclo può terminare. Impara validazione ripetuta, sentinelle e debug dei cicli infiniti.
 
 #### M10 — `for`, `range` e scelta `for` vs `while`
+- Lesson: [`10_FOR_RANGE_SCELTA_CICLO.md`](../content/python/10_FOR_RANGE_SCELTA_CICLO.md)
+- Slide: [`10_FOR_RANGE_SCELTA_CICLO.md`](../slides/python/modules/10_FOR_RANGE_SCELTA_CICLO.md)
+
+Prima di eseguire un `range`, indica:
+
+```text
+primo valore
+ultimo valore effettivo
+quanti valori
+```
+
+Ricorda: start incluso, stop escluso. Usa `for` quando il percorso/numero di iterazioni è noto o naturale; usa `while` quando la durata dipende da uno stato dinamico. `break` e `continue` sono strumenti da motivare, non scorciatoie automatiche.
+
+#### M11 — Contatori, accumulatori, ricerca e flag
 
 Stato: **prossimo modulo da materializzare**.
 
@@ -93,7 +82,7 @@ Stato: **prossimo modulo da materializzare**.
 
 M04 resta il canarino tecnico P1. I moduli successivi hanno esercizi e Activity candidate, ma non materializziamo nuove Activity autogradate finché il profilo richiesto non è certificato.
 
-Romeo è sempre applicazione selettiva tramite simulatore certificato; hardware fisico non è requisito core.
+Romeo è applicazione selettiva tramite simulatore certificato; hardware fisico non è requisito core.
 
 ## Metodo del corso
 
