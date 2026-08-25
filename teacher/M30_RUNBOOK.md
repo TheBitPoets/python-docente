@@ -2,203 +2,326 @@
 
 ## Modulo
 
-**Capstone OOP: analisi, oggetti, composizione e test**  
+**Capstone OOP — prodotto finale del secondo anno**  
 UDA PY2-10 — Classi, oggetti e capstone
 
 Stato: draft editoriale controllato.
 
-## Obiettivo docente
+## Funzione del capstone
 
-Usare il capstone come prova integrata del percorso, non come gara di complessità o lunghezza.
-
-Competenze osservate:
+Il capstone deve dimostrare integrazione delle competenze core, non quantità di codice.
 
 ```text
 analisi
-+ data model
-+ classi/stato
-+ invarianti
-+ composizione
-+ funzioni/metodi
-+ test/debug/refactor
-+ spiegazione
+→ modello dati
+→ funzioni
+→ oggetti
+→ invarianti
+→ composizione
+→ test
+→ debug/refactor
+→ spiegazione
 ```
 
-## Finestra
+---
 
-Settimane 31–32. La settimana 33 resta Checkpoint C per finalizzazione, recupero o enrichment.
+# Finestra reale
 
-## Contratto minimo
+La mappa frozen assegna M27–M30 alle settimane 29–32.
 
-Richiedere:
-
-- almeno 2 responsabilità OOP significative;
-- relazione di composizione;
-- almeno 1 invariante;
-- almeno 1 struttura dati motivata;
-- 5+ casi/test;
-- 1 edge case/transizione rifiutata;
-- una breve evidence di bug-fix/regression/refactor;
-- spiegazione progettuale breve.
-
-Persistenza file è desiderabile ma non obbligatoria.
-
-## Variante Romeo
-
-Usabile soltanto se `romeo-sim` è certificato nel Classroom Environment.
-
-Pattern consigliato:
+Quindi:
 
 ```text
-Robot
-→ stato/movimento/safety di base
+M29 / settimana 31
+→ skeleton progettuale del capstone
 
+M30 / settimana 32
+→ implementazione + integration + review dedicata
+
+Checkpoint C / settimana 33
+→ eventuale finalizzazione / recupero / evidence
+```
+
+La vecchia formula “settimane 31–32” va letta come **handoff M29 + M30**, non come due settimane aggiuntive per M30.
+
+---
+
+# Contratto minimo del capstone completo
+
+Richiedere in forma proporzionata:
+
+- almeno **due responsabilità OOP significative**;
+- **composizione/collaborazione reale** tra oggetti;
+- almeno un invariante;
+- almeno una scelta di struttura dati motivata;
+- metodi con responsabilità riconoscibili;
+- almeno 5 casi/test complessivi;
+- almeno un edge case o transizione rifiutata;
+- almeno una evidence di bug-fix/regression/refactor;
+- breve spiegazione progettuale.
+
+Non imporre un numero elevato di classi. La quantità non sostituisce il design.
+
+---
+
+# Variante generica
+
+Dominio esempio:
+
+```text
+Veicolo
++ MissioneConsegna
+```
+
+Possibili responsabilità:
+
+```text
+Veicolo
+  stato: posizione, carico, capacita
+  metodi: carica, scarica, sposta
+
+MissioneConsegna
+  stato: veicolo, checkpoint, completati
+  metodi: completa_checkpoint, conclusa
+```
+
+Vincoli:
+
+- niente GUI;
+- niente database;
+- niente rete;
+- persistenza file soltanto se realmente utile e M26 è consolidato.
+
+---
+
+# Variante Romeo
+
+Solo se `romeo-sim` è certificato nel Classroom Environment.
+
+Dominio:
+
+```text
 Missione
-→ checkpoint/obiettivo/regole
-→ usa Robot
+└─ usa Robot
 ```
 
-Non importare networking, camera, FastAPI, WebSocket o hardware fisico dal track Romeo avanzato.
+Rubrica e outcome restano equivalenti alla variante generica.
 
-## Variante generica
+Hardware fisico non è requisito del core.
 
-Deve essere sempre disponibile e valutata con la stessa rubrica.
+---
 
-Domini candidati:
+# Skeleton prima del codice
 
-- Veicolo + Missione;
-- Prodotto + Ordine;
-- Prenotazione + Servizio;
-- Biblioteca + Prestito;
-- Giocatore + Partita semplice.
+Prima dell'implementazione raccogliere:
 
-## Ritmo consigliato
+```text
+responsabilità
+classi candidate
+stato
+metodi
+invarianti
+relazioni di composizione
+strutture dati
+casi/test
+```
 
-### Fase 1 — design
+Non chiedere documentazione lunga: basta ciò che guida decisioni reali.
 
-- specifica;
-- classi/responsabilità;
-- relazione di composizione;
-- stato/invarianti;
-- struttura dati;
-- casi di test.
+---
 
-### Fase 2 — skeleton
+# Sviluppo incrementale
 
-- `__init__`;
-- metodi minimi;
-- primi assert;
-- primo checkpoint Git.
+Sequenza raccomandata:
 
-### Fase 3 — comportamento
+```text
+1. skeleton + casi
+2. prima responsabilità
+3. invariante + test
+4. collaboratore
+5. composizione
+6. integrazione
+7. edge case
+8. bug/regression
+9. refactor
+10. spiegazione finale
+```
 
-- transizioni valide/invalide;
+Ogni fase deve lasciare qualcosa di eseguibile/verificabile quando possibile.
+
+---
+
+# Strutture dati
+
+Il capstone deve riusare almeno una scelta di struttura dati significativa dal corso:
+
+```text
+list / tuple / set / dict
+```
+
+ma non deve usare più collezioni del necessario.
+
+La rubrica valuta:
+
+> perché questa struttura rappresenta bene le operazioni dominanti?
+
+non:
+
+> quante strutture diverse hai inserito?
+
+---
+
+# Test minimi
+
+Chiedere casi su:
+
+- costruzione;
+- stato osservabile;
+- transizione valida;
+- transizione rifiutata/confine;
 - collaborazione;
-- edge cases;
-- secondo checkpoint Git.
+- indipendenza fra istanze quando pertinente.
 
-### Fase 4 — review
+La suite concreta dipende dal dominio.
 
-- bug/regression;
-- refactor;
-- tutti i test;
-- spiegazione;
-- commit finale.
+---
 
-## Rubrica
+# Regression + refactor
 
-Dimensioni candidate:
+Richiedere almeno una evidence del ciclo:
 
-- correttezza;
-- comprensione/analisi;
-- modello dati;
-- responsabilità OOP;
-- stato/invarianti;
+```text
+bug/caso mancante
+→ test rosso
+→ fix
+→ tutti verdi
+→ eventuale refactor
+→ ancora verdi
+```
+
+Non serve un report lungo: bastano caso, causa, fix e verifica.
+
+---
+
+# Git G1 embedded
+
+Git resta il workflow di processo già acquisito, non un nuovo corso nel capstone.
+
+Checkpoint significativi possibili:
+
+```text
+skeleton coerente
+core + test
+fix/refactor finale
+```
+
+Non imporre un numero artificiale di commit.
+
+Prima di ogni commit significativo:
+
+```text
+git status
+→ git diff
+→ test
+→ git add <path>
+→ git diff --staged
+→ git commit
+→ git status
+→ git log / git show
+```
+
+Riusa `TheBitPoets/git` G1 canonico per remediation; nessun G2 nuovo.
+
+---
+
+# Spiegazione finale
+
+Breve e concreta:
+
+- problema;
+- responsabilità/classi;
 - composizione;
-- decomposizione/metodi;
-- test/debug/regression;
-- leggibilità;
-- spiegazione.
+- invariante;
+- struttura dati scelta;
+- test/edge significativo;
+- bug o refactor importante;
+- limite attuale / miglioramento futuro.
 
-I pesi finali vanno allineati alla V4 del calendario senza trasformare design e spiegazione in falsi test automatici.
+La spiegazione deve essere coerente con il codice reale.
 
-## Misconception watchlist
+---
 
-- più classi = progetto migliore;
-- inheritance obbligatoria per essere OOP;
-- god class;
-- input/file dentro ogni metodo;
-- test soltanto happy-path;
-- capstone Romeo che misura hardware;
-- GUI/web aggiunti per impressionare ma fuori curriculum;
-- refactor effettuato senza rieseguire i test.
+# Recovery
 
-## Recovery
-
-Se lo studente è in difficoltà, ridurre il dominio, non eliminare gli outcome core.
-
-Minimo recuperabile:
+Se uno studente non riesce a completare il prodotto pieno:
 
 ```text
-2 classi piccole
-1 composizione
-1 invariante
-1 list/dict/set motivato
-5 test
-1 spiegazione
+riduci dominio
+→ mantieni outcome
 ```
 
-## Enrichment
+Esempi:
 
-Solo dopo il core:
+- meno operazioni;
+- una sola relazione di composizione;
+- collezione più piccola;
+- niente file/Romeo.
 
-- `__str__`;
-- property semplice;
-- inheritance minimale e motivata;
-- file persistence se P4/workflow è disponibile;
-- variante Romeo più articolata nel simulatore;
-- dataclass come confronto dopo la classe esplicita.
+Se il prodotto ridotto non riesce a dimostrare un outcome frozen (per esempio composizione), raccogliere quell'evidence con un micro-task separato. Non trasformare l'outcome in opzionale.
 
-## P3
+---
 
-`2cornot2c#758` può coprire comportamento deterministico di classi/istanze/metodi/stato.
+# Enrichment soltanto dopo il core
 
-Restano rubriche manuali:
+Possibili:
 
-- qualità delle responsabilità;
-- adeguatezza della composizione;
-- chiarezza del modello;
-- spiegazione.
+- `__str__/__repr__`;
+- property introduttiva;
+- inheritance semplice;
+- dataclass come confronto;
+- persistenza file;
+- scenario Romeo più ricco.
 
-## Git G1
+Nessuno di questi deve compromettere il capstone core.
 
-Richiedere checkpoint significativi, non un numero artificiale di commit.
+---
 
-Workflow:
+# AI policy
+
+Per capstone core/valutativo:
+
+- nessuna generazione AI della soluzione;
+- eventuale AI-assisted review/debug soltanto se l'attività lo dichiara esplicitamente e lo studente verifica/testa/spiega;
+- il docente valuta la comprensione reale.
+
+---
+
+# P3 — teacher/delivery boundary
+
+Il profilo `2cornot2c#758` riguarda eventuale object autograding. Non è prerequisito pedagogico per insegnare o valutare manualmente il capstone.
+
+Fino alla certificazione:
+
+- assert/manual evidence;
+- rubriche;
+- nessuna promessa di object autograding.
+
+---
+
+# Exit del secondo anno
+
+Il prodotto finale deve permettere allo studente di spiegare questa catena:
 
 ```text
-status → diff → test → add → commit → log
+problema
+→ algoritmo
+→ dati
+→ funzioni
+→ strutture
+→ oggetti
+→ invarianti
+→ composizione
+→ test/debug/refactor
 ```
 
-La sintassi definitiva deve puntare al materiale Git G1 canonico dopo audit dispense.
-
-## Checkpoint C
-
-Settimana 33:
-
-- finalizzazione;
-- recupero mirato;
-- presentazione breve;
-- enrichment;
-- nessun nuovo prerequisito obbligatorio.
-
-## Gate per promozione del capstone
-
-Prima di renderlo definitivo:
-
-- scegliere 1–2 specifiche concrete equivalenti;
-- prototipare la rubrica;
-- verificare carico reale in 6h + buffer;
-- certificare Romeo se usato come variante;
-- certificare P3 prima di promettere object autograding;
-- mantenere sempre fallback generico.
+Questo è il traguardo. Non “più classi, più framework, più righe”.
