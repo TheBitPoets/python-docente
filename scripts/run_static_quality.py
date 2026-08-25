@@ -1,0 +1,41 @@
+from __future__ import annotations
+
+import subprocess
+import sys
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+CHECKS = [
+    ("authoring source synchronization", [sys.executable, "scripts/sync_authoring_catalog.py"]),
+    ("authoring catalog", [sys.executable, "tests/course_authoring_catalog.py"]),
+    ("semantic review boundaries", [sys.executable, "tests/semantic_review_gate.py"]),
+    ("Git G1 consumer", [sys.executable, "tests/git_g1_consumer_contract.py"]),
+    ("frozen outcome coverage", [sys.executable, "tests/coverage_contract.py"]),
+    ("slide source quality", [sys.executable, "tests/slide_source_quality.py"]),
+    ("M04 vertical-slice static QA", [sys.executable, "tests/m04_vertical_slice_static.py"]),
+    ("M05 pedagogical static QA", [sys.executable, "tests/m05_authoring_static.py"]),
+]
+
+
+def run_check(name: str, command: list[str]) -> None:
+    print(f"\n== {name} ==")
+    completed = subprocess.run(command, cwd=ROOT, check=False)
+    if completed.returncode != 0:
+        raise SystemExit(
+            f"FAIL: {name} exited with {completed.returncode}: {' '.join(command)}"
+        )
+
+
+def main() -> int:
+    for name, command in CHECKS:
+        run_check(name, command)
+
+    print("\nPASS: static Python course quality suite")
+    print("NOTE: this does not execute TheBitLab-dependent consumer/rehearsal gates.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
