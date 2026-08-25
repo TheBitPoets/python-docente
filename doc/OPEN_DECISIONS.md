@@ -3,7 +3,7 @@
 > Second-year curriculum architecture **FROZEN 2026-08-24**.  
 > Canonical freeze: `doc/CURRICULUM_FREEZE_2026_2027.md`.
 
-Questo file non deve riaprire decisioni congelate. Mantiene invece la distinzione fra decisioni **CLOSED/FROZEN**, scelte di **delivery ancora aperte** e decisioni dei track professionali/futuri.
+Questo file non deve riaprire decisioni congelate. Mantiene la distinzione fra decisioni **CLOSED/FROZEN**, scelte di **delivery ancora aperte** e decisioni dei track professionali/futuri.
 
 ## D1 — Versione Python del track secondo — CLOSED
 
@@ -48,15 +48,37 @@ Pedagogia congelata:
 
 Implementazione/certificazione: `2cornot2c#753/#754`.
 
-## D5 — Git nel secondo anno — FROZEN
+## D5 — Git nel secondo anno — FROZEN / STRUCTURAL DELIVERY CLOSED
 
-Git è curriculum separato; Python seconda consuma G1 progressivamente:
+Git è curriculum separato e Python seconda ne consuma il livello G1 senza duplicarne le lesson.
 
-- `status`, `diff` da PY2-05;
-- `add`, `commit` al Checkpoint A;
-- history/log essenziale e checkpoint nel secondo semestre.
+Source of truth corrente:
 
-Le dispense Git esistenti verranno auditate quando produrremo G1 definitivo o il corso Git autonomo.
+```text
+TheBitPoets/git
+G1 candidate ref: 65d8aff8c9a590560c500762d4dc7378a3239bf2
+provider contract: doc/G1_CONSUMER_CONTRACT.md
+```
+
+Consumer locale:
+
+```text
+config/git-g1-consumer.json
+```
+
+Progressione congelata:
+
+- M14–M16: `G1.OBSERVE.STATUS` + `G1.OBSERVE.DIFF`, guided;
+- Checkpoint A: staging intenzionale, commit, history e modello beginner HEAD;
+- secondo semestre: checkpoint/recovery G1 progressivamente più autonomi.
+
+Il materiale legacy Git è già stato auditato nel repository `TheBitPoets/git`; non è la source of truth didattica.
+
+Restano aperti soltanto gate di delivery/evidence:
+
+- freeze/decision-owner finale G1 oppure accettazione esplicita del candidate ref per pilot;
+- esecuzione del consumer test Python quando i runner privati tornano disponibili;
+- rehearsal reale nel Classroom Environment/TheBitLab.
 
 ## D6 — Toolchain professionale — OPEN PER STAGE C, NON BLOCCA SECONDA
 
@@ -128,12 +150,14 @@ Già fissato:
 - P2 function behavior;
 - P3 object behavior;
 - P4 filesystem behavior;
+- Git Lab repository-state per il consumer G1;
 - `romeo-sim` come runtime plugin esterno.
 
 Aperti:
 
 - `python-docente#2`, `#6`, `#7`, `#8`;
 - `2cornot2c#753/#754/#755/#756/#757/#758`;
+- consumer Git G1 CI/rehearsal evidence;
 - certificazioni reali dei profili.
 
 ## D14 — Tassonomia — FROZEN
@@ -159,7 +183,7 @@ Standard TPSI5 adattato a seconda:
 - QA/CI;
 - curriculum freeze vs delivery changes.
 
-La build finale HTML/PDF/PPTX e i quality gate restano delivery work.
+M04–M30 sono materializzati editorialmente. La build finale HTML/PDF/PPTX e i quality gate restano delivery work.
 
 ## D16 — Distribuzione Stage B/C negli anni successivi — OPEN
 
@@ -179,7 +203,7 @@ Non riapre il freeze del secondo anno.
 
 1. toolchain professionale concreta/versioni per Stage C;
 2. distribuzione Stage B/C tra terzo/quarto/quinto;
-3. forma finale del corso Git autonomo e progressione per anno;
+3. freeze finale e distribuzione per anno dei livelli Git G2–G4, senza riaprire G1-Core Python;
 4. forma finale del corso Container/Docker;
 5. variante concreta del capstone OOP entro gli outcome congelati;
 6. selezione individuale degli esercizi `friedpython` dopo audit;
