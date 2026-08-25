@@ -1,6 +1,9 @@
 # Python curriculum — decisioni approvate 2026/27
 
-> Stato: decisioni di design approvate. Questo documento **non** equivale ancora al `CURRICULUM_FREEZE` del Content Pack 1.0.
+> Stato: **registro storico pre-freeze, riallineato alle decisioni congelate**.  
+> Il documento canonico corrente è `doc/CURRICULUM_FREEZE_2026_2027.md` (FROZEN, decision-owner approval 2026-08-24).
+
+Questo file conserva le decisioni maturate durante il design. In caso di conflitto, prevale il Curriculum Freeze.
 
 ## D1 — Ambiente didattico unico
 
@@ -17,11 +20,11 @@ Il modello corrente prevede:
 - runner di grading separato;
 - runtime plugin esterni per capability specialistiche come `romeo-sim`.
 
-Blocker piattaforma: `TheBitPoets/2cornot2c#753`.
+Delivery/certification: `TheBitPoets/2cornot2c#753` e issue correlate.
 
 ## D2 — Python baseline del track di seconda
 
-Il Content Pack iniziale usa **Python 3.12** come baseline didattica certificata, coerente con l'attuale student-dev TheBitLab (`3.12.3`) e con la versione raccomandata dal progetto 2cornot2c.
+Il Content Pack iniziale usa **Python 3.12** come baseline didattica certificabile.
 
 Regole:
 
@@ -46,15 +49,15 @@ Progressione approvata:
 
 1. primi concetti con il REPL standard `python`;
 2. transizione precoce a file `.py`;
-3. VS Code come editor di lungo periodo quando la sua installazione/configurazione è gestita dal Classroom Environment;
+3. VS Code come editor di lungo periodo quando installazione/configurazione sono gestite dal Classroom Environment;
 4. debugger introdotto solo quando è didatticamente utile;
-5. IPython è opzionale e non può essere requisito del core finché non fa parte del profilo ambiente certificato.
+5. IPython opzionale e non requisito core finché non è parte del profilo certificato.
 
 ## D5 — Flow chart
 
 Il flow chart è **core curricolare**.
 
-Flowgorithm è utile come riferimento funzionale ma non può essere dipendenza canonica perché è Windows-only.
+Flowgorithm può essere riferimento/companion Windows, ma non dipendenza canonica.
 
 Target architetturale: **Flowchart Lab cross-platform gestito da TheBitLab**, browser-based e salvabile nel workspace studente.
 
@@ -71,7 +74,7 @@ Capability desiderate:
 - validazione strutturale automatica dove deterministica;
 - qualità progettuale valutata con rubric/manual checks.
 
-Blocker piattaforma: `TheBitPoets/2cornot2c#753`.
+Delivery blocker: `TheBitPoets/2cornot2c#753/#754`.
 
 ## D6 — Romeo
 
@@ -82,7 +85,7 @@ Modello:
 ```text
 problemi generali e micro-progetti
 + missioni Romeo simulate ricorrenti
-+ capstone OOP con Romeo simulato
++ capstone OOP con Romeo simulato o fallback generico equivalente
 ```
 
 Vincoli:
@@ -92,22 +95,49 @@ Vincoli:
 - usare `romeo-sim` attraverso il boundary TheBitLab;
 - non importare nel secondo anno beginner la parte networking/FastAPI/WebSocket dell'attuale curriculum Romeo year 2.
 
-Mapping dettagliato: `python-docente#4`.
+Mapping corrente: `tracks/secondo/ROMEO_MAPPING.md`.
 
 ## D7 — Git nel secondo anno
 
-Git entra in forma minima nel secondo anno, senza diventare un corso separato.
+**Decisione finale congelata:** Git è un curriculum trasversale separato; Python seconda consuma il sottoinsieme G1 necessario al proprio workflow e non duplica le lesson Git.
 
-Core proposto:
+Source of truth corrente:
 
-- concetto di storico/versione;
-- `status`;
-- `diff`;
-- `add`;
-- `commit`;
-- lettura semplice della history.
+```text
+TheBitPoets/git
+G1 candidate ref: 65d8aff8c9a590560c500762d4dc7378a3239bf2
+provider contract: doc/G1_CONSUMER_CONTRACT.md
+```
 
-Materiale docente esistente verrà integrato successivamente. Branching/collaboration avanzata resta ai livelli successivi.
+Consumer Python machine-readable:
+
+```text
+config/git-g1-consumer.json
+```
+
+Progressione:
+
+```text
+M14–M16
+  status / diff — guided
+
+Checkpoint A
+  status
+  → diff
+  → test
+  → add
+  → diff --staged
+  → commit
+  → status
+  → log/show
+
+secondo semestre
+  checkpoint/recovery G1 progressivamente autonomi
+```
+
+Branching, merge, remotes, PR, rebase, reflog e internals restano fuori dal core Python di seconda.
+
+Il materiale Git legacy è stato auditato nel repository Git ed è fonte pedagogica privata, non lesson canonica.
 
 ## D8 — OOP obbligatoria in seconda
 
@@ -126,7 +156,7 @@ Obbligatorio:
 - responsabilità di classe;
 - mini-capstone.
 
-`__str__/__repr__` è altamente raccomandato. Ereditarietà semplice, properties e dataclass restano enrichment finché il calendario non dimostra di sostenerle senza comprimere i fondamentali.
+`__str__/__repr__`, ereditarietà semplice, properties e dataclass restano enrichment secondo il Curriculum Freeze.
 
 ## D9 — Valutazioni minime
 
@@ -137,7 +167,7 @@ Per ogni quadrimestre devono essere previste almeno:
 
 Il corso raccoglie comunque evidenze formative più frequenti: trace, flow chart, coding, debug, spiegazione delle scelte, mini-progetti e Activity.
 
-Design dettagliato: `python-docente#5`.
+Il calendario/rubriche correnti sono nei file del track `tracks/secondo/`.
 
 ## D10 — Policy AI
 
@@ -168,14 +198,23 @@ Riutilizzare lo standard maturato con TPSI5, adattato a studenti più giovani:
 - TheBitLab handoff;
 - curriculum freeze separato dal delivery changelog.
 
-## Decisioni ancora bloccanti prima del freeze
+M04–M30 sono oggi materializzati editorialmente; ciò non equivale a Content Pack approved o classroom-ready.
 
-Restano da chiudere:
+---
 
-1. contratto Classroom Environment cross-course (`2cornot2c#753` / `python-docente#2`);
-2. architettura Flowchart Lab;
-3. profilo Python/VS Code certificato sui due ambienti Docker-light e VM grafica;
-4. Activity/runner contract Python TheBitLab;
-5. mapping Romeo dettagliato;
-6. calendario/rubriche delle verifiche;
-7. mapping fonti → UDA → moduli.
+# Stato dei vecchi blocker “prima del freeze”
+
+La lista storica è stata superata dal freeze del 2026-08-24. Gli elementi ancora aperti sono oggi **delivery gates**, non decisioni curricolari pre-freeze:
+
+1. Classroom Environment / Flowchart Lab (`2cornot2c#753/#754`, `python-docente#2`);
+2. beginner REPL/editor certification (`python-docente#6`);
+3. P1 canary (`python-docente#7`);
+4. private Actions pre-runner blocker (`python-docente#8`);
+5. P2/P3/P4 (`2cornot2c#756/#758/#757`);
+6. Git G1 consumer CI/rehearsal evidence;
+7. `romeo-sim` cross-profile certification;
+8. slide artifact build/quality;
+9. teacher/provenance/coverage review;
+10. Content Pack approval e rehearsal reale.
+
+Per lo stato operativo corrente usare `doc/PROJECT_STATUS.md`.
