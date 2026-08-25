@@ -1,6 +1,6 @@
 # Git G1 — integrazione trasversale nel track Python di seconda
 
-> Stato: **design DRAFT**. Git resta un curriculum autonomo futuro; questo documento definisce soltanto il sottoinsieme G1 necessario al workflow Python di seconda.
+> Stato: **design approvato / materiale G1 in ingresso editoriale**. Git resta un curriculum autonomo; questo documento definisce soltanto il sottoinsieme G1 consumato dal Python di seconda.
 
 ## Principio
 
@@ -11,33 +11,31 @@ Git non deve diventare:
 - un prerequisito delle prime settimane;
 - una serie di comandi da memorizzare senza un problema reale.
 
-Deve entrare quando gli studenti hanno ormai file/programmi che vale la pena versionare.
+Entra quando gli studenti hanno programmi che vale la pena versionare:
 
 ```text
-prima programmi usa-e-getta / Activity gestite
-→ poi progetto che evolve
-→ nasce il bisogno di vedere cosa ho cambiato
-→ Git G1
+programma che evolve
+→ refactoring
+→ bisogno di vedere cosa è cambiato
+→ status/diff
+→ stato verificato
+→ primo commit
 ```
 
 ## Relazione col futuro corso Git
 
-Il curriculum Git autonomo sarà la fonte canonica.
+Il curriculum Git autonomo sarà la fonte canonica. Python consumerà soltanto G1.
 
-Python userà soltanto:
+**Il trigger per l'audit delle dispense docente è ora raggiunto:** M14–M16 e Checkpoint A sono materializzati. Le dispense possono quindi essere fornite e classificate prima di promuovere il micro-materiale G1 a versione definitiva.
 
-```text
-G1 — fondamenti
-```
+Workflow di intake:
 
-Quando il repository del corso Git esisterà, queste micro-lesson potranno diventare riferimenti/import controllati invece di essere duplicate.
-
-Le dispense Git esistenti del docente saranno auditate quando:
-
-1. inizierà il corso Git autonomo; oppure
-2. inizierà la produzione materiale definitiva di G1 per Python.
-
-Non sono necessarie per il freeze architetturale Python.
+1. audit delle dispense e della versione Git a cui fanno riferimento;
+2. classificazione dei contenuti in G1/G2/G3/G4;
+3. selezione delle sole parti G1 necessarie a Python seconda;
+4. adattamento originale al formato TheBitLab;
+5. collegamento da `student/CHECKPOINT_A.md` / `teacher/CHECKPOINT_A_RUNBOOK.md` al futuro materiale Git canonico;
+6. riuso futuro dallo standalone Git course, senza duplicazioni.
 
 ---
 
@@ -46,15 +44,15 @@ Non sono necessarie per il freeze architetturale Python.
 Entro la fine dell'anno lo studente dovrebbe saper, in un repository didattico controllato:
 
 - spiegare a cosa serve uno storico delle modifiche;
-- distinguere file modificato e versione salvata/commit;
+- distinguere file modificato e versione registrata/commit;
 - usare `git status`;
 - usare `git diff` per leggere cosa è cambiato;
 - selezionare modifiche con `git add` nel workflow guidato;
 - creare un `git commit` con messaggio comprensibile;
 - leggere una storia breve con `git log`/vista equivalente;
 - capire che commit diversi identificano stati differenti del progetto;
-- evitare comandi distruttivi improvvisati per "far sparire" un errore;
-- chiedere/seguire una procedura sicura di recupero quando non capisce lo stato del repository.
+- evitare comandi distruttivi improvvisati;
+- seguire una procedura sicura di recovery quando non comprende lo stato.
 
 Non è richiesto in G1:
 
@@ -67,153 +65,107 @@ Non è richiesto in G1:
 - reset avanzato;
 - Git internals.
 
-Questi appartengono ai livelli G2+.
-
 ---
 
-# Quando introdurlo
+# Progressione nel track Python
 
 ## Settimane 1–12
 
-**Nessun Git come obiettivo curricolare.**
+Nessun Git come obiettivo curricolare. TheBitLab può usarlo internamente, ma lo studente non deve gestire contemporaneamente algoritmi, sintassi, runner e versionamento.
 
-TheBitLab può usare Git internamente per delivery/versionamento, ma lo studente non deve gestire contemporaneamente:
-
-- algoritmi;
-- sintassi Python;
-- flow chart;
-- runner;
-- Git.
-
-Riduciamo il carico cognitivo.
-
-## Settimane 13–14 — osservare lo stato
-
-Con PY2-05/funzioni, i programmi iniziano a essere composti da più responsabilità e refactoring.
+## M13–M14 — osservare lo stato
 
 Micro-introduzione:
 
 ```text
-repository
-working tree
-status
+git status
 ```
 
-Attività da 10–15 minuti dentro una normale lezione/lab:
+Attività tipica:
 
-1. aprire un piccolo progetto già versionato;
-2. `git status` prima della modifica;
-3. cambiare una funzione;
-4. `git status` dopo;
-5. spiegare cosa significa `modified`.
+1. stato prima del refactoring;
+2. modifica di una funzione;
+3. stato dopo;
+4. spiegazione di `modified`.
 
-Nessun commit autonomo ancora necessario.
-
-## Settimane 15–16 — leggere il cambiamento
-
-Introdurre:
+## M14–M16 — leggere il cambiamento
 
 ```text
 git diff
 ```
 
-Collegamento didattico perfetto col refactoring:
+Collegamento naturale con il refactoring:
 
-> cosa è cambiato nel codice e cosa è rimasto semanticamente uguale?
-
-Micro-task:
-
-- estrai una funzione;
-- osserva `git diff`;
-- individua righe aggiunte/rimosse;
-- esegui i test;
-- spiega la relazione diff ↔ refactoring.
+> che cosa è cambiato nella struttura e quali test devono restare verdi?
 
 ## Checkpoint A — primo commit guidato
 
-Nel mini-project/pratica del checkpoint:
+Workflow canonico target:
 
 ```text
 status
 → diff
+→ test
 → add
 → commit
+→ log
 ```
 
-Il docente/TheBitLab guida il workflow.
+Il commit deve raccontare un cambiamento coerente e verificato.
 
-Messaggio commit semplice:
+Messaggi:
 
 ```text
-Aggiungi validazione dei voti
+Completa checkpoint funzioni e test
 ```
 
-non:
+è migliore di:
 
 ```text
 modifiche
 ```
 
-Il focus è:
+## Secondo semestre
 
-> un commit racconta un cambiamento coerente verificato.
+Git diventa routine di processo in alcune Activity/progetti:
 
-## Secondo semestre — routine crescente
+```text
+status → modifica → test → diff → add/commit
+```
 
 Non serve una lezione Git ogni settimana.
 
-In alcune Activity/progetti:
-
-1. controlla `status`;
-2. modifica/testa;
-3. guarda `diff`;
-4. quando il checkpoint è corretto, `add` + `commit`.
-
-Git diventa uno strumento del processo, come REPL/test, non un argomento estraneo.
-
 ## OOP/capstone
 
-Nel capstone:
+Utili 2–3 checkpoint guidati, ad esempio:
 
-- almeno 2–3 checkpoint Git guidati sono utili;
-- un commit può corrispondere a:
-  - skeleton classi;
-  - implementazione comportamento;
-  - correzione bug/refactoring.
+- skeleton classi;
+- comportamento;
+- bug-fix/refactor.
 
-L'evidence Git non deve diventare un criterio dominante del voto Python.
-
-## Settimana 33
-
-Può ospitare consolidamento/history/troubleshooting semplice, ma **non è la prima esposizione a Git**.
+Git non deve diventare criterio dominante del voto Python.
 
 ---
 
 # TheBitLab boundary
 
-Il Classroom Environment deve fornire:
+Il Classroom Environment deve fornire un profilo equivalente a:
 
 ```text
 git.basic.v1
 ```
 
-Git è già presente nei profili correnti, ma il corso non deve chiedere configurazioni host manuali.
+G1 deve poter essere completamente locale:
 
-TheBitLab dovrebbe, dove possibile:
-
-- creare/aprire il repository didattico;
-- garantire identità/autore appropriata per ambiente scolastico senza richiedere account personali quando non necessario;
-- mantenere workspace confinato;
-- evitare che credenziali remote siano necessarie nel G1;
-- offrire messaggi sicuri se il repository è in stato inatteso.
-
-G1 può essere completamente **locale**: non richiede GitHub remoto.
+- nessun account GitHub obbligatorio;
+- nessun remote richiesto;
+- workspace confinato;
+- identità/autore gestita in modo appropriato dal profilo;
+- messaggi sicuri in caso di stato inatteso.
 
 ---
 
 # Recovery policy beginner
-
-Non insegnare una lista di comandi potenti prima del modello.
 
 Regola studente:
 
@@ -223,70 +175,61 @@ se lo stato Git non è quello atteso:
 2. non usare --force
 3. leggi status
 4. salva/copia il lavoro se indicato
-5. chiedi/segui la procedura di recovery del corso
+5. segui la procedura di recovery del corso
 ```
 
-Comandi come `reset --hard`, force push o rebase non appartengono a G1.
+`reset --hard`, force push e rebase non appartengono a G1.
 
-`git restore` può essere mostrato solo in uno scenario guidato e dopo aver spiegato che **scarta modifiche non salvate**.
+`git restore` può comparire solo in scenario guidato dopo aver chiarito che può scartare modifiche non registrate.
 
 ---
 
-# Activity/evidence Git dentro Python
+# Micro-evidence G1
 
 ## G1-A — Observe
 
-Dato un `git status`, distinguere:
-
-- clean;
-- modified;
-- staged.
+Leggere `git status`: clean / modified / staged.
 
 ## G1-B — Diff
 
-Leggere un diff di una funzione modificata e descrivere cosa è cambiato.
+Leggere un diff di una funzione e descrivere il cambiamento.
 
 ## G1-C — Guided commit
 
-Con progetto già testato:
-
 ```text
-status → diff → add → commit → log
+status → diff → test → add → commit → log
 ```
 
 ## G1-D — Safe diagnose
 
-Dato uno stato semplice, scegliere il prossimo passo sicuro; niente comandi distruttivi.
+Dato uno stato semplice, scegliere il prossimo passo sicuro senza comandi distruttivi.
 
-Queste evidence possono vivere come micro-attività del futuro corso Git e venire richiamate dal track Python.
+Queste micro-evidence dovrebbero diventare materiale canonico del futuro corso Git e venire richiamate da Python.
 
 ---
 
 # Valutazione
 
-Git G1 nel secondo anno è prevalentemente **competenza di processo/formativa**.
+Git G1 è prevalentemente competenza di processo/formativa. Non aggiunge una quinta verifica obbligatoria.
 
-Non aggiungerei una quinta verifica obbligatoria.
-
-Può contribuire alle rubriche progetto in dimensioni come:
+Può contribuire alle rubriche di progetto su:
 
 - processo ordinato;
 - checkpoint significativi;
-- capacità di leggere il proprio cambiamento;
+- capacità di leggere il proprio diff;
 - messaggi di commit comprensibili.
 
-Non penalizzare pesantemente un buon programma Python per una svista Git beginner, salvo che la consegna abbia esplicitamente quell'outcome.
+Non penalizzare pesantemente un buon programma Python per una svista Git beginner se Git non è l'outcome esplicito della consegna.
 
 ---
 
 # Criteri per dichiarare G1 integrato
 
-- nessuna introduzione Git prima che serva realmente;
-- `status`/`diff` introdotti durante funzioni/refactoring;
-- primo commit entro Checkpoint A;
-- almeno alcuni commit/checkpoint nel secondo semestre;
-- nessuna dipendenza dalla settimana 33;
-- nessun remote/account GitHub necessario al core;
+- `status`/`diff` dentro funzioni/refactoring;
+- primo commit al Checkpoint A;
+- alcuni checkpoint nel secondo semestre;
+- nessun remote/account obbligatorio;
 - toolchain gestita da TheBitLab;
-- materiali definitivi allineati al futuro corso Git autonomo;
-- dispense docente auditate prima della pubblicazione delle lesson G1 definitive.
+- dispense docente auditate;
+- materiale G1 canonico pubblicato/collegato;
+- nessuna duplicazione del futuro corso Git autonomo.
