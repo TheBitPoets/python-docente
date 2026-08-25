@@ -35,7 +35,8 @@
       "role": "approved-course-content",
       "path": "content/python",
       "files": [
-        "04_INTERPRETE_REPL_VALORI_IO.md"
+        "04_INTERPRETE_REPL_VALORI_IO.md",
+        "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
@@ -113,21 +114,31 @@
         "py2-activity-b-input-somma-001"
       ],
       "source_refs": [
-        {
-          "id": "python-course-content",
-          "role": "content-origin",
-          "locator": "04_INTERPRETE_REPL_VALORI_IO.md"
-        },
-        {
-          "id": "python-ref-docs",
-          "role": "technical-reference",
-          "locator": "Python 3.12 tutorial and built-in functions"
-        },
-        {
-          "id": "python-ref-think-python",
-          "role": "teacher-reference",
-          "locator": "values, variables, functions and debugging progression"
-        }
+        {"id": "python-course-content", "role": "content-origin", "locator": "04_INTERPRETE_REPL_VALORI_IO.md"},
+        {"id": "python-ref-docs", "role": "technical-reference", "locator": "Python 3.12 tutorial and built-in functions"},
+        {"id": "python-ref-think-python", "role": "teacher-reference", "locator": "values, variables, functions and debugging progression"}
+      ]
+    },
+    {
+      "id": "py2-m05-espressioni-operatori-prime-funzioni",
+      "kind": "module",
+      "path": "content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
+      "order": 5,
+      "status": "draft",
+      "curriculum_topics": [
+        "expressions",
+        "arithmetic-operators",
+        "operator-precedence",
+        "quotient-remainder",
+        "f-strings",
+        "builtins-intro",
+        "function-preview",
+        "return-vs-print"
+      ],
+      "source_refs": [
+        {"id": "python-course-content", "role": "content-origin", "locator": "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"},
+        {"id": "python-ref-docs", "role": "technical-reference", "locator": "Python 3.12 tutorial numbers and expression reference"},
+        {"id": "python-ref-think-python", "role": "teacher-reference", "locator": "functions and debugging progression"}
       ]
     }
   ],
