@@ -1,6 +1,6 @@
 # Python — guida docente
 
-> Stato: **curriculum FROZEN 2026/27 / vertical slice M04 draft under certification**. Non dichiarare il corso pronto per studenti finché i gate di delivery non sono chiusi.
+> Stato: **curriculum FROZEN 2026/27 / produzione editoriale controllata**. Non dichiarare il corso pronto per studenti finché i gate di delivery non sono chiusi.
 
 Questo indice è il punto di ingresso del docente per progettazione, conduzione e delivery.
 
@@ -15,20 +15,47 @@ Documenti da leggere nell'ordine:
 5. [`doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`](../doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md) — profili P0/P1/P2/P3/P4 e boundary del grading.
 6. [`doc/THEBITLAB_AUTHORING_COMPATIBILITY.md`](../doc/THEBITLAB_AUTHORING_COMPATIBILITY.md) — round-trip Course Workspace ↔ dashboard ↔ Git.
 
-Il precedente `CURRICULUM_FREEZE_CANDIDATE.md` resta traccia della fase di review; il documento `CURRICULUM_FREEZE_2026_2027.md` è ora quello autorevole.
+Il precedente `CURRICULUM_FREEZE_CANDIDATE.md` resta traccia della fase di review; `CURRICULUM_FREEZE_2026_2027.md` è il documento autorevole.
 
-## Vertical slice M04
+## Moduli editoriali materializzati
+
+### M04 — Interprete, REPL, script, valori e input/output
 
 Materiali canonici:
 
-- lesson studente: [`content/python/04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md);
+- lesson: [`content/python/04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md);
 - slide: [`slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md);
-- runbook docente: [`teacher/M04_RUNBOOK.md`](M04_RUNBOOK.md);
+- runbook: [`teacher/M04_RUNBOOK.md`](M04_RUNBOOK.md);
 - Activity: `py2-activity-b-input-somma-001`;
 - gate tecnico: `python-docente#7`;
 - blocker CI pre-esecuzione: `python-docente#8`.
 
-Il runbook M04 contiene ritmo 2 ore teoria attiva + 1 laboratorio, misconception, remediation, enrichment, evidence e fallback se il grading P1 non è certificato.
+M04 resta il **golden vertical slice tecnico**: è l'unico modulo che per ora materializza anche una nuova Activity P1 da certificare end-to-end.
+
+### M05 — Espressioni, operatori e prime funzioni
+
+Materiali canonici:
+
+- lesson: [`content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md);
+- slide: [`slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md);
+- runbook: [`teacher/M05_RUNBOOK.md`](M05_RUNBOOK.md).
+
+M05 è una **continuazione editoriale controllata**, non un secondo canarino P1. Contiene esercizi e Activity candidate A–E, ma non aggiunge una nuova Activity autogradata finché M04/#7 non ha evidenza.
+
+Focus M05:
+
+```text
+problema
+→ espressione
+→ / // %
+→ precedenza leggibile
+→ valore/tipo
+→ f-string/built-in essenziali
+→ prima funzione pura
+→ return vs print (preview)
+```
+
+La progettazione formale delle funzioni resta PY2-05.
 
 ## Change-control curricolare
 
@@ -66,7 +93,7 @@ Questa differenza è intenzionale:
 
 Una lesson può avere più H1. In quel caso il modulo completo corrisponde a tutti gli H1 top-level del file, ciascuno con il proprio sottoalbero. Non creare un secondo oggetto `module` dentro il Course Design solo per raggrupparli.
 
-La UX futura `Aggiungi intero modulo/file alla UDA` è tracciata come miglioramento di `2cornot2c#755`: deve equivalere all'aggiunta atomica di tutti gli H1 del file in ordine, senza cambiare il modello dati.
+La UX futura `Aggiungi intero modulo/file alla UDA` è tracciata in `2cornot2c#755`: deve equivalere all'aggiunta atomica di tutti gli H1 del file in ordine, senza cambiare il modello dati.
 
 ### Inserimento dalla dashboard
 
@@ -104,11 +131,13 @@ Blocker piattaforma principali:
 
 Il workflow prova, nell'ordine:
 
-1. QA statico M04 (`tests/m04_vertical_slice_static.py`);
+1. QA statico M04;
 2. Course Board external-workspace round-trip;
 3. Activity/Content Pack/scaffold/grading consumer smoke.
 
-Al momento i GitHub-hosted job osservati falliscono prima di eseguire qualsiasi step (`steps: null`); questo è tracciato in `python-docente#8`. Non interpretarlo come PASS/FAIL del contenuto o dei test.
+`python-docente#8` ha ormai escluso un errore del workflow: persino un job diagnostico con un solo `echo` e nessuna action esterna fallisce pre-step su Ubuntu/Windows. Un private repo dell'organizzazione (`tpsi-quarto-docente`) aveva CI verde il 19 agosto e lo stesso failure dal 21: il candidato principale è quota/budget Actions dei repository privati; la verifica amministrativa resta Billing/Actions settings dell'organizzazione.
+
+Non interpretare `steps: null` come PASS/FAIL del contenuto.
 
 ## Git e Container
 
@@ -117,24 +146,20 @@ Git e Container non vengono duplicati dentro Python.
 - Git G1 viene introdotto progressivamente nel track Python e poi rimanda al futuro corso Git autonomo.
 - Il futuro corso Container/Docker resta separato e parte dal backlog `kinderp/docker101#1`.
 
-Le dispense Git del docente verranno richieste quando inizierà la produzione del curriculum Git o del micro-modulo G1 definitivo.
+Le dispense Git verranno richieste quando inizierà la produzione del curriculum Git o del micro-modulo G1 definitivo.
 
 ## Criterio per continuare la produzione
 
-Il curriculum è già congelato, ma prima della **produzione in serie** di lesson/slide/Activity bisogna usare M04 per verificare il modello completo:
+Il curriculum è congelato. Possiamo produrre **in modo controllato** un modulo alla volta, mantenendo M04 come golden vertical slice tecnico; non dobbiamo però materializzare in serie nuove Activity autogradate prima dell'evidenza P1.
 
 ```text
 lesson
 + slide
 + runbook
-+ Activity
-+ scaffold
-+ grading
-+ Course Board
++ eventuale Activity solo se il profilo è certificato
++ Course Board source
 + student path
 + QA
 ```
-
-M05 può essere progettato/prodotto in modo controllato, ma la generazione massiva del resto del corso deve attendere l'evidenza del vertical slice.
 
 Un contenuto presente nel repository non equivale automaticamente a contenuto certificato per la classe.
