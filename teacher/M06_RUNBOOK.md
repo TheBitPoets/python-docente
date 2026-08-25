@@ -61,7 +61,7 @@ Domanda:
 
 > Come trasformiamo il resto in una domanda vero/falso?
 
-Preview soltanto:
+Preview:
 
 ```python
 numero % 2 == 0
@@ -98,7 +98,7 @@ Usare una linea dei numeri per gli studenti che faticano sui confini.
 
 ## 40–50 min — `=` vs `==`
 
-Contrasto diretto, senza introdurre scorciatoie.
+Contrasto diretto.
 
 ## 50–60 min — sotto / sulla / sopra
 
@@ -220,6 +220,22 @@ Usarlo soltanto dopo che la selezione generale è già compresa.
 
 ---
 
+# Minimum mastery gate — prima di M07
+
+Considerare M06 consolidato quando lo studente riesce a:
+
+- prevedere `True/False` per un confronto semplice;
+- distinguere `=` e `==`;
+- tradurre “almeno/al massimo/più di/meno di” nell'operatore corretto;
+- scrivere un `if` e un `if/else` con indentazione corretta;
+- fare il trace di un caso vero e uno falso;
+- progettare test sotto/sulla/sopra una soglia;
+- trovare un input che espone `>` vs `>=`.
+
+Non richiedere truthiness, `is`, `match/case` o logica composta per superare questo gate: appartengono ad altri livelli/moduli.
+
+---
+
 # Misconception watchlist
 
 ## M1 — `=` e `==` sono quasi la stessa cosa
@@ -241,7 +257,7 @@ Correzione: trace esplicito di condizione `False` e continuazione dopo il blocco
 
 ## M4 — indentazione solo per bellezza
 
-Correzione: mostrare due programmi visivamente simili ma con appartenenza diversa al blocco.
+Correzione: mostrare due programmi con appartenenza diversa al blocco.
 
 ## M5 — bisogna sempre scrivere `else`
 
@@ -269,11 +285,11 @@ Correzione: il confine è il caso che distingue `>` da `>=`.
 
 ## Enrichment
 
-- progettare un caso di test che distingue due condizioni quasi equivalenti;
-- confrontare `if` senza `else` vs `if/else` per due specifiche diverse;
+- progettare un caso che distingue due condizioni quasi equivalenti;
+- confrontare `if` senza `else` vs `if/else` per specifiche diverse;
 - osservare `type(7 >= 7)`;
 - missione Romeo simulata;
-- scrivere una specifica in linguaggio naturale a partire da un `if` dato.
+- scrivere una specifica naturale a partire da un `if` dato.
 
 ---
 
