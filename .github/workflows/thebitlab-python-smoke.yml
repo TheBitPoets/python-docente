@@ -31,6 +31,9 @@ jobs:
       - name: Validate scalable authoring catalog
         run: python tests/course_authoring_catalog.py
 
+      - name: Validate semantic review teaching boundaries
+        run: python tests/semantic_review_gate.py
+
       - name: Validate Git G1 consumer contract
         run: python tests/git_g1_consumer_contract.py
 
