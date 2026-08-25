@@ -1,6 +1,6 @@
 # Python — percorso studente
 
-> Stato: **curriculum 2026/27 congelato; contenuti in produzione controllata**. Il corso completo non è ancora dichiarato pronto per la classe.
+> Stato: **curriculum 2026/27 congelato; core Python M04–M30 materializzato editorialmente**. Il corso non è ancora dichiarato pronto per la classe finché i gate TheBitLab non sono certificati.
 
 ## Ambiente
 
@@ -8,7 +8,7 @@ Tutte le attività devono essere svolte nel **Classroom Environment TheBitLab** 
 
 ## PY2-01 — Problem solving, algoritmi e flow chart
 
-Stato: **SPEC**. La delivery definitiva dipende dal Flowchart Lab TheBitLab.
+Stato: **SPEC**. La delivery definitiva dipende dal Flowchart Lab TheBitLab. Nel frattempo restano validi carta/lavagna, pseudocodice, trace e casi di test come fallback didattico.
 
 ## PY2-02 — Primi programmi Python
 
@@ -39,7 +39,7 @@ Stato: **SPEC**. La delivery definitiva dipende dal Flowchart Lab TheBitLab.
 
 - [Guida Checkpoint A](CHECKPOINT_A.md)
 
-Consolida il primo nucleo e introduce Git G1: `status → diff → test → add → commit → log`. Il materiale Git definitivo sarà collegato dopo l'audit delle dispense docente.
+Consolida il primo nucleo e introduce Git G1: `status → diff → test → add → commit → log`.
 
 ## PY2-06 — Stringhe come sequenze e testo
 
@@ -47,62 +47,67 @@ Consolida il primo nucleo e introduce Git G1: `status → diff → test → add 
 - **M18** — [Ricerca, metodi e normalizzazione](../content/python/18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md) · [slide](../slides/python/modules/18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md).
 - **M19** — [Algoritmi su testo e parsing semplice](../content/python/19_ALGORITMI_TESTO_PARSING_SEMPLICE.md) · [slide](../slides/python/modules/19_ALGORITMI_TESTO_PARSING_SEMPLICE.md).
 
-## PY2-07 — Liste, tuple e dati tabellari — completa editorialmente
+## PY2-07 — Liste, tuple e dati tabellari
 
-### M20 — Liste: mutabilità, metodi e iterazione
-
-- [Lesson](../content/python/20_LISTE_MUTABILITA_METODI_ITERAZIONE.md)
-- [Slide](../slides/python/modules/20_LISTE_MUTABILITA_METODI_ITERAZIONE.md)
-
-Modello:
-
-```text
-str  → sequenza immutabile
-list → sequenza mutabile
-```
-
-Ricorda: `append()`/`sort()` mutano l'oggetto e non restituiscono la lista.
-
-### M21 — Alias, copie, filtri e ordinamento
-
-- [Lesson](../content/python/21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md)
-- [Slide](../slides/python/modules/21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md)
-
-Modello:
-
-```text
-b = a        → alias, stesso oggetto
-b = a.copy() → nuovo contenitore esterno
-```
-
-Verifica sempre anche il contratto di mutazione/non-mutazione dell'input.
-
-### M22 — Tuple, unpacking, liste annidate e matrici
-
-- [Lesson](../content/python/22_TUPLE_UNPACKING_MATRICI.md)
-- [Slide](../slides/python/modules/22_TUPLE_UNPACKING_MATRICI.md)
-
-Scegli la struttura dal significato:
-
-```text
-collezione che cambia → list
-raggruppamento stabile posizionale → tuple candidata
-matrice/griglia → lista di righe quando il dominio lo richiede
-```
-
-Evita la trappola delle righe condivise `[[0] * C] * R`.
+- **M20** — [Liste: mutabilità, metodi e iterazione](../content/python/20_LISTE_MUTABILITA_METODI_ITERAZIONE.md) · [slide](../slides/python/modules/20_LISTE_MUTABILITA_METODI_ITERAZIONE.md).
+- **M21** — [Alias, copie, filtri e ordinamento](../content/python/21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md) · [slide](../slides/python/modules/21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md).
+- **M22** — [Tuple, unpacking e matrici](../content/python/22_TUPLE_UNPACKING_MATRICI.md) · [slide](../slides/python/modules/22_TUPLE_UNPACKING_MATRICI.md).
 
 ### Checkpoint B
 
 - [Guida Checkpoint B](CHECKPOINT_B.md)
 
-Consolida stringhe, liste, tuple, alias/copia e dati tabellari prima di set e dizionari.
+Consolida stringhe, liste, tuple, alias/copia e dati tabellari.
+
+## PY2-08 — Set, dizionari e modellazione dei dati
+
+- **M23** — [Set: unicità, membership e operazioni insiemistiche](../content/python/23_SET_UNICITA_MEMBERSHIP.md) · [slide](../slides/python/modules/23_SET_UNICITA_MEMBERSHIP.md).
+- **M24** — [Dizionari: chiave→valore, lookup e frequenze](../content/python/24_DIZIONARI_LOOKUP_FREQUENZE.md) · [slide](../slides/python/modules/24_DIZIONARI_LOOKUP_FREQUENZE.md).
+- **M25** — [Strutture combinate e scelta del modello](../content/python/25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md) · [slide](../slides/python/modules/25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md).
+
+Domanda guida dell'UDA:
+
+```text
+quali operazioni devo fare più spesso?
+→ quale struttura rappresenta meglio il problema?
+```
+
+Non esiste una struttura “più avanzata” in assoluto: list/tuple/set/dict sono strumenti diversi.
+
+## PY2-09 — Persistenza ed errori prevedibili
+
+- **M26** — [File di testo, `pathlib` ed errori prevedibili](../content/python/26_FILE_TESTO_PATHLIB_ERRORI.md) · [slide](../slides/python/modules/26_FILE_TESTO_PATHLIB_ERRORI.md).
+
+Il core usa file di testo UTF-8, `with`, `pathlib` e gestione essenziale degli errori prevedibili. CSV/JSON/binario restano enrichment o percorso successivo.
+
+## PY2-10 — Classi, oggetti e capstone
+
+- **M27** — [Classi, istanze, attributi e `self`](../content/python/27_CLASSI_ISTANZE_ATTRIBUTI_SELF.md) · [slide](../slides/python/modules/27_CLASSI_ISTANZE_ATTRIBUTI_SELF.md).
+- **M28** — [Metodi, stato e invarianti](../content/python/28_METODI_STATO_INVARIANTI.md) · [slide](../slides/python/modules/28_METODI_STATO_INVARIANTI.md).
+- **M29** — [Composizione, collaborazione e responsabilità](../content/python/29_COMPOSIZIONE_COLLABORAZIONE_RESPONSABILITA.md) · [slide](../slides/python/modules/29_COMPOSIZIONE_COLLABORAZIONE_RESPONSABILITA.md).
+- **M30** — [Capstone OOP](../content/python/30_CAPSTONE_OOP.md) · [slide](../slides/python/modules/30_CAPSTONE_OOP.md).
+
+Il capstone deve dimostrare comprensione, non quantità di codice: analisi, classi sensate, stato, metodi, composizione quando appropriata, struttura dati, test/edge case e spiegazione delle scelte.
+
+### Checkpoint C — settimana 33
+
+- [Guida Checkpoint C](CHECKPOINT_C.md)
+
+Nessun nuovo prerequisito: finalizzazione del capstone, recupero mirato, evidence annuale ed eventuale enrichment.
 
 ## Policy Activity
 
-M04 resta il canarino tecnico P1. I moduli successivi hanno esercizi e Activity candidate, ma non materializziamo nuove Activity autogradate finché il relativo profilo non è certificato. Per funzioni pure il profilo target è P2 (`2cornot2c#756`).
+M04 resta il canarino tecnico P1. I moduli successivi hanno esercizi e Activity candidate, ma non materializziamo nuove Activity autogradate finché il relativo profilo non è certificato.
 
-Romeo è applicazione selettiva tramite simulatore certificato; hardware fisico non è requisito core.
+Profili target:
+
+- P1 — programmi stdin/stdout;
+- P2 — funzioni pure;
+- P3 — comportamento oggetti;
+- P4 — filesystem;
+- `romeo-sim` — missioni robotiche simulate.
+
+Romeo è applicazione selettiva; hardware fisico non è requisito core.
 
 ## Metodo del corso
 
@@ -116,4 +121,4 @@ Nelle attività fondazionali e nelle verifiche core non usare AI per generare la
 
 ## Stato tecnico
 
-M04 è sotto certificazione in `python-docente#7`; Actions private-repo è `python-docente#8`; P2 è `2cornot2c#756`. Se una capability non è disponibile, si usa il fallback dichiarato senza fingere che il grading automatico sia operativo.
+Il curriculum è congelato e M04–M30 sono materializzati editorialmente. Restano da certificare i gate TheBitLab, in particolare M04/P1 (`python-docente#7`), Actions privati (`#8`), P2/P3/P4 e `romeo-sim`. PY2-01 attende il Flowchart Lab per la delivery definitiva.
