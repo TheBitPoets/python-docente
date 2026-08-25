@@ -9,103 +9,199 @@ Stato: draft editoriale controllato.
 
 ## Obiettivo docente
 
-Far passare la classe da singoli oggetti corretti a un piccolo sistema di oggetti con responsabilità separate.
-
-Modello:
+Far passare la classe da:
 
 ```text
-oggetto A
-→ usa/riceve oggetto B
-→ ciascuno mantiene il proprio contratto
+oggetto singolo con stato valido
 ```
 
-## Ora teoria attiva 1
+a:
 
-1. God class come smell.
-2. Composizione “ha un”.
-3. Chi possiede una regola del dominio.
-4. Dipendenze esplicite nel costruttore.
-5. Dominio separato da input/output.
+```text
+più responsabilità
+→ più oggetti
+→ collaborazione esplicita
+→ sistema ancora testabile
+```
 
-## Ora teoria attiva 2
+Il centro del modulo è la **composizione**, non il numero di classi.
 
-1. Refactoring incrementale dict→object.
-2. Liste/dict di oggetti.
-3. Test di collaborazione.
-4. Romeo: `Missione` usa `Robot` come applied design.
-5. Perché inheritance non è core.
+---
 
-## Laboratorio
+# Priorità didattica
 
-- responsibility cards;
-- refactor record→classe;
-- oggetto A che riceve B;
-- Debug Clinic god class/dipendenza globale;
-- skeleton del capstone con classi, relazioni e test candidati.
+## MUST MASTER
 
-## Misconception watchlist
+1. spiegare composizione come relazione “ha/usa un”;
+2. assegnare una regola all'oggetto che possiede la responsabilità;
+3. passare una dipendenza in modo esplicito quando serve;
+4. separare dominio da input/file/output;
+5. riconoscere una god class;
+6. rifattorizzare incrementalmente record/dict verso oggetti quando porta valore;
+7. testare una collaborazione tra oggetti;
+8. spiegare perché più classi non significa automaticamente design migliore.
 
-- più classi = design migliore;
-- classe wrapper attorno a una lista/dict senza responsabilità;
-- inheritance come modo predefinito di riuso;
-- regole della missione dentro `Robot`;
-- oggetto che costruisce internamente ogni dipendenza rendendo impossibile il test;
-- input/file dentro il dominio per comodità.
+## GUIDED EXPOSURE
 
-## Differenziazione
+- list/dict di oggetti;
+- fake molto semplice per testare una collaborazione;
+- confronto composizione vs inheritance.
 
-### Recupero
+## ENRICHMENT / BACKUP
 
-- due classi soltanto;
-- una relazione “ha un”;
-- dipendenza già suggerita;
-- niente persistence nel capstone skeleton.
+- inheritance minimale come confronto;
+- `__str__` diagnostico;
+- collaborazioni più articolate.
 
-### Enrichment
+La composizione è un outcome core del curriculum frozen e deve essere dimostrata prima della fine del track.
 
-- confronto composizione vs inheritance semplice;
-- dict di oggetti;
-- sostituzione di una dipendenza con fake molto semplice per test concettuale;
-- `__str__` per diagnostica.
+---
 
-## Evidence docente
+# Ora teoria attiva 1 — responsabilità e composizione
+
+1. Presentare una classe che fa troppo.
+2. Separare due responsabilità nominabili.
+3. Costruire relazione “ha/usa un”.
+4. Passare l'oggetto collaboratore nel costruttore.
+5. Chiedere chi possiede ogni regola.
+
+Esempio:
+
+```text
+Missione → obiettivo/checkpoint
+Robot    → movimento/stato
+```
+
+---
+
+# Ora teoria attiva 2 — dominio, dipendenze e refactor
+
+1. Separare `input/file` dal dominio.
+2. Refactoring incrementale dict→object quando il record ha comportamento proprio.
+3. God class smell.
+4. Testare la collaborazione con un collaboratore reale semplice o un fake minimo.
+5. Confrontare brevemente “ha un” vs “è un tipo di” per motivare perché inheritance non è core.
+
+Non aprire gerarchie di classi.
+
+---
+
+# Laboratorio
+
+- responsibilities mapping;
+- costruzione di due oggetti collaboranti;
+- dipendenza esplicita nel costruttore;
+- test della delega/collaborazione;
+- refactoring incrementale da record a oggetto;
+- Debug Clinic su god class/dipendenza globale/regola nell'oggetto sbagliato.
+
+## Handoff capstone
+
+La parte finale del laboratorio può produrre **lo skeleton del capstone**:
+
+```text
+responsabilità
+→ classi candidate
+→ relazione di composizione
+→ invarianti
+→ casi
+```
+
+Questo è l'avvio del capstone nella settimana 31; M30/week 32 è la fase dedicata di implementazione/integration/review.
+
+---
+
+# Minimum mastery gate — prima di M30
+
+Considerare M29 consolidato quando lo studente riesce a:
+
+- identificare almeno due responsabilità distinte;
+- rappresentare una collaborazione “ha/usa un”;
+- costruire un oggetto che riceve/usa un collaboratore;
+- collocare una regola nell'oggetto responsabile;
+- tenere I/O fuori dal nucleo dominio in un esempio semplice;
+- riconoscere una god class;
+- testare che un oggetto deleghi/collabori correttamente;
+- spiegare perché la composizione scelta porta valore.
+
+Collezioni di oggetti, fake e inheritance non devono dominare il gate.
+
+---
+
+# Misconception watchlist
+
+- più classi = più OOP;
+- ogni dict deve diventare una classe;
+- composizione = mettere un oggetto in un attributo senza responsabilità reale;
+- dipendenza globale scambiata per collaborazione;
+- I/O sparso nei metodi dominio;
+- god class considerata “coordinatore centrale” inevitabile;
+- inheritance scelta solo per riuso superficiale.
+
+---
+
+# Differenziazione
+
+## Recupero
+
+- due classi semplici;
+- una sola relazione di composizione;
+- metodi dominio già parzialmente definiti;
+- niente collezioni di oggetti iniziali.
+
+## Enrichment
+
+- list/dict di oggetti;
+- fake minimale;
+- confronto composizione/inheritance;
+- secondo collaboratore solo se il dominio lo richiede.
+
+---
+
+# Evidence docente
 
 Raccogliere:
 
-- responsabilità di 2–3 classi;
-- diagramma di composizione;
+- responsibilities map;
+- relazione di composizione;
 - dipendenza esplicita;
-- test di collaborazione;
-- refactoring piccolo protetto da test.
+- test collaborazione;
+- refactor incrementale;
+- motivazione del design.
 
-## Romeo
+---
 
-Se `romeo-sim` è certificato, usare `Robot` come dipendenza reale di `Missione`. Non importare networking/web/camera dal curriculum Romeo avanzato.
+# P3 — teacher/delivery boundary
 
-Se il runtime non è certificato, usare il dominio generico equivalente: `Veicolo/Missione`, `Catalogo/Prodotto`, `Prenotazione/Servizio` o simile.
+Il futuro P3 potrà testare graph/state di oggetti nel sandbox. Fino alla certificazione usare assert/manual evidence.
 
-## P3
+Non trasformare il bisogno di autograding in un vincolo sul design studente.
 
-P3 deve verificare classi/istanze/metodi/stato nel sandbox. Le rubriche di responsabilità/composizione restano comunque in parte manuali: non fingere autograding semantico del design.
+---
 
-## Cosa NON anticipare
+# Cosa NON anticipare
 
-- design patterns;
-- DI framework;
-- inheritance polymorphism come requisito;
-- abstract base classes;
-- multi-package architecture.
+- inheritance come core;
+- ABC/protocol;
+- dependency injection framework;
+- mocking framework;
+- design pattern formali;
+- DI container.
 
-## Handoff a M30
+---
 
-M29 produce lo skeleton progettuale. M30 lo trasforma in un prodotto integrato:
+# Handoff a M30
+
+M29 produce lo skeleton progettuale.
+
+M30/week 32 completa:
 
 ```text
-analisi
-→ modello dati/oggetti
-→ classi
+implementazione
+→ invarianti
 → composizione
 → test
-→ debug/refactor
-→ breve spiegazione
+→ edge case
+→ regression/refactor
+→ spiegazione
 ```
