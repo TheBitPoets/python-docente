@@ -6,24 +6,30 @@ title: M25 — Strutture combinate e modello dati
 ---
 
 # M25 — Strutture combinate e scelta del modello dati
+## La struttura segue le operazioni dominanti
 
 PY2-08 — Set, dizionari e modellazione dei dati
 
 ---
 
-# Prima le operazioni
+# Che cosa deve restare davvero?
 
 ```text
-ordine
-mutabilità
-unicità
-membership
-lookup per chiave
-record
-relazioni uno→molti
+ordine?
+mutabilità?
+duplicati?
+membership?
+lookup per chiave?
+record posizionale o campi nominati?
 ```
 
-Poi scegli la struttura.
+Poi scegli:
+
+```text
+str / list / tuple / set / dict
+```
+
+Non serve usare più strutture solo per sembrare “avanzati”.
 
 ---
 
@@ -37,6 +43,8 @@ set   → unicità/membership
 dict  → chiave→valore
 ```
 
+È una mappa iniziale, non una formula automatica.
+
 ---
 
 # Liste parallele
@@ -46,13 +54,17 @@ nomi = ["Anna", "Luca"]
 voti = [8, 7]
 ```
 
-Il legame vive soltanto nell'indice.
+Il legame vive soltanto nell'indice:
 
-Rischio: perdere sincronizzazione.
+```text
+nomi[i] ↔ voti[i]
+```
+
+Se perdono sincronizzazione, il record si rompe.
 
 ---
 
-# Lista di tuple
+# Un modello possibile: lista di tuple
 
 ```python
 studenti = [
@@ -61,11 +73,15 @@ studenti = [
 ]
 ```
 
-Record piccolo e posizionale.
+Buona candidata quando:
+
+- pochi campi;
+- ruoli posizionali chiari;
+- record stabile.
 
 ---
 
-# Lista di dict
+# Un altro modello: lista di dict
 
 ```python
 studenti = [
@@ -75,6 +91,8 @@ studenti = [
 ```
 
 Campi nominati.
+
+Non è automaticamente migliore della tupla: dipende dal dominio.
 
 ---
 
@@ -88,48 +106,23 @@ Se la domanda dominante è:
 voti = {"Anna": 8, "Luca": 7}
 ```
 
-Lookup diretto per chiave.
+La chiave coincide con il lookup naturale.
 
 ---
 
-# Dict di liste
+# GUIDED EXPOSURE — dict di liste
+
+Problema:
+
+> raggruppa parole per iniziale.
+
+Modello:
 
 ```text
 iniziale → lista di parole
 ```
 
-```python
-gruppi[iniziale].append(parola)
-```
-
-Relazione uno→molti.
-
----
-
-# `setdefault()` solo dopo il modello
-
-Prima capisci:
-
-```text
-se manca → crea lista
-poi append
-```
-
-Poi puoi leggere:
-
-```python
-gruppi.setdefault(k, []).append(v)
-```
-
----
-
-# Dict di set
-
-```text
-corso → studenti unici
-```
-
-Ogni livello deve avere una semantica chiara.
+Una struttura combinata ha senso quando ogni livello ha un significato nominabile.
 
 ---
 
@@ -139,24 +132,35 @@ Ogni livello deve avere una semantica chiara.
 {"a": {"b": [{"c": ...}]}}
 ```
 
-non è professionale solo perché profondo.
+non è professionale solo perché è profondo.
 
-Domanda: sai nominare il significato di ogni livello?
+Domanda:
+
+> sai spiegare che cosa rappresenta ogni contenitore?
+
+Se no, il modello va semplificato.
 
 ---
 
 # Lookup intuition
 
+Con una lista di record:
+
 ```text
-lista di record → scansione per trovare una chiave
- dict per chiave → lookup naturale
+cerca una chiave → spesso scansione
 ```
 
-La struttura può rendere naturale l'operazione dominante.
+Con un dict progettato sulla chiave:
+
+```text
+usa direttamente la chiave
+```
+
+Niente Big-O formale: basta riconoscere che una struttura può rendere naturale l'operazione dominante.
 
 ---
 
-# Bridge OOP
+# Bridge verso OOP
 
 ```python
 {"nome": "Anna", "voto": 8}
@@ -164,32 +168,86 @@ La struttura può rendere naturale l'operazione dominante.
 
 è un record con campi.
 
-Più avanti:
+Più avanti chiederemo:
 
-> dati + comportamenti/invarianti → classe candidata?
+> quando questi dati hanno anche comportamenti e invarianti propri, una classe comunica meglio il modello?
+
+Non anticipiamo ancora le classi.
+
+---
+
+# ENRICHMENT / BACKUP — `setdefault()`
+
+Dopo aver capito:
+
+```text
+se la chiave manca → crea lista
+poi aggiungi
+```
+
+puoi leggere:
+
+```python
+gruppi.setdefault(k, []).append(v)
+```
+
+Non è necessario per il mastery di M25.
+
+---
+
+# ENRICHMENT / BACKUP — dict di set
+
+```text
+corso → studenti unici
+```
+
+Utile quando la relazione è uno→molti **e** l'unicità conta.
+
+È un esempio di scelta semantica, non un requisito di nesting.
+
+---
+
+# ENRICHMENT / BACKUP — matrice sparsa
+
+```python
+celle = {
+    (0, 2): 5,
+    (3, 1): 7,
+}
+```
+
+Una struttura diversa può essere naturale se vogliamo memorizzare soltanto alcune coordinate.
+
+Non è core obbligatorio.
 
 ---
 
 # Error Clinic
 
-- liste parallele;
+- liste parallele fragili;
 - set quando ordine/duplicati servono;
-- dict per problema posizionale;
-- tuple poco leggibile con troppi campi;
-- chiave non unica;
-- annidamento senza significato.
+- dict per un problema puramente posizionale;
+- tuple con troppi campi poco leggibili;
+- chiave non davvero unica;
+- annidamento senza significato;
+- struttura scelta perché “è l'ultima studiata”.
 
 ---
 
-# Exit checkpoint
+# Exit checkpoint PY2-08
 
-Sai scegliere e motivare:
+Sai:
 
-```text
-str / list / tuple / set / dict
-```
+1. scegliere fra list/tuple/set/dict?;
+2. motivare con operazioni del dominio?;
+3. usare set per unicità/membership?;
+4. usare dict per lookup?;
+5. costruire frequenze?;
+6. riconoscere liste parallele fragili?;
+7. usare una struttura combinata semplice quando serve?;
+8. evitare nesting gratuito?.
 
-in base alle operazioni del problema.
+`setdefault`, dict di set e matrici sparse non sono prerequisiti del gate.
 
 ---
 
@@ -198,7 +256,7 @@ in base alle operazioni del problema.
 ```text
 operazioni dominanti
 → modello dati
-→ codice naturale
+→ codice più naturale
 ```
 
 Prossimo: file testo e persistenza essenziale.
