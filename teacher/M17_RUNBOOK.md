@@ -21,7 +21,37 @@ a:
 str = sequenza ordinata immutabile
 ```
 
-Il focus è posizione, slicing e scelta tra iterazione diretta/per indice.
+Il focus è posizione, slicing, immutabilità e scelta tra iterazione diretta/per indice.
+
+---
+
+# Priorità didattica
+
+## MUST MASTER
+
+1. descrivere `str` come sequenza ordinata immutabile;
+2. usare `len()` e indici da zero;
+3. riconoscere l'ultimo indice positivo valido;
+4. distinguere accesso singolo e slicing;
+5. usare `start:stop` con stop escluso;
+6. spiegare perché una stringa non si modifica per indice;
+7. costruire un nuovo valore quando serve una trasformazione;
+8. scegliere iterazione diretta o per indice in base al problema.
+
+## GUIDED EXPOSURE
+
+- indici negativi oltre il semplice `-1`;
+- step nello slicing;
+- differenza fra indice singolo fuori range e slice oltre il limite.
+
+## ENRICHMENT / BACKUP
+
+- inversione `[::-1]`;
+- escape meno comuni;
+- nota Unicode teacher-side;
+- raw/triple strings.
+
+Non trasformare `[::-1]` in una formula da memorizzare prima che il modello `start:stop:step` sia chiaro.
 
 ---
 
@@ -29,18 +59,21 @@ Il focus è posizione, slicing e scelta tra iterazione diretta/per indice.
 
 ## Ora teoria attiva 1 — sequenza e indici
 
-1. Disegnare la stringa con indici positivi/negativi.
+1. Disegnare la stringa con indici positivi e `-1` per l'ultimo carattere.
 2. Usare `len()` e ultimo indice valido.
 3. Fare prediction su accessi singoli.
 4. Mostrare `IndexError` e chiedere quale limite è stato superato.
+5. Estendere agli indici negativi soltanto quanto serve alla lettura naturale di ultimo/penultimo.
 
 ## Ora teoria attiva 2 — slicing e immutabilità
 
-1. Leggere `start:stop` con stop escluso.
-2. Confrontare indice singolo fuori range e slice fuori range.
-3. Introdurre step semplice.
-4. Provare una mutazione e discutere perché fallisce.
-5. Costruire una nuova stringa con concatenazione + slice.
+1. Leggere `start:stop` con stop escluso e collegarlo a `range`.
+2. Confrontare indice singolo fuori range e slice oltre il limite.
+3. Provare una mutazione e discutere perché fallisce.
+4. Costruire una nuova stringa con concatenazione + slice.
+5. Mostrare uno step semplice solo dopo che `start:stop` è stabile.
+
+L'inversione `[::-1]` resta enrichment: verrà eventualmente confrontata con un algoritmo esplicito in M19.
 
 ## Laboratorio
 
@@ -49,6 +82,22 @@ Il focus è posizione, slicing e scelta tra iterazione diretta/per indice.
 - estrazione prefisso/suffisso;
 - debug su indici/immutabilità;
 - confronto `for carattere in testo` vs `for i in range(len(testo))`.
+
+---
+
+# Minimum mastery gate — prima di M18
+
+Considerare M17 consolidato quando lo studente riesce a:
+
+- trovare un carattere con un indice valido;
+- spiegare il rapporto `len` / ultimo indice;
+- leggere e scrivere uno slice `start:stop` semplice;
+- distinguere indice singolo fuori range e slice;
+- spiegare che la stringa è immutabile;
+- creare una nuova stringa modificata senza assegnamento a `testo[i]`;
+- scegliere `for` diretto o indice e motivarlo.
+
+Step complessi, `[::-1]`, raw/triple strings e dettagli Unicode non sono prerequisiti del gate.
 
 ---
 
@@ -76,7 +125,11 @@ No. Se serve solo il carattere, iterazione diretta comunica meglio l'intenzione.
 
 ## M6 — ogni simbolo umano visibile è sempre un singolo indice
 
-Non introdurre dettagli Unicode complessi, ma evitare affermazioni assolute scorrette.
+Evitare affermazioni assolute scorrette, senza aprire Unicode avanzato.
+
+## M7 — `[::-1]` è “il modo Python” e basta
+
+È una forma compatta da capire dopo il modello di slicing, non un sostituto del ragionamento.
 
 ---
 
@@ -92,9 +145,9 @@ Non introdurre dettagli Unicode complessi, ma evitare affermazioni assolute scor
 
 ## Enrichment
 
-- indici negativi;
+- più indici negativi;
 - step;
-- inversione con slicing dopo aver spiegato il modello;
+- inversione con slicing;
 - breve nota Unicode controllata;
 - confronto di due soluzioni di estrazione.
 
@@ -137,4 +190,4 @@ M17 risponde:
 
 M18 risponde:
 
-> come cerco, normalizzo e trasformo il testo usando metodi standard o loop espliciti?
+> come scelgo l'operazione giusta per cercare, normalizzare o trasformare il testo?
