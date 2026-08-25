@@ -139,15 +139,33 @@ paper cases
 
 ### C8 — Git è curriculum separato; G1 entra nel workflow
 
-Python seconda consuma soltanto:
+Python seconda consuma il contratto Git G1 canonico e non duplica le lesson Git.
+
+Progressione congelata a livello di outcome:
+
+```text
+M14–M16
+  osservare stato e diff in modo guidato
+
+Checkpoint A
+  primo workflow guidato working tree → index → history
+
+secondo semestre
+  checkpoint Git come routine progressiva in alcuni progetti
+```
+
+Il sottoinsieme core comprende:
 
 - `status`;
 - `diff`;
-- `add`;
+- staging intenzionale con `add`;
+- verifica dello staged diff;
 - `commit`;
-- `log`/history essenziale.
+- `log`/history essenziale;
+- modello beginner di HEAD;
+- recovery G1 essenziale quando pertinente.
 
-Introduzione progressiva da PY2-05; primo commit guidato al Checkpoint A.
+La dipendenza delivery corrente è registrata in `config/git-g1-consumer.json`; il curriculum Git autonomo resta source of truth e può evolvere editorialmente senza riaprire il freeze Python finché gli outcome sopra non cambiano.
 
 ### C9 — Container è curriculum separato
 
@@ -168,7 +186,7 @@ Finché gli outcome precedenti non cambiano, possono evolvere:
 - runtime plugin Romeo;
 - slide tooling;
 - Course Board UX;
-- Git UI/CLI presentation;
+- Git lesson/Activity/UI specifica purché rispetti il contratto G1 consumato;
 - numero esatto di Activity per modulo.
 
 ## Elementi non congelati
@@ -198,7 +216,7 @@ Riaprire il curriculum solo se una modifica cambia uno o più di:
 
 Correzioni editoriali, lesson, slide, Activity, rubric, tooling, runner e UX restano **delivery changes** se rispettano il curriculum congelato.
 
-## Blocker delivery noti al momento del freeze
+## Blocker delivery noti
 
 - `python-docente#2` — Classroom Environment;
 - `python-docente#6` — beginner REPL/editor workflow;
@@ -209,7 +227,8 @@ Correzioni editoriali, lesson, slide, Activity, rubric, tooling, runner e UX res
 - `2cornot2c#756` — P2 function behavior;
 - `2cornot2c#757` — P4 filesystem behavior;
 - `2cornot2c#758` — P3 object behavior;
-- `romeo-sim` cross-profile certification.
+- `romeo-sim` cross-profile certification;
+- Python→Git G1 consumer CI/rehearsal evidence.
 
 Questi blocker **non riaprono il curriculum**; bloccano i rispettivi livelli di delivery/autograding/readiness.
 
