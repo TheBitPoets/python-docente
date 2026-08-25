@@ -9,6 +9,13 @@
     "contract_path": "doc/G1_CONSUMER_CONTRACT.md",
     "content_pack_path": "content/git/content-pack.json"
   },
+  "delivery": {
+    "mode": "embedded-outcome-subset",
+    "full_g1_track_completion_required": false,
+    "full_canonical_lesson_completion_required": false,
+    "canonical_lessons_role": "source-remediation-and-context",
+    "python_checkpoint_remains_primary_time_owner": true
+  },
   "environment": {
     "required_capability": "git.basic.v1",
     "network_required": false,
@@ -65,6 +72,7 @@
     "owns_git_curriculum": false,
     "copy_git_lessons": false,
     "git_is_primary_python_grade": false,
+    "git_is_separate_high_stakes_checkpoint": false,
     "advanced_topics_not_required": [
       "branch",
       "merge",
