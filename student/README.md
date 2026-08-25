@@ -35,11 +35,19 @@ Stato: **SPEC**. La delivery definitiva dipende dal Flowchart Lab TheBitLab. Nel
 - **M15** — [Progettazione top-down e responsabilità](../content/python/15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md) · [slide](../slides/python/modules/15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md).
 - **M16** — [`assert`, regression test, debug e refactoring](../content/python/16_ASSERT_REGRESSION_TEST_REFACTOR.md) · [slide](../slides/python/modules/16_ASSERT_REGRESSION_TEST_REFACTOR.md).
 
+Da M14 Git G1 viene usato soltanto per osservare stato e cambiamento (`status`/`diff`) in modo guidato.
+
 ### Checkpoint A
 
 - [Guida Checkpoint A](CHECKPOINT_A.md)
 
-Consolida il primo nucleo e introduce Git G1: `status → diff → test → add → commit → log`.
+Consolida il primo nucleo e introduce il primo checkpoint Git G1 guidato:
+
+```text
+status → diff → test → add → diff --staged → commit → status → log/show
+```
+
+Le spiegazioni e le attività Git appartengono al corso Git G1 canonico; il corso Python le usa senza ricopiarle.
 
 ## PY2-06 — Stringhe come sequenze e testo
 
@@ -121,4 +129,4 @@ Nelle attività fondazionali e nelle verifiche core non usare AI per generare la
 
 ## Stato tecnico
 
-Il curriculum è congelato e M04–M30 sono materializzati editorialmente. Restano da certificare i gate TheBitLab, in particolare M04/P1 (`python-docente#7`), Actions privati (`#8`), P2/P3/P4 e `romeo-sim`. PY2-01 attende il Flowchart Lab per la delivery definitiva.
+Il curriculum è congelato e M04–M30 sono materializzati editorialmente. L'integrazione strutturale con Git G1 è completa; restano da certificare i gate TheBitLab, in particolare M04/P1 (`python-docente#7`), Actions privati (`#8`), P2/P3/P4 e `romeo-sim`. PY2-01 attende il Flowchart Lab per la delivery definitiva.
