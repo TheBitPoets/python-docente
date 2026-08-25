@@ -6,8 +6,25 @@ title: M21 — Alias, copie, filtri e ordinamento
 ---
 
 # M21 — Alias, copie, filtri e ordinamento
+## Stesso oggetto o nuova lista?
 
 PY2-07 — Liste, tuple e dati tabellari
+
+---
+
+# Che cosa deve restare davvero?
+
+```text
+b = a → stesso oggetto
+copy/slice → nuova lista esterna
+mutazione → chi la vede?
+non rimuovere ingenuamente durante iterazione
+filtra costruendo una nuova lista
+sort() vs sorted()
+testa anche la mutazione
+```
+
+La shallow copy annidata è guided exposure, non requisito principale.
 
 ---
 
@@ -25,21 +42,21 @@ a ─┐
 b ─┘
 ```
 
+`b = a` non crea una nuova lista.
+
 ---
 
 # Alias
 
-```text
-b = a
-```
+Una mutazione osservata tramite un nome è visibile anche tramite gli altri nomi che indicano la stessa lista.
 
-non crea una nuova lista.
+Domanda:
 
-Una mutazione è visibile tramite entrambi i nomi.
+> sto creando un nuovo oggetto o solo un nuovo nome?
 
 ---
 
-# Copia superficiale
+# Copia esterna
 
 ```python
 b = a.copy()
@@ -51,19 +68,7 @@ oppure:
 b = a[:]
 ```
 
-Nuovo contenitore esterno.
-
----
-
-# Strutture annidate
-
-```python
-a = [[1], [2]]
-b = a.copy()
-b[0].append(9)
-```
-
-Gli oggetti interni possono restare condivisi.
+Per una lista piatta di valori semplici, una successiva mutazione strutturale di `b` non modifica `a`.
 
 ---
 
@@ -77,6 +82,10 @@ assert risultato == [3, 5]
 assert originale == [3, -1, 5]
 ```
 
+Il secondo test verifica una parte importante del contratto:
+
+> l'input deve restare invariato.
+
 ---
 
 # Modificare mentre iteri
@@ -89,7 +98,7 @@ for valore in numeri:
         numeri.remove(valore)
 ```
 
-La struttura cambia mentre il `for` la percorre.
+La struttura cambia mentre il `for` la percorre e alcuni elementi possono essere saltati.
 
 ---
 
@@ -102,28 +111,24 @@ for valore in numeri:
         positivi.append(valore)
 ```
 
----
-
-# Filtrare / trasformare
-
 ```text
-input list
-→ loop
-→ condizione/trasformazione
-→ nuova list
+input
+→ scansione
+→ condizione
+→ nuovo risultato
 ```
 
-Riusa tutto il primo quadrimestre.
-
 ---
 
-# Comprehension solo dopo
+# Trasformare
 
 ```python
-positivi = [x for x in numeri if x > 0]
+risultato = []
+for valore in numeri:
+    risultato.append(valore * 2)
 ```
 
-È confronto/enrichment, non prerequisito core.
+La stessa struttura mentale vale per filtri e trasformazioni.
 
 ---
 
@@ -133,13 +138,15 @@ positivi = [x for x in numeri if x > 0]
 numeri.sort()
 ```
 
-muta e restituisce `None`.
+- modifica `numeri`;
+- restituisce `None`.
 
 ```python
 ordinati = sorted(numeri)
 ```
 
-crea una nuova lista.
+- produce una nuova lista;
+- lascia l'input invariato.
 
 ---
 
@@ -149,45 +156,87 @@ crea una nuova lista.
 numeri = numeri.sort()
 ```
 
-stesso errore concettuale di:
+È lo stesso errore concettuale di:
 
 ```python
 numeri = numeri.append(3)
 ```
 
+Metodo mutante + assegnamento del suo `None`.
+
 ---
 
-# Friedpython: massimo
+# GUIDED EXPOSURE — shallow copy annidata
 
-Lo spunto legacy è utile, ma va riscritto:
-
-```text
-max = ...   ❌ oscura max()
-massimo = ... ✅
+```python
+a = [[1], [2]]
+b = a.copy()
+b[0].append(9)
 ```
 
+Le liste esterne sono diverse, ma gli oggetti interni possono essere condivisi.
+
+Per il core basta ricordare:
+
+> `.copy()` crea un nuovo contenitore esterno; non promette una clonazione ricorsiva di tutto.
+
+Non serve formalizzare un grafo completo della memoria.
+
 ---
 
-# Lista inversa: confronta effetti
+# ENRICHMENT / BACKUP — comprehension
 
-- costruzione manuale;
+Dopo aver compreso il loop equivalente:
+
+```python
+positivi = [x for x in numeri if x > 0]
+```
+
+può essere confrontata come forma più compatta.
+
+Non è prerequisito del core di seconda.
+
+---
+
+# ENRICHMENT / BACKUP — invertire una lista
+
+Possibili operazioni:
+
+- nuova lista costruita manualmente;
 - `list(reversed(x))`;
 - `x[::-1]`;
 - `x.reverse()`.
 
-Domanda: nuovo oggetto o mutazione?
+La domanda utile non è “quale è più Pythonica?”, ma:
+
+> creo un nuovo oggetto o modifico l'originale?
 
 ---
 
-# Checkpoint
+# Error Clinic
 
-Sai spiegare:
+- alias involontario;
+- copia confusa con alias;
+- rimozione durante `for`;
+- `sort()` assegnato;
+- funzione che muta input senza dichiararlo;
+- confronto solo sul risultato ignorando gli effetti collaterali.
 
-- alias vs copy;
-- shallow copy;
-- mutazione durante iterazione;
-- sort vs sorted;
-- contratto di mutazione/non-mutazione.
+---
+
+# Minimum mastery checkpoint
+
+Sai:
+
+1. spiegare `b = a`?;
+2. prevedere una mutazione tramite alias?;
+3. creare una nuova lista esterna per una lista piatta?;
+4. spiegare perché rimuovere durante iterazione è rischioso?;
+5. filtrare costruendo una nuova lista?;
+6. distinguere `sort()` e `sorted()`?;
+7. testare un contratto di non-mutazione?.
+
+Shallow copy annidata e comprehension non devono dominare il gate.
 
 ---
 
@@ -195,7 +244,12 @@ Sai spiegare:
 
 ```text
 alias → stesso oggetto
-copy → nuovo contenitore
+copy  → nuovo contenitore esterno
 ```
 
-Prossimo: tuple e matrici.
+```text
+mutazione promessa? → testala
+non-mutazione promessa? → testala
+```
+
+Prossimo: tuple, unpacking e dati tabellari.
