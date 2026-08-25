@@ -1,6 +1,6 @@
 # Checkpoint A — Consolidamento del primo nucleo
 
-> Stato: **draft controllato / Git G1 consumer collegato al corso canonico**.
+> Stato: **draft controllato / Git G1 consumer embedded collegato al corso canonico**.
 
 ## Dove siamo
 
@@ -21,7 +21,7 @@ Il Checkpoint A serve a:
 - verificare ciò che sai fare;
 - consolidare i punti fragili;
 - recuperare outcome mancanti;
-- svolgere la prova pratica del primo quadrimestre;
+- svolgere una prova pratica o un mini-progetto del primo quadrimestre;
 - creare il primo checkpoint Git significativo del tuo lavoro.
 
 ---
@@ -45,7 +45,7 @@ Devi saper:
 
 ---
 
-# 2. Forma della prova pratica V2
+# 2. Forma possibile della prova pratica
 
 La prova può seguire questo flusso:
 
@@ -64,7 +64,7 @@ Il dominio concreto può cambiare. Non devi imparare una soluzione a memoria.
 
 ---
 
-# 3. Strategia durante la prova
+# 3. Strategia durante il lavoro Python
 
 ## Prima del codice
 
@@ -130,9 +130,13 @@ Prima della consegna controlla:
 
 ---
 
-# 5. Primo checkpoint Git G1
+# 5. Primo checkpoint Git G1 — modalità embedded
 
-Git è un corso separato. Da qui il corso Python **consuma** alcune competenze del livello G1 senza ricopiare le lezioni Git.
+Git è un corso separato. Nel corso Python usiamo un **embedded outcome subset** di G1: soltanto le competenze Git necessarie a osservare e registrare in modo ordinato il lavoro Python.
+
+Questo significa una cosa importante:
+
+> **non devi completare il corso G1 standalone dentro il Checkpoint A.**
 
 Source of truth:
 
@@ -141,13 +145,33 @@ TheBitPoets/git
 G1 — Local Git
 ```
 
-Per questo checkpoint userai in TheBitLab le lesson canoniche G1-M02…G1-M06 e, quando assegnata, l'Activity:
+Le lesson canoniche G1-M02…G1-M06 possono essere aperte da TheBitLab come:
+
+- spiegazione;
+- richiamo;
+- remediation;
+- riferimento al passaggio che stai svolgendo.
+
+Non sono cinque lezioni aggiuntive da studiare integralmente nella stessa settimana.
+
+Quando assegnata, puoi usare anche l'Activity canonica:
 
 ```text
 g1-stage-selettivo-001
 ```
 
-Workflow guidato:
+---
+
+# 6. Git incorporato nel lavoro Python
+
+Durante M14–M16 hai già iniziato a usare in modo guidato:
+
+```text
+git status
+git diff
+```
+
+Nel Checkpoint A completi il primo ciclo:
 
 ```text
 git status
@@ -157,7 +181,7 @@ git status
 → git diff --staged
 → git commit
 → git status
-→ git log
+→ git log / git show
 ```
 
 L'obiettivo non è memorizzare una sequenza di comandi. Devi capire che stai passando da:
@@ -178,11 +202,27 @@ Prima del commit devi saper spiegare:
 
 Dopo il commit devi saper riconoscere il nuovo checkpoint nella storia.
 
-Per spiegazioni e recovery usa sempre il materiale Git G1 canonico fornito nel Course Workspace/TheBitLab.
+---
+
+# 7. Se Git non ti è ancora chiaro
+
+Non usare comandi distruttivi per “sistemare” lo stato.
+
+Procedura:
+
+```text
+leggi git status
+→ osserva git diff / git diff --staged
+→ conserva il lavoro
+→ apri il riferimento/remediation G1 canonico
+→ chiedi supporto se lo stato non è quello atteso
+```
+
+Una difficoltà beginner su Git non trasforma automaticamente in sbagliato un programma Python corretto: nel track Python Git è soprattutto evidence di processo.
 
 ---
 
-# 6. Che cosa NON serve ancora sapere di Git
+# 8. Che cosa NON serve ancora sapere di Git
 
 Non sono richiesti in questo checkpoint:
 
@@ -195,18 +235,9 @@ Non sono richiesti in questo checkpoint:
 
 Questi appartengono ai livelli successivi del curriculum Git.
 
-Se lo stato del repository non è quello atteso:
-
-```text
-non usare comandi distruttivi a caso
-→ leggi status
-→ osserva diff / diff --staged
-→ segui la procedura G1 di recovery
-```
-
 ---
 
-# 7. Dopo il checkpoint
+# 9. Dopo il checkpoint
 
 Il corso riparte con una nuova famiglia di problemi:
 
