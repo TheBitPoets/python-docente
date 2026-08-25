@@ -6,8 +6,25 @@ title: M24 — Dizionari, lookup e frequenze
 ---
 
 # M24 — Dizionari: chiave → valore, lookup e frequenze
+## Quando il dominio identifica i dati con una chiave
 
 PY2-08 — Set, dizionari e modellazione dei dati
+
+---
+
+# Che cosa deve restare davvero?
+
+```text
+dict = chiave → valore
+lookup / inserimento / aggiornamento
+KeyError
+in controlla le chiavi
+[] vs get secondo contratto
+items()
+frequenze + invariante
+```
+
+Views, ordine moderno e hashability sono guided exposure.
 
 ---
 
@@ -15,12 +32,15 @@ PY2-08 — Set, dizionari e modellazione dei dati
 
 ```text
 list → posizione → valore
-dict → chiave → valore
+set  → appartenenza
+ dict → chiave → valore
 ```
 
 ```python
 voti = {"Anna": 8, "Luca": 7}
 ```
+
+La chiave rappresenta qualcosa del dominio.
 
 ---
 
@@ -30,7 +50,9 @@ voti = {"Anna": 8, "Luca": 7}
 voti["Anna"]
 ```
 
-La chiave identifica il dato nel dominio.
+La domanda è:
+
+> dato questo identificatore, quale valore è associato?
 
 ---
 
@@ -41,7 +63,10 @@ voti["Marta"] = 9
 voti["Anna"] = 10
 ```
 
-Stessa sintassi, chiave nuova o esistente.
+Stessa sintassi:
+
+- chiave nuova → inserimento;
+- chiave esistente → aggiornamento.
 
 ---
 
@@ -53,7 +78,9 @@ voti["Paolo"]
 
 può generare `KeyError`.
 
-A volte è giusto: la chiave doveva esistere.
+A volte è corretto che l'errore emerga:
+
+> la chiave doveva esistere.
 
 ---
 
@@ -64,18 +91,25 @@ if "Paolo" in voti:
     ...
 ```
 
-`in` su un dict controlla le chiavi.
+`in` su un dict controlla le **chiavi**.
 
 ---
 
-# `get()`
+# `[]` o `get()`?
 
 ```python
-voti.get("Paolo")
+voti["Paolo"]
+```
+
+se la chiave è obbligatoria.
+
+```python
 voti.get("Paolo", 0)
 ```
 
-Default soltanto se ha senso nel contratto.
+se la chiave è davvero opzionale e `0` ha senso come default.
+
+Prima il contratto, poi l'API.
 
 ---
 
@@ -95,33 +129,11 @@ for nome, voto in voti.items():
     ...
 ```
 
----
-
-# View moderne
-
-```python
-d.keys()
-d.values()
-d.items()
-```
-
-Sono view dinamiche, non serve `list(...)` solo per iterare.
+`items()` è core quando servono entrambe le parti del mapping.
 
 ---
 
-# Ordine moderno
-
-I dict preservano l'ordine di inserimento.
-
-Ma:
-
-> dict non diventa una sequenza indicizzata.
-
-La scelta struttura resta guidata dal dominio.
-
----
-
-# Frequenze
+# Frequenze = M11 per chiave
 
 ```python
 conteggi = {}
@@ -129,69 +141,100 @@ for carattere in testo:
     conteggi[carattere] = conteggi.get(carattere, 0) + 1
 ```
 
-```text
-carattere → numero di occorrenze
-```
+Non imparare la riga come formula.
+
+Invariante:
+
+> per ogni chiave già incontrata, il valore è il numero di occorrenze viste finora.
 
 ---
 
-# Vecchio modello ASCII-256
+# Perché dict è naturale qui?
+
+Vecchio modello:
 
 ```text
 lista[ord(carattere)] += 1
 ```
 
-Problemi:
-
-- universo ASCII artificiale;
-- celle inutili;
-- Python str è Unicode.
-
----
-
-# Dict Unicode-friendly
-
-```python
-frequenze("caffè☕")
-```
-
-Usa direttamente i caratteri incontrati come chiavi.
-
----
-
-# Chiave obbligatoria o opzionale?
+Dict:
 
 ```text
-obbligatoria → [] può evidenziare un bug se manca
-opzionale    → membership/get secondo contratto
+carattere realmente incontrato → conteggio
 ```
 
-Non usare `get` per nascondere ogni errore.
+La chiave coincide con il dato che vogliamo ricordare.
+
+---
+
+# GUIDED EXPOSURE — view moderne
+
+```python
+d.keys()
+d.values()
+d.items()
+```
+
+sono view dinamiche nei Python moderni.
+
+Non serve trasformarle in lista soltanto per iterare.
+
+Questo è un dettaglio di accuratezza, non il centro del mastery.
+
+---
+
+# GUIDED EXPOSURE — ordine moderno
+
+I dict moderni preservano l'ordine di inserimento.
+
+Ma:
+
+> preservare l'ordine non trasforma il dict in una lista indicizzata.
+
+La sua semantica primaria resta il mapping.
+
+---
+
+# GUIDED EXPOSURE — chiavi hashable
+
+Le chiavi devono essere compatibili col modello di hashing.
+
+Comuni:
+
+```text
+str, int, float, bool, tuple hashable
+```
+
+Una lista mutabile non è una chiave valida.
+
+Niente internals hash table in M24.
 
 ---
 
 # Error Clinic
 
 - KeyError inatteso;
-- default 0 che nasconde chiave obbligatoria;
-- membership sui values per errore;
-- list(keys()) inutile;
-- chiave mutabile;
-- vecchia assunzione sull'ordine.
+- `get(..., 0)` che nasconde una chiave obbligatoria;
+- `in d` interpretato come ricerca nei valori;
+- dict usato con indici artificiali;
+- formula frequenze copiata senza capire l'invariante;
+- chiave mutabile.
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
 Sai:
 
-- chiave→valore;
-- [] vs get;
-- membership;
-- items();
-- view;
-- frequenze;
-- dict vs ASCII-table.
+1. spiegare chiave→valore?;
+2. creare/aggiornare un dict?;
+3. usare membership sulle chiavi?;
+4. scegliere `[]` o `get()` e motivarlo?;
+5. usare `items()`?;
+6. costruire una frequenza semplice?;
+7. spiegare che cosa significa il conteggio associato a ogni chiave?.
+
+Views, ordine moderno e hashability non devono dominare il gate.
 
 ---
 
@@ -201,4 +244,8 @@ Sai:
 dict → lookup per chiave
 ```
 
-Prossimo: strutture combinate e scelta del modello dati.
+```text
+frequenze → stato progressivo per chiave
+```
+
+Prossimo: scegliere e combinare strutture dati.
