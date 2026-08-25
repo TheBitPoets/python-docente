@@ -1,6 +1,6 @@
 # Python — percorso studente
 
-> Stato: **vertical slice draft**. Il corso completo non è ancora pubblicato né dichiarato pronto per classe.
+> Stato: **curriculum 2026/27 congelato; contenuti in produzione controllata**. Il corso completo non è ancora dichiarato pronto per la classe.
 
 Questo indice è il punto di ingresso dello studente. Non è necessario conoscere la struttura interna del repository.
 
@@ -8,9 +8,9 @@ Questo indice è il punto di ingresso dello studente. Non è necessario conoscer
 
 Tutte le attività devono essere svolte nel **Classroom Environment TheBitLab** previsto dal corso.
 
-Baseline del primo vertical slice:
+Baseline iniziale:
 
-- Python 3.12;
+- Python 3.12-compatible;
 - REPL Python standard;
 - workspace del corso gestito;
 - editor/VS Code soltanto quando l'integrazione TheBitLab prevista per il profilo usato è certificata.
@@ -19,7 +19,7 @@ Non installare tool o dipendenze per conto proprio solo perché una lesson li ci
 
 ## Secondo anno 2026/27
 
-Il percorso completo è ancora in progettazione. La prima parte materializzata è PY2-02 / M04.
+Il curriculum è congelato, ma i materiali vengono pubblicati modulo per modulo dopo review e gate tecnici.
 
 ### PY2-01 — Problem solving, algoritmi e flow chart
 
@@ -48,7 +48,21 @@ Lo studente deve ricevere lo **scaffold redatto** generato da TheBitLab, non nav
 
 #### M05 — Espressioni, operatori e prime funzioni
 
-Stato: specificato in PY2-02, contenuto finale ancora da produrre dopo la revisione del vertical slice M04.
+Stato: **draft editoriale**; nessuna nuova Activity autogradata obbligatoria finché il canarino M04/P1 non è certificato.
+
+1. Studia la lesson: [`content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md).
+2. Usa le slide: [`slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md).
+3. Prevedi valore e tipo prima di usare il REPL.
+4. Impara a scegliere fra `/`, `//` e `%` in base al problema, non per imitazione.
+5. Usa parentesi quando rendono il calcolo più esplicito.
+6. Scrivi una prima funzione pura piccola e verifica più casi.
+7. Devi saper spiegare il modello iniziale `return` → valore al chiamante e `print` → output.
+
+M05 propone esercizi pratici su quoziente/resto, tempo, precedenza, debug e prime funzioni, ma non richiede ancora pytest, scope avanzato o package.
+
+### PY2-03 — Selezione e logica
+
+Il materiale finale verrà prodotto nel passo successivo. M05 prepara il ponte da espressioni numeriche a confronti e valori booleani usati da `if`.
 
 ## Metodo del corso
 
@@ -73,4 +87,4 @@ Nelle attività fondazionali e nelle verifiche core non usare AI per generare la
 
 ## Stato tecnico
 
-Il vertical slice M04 è ancora sotto certificazione in `python-docente#7`. Se una capability TheBitLab non è ancora disponibile, il docente userà il fallback didattico dichiarato senza fingere che il grading automatico sia operativo.
+Il vertical slice M04 è ancora sotto certificazione in `python-docente#7`. Il blocco GitHub Actions dei repository privati è separato in `python-docente#8`. Se una capability TheBitLab non è ancora disponibile, il docente userà il fallback didattico dichiarato senza fingere che il grading automatico sia operativo.
