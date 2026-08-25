@@ -6,8 +6,26 @@ title: M18 — Ricerca, metodi e normalizzazione
 ---
 
 # M18 — Ricerca, membership, metodi e normalizzazione
+## Prima la domanda, poi l'API
 
 PY2-06 — Stringhe come sequenze e testo
+
+---
+
+# Che cosa deve restare davvero?
+
+## MUST MASTER
+
+```text
+esistenza?       → in
+posizione?       → find
+find non trovato → -1
+str immutabile   → metodo produce nuova str
+normalizzazione  → scelta del contratto
+metodo o loop?   → dipende dall'outcome
+```
+
+Non devi memorizzare un catalogo di metodi.
 
 ---
 
@@ -20,6 +38,8 @@ if "@" in email:
     ...
 ```
 
+La scelta comunica direttamente l'intenzione.
+
 ---
 
 # `in` / `not in`
@@ -29,7 +49,13 @@ if "@" in email:
 "java" not in "python"
 ```
 
-Rispondono a una domanda di membership.
+Rispondono a:
+
+```text
+questa sottostringa esiste?
+```
+
+Non danno la posizione.
 
 ---
 
@@ -41,6 +67,8 @@ posizione = testo.find("@")
 
 Trovato → indice della prima occorrenza.  
 Non trovato → `-1`.
+
+Se non ti serve la posizione, `in` è spesso più leggibile.
 
 ---
 
@@ -60,28 +88,26 @@ Se serve esistenza, usa `in`.
 
 ---
 
-# `count()`
-
-```python
-"banana".count("a")  # 3
-```
-
-Usalo quando coincide col requisito.
-
----
-
 # Le stringhe restano immutabili
 
 ```python
+testo = " Python "
 testo.lower()
+print(testo)
 ```
 
-restituisce una nuova stringa.
+`testo` non cambia.
 
-Se vuoi conservarla:
+Per conservare il nuovo valore:
 
 ```python
 testo = testo.lower()
+```
+
+oppure:
+
+```python
+normalizzato = testo.lower()
 ```
 
 ---
@@ -95,51 +121,16 @@ normalizzato = testo.strip().lower()
 Prima chiediti:
 
 - voglio ignorare spazi esterni?;
-- voglio ignorare maiuscole?;
+- voglio ignorare maiuscole/minuscole?;
 - sto perdendo informazione utile?.
 
----
-
-# `strip()`
-
-```python
-"  ciao  ".strip()
-```
-
-Attenzione:
-
-```python
-strip(chars)
-```
-
-non rimuove una sottostringa esatta: tratta `chars` come insieme di caratteri ai bordi.
-
----
-
-# Prefissi e suffissi
-
-```python
-testo.startswith("http")
-testo.endswith(".py")
-```
-
-Metodi che comunicano direttamente il requisito.
-
----
-
-# `replace()`
-
-```python
-nuovo = testo.replace("-", " ")
-```
-
-Produce una nuova stringa.
+Normalizzare è una decisione del contratto, non un automatismo.
 
 ---
 
 # Metodo o loop?
 
-Per imparare l'algoritmo:
+Per imparare/implementare l'algoritmo:
 
 ```python
 def conta_vocali(testo):
@@ -150,17 +141,81 @@ def conta_vocali(testo):
     return conteggio
 ```
 
+Se il requisito coincide con un'operazione standard, il metodo può essere più diretto.
+
 ---
 
 # Criterio di scelta
 
 ```text
-capisco l'algoritmo
-+
-conosco gli strumenti standard
-+
-scelgo ciò che comunica meglio l'intenzione
+capisco il problema
+→ scelgo quale informazione serve
+→ scelgo algoritmo o metodo
+→ verifico con casi
 ```
+
+Non vale:
+
+```text
+built-in sempre migliore
+```
+
+né:
+
+```text
+loop manuale sempre migliore
+```
+
+---
+
+# GUIDED EXPOSURE — `count()`
+
+```python
+"banana".count("a")  # 3
+```
+
+Utile quando il requisito è davvero:
+
+> quante occorrenze?
+
+Non è un metodo da memorizzare per forza nel checkpoint.
+
+---
+
+# GUIDED EXPOSURE — prefisso/suffisso
+
+```python
+testo.startswith("http")
+testo.endswith(".py")
+```
+
+Quando il requisito parla proprio di prefisso/suffisso, questi metodi comunicano bene l'intenzione.
+
+---
+
+# GUIDED EXPOSURE — `replace()`
+
+```python
+nuovo = testo.replace("-", " ")
+```
+
+Produce una nuova stringa.
+
+Usalo se la regola richiesta coincide con una sostituzione standard.
+
+---
+
+# ENRICHMENT / BACKUP — `strip(chars)`
+
+```python
+strip(chars)
+```
+
+non significa “rimuovi esattamente questa sottostringa”.
+
+`chars` indica caratteri rimovibili ai bordi.
+
+Questa precisione è utile, ma non deve rubare tempo al core `in/find/immutabilità/normalizzazione`.
 
 ---
 
@@ -168,30 +223,37 @@ scelgo ciò che comunica meglio l'intenzione
 
 - `find()` usato come booleano;
 - risultato di `lower()` ignorato;
-- `strip(chars)` frainteso;
-- normalizzazione applicata al dato sbagliato;
-- loop manuale inutile.
+- normalizzazione applicata senza requisito;
+- metodo scelto solo perché appena imparato;
+- loop manuale che nasconde un'operazione standard senza obiettivo didattico.
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
-Sai spiegare:
+Sai:
 
-1. `in` vs `find()`?
-2. perché `find` usa `-1`?
-3. perché i metodi non modificano la stringa?
-4. quando normalizzare?
-5. metodo vs loop?
+1. scegliere `in` o `find()`?;
+2. spiegare `-1` di `find()`?;
+3. diagnosticare `if testo.find(...)`?;
+4. spiegare perché un metodo non muta la stringa?;
+5. costruire una normalizzazione semplice e motivata?;
+6. scegliere metodo o loop in un esempio concreto?.
+
+`count`, `replace`, `startswith`, `endswith` e dettagli `strip(chars)` non devono essere tutti ricordati per superare il gate.
 
 ---
 
 # Recap
 
 ```text
+prima la domanda
+→ poi l'operazione
+```
+
+```text
 esistenza → in
 posizione → find
-conteggio → count
 trasformazione → nuova str
 ```
 
