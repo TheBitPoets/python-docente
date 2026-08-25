@@ -12,17 +12,31 @@ PY2-04 — Iterazione e pattern algoritmici
 
 ---
 
-# Un ciclo attraversa. Lo stato ricorda.
+# Un'unica famiglia, non cinque ricette
 
-Possibili domande sui dati:
+Il ciclo attraversa i dati.
 
-- quanti?
-- quanto in totale?
-- minimo/massimo?
-- esiste almeno un match?
-- qual è il primo match?
+Lo **stato** ricorda ciò che deve sopravvivere tra le iterazioni.
 
-Il pattern dipende da **che cosa deve sopravvivere tra le iterazioni**.
+Domanda guida:
+
+> Che cosa deve significare questa variabile dopo aver elaborato i dati visti finora?
+
+---
+
+# Possibili domande
+
+```text
+quanti?
+quanto in totale?
+qual è l'estremo visto finora?
+esiste almeno un match?
+qual è il primo match?
+```
+
+Prima scegli il significato dello stato.
+
+Poi scegli inizializzazione e aggiornamento.
 
 ---
 
@@ -56,7 +70,7 @@ Valori:
 | -2 | False | 1 |
 | 7 | True | 2 |
 
-Se l'incremento fosse fuori dall'`if`, cosa cambierebbe?
+Se l'incremento fosse fuori dall'`if`, quale frase smetterebbe di essere vera?
 
 ---
 
@@ -110,6 +124,8 @@ Prima della divisione:
 
 > `conteggio` può essere zero?
 
+La media è un'applicazione dei due stati, non un nuovo pattern.
+
 ---
 
 # Minimo progressivo
@@ -122,7 +138,7 @@ minimo = 999999
 
 se il dominio non garantisce quel limite.
 
-Meglio, se esiste almeno un dato:
+Se esiste almeno un dato:
 
 ```python
 minimo = int(input())
@@ -138,26 +154,23 @@ for _ in range(n - 1):
 
 > `minimo` = il più piccolo valore visto finora.
 
-Per il massimo:
+Per il massimo cambia il confronto, non il modello:
 
 > `massimo` = il più grande valore visto finora.
 
-Queste frasi sono strumenti di debug.
+Non imparare due ricette separate.
 
 ---
 
-# Ricerca
-
-Domande diverse:
+# Prima la domanda di ricerca
 
 ```text
 esiste almeno un match?
 qual è il primo match?
 quanti match ci sono?
-quali sono tutti i match?
 ```
 
-Non sono lo stesso problema.
+Queste richieste possono richiedere stati e comportamenti diversi.
 
 ---
 
@@ -171,7 +184,7 @@ Invariante:
 
 > `trovato` indica se finora è comparso almeno un match.
 
-Un flag è utile quando rappresenta davvero uno stato significativo.
+Un flag è utile quando questo stato serve davvero.
 
 ---
 
@@ -181,15 +194,15 @@ Chiediti:
 
 > questa variabile aggiunge significato o soltanto meccanica?
 
-A volte un `break` rende la ricerca del primo match più chiara.
+Un flag può servire dopo il ciclo.
 
-A volte il flag serve dopo il ciclo.
+Per il primo match, in alcuni problemi può essere possibile fermarsi prima.
 
 Dipende dal contratto.
 
 ---
 
-# `if` dentro `for`
+# `if` decide se aggiornare lo stato
 
 ```python
 conteggio = 0
@@ -199,23 +212,9 @@ for _ in range(n):
         conteggio += 1
 ```
 
-La selezione decide **se aggiornare lo stato**.
+La selezione non è decorazione:
 
----
-
-# Ciclo dentro una decisione
-
-```python
-if n > 0:
-    for _ in range(n):
-        ...
-else:
-    print("nessun dato")
-```
-
-Non collezioniamo forme sintattiche.
-
-La struttura deve rappresentare il problema.
+> decide quali dati modificano lo stato.
 
 ---
 
@@ -236,11 +235,13 @@ for _ in range(n):
         totale += valore
 ```
 
+Due stati, due significati diversi.
+
 ---
 
 # Error Clinic
 
-Cerca il problema:
+Cerca quale significato dello stato viene rotto:
 
 - accumulatore azzerato dentro il ciclo;
 - contatore incrementato fuori dal ramo;
@@ -250,7 +251,20 @@ Cerca il problema:
 
 ---
 
-# Lavoro della ricerca
+# GUIDED EXPOSURE — primo match e `break`
+
+Se il contratto permette di fermarsi appena troviamo ciò che serve, `break` può interrompere la scansione.
+
+Ma non è sempre equivalente:
+
+- forse dobbiamo consumare tutti gli input;
+- forse dobbiamo contare tutti i match.
+
+Prima viene la specifica, poi la scelta del flusso.
+
+---
+
+# ENRICHMENT / BACKUP — quantità di lavoro
 
 Ricerca lineare:
 
@@ -259,41 +273,47 @@ più dati
 → più confronti
 ```
 
-Per ora niente Big-O formale.
+Possiamo distinguere intuitivamente:
 
-Ma distinguiamo:
+- primo match presto;
+- primo match tardi;
+- nessun match.
 
-- primo match;
-- tutti i match;
-- conteggio dei match.
+Niente Big-O formale in M11.
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
-Sai spiegare:
+Sai:
 
-1. contatore vs accumulatore?
-2. perché l'accumulatore nasce prima del ciclo?
-3. perché `999999` è fragile?
-4. che cosa significa “minimo visto finora”?
-5. primo match vs tutti i match?
-6. quando un flag è utile?
-7. quale test protegge una media?
+1. scegliere quale stato serve alla specifica?;
+2. distinguere contatore e accumulatore?;
+3. spiegare perché lo stato nasce prima/al livello giusto?;
+4. formulare una frase-invariante?;
+5. inizializzare min/max senza sentinella arbitraria?;
+6. distinguere esistenza, primo match e conteggio?;
+7. usare un flag semplice?;
+8. proteggere una media dal conteggio zero?.
 
 ---
 
 # Recap
 
 ```text
+ciclo → attraversa
+stato → ricorda
+```
+
+```text
 contatore    → quanti?
 accumulatore → totale
 min/max      → estremo visto finora
 flag         → stato sì/no
-ricerca      → primo / esiste / tutti
+ricerca      → quale domanda sto facendo?
 ```
 
-Domanda guida:
+Domanda finale:
 
 > quale frase deve restare vera dopo ogni iterazione?
 
