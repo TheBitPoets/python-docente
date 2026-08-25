@@ -12,6 +12,23 @@ PY2-05 — Funzioni, decomposizione e testing
 
 ---
 
+# Che cosa deve restare davvero?
+
+```text
+caso → assert
+confini
+atteso vs ottenuto
+bug nel codice o nel test?
+regression test
+fix minimo
+riesegui tutti
+refactor con stessi test
+```
+
+Non serve conoscere pytest, coverage o dettagli del grader.
+
+---
+
 # Dai casi su carta agli assert
 
 ```python
@@ -35,6 +52,22 @@ assert condizione
 - `False` → `AssertionError`.
 
 Un'aspettativa diventa eseguibile.
+
+---
+
+# Ogni test rappresenta qualcosa
+
+Domanda:
+
+> quale frase della specifica rappresenta questo `assert`?
+
+Il test non è autorevole da solo.
+
+La fonte resta:
+
+```text
+specifica / contratto
+```
 
 ---
 
@@ -171,36 +204,20 @@ responsabilità chiara
 
 ---
 
-# Git G1
+# Git G1 Observe
+
+Durante fix/refactor puoi usare in modo guidato:
 
 ```text
+git status
 git diff
-→ che cosa ho cambiato?
 ```
 
-Al Checkpoint A:
+per rispondere:
 
-```text
-git add
-git commit
-```
+> che cosa ho cambiato davvero?
 
-per salvare uno stato significativo.
-
----
-
-# P2 TheBitLab
-
-Target:
-
-```text
-funzione + argomenti
-→ sandbox
-→ return/exception reale
-→ confronto host-side
-```
-
-Tracciato in `2cornot2c#756`.
+Staging/commit/history arrivano al Checkpoint A.
 
 ---
 
@@ -214,6 +231,20 @@ Tracciato in `2cornot2c#756`.
 
 ---
 
+# Minimum mastery checkpoint
+
+Sai:
+
+1. trasformare un caso in `assert`?;
+2. scegliere un confine rilevante?;
+3. spiegare atteso e ottenuto?;
+4. distinguere bug nel codice e test errato?;
+5. creare un test che riproduce un bug?;
+6. fare fix e rieseguire tutti?;
+7. refactorare con gli stessi test verdi?.
+
+---
+
 # Exit checkpoint PY2-05
 
 Sai:
@@ -221,7 +252,7 @@ Sai:
 - usare funzioni e `return`;
 - capire scope locale;
 - comporre funzioni;
-- progettare top-down;
+- progettare top-down senza burocrazia;
 - separare I/O/logica;
 - scrivere `assert`;
 - aggiungere regression test;
@@ -241,4 +272,4 @@ contratto
 → refactor
 ```
 
-Prossimo: Checkpoint A e primo commit Git guidato.
+Prossimo: Checkpoint A e primo checkpoint Git guidato **embedded** nel lavoro Python.
