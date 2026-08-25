@@ -12,6 +12,23 @@ PY2-03 — Selezione e logica
 
 ---
 
+# Che cosa deve restare davvero?
+
+## MUST MASTER
+
+```text
+primo ramo vero
+elif vs if indipendenti
+and / or / not
+intervalli
+confini
+rami irraggiungibili
+```
+
+Short-circuit è materiale **enrichment**, non requisito del checkpoint ordinario.
+
+---
+
 # Problema iniziale
 
 Classifica un voto:
@@ -88,7 +105,7 @@ if fa_freddo:
 
 # Domanda guida
 
-> Quanti rami/eﬀetti possono essere eseguiti nella stessa esecuzione?
+> Quanti rami/effetti possono essere eseguiti nella stessa esecuzione?
 
 ```text
 uno solo → if / elif / else
@@ -125,6 +142,8 @@ eta < 6 or eta >= 65
 ```
 
 `or` è vero se almeno una parte è vera.
+
+Non significa “esattamente una”.
 
 ---
 
@@ -254,7 +273,20 @@ Può mai essere vero?
 
 ---
 
-# Short-circuit: solo intuizione
+# Mixed retrieval
+
+Per ogni specifica scegli prima la struttura e poi un test che distingue una soluzione corretta da una errata:
+
+1. voto → una fascia;
+2. piove → ombrello, freddo → giacca;
+3. accesso se età >= 18 **e** biglietto valido;
+4. valore dentro `[0, 10]`.
+
+Non partire dal codice: parti dalla relazione fra i casi.
+
+---
+
+# ENRICHMENT / BACKUP — short-circuit
 
 ```python
 if divisore != 0 and numero / divisore > 2:
@@ -263,25 +295,9 @@ if divisore != 0 and numero / divisore > 2:
 
 Se la prima parte è falsa, Python non ha bisogno della seconda.
 
-Per ora: **ordine sicuro e comprensibile**.
+Questa slide è **facoltativa** in M07.
 
----
-
-# Microscope: scegli la struttura
-
-1. voto → una fascia;
-2. piove → ombrello, freddo → giacca;
-3. tariffa → una fascia;
-4. quiz completato → badge, progetto completato → bonus.
-
-Prima:
-
-```text
-un solo risultato?
-più effetti possibili?
-```
-
-Poi scegli il codice.
+Usala solo se `elif`, `if` indipendenti, `and/or/not` e confini sono già stabili.
 
 ---
 
@@ -312,7 +328,7 @@ M04 resta il canarino P1.
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
 1. Che significa “primo ramo vero”?
 2. Quando usi più `if` indipendenti?
@@ -320,7 +336,9 @@ M04 resta il canarino P1.
 4. Quando `A or B` è vero?
 5. Che cosa fa `not`?
 6. Che intervallo rappresenta `0 <= x <= 10`?
-7. Perché l'ordine delle soglie può rendere un ramo irraggiungibile?
+7. Quale input rende evidente un ramo irraggiungibile?
+
+Short-circuit non fa parte del checkpoint ordinario.
 
 ---
 
