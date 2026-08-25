@@ -21,136 +21,104 @@ Il precedente `CURRICULUM_FREEZE_CANDIDATE.md` resta traccia della fase di revie
 
 ### M04 — Interprete, REPL, script, valori e input/output
 
-Materiali canonici:
-
 - lesson: [`content/python/04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md);
 - slide: [`slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md);
 - runbook: [`teacher/M04_RUNBOOK.md`](M04_RUNBOOK.md);
-- Activity: `py2-activity-b-input-somma-001`;
+- Activity canarino: `py2-activity-b-input-somma-001`;
 - gate tecnico: `python-docente#7`;
-- blocker CI pre-esecuzione: `python-docente#8`.
+- blocker CI: `python-docente#8`.
 
-M04 resta il **golden vertical slice tecnico**: è l'unico modulo che per ora materializza anche una nuova Activity P1 da certificare end-to-end.
+M04 resta il **golden vertical slice tecnico**.
 
 ### M05 — Espressioni, operatori e prime funzioni
-
-Materiali canonici:
 
 - lesson: [`content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md);
 - slide: [`slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md);
 - runbook: [`teacher/M05_RUNBOOK.md`](M05_RUNBOOK.md).
 
-M05 è una **continuazione editoriale controllata**, non un secondo canarino P1. Contiene esercizi e Activity candidate A–E, ma non aggiunge una nuova Activity autogradata finché M04/#7 non ha evidenza.
+Focus: espressioni, `/ // %`, precedenza, f-string/built-in essenziali, prima funzione pura e preview `return` vs `print`. Nessuna nuova Activity P1 materializzata prima della certificazione M04.
 
-Focus M05:
+### M06 — Booleani, confronti e prima selezione con `if`
+
+- lesson: [`content/python/06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md);
+- slide: [`slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md);
+- runbook: [`teacher/M06_RUNBOOK.md`](M06_RUNBOOK.md).
+
+Focus:
 
 ```text
-problema
-→ espressione
-→ / // %
-→ precedenza leggibile
-→ valore/tipo
-→ f-string/built-in essenziali
-→ prima funzione pura
-→ return vs print (preview)
+linguaggio naturale della soglia
+→ confronto
+→ bool
+→ if / if-else
+→ indentazione
+→ trace del ramo
+→ test sotto/sulla/sopra il confine
 ```
 
-La progettazione formale delle funzioni resta PY2-05.
+M06 introduce Romeo soltanto come **applicazione opzionale** dopo esempi generali, tramite la missione pinned `romeo-y1-u14-condizioni` e solo quando `romeo-sim` è certificato. Non dichiara nuove Activity P1 obbligatorie.
 
 ## Change-control curricolare
 
-Dopo il freeze non riaprire la struttura annuale per normali modifiche editoriali.
+Dopo il freeze non riaprire la struttura annuale per normali modifiche editoriali. Richiedono una curriculum change solo modifiche a outcome obbligatori, prerequisiti core, ordine necessario delle UDA, monte ore core sostanziale, OOP obbligatoria o ruolo curricolare di Git/Container/Romeo.
 
-Richiedono una **curriculum change** soltanto modifiche a outcome obbligatori, prerequisiti core, ordine necessario delle UDA, monte ore core sostanziale, OOP obbligatoria o ruolo curricolare di Git/Container/Romeo.
-
-Lesson, slide, Activity, rubric, tooling, runner e UX sono **delivery changes** se rispettano il freeze.
+Lesson, slide, Activity, rubric, tooling, runner e UX sono delivery changes se rispettano il freeze.
 
 ## Regola di delivery
 
 Il repository del corso è il **Course Workspace mutabile**. La Course Board deve aprire questo workspace tramite il boundary TheBitLab previsto; Git conserva storia e review. Il Course Bundle futuro è una release immutabile, non un secondo source of truth.
 
-Non modificare direttamente una release pubblicata come se fosse il progetto autore.
-
 ## Regola Course Board
 
-Le lesson canoniche vengono dichiarate come `sources` nel `doc/course_design.json` / Content Pack.
-
-### Due granularità intenzionalmente diverse
-
 ```text
-Content Pack
-  modulo = file/lesson canonica
-
-Course Board
-  item = heading + relativo sottoalbero
+Content Pack: modulo = file/lesson canonica
+Course Board: item = heading + relativo sottoalbero
 ```
 
-Questa differenza è intenzionale:
-
-- il Content Pack conserva l'identità editoriale del modulo;
-- la Course Board permette al docente di includere, spostare, omettere o riordinare sezioni della fonte dentro le UDA;
-- ogni item della board mantiene ID heading, path, riga, digest e provenienza dello snapshot.
-
-Una lesson può avere più H1. In quel caso il modulo completo corrisponde a tutti gli H1 top-level del file, ciascuno con il proprio sottoalbero. Non creare un secondo oggetto `module` dentro il Course Design solo per raggrupparli.
-
-La UX futura `Aggiungi intero modulo/file alla UDA` è tracciata in `2cornot2c#755`: deve equivalere all'aggiunta atomica di tutti gli H1 del file in ordine, senza cambiare il modello dati.
-
-### Inserimento dalla dashboard
-
-1. aprire il workspace `python-docente` nella Course Board;
-2. sincronizzare le fonti;
-3. selezionare/trascinare gli heading desiderati nella UDA oppure, quando disponibile, usare l'azione bulk dell'intero modulo;
-4. lasciare che la board registri ID heading, line, digest e provenienza dello snapshot;
-5. salvare il Course Design;
-6. verificare il diff Git e riaprire il progetto.
+La differenza è intenzionale: il Content Pack conserva l'identità editoriale, mentre la Course Board permette al docente di includere/spostare/omettere/riordinare sezioni. L'UX futura `Aggiungi intero modulo/file alla UDA` resta tracciata in `2cornot2c#755`.
 
 Non fabbricare manualmente item parziali se la dashboard può generare i sottoalberi dagli heading verificati.
 
-Per M04 esiste `tests/course_board_workspace_roundtrip.py`, che esercita server-side il boundary external workspace → tutti gli H1 M04 → PY2-02 → save → reopen. Il rehearsal browser/UX reale resta un gate separato.
+Per M04 esiste `tests/course_board_workspace_roundtrip.py`; il rehearsal browser/UX reale resta un gate separato.
 
 ## Ambiente studente
 
-Tutti i corsi devono usare il **Classroom Environment TheBitLab**. Per Python seconda:
+Tutti i corsi usano il **Classroom Environment TheBitLab**. Per Python seconda:
 
-- baseline didattica iniziale: Python 3.12;
+- baseline didattica iniziale Python 3.12-compatible;
 - REPL standard prima di VS Code;
-- VS Code solo come capability gestita dalla piattaforma;
+- VS Code soltanto come capability gestita;
 - Flowchart Lab target cross-platform;
-- Romeo resta runtime/plugin esterno `romeo-sim`;
+- Romeo = runtime/plugin esterno `romeo-sim`;
 - grading autorevole separato dall'ambiente interattivo.
 
-Blocker piattaforma principali:
+Blocker principali:
 
 - `2cornot2c#753` — Classroom Environment + Flowchart Lab;
-- `2cornot2c#755` — Open course / workspace authoring UX + bulk module add;
+- `2cornot2c#755` — Open course/workspace UX + bulk module add;
 - `2cornot2c#756` — P2 function behavior;
 - `2cornot2c#757` — P4 filesystem behavior;
 - `2cornot2c#758` — P3 object behavior.
 
+## QA authoring
+
+`tests/course_authoring_catalog.py` controlla in modo scalabile tutti i moduli materializzati: lesson, Marp deck, runbook, navigazione, provenance, Course Board source e Activity dichiarate.
+
+M04 conserva in aggiunta i gate canarino specifici; M05 ha il proprio controllo pedagogico statico. M06 viene coperto dal catalogo generico e dai review criteria del runbook/lesson.
+
 ## CI del vertical slice
 
-Il workflow prova, nell'ordine:
-
-1. QA statico M04;
-2. Course Board external-workspace round-trip;
-3. Activity/Content Pack/scaffold/grading consumer smoke.
-
-`python-docente#8` ha ormai escluso un errore del workflow: persino un job diagnostico con un solo `echo` e nessuna action esterna fallisce pre-step su Ubuntu/Windows. Un private repo dell'organizzazione (`tpsi-quarto-docente`) aveva CI verde il 19 agosto e lo stesso failure dal 21: il candidato principale è quota/budget Actions dei repository privati; la verifica amministrativa resta Billing/Actions settings dell'organizzazione.
+`python-docente#8` ha escluso un errore dello YAML: persino un job diagnostico con un solo `echo` e nessuna action esterna fallisce pre-step su Ubuntu/Windows. Il private repo TPSI4 aveva CI verde il 19 agosto e lo stesso problema dal 21; quota/budget Actions dei repository privati è l'ipotesi principale, da verificare nelle impostazioni Billing/Actions dell'organizzazione.
 
 Non interpretare `steps: null` come PASS/FAIL del contenuto.
 
 ## Git e Container
 
-Git e Container non vengono duplicati dentro Python.
-
-- Git G1 viene introdotto progressivamente nel track Python e poi rimanda al futuro corso Git autonomo.
-- Il futuro corso Container/Docker resta separato e parte dal backlog `kinderp/docker101#1`.
-
-Le dispense Git verranno richieste quando inizierà la produzione del curriculum Git o del micro-modulo G1 definitivo.
+Git e Container non vengono duplicati dentro Python. Git G1 entra progressivamente nel track; Container/Docker resta corso separato. Le dispense Git verranno richieste quando inizierà la produzione G1 definitiva o il corso Git autonomo.
 
 ## Criterio per continuare la produzione
 
-Il curriculum è congelato. Possiamo produrre **in modo controllato** un modulo alla volta, mantenendo M04 come golden vertical slice tecnico; non dobbiamo però materializzare in serie nuove Activity autogradate prima dell'evidenza P1.
+Possiamo produrre **un modulo editoriale alla volta** mantenendo M04 come golden vertical slice tecnico, ma non materializziamo in serie nuove Activity autogradate prima dell'evidenza P1.
 
 ```text
 lesson
@@ -161,5 +129,3 @@ lesson
 + student path
 + QA
 ```
-
-Un contenuto presente nel repository non equivale automaticamente a contenuto certificato per la classe.
