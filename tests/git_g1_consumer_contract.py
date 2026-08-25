@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config" / "git-g1-consumer.json"
 ENVIRONMENT = ROOT / "config" / "course-environment.json"
+M13 = ROOT / "content" / "python" / "13_FUNZIONI_PARAMETRI_RETURN.md"
 M14 = ROOT / "content" / "python" / "14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md"
 M15 = ROOT / "content" / "python" / "15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md"
 M16 = ROOT / "content" / "python" / "16_ASSERT_REGRESSION_TEST_REFACTOR.md"
@@ -39,6 +40,13 @@ def main() -> None:
     assert provider["contract_path"] == "doc/G1_CONSUMER_CONTRACT.md"
     assert provider["content_pack_path"] == "content/git/content-pack.json"
 
+    delivery = cfg["delivery"]
+    assert delivery["mode"] == "embedded-outcome-subset"
+    assert delivery["full_g1_track_completion_required"] is False
+    assert delivery["full_canonical_lesson_completion_required"] is False
+    assert delivery["canonical_lessons_role"] == "source-remediation-and-context"
+    assert delivery["python_checkpoint_remains_primary_time_owner"] is True
+
     required_capability = cfg["environment"]["required_capability"]
     assert required_capability == "git.basic.v1"
     assert required_capability in env["capabilities"]["required"]
@@ -70,12 +78,19 @@ def main() -> None:
     assert boundary["owns_git_curriculum"] is False
     assert boundary["copy_git_lessons"] is False
     assert boundary["git_is_primary_python_grade"] is False
+    assert boundary["git_is_separate_high_stakes_checkpoint"] is False
 
+    m13 = M13.read_text(encoding="utf-8")
     m14 = M14.read_text(encoding="utf-8")
     m15 = M15.read_text(encoding="utf-8")
     m16 = M16.read_text(encoding="utf-8")
     checkpoint = CHECKPOINT_A.read_text(encoding="utf-8")
     integration = INTEGRATION.read_text(encoding="utf-8")
+
+    # Git starts in M14, not M13. M13 may mention the later handoff but must not
+    # teach Git commands as part of the module itself.
+    assert "git status" not in m13
+    assert "git diff" not in m13
 
     require(m14, "git status", "git diff")
     require(m15, "git diff")
@@ -90,6 +105,8 @@ def main() -> None:
         "git log",
         "TheBitPoets/git",
         "g1-stage-selettivo-001",
+        "embedded",
+        "non devi completare il corso G1 standalone",
     )
     require(
         integration,
