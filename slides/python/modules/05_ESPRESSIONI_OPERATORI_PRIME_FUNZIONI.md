@@ -12,6 +12,24 @@ PY2-02 — Primi programmi Python
 
 ---
 
+# Oggi: che cosa deve restare davvero?
+
+## MUST MASTER
+
+```text
+espressione → valore
+/ vs // vs %
+precedenza + parentesi
+nomi per risultati intermedi
+prima funzione
+return vs print
+casi di test
+```
+
+Le altre slide possono diventare approfondimento se la classe ha tempo.
+
+---
+
 # Problema iniziale
 
 > 137 secondi: quanti minuti completi e quanti secondi restano?
@@ -56,7 +74,7 @@ valori → espressione → valore risultante
 -   differenza
 *   prodotto
 /   divisione
-//  floor division
+//  divisione intera per difetto
 %   resto
 **  potenza
 ```
@@ -81,7 +99,7 @@ Domanda guida:
 
 → `5`
 
-Per problemi positivi:
+Per problemi con interi non negativi:
 
 > quanti gruppi completi da 3 stanno in 17?
 
@@ -164,6 +182,8 @@ Errore comune:
 
 `^` non è la potenza in Python.
 
+Basta riconoscere il contrasto: niente bitwise ora.
+
 ---
 
 # Precedenza
@@ -210,7 +230,6 @@ Prevedi prima del REPL:
 7 / 2
 7 // 2
 7 % 2
-2 ** 3
 4 * 3.5
 ```
 
@@ -239,27 +258,11 @@ quota = d / e
 risultato = a + costo_componenti - quota
 ```
 
----
-
-# Built-in utili
-
-```python
-abs(-8)
-round(3.14159, 2)
-min(8, 3, 12)
-max(8, 3, 12)
-len("Python")
-```
-
-Non impariamo una lista.
-
-Domanda:
-
-> la built-in esprime bene l'operazione che mi serve?
+Un nome utile comunica il significato del calcolo.
 
 ---
 
-# f-string
+# f-string: presentazione
 
 ```python
 nome = "Ada"
@@ -404,6 +407,38 @@ correttezza
 
 ---
 
+# ENRICHMENT / BACKUP — built-in
+
+Python fornisce già molte funzioni:
+
+```python
+abs(-8)
+round(3.14159, 2)
+min(8, 3, 12)
+max(8, 3, 12)
+len("Python")
+```
+
+Questa slide è **facoltativa** in M05.
+
+Non trasformarla in una lista da memorizzare e non usare `min/max` per evitare il successivo apprendimento del min/max progressivo.
+
+---
+
+# ENRICHMENT / BACKUP — `//` con negativi
+
+`//` significa floor division, non semplicemente “taglia i decimali”.
+
+Nel core usiamo soprattutto interi non negativi per il modello:
+
+```text
+gruppi completi + resto
+```
+
+I casi negativi possono essere esplorati solo se il core è già stabile.
+
+---
+
 # Activity planning
 
 Per M05 candidiamo:
@@ -418,14 +453,18 @@ Per M05 candidiamo:
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
-1. `/`, `//`, `%`: che differenza c'è?
-2. Perché `(a+b+c)/3` non è `a+b+c/3`?
-3. Potenza in Python?
-4. Quando una f-string rompe un contratto di output?
-5. `return` e `print` fanno la stessa cosa?
-6. Perché introduciamo ora una funzione minuscola?
+Prima di PY2-03 devi saper:
+
+1. scegliere fra `/`, `//`, `%`;
+2. correggere una precedenza con parentesi;
+3. prevedere valore/tipo di una piccola espressione;
+4. completare una funzione con `return`;
+5. distinguere `return` da `print`;
+6. proporre tre casi per il calcolo.
+
+Built-in di enrichment non fanno parte del checkpoint.
 
 ---
 
