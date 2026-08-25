@@ -6,225 +6,284 @@ title: M30 — Capstone OOP
 ---
 
 # M30 — Capstone OOP
-## Analisi, oggetti, composizione e test
+## Integrare ciò che sappiamo, senza gonfiare il progetto
 
 PY2-10 — Classi, oggetti e capstone
 
 ---
 
-# Non conta il numero di righe
-
-Un buon capstone dimostra:
+# Finestra reale
 
 ```text
-analisi
-→ modello
-→ oggetti
-→ collaborazione
-→ test
-→ revisione
+M29 / settimana 31
+→ skeleton progettuale
+
+M30 / settimana 32
+→ implementazione + integration + review
+
+Checkpoint C / settimana 33
+→ eventuale finalizzazione / recupero / evidence
 ```
 
----
-
-# Contratto minimo
-
-- almeno 2 responsabilità OOP significative;
-- composizione;
-- invariante;
-- struttura dati motivata;
-- 5+ casi/test;
-- edge case;
-- spiegazione progettuale.
+Nessuna settimana extra e nessun nuovo prerequisito.
 
 ---
 
-# Prima del codice
+# Che cosa deve dimostrare il capstone completo?
 
-Per ogni classe candidata:
+- responsabilità OOP significative;
+- composizione/collaborazione reale;
+- almeno un invariante;
+- una scelta di struttura dati motivata;
+- metodi con responsabilità riconoscibili;
+- almeno 5 casi/test complessivi;
+- almeno un edge case/transizione rifiutata;
+- una evidence bug-fix/regression/refactor;
+- breve spiegazione del design.
+
+Non serve un numero alto di classi.
+
+---
+
+# Prima il modello, poi il codice
 
 ```text
-responsabilità
-stato
-metodi
-invariante
+problema
+→ responsabilità
+→ classi candidate
+→ stato
+→ metodi
+→ invarianti
+→ composizione
+→ strutture dati
+→ casi
 ```
 
-Poi disegna le relazioni.
+Il progetto deve essere spiegabile prima di diventare grande.
 
 ---
 
-# Variante generica
+# Due responsabilità, non “due classi perché sì”
 
 Esempio:
 
 ```text
 Veicolo
-+ MissioneConsegna
+→ posizione / carico / regole
+
+Missione
+→ checkpoint / completamento
+→ usa il Veicolo
 ```
 
-oppure Prodotto/Ordine, Prenotazione/Servizio, ecc.
+La composizione deve avere un significato reale nel dominio.
+
+---
+
+# Variante generica sempre disponibile
+
+Il capstone core non dipende da:
+
+- Romeo;
+- hardware;
+- rete;
+- GUI;
+- database;
+- web.
+
+Un piccolo dominio simulato è sufficiente.
 
 ---
 
 # Variante Romeo
 
-Se `romeo-sim` è certificato:
+Solo se `romeo-sim` è certificato.
 
 ```text
 Missione
 └─ usa Robot
 ```
 
-Stesse competenze e stessa rubrica.
+Gli outcome restano gli stessi della variante generica.
 
-Hardware non obbligatorio.
+Hardware fisico non è requisito core.
 
 ---
 
-# Invariante obbligatoria
+# Sviluppo incrementale
+
+```text
+1. skeleton + casi
+2. prima responsabilità
+3. invariante + test
+4. collaboratore
+5. composizione
+6. integrazione
+7. edge case
+8. bug/regression
+9. refactor
+10. spiegazione
+```
+
+Piccoli checkpoint, non un mega-codice alla fine.
+
+---
+
+# Struttura dati
+
+Riusa almeno una scelta significativa:
+
+```text
+list / tuple / set / dict
+```
+
+Domanda:
+
+> quale struttura rende naturali le operazioni dominanti?
+
+Non usare più collezioni del necessario.
+
+---
+
+# Invariante
+
+Scrivi almeno una proprietà che deve restare vera.
 
 Esempi:
 
 ```text
-stock >= 0
-0 <= carico <= capacita
-checkpoint completati ⊆ previsti
+0 <= energia <= capacita
+checkpoint_completati <= checkpoint_totali
+carico <= capacita
 ```
 
-Testa almeno un confine.
-
----
-
-# Composizione
-
-```python
-missione = Missione(veicolo, checkpoint)
-```
-
-Responsabilità diverse, collaborazione esplicita.
-
----
-
-# OOP + collezioni
-
-```python
-self.checkpoint = list(checkpoint)
-self.completati = set()
-```
-
-OOP non sostituisce le strutture dati.
-
----
-
-# Separare I/O
-
-```text
-input/file
-→ oggetti/metodi dominio
-→ output/file
-```
-
-Mantieni il dominio testabile.
-
----
-
-# Piano incrementale
-
-```text
-test/casi
-→ prima classe
-→ invariante
-→ seconda classe
-→ composizione
-→ integrazione
-→ edge
-→ refactor
-```
+L'invariante suggerisce i casi limite.
 
 ---
 
 # Test minimi
 
+Progetta casi su:
+
 - costruzione;
-- osservatore;
+- stato osservabile;
 - transizione valida;
-- transizione rifiutata;
+- transizione rifiutata/confine;
 - collaborazione;
-- indipendenza istanze se rilevante.
+- indipendenza fra istanze quando pertinente.
+
+La suite concreta dipende dal dominio.
 
 ---
 
 # Regression + refactor
 
 ```text
-bug
+bug/caso mancante
 → test rosso
 → fix
-→ verdi
+→ tutti verdi
 → refactor
 → ancora verdi
 ```
 
-Documentane almeno uno.
+Basta una evidence reale e spiegabile.
 
 ---
 
-# Git G1
+# Git G1 embedded
 
-Checkpoint consigliati:
+Non è un nuovo corso Git.
+
+Prima di un checkpoint significativo:
 
 ```text
-skeleton
-core + test
-fix/refactor finale
+git status
+→ git diff
+→ test
+→ git add <path>
+→ git diff --staged
+→ git commit
+→ git status
+→ git log / git show
 ```
 
-Prima del commit:
+Non creare commit artificiali soltanto per aumentare il numero.
+
+---
+
+# Se devi recuperare
+
+Riduci il dominio:
 
 ```text
-status → diff → test → add → commit
+meno funzionalità
+una relazione di composizione
+una struttura dati semplice
+niente file/Romeo/enrichment
 ```
 
----
+Ma gli outcome core non diventano opzionali.
 
-# Spiegazione progettuale
-
-Breve:
-
-- classi/responsabilità;
-- composizione;
-- invariante;
-- struttura dati scelta;
-- bug/test importante;
-- possibile refactor futuro.
+Se una evidence manca nel prodotto ridotto, può essere dimostrata con un micro-task separato.
 
 ---
 
-# Non obbligatorio
+# Persistenza è opzionale
 
-- inheritance;
+M26 esiste, ma il capstone non deve usare file soltanto “per usare tutto il corso”.
+
+Se la persistenza complica il progetto e non serve al dominio, lasciala fuori.
+
+Proteggiamo l'OOP core.
+
+---
+
+# Enrichment soltanto dopo il core
+
+- `__str__/__repr__`;
 - property;
-- dataclass;
-- DB/GUI/web;
-- async/rete;
-- hardware;
-- pytest professionale.
+- inheritance semplice;
+- dataclass come confronto;
+- file;
+- Romeo più ricco.
+
+Nessuno è prerequisito del prodotto base.
 
 ---
 
-# Exit outcome
+# Spiegazione finale
+
+Devi poter rispondere:
+
+1. Quali sono le responsabilità?
+2. Dove avviene la composizione?
+3. Quale invariante proteggi?
+4. Perché quella struttura dati?
+5. Quale edge case è importante?
+6. Quale bug hai corretto?
+7. Che cosa miglioreresti dopo?.
+
+---
+
+# Traguardo del secondo anno
 
 ```text
 problema
 → algoritmo
-→ dati
 → funzioni
-→ strutture
+→ strutture dati
 → oggetti
 → invarianti
 → composizione
 → test/debug/refactor
+→ spiegazione
 ```
 
-Questo è il traguardo del secondo anno.
+Non:
+
+```text
+più classi + più framework + più righe
+```
+
+Checkpoint C finalizza/recupera: non introduce nuovi concetti.
