@@ -23,6 +23,36 @@ Il criterio non è ridurre le righe, ma rappresentare correttamente la specifica
 
 ---
 
+# Priorità didattica
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. riconoscere quando una seconda decisione dipende davvero dalla prima;
+2. seguire un path annidato con valori concreti;
+3. validare il dominio prima di classificare;
+4. distinguere valore fuori dominio da conversione impossibile;
+5. confrontare annidamento e condizione composta;
+6. preservare gli stessi casi durante un refactoring;
+7. motivare la struttura scelta.
+
+## GUIDED EXPOSURE
+
+- booleano intermedio con un nome;
+- idea di “coprire i path” senza metriche quantitative;
+- mini-project integrato se il tempo lo consente.
+
+## ENRICHMENT / BACKUP
+
+- De Morgan;
+- confronto fra più refactoring equivalenti;
+- Romeo path trace.
+
+De Morgan non fa parte dell'exit gate ordinario di M08.
+
+---
+
 # Preparazione
 
 ## Ambiente
@@ -141,6 +171,8 @@ congela casi
 → confronta
 ```
 
+Non aprire De Morgan in questo blocco se la classe non ha già consolidato path, validazione e refactoring.
+
 ---
 
 # Ora laboratorio
@@ -165,7 +197,7 @@ Bug:
 
 Ricevere una versione annidata e un set di test. Rifattorizzare soltanto se il comportamento richiesto resta identico.
 
-## Fase 5 — mini-project, 15 min o prosecuzione
+## Fase 5 — mini-project, fino a 15 min o prosecuzione
 
 Classificatore validato o configuratore semplice:
 
@@ -176,7 +208,23 @@ Classificatore validato o configuratore semplice:
 5. test;
 6. spiegazione.
 
-Il progetto può estendersi nel tempo di recupero/compito, senza rubare prerequisiti alla UDA successiva.
+Il progetto **può proseguire** come compito/recupero. Non deve comprimere l'handoff a `while` né diventare prerequisito extra.
+
+---
+
+# Minimum mastery gate — prima di PY2-04
+
+Considerare M08/PY2-03 consolidato quando lo studente riesce a:
+
+- spiegare perché una decisione è annidata o indipendente;
+- seguire un path con due decisioni;
+- validare un valore prima di classificarlo;
+- proporre casi che coprono i risultati distinti;
+- confrontare `if A: if B:` con `if A and B:` e dire quando perdono/non perdono informazione;
+- rifattorizzare un caso semplice conservando gli stessi test;
+- motivare la struttura scelta in una frase.
+
+Non richiedere De Morgan o short-circuit per superare il gate di PY2-03.
 
 ---
 
