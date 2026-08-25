@@ -12,6 +12,24 @@ PY2-04 — Iterazione e pattern algoritmici
 
 ---
 
+# Che cosa deve restare davvero?
+
+## MUST MASTER
+
+```text
+ciclo esterno / interno
+trace di coppie
+R × C
+reset al livello giusto
+if sulla coppia corrente
+annidamento naturale vs inutile
+lavoro ripetuto evitabile
+```
+
+Niente Big-O formale nel checkpoint.
+
+---
+
 # Modello base
 
 ```python
@@ -65,8 +83,10 @@ for _ in range(righe):
     print()
 ```
 
-Esterno = riga.
+Esterno = riga.  
 Interno = colonne della riga.
+
+`end=""` qui è soltanto uno strumento di output, non un nuovo argomento da memorizzare.
 
 ---
 
@@ -82,6 +102,10 @@ non:
 
 - una volta per cella;
 - una sola volta per tutta la griglia.
+
+Domanda M11 che ritorna:
+
+> che cosa deve significare questa variabile durante la riga corrente?
 
 ---
 
@@ -126,7 +150,11 @@ for i in range(n):
     valore = calcolo_invariabile()
 ```
 
-valuta se è più corretto/chiaro calcolarlo una sola volta fuori.
+chiedi:
+
+> cambia davvero per ogni `i`?
+
+Se no, può essere più chiaro calcolarlo una volta fuori, **se il comportamento resta identico**.
 
 ---
 
@@ -138,9 +166,9 @@ valuta se è più corretto/chiaro calcolarlo una sola volta fuori.
 | 10 | 10 | 100 |
 | 100 | 100 | 10000 |
 
-Niente Big-O formale per ora.
+Per ora niente notazione Big-O.
 
-Ma chiediamo:
+Chiediamo soltanto:
 
 > quanto lavoro sto facendo e perché?
 
@@ -228,17 +256,28 @@ Nessuna nuova Activity autogradata finché il profilo non è certificato.
 
 # Exit checkpoint PY2-04
 
-Sai:
+## Controllare
 
-- scegliere `for`/`while`;
-- garantire terminazione;
-- usare sentinelle;
-- contare/accumulare;
-- cercare/min-max;
-- combinare `if` e loop;
-- leggere doppi cicli;
-- stimare esecuzioni semplici;
-- riconoscere lavoro ripetuto inutile.
+- scegli `for`/`while`;
+- spiega terminazione e confini.
+
+## Mantenere stato
+
+- contatore/accumulatore;
+- min/max;
+- ricerca/flag.
+
+## Comporre
+
+- `if` dentro loop;
+- doppio ciclo semplice.
+
+## Ragionare sul lavoro
+
+- `R × C`;
+- lavoro chiaramente inutile.
+
+Non servono Big-O o uso autonomo di `break/continue`.
 
 ---
 
