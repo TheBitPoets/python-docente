@@ -59,16 +59,30 @@ main
 
 Far annotare input/output di ogni funzione e frecce tra risultati e parametri.
 
-## 50–55 min — Git G1
+## 50–55 min — Git G1 Observe
 
-Se il workflow managed è disponibile:
+Da M14 il corso Python consuma due outcome G1 canonici a livello **guided**:
+
+```text
+G1.OBSERVE.STATUS
+G1.OBSERVE.DIFF
+```
+
+Usare il materiale del corso `TheBitPoets/git`:
+
+```text
+G1-M02 — working tree / status
+G1-M03 — diff
+```
+
+Nel workspace Python l'istruzione contestuale resta breve:
 
 ```text
 git status
 git diff
 ```
 
-per osservare il refactoring, senza aprire il corso Git completo.
+per osservare il refactoring. Non ricreare qui una mini-lesson Git.
 
 ---
 
@@ -153,7 +167,7 @@ Raccogliere almeno:
 - refactoring globale→parametro;
 - due funzioni composte;
 - call graph semplice;
-- `git diff` del refactoring se Git managed è disponibile.
+- `git status`/`git diff` del refactoring quando il profilo managed è disponibile.
 
 ---
 
@@ -169,11 +183,11 @@ Fino alla certificazione:
 
 ---
 
-# Git G1 — qui iniziano a servire le dispense
+# Git G1 boundary
 
-M14 è il primo punto in cui il workflow Git entra davvero nel corso Python tramite `status` e `diff` per osservare un refactoring.
+La dipendenza è dichiarata in `config/git-g1-consumer.json` e il design completo in `tracks/secondo/GIT_G1_INTEGRATION.md`.
 
-Il materiale Git canonico deve però restare separato. Prima di produrre il micro-modulo G1 definitivo (`status`, `diff`, poi `add/commit` al Checkpoint A) è utile auditare le dispense Git del docente.
+M14 non insegna staging, commit o history: prepara soltanto l'osservazione dello stato e del cambiamento. `add/commit/log` arrivano al Checkpoint A tramite il corso Git canonico.
 
 ---
 
