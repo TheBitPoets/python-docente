@@ -9,38 +9,75 @@ Stato: draft editoriale controllato.
 
 ## Obiettivo docente
 
-Portare gli studenti dal modello:
+M05 ha già mostrato una piccola funzione come preview. M13 **non riparte da zero**: formalizza il modello.
 
 ```text
-programma = sequenza crescente di righe
-```
+M05
+→ ho visto che posso dare un nome a un calcolo
 
-al modello:
-
-```text
-problema
-→ responsabilità nominata
-→ parametri
-→ calcolo
+M13
+→ capisco definizione/chiamata
+→ parametro/argomento
 → return
 → valore usato dal chiamante
+→ casi di test
 ```
 
-Il punto centrale è la differenza `return`/`print` e il fatto che la funzione è un'unità di ragionamento/test.
+Il punto centrale è la differenza `return`/`print` e il fatto che la funzione sia un'unità di ragionamento e verifica.
+
+---
+
+# Priorità didattica
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. distinguere definizione e chiamata;
+2. distinguere parametro e argomento;
+3. usare uno o più parametri semplici;
+4. restituire un valore con `return`;
+5. usare quel valore in un assegnamento o altra espressione;
+6. distinguere funzione di calcolo e funzione che produce output;
+7. fare un call trace semplice;
+8. verificare la stessa funzione con più casi.
+
+## GUIDED EXPOSURE
+
+- `None` quando una funzione termina senza `return` esplicito;
+- predicate semplice che restituisce `bool`.
+
+## ENRICHMENT / BACKUP
+
+- return multiplo / tuple-unpacking come preview;
+- più `return` in rami diversi se la classe è pronta;
+- chiamate più articolate.
+
+Niente Git in M13: il consumer G1 inizia in **M14**, quando c'è un refactoring significativo da osservare con `status/diff`.
 
 ---
 
 # Ritmo consigliato — settimana 13
 
-## Ora teoria attiva 1 — definizione, chiamata, parametri
+## Ora teoria attiva 1 — retrieval, definizione, chiamata, parametri
 
-### 0–10 min — richiamo M05
+### 0–10 min — retrieval M05
 
-Riprendere una piccola funzione già vista come preview.
+Riprendere una funzione già vista:
 
-Domanda:
+```python
+def area_rettangolo(base, altezza):
+    return base * altezza
+```
 
-> Che differenza c'è tra descrivere una trasformazione e usarla con un valore concreto?
+Non rispiegarla subito. Chiedere:
+
+- dov'è la definizione?;
+- quando viene realmente eseguito il corpo?;
+- che dati entrano?;
+- dove va il risultato?.
+
+La settimana parte da ciò che gli studenti ricordano, non da una nuova esposizione frontale.
 
 ### 10–25 min — definizione vs chiamata
 
@@ -48,7 +85,7 @@ Usare `doppio` e fare call trace.
 
 ### 25–40 min — parametro vs argomento
 
-Usare chiamate con valori diversi e far compilare una tabella:
+Usare chiamate con valori diversi e una tabella:
 
 ```text
 chiamata | parametro locale | return
@@ -56,7 +93,7 @@ chiamata | parametro locale | return
 
 ### 40–55 min — più parametri
 
-Usare un problema con costo/prezzo o area.
+Problema con costo/prezzo o area. Fare variare gli argomenti mantenendo la stessa funzione.
 
 ### Exit micro-check
 
@@ -64,9 +101,9 @@ Tre frammenti: identificare definizione, chiamata, parametro e argomento.
 
 ---
 
-# Ora teoria attiva 2 — `return`, `print`, predicate
+# Ora teoria attiva 2 — `return` e uso del risultato
 
-## 0–20 min — confronto obbligatorio
+## 0–22 min — confronto obbligatorio
 
 ```python
 def somma(a, b):
@@ -80,28 +117,29 @@ def somma(a, b):
     return a + b
 ```
 
-Chiedere quale versione può essere usata in:
+Chiedere quale versione può alimentare:
 
 ```python
-x = somma(2, 3) * 10
+x = somma(2, 3)
+print(x * 10)
 ```
 
-## 20–35 min — separazione logica/output
+## 22–38 min — separazione calcolo/output
 
-Far spostare `print` fuori dalla funzione di calcolo.
+Far trasformare una funzione che stampa in una funzione che restituisce e aggiornare il chiamante.
 
-## 35–45 min — predicate
+## 38–50 min — call trace con due chiamate
 
-```python
-def eta_valida(eta):
-    return 0 <= eta <= 120
-```
+Usare variabili intermedie, non una lunga espressione annidata.
 
-Collegare direttamente M07/M08 alla funzione nominata.
+## 50–60 min — guided exposure
 
-## 45–55 min — `None` e codice dopo `return`
+Se il core è stabile:
 
-Solo livello beginner: funzione senza return esplicito → `None`; `return` termina la chiamata.
+- mostrare una funzione senza `return` e il valore `None`;
+- oppure mostrare un predicate semplice.
+
+Non è necessario fare entrambi se il tempo serve al consolidamento di `return`/`print`.
 
 ---
 
@@ -109,7 +147,7 @@ Solo livello beginner: funzione senza return esplicito → `None`; `return` term
 
 ## Fase A — call trace, 10 min
 
-2–3 funzioni molto semplici con chiamate concatenate tramite variabili intermedie.
+2–3 funzioni semplici, una chiamata alla volta.
 
 ## Fase B — controlled change, 10–15 min
 
@@ -117,7 +155,9 @@ Trasformare una funzione che stampa in una funzione che restituisce.
 
 ## Fase C — implementazione, 15 min
 
-Funzione numerica o predicate con tre casi dichiarati prima del codice.
+Funzione numerica con tre casi dichiarati prima del codice.
+
+Il predicate può essere variante successiva, non requisito per tutti nel primo esercizio.
 
 ## Fase D — Debug Clinic, 10 min
 
@@ -128,9 +168,23 @@ Funzione numerica o predicate con tre casi dichiarati prima del codice.
 
 ## Fase E — spiegazione, 5 min
 
-Chiedere:
+> Dove va esattamente il valore prodotto da `return`?
 
-> dove va esattamente il valore prodotto da `return`?
+---
+
+# Minimum mastery gate — prima di M14
+
+Considerare M13 consolidato quando lo studente riesce a:
+
+- riconoscere definizione e chiamata;
+- distinguere parametro/argomento;
+- completare una funzione con `return` corretto;
+- usare il valore restituito fuori dalla funzione;
+- trasformare `print`→`return` quando la responsabilità è calcolare;
+- seguire un call trace semplice;
+- proporre almeno tre casi per una funzione.
+
+`None`, predicate e tuple-unpacking non sono prerequisiti per passare a M14.
 
 ---
 
@@ -150,7 +204,7 @@ Se non viene restituito, il chiamante non riceve quel risultato.
 
 ## M4 — `return` stampa il valore
 
-Mostrare chiamata senza `print`: il valore viene prodotto ma uno script non lo mostra automaticamente.
+Mostrare chiamata senza `print`: nello script il valore può essere prodotto senza essere visualizzato.
 
 ## M5 — ogni funzione deve avere molti parametri
 
@@ -158,7 +212,11 @@ No. I parametri rappresentano i dati necessari alla responsabilità.
 
 ## M6 — `None` è un errore
 
-No. È un valore; qui segnala spesso che la funzione non ha restituito esplicitamente un risultato utile al calcolo.
+No. È un valore; in M13 è guided exposure, utile soprattutto per capire un `return` dimenticato.
+
+## M7 — M13 è la stessa lezione di M05
+
+M05 era preview dentro i primi calcoli; M13 rende esplicito il contratto della chiamata e prepara composizione/testing.
 
 ---
 
@@ -166,7 +224,7 @@ No. È un valore; qui segnala spesso che la funzione non ha restituito esplicita
 
 ## Recupero
 
-- una funzione pura con un parametro;
+- una funzione con un parametro;
 - call trace completo;
 - niente chiamate annidate iniziali;
 - `return` singolo e diretto;
@@ -175,9 +233,9 @@ No. È un valore; qui segnala spesso che la funzione non ha restituito esplicita
 ## Enrichment
 
 - predicate;
-- due funzioni semplici concatenate tramite variabile intermedia;
-- discutere una funzione con più rami `return` solo se leggibile;
-- preview tuple/unpacking soltanto se non distrae.
+- due funzioni concatenate tramite variabile intermedia;
+- più rami `return` solo se leggibili;
+- tuple/unpacking preview soltanto se non distrae.
 
 ---
 
@@ -189,13 +247,17 @@ Raccogliere almeno:
 - trasformazione `print`→`return`;
 - funzione con 3 casi;
 - spiegazione parametro/argomento;
-- spiegazione di `None` in un caso semplice.
+- spiegazione di dove va il valore restituito.
+
+`None` non deve essere una domanda discriminante della verifica ordinaria se è stato solo mostrato come exposure.
 
 ---
 
 # P2 TheBitLab
 
 M13 crea il primo bisogno pedagogico reale del profilo `python-function-v1` tracciato in `2cornot2c#756`.
+
+Questa è una **delivery concern docente/piattaforma**, non un concetto da insegnare agli studenti.
 
 Fino alla certificazione:
 
@@ -205,18 +267,19 @@ Fino alla certificazione:
 
 ---
 
-# Git G1
+# Git G1 — non ancora
 
-In questa settimana può iniziare soltanto il gesto leggero:
+Nessun comando Git viene introdotto come outcome in M13.
+
+Il consumer G1 comincia in M14:
 
 ```text
-git status
-git diff
+refactoring / rimozione dipendenza nascosta
+→ git status
+→ git diff
 ```
 
-come osservazione delle modifiche al codice, se il workflow managed TheBitLab è disponibile.
-
-Non trasformare M13 in una lezione Git: il curriculum Git resta separato.
+Questo mantiene allineato `config/git-g1-consumer.json` e impedisce di sovraccaricare la prima settimana di formalizzazione delle funzioni.
 
 ---
 
