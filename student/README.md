@@ -58,25 +58,45 @@ PY2-03 ti porta da una domanda vero/falso alla scelta consapevole tra `elif`, pi
 - Lesson: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
 - Slide: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../slides/python/modules/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
 
-Per ogni `while` identifica stato iniziale, condizione, corpo e aggiornamento e spiega perché il ciclo può terminare. Impara validazione ripetuta, sentinelle e debug dei cicli infiniti.
+Per ogni `while` identifica stato iniziale, condizione, corpo e aggiornamento e spiega perché il ciclo può terminare.
 
 #### M10 — `for`, `range` e scelta `for` vs `while`
 - Lesson: [`10_FOR_RANGE_SCELTA_CICLO.md`](../content/python/10_FOR_RANGE_SCELTA_CICLO.md)
 - Slide: [`10_FOR_RANGE_SCELTA_CICLO.md`](../slides/python/modules/10_FOR_RANGE_SCELTA_CICLO.md)
 
-Prima di eseguire un `range`, indica:
+Prima di eseguire un `range`, indica primo valore, ultimo valore effettivo e numero di valori. Ricorda: start incluso, stop escluso.
+
+#### M11 — Contatori, accumulatori, minimo/massimo, ricerca e flag
+- Lesson: [`11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md`](../content/python/11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md)
+- Slide: [`11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md`](../slides/python/modules/11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md)
+
+Domanda guida:
+
+> che cosa devo ricordare tra un'iterazione e la successiva?
+
+Impara a leggere variabili di stato tramite invarianti semplici:
 
 ```text
-primo valore
-ultimo valore effettivo
-quanti valori
+conteggio = quanti casi validi ho già visto
+totale    = somma dei valori già elaborati
+minimo    = più piccolo valore visto finora
+trovato   = almeno un match è comparso finora
 ```
 
-Ricorda: start incluso, stop escluso. Usa `for` quando il percorso/numero di iterazioni è noto o naturale; usa `while` quando la durata dipende da uno stato dinamico. `break` e `continue` sono strumenti da motivare, non scorciatoie automatiche.
+#### M12 — Cicli annidati, griglie e costo del lavoro
+- Lesson: [`12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md`](../content/python/12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md)
+- Slide: [`12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md`](../slides/python/modules/12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md)
 
-#### M11 — Contatori, accumulatori, ricerca e flag
+Modello centrale:
 
-Stato: **prossimo modulo da materializzare**.
+```text
+R righe × C colonne
+→ R × C esecuzioni del corpo interno
+```
+
+Prima correttezza e comprensibilità; poi struttura adatta e rimozione del lavoro chiaramente inutile. Niente Big-O formale in questa fase.
+
+PY2-04 è ora materializzata integralmente. Il prossimo blocco è **PY2-05 — funzioni, decomposizione e testing**.
 
 ## Policy Activity
 
