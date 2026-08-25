@@ -15,58 +15,50 @@ Questo indice è il punto di ingresso del docente per progettazione, conduzione 
 
 ## Moduli editoriali materializzati
 
-### M04 — Interprete, REPL, valori e I/O
-- lesson: [`04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md)
-- slide: [`04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md)
-- runbook: [`M04_RUNBOOK.md`](M04_RUNBOOK.md)
-- Activity canarino: `py2-activity-b-input-somma-001`
+### PY2-02 — primi programmi
 
-### M05 — Espressioni, operatori e prime funzioni
-- lesson: [`05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
-- slide: [`05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
-- runbook: [`M05_RUNBOOK.md`](M05_RUNBOOK.md)
+- M04: [`04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md) · [slide](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md) · [runbook](M04_RUNBOOK.md) · Activity canarino `py2-activity-b-input-somma-001`.
+- M05: [`05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md) · [slide](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md) · [runbook](M05_RUNBOOK.md).
 
-### M06 — Booleani, confronti e `if`
-- lesson: [`06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md)
-- slide: [`06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md)
-- runbook: [`M06_RUNBOOK.md`](M06_RUNBOOK.md)
+### PY2-03 — selezione e logica
 
-### M07 — `elif`, casi esclusivi e logica composta
-- lesson: [`07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
-- slide: [`07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
-- runbook: [`M07_RUNBOOK.md`](M07_RUNBOOK.md)
+- M06: [`06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md) · [slide](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md) · [runbook](M06_RUNBOOK.md).
+- M07: [`07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md) · [slide](../slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md) · [runbook](M07_RUNBOOK.md).
+- M08: [`08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md) · [slide](../slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md) · [runbook](M08_RUNBOOK.md).
 
-### M08 — Annidamento, validazione e refactoring
-- lesson: [`08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
-- slide: [`08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
-- runbook: [`M08_RUNBOOK.md`](M08_RUNBOOK.md)
+M06–M08 coprono soglie/confronti → `elif` vs `if` indipendenti → `and/or/not` → annidamento/validazione/refactoring.
 
-M06–M08 materializzano tutta PY2-03: soglie/confronti → scelta della struttura (`elif` vs `if` indipendenti) → logica composta → annidamento/validazione/refactoring.
+### PY2-04 — iterazione e pattern
 
-### M09 — `while`, stato, sentinelle e validazione ripetuta
+#### M09 — `while`, stato, sentinelle e validazione ripetuta
+
 - lesson: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
 - slide: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../slides/python/modules/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
 - runbook: [`M09_RUNBOOK.md`](M09_RUNBOOK.md)
 
-Nucleo M09:
+Nucleo: stato iniziale → condizione → corpo → aggiornamento → terminazione spiegabile. Validazione ripetuta e sentinella sono core; `while True` + `break` è variante successiva.
+
+#### M10 — `for`, `range` e scelta `for` vs `while`
+
+- lesson: [`10_FOR_RANGE_SCELTA_CICLO.md`](../content/python/10_FOR_RANGE_SCELTA_CICLO.md)
+- slide: [`10_FOR_RANGE_SCELTA_CICLO.md`](../slides/python/modules/10_FOR_RANGE_SCELTA_CICLO.md)
+- runbook: [`M10_RUNBOOK.md`](M10_RUNBOOK.md)
+
+Nucleo:
 
 ```text
-stato iniziale
-→ condizione di continuazione
-→ corpo
-→ aggiornamento
-→ terminazione spiegabile
+range → start incluso / stop escluso / step
+for   → percorso o numero di iterazioni noto
+while → durata dipendente dallo stato
 ```
 
-La validazione M08 diventa ora ripetibile con `while`. Sentinelle, zero/una/più iterazioni, aggiornamento su tutti i path e debug dei cicli infiniti sono core. `while True` + `break` è solo variante dopo il modello esplicito.
+Off-by-one, range vuoto, step negativo, refactoring `while`→`for`, stato ridondante e uso disciplinato di `break`/`continue` sono competenze esplicite. Romeo `y1-u15-ciclo-for` resta applicazione opzionale con simulatore certificato.
 
-Romeo può usare il riferimento pinned `romeo-y1-u16-ciclo-while` come applicazione opzionale, soltanto con `romeo-sim` certificato.
+## Policy Activity
 
-## Policy Activity durante questa fase
+Solo M04 materializza una nuova Activity P1. M05–M10 contengono Activity candidate/esercizi, ma non aggiungono Activity autogradate finché `python-docente#7` non certifica il canarino.
 
-Solo M04 materializza una nuova Activity P1. M05–M09 contengono Activity candidate/esercizi, ma non aggiungono Activity autogradate fino a quando `python-docente#7` non certifica il canarino.
-
-Romeo non viene duplicato dentro questo repo: missioni/scenari restano nel repository Romeo e vengono usati solo attraverso riferimenti/adattamenti approvati.
+Romeo non viene duplicato dentro questo repo: le missioni restano nel repository Romeo e vengono referenziate/adattate solo dopo certificazione `romeo-sim`.
 
 ## Change-control
 
@@ -80,6 +72,8 @@ Course Board → item = heading + sottoalbero
 ```
 
 Il repo è il Course Workspace mutabile; Git conserva storia/review; il futuro Course Bundle è release immutabile. L'UX bulk “Aggiungi intero modulo/file” è tracciata in `2cornot2c#755`.
+
+`scripts/sync_authoring_catalog.py` deriva la lista delle lesson materializzate dai `content_items` del Content Pack e può sincronizzare la source `python-course-content` nel Content Pack e nel Course Design (`--write`); senza `--write` è un check fail-closed.
 
 ## Ambiente TheBitLab
 
@@ -103,7 +97,7 @@ Blocker principali:
 
 ## QA authoring
 
-`tests/course_authoring_catalog.py` controlla tutti i moduli materializzati: lesson, Marp deck, runbook, navigazione, provenance, Course Board source e Activity dichiarate.
+`tests/course_authoring_catalog.py` controlla tutti i moduli materializzati: lesson, Marp deck, runbook, navigazione, provenance, Course Board source e Activity dichiarate. Il workflow esegue anche `scripts/sync_authoring_catalog.py` in modalità check.
 
 M04 conserva i gate tecnici specifici; M05 conserva un controllo pedagogico dedicato. L'assenza di runner Actions non equivale a PASS/FAIL del contenuto.
 
@@ -128,4 +122,4 @@ lesson
 + QA
 ```
 
-Nuove Activity autogradate soltanto quando il relativo profilo è certificato. Il prossimo modulo è M10 (`for`, `range`, scelta `for` vs `while`).
+Nuove Activity autogradate soltanto quando il relativo profilo è certificato. Il prossimo modulo è M11: contatori, accumulatori, minimo/massimo progressivo, ricerca e flag.
