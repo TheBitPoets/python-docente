@@ -12,7 +12,8 @@
         "06_BOOLEANI_CONFRONTI_IF.md",
         "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
         "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md",
-        "09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md"
+        "09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md",
+        "10_FOR_RANGE_SCELTA_CICLO.md"
       ],
       "indexing_status": "ready"
     },
@@ -22,10 +23,7 @@
       "type": "markdown",
       "provider": "local",
       "path": "tracks/secondo",
-      "files": [
-        "MODULE_MAP.md", "COURSE_DESIGN.md", "DELIVERY_PROFILE.md", "ASSESSMENT_CALENDAR.md", "ARCHITECTURE_REVIEW.md", "GIT_G1_INTEGRATION.md", "ROMEO_MAPPING.md",
-        "PY2_01_SPEC.md", "PY2_02_SPEC.md", "PY2_03_SPEC.md", "PY2_04_SPEC.md", "PY2_05_SPEC.md", "PY2_06_SPEC.md", "PY2_07_SPEC.md", "PY2_08_SPEC.md", "PY2_09_SPEC.md", "PY2_10_SPEC.md"
-      ],
+      "files": ["MODULE_MAP.md", "COURSE_DESIGN.md", "DELIVERY_PROFILE.md", "ASSESSMENT_CALENDAR.md", "ARCHITECTURE_REVIEW.md", "GIT_G1_INTEGRATION.md", "ROMEO_MAPPING.md", "PY2_01_SPEC.md", "PY2_02_SPEC.md", "PY2_03_SPEC.md", "PY2_04_SPEC.md", "PY2_05_SPEC.md", "PY2_06_SPEC.md", "PY2_07_SPEC.md", "PY2_08_SPEC.md", "PY2_09_SPEC.md", "PY2_10_SPEC.md"],
       "indexing_status": "ready"
     },
     {
@@ -34,9 +32,7 @@
       "type": "markdown",
       "provider": "local",
       "path": "doc",
-      "files": [
-        "CURRICULUM_FREEZE_2026_2027.md", "CURRICULUM_FREEZE_CHECKLIST.md", "PROJECT_STATUS.md", "OPEN_DECISIONS.md", "COURSE_ARCHITECTURE.md", "CURRICULUM_ROADMAP.md", "APPROVED_DECISIONS_2026_2027.md", "CROSS_COURSE_CURRICULA.md", "PYTHON_ACTIVITY_RUNTIME_CONTRACT.md"
-      ],
+      "files": ["CURRICULUM_FREEZE_2026_2027.md", "CURRICULUM_FREEZE_CHECKLIST.md", "PROJECT_STATUS.md", "OPEN_DECISIONS.md", "COURSE_ARCHITECTURE.md", "CURRICULUM_ROADMAP.md", "APPROVED_DECISIONS_2026_2027.md", "CROSS_COURSE_CURRICULA.md", "PYTHON_ACTIVITY_RUNTIME_CONTRACT.md"],
       "indexing_status": "ready"
     }
   ],
