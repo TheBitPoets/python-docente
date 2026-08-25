@@ -6,8 +6,25 @@ title: M23 — Set, unicità e membership
 ---
 
 # M23 — Set: unicità, membership e operazioni insiemistiche
+## Un modello per valori distinti e appartenenza
 
 PY2-08 — Set, dizionari e modellazione dei dati
+
+---
+
+# Che cosa deve restare davvero?
+
+```text
+set = valori distinti
+set() vs {}
+membership
+add
+unione / intersezione / differenza
+list vs set
+niente indice/posizione come modello
+```
+
+`remove/discard` e hashability sono guided exposure.
 
 ---
 
@@ -21,8 +38,14 @@ Domande naturali:
 
 ```text
 appartiene?
-comuni?
-solo da una parte?
+quali valori sono comuni?
+quali sono solo da una parte?
+```
+
+Non:
+
+```text
+qual è il valore in posizione 2?
 ```
 
 ---
@@ -34,6 +57,8 @@ solo da una parte?
 set()   # set vuoto
 ```
 
+Questo contrasto è core.
+
 ---
 
 # Unicità
@@ -44,7 +69,11 @@ set(["anna", "luca", "anna"])
 
 Rappresenta valori distinti.
 
-Se l'ordine originale serve, attenzione al modello.
+Ma chiediti:
+
+> l'ordine o i duplicati originali erano informazione importante?
+
+Se sì, il set può essere il modello sbagliato.
 
 ---
 
@@ -54,30 +83,21 @@ Se l'ordine originale serve, attenzione al modello.
 "python" in tag
 ```
 
-Set è progettato per membership tramite hashing.
+La domanda dominante è:
+
+> questo valore appartiene all'insieme?
 
 Niente Big-O formale per ora.
 
 ---
 
-# `add()`
+# `add()` — core
 
 ```python
 tag.add("docker")
 ```
 
-Aggiungere un duplicato non crea una seconda copia.
-
----
-
-# `remove` vs `discard`
-
-```python
-s.remove(x)   # assenza → errore
-s.discard(x)  # assenza → nessun errore
-```
-
-Dipende dal contratto.
+Aggiungere un valore già presente non crea una seconda copia.
 
 ---
 
@@ -87,7 +107,7 @@ Dipende dal contratto.
 A | B
 ```
 
-Elementi presenti in almeno uno dei due set.
+Valori presenti in almeno uno dei due set.
 
 ---
 
@@ -97,7 +117,7 @@ Elementi presenti in almeno uno dei due set.
 A & B
 ```
 
-Elementi comuni.
+Valori comuni.
 
 ---
 
@@ -107,7 +127,7 @@ Elementi comuni.
 A - B
 ```
 
-Elementi in A ma non in B.
+Valori in `A` ma non in `B`.
 
 L'ordine degli operandi conta.
 
@@ -116,64 +136,81 @@ L'ordine degli operandi conta.
 # Set vs list
 
 ```text
-ordine/posizione → list
-unicità/membership → set candidato
+ordine/posizione/duplicati significativi → list candidata
+unicità/membership/insiemi              → set candidato
 ```
 
 La scelta segue il dominio.
 
 ---
 
-# Hashability beginner
+# Non dipendere dall'ordine
 
-Elementi comuni ammessi:
+Non costruire un algoritmo che richiede:
+
+> il primo elemento del set sarà X.
+
+Se la posizione/ordine è requisito, modellalo esplicitamente con una struttura adatta.
+
+---
+
+# GUIDED EXPOSURE — `remove` vs `discard`
+
+```python
+s.remove(x)   # assenza → errore
+s.discard(x)  # assenza → nessun errore
+```
+
+Dipende dal contratto.
+
+Devi poter leggere la differenza; non è il centro del checkpoint.
+
+---
+
+# GUIDED EXPOSURE — hashability
+
+Alcuni valori comuni utilizzabili come elementi:
 
 ```text
 str, int, float, bool, tuple hashable
 ```
 
-Una `list` mutabile non può essere elemento di un set.
+Una `list` mutabile non può essere elemento del set.
 
----
-
-# Non dipendere dall'ordine
-
-Un algoritmo non deve assumere:
-
-> il primo elemento iterato del set sarà X.
-
-Se l'ordine serve, modellalo esplicitamente.
+Per ora basta il vincolo osservabile: niente internals delle hash table.
 
 ---
 
 # Error Clinic
 
-- `{}` come set;
-- indice/slice;
+- `{}` usato come set;
+- indice/slice su set;
 - duplicati attesi;
 - ordine atteso;
-- remove/discard scelti male;
-- lista come elemento.
+- conversione a set che perde un requisito;
+- lista mutabile come elemento.
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
-Sai spiegare:
+Sai:
 
-- unicità;
-- membership;
-- list vs set;
-- remove vs discard;
-- unione/intersezione/differenza;
-- niente indice/ordine come proprietà del set.
+1. creare set vuoto/non vuoto?;
+2. spiegare unicità e membership?;
+3. usare `add()`?;
+4. interpretare unione/intersezione/differenza?;
+5. scegliere list vs set e motivarlo?;
+6. spiegare perché indice/slicing non appartengono al modello set?.
+
+`remove/discard`, hashability avanzata e symmetric difference non devono dominare il gate.
 
 ---
 
 # Recap
 
 ```text
-set → unicità + membership + insiemi
+set → valori distinti + appartenenza + operazioni insiemistiche
 ```
 
 Prossimo: `dict`, chiave → valore.
