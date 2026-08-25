@@ -17,6 +17,35 @@ Il focus non è LEGB. È costruire un modello beginner corretto di nomi locali, 
 
 ---
 
+# Priorità didattica
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. riconoscere parametri e variabili locali alla chiamata;
+2. capire che un nome locale non è disponibile fuori dalla funzione;
+3. passare esplicitamente i dati necessari;
+4. riconoscere una dipendenza nascosta da stato globale di lavoro;
+5. usare il valore restituito da una funzione come dato per un'altra;
+6. seguire il flusso con variabili intermedie;
+7. leggere un call graph semplice.
+
+## GUIDED EXPOSURE
+
+- costante di dominio a livello modulo vs dato di lavoro globale;
+- `G1.OBSERVE.STATUS` / `G1.OBSERVE.DIFF` per osservare un refactoring.
+
+## ENRICHMENT / BACKUP
+
+- call graph a tre livelli;
+- confronto composizione compatta vs variabili intermedie;
+- dipendenze esterne più articolate.
+
+Git è un outcome G1 guidato e non deve togliere tempo al mastery Python del modulo.
+
+---
+
 # Ritmo consigliato — settimana 14
 
 ## Ora teoria attiva 1 — nomi locali e dipendenze
@@ -35,7 +64,7 @@ Confrontare funzione che usa `prezzo` globale con funzione che lo riceve come pa
 
 ### 45–55 min — costanti vs dati di lavoro
 
-Distinguere una costante di dominio da stato di lavoro modificabile.
+Distinguere una costante di dominio da stato di lavoro modificabile. Questa distinzione è guided exposure: non aprire LEGB, moduli o configurazione avanzata.
 
 ---
 
@@ -68,7 +97,7 @@ G1.OBSERVE.STATUS
 G1.OBSERVE.DIFF
 ```
 
-Usare il materiale del corso `TheBitPoets/git`:
+Usare il materiale del corso `TheBitPoets/git` come source/remediation:
 
 ```text
 G1-M02 — working tree / status
@@ -82,7 +111,7 @@ git status
 git diff
 ```
 
-per osservare il refactoring. Non ricreare qui una mini-lesson Git.
+per osservare il refactoring. Non ricreare qui una mini-lesson Git e non richiedere il completamento del track G1 standalone.
 
 ---
 
@@ -114,6 +143,23 @@ Costruire 2–3 funzioni che collaborano tramite variabili intermedie.
 - globale nascosta;
 - chiamata annidata illeggibile.
 
+Se resta tempo e il profilo managed è disponibile, osservare la modifica con `status/diff`.
+
+---
+
+# Minimum mastery gate — prima di M15
+
+Considerare M14 consolidato quando lo studente riesce a:
+
+- indicare quali nomi sono locali a una funzione;
+- spiegare perché un locale non è disponibile fuori;
+- rimuovere una semplice dipendenza globale passando il dato come parametro;
+- comporre due funzioni tramite un valore restituito;
+- usare una variabile intermedia per rendere visibile il flusso;
+- leggere/disegnare un call graph di 2–3 funzioni.
+
+La distinzione fine costante/configurazione e il workflow Git non devono diventare criteri principali del gate Python.
+
 ---
 
 # Misconception watchlist
@@ -128,7 +174,7 @@ Mostrare come il contratto diventa meno visibile e i test dipendono dallo stato 
 
 ## M3 — nessuna globale è mai ammessa
 
-Non trasformare il principio in dogma. Distinguere costante/configurazione da dato di lavoro.
+Non trasformare il principio in dogma. Distinguere, come exposure, costante/configurazione da dato di lavoro.
 
 ## M4 — composizione = annidare tutte le chiamate in una riga
 
@@ -152,10 +198,10 @@ Far eseguire due call trace con argomenti diversi.
 
 ## Enrichment
 
-- confrontare composizione diretta vs variabili intermedie;
-- riconoscere una costante di dominio sensata;
-- piccolo call graph a tre livelli;
-- discutere quando una funzione dipende da troppe informazioni esterne.
+- composizione diretta vs variabili intermedie;
+- costante di dominio sensata;
+- call graph a tre livelli;
+- funzione che dipende da troppe informazioni esterne.
 
 ---
 
@@ -167,13 +213,13 @@ Raccogliere almeno:
 - refactoring globale→parametro;
 - due funzioni composte;
 - call graph semplice;
-- `git status`/`git diff` del refactoring quando il profilo managed è disponibile.
+- opzionalmente `git status`/`git diff` del refactoring se il profilo managed è disponibile.
 
 ---
 
 # P2 TheBitLab
 
-Il profilo `2cornot2c#756` dovrà testare il comportamento della funzione, non il modo in cui lo studente ha scritto la firma oltre il contratto dichiarato.
+Il profilo `2cornot2c#756` dovrà testare il comportamento della funzione. Questa è una concern docente/piattaforma, non un outcome da studente.
 
 Fino alla certificazione:
 
