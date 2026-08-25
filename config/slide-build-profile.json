@@ -1,0 +1,53 @@
+{
+  "schema_version": "python.slide-build-profile.v1",
+  "course_id": "python-secondo-2026-2027",
+  "source_root": "slides/python/modules",
+  "module_range": {
+    "first": 4,
+    "last": 30,
+    "expected_count": 27
+  },
+  "source_format": "marp-markdown",
+  "layout": "16:9",
+  "renderer": {
+    "package": "@marp-team/marp-cli",
+    "version": null,
+    "pin_policy": "exact-version-required-before-build",
+    "status": "pin-required",
+    "latest_alias_forbidden": true
+  },
+  "runtime": {
+    "node_version": null,
+    "browser_runtime": null,
+    "status": "pin-required-before-release-build"
+  },
+  "outputs": {
+    "html": {
+      "required": true
+    },
+    "pdf": {
+      "required": true
+    },
+    "pptx": {
+      "required": true,
+      "editability_claim": "not-assumed-until-verified"
+    }
+  },
+  "quality": {
+    "source_gate": "tests/slide_source_quality.py",
+    "artifact_structural_gate": "planned",
+    "visual_review_required": true,
+    "visual_review_sample_modules": [4, 11, 18, 22, 26, 30]
+  },
+  "provenance": {
+    "source_commit_sha_required": true,
+    "renderer_version_required": true,
+    "build_or_release_id_required": true
+  },
+  "artifact_policy": {
+    "canonical_editorial_source": "markdown",
+    "derived_artifacts_are_editorial_sources": false,
+    "implicit_success_if_one_format_builds": false,
+    "content_pack_approval_requires_real_build": true
+  }
+}
