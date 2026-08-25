@@ -5,52 +5,61 @@ size: 16:9
 title: M29 — Composizione, collaborazione e responsabilità
 ---
 
-# M29 — Composizione, collaborazione e responsabilità
+# M29 — Composizione e collaborazione
+## Più oggetti, responsabilità più chiare
 
 PY2-10 — Classi, oggetti e capstone
 
 ---
 
-# Un oggetto non deve fare tutto
+# Che cosa deve restare davvero?
 
 ```text
-input + file + dominio + robot + output
+composizione = ha/usa un
+responsabilità nell'oggetto giusto
+dipendenza esplicita
+dominio separato da I/O
+god class smell
+collaborazione testabile
+più classi ≠ design migliore
 ```
 
-in una sola classe non è automaticamente “più OOP”.
+La composizione è core. L'ereditarietà non lo è.
+
+---
+
+# Da un oggetto a una collaborazione
+
+M28:
+
+```text
+un oggetto
+→ stato valido
+→ transizioni controllate
+```
+
+M29:
+
+```text
+più responsabilità
+→ più oggetti
+→ collaborazione esplicita
+```
 
 ---
 
 # Composizione
 
-```text
-Veicolo ha un Motore
-Missione ha un Robot
-```
-
-Un oggetto usa/possiede un altro oggetto.
-
----
-
-# “Ha un” vs “è un”
+Esempio:
 
 ```text
-composizione → ha un
-inheritance  → è un tipo di
+Missione
+└─ usa Robot
 ```
 
-Core di seconda: composizione.
+La `Missione` non deve diventare un secondo robot.
 
----
-
-# Chi possiede la regola?
-
-```text
-Robot → movimento/stato
-Missione → checkpoint/obiettivo
-```
-
-Le regole vanno dove appartiene la responsabilità.
+Ogni oggetto conserva la propria responsabilità.
 
 ---
 
@@ -58,132 +67,175 @@ Le regole vanno dove appartiene la responsabilità.
 
 ```python
 class Missione:
-    def __init__(self, robot, target):
+    def __init__(self, robot):
         self.robot = robot
-        self.target = target
 ```
 
-Meglio di una variabile globale nascosta.
+Il collaboratore entra nel contratto dell'oggetto.
+
+Meglio di una dipendenza globale nascosta.
+
+---
+
+# Chi possiede la regola?
+
+Domanda fondamentale:
+
+> quale oggetto possiede i dati e la responsabilità necessari per decidere questa regola?
+
+Non mettere tutto nel “coordinatore” per comodità.
+
+---
+
+# God class smell
+
+```text
+legge input
+scrive file
+muove robot
+calcola regole
+stampa report
+gestisce ogni stato
+```
+
+Una classe che fa tutto diventa difficile da:
+
+- testare;
+- capire;
+- modificare;
+- riusare.
 
 ---
 
 # Dominio vs I/O
 
 ```text
-input/file
-→ crea oggetti
-→ metodi dominio
-→ output/file
+input / file / UI
+       ↓
+funzioni/adattatori
+       ↓
+oggetti dominio
 ```
 
-Non mettere `input()` dentro ogni metodo.
-
----
-
-# Dict → object
-
-Se un record acquista:
-
-```text
-stato + regole + comportamenti
-```
-
-può diventare una classe candidata.
+Il dominio non deve dipendere inutilmente da `input()`/`print()`/file.
 
 ---
 
 # Refactoring incrementale
 
-```text
-record
-→ classe + init
-→ un metodo
-→ stessi test
-→ sostituzione graduale
-```
-
-Niente big-bang rewrite.
-
----
-
-# God class smell
-
-- troppi motivi per cambiare;
-- I/O e dominio mescolati;
-- test di una regola richiede tutto il sistema;
-- metodi generici `gestisci/processa`.
-
----
-
-# Collezioni di oggetti
+Da:
 
 ```python
-prodotti = [Prodotto(...), Prodotto(...)]
+robot = {"energia": 100, "posizione": 0}
 ```
 
-oppure:
+verso una classe solo quando esistono comportamento/regole proprie.
 
-```python
-catalogo = {"P001": Prodotto(...)}
-```
-
-OOP si combina con le strutture dati già apprese.
+Non trasformare ogni dict in classe automaticamente.
 
 ---
 
-# Romeo capstone
+# Test della collaborazione
+
+Se `Missione` usa `Robot`, il test deve osservare la collaborazione reale:
 
 ```text
-Missione
-└─ usa Robot
+azione missione
+→ metodo sul collaboratore
+→ stato/risultato atteso
 ```
 
-Robot non deve conoscere ogni missione possibile.
+Non basta testare le classi isolate se l'outcome è la composizione.
 
 ---
 
-# Perché non inheritance core?
+# GUIDED EXPOSURE — list/dict di oggetti
 
-Prima consolidiamo:
+Collezioni di oggetti possono avere senso:
 
 ```text
-classe
-→ stato/invarianti
-→ composizione
+missione → lista di checkpoint
+registro → dict id→oggetto
 ```
 
-Inheritance semplice resta enrichment.
+Usale solo quando il dominio lo richiede.
+
+---
+
+# GUIDED EXPOSURE — fake minimale
+
+Per testare una collaborazione possiamo usare un collaboratore semplice controllato.
+
+Il concetto utile è:
+
+> rendere la dipendenza esplicita e osservabile.
+
+Non studiamo mocking framework.
+
+---
+
+# ENRICHMENT / BACKUP — inheritance
+
+Domanda:
+
+```text
+ha/usa un? → composizione
+è davvero un tipo di? → forse inheritance
+```
+
+L'ereditarietà è confronto/enrichment, non prerequisito del secondo anno.
 
 ---
 
 # Error Clinic
 
-- god class;
+- più classi senza responsabilità;
+- composizione solo nominale;
 - dipendenza globale;
 - regola nell'oggetto sbagliato;
-- class wrapper senza comportamento;
-- inheritance usata solo per riuso superficiale.
+- I/O dentro ogni metodo dominio;
+- god class;
+- inheritance scelta solo per riuso superficiale.
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
 Sai:
 
-- composizione;
-- responsabilità;
-- dipendenze esplicite;
-- dominio vs I/O;
-- refactor dict→object;
-- collezioni di oggetti.
+1. spiegare una relazione “ha/usa un”?;
+2. costruire due responsabilità che collaborano?;
+3. passare il collaboratore in modo esplicito?;
+4. assegnare la regola all'oggetto giusto?;
+5. separare dominio e I/O?;
+6. riconoscere una god class?;
+7. testare una collaborazione?;
+8. motivare perché la composizione porta valore?.
+
+---
+
+# Handoff al capstone
+
+Da M29 deve uscire lo skeleton:
+
+```text
+responsabilità
+→ classi candidate
+→ composizione
+→ invarianti
+→ struttura dati
+→ casi
+```
+
+M30/week 32 completa implementazione e review.
 
 ---
 
 # Recap
 
 ```text
-responsabilità chiare
-+ collaborazione esplicita
+oggetti piccoli + responsabilità chiare
+→ collaborazione esplicita
 → sistema testabile
 ```
 
