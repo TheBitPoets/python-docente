@@ -7,62 +7,116 @@
 Consolidare il secondo blocco del corso:
 
 ```text
-stringhe
-→ liste
-→ mutabilità
+str come sequenza immutabile
+→ algoritmi su testo
+→ list mutabile
 → alias/copie
 → tuple/unpacking
-→ dati tabellari/matrici
+→ dati tabellari
 ```
 
-Il checkpoint può ospitare recupero, mini-project e parte della preparazione alla prova teorico/scritta V3.
+Il checkpoint può ospitare recupero, mini-project e preparazione alla prova teorico/scritta V3.
 
-## Competenze da verificare
+Non serve usare tutte le strutture e tutti i metodi nello stesso esercizio: il checkpoint misura soprattutto **scelta e comprensione del modello**.
+
+---
+
+# 1. Competenze raggruppate
+
+## A — Sequenze testuali
 
 Devi saper:
 
-- usare `str` come sequenza immutabile;
-- usare indici/slicing e casi limite;
-- scegliere membership/metodi/loop;
-- normalizzare testo consapevolmente;
-- usare liste e metodi essenziali;
-- distinguere mutazione e nuovo valore;
-- spiegare alias vs copia superficiale;
+- usare indici/slicing;
+- spiegare immutabilità;
+- iterare su una stringa;
+- scegliere una normalizzazione coerente;
+- costruire un piccolo algoritmo su testo;
+- progettare casi limite.
+
+## B — Mutabilità e riferimenti
+
+Devi saper:
+
+- spiegare `list` mutabile vs `str` immutabile;
+- prevedere una mutazione;
+- distinguere alias e copia esterna;
 - evitare mutazioni strutturali ingenue durante iterazione;
-- usare `sort()` vs `sorted()`;
-- usare tuple e unpacking;
+- verificare se una funzione muta o non muta l'input secondo il contratto.
+
+## C — Operazioni sulle liste
+
+Devi saper:
+
+- costruire una lista con `append`;
+- attraversarla in modo appropriato;
+- filtrare/trasformare costruendo un nuovo risultato;
+- distinguere `sort()` e `sorted()`.
+
+Non devi ricordare a memoria ogni metodo visto come guided/enrichment.
+
+## D — Modello dati
+
+Devi saper:
+
+- usare tuple/unpacking semplici;
 - scegliere list vs tuple;
 - costruire/attraversare una lista di liste;
-- diagnosticare righe alias in una matrice;
-- usare funzioni e test su queste strutture.
+- riconoscere righe condivise involontariamente;
+- motivare la struttura scelta.
 
-## Mini-project candidato
+## E — Metodo di lavoro
 
-Un piccolo **registro/tabella dati** con:
+Devi continuare a usare:
 
-- input già controllato o fixture fornita;
-- almeno una stringa da normalizzare;
+- funzioni;
+- casi/assert;
+- trace;
+- debug;
+- spiegazione della scelta.
+
+---
+
+# 2. Mini-project candidato
+
+Un piccolo registro/tabella dati può contenere, **solo quando il dominio lo richiede**:
+
+- testo da normalizzare;
 - una lista principale;
-- tuple o righe tabellari quando appropriate;
-- almeno 3 funzioni;
+- tuple o righe tabellari;
+- 2–4 funzioni;
 - ricerca/aggregazione;
-- almeno 5 casi di test/assert;
+- almeno 5 casi complessivi;
 - spiegazione della struttura dati scelta.
 
-Il dominio può essere voti, temperature, posti, prodotti o altro problema equivalente.
+Non forzare contemporaneamente:
 
-## Error Clinic obbligatoria
+```text
+stringa + lista + tuple + matrice
+```
 
-Riconosci almeno uno dei seguenti bug:
+solo per “coprire tutto”.
 
-- metodo mutante assegnato (`lista = lista.append(...)` / `sort()`);
+Un buon progetto dimostra che hai scelto la struttura giusta, non che hai usato il maggior numero di feature.
+
+---
+
+# 3. Error Clinic
+
+Devi saper diagnosticare almeno alcuni bug rappresentativi:
+
+- metodo mutante assegnato (`lista = lista.append(...)` / `lista = lista.sort()`);
 - alias involontario;
 - rimozione mentre iteri;
 - indice/slice errato;
 - matrice costruita con righe condivise;
-- tupla/lista scelta senza coerenza col requisito.
+- list/tuple scelta senza coerenza col requisito.
 
-## Preparazione V3
+La diagnosi deve spiegare **perché** il modello è sbagliato, non soltanto fornire la riga corretta.
+
+---
+
+# 4. Preparazione V3
 
 La prova teorico/scritta successiva potrà chiedere:
 
@@ -74,25 +128,42 @@ La prova teorico/scritta successiva potrà chiedere:
 - correzione di bug;
 - motivazione della struttura.
 
-## Git
+Dettagli enrichment non svolti realmente in classe non entrano automaticamente nella prova.
 
-Git resta workflow di processo:
+---
+
+# 5. Git G1 — riuso, non nuovo contenuto
+
+Checkpoint B non introduce G2 e non aggiunge nuovi comandi Git.
+
+Se il mini-project usa Git, riusa il workflow G1 già acquisito:
 
 ```text
-status → diff → test → commit significativo
+git status
+→ git diff
+→ test
+→ git add <path>
+→ git diff --staged
+→ git commit
+→ git status
+→ git log / git show
 ```
 
-Non introduce nuovi comandi G2 in questo checkpoint.
+Git resta evidence di processo. La difficoltà principale del checkpoint è Python/modellazione dati, non il versionamento.
 
-## Dopo il checkpoint
+Se lo stato Git è inatteso, usa la remediation G1 canonica invece di comandi distruttivi improvvisati.
+
+---
+
+# 6. Dopo il checkpoint
 
 Entrano strutture con semantiche diverse dalla semplice sequenza:
 
 ```text
 set  → unicità / membership
- dict → chiave → valore / lookup
+dict → chiave → valore / lookup
 ```
 
 La domanda diventa:
 
-> quale struttura rende naturali le operazioni dominanti del problema?
+> quali operazioni devo fare più spesso e quale struttura le rende naturali?
