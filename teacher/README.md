@@ -26,37 +26,41 @@ Questo indice è il punto di ingresso del docente per progettazione, conduzione 
 - M07: [`07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md) · [slide](../slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md) · [runbook](M07_RUNBOOK.md).
 - M08: [`08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md) · [slide](../slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md) · [runbook](M08_RUNBOOK.md).
 
-M06–M08 coprono soglie/confronti → `elif` vs `if` indipendenti → `and/or/not` → annidamento/validazione/refactoring.
-
-### PY2-04 — iterazione e pattern
+### PY2-04 — iterazione e pattern — **editorialmente completa**
 
 #### M09 — `while`, stato, sentinelle e validazione ripetuta
-
 - lesson: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
 - slide: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../slides/python/modules/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
 - runbook: [`M09_RUNBOOK.md`](M09_RUNBOOK.md)
 
-Nucleo: stato iniziale → condizione → corpo → aggiornamento → terminazione spiegabile. Validazione ripetuta e sentinella sono core; `while True` + `break` è variante successiva.
-
 #### M10 — `for`, `range` e scelta `for` vs `while`
-
 - lesson: [`10_FOR_RANGE_SCELTA_CICLO.md`](../content/python/10_FOR_RANGE_SCELTA_CICLO.md)
 - slide: [`10_FOR_RANGE_SCELTA_CICLO.md`](../slides/python/modules/10_FOR_RANGE_SCELTA_CICLO.md)
 - runbook: [`M10_RUNBOOK.md`](M10_RUNBOOK.md)
 
-Nucleo:
+#### M11 — contatori, accumulatori, min/max, ricerca e flag
+- lesson: [`11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md`](../content/python/11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md)
+- slide: [`11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md`](../slides/python/modules/11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md)
+- runbook: [`M11_RUNBOOK.md`](M11_RUNBOOK.md)
+
+Nucleo M11: stato progressivo e invarianti intuitivi. Evitare sentinelle arbitrarie per min/max; distinguere primo match/esistenza/conteggio di tutti i match; flag soltanto quando aggiunge significato.
+
+#### M12 — cicli annidati, griglie e costo del lavoro
+- lesson: [`12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md`](../content/python/12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md)
+- slide: [`12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md`](../slides/python/modules/12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md)
+- runbook: [`M12_RUNBOOK.md`](M12_RUNBOOK.md)
+
+Nucleo M12:
 
 ```text
-range → start incluso / stop escluso / step
-for   → percorso o numero di iterazioni noto
-while → durata dipendente dallo stato
+R righe × C colonne → R × C esecuzioni del corpo interno
 ```
 
-Off-by-one, range vuoto, step negativo, refactoring `while`→`for`, stato ridondante e uso disciplinato di `break`/`continue` sono competenze esplicite. Romeo `y1-u15-ciclo-for` resta applicazione opzionale con simulatore certificato.
+Il costo viene trattato come quantità di lavoro osservabile, non come Big-O formale. Ordine dei criteri: correttezza → comprensibilità → struttura adatta → lavoro chiaramente inutile → efficienza quando rilevante.
 
 ## Policy Activity
 
-Solo M04 materializza una nuova Activity P1. M05–M10 contengono Activity candidate/esercizi, ma non aggiungono Activity autogradate finché `python-docente#7` non certifica il canarino.
+Solo M04 materializza una nuova Activity P1. M05–M12 contengono Activity candidate/esercizi, ma non aggiungono Activity autogradate finché `python-docente#7` non certifica il canarino.
 
 Romeo non viene duplicato dentro questo repo: le missioni restano nel repository Romeo e vengono referenziate/adattate solo dopo certificazione `romeo-sim`.
 
@@ -122,4 +126,6 @@ lesson
 + QA
 ```
 
-Nuove Activity autogradate soltanto quando il relativo profilo è certificato. Il prossimo modulo è M11: contatori, accumulatori, minimo/massimo progressivo, ricerca e flag.
+Nuove Activity autogradate soltanto quando il relativo profilo è certificato.
+
+Il prossimo blocco è **PY2-05 — funzioni, decomposizione e testing (M13–M16)**. Qui entra la necessità concreta del profilo P2 per testare direttamente il comportamento delle funzioni senza deformare gli esercizi in stdin/stdout.
