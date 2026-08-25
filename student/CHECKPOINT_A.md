@@ -1,6 +1,6 @@
 # Checkpoint A — Consolidamento del primo nucleo
 
-> Stato: **draft controllato**. La parte Git G1 sarà riallineata alle dispense docente prima della promozione editoriale.
+> Stato: **draft controllato / Git G1 consumer collegato al corso canonico**.
 
 ## Dove siamo
 
@@ -132,52 +132,53 @@ Prima della consegna controlla:
 
 # 5. Primo checkpoint Git G1
 
-Git è un curriculum separato, ma da questo checkpoint iniziamo a usarne il livello G1 nel lavoro Python.
+Git è un corso separato. Da qui il corso Python **consuma** alcune competenze del livello G1 senza ricopiare le lezioni Git.
 
-Workflow target:
+Source of truth:
+
+```text
+TheBitPoets/git
+G1 — Local Git
+```
+
+Per questo checkpoint userai in TheBitLab le lesson canoniche G1-M02…G1-M06 e, quando assegnata, l'Activity:
+
+```text
+g1-stage-selettivo-001
+```
+
+Workflow guidato:
 
 ```text
 git status
 → git diff
-→ test
-→ git add
+→ esegui i test
+→ git add <path>
+→ git diff --staged
 → git commit
+→ git status
 → git log
 ```
 
-## `git status`
-
-Serve a vedere quali file sono modificati/non tracciati e lo stato del workspace.
-
-## `git diff`
-
-Serve a vedere che cosa è cambiato rispetto allo stato precedente.
-
-## `git add`
-
-Seleziona le modifiche che vuoi includere nel prossimo checkpoint.
-
-## `git commit`
-
-Registra uno stato significativo con un messaggio comprensibile.
-
-Esempio di messaggio:
+L'obiettivo non è memorizzare una sequenza di comandi. Devi capire che stai passando da:
 
 ```text
-Complete first functions checkpoint
+modifiche nel working tree
+→ modifiche scelte nell'index
+→ checkpoint registrato nella storia
 ```
 
-oppure, se il corso usa convenzioni italiane:
+Prima del commit devi saper spiegare:
 
-```text
-Completa checkpoint funzioni e test
-```
+- quali file sono cambiati;
+- che cosa mostra il diff;
+- quali modifiche stai preparando;
+- perché i test sono verdi;
+- che cosa racconterà il commit.
 
-## `git log`
+Dopo il commit devi saper riconoscere il nuovo checkpoint nella storia.
 
-Mostra la storia dei checkpoint registrati.
-
-La sintassi/guida definitiva G1 verrà fornita dal corso Git/dispensa canonica integrata in TheBitLab.
+Per spiegazioni e recovery usa sempre il materiale Git G1 canonico fornito nel Course Workspace/TheBitLab.
 
 ---
 
@@ -185,15 +186,23 @@ La sintassi/guida definitiva G1 verrà fornita dal corso Git/dispensa canonica i
 
 Non sono richiesti in questo checkpoint:
 
-- branch avanzati;
-- merge/rebase;
+- branch e merge;
+- rebase;
 - pull request;
-- reset/reflog;
-- stash;
-- remote workflow complessi;
-- CI/CD.
+- remotes/push/pull;
+- reset/reflog avanzati;
+- Git internals.
 
 Questi appartengono ai livelli successivi del curriculum Git.
+
+Se lo stato del repository non è quello atteso:
+
+```text
+non usare comandi distruttivi a caso
+→ leggi status
+→ osserva diff / diff --staged
+→ segui la procedura G1 di recovery
+```
 
 ---
 
@@ -209,4 +218,4 @@ testo come sequenza
 → poi liste e altre strutture dati
 ```
 
-Il controllo del flusso e le funzioni non scompaiono: verranno riusati continuamente.
+Funzioni, test e Git non scompaiono: diventano strumenti trasversali che userai progressivamente nei progetti successivi.
