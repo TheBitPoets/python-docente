@@ -62,7 +62,22 @@ M05 propone esercizi pratici su quoziente/resto, tempo, precedenza, debug e prim
 
 ### PY2-03 — Selezione e logica
 
-Il materiale finale verrà prodotto nel passo successivo. M05 prepara il ponte da espressioni numeriche a confronti e valori booleani usati da `if`.
+#### M06 — Booleani, confronti e prima selezione con `if`
+
+Stato: **draft editoriale**.
+
+1. Studia la lesson: [`content/python/06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md).
+2. Usa le slide: [`slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md).
+3. Prima del codice traduci parole come `almeno`, `al massimo`, `più di`, `meno di` nell'operatore di confronto corretto.
+4. Per ogni soglia prova almeno un caso sotto, uno esattamente sul confine e uno sopra.
+5. Devi saper spiegare `=` vs `==`, il ruolo dell'indentazione e perché un ramo `if` può essere saltato senza che ci sia un errore.
+6. Il flow chart resta il modello della decisione: Python cambia la notazione, non la logica.
+
+Romeo può comparire solo come applicazione opzionale dopo gli esercizi generali, tramite `romeo-sim` certificato; non serve hardware fisico per comprendere M06.
+
+#### M07 — `elif`, casi esclusivi e logica composta
+
+Stato: **prossimo modulo da materializzare**.
 
 ## Metodo del corso
 
