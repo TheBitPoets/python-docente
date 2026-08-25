@@ -20,73 +20,142 @@ la domanda dominante è membership?
 servono unione/intersezione/differenza?
 ```
 
-## Ora teoria attiva 1
+---
 
-1. `{}` vs `set()`.
-2. Unicità.
-3. Membership.
-4. `add`, `remove`, `discard`.
-5. Set vs list da specifiche brevi.
+# Priorità didattica
 
-## Ora teoria attiva 2
+## MUST MASTER
 
-1. Unione/intersezione/differenza.
-2. Problemi con gruppi/tag/iscrizioni.
-3. Hashability beginner.
-4. Perché non usare indice/slicing.
-5. Perché non fare affidamento sull'ordine del set.
+1. spiegare che il set rappresenta valori distinti e non una sequenza indicizzata;
+2. creare un set e un set vuoto con `set()`;
+3. sapere che `{}` crea un dict vuoto;
+4. usare membership `in/not in`;
+5. aggiungere con `add()`;
+6. usare unione/intersezione/differenza in problemi naturali;
+7. scegliere `set` vs `list` in base a ordine, duplicati e membership;
+8. non dipendere da indici/posizioni del set.
 
-## Laboratorio
+## GUIDED EXPOSURE
+
+- `remove()` vs `discard()`;
+- concetto beginner di elemento hashable;
+- deduplicazione `set(lista)` con discussione sull'eventuale perdita di informazione d'ordine.
+
+## ENRICHMENT / BACKUP
+
+- symmetric difference;
+- subset/superset;
+- tuple hashable come elemento;
+- confronto qualitativo membership list/set.
+
+Hashability deve impedire errori concettuali, non aprire un mini-corso sugli hash table.
+
+---
+
+# Ora teoria attiva 1 — semantica del set
+
+1. `{}` vs `set()` come Error Clinic breve.
+2. Unicità con esempi concreti.
+3. Membership come domanda naturale.
+4. `add()` come mutazione core.
+5. Scelte list/set da specifiche brevi.
+
+Solo se la semantica è stabile, mostrare `remove/discard` come guided exposure legato al contratto.
+
+---
+
+# Ora teoria attiva 2 — operazioni insiemistiche
+
+1. Unione su gruppi/tag.
+2. Intersezione su appartenenza comune.
+3. Differenza con attenzione all'ordine degli operandi.
+4. Confronto list vs set.
+5. Nota breve: non fare affidamento su posizione/indice/ordine come proprietà del modello set.
+
+Hashability compare alla fine come spiegazione di un errore concreto, non come teoria autonoma.
+
+---
+
+# Laboratorio
 
 - set microscope;
 - deduplicazione con discussione sull'ordine;
 - problemi insiemistici;
 - scelta list/set motivata;
-- Debug Clinic su `{}`, remove/discard, ordine e valori non hashable.
+- Debug Clinic su `{}`, ordine e uso dell'indice;
+- `remove/discard` soltanto come variante guidata se realmente svolti.
 
-## Misconception watchlist
+---
+
+# Minimum mastery gate — prima di M24
+
+Considerare M23 consolidato quando lo studente riesce a:
+
+- creare correttamente un set vuoto/non vuoto;
+- spiegare unicità e membership;
+- usare `add()`;
+- calcolare/interpretare unione, intersezione e differenza in casi semplici;
+- scegliere list/set e motivarlo;
+- spiegare perché indice/slicing non appartengono al modello set;
+- riconoscere che convertire a set può perdere informazione importante se ordine/duplicati erano requisiti.
+
+`remove/discard`, tuple hashable e symmetric difference non devono dominare il gate.
+
+---
+
+# Misconception watchlist
 
 - `{}` = set vuoto;
 - set = lista senza duplicati;
-- iterazione del set come ordine significativo;
-- `remove` e `discard` sinonimi;
-- list dentro set ammessa;
-- conversione a set usata quando l'ordine della prima occorrenza è requisito.
+- ordine di iterazione usato come dato significativo;
+- `remove` e `discard` trattati come un nuovo blocco da memorizzare;
+- list dentro set usata senza capire l'errore;
+- conversione a set quando l'ordine della prima occorrenza è requisito.
 
-## Differenziazione
+---
 
-### Recupero
+# Differenziazione
+
+## Recupero
 
 - set piccoli di stringhe/interi;
 - Venn diagram su carta;
 - una operazione insiemistica alla volta;
-- nessuna tuple-key finché il set base non è stabile.
+- scelta list/set con tabella ordine/duplicati/membership.
 
-### Enrichment
+## Enrichment
 
 - symmetric difference;
 - subset/superset;
-- tuple hashable come elemento;
+- tuple hashable;
 - confronto membership list/set solo qualitativo.
 
-## Evidence docente
+---
+
+# Evidence docente
 
 Raccogliere:
 
 - creazione set corretta;
 - una scelta list/set;
 - unione/intersezione/differenza;
-- debug `{}` o ordine;
-- spiegazione di hashability a livello beginner.
+- debug `{}` o uso improprio dell'ordine;
+- spiegazione del modello “valori distinti + appartenenza”.
 
-## Cosa NON anticipare
+Hashability può essere evidence solo se realmente approfondita.
+
+---
+
+# Cosa NON anticipare
 
 - frozenset come core;
 - internals hash table;
 - Big-O formale;
 - dict prima che set/unicità sia compreso.
 
-## Handoff a M24
+---
+
+# Handoff a M24
 
 Il set risponde bene a:
 
