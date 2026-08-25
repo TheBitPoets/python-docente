@@ -12,6 +12,25 @@ PY2-04 — Iterazione e pattern algoritmici
 
 ---
 
+# Che cosa deve restare davvero?
+
+## MUST MASTER
+
+```text
+stato iniziale
+condizione
+corpo
+aggiornamento
+terminazione
+zero / una / più iterazioni
+validazione ripetuta
+sentinella
+```
+
+`while True` + `break` è **enrichment**, non requisito del checkpoint.
+
+---
+
 # Dal problema precedente
 
 M08 sapeva rilevare:
@@ -241,7 +260,7 @@ Produce anche `3`.
 
 ---
 
-# `while True` + `break`
+# ENRICHMENT / BACKUP — `while True` + `break`
 
 È possibile:
 
@@ -255,6 +274,8 @@ while True:
 Ma non è la forma introduttiva primaria.
 
 > Devi comunque spiegare dove e perché termina.
+
+Usala solo se il modello stato/condizione/aggiornamento è già stabile.
 
 ---
 
@@ -283,7 +304,7 @@ M04 resta il canarino P1.
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
 1. Quali sono le quattro parti del ciclo?
 2. Perché il ciclo può terminare?
@@ -291,7 +312,9 @@ M04 resta il canarino P1.
 4. Qual è l'aggiornamento nella validazione?
 5. Che cos'è una sentinella?
 6. Perché un aggiornamento in un solo ramo è rischioso?
-7. Quando può avere senso `while True` + `break`?
+7. Quale input espone un off-by-one semplice?
+
+`while True` + `break` non fa parte del checkpoint ordinario.
 
 ---
 
