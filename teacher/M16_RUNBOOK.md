@@ -52,7 +52,7 @@ assert doppio(-2) == -4
 - **D — Regression:** bug → test rosso → fix → tutti verdi.
 - **E — Refactor:** migliorare struttura mantenendo gli stessi test.
 
-Se Git managed è disponibile, osservare il refactoring con `git diff`.
+Durante fix/refactor, se il profilo managed è disponibile, usare gli outcome G1 `G1.OBSERVE.STATUS` e `G1.OBSERVE.DIFF` per osservare lo stato e il cambiamento.
 
 ## Misconception watchlist
 
@@ -87,7 +87,8 @@ Raccogliere almeno:
 - un caso di confine;
 - un regression test aggiunto prima del fix;
 - riesecuzione completa dopo il fix;
-- refactoring con comportamento preservato.
+- refactoring con comportamento preservato;
+- lettura di `git diff` del cambiamento quando Git managed è disponibile.
 
 ## P2 TheBitLab
 
@@ -99,20 +100,26 @@ Fino alla certificazione:
 - evidence manuale/formativa;
 - nessun parser fragile del codice.
 
-## Git G1 / Checkpoint A
+## Git G1 / handoff al Checkpoint A
 
-M16 prepara il primo checkpoint Git guidato:
+M16 chiude la fase Observe e prepara il workflow G1 guidato del Checkpoint A.
+
+La fonte canonica è `TheBitPoets/git`; Python non duplica le lesson. Il contratto locale è `config/git-g1-consumer.json`.
+
+Al Checkpoint A il workflow sarà:
 
 ```text
 git status
 → git diff
 → test
-→ git add
+→ git add <path>
+→ git diff --staged
 → git commit
-→ git log essenziale
+→ git status
+→ git log / git show
 ```
 
-Il materiale Git canonico resta separato dal corso Python.
+Gli outcome aggiunti al checkpoint sono staging intenzionale, commit intenzionale, lettura della storia e modello beginner `HEAD → branch corrente → commit corrente`.
 
 ## Cosa NON anticipare
 
@@ -120,7 +127,8 @@ Il materiale Git canonico resta separato dal corso Python.
 - fixtures, parametrizzazione e mocking;
 - coverage numerica;
 - property-based testing;
-- CI obbligatoria.
+- CI obbligatoria;
+- branch/merge/rebase/remotes come outcome Python.
 
 ## Exit checkpoint PY2-05
 
@@ -136,6 +144,7 @@ Prima del Checkpoint A lo studente dovrebbe saper:
 8. scrivere contratti intuitivi;
 9. trasformare casi in `assert`;
 10. aggiungere un regression test;
-11. refactorare con test verdi.
+11. refactorare con test verdi;
+12. osservare stato e diff del proprio cambiamento in modo guidato.
 
-Dopo il Checkpoint A il corso passa a stringhe e sequenze testuali.
+Dopo il Checkpoint A il corso passa a stringhe e sequenze testuali, mantenendo funzioni, test e Git come workflow trasversali.
