@@ -9,6 +9,17 @@ permissions:
   contents: read
 
 jobs:
+  runner-diagnostic:
+    name: runner-diagnostic (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Prove hosted runner can execute a shell step
+        run: echo "GitHub-hosted runner started"
+
   python-vertical-slice:
     strategy:
       fail-fast: false
