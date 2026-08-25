@@ -13,79 +13,64 @@ Questo indice è il punto di ingresso del docente per progettazione, conduzione 
 5. [`doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`](../doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md) — P0/P1/P2/P3/P4.
 6. [`doc/THEBITLAB_AUTHORING_COMPATIBILITY.md`](../doc/THEBITLAB_AUTHORING_COMPATIBILITY.md) — Course Workspace ↔ dashboard ↔ Git.
 
-`CURRICULUM_FREEZE_2026_2027.md` è il documento curricolare autorevole.
-
 ## Moduli editoriali materializzati
 
-### M04 — Interprete, REPL, script, valori e input/output
-
-- lesson: [`content/python/04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md)
-- slide: [`slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md)
+### M04 — Interprete, REPL, valori e I/O
+- lesson: [`04_INTERPRETE_REPL_VALORI_IO.md`](../content/python/04_INTERPRETE_REPL_VALORI_IO.md)
+- slide: [`04_INTERPRETE_REPL_VALORI_IO.md`](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md)
 - runbook: [`M04_RUNBOOK.md`](M04_RUNBOOK.md)
 - Activity canarino: `py2-activity-b-input-somma-001`
-- certificazione: `python-docente#7`
-- blocker CI privati: `python-docente#8`
-
-M04 resta il **golden vertical slice tecnico**.
 
 ### M05 — Espressioni, operatori e prime funzioni
-
-- lesson: [`content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
-- slide: [`slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
+- lesson: [`05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
+- slide: [`05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md)
 - runbook: [`M05_RUNBOOK.md`](M05_RUNBOOK.md)
 
-Focus: espressioni, `/ // %`, precedenza, f-string/built-in essenziali, prima funzione pura e preview `return` vs `print`.
-
-### M06 — Booleani, confronti e prima selezione con `if`
-
-- lesson: [`content/python/06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md)
-- slide: [`slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md)
+### M06 — Booleani, confronti e `if`
+- lesson: [`06_BOOLEANI_CONFRONTI_IF.md`](../content/python/06_BOOLEANI_CONFRONTI_IF.md)
+- slide: [`06_BOOLEANI_CONFRONTI_IF.md`](../slides/python/modules/06_BOOLEANI_CONFRONTI_IF.md)
 - runbook: [`M06_RUNBOOK.md`](M06_RUNBOOK.md)
 
-Focus: soglie → confronto → `bool` → `if/else` → indentazione → trace → test sotto/sulla/sopra confine. Romeo soltanto applicazione opzionale tramite missione pinned `romeo-y1-u14-condizioni` quando il runtime è certificato.
-
-### M07 — `elif`, casi esclusivi e condizioni composte
-
-- lesson: [`content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
-- slide: [`slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
+### M07 — `elif`, casi esclusivi e logica composta
+- lesson: [`07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
+- slide: [`07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md`](../slides/python/modules/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md)
 - runbook: [`M07_RUNBOOK.md`](M07_RUNBOOK.md)
 
-Nucleo:
-
-```text
-un solo risultato → if/elif/else
-più effetti possibili → if indipendenti
-and/or/not → compongono condizioni
-```
-
-Short-circuit è solo intuizione controllata; chained comparisons arrivano dopo la forma logica con `and`.
-
 ### M08 — Annidamento, validazione e refactoring
-
-- lesson: [`content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
-- slide: [`slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
+- lesson: [`08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
+- slide: [`08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md`](../slides/python/modules/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md)
 - runbook: [`M08_RUNBOOK.md`](M08_RUNBOOK.md)
 
-Nucleo:
+M06–M08 materializzano tutta PY2-03: soglie/confronti → scelta della struttura (`elif` vs `if` indipendenti) → logica composta → annidamento/validazione/refactoring.
+
+### M09 — `while`, stato, sentinelle e validazione ripetuta
+- lesson: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
+- slide: [`09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md`](../slides/python/modules/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md)
+- runbook: [`M09_RUNBOOK.md`](M09_RUNBOOK.md)
+
+Nucleo M09:
 
 ```text
-dipendenza reale tra decisioni
-→ annidamento/path trace
-→ validazione prima della classificazione
-→ refactoring protetto dagli stessi test
+stato iniziale
+→ condizione di continuazione
+→ corpo
+→ aggiornamento
+→ terminazione spiegabile
 ```
 
-M08 **non** introduce ancora `while` per ripetere input e non introduce `try/except`: distingue deliberatamente valore fuori dominio da conversione fallita.
+La validazione M08 diventa ora ripetibile con `while`. Sentinelle, zero/una/più iterazioni, aggiornamento su tutti i path e debug dei cicli infiniti sono core. `while True` + `break` è solo variante dopo il modello esplicito.
+
+Romeo può usare il riferimento pinned `romeo-y1-u16-ciclo-while` come applicazione opzionale, soltanto con `romeo-sim` certificato.
 
 ## Policy Activity durante questa fase
 
-Solo M04 materializza una nuova Activity P1. M05–M08 contengono Activity candidate ed esercizi pratici, ma non aggiungono nuove Activity autogradate fino a quando `python-docente#7` non dà evidenza sul canarino P1.
+Solo M04 materializza una nuova Activity P1. M05–M09 contengono Activity candidate/esercizi, ma non aggiungono Activity autogradate fino a quando `python-docente#7` non certifica il canarino.
 
-Romeo non viene duplicato dentro questo repo: le missioni restano nel repo Romeo e vengono referenziate/adattate soltanto dopo certificazione `romeo-sim`.
+Romeo non viene duplicato dentro questo repo: missioni/scenari restano nel repository Romeo e vengono usati solo attraverso riferimenti/adattamenti approvati.
 
 ## Change-control
 
-Dopo il freeze, modifiche a lesson, slide, Activity, rubric, tooling, runner e UX sono **delivery changes** finché non cambiano outcome obbligatori, prerequisiti core, ordine necessario, ore core sostanziali, OOP obbligatoria o ruolo di Git/Container/Romeo.
+Dopo il freeze, lesson, slide, Activity, rubric, tooling, runner e UX sono delivery changes finché non cambiano outcome obbligatori, prerequisiti core, ordine necessario, ore core sostanziali, OOP obbligatoria o ruolo curricolare di Git/Container/Romeo.
 
 ## Course Board / Content Pack
 
@@ -118,13 +103,13 @@ Blocker principali:
 
 ## QA authoring
 
-`tests/course_authoring_catalog.py` controlla in modo scalabile i moduli materializzati: lesson, Marp deck, runbook, navigazione, provenance, Course Board source e Activity dichiarate.
+`tests/course_authoring_catalog.py` controlla tutti i moduli materializzati: lesson, Marp deck, runbook, navigazione, provenance, Course Board source e Activity dichiarate.
 
-M04 conserva i gate tecnici specifici; M05 conserva un controllo pedagogico dedicato. La CI non ha ancora evidenza perché i runner privati falliscono prima degli step; `steps: null` non è un PASS/FAIL dei test.
+M04 conserva i gate tecnici specifici; M05 conserva un controllo pedagogico dedicato. L'assenza di runner Actions non equivale a PASS/FAIL del contenuto.
 
 ## Diagnosi CI #8
 
-Un job diagnostico composto solo da `runs-on` + `echo`, senza action esterne, fallisce pre-step su Ubuntu e Windows. Inoltre il private repo TPSI4 aveva CI verde il 19 agosto e lo stesso failure dal 21. La causa più probabile è quota/budget Actions dei repository privati, da verificare nelle impostazioni Billing/Actions dell'organizzazione; non va “corretta” indebolendo lo YAML.
+Un job con soltanto `runs-on` + `echo`, senza action esterne, fallisce pre-step su Ubuntu/Windows. Il private repo TPSI4 aveva CI verde il 19 agosto e lo stesso problema dal 21: quota/budget Actions dei repository privati è l'ipotesi principale, da verificare nelle impostazioni organizzazione. Non indebolire lo YAML per nascondere il problema.
 
 ## Git e Container
 
@@ -132,7 +117,7 @@ Git e Container restano curricula separati. Git G1 entra progressivamente in Pyt
 
 ## Criterio di produzione
 
-Possiamo continuare **modulo per modulo**:
+Continuiamo un modulo alla volta:
 
 ```text
 lesson
@@ -143,4 +128,4 @@ lesson
 + QA
 ```
 
-Nuove Activity autogradate soltanto quando il relativo profilo di grading è certificato.
+Nuove Activity autogradate soltanto quando il relativo profilo è certificato. Il prossimo modulo è M10 (`for`, `range`, scelta `for` vs `while`).
