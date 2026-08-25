@@ -8,7 +8,8 @@
       "path": "content/python",
       "files": [
         "04_INTERPRETE_REPL_VALORI_IO.md",
-        "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"
+        "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
+        "06_BOOLEANI_CONFRONTI_IF.md"
       ],
       "indexing_status": "ready"
     },
