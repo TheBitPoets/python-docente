@@ -12,10 +12,12 @@ Stato: draft editoriale controllato.
 Portare gli studenti dal semplice “so usare un ciclo” a:
 
 ```text
-so quale stato devo mantenere
-→ so perché viene aggiornato
+so quale informazione deve sopravvivere
+→ scelgo una variabile che la rappresenta
+→ la inizializzo correttamente
+→ la aggiorno quando serve
 → so quale proprietà deve restare vera
-→ so scegliere casi che possono romperla
+→ scelgo casi che possono romperla
 ```
 
 Il lessico chiave del modulo è **invariante intuitivo**. Non serve formalismo matematico: basta una frase corretta sulla variabile dopo ogni iterazione.
@@ -27,11 +29,45 @@ Esempi:
 - `minimo` = più piccolo valore visto finora;
 - `trovato` = almeno un match è comparso finora.
 
+**Non insegnare questi casi come quattro/cinque ricette indipendenti.** Sono varianti dello stesso problema: che cosa deve ricordare il ciclo?
+
+---
+
+# Priorità didattica
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. distinguere contatore e accumulatore dal significato dello stato;
+2. inizializzare lo stato prima/al livello corretto del ciclo;
+3. usare `if` per decidere se aggiornare lo stato;
+4. scrivere una frase-invariante semplice;
+5. mantenere min/max progressivo partendo da un dato reale quando il contratto garantisce almeno un elemento;
+6. evitare sentinelle numeriche arbitrarie non garantite dal dominio;
+7. distinguere `esiste?`, `primo match?`, `quanti match?`;
+8. usare un flag semplice per rappresentare “almeno un match visto finora”;
+9. riconoscere un flag che aggiunge solo meccanica;
+10. evitare una divisione per zero quando una media dipende dal conteggio dei valori validi.
+
+## GUIDED EXPOSURE
+
+- `break` come alternativa per il primo match quando il contratto permette di fermarsi;
+- confronto flag vs stop anticipato;
+- media condizionale come applicazione di contatore + accumulatore.
+
+## ENRICHMENT / BACKUP
+
+- posizione del primo match;
+- confronto caso migliore/peggiore in linguaggio naturale;
+- due implementazioni equivalenti della ricerca;
+- Romeo come dominio di conteggio/ricerca.
+
 ---
 
 # Ritmo consigliato — settimana 11
 
-## Ora teoria attiva 1 — contatore e accumulatore
+## Ora teoria attiva 1 — stato progressivo: contatore e accumulatore
 
 ### 0–10 min — richiamo
 
@@ -39,11 +75,15 @@ Riprendere `for` e chiedere:
 
 > Se il ciclo passa su dieci valori, che cosa devo ricordare tra un valore e il successivo?
 
+Scrivere sempre prima la frase che descrive lo stato.
+
 ### 10–25 min — contatore
 
 Costruire “quanti positivi?” con trace su 3–4 valori.
 
-Far verbalizzare l'invariante prima di mostrare la soluzione finale.
+Prima della soluzione finale, ottenere dalla classe:
+
+> `conteggio` = quanti positivi ho visto finora.
 
 ### 25–40 min — accumulatore
 
@@ -51,9 +91,13 @@ Costruire “somma dei valori” e poi “somma dei soli validi”.
 
 Bug obbligatorio: reset del totale dentro il ciclo.
 
-### 40–55 min — combinazione
+Domanda:
 
-Somma + conteggio → media condizionale.
+> quale frase non è più vera dopo il reset?
+
+### 40–55 min — contatore + accumulatore
+
+Somma dei validi + numero dei validi. La media è una **applicazione**, non un nuovo pattern.
 
 Far emergere il caso `conteggio == 0` prima di eseguire.
 
@@ -63,9 +107,9 @@ Dato un piccolo codice, lo studente scrive in una frase che cosa rappresentano l
 
 ---
 
-# Ora teoria attiva 2 — min/max, ricerca e flag
+# Ora teoria attiva 2 — stessa idea, stato diverso: min/max e ricerca
 
-## 0–15 min — minimo progressivo
+## 0–18 min — minimo progressivo
 
 Presentare deliberatamente:
 
@@ -77,63 +121,82 @@ Chiedere:
 
 > quale assunzione nascosta contiene?
 
-Poi passare all'inizializzazione con il primo dato quando il contratto garantisce almeno un valore.
+Poi usare il primo dato quando il contratto garantisce almeno un valore.
 
-## 15–30 min — massimo e invarianti
+Invariante:
 
-Confrontare minimo/massimo come stesso schema con relazione opposta.
+> `minimo` = più piccolo valore visto finora.
 
-## 30–45 min — ricerca
+Il massimo è lo stesso modello con confronto opposto: non serve ripartire da zero come se fosse un nuovo algoritmo.
 
-Separare esplicitamente:
+## 18–35 min — ricerca: prima la domanda
 
-- esiste?;
-- primo match?;
-- quanti match?;
-- tutti i match?.
+Separare:
 
-Far scegliere se serve flag, conteggio o possibile stop anticipato.
+```text
+esiste almeno un match?
+qual è il primo match?
+quanti match?
+```
 
-## 45–55 min — flag utile vs ridondante
+Per ogni richiesta chiedere quale stato serve davvero.
 
-Mostrare un caso in cui il flag serve dopo il ciclo e uno in cui aggiunge solo meccanica.
+## 35–48 min — flag
 
-### Exit micro-check
+Costruire:
 
-Tre specifiche brevi: scegliere `conteggio`, `totale`, `minimo/massimo`, `flag` o ricerca e motivare in una riga.
+```python
+trovato = False
+```
+
+poi l'invariante:
+
+> `trovato` dice se almeno un match è comparso finora.
+
+Mostrare anche un esempio di flag ridondante.
+
+## 48–60 min — retrieval integrato
+
+Tre specifiche brevi. Per ciascuna lo studente deve indicare:
+
+```text
+stato necessario
+valore iniziale
+quando cambia
+frase-invariante
+caso che può rompere la soluzione
+```
+
+### Solo se il core è stabile
+
+Mostrare `break` come alternativa per una ricerca del primo match. Non trasformarlo nel “modo giusto” di fare ricerca.
 
 ---
 
 # Ora laboratorio
 
-## Fase A — trace, 10 min
+## Fase A — trace mirato, 10 min
 
-Tabelle con:
+Non usare una tabella con tutte le variabili insieme. Ogni esercizio contiene soltanto lo stato rilevante:
 
-```text
-valore
-condizione
-conteggio
-totale
-minimo
-trovato
-```
-
-Non usare tutte le colonne in ogni esercizio: selezionare soltanto lo stato rilevante.
+- `conteggio`;
+- oppure `totale`;
+- oppure `minimo`;
+- oppure `trovato`.
 
 ## Fase B — controlled change, 10–15 min
 
 Da “conta positivi” a “conta valori nell'intervallo 10..20”.
 
-Prima modificare i casi di test, poi il codice.
+Prima modificare casi e frase-invariante, poi il codice.
 
-## Fase C — implementazione, 15–20 min
+## Fase C — implementazione integrata, 15–20 min
 
 Serie di `N` valori con:
 
 - conteggio dei validi;
 - somma dei validi;
-- media soltanto se possibile.
+- media soltanto se il conteggio è diverso da zero.
 
 ## Fase D — Debug Clinic, 10 min
 
@@ -142,7 +205,7 @@ Assegnare varianti diverse:
 - reset dentro il loop;
 - aggiornamento nel ramo sbagliato;
 - divisione per zero;
-- sentinella numerica fragile;
+- minimo con sentinella fragile;
 - flag mai aggiornato.
 
 ## Fase E — spiegazione, 5 min
@@ -153,6 +216,24 @@ Chiedere:
 
 ---
 
+# Minimum mastery gate — prima di M12
+
+Considerare M11 consolidato quando lo studente riesce a:
+
+- scegliere fra contatore/accumulatore/min-max/flag a partire dalla specifica;
+- inizializzare lo stato al livello corretto;
+- dire quando deve essere aggiornato;
+- formulare almeno una frase-invariante corretta;
+- usare il primo dato per un min/max quando appropriato;
+- distinguere esistenza/primo match/conteggio dei match;
+- usare un flag semplice per “esiste almeno un match”;
+- proteggere una media dal conteggio zero;
+- diagnosticare reset/update errati tramite il significato dello stato.
+
+Non richiedere uso autonomo di `break` o analisi formale del costo per superare il gate.
+
+---
+
 # Misconception watchlist
 
 ## M1 — contatore e accumulatore sono la stessa cosa
@@ -160,17 +241,17 @@ Chiedere:
 Correzione:
 
 ```text
-contatore cambia di una quantità legata al numero di eventi
-accumulatore incorpora un valore del problema
+contatore → quanti eventi/casi?
+accumulatore → quale totale progressivo?
 ```
 
 ## M2 — inizializzare dentro il ciclo
 
-Far eseguire un trace con due valori: l'errore diventa evidente.
+Far eseguire un trace con due valori e chiedere quale invariante viene distrutto.
 
 ## M3 — sentinella numerica “molto grande” sempre valida
 
-Chiedere quale sia il dominio reale. Se non esiste un limite garantito, la sentinella è un'assunzione fragile.
+Chiedere quale sia il dominio reale. Se il limite non è garantito, l'inizializzazione è fragile.
 
 ## M4 — media sempre possibile
 
@@ -180,9 +261,13 @@ Forzare il caso senza valori validi.
 
 Confrontare “esiste?”, “primo match” e “conta tutti”. La forma dipende dall'obiettivo.
 
-## M6 — `break` è sempre più efficiente quindi migliore
+## M6 — `break` è sempre migliore perché fa meno lavoro
 
-Prima correttezza e contratto. Se l'input deve comunque essere consumato o servono tutti i match, fermarsi non è equivalente.
+Prima correttezza e contratto. Se servono tutti i dati/match, fermarsi non è equivalente.
+
+## M7 — ogni pattern ha un template fisso da copiare
+
+Correzione: tornare alla domanda sul significato della variabile dopo ogni iterazione.
 
 ---
 
@@ -198,11 +283,11 @@ Prima correttezza e contratto. Se l'input deve comunque essere consumato o servo
 
 ## Enrichment
 
-- progettare due implementazioni equivalenti di ricerca;
-- confrontare flag vs stop anticipato;
-- aggiungere posizione del primo match;
-- motivare quali casi obbligano a leggere tutta la sequenza;
-- discutere intuitivamente il lavoro nel caso migliore/peggiore senza Big-O formale.
+- due implementazioni equivalenti di ricerca;
+- flag vs stop anticipato;
+- posizione del primo match;
+- motivare quando servono tutti i dati;
+- discutere intuitivamente il lavoro nel caso migliore/peggiore senza Big-O.
 
 ---
 
@@ -214,7 +299,8 @@ Raccogliere almeno:
 - una frase-invariante corretta;
 - un debug di reset/update;
 - una gestione corretta del conteggio zero;
-- una scelta motivata tra ricerca, conteggio e flag.
+- una scelta motivata tra ricerca, conteggio e flag;
+- un esempio di min/max inizializzato senza sentinella arbitraria.
 
 ---
 
@@ -234,9 +320,9 @@ Nessuna Activity Romeo diventa obbligatoria finché `romeo-sim` non è certifica
 # Cosa NON anticipare
 
 - liste come contenitore dei dati se non necessarie al problema;
-- `min()`/`max()` come sostituti del pattern che stiamo imparando;
+- `min()`/`max()` come sostituti del pattern;
 - generator expressions/comprehensions;
-- `any()`/`all()` come scorciatoie della ricerca;
+- `any()`/`all()` come scorciatoie;
 - Big-O formale;
 - pytest;
 - eccezioni avanzate.
