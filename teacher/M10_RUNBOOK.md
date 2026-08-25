@@ -22,7 +22,38 @@ capisco che cosa controlla la ripetizione
 → scelgo il costrutto che comunica meglio l'algoritmo
 ```
 
-Il cuore è la scelta `for` vs `while`, non la memorizzazione delle forme di `range`.
+Il cuore è la scelta `for` vs `while`, non la memorizzazione di tutte le forme possibili di `range` né l'uso precoce di `break/continue`.
+
+---
+
+# Priorità didattica
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. prevedere i valori prodotti da `range(stop)`, `range(start, stop)` e semplici `range(start, stop, step)`;
+2. spiegare start incluso e stop escluso;
+3. riconoscere direzione dello step e range vuoto;
+4. diagnosticare off-by-one;
+5. scegliere `for` quando il percorso/numero di iterazioni è noto;
+6. scegliere `while` quando la durata dipende dallo stato;
+7. riscrivere un semplice `while`-contatore come `for` mantenendo lo stesso comportamento;
+8. riconoscere un contatore manuale che duplica inutilmente la variabile del `for`.
+
+## GUIDED EXPOSURE
+
+- leggere e spiegare un `break` semplice;
+- leggere e spiegare un `continue` semplice;
+- confrontare queste forme con una versione basata su condizioni normali.
+
+## ENRICHMENT / BACKUP
+
+- range decrescenti o con step meno immediati;
+- calcolo a mano del numero di iterazioni in range non banali;
+- Romeo a numero noto di ripetizioni.
+
+`break` e `continue` devono essere riconosciuti, ma **non costituiscono un gate autonomo di M10**.
 
 ---
 
@@ -81,6 +112,14 @@ range(2, 10, 2)
 range(5, 0, -1)
 ```
 
+Per ogni range chiedere:
+
+```text
+primo valore?
+ultimo valore effettivo?
+verso?
+```
+
 ## 40–50 min — range vuoto
 
 Contrasto:
@@ -98,7 +137,7 @@ Problemi “includi 5” / “escludi 5” con spiegazione del confine.
 
 # Ora teoria attiva 2 — scelta del ciclo e refactoring
 
-## 0–20 min — `for` vs `while`
+## 0–22 min — `for` vs `while`
 
 Classificare problemi prima di scrivere codice.
 
@@ -109,7 +148,7 @@ for → percorso/numero di iterazioni noto
 while → durata dipendente da condizione/stato
 ```
 
-## 20–35 min — refactoring contatore
+## 22–38 min — refactoring contatore
 
 Confrontare:
 
@@ -129,17 +168,23 @@ for i in range(5):
 
 Far nominare lo stato manuale eliminato.
 
-## 35–45 min — stato ridondante
+## 38–48 min — stato ridondante
 
-Mostrare un contatore che duplica `i`. Distinguere da un contatore futuro che misura una quantità diversa.
+Mostrare un contatore che duplica `i`. Distinguere da un contatore futuro che misura una quantità diversa: questo prepara M11.
 
-## 45–55 min — `break` e `continue`
+## 48–60 min — mixed retrieval
 
-Un esempio ciascuno. Poi mostrare una versione alternativa con `if` normale e chiedere quale è più leggibile.
+Usare problemi brevi che mescolano:
 
-## 55–60 min — exit ticket
+- scelta `for`/`while`;
+- stop escluso;
+- step;
+- off-by-one;
+- range vuoto.
 
-Tre problemi: scegliere `for`/`while` e motivare.
+### Solo se il core è stabile
+
+Mostrare un esempio di `break` e uno di `continue` come **guided exposure**. Chiedere che cosa cambia nel flusso e se una versione senza questi costrutti sarebbe più chiara.
 
 ---
 
@@ -147,7 +192,7 @@ Tre problemi: scegliere `for`/`while` e motivare.
 
 ## Fase 1 — range microscope, 10 min
 
-Prevedere cinque range inclusi:
+Prevedere cinque range:
 
 - crescente;
 - con start;
@@ -167,9 +212,27 @@ Sei specifiche brevi, una frase di motivazione ciascuna.
 
 Riscrivere un `while` contatore con `for`; verificare stessi output/casi.
 
-## Fase 5 — Romeo opzionale, 10 min
+## Fase 5 — consolidamento o Romeo, 10 min
 
-Se certificato, usare `romeo-y1-u15-ciclo-for` o un equivalente scenario quadrato. Il robot visualizza il pattern, non introduce il concetto.
+Prima scelta: consolidamento su off-by-one/range se necessario.
+
+Solo se il core è stabile e `romeo-sim` è certificato, usare `romeo-y1-u15-ciclo-for` o scenario equivalente.
+
+---
+
+# Minimum mastery gate — prima di M11
+
+Considerare M10 consolidato quando lo studente riesce a:
+
+- scrivere la sequenza prodotta da range semplici;
+- spiegare perché lo stop è escluso;
+- riconoscere un range vuoto o lo step nel verso sbagliato;
+- correggere un off-by-one;
+- scegliere `for`/`while` e motivarlo;
+- trasformare un semplice `while` contatore in `for`;
+- individuare stato manuale ridondante.
+
+Non richiedere uso autonomo di `break`/`continue` per superare il gate.
 
 ---
 
@@ -201,7 +264,7 @@ Correzione: distinguere indice del percorso da quantità che vogliamo misurare.
 
 ## M7 — `break`/`continue` rendono il codice automaticamente più elegante
 
-Correzione: confrontare leggibilità e flusso.
+Correzione: sono guided exposure; confrontare leggibilità e flusso.
 
 ---
 
@@ -219,6 +282,7 @@ Correzione: confrontare leggibilità e flusso.
 - range con step negativo e confini diversi;
 - calcolare a mano quante iterazioni senza materializzare liste grandi;
 - refactoring di più forme equivalenti;
+- `break`/`continue` su esempi controllati;
 - Romeo quadrato/schemi ripetuti.
 
 ---
@@ -231,7 +295,9 @@ Raccogliere:
 - debug off-by-one;
 - scelta motivata `for` vs `while`;
 - refactoring `while`→`for`;
-- uso disciplinato o rifiuto motivato di `break`/`continue`.
+- spiegazione di stato ridondante.
+
+`break/continue` possono comparire come evidence soltanto se realmente svolti.
 
 ---
 
@@ -256,11 +322,11 @@ Domanda finale:
 Da qui:
 
 ```text
-contatore
-accumulatore
-min/max progressivo
-flag
-ricerca
+stato progressivo
+→ contatore
+→ accumulatore
+→ min/max
+→ flag/ricerca
 ```
 
 ---
