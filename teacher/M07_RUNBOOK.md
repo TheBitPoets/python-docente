@@ -25,6 +25,38 @@ Lo studente non deve scegliere `elif` perché “ci sono tante condizioni”, ma
 
 ---
 
+# Priorità didattica
+
+M07 contiene molti concetti in una sola settimana. Il core deve restare centrato sulla struttura dei casi e sulla logica booleana essenziale.
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. spiegare il principio del **primo ramo vero** in `if/elif/else`;
+2. distinguere casi mutuamente esclusivi da effetti indipendenti;
+3. usare `and` e `or` con casi concreti;
+4. usare `not` in condizioni semplici senza creare negazioni inutilmente difficili;
+5. esprimere un intervallo prima in forma esplicita e poi concatenata;
+6. progettare test sui confini di una classificazione;
+7. diagnosticare soglie nell'ordine sbagliato e rami irraggiungibili.
+
+## GUIDED EXPOSURE
+
+- tabelle di verità minime;
+- contesto logico creato dai rami precedenti;
+- confronto fra due ordinamenti corretti delle soglie.
+
+## ENRICHMENT / BACKUP
+
+- short-circuit;
+- esempio del divisore sicuro;
+- varianti Romeo multi-regola.
+
+**Short-circuit non è un exit outcome di M07.** Se il core non è stabile, usare quei minuti per confini, branch trace e scelta `elif` vs `if` indipendenti.
+
+---
+
 # Preparazione
 
 ## Ambiente
@@ -51,7 +83,7 @@ Lo studente non deve scegliere `elif` perché “ci sono tante condizioni”, ma
 
 - `=` vs `==`;
 - soglia sotto/sulla/sopra;
-- che cosa accade quando un `if` è falso?
+- che cosa accade quando un `if` è falso?.
 
 ## 10–25 min — classificazione voto
 
@@ -79,9 +111,11 @@ Contrasto pioggia/freddo.
 
 Usare almeno quattro specifiche e far scegliere la struttura **prima** di scrivere codice.
 
-## 50–60 min — error clinic soglie
+## 50–60 min — Error Clinic soglie
 
 Esempio ramo irraggiungibile con ordine `>= 6` poi `>= 8`.
+
+Far progettare l'input che espone il bug prima di eseguire.
 
 ---
 
@@ -97,13 +131,17 @@ età >= 18 E biglietto valido
 
 Costruire i quattro casi.
 
-## 15–30 min — `or`
+## 15–28 min — `or`
 
 Esempio età < 6 OPPURE >= 65.
 
-Far trovare un caso in cui entrambe siano false e due casi in cui una sola sia vera.
+Far trovare:
 
-## 30–40 min — `not`
+- un caso con entrambe false;
+- un caso con solo la prima vera;
+- un caso con solo la seconda vera.
+
+## 28–36 min — `not`
 
 Mostrare negazione semplice, poi confronto di leggibilità:
 
@@ -117,7 +155,7 @@ vs
 eta >= 18
 ```
 
-## 40–50 min — intervalli
+## 36–48 min — intervalli
 
 Prima:
 
@@ -133,9 +171,24 @@ poi:
 
 La forma concatenata arriva **dopo** il modello logico.
 
-## 50–60 min — short-circuit intuitivo
+## 48–60 min — mixed retrieval / confini
 
-Usare un solo esempio sicuro con divisore. Non trasformare il tema in un capitolo sulla valutazione lazy.
+Non introdurre automaticamente un nuovo tema negli ultimi minuti.
+
+Usare 3–4 micro-specifiche che mescolano:
+
+```text
+elif vs if indipendenti
+and vs or
+intervallo
+confine
+```
+
+Lo studente deve motivare la struttura e proporre almeno un test che la distingue da una soluzione errata.
+
+### Solo se la classe è chiaramente stabile
+
+Mostrare short-circuit come **enrichment** con un unico esempio sicuro. Non valutarlo nel checkpoint ordinario.
 
 ---
 
@@ -176,6 +229,21 @@ Ogni studente completa:
 
 ---
 
+# Minimum mastery gate — prima di M08
+
+Considerare il modulo consolidato quando lo studente riesce a:
+
+- indicare quale ramo di una catena viene eseguito per un input concreto;
+- scegliere `elif` o `if` indipendenti e motivarlo;
+- completare i quattro casi di `and`/`or` con valori concreti;
+- scrivere un intervallo chiuso semplice;
+- proporre test per ogni confine di una classificazione;
+- trovare un input che espone un ramo irraggiungibile o una soglia errata.
+
+Short-circuit non fa parte di questo gate.
+
+---
+
 # Misconception watchlist
 
 ## M1 — `elif` è solo un `if` più corto
@@ -204,7 +272,11 @@ Correzione: derivarlo dalla forma con `and`.
 
 ## M7 — il ramo centrale deve ripetere tutti i vincoli
 
-Correzione: far leggere il contesto creato dai rami precedenti, ma privilegiare comunque chiarezza.
+Correzione: leggere il contesto creato dai rami precedenti, privilegiando comunque chiarezza.
+
+## M8 — short-circuit è necessario per saper usare `and`
+
+Correzione: no. È un comportamento utile da incontrare solo dopo la logica di base.
 
 ---
 
@@ -213,16 +285,16 @@ Correzione: far leggere il contesto creato dai rami precedenti, ma privilegiare 
 ## Recupero
 
 - massimo tre fasce;
-- linea dei numeri colorata;
+- linea dei numeri;
 - truth table compilata a metà;
 - specifiche con parole `e` / `oppure` esplicite;
 - far scrivere prima una frase “può succedere anche l'altro effetto?”.
 
 ## Enrichment
 
-- costruire due implementazioni corrette con soglie crescenti vs decrescenti e confrontarle;
+- due implementazioni corrette con soglie crescenti vs decrescenti;
 - progettare casi che rendono evidente un ramo irraggiungibile;
-- osservare short-circuit con input sicuro;
+- short-circuit con input sicuro;
 - variante Romeo deterministica senza nuove API concettuali.
 
 ---
