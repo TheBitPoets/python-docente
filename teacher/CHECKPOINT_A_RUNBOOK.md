@@ -4,7 +4,7 @@
 
 Settimana 17: consolidamento, recupero, prova pratica V2 e primo checkpoint Git guidato.
 
-Stato: **draft controllato**. La parte Git G1 deve essere riallineata alle dispense docente prima della promozione editoriale.
+Stato: **draft controllato / consumer Git G1 collegato al corso canonico**.
 
 ## Outcome da verificare
 
@@ -38,7 +38,7 @@ specifica
 → bug-fix o spiegazione finale
 ```
 
-Rubrica indicativa già definita nel calendario valutazioni:
+Rubrica indicativa:
 
 - 30% correttezza;
 - 15% comprensione/algoritmo;
@@ -48,7 +48,7 @@ Rubrica indicativa già definita nel calendario valutazioni:
 - 10% leggibilità/naming;
 - 5% spiegazione/debug.
 
-Non irrigidire le percentuali finché non abbiamo prototipato la prova reale.
+Non irrigidire le percentuali finché non è stata prototipata la prova reale.
 
 ## Variante Romeo
 
@@ -58,9 +58,9 @@ Non irrigidire le percentuali finché non abbiamo prototipato la prova reale.
 - esiste variante generale equivalente;
 - la prova non misura competenze robotiche extra rispetto agli outcome Python.
 
-## Recovery
+## Recovery Python
 
-Il checkpoint può assorbire recupero mirato. Ordine dei deficit da recuperare:
+Il checkpoint può assorbire recupero mirato. Ordine dei deficit:
 
 1. correttezza dei costrutti base;
 2. terminazione dei cicli;
@@ -71,73 +71,118 @@ Il checkpoint può assorbire recupero mirato. Ordine dei deficit da recuperare:
 
 Non introdurre nuovi prerequisiti finché il nucleo non è stabile.
 
-## Git G1 — primo checkpoint guidato
+---
 
-Target minimo:
+# Git G1 — primo checkpoint guidato
+
+Il corso Python non possiede il curriculum Git. Consuma il contratto G1 canonico dichiarato in:
+
+```text
+config/git-g1-consumer.json
+```
+
+Source of truth corrente:
+
+```text
+TheBitPoets/git
+candidate ref: 65d8aff8c9a590560c500762d4dc7378a3239bf2
+contract: doc/G1_CONSUMER_CONTRACT.md
+```
+
+Outcome guidati del checkpoint:
+
+```text
+G1.OBSERVE.STATUS
+G1.OBSERVE.DIFF
+G1.STAGE.INTENTIONAL
+G1.COMMIT.INTENTIONAL
+G1.HISTORY.INSPECT
+G1.MODEL.HEAD
+G1.WORKFLOW.CHECKPOINT
+```
+
+Lesson canoniche da consumare:
+
+```text
+G1-M02 working tree / status
+G1-M03 diff
+G1-M04 index / staging
+G1-M05 commit / HEAD
+G1-M06 log / show
+```
+
+Canary Activity disponibile nel corso Git:
+
+```text
+g1-stage-selettivo-001
+```
+
+Workflow target:
 
 ```text
 git status
 → git diff
 → test
-→ git add
+→ git add <path>
+→ git diff --staged
 → git commit
-→ git log essenziale
+→ git status
+→ git log / git show
 ```
 
-### Obiettivo didattico
+## Obiettivo didattico
 
-Git non viene valutato come corso autonomo completo. Qui serve a far capire:
+Lo studente deve comprendere:
 
 ```text
-workspace modificato
-→ controllo delle differenze
-→ stato verificato/testato
-→ checkpoint registrato
-→ storia leggibile
+working tree
+→ index
+→ history
 ```
 
-### Evidence minima
+e saper spiegare perché il commit rappresenta uno stato scelto e verificato, non semplicemente “tutti i file modificati”.
 
-- `status` compreso;
-- diff letto prima del commit;
-- commit eseguito su uno stato funzionante;
-- messaggio che descrive il checkpoint;
-- `log` usato per vedere il commit.
+## Evidence minima
 
-### Boundary
+- interpreta `status`;
+- legge il diff prima del commit;
+- esegue i test rilevanti;
+- sceglie cosa mettere in staging;
+- verifica lo staged diff;
+- crea un commit coerente;
+- legge il checkpoint con `log`/`show`;
+- sa descrivere il modello beginner `HEAD → branch corrente → commit corrente`.
 
-Non introdurre ancora:
+Git resta prevalentemente evidence di processo nel voto Python; non deve dominare la valutazione della competenza disciplinare.
 
-- branching complesso;
-- merge/rebase;
+## Boundary
+
+Non introdurre come outcome Python di seconda:
+
+- branch/merge;
+- rebase;
+- remotes/push/pull;
 - PR/review;
-- stash/reset/reflog;
-- remote workflow avanzato.
+- reflog/reset avanzato;
+- internals.
 
-Questi appartengono al corso Git progressivo separato.
+Per spiegazione, remediation e recovery usare il corso Git canonico, non creare una seconda mini-dispensa divergente nel repository Python.
 
-## Dipendenza dalle dispense Git
+---
 
-Questo è il **primo punto del corso Python in cui le dispense Git del docente servono realmente**.
+# TheBitLab
 
-Workflow previsto quando vengono fornite:
+Il Course Environment Python richiede `git.basic.v1` e non richiede rete/account GitHub per il core G1.
 
-1. audit contenuto e versione Git;
-2. classificazione materiale in G1/G2/G3/G4;
-3. estrazione delle sole parti G1;
-4. riscrittura/adattamento nel formato TheBitLab;
-5. collegamento dal Checkpoint A al materiale Git canonico;
-6. nessuna duplicazione del futuro corso Git completo dentro `python-docente`.
+Il Git Lab repository-state della piattaforma ha candidate verde:
 
-## TheBitLab
+```text
+TheBitPoets/2cornot2c#761
+TheBitPoets/2cornot2c#762
+24570f7a3af67634ec0cfbf54f486660359baaf2
+```
 
-Per il checkpoint finale serve il Classroom Environment gestito. Il grading automatico deve restare limitato ai profili certificati:
-
-- P1 se il problema è realmente stdin/stdout;
-- P2 solo dopo certificazione function-behavior;
-- rubric/manual evidence per decomposizione, spiegazione e design.
-
-Non deformare la prova per farla entrare in un grader disponibile.
+La certificazione del consumer Python resta separata: `python-docente#8` blocca ancora la CI privata prima dell'avvio del runner. Nessun run `steps=null` vale come prova di pass/fail dei test.
 
 ## AI
 
@@ -158,4 +203,4 @@ stringhe come sequenze
 → parsing/frequenze
 ```
 
-Le funzioni, i test e Git restano workflow trasversali e continuano a essere riutilizzati.
+Le funzioni, i test e Git restano workflow trasversali e vengono riutilizzati progressivamente nei progetti successivi.
