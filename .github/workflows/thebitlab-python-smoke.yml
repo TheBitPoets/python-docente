@@ -28,6 +28,9 @@ jobs:
       - name: Validate M04 authoring coherence
         run: python tests/m04_vertical_slice_static.py
 
+      - name: Validate M05 authoring coherence
+        run: python tests/m05_authoring_static.py
+
       - name: Checkout pinned TheBitLab baseline
         uses: actions/checkout@v4
         with:
