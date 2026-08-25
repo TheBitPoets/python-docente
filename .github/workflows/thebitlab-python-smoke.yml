@@ -25,6 +25,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Validate scalable authoring catalog
+        run: python tests/course_authoring_catalog.py
+
       - name: Validate M04 authoring coherence
         run: python tests/m04_vertical_slice_static.py
 
