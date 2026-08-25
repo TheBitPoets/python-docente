@@ -2,11 +2,13 @@
 
 ## Funzione del checkpoint
 
-Settimana 17: consolidamento, recupero, prova pratica V2 e primo checkpoint Git guidato.
+Settimana 17: consolidamento, recupero, prova pratica/mini-project e primo checkpoint Git guidato.
 
-Stato: **draft controllato / consumer Git G1 collegato al corso canonico**.
+Stato: **draft controllato / consumer Git G1 embedded collegato al corso canonico**.
 
-## Outcome da verificare
+Il Checkpoint A resta prima di tutto una settimana Python. Git entra come workflow di processo, non come secondo corso standalone da completare nelle stesse tre ore.
+
+## Outcome Python da verificare
 
 Il checkpoint misura il primo grande nucleo:
 
@@ -48,7 +50,7 @@ Rubrica indicativa:
 - 10% leggibilità/naming;
 - 5% spiegazione/debug.
 
-Non irrigidire le percentuali finché non è stata prototipata la prova reale.
+Git non aggiunge automaticamente una nuova componente ad alto peso a questa rubrica. Resta prevalentemente evidence di processo/formativa nel track Python.
 
 ## Variante Romeo
 
@@ -64,7 +66,7 @@ Il checkpoint può assorbire recupero mirato. Ordine dei deficit:
 
 1. correttezza dei costrutti base;
 2. terminazione dei cicli;
-3. pattern contatore/accumulatore;
+3. pattern di stato;
 4. `return` e passaggio dati;
 5. decomposizione;
 6. test/debug/refactor.
@@ -73,12 +75,25 @@ Non introdurre nuovi prerequisiti finché il nucleo non è stabile.
 
 ---
 
-# Git G1 — primo checkpoint guidato
+# Git G1 — consumer embedded, non corso standalone
 
 Il corso Python non possiede il curriculum Git. Consuma il contratto G1 canonico dichiarato in:
 
 ```text
 config/git-g1-consumer.json
+```
+
+Il delivery mode è:
+
+```text
+embedded-outcome-subset
+```
+
+Quindi:
+
+```text
+full G1 track completion required = NO
+full G1 lesson completion required = NO
 ```
 
 Source of truth corrente:
@@ -88,6 +103,18 @@ TheBitPoets/git
 candidate ref: 65d8aff8c9a590560c500762d4dc7378a3239bf2
 contract: doc/G1_CONSUMER_CONTRACT.md
 ```
+
+## Che ruolo hanno G1-M02…M06
+
+Sono superfici canoniche per:
+
+- spiegazione;
+- remediation;
+- richiamo;
+- Activity/rubric Git;
+- riferimenti contestuali.
+
+Non sono cinque lezioni da erogare integralmente dentro la settimana 17.
 
 Outcome guidati del checkpoint:
 
@@ -101,23 +128,24 @@ G1.MODEL.HEAD
 G1.WORKFLOW.CHECKPOINT
 ```
 
-Lesson canoniche da consumare:
-
-```text
-G1-M02 working tree / status
-G1-M03 diff
-G1-M04 index / staging
-G1-M05 commit / HEAD
-G1-M06 log / show
-```
-
 Canary Activity disponibile nel corso Git:
 
 ```text
 g1-stage-selettivo-001
 ```
 
-Workflow target:
+---
+
+# Git incorporato nel lavoro Python
+
+M14–M16 hanno già introdotto in modo guidato:
+
+```text
+git status
+git diff
+```
+
+Al Checkpoint A il lavoro Python verificato diventa il contesto reale per:
 
 ```text
 git status
@@ -130,8 +158,6 @@ git status
 → git log / git show
 ```
 
-## Obiettivo didattico
-
 Lo studente deve comprendere:
 
 ```text
@@ -140,7 +166,7 @@ working tree
 → history
 ```
 
-e saper spiegare perché il commit rappresenta uno stato scelto e verificato, non semplicemente “tutti i file modificati”.
+e spiegare perché il commit rappresenta uno stato scelto e verificato, non semplicemente “tutti i file modificati”.
 
 ## Evidence minima
 
@@ -151,11 +177,59 @@ e saper spiegare perché il commit rappresenta uno stato scelto e verificato, no
 - verifica lo staged diff;
 - crea un commit coerente;
 - legge il checkpoint con `log`/`show`;
-- sa descrivere il modello beginner `HEAD → branch corrente → commit corrente`.
+- riconosce il modello beginner `HEAD → branch corrente → commit corrente`.
 
-Git resta prevalentemente evidence di processo nel voto Python; non deve dominare la valutazione della competenza disciplinare.
+---
 
-## Boundary
+# Gestione reale delle tre ore
+
+Il checkpoint ha usi flessibili; non imporre una scaletta unica.
+
+## Variante assessment-focused
+
+La prova Python resta dominante.
+
+Git viene incorporato come:
+
+```text
+preflight breve status/diff
+...
+lavoro Python + test
+...
+checkpoint finale Git 10–20 min guidati, se il lavoro è pronto
+```
+
+Se il tempo non consente un checkpoint Git completo senza comprimere la prova/recupero Python, usare la parte flessibile del checkpoint o una successiva sessione guidata: non abbassare la qualità della valutazione disciplinare per “finire i comandi”.
+
+## Variante lab/consolidation-focused
+
+```text
+mini-project Python
+→ status/diff durante il lavoro
+→ test
+→ staging/commit/history guidati
+```
+
+Questa è la modalità più naturale per far percepire Git come parte del processo.
+
+---
+
+# Se status/diff non sono ancora acquisiti
+
+Non tentare di insegnare in emergenza l'intero G1 durante una prova valutativa.
+
+Usare:
+
+- lesson/heading G1 canonici come remediation;
+- `g1-stage-selettivo-001` in un momento guidato;
+- evidence Git separata dalla correttezza Python;
+- eventuale recupero nel tempo flessibile.
+
+La difficoltà iniziale con Git non deve oscurare un'evidenza Python valida quando Git non è l'outcome principale della consegna.
+
+---
+
+# Boundary
 
 Non introdurre come outcome Python di seconda:
 
