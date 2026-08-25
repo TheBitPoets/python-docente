@@ -23,7 +23,9 @@ prevede
 → testa più casi
 ```
 
-Il successo della lezione non è "hanno copiato quattro righe". È che sanno spiegare il flusso dei dati e distinguere almeno errore sintattico/runtime/logico a livello iniziale.
+Il successo della lezione non è “hanno copiato quattro righe”. È che sanno spiegare il flusso dei dati e distinguere almeno un errore di sintassi/runtime da un errore logico a livello iniziale.
+
+`bool` compare qui soltanto come **preview di un tipo**. La comprensione operativa dei booleani e dei confronti viene formalizzata in M06.
 
 ---
 
@@ -41,7 +43,7 @@ Target:
 
 Non dare istruzioni di installazione Python/VS Code per conto del corso.
 
-Se l'ambiente non è certificato, il contenuto può essere spiegato/demonstrato ma non dichiarare il vertical slice operativo completato.
+Se l'ambiente non è certificato, il contenuto può essere spiegato/dimostrato ma non dichiarare il vertical slice operativo completato.
 
 ## Materiali
 
@@ -106,7 +108,7 @@ Microscope con:
 True
 ```
 
-Usare `type()` come lente, non come nozione da memorizzare.
+Usare `type()` come lente, non come lista da memorizzare. `True/False` sono solo preview: non aprire ancora il blocco sulla logica booleana.
 
 ### 40–55 min — nomi/assegnamento
 
@@ -118,13 +120,13 @@ eta = 16
 
 Domande diagnostiche:
 
-- `eta` e `15` sono la stessa cosa?
-- cosa cambia dopo il secondo assegnamento?
-- perché `=` non significa la stessa cosa dell'uguaglianza matematica?
+- `eta` e `15` sono la stessa cosa?;
+- cosa cambia dopo il secondo assegnamento?;
+- perché `=` non significa la stessa cosa dell'uguaglianza matematica?.
 
 ### Exit micro-check
 
-Ogni studente scrive una previsione su tipo/valore di 3 espressioni.
+Ogni studente scrive una previsione su tipo/valore di tre espressioni.
 
 ---
 
@@ -184,7 +186,7 @@ Mostrare rapidamente:
 - conversion ValueError;
 - errore logico senza traceback.
 
-Il docente modella la lettura del traceback, non risolve immediatamente il bug.
+Il docente modella la lettura del messaggio, ma non richiede allo studente di memorizzare la tassonomia completa degli errori.
 
 ---
 
@@ -247,10 +249,26 @@ Gli studenti devono prevedere il tipo di errore/comportamento prima dell'esecuzi
 
 Domande a campione:
 
-- perché `input()` viene convertito?
-- che cosa contiene `risultato`?
-- perché proviamo un numero negativo?
-- perché il programma non stampa un prompt?
+- perché `input()` viene convertito?;
+- che cosa contiene/indica `risultato` nel trace?;
+- perché proviamo un numero negativo?;
+- perché il programma non stampa un prompt?.
+
+---
+
+# Minimum mastery gate — prima di M05
+
+Considerare M04 sufficientemente consolidato quando lo studente riesce, con guida minima, a:
+
+- distinguere REPL e script;
+- spiegare che `input()` restituisce una stringa;
+- usare `int(input())` quando la specifica richiede un intero;
+- seguire `input → conversione → calcolo → output` su un esempio concreto;
+- eseguire/modificare un piccolo `main.py`;
+- prevedere almeno un caso prima dell'esecuzione;
+- spiegare perché “nessun traceback” non significa automaticamente “programma corretto”.
+
+Non bloccare il passaggio a M05 perché lo studente non ricorda a memoria tutti i nomi delle eccezioni o la definizione formale di `bool`.
 
 ---
 
@@ -266,7 +284,7 @@ Correzione: espressione senza `print` in file.
 
 ## M3 — variabile = scatola immutabile
 
-Non serve ancora smontare completamente il modello, ma evitare frasi come "la variabile contiene per sempre". Usare nome → valore/riferimento e mostrare riassegnamento.
+Non serve ancora smontare completamente il modello, ma evitare frasi come “la variabile contiene per sempre”. Usare nome → valore/riferimento e mostrare riassegnamento.
 
 ## M4 — se non c'è traceback è corretto
 
@@ -338,11 +356,11 @@ Gli errori vengono osservati e letti; la gestione programmata delle eccezioni ar
 
 M04 lascia aperte domande naturali:
 
-- quali operatori abbiamo oltre `+`?
-- che cosa succede con `/`, `//`, `%`?
-- come controlliamo la precedenza?
-- come formattiamo output più leggibile?
-- possiamo dare un nome a un calcolo che vogliamo riutilizzare?
+- quali operatori abbiamo oltre `+`?;
+- che cosa succede con `/`, `//`, `%`?;
+- come controlliamo la precedenza?;
+- come formattiamo output più leggibile?;
+- possiamo dare un nome a un calcolo che vogliamo riutilizzare?.
 
 Queste domande aprono M05 — espressioni, operatori e prime funzioni.
 
@@ -358,4 +376,4 @@ Queste domande aprono M05 — espressioni, operatori e prime funzioni.
 - Actions osservate: failure pre-execution senza step, non evidence di failure del test body;
 - Classroom Environment: blocker `python-docente#2` / `2cornot2c#753/#754`.
 
-Non dichiarare "M04 pronto per classe" finché i gate di delivery applicabili non sono stati collaudati.
+Non dichiarare “M04 pronto per classe” finché i gate di delivery applicabili non sono stati collaudati.
