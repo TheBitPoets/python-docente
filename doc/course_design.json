@@ -7,27 +7,13 @@
       "provider": "local",
       "path": "content/python",
       "files": [
-        "04_INTERPRETE_REPL_VALORI_IO.md",
-        "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
-        "06_BOOLEANI_CONFRONTI_IF.md",
-        "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
-        "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md",
-        "09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md",
-        "10_FOR_RANGE_SCELTA_CICLO.md",
-        "11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md",
-        "12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md",
-        "13_FUNZIONI_PARAMETRI_RETURN.md",
-        "14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md",
-        "15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md",
-        "16_ASSERT_REGRESSION_TEST_REFACTOR.md",
-        "17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md",
-        "18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md",
-        "19_ALGORITMI_TESTO_PARSING_SEMPLICE.md"
+        "04_INTERPRETE_REPL_VALORI_IO.md", "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md", "06_BOOLEANI_CONFRONTI_IF.md", "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md", "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md", "09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md", "10_FOR_RANGE_SCELTA_CICLO.md", "11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md", "12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md", "13_FUNZIONI_PARAMETRI_RETURN.md", "14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md", "15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md", "16_ASSERT_REGRESSION_TEST_REFACTOR.md", "17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md", "18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md", "19_ALGORITMI_TESTO_PARSING_SEMPLICE.md", "20_LISTE_MUTABILITA_METODI_ITERAZIONE.md", "21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md", "22_TUPLE_UNPACKING_MATRICI.md"
       ],
       "indexing_status": "ready"
     },
     {"id":"python-secondo-design","label":"Python secondo - design e mappa moduli","type":"markdown","provider":"local","path":"tracks/secondo","files":["MODULE_MAP.md","COURSE_DESIGN.md","DELIVERY_PROFILE.md","ASSESSMENT_CALENDAR.md","ARCHITECTURE_REVIEW.md","GIT_G1_INTEGRATION.md","ROMEO_MAPPING.md","PY2_01_SPEC.md","PY2_02_SPEC.md","PY2_03_SPEC.md","PY2_04_SPEC.md","PY2_05_SPEC.md","PY2_06_SPEC.md","PY2_07_SPEC.md","PY2_08_SPEC.md","PY2_09_SPEC.md","PY2_10_SPEC.md"],"indexing_status":"ready"},
-    {"id":"python-curriculum-design","label":"Python curriculum - architettura, freeze e roadmap","type":"markdown","provider":"local","path":"doc","files":["CURRICULUM_FREEZE_2026_2027.md","CURRICULUM_FREEZE_CHECKLIST.md","PROJECT_STATUS.md","OPEN_DECISIONS.md","COURSE_ARCHITECTURE.md","CURRICULUM_ROADMAP.md","APPROVED_DECISIONS_2026_2027.md","CROSS_COURSE_CURRICULA.md","PYTHON_ACTIVITY_RUNTIME_CONTRACT.md"],"indexing_status":"ready"}
+    {"id":"python-curriculum-design","label":"Python curriculum - architettura, freeze e roadmap","type":"markdown","provider":"local","path":"doc","files":["CURRICULUM_FREEZE_2026_2027.md","CURRICULUM_FREEZE_CHECKLIST.md","PROJECT_STATUS.md","OPEN_DECISIONS.md","COURSE_ARCHITECTURE.md","CURRICULUM_ROADMAP.md","APPROVED_DECISIONS_2026_2027.md","CROSS_COURSE_CURRICULA.md","PYTHON_ACTIVITY_RUNTIME_CONTRACT.md"],"indexing_status":"ready"},
+    {"id":"python-source-audits","label":"Python - audit fonti legacy","type":"markdown","provider":"local","path":"sources","files":["SOURCE_CATALOG.md","FRIEDPYTHON_MAPPING.md","FRIEDPYTHON_LISTS_TUPLES_AUDIT.md"],"indexing_status":"ready"}
   ],
   "years": [
     {"id":"python-secondo-2026-2027","title":"Python - Secondo anno 2026/27","description":"Track da zero assoluto a programmazione strutturata, strutture dati e OOP fondamentale. 33 settimane, 2 ore teoria attiva + 1 ora laboratorio; curriculum a spirale con test e debugging precoci.","weekly_hours":3,"weeks":33,"udas":[
