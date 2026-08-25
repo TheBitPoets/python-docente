@@ -4,152 +4,73 @@
 
 **Curriculum FROZEN + controlled module-by-module authoring.**
 
-Canonical curriculum freeze:
+Canonical freeze: `doc/CURRICULUM_FREEZE_2026_2027.md`  
+Decision-owner approval: **2026-08-24**.
 
-`doc/CURRICULUM_FREEZE_2026_2027.md`
+Branch: `agent/course-architecture`  
+Draft PR: `#1`.
 
-Decision owner approval: **2026-08-24**.
-
-The second-year *what/sequence/outcomes* are stable. Content Pack approval and classroom readiness remain separate later gates.
-
-## Current branch / review surface
-
-- branch: `agent/course-architecture`
-- draft PR: `#1 — Frozen Python second-year curriculum + M04 vertical slice`
-
-The PR remains draft because delivery certification is not complete.
+Content Pack approval and classroom readiness remain separate gates.
 
 ---
 
 # 1. Curriculum — DONE / FROZEN
 
 - 33 weeks × 3h = 99 nominal hours;
-- 30 core weeks = 90h;
-- 3 checkpoint/buffer weeks = 9h;
-- 2 active-theory hours + 1 lab hour;
-- M00–M30;
-- UDA specs `PY2_01_SPEC.md` … `PY2_10_SPEC.md` complete;
+- 90h core + 9h explicit checkpoint/buffer;
+- 2 active-theory + 1 lab hour weekly;
+- M00–M30 and PY2-01…PY2-10 specified;
 - OOP mandatory weeks 29–32;
-- no mandatory new prerequisite week 33;
-- spiral test/trace/debug/refactor/data-model reasoning.
+- spiral problem→algorithm→cases→code→test→debug→refactor;
+- Git G1 progressive; Git course separate;
+- Container course separate;
+- Romeo selective, never hardware-dependent core.
 
-Frozen sequence:
+---
+
+# 2. Materialized editorial content — M04…M10
+
+The draft Content Pack now contains **7 consecutive materialized modules**:
 
 ```text
-PY2-01 problem solving / algorithms / flow charts
-PY2-02 REPL / first Python / types / I-O
-PY2-03 selection / Boolean logic
-PY2-04 loops / algorithmic patterns
-PY2-05 functions / decomposition / assert / regression
-Checkpoint A
-PY2-06 strings
-PY2-07 lists / tuples / alias-copy / matrices
-Checkpoint B
-PY2-08 set / dict / data-model choice
-PY2-09 text files / pathlib / predictable errors
-PY2-10 classes / objects / composition / OOP capstone
-Checkpoint C
+M04 interpreter / REPL / values / I-O
+M05 expressions / operators / first function preview
+M06 booleans / comparisons / if
+M07 elif / exclusive vs independent branches / and-or-not
+M08 nesting / validation / refactoring
+M09 while / state / termination / sentinel / repeated validation
+M10 for / range / for-vs-while / break-continue intro
 ```
 
----
+Every materialized module has:
 
-# 2. Editorial content materialized — M04…M08
+```text
+canonical lesson
++ Marp slide source
++ teacher runbook
++ Content Pack item
++ Course Board source
++ student/teacher navigation
+```
 
-The draft Content Pack currently materializes **five consecutive modules**.
+Only **M04** materializes a new P1 Activity. M05–M10 contain exercises and Activity candidates but deliberately add no new autograded Activity until the P1 canary is certified.
 
-## M04 — Interprete, REPL, valori e I/O
+Status by UDA:
 
-- lesson `content/python/04_INTERPRETE_REPL_VALORI_IO.md`;
-- Marp deck;
-- teacher runbook;
-- one real P1 Activity canary: `py2-activity-b-input-somma-001`;
-- dedicated static QA + Course Board round-trip + TheBitLab consumer smoke.
+- PY2-01: specification only; final delivery waits on Flowchart Lab;
+- PY2-02: editorially materialized (M04–M05);
+- PY2-03: editorially materialized (M06–M08);
+- PY2-04: partially materialized (M09–M10; M11–M12 remain).
 
-M04 remains the **golden technical vertical slice** and is not yet certified (`#7`).
-
-## M05 — Espressioni, operatori e prime funzioni
-
-- lesson/deck/runbook present;
-- `/`, `//`, `%`, precedence, f-string, built-ins intro;
-- first small pure-function preview;
-- `return` vs `print` preview;
-- dedicated pedagogical static QA;
-- no new materialized P1 Activity.
-
-## M06 — Booleani, confronti e `if`
-
-- lesson/deck/runbook present;
-- comparisons, `=` vs `==`, `if/else`, indentation, branch trace;
-- boundary tests below/on/above threshold;
-- Romeo `y1-u14-condizioni` only as optional applied reference;
-- no new materialized P1 Activity.
-
-## M07 — `elif`, exclusive cases and Boolean composition
-
-- lesson/deck/runbook present;
-- first-true branch semantics;
-- independent `if` vs mutually exclusive `if/elif/else`;
-- `and`, `or`, `not`;
-- intervals/chained comparisons after explicit logical form;
-- short-circuit only as controlled intuition;
-- no new materialized P1 Activity.
-
-## M08 — nesting, validation and refactoring
-
-- lesson/deck/runbook present;
-- genuine vs accidental nesting;
-- path trace/coverage;
-- domain validation before classification;
-- explicit boundary: detect invalid input now, repeat with `while` later;
-- refactoring protected by unchanged test cases;
-- no `try/except` or `while` introduced prematurely;
-- no new materialized P1 Activity.
-
-Therefore **PY2-02 and PY2-03 are editorially materialized**. PY2-01 remains specification-only until Flowchart Lab delivery is resolved.
+Next module: **M11 — counters, accumulators, progressive min/max, search and flags**.
 
 ---
 
-# 3. Authoring model / Course Board — ACTIVE
+# 3. Golden technical vertical slice — M04
 
-`python-docente` is a Course Workspace:
+Activity: `py2-activity-b-input-somma-001`.
 
-- `doc/course_design.json` contains the frozen UDA/checkpoint skeleton;
-- `content/python/content-pack.json` is `thebitlab.content-pack.v1 / 0.1.0 / draft`;
-- Course Board sources now expose M04…M08 plus all design/freeze docs;
-- Content Pack = module/file identity;
-- Course Board = heading-tree editorial granularity;
-- repository = mutable source of truth;
-- Git = history/review;
-- Course Bundle = immutable publication state.
-
-`2cornot2c#755` tracks first-class Open Course UX and bulk “add whole module/file” insertion.
-
----
-
-# 4. Scalable authoring QA — WRITTEN
-
-`tests/course_authoring_catalog.py` uses the Content Pack as the authoritative catalog of materialized modules and checks for every module:
-
-- canonical numbered lesson filename/order;
-- lesson H1;
-- Marp deck;
-- teacher runbook;
-- student/teacher navigation;
-- Content Pack provenance;
-- Course Board source visibility;
-- declared Activity directories/IDs/provenance;
-- no student-facing links to teacher/solution/hidden assets;
-- Content Pack/Course Design lesson-source parity.
-
-M04 retains technical canary tests. M05 retains a dedicated pedagogical QA. M06–M08 are covered by the scalable catalog plus review criteria in their lessons/runbooks.
-
-The workflow includes the scalable catalog check, but no current green evidence exists because #8 prevents runner startup.
-
----
-
-# 5. P1 technical canary — CREATED, NOT CERTIFIED
-
-`py2-activity-b-input-somma-001`:
+Canary contract:
 
 ```text
 starter must fail
@@ -165,47 +86,77 @@ Cases:
 -4 + 10 → 6
 ```
 
-Certification issue: `python-docente#7`.
-
-No additional P1 Activities are materialized until this canary has evidence.
+Certification remains open: `python-docente#7`.
 
 ---
 
-# 6. GitHub Actions private-repo blocker #8 — ROOT CAUSE NARROWED
+# 4. Course Workspace / dashboard model
 
-Diagnostic commit `355f3e25fe7ec05cd793c80a04d41b71c079a3ca` temporarily added a `runner-diagnostic` matrix job containing only:
+- repo = mutable Course Workspace;
+- Content Pack = module/file identity;
+- Course Board = heading-tree editorial granularity;
+- Git = history/review;
+- Course Bundle = immutable publication release.
+
+`2cornot2c#755` tracks Open Course UX and bulk “add whole module/file”.
+
+---
+
+# 5. Authoring automation / QA
+
+## Scalable QA
+
+`tests/course_authoring_catalog.py` checks every materialized module for:
+
+- numbered lesson/order consistency;
+- lesson + Marp deck + runbook;
+- student/teacher navigation;
+- provenance;
+- Course Board visibility;
+- declared Activity identity/provenance;
+- no student links to reserved teacher/solution assets;
+- Content Pack/Course Design lesson-source parity.
+
+M04 retains technical canary tests; M05 retains a dedicated pedagogical static QA.
+
+## Catalog synchronization helper
+
+`scripts/sync_authoring_catalog.py` derives the lesson source list from Content Pack `content_items`.
 
 ```text
-runs-on
-+ one echo step
+python scripts/sync_authoring_catalog.py          → check only
+python scripts/sync_authoring_catalog.py --write  → synchronize pack/design source lists
 ```
 
-No checkout, setup-python or third-party action.
+The workflow runs the helper in fail-closed check mode before the authoring QA.
 
-Run `32805406089` still reported on Ubuntu and Windows:
+---
+
+# 6. GitHub Actions blocker #8 — ROOT CAUSE NARROWED
+
+A diagnostic job containing only `runs-on` + one `echo`, with no external action, still failed on Ubuntu and Windows with:
 
 ```text
 conclusion = failure
 steps = null
 ```
 
-Therefore the course YAML/test body/action allow-list are ruled out: a GitHub-hosted runner is not starting.
+Therefore checkout/setup-python/action allow-list/course tests are ruled out: a hosted runner is not starting.
 
 Cross-repo evidence:
 
-- private `tpsi-quarto-docente` had successful Actions run `32235106172` on **2026-08-19**;
-- its later private PR records the same pre-step failure from **2026-08-21**;
-- public repositories do not consume private-repository included Actions minutes.
+- private `tpsi-quarto-docente` had a successful private Actions run on **2026-08-19**;
+- the same private repo shows equivalent pre-step failures from **2026-08-21**.
 
-Leading hypothesis: private GitHub Actions quota/budget/spending stop. Alternative: organization hosted-runner policy changed in the same window. Exact billing state is not available through the connector and must not be guessed.
+Leading hypothesis: private Actions quota/budget/spending stop. Alternative: organization hosted-runner policy changed in that window. Exact Billing state is not exposed by the connector and must not be guessed.
 
-The temporary diagnostic job has been removed. #8 records the admin checks for Organization Actions settings and Billing/Budgets.
+The temporary diagnostic job has been removed. `python-docente#8` records the admin checks.
+
+No `steps: null` run is evidence that the authored tests passed or failed.
 
 ---
 
-# 7. TheBitLab grading/runtime architecture — DESIGNED, IMPLEMENTATION GATES OPEN
-
-`doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`:
+# 7. TheBitLab grading/runtime architecture
 
 - P0 — manual/trace/design evidence;
 - P1 — single-file stdin/stdout;
@@ -214,16 +165,16 @@ The temporary diagnostic job has been removed. #8 records the admin checks for O
 - P4 — filesystem behavior (`2cornot2c#757`);
 - Romeo — external `romeo-sim` runtime.
 
-Never distort a P2/P3/P4 learning outcome into P1 solely to obtain a score.
+Never distort P2/P3/P4 outcomes into P1 just to obtain a score.
 
 ---
 
-# 8. Classroom Environment / platform gates — OPEN
+# 8. Open delivery/platform gates
 
-- `python-docente#2` — managed Classroom Environment certification;
+- `python-docente#2` — managed Classroom Environment;
 - `python-docente#6` — beginner REPL/editor workflow;
-- `python-docente#7` — P1 canary certification;
-- `python-docente#8` — private Actions pre-execution blocker;
+- `python-docente#7` — P1 canary;
+- `python-docente#8` — private Actions runner blocker;
 - `2cornot2c#753/#754` — Course Environment + Flowchart Lab;
 - `2cornot2c#755` — Course Workspace/Open Course UX;
 - `2cornot2c#756` — P2 function behavior;
@@ -231,48 +182,33 @@ Never distort a P2/P3/P4 learning outcome into P1 solely to obtain a score.
 - `2cornot2c#758` — P3 object behavior;
 - `romeo-sim` cross-profile certification.
 
-P2/P3/P4 block the promise of deterministic autograding, not teaching the concepts.
+P2/P3/P4 block only the promise of deterministic autograding, not teaching the concept.
 
 ---
 
-# 9. Romeo — MAPPING DONE, DELIVERY OPEN
+# 9. Sources / friedpython
 
-Strong selective use remains:
-
-- PY2-03 conditions;
-- PY2-04 loops;
-- PY2-05 functions/top-down/debug;
-- PY2-10 OOP/capstone.
-
-No forced Romeo in strings/dicts/files. Hardware is never core.
+Thematic inventory is complete and snapshot pinned. Each candidate exercise/example still requires individual review and modernization before reuse; no wholesale import.
 
 ---
 
-# 10. Git / Container — ARCHITECTURE DONE
+# 10. Git / Container
 
-Git is a separate progressive curriculum; Python second year consumes G1 from PY2-05 / Checkpoint A. Existing Git handouts are requested only when definitive G1 or the standalone Git course enters production.
+Git remains a separate progressive curriculum; Python consumes only G1 from PY2-05/Checkpoint A. Existing Git handouts will be requested when definitive G1 or the standalone Git course enters production.
 
-Container/Docker remains a separate future curriculum based on `kinderp/docker101#1`.
-
----
-
-# 11. Sources / friedpython
-
-Thematic audit is done for strings/lists/tuples/dicts/files and the snapshot is pinned. Before reuse each candidate exercise/example still requires individual audit and modernization; no wholesale import.
+Container/Docker remains a separate future course (`kinderp/docker101#1`).
 
 ---
 
-# 12. Next controlled work
+# 11. Next controlled work
 
-1. proceed with **M09** (`while`, state change, termination, repeated validation);
-2. then M10–M12 to materialize PY2-04 loops;
-3. continue module-by-module, no new autograded Activity until the corresponding profile is certified;
-4. resolve #8 administratively when possible and execute the already-written M04/M05/catalog/Course Board/P1 gates;
-5. certify M04 golden vertical slice;
-6. build/verify slide artifact pipeline;
-7. implement/certify Flowchart Lab before declaring PY2-01 delivery ready;
-8. later P2/P4/P3 before relying on those grading profiles;
-9. certify `romeo-sim` before making Romeo missions mandatory.
+1. M11 — counters/accumulators/min-max/search/flags;
+2. M12 — nested loops + intuitive work/cost reasoning;
+3. then PY2-04 will be fully materialized;
+4. continue module-by-module without new autograded Activities until profile certification;
+5. when #8 is resolved, execute the already-written catalog/M04/M05/Course Board/P1 gates;
+6. certify M04 golden slice;
+7. later implement/certify Flowchart Lab, P2/P4/P3 and `romeo-sim` as required.
 
 ---
 
@@ -280,7 +216,10 @@ Thematic audit is done for strings/lists/tuples/dicts/files and the snapshot is 
 
 ```text
 Curriculum architecture        FROZEN ✅
-Editorial modules M04-M08      CREATED 🟡 draft
+Editorial modules M04-M10      CREATED 🟡 draft
+PY2-02 editorial               COMPLETE 🟡 draft
+PY2-03 editorial               COMPLETE 🟡 draft
+PY2-04 editorial               2/4 modules 🟡
 P1 golden vertical slice       CREATED / NOT CERTIFIED 🟡
 Private Actions runners        BLOCKED 🔴 #8
 Content Pack 1.0 approved      NOT YET ⏳
