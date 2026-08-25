@@ -37,7 +37,9 @@
       "files": [
         "04_INTERPRETE_REPL_VALORI_IO.md",
         "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
-        "06_BOOLEANI_CONFRONTI_IF.md"
+        "06_BOOLEANI_CONFRONTI_IF.md",
+        "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
+        "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
@@ -135,6 +137,34 @@
         {"id": "python-ref-docs", "role": "technical-reference", "locator": "Python 3.12 comparisons and if statement"},
         {"id": "python-ref-think-python", "role": "teacher-reference", "locator": "conditional execution and debugging"},
         {"id": "python-ref-romeo", "role": "applied-reference", "locator": "course/activities/y1-u14-condizioni"}
+      ]
+    },
+    {
+      "id": "py2-m07-elif-logica-condizioni-composte",
+      "kind": "module",
+      "path": "content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
+      "order": 7,
+      "status": "draft",
+      "curriculum_topics": ["elif", "exclusive-branches", "independent-if", "boolean-and", "boolean-or", "boolean-not", "chained-comparisons", "short-circuit-intro"],
+      "source_refs": [
+        {"id": "python-course-content", "role": "content-origin", "locator": "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md"},
+        {"id": "python-ref-docs", "role": "technical-reference", "locator": "Python 3.12 if statement, Boolean operations and comparisons"},
+        {"id": "python-ref-think-python", "role": "teacher-reference", "locator": "conditional execution and debugging"},
+        {"id": "python-ref-romeo", "role": "applied-reference", "locator": "selective multi-rule mission adaptation; no duplicated Activity"}
+      ]
+    },
+    {
+      "id": "py2-m08-annidamento-validazione-refactor",
+      "kind": "module",
+      "path": "content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md",
+      "order": 8,
+      "status": "draft",
+      "curriculum_topics": ["nested-conditionals", "path-trace", "domain-validation", "boolean-naming", "refactoring", "behavior-preservation", "path-coverage"],
+      "source_refs": [
+        {"id": "python-course-content", "role": "content-origin", "locator": "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md"},
+        {"id": "python-ref-docs", "role": "technical-reference", "locator": "Python 3.12 control flow and Boolean operations"},
+        {"id": "python-ref-think-python", "role": "teacher-reference", "locator": "nested conditionals and debugging"},
+        {"id": "python-ref-romeo", "role": "applied-reference", "locator": "selective path/refactor use with pinned simulator"}
       ]
     }
   ],
