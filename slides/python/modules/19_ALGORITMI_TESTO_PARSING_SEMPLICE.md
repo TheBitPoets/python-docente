@@ -6,8 +6,24 @@ title: M19 — Algoritmi su testo e parsing semplice
 ---
 
 # M19 — Algoritmi su testo e parsing semplice
+## Integrare ciò che sappiamo, non collezionare nuovi metodi
 
 PY2-06 — Stringhe come sequenze e testo
+
+---
+
+# Che cosa deve restare davvero?
+
+```text
+funzione + loop + if su testo
+contatore / accumulatore
+casi limite
+parsing posizionale
+analisi separata dall'output
+metodo vs algoritmo
+```
+
+`split()` è un ponte verso le liste. `join()` è enrichment.
 
 ---
 
@@ -23,6 +39,8 @@ funzioni
 + test
 ```
 
+La stringa cambia il dominio, non il metodo di ragionamento.
+
 ---
 
 # Conta caratteri
@@ -35,6 +53,12 @@ def conta_cifre(testo):
             conteggio += 1
     return conteggio
 ```
+
+Invariante:
+
+> `conteggio` = numero di caratteri cifra già elaborati.
+
+`isdigit()` è uno strumento standard, non un nuovo algoritmo da imparare a memoria.
 
 ---
 
@@ -49,49 +73,19 @@ def solo_lettere(testo):
     return risultato
 ```
 
----
-
-# Palindromo: prima l'algoritmo
-
-```text
-radar
-0 ↔ -1
-1 ↔ -2
-centro
-```
-
-Capisci il confronto prima della versione compatta.
-
----
-
-# Versione compatta
-
-```python
-def palindroma(testo):
-    return testo == testo[::-1]
-```
-
-Ma il contratto deve dire come trattare maiuscole, spazi e punteggiatura.
-
----
-
-# Normalizzazione dichiarata
-
-```python
-normalizzato = testo.strip().lower()
-```
-
-Non normalizzare automaticamente senza requisito.
+`risultato` ricorda ciò che abbiamo deciso di conservare.
 
 ---
 
 # Casi limite
 
+Per una funzione testuale chiediti, se pertinenti al contratto:
+
 ```text
-""
-"a"
-"Radar"
-" radar "
+""        stringa vuota
+"a"       un carattere
+"Radar"   maiuscole
+" radar " spazi ai bordi
 ```
 
 Definisci prima il comportamento atteso.
@@ -106,12 +100,34 @@ Formato:
 ABC-123
 ```
 
+Prima:
+
 ```python
 len(codice) == 7
+```
+
+Poi puoi verificare le parti:
+
+```python
+codice[:3]
+codice[3]
+codice[4:]
+```
+
+Non accedere a posizioni che il contratto non ha ancora garantito.
+
+---
+
+# Predicate standard come strumenti
+
+```python
 codice[:3].isalpha()
-codice[3] == "-"
 codice[4:].isdigit()
 ```
+
+Servono a esprimere il requisito.
+
+Non trasformare `isalpha/isdigit/isalnum` in un catalogo da memorizzare.
 
 ---
 
@@ -124,7 +140,7 @@ Prima consolidiamo:
 - condizioni;
 - struttura del formato.
 
-Regex arriverà più avanti.
+Regex arriverà più avanti quando non nasconderà il modello che stiamo imparando.
 
 ---
 
@@ -136,44 +152,71 @@ testo.count("a")
 
 vs scansione manuale.
 
-La scelta dipende dall'outcome.
+La scelta dipende dall'outcome:
+
+```text
+imparare scansione/contatore → loop
+operazione standard richiesta → metodo candidato
+```
 
 ---
 
-# `split()` = ponte verso list
+# GUIDED EXPOSURE — palindromo
+
+Prima ragiona su caratteri/posizioni opposte.
+
+Solo dopo puoi confrontare una forma compatta:
+
+```python
+testo == testo[::-1]
+```
+
+Il contratto deve dire come trattare maiuscole, spazi e punteggiatura.
+
+---
+
+# GUIDED EXPOSURE — `split()`
 
 ```python
 parti = "rosso,verde,blu".split(",")
 ```
 
-Il risultato è una `list`.
+Il risultato non è una `str`.
 
-La prossima UDA spiega davvero che cosa significa.
+È una:
+
+```text
+list
+```
+
+Per ora basta riconoscere il ponte. M20 insegnerà davvero che cosa significa lista mutabile.
 
 ---
 
-# `join()` preview
+# ENRICHMENT / BACKUP — `join()`
 
 ```python
 ",".join(parti)
 ```
 
 ```text
-stringa → split → parti
-parti   → join  → stringa
+stringa → split → più parti
+più parti → join → stringa
 ```
+
+Utile, ma non requisito per chiudere PY2-06.
 
 ---
 
 # Worked example
 
-Validator username:
+Validator username semplice:
 
-- strip;
-- lower;
+- strip/lower secondo contratto;
 - lunghezza minima;
 - caratteri ammessi;
-- return booleano.
+- return booleano;
+- casi limite.
 
 Riusa M13–M18.
 
@@ -184,7 +227,7 @@ Riusa M13–M18.
 - stringa vuota ignorata;
 - off-by-one;
 - parsing senza controllo lunghezza;
-- normalizzazione incompleta;
+- normalizzazione non prevista dal contratto;
 - risultato metodo ignorato;
 - `split()` trattato come se restituisse `str`.
 
@@ -194,13 +237,16 @@ Riusa M13–M18.
 
 Sai:
 
-- usare str come sequenza;
+- usare `str` come sequenza immutabile;
 - indicizzare/slicare;
-- cercare/normalizzare;
-- scrivere algoritmi su testo;
+- scegliere iterazione diretta/per indice;
+- cercare/normalizzare con una scelta motivata;
+- scrivere algoritmi su testo con loop/funzioni;
 - testare casi limite;
 - motivare metodo vs loop;
-- spiegare `split()` → list.
+- spiegare `split()` → `list`.
+
+`join`, regex e palindrome compatto non sono prerequisiti del gate.
 
 ---
 
