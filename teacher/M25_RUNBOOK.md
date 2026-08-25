@@ -25,73 +25,153 @@ riconosco le operazioni dominanti
 
 È un modulo di design, non un catalogo di nesting.
 
-## Ora teoria attiva 1 — confronto modelli
+---
+
+# Priorità didattica
+
+## MUST MASTER
+
+1. scegliere `str/list/tuple/set/dict` dalle operazioni dominanti;
+2. motivare la scelta con ordine, mutabilità, duplicati, membership, lookup e ruolo dei campi;
+3. riconoscere liste parallele come modello fragile in molti casi;
+4. confrontare almeno due modelli plausibili;
+5. usare una semplice struttura combinata quando il dominio la richiede;
+6. evitare profondità di nesting priva di significato;
+7. spiegare il ponte record/dict → oggetto senza anticipare classi.
+
+## GUIDED EXPOSURE
+
+- lista di tuple vs lista di dict;
+- dict indicizzato per identità;
+- dict di liste per relazione uno→molti;
+- lookup diretto vs scansione ripetuta in linguaggio qualitativo.
+
+## ENRICHMENT / BACKUP
+
+- dict di set;
+- `setdefault()`;
+- matrice sparsa con tuple-key;
+- lista di dict vs dict di dict;
+- inversione frequenza→lista.
+
+La complessità strutturale non è un obiettivo: una sola struttura ben scelta può essere migliore di tre contenitori annidati.
+
+---
+
+# Ora teoria attiva 1 — scegliere il modello
 
 1. Mappa `str/list/tuple/set/dict`.
 2. Liste parallele come smell.
-3. Lista di tuple vs lista di dict.
-4. Dict indicizzato per identità.
-5. Ordine/duplicati/lookup come criteri.
+3. Lista di tuple vs lista di dict su un record piccolo.
+4. Dict indicizzato per identità quando il lookup domina.
+5. Ordine/duplicati/membership/lookup come criteri.
 
-## Ora teoria attiva 2 — strutture combinate
+Per ogni scenario chiedere prima:
 
-1. Dict di liste per raggruppamento.
-2. Dict di set per relazione uno→molti con unicità.
-3. Esercizio legacy frequenza→lista come spunto.
-4. Annidamento con significato vs profondità gratuita.
-5. Bridge record/dict → classe futura.
+```text
+quale operazione faccio più spesso?
+quale informazione deve essere naturale da leggere/aggiornare?
+```
 
-## Laboratorio
+---
+
+# Ora teoria attiva 2 — combinare solo quando serve
+
+1. Dict di liste come primo modello uno→molti.
+2. Refactoring di liste parallele.
+3. Annidamento con significato vs profondità gratuita.
+4. Ponte record/dict → classe futura.
+5. Confronto qualitativo scansione vs lookup diretto.
+
+`dict di set`, `setdefault` e matrice sparsa restano enrichment se il core non è già stabile.
+
+---
+
+# Laboratorio
 
 - data-model choice cards;
 - refactoring liste parallele;
-- group-by con dict di liste;
-- dict di set per iscrizioni/tag;
-- mini-project con due strutture combinate;
+- una struttura combinata semplice scelta dal dominio;
+- confronto fra due modelli plausibili;
+- mini-project con **modello sufficiente e motivato**, non con un numero minimo artificiale di contenitori;
 - spiegazione scritta delle operazioni dominanti.
 
-## Misconception watchlist
+Il mini-project non richiede per principio “almeno due strutture combinate”. Se un dict semplice rappresenta bene il dominio, questa può essere la scelta migliore.
+
+---
+
+# Minimum mastery gate — exit PY2-08
+
+Considerare PY2-08 consolidata quando lo studente riesce a:
+
+- scegliere fra list/tuple/set/dict in scenari semplici;
+- motivare la scelta con almeno 2 criteri del dominio;
+- usare set per unicità/membership;
+- usare dict per lookup chiave→valore;
+- gestire chiavi mancanti secondo contratto;
+- costruire una frequenza semplice;
+- usare `items()` quando servono chiave+valore;
+- riconoscere liste parallele fragili;
+- usare una struttura combinata semplice senza annidamento gratuito;
+- spiegare il ponte record/dict → oggetto.
+
+Non richiedere `setdefault`, dict di set, matrice sparsa o nesting profondo per superare il gate.
+
+---
+
+# Misconception watchlist
 
 - dict scelto sempre perché “più potente”;
 - set usato perdendo ordine/duplicati richiesti;
 - tuple usata per record con molti campi poco leggibili;
 - nesting profondo considerato sofisticazione;
 - ordine di inserimento del dict confuso con semantica posizionale;
-- default usato per nascondere dato obbligatorio.
+- default usato per nascondere dato obbligatorio;
+- scegliere una struttura perché “è l'ultima studiata”.
 
-## Differenziazione
+---
 
-### Recupero
+# Differenziazione
+
+## Recupero
 
 - scegliere tra due sole strutture candidate;
 - record con 2 campi;
 - dict di liste già schematizzato;
-- tabella criteri ordine/unicità/lookup.
+- tabella criteri ordine/unicità/lookup;
+- nessun nesting oltre due livelli inizialmente.
 
-### Enrichment
+## Enrichment
 
 - matrice sparsa con tuple-key;
 - setdefault dopo pattern esplicito;
-- confrontare lista di dict vs dict di dict;
-- discutere costo qualitativo di scansione vs lookup.
+- dict di set;
+- lista di dict vs dict di dict;
+- costo qualitativo scansione vs lookup.
 
-## Evidence docente
+---
+
+# Evidence docente
 
 Raccogliere:
 
 - almeno 3 scelte struttura motivate;
 - refactoring liste parallele;
-- una struttura combinata;
-- mini call/data model diagram;
+- una struttura combinata realmente giustificata;
+- piccolo data-model diagram;
 - spiegazione del ponte record→oggetto.
 
-## Friedpython
+---
+
+# Friedpython
 
 Audit: `sources/FRIEDPYTHON_DICTS_AUDIT.md`.
 
-Esercizi 5–6 sono buoni spunti per frequenze e dict di liste, ma vanno riscritti. Le vecchie note su ordine/keys non vanno propagate.
+Esercizi 5–6 sono spunti per frequenze e dict di liste, ma vanno riscritti. Le vecchie note su ordine/keys non vanno propagate.
 
-## Cosa NON anticipare
+---
+
+# Cosa NON anticipare
 
 - dataclass/classi;
 - defaultdict/Counter come core;
@@ -99,20 +179,9 @@ Esercizi 5–6 sono buoni spunti per frequenze e dict di liste, ma vanno riscrit
 - JSON persistence;
 - generics/type hints avanzati.
 
-## Exit checkpoint PY2-08
+---
 
-Verificare:
-
-1. set/unicità/membership;
-2. dict/lookup;
-3. chiavi mancanti;
-4. frequenze;
-5. items/views;
-6. scelta str/list/tuple/set/dict;
-7. strutture combinate;
-8. operazioni dominanti e motivazione.
-
-## Handoff a PY2-09
+# Handoff a PY2-09
 
 Il modello dati ora è abbastanza ricco. M26 aggiunge soltanto il confine minimo di persistenza:
 
@@ -120,7 +189,7 @@ Il modello dati ora è abbastanza ricco. M26 aggiunge soltanto il confine minimo
 workspace path
 → file testo UTF-8
 → with/open
-→ errori esterni prevedibili
+→ errore esterno mirato
 ```
 
 senza sottrarre tempo all'OOP.
