@@ -1,87 +1,197 @@
-# Checkpoint C — Chiusura del percorso di seconda
+# Checkpoint C — Finalizzazione, recupero ed evidence annuale
 
-> Stato: **draft editoriale controllato**  
-> Finestra: settimana 33  
-> Vincolo: **nessun nuovo prerequisito obbligatorio**.
+> Settimana 33 — nessun nuovo prerequisito.
 
 ## Scopo
 
-Il Checkpoint C non introduce un nuovo argomento. Serve a chiudere l'anno usando ciò che hai già imparato per:
+Checkpoint C non introduce nuovi concetti obbligatori.
 
-- completare o rifinire il capstone OOP;
-- recuperare competenze ancora fragili;
-- correggere bug rimasti aperti;
-- migliorare leggibilità e struttura senza cambiare il comportamento corretto;
-- organizzare le evidence del percorso;
-- spiegare le scelte fatte.
+Serve a uno o più di questi obiettivi:
 
-## Percorso base
+```text
+finalizzare il capstone
+recuperare un outcome core
+correggere/documentare un bug
+raccogliere evidence mancanti
+spiegare le scelte progettuali
+```
 
-1. Rileggi la specifica del tuo capstone.
-2. Elenca le funzionalità obbligatorie già completate e quelle mancanti.
-3. Esegui i test/casi previsti dal progetto.
-4. Scegli **un solo problema alla volta** da correggere.
-5. Dopo ogni correzione riesegui i casi che prima funzionavano.
-6. Verifica che le responsabilità delle classi siano chiare.
-7. Controlla che la composizione tra oggetti sia comprensibile.
-8. Prepara una breve spiegazione finale del modello scelto.
+---
 
-## Checklist minima capstone
+# 1. Se stai finalizzando il capstone completo
 
-Il progetto finale dovrebbe mostrare, in forma proporzionata al problema:
+Il prodotto deve dimostrare in modo proporzionato:
 
-- analisi del problema;
-- almeno una classe significativa;
-- più istanze quando il dominio lo richiede;
-- attributi e metodi coerenti;
-- stato valido/invarianti semplici;
-- almeno una collaborazione/composizione tra oggetti oppure una motivazione del perché non serve;
-- una struttura dati non banale quando appropriata;
-- funzioni/metodi con responsabilità riconoscibili;
-- casi di test o checklist di verifica;
-- almeno un edge case;
-- una breve spiegazione delle scelte di progetto.
+- responsabilità OOP significative;
+- stato e metodi;
+- almeno un invariante;
+- **composizione/collaborazione reale tra oggetti**;
+- una struttura dati scelta e motivata;
+- casi/test;
+- almeno un edge case o transizione rifiutata;
+- una evidence di bug-fix/regression/refactor;
+- breve spiegazione del design.
 
-La persistenza su file è utile ma non diventa obbligatoria se il calendario annuale non ha consentito di consolidarla adeguatamente.
+La composizione non è opzionale nel capstone completo: è un outcome core del corso già insegnato in M29.
 
-## Recupero competenze
+---
 
-Se non devi completare il capstone, usa la settimana per recuperare una competenza precisa, ad esempio:
+# 2. Se sei in percorso di recupero
+
+Il docente può ridurre il dominio:
+
+```text
+meno funzionalità
+meno dati
+una sola relazione di collaborazione
+niente file/Romeo/enrichment
+```
+
+ma non trasforma gli outcome core in facoltativi.
+
+Se il prodotto ridotto non contiene una evidence sufficiente di composizione, puoi dimostrarla con un micro-task separato già basato su M29.
+
+La settimana 33 non ti insegna una nozione nuova: ti permette di consolidare/dimostrare qualcosa già affrontato.
+
+---
+
+# 3. Checklist annuale essenziale
+
+Devi poter spiegare, con esempi dal tuo lavoro:
+
+## Problema e algoritmo
+
+- input/output/vincoli;
+- scelta dei costrutti;
+- trace/casi limite quando pertinenti.
+
+## Funzioni
+
+- parametri/argomenti;
+- `return`;
+- scope locale;
+- composizione di funzioni;
+- decomposizione.
+
+## Iterazione e stato
 
 - `for` vs `while`;
-- funzioni e `return`;
-- alias vs copia;
-- scelta tra list/tuple/set/dict;
-- dizionari e lookup;
-- file di testo;
-- classi/istanze/metodi;
-- composizione e responsabilità.
+- terminazione;
+- contatore/accumulatore/min-max/ricerca;
+- cicli annidati quando il dominio li richiede.
 
-Il recupero deve produrre una evidence verificabile: trace, esercizio corretto, debug spiegato, piccolo programma o revisione di una parte del progetto.
+## Strutture dati
 
-## Enrichment
+- `str/list/tuple/set/dict`;
+- mutabilità/alias/copia;
+- scelta della struttura dalle operazioni dominanti.
 
-Solo dopo il core, puoi esplorare una estensione non necessaria per la sufficienza, ad esempio:
+## OOP
 
-- `__str__` / `__repr__`;
-- property introduttiva;
-- ereditarietà semplice come confronto;
-- dataclass dopo aver compreso la classe esplicita;
-- persistenza più ricca;
-- piccola estensione Romeo simulata se il runtime è certificato.
+- classe vs istanza;
+- `self`/`__init__`;
+- stato/metodi;
+- invariante;
+- istanze indipendenti;
+- **composizione tra oggetti**;
+- responsabilità.
 
-## Presentazione finale
+## Testing/debug
 
-Devi saper rispondere almeno a queste domande:
+- casi/assert;
+- confini;
+- regression test;
+- refactoring con comportamento preservato.
 
-1. Quale problema risolve il progetto?
-2. Quali sono le classi principali e perché esistono?
-3. Quale stato mantiene ciascun oggetto?
-4. Dove avviene la collaborazione tra oggetti?
-5. Quale struttura dati hai scelto e perché?
-6. Quale bug o edge case hai dovuto gestire?
-7. Quale parte rifattorizzeresti con più tempo?
+---
 
-## AI
+# 4. Evidence di bug/regression
 
-Se la policy del docente consente AI in questa fase, può essere usata solo come supporto a review/debug. Ogni suggerimento va verificato, testato e spiegato. Non sostituisce la tua capacità di motivare il progetto.
+Documenta almeno un caso reale in forma breve:
+
+```text
+caso che falliva
+→ atteso
+→ ottenuto
+→ causa
+→ fix
+→ test aggiunto/rieseguito
+```
+
+Non serve un report lungo. Serve una spiegazione verificabile.
+
+---
+
+# 5. Git G1 — riuso embedded
+
+Checkpoint C non introduce G2.
+
+Se stai versionando il capstone, riusa il workflow G1 già acquisito:
+
+```text
+git status
+→ git diff
+→ test
+→ git add <path>
+→ git diff --staged
+→ git commit
+→ git status
+→ git log / git show
+```
+
+Il commit deve rappresentare un cambiamento coerente e verificato.
+
+Non devi creare commit artificiali solo per raggiungere un numero.
+
+---
+
+# 6. Romeo / file / enrichment
+
+Sono possibili soltanto quando aiutano il progetto e il relativo delivery è disponibile.
+
+Non sono necessari per dimostrare il core annuale:
+
+- hardware Romeo;
+- rete;
+- GUI/web;
+- database;
+- inheritance;
+- property/dataclass;
+- JSON/CSV;
+- pytest professionale.
+
+Un capstone più piccolo ma spiegabile e testato vale più di un progetto grande con parti non comprese.
+
+---
+
+# 7. Spiegazione finale
+
+Devi poter rispondere in modo breve a domande come:
+
+1. Qual è la responsabilità di ciascun oggetto?
+2. Quale invariante proteggi?
+3. Dove avviene la composizione e perché serve?
+4. Perché hai scelto quella struttura dati?
+5. Quale test di confine è importante?
+6. Quale bug hai corretto e come hai impedito che tornasse?
+7. Quale parte semplificheresti in una versione futura?
+
+---
+
+# Traguardo
+
+Il secondo anno non termina con “conosco tante keyword”.
+
+Il traguardo è saper collegare:
+
+```text
+problema
+→ algoritmo
+→ codice
+→ strutture dati
+→ oggetti
+→ invarianti
+→ composizione
+→ test/debug/refactor
+→ spiegazione
+```
