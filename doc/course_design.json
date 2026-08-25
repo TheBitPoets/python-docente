@@ -7,7 +7,8 @@
       "provider": "local",
       "path": "content/python",
       "files": [
-        "04_INTERPRETE_REPL_VALORI_IO.md"
+        "04_INTERPRETE_REPL_VALORI_IO.md",
+        "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"
       ],
       "indexing_status": "ready"
     },
