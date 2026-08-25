@@ -39,7 +39,8 @@
         "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
         "06_BOOLEANI_CONFRONTI_IF.md",
         "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
-        "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md"
+        "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md",
+        "09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
@@ -53,23 +54,8 @@
       "role": "course-design-source",
       "path": "tracks/secondo",
       "files": [
-        "MODULE_MAP.md",
-        "COURSE_DESIGN.md",
-        "DELIVERY_PROFILE.md",
-        "ASSESSMENT_CALENDAR.md",
-        "ARCHITECTURE_REVIEW.md",
-        "GIT_G1_INTEGRATION.md",
-        "ROMEO_MAPPING.md",
-        "PY2_01_SPEC.md",
-        "PY2_02_SPEC.md",
-        "PY2_03_SPEC.md",
-        "PY2_04_SPEC.md",
-        "PY2_05_SPEC.md",
-        "PY2_06_SPEC.md",
-        "PY2_07_SPEC.md",
-        "PY2_08_SPEC.md",
-        "PY2_09_SPEC.md",
-        "PY2_10_SPEC.md"
+        "MODULE_MAP.md", "COURSE_DESIGN.md", "DELIVERY_PROFILE.md", "ASSESSMENT_CALENDAR.md", "ARCHITECTURE_REVIEW.md", "GIT_G1_INTEGRATION.md", "ROMEO_MAPPING.md",
+        "PY2_01_SPEC.md", "PY2_02_SPEC.md", "PY2_03_SPEC.md", "PY2_04_SPEC.md", "PY2_05_SPEC.md", "PY2_06_SPEC.md", "PY2_07_SPEC.md", "PY2_08_SPEC.md", "PY2_09_SPEC.md", "PY2_10_SPEC.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
@@ -83,15 +69,7 @@
       "role": "course-design-source",
       "path": "doc",
       "files": [
-        "CURRICULUM_FREEZE_2026_2027.md",
-        "CURRICULUM_FREEZE_CHECKLIST.md",
-        "PROJECT_STATUS.md",
-        "OPEN_DECISIONS.md",
-        "COURSE_ARCHITECTURE.md",
-        "CURRICULUM_ROADMAP.md",
-        "APPROVED_DECISIONS_2026_2027.md",
-        "CROSS_COURSE_CURRICULA.md",
-        "PYTHON_ACTIVITY_RUNTIME_CONTRACT.md"
+        "CURRICULUM_FREEZE_2026_2027.md", "CURRICULUM_FREEZE_CHECKLIST.md", "PROJECT_STATUS.md", "OPEN_DECISIONS.md", "COURSE_ARCHITECTURE.md", "CURRICULUM_ROADMAP.md", "APPROVED_DECISIONS_2026_2027.md", "CROSS_COURSE_CURRICULA.md", "PYTHON_ACTIVITY_RUNTIME_CONTRACT.md"
       ],
       "license_status": "project-license-to-review",
       "indexing_status": "ready"
@@ -99,11 +77,7 @@
   ],
   "content_items": [
     {
-      "id": "py2-m04-interprete-repl-io",
-      "kind": "module",
-      "path": "content/python/04_INTERPRETE_REPL_VALORI_IO.md",
-      "order": 4,
-      "status": "draft",
+      "id": "py2-m04-interprete-repl-io", "kind": "module", "path": "content/python/04_INTERPRETE_REPL_VALORI_IO.md", "order": 4, "status": "draft",
       "curriculum_topics": ["python-interpreter", "repl", "values-types", "variables", "input-output", "type-conversion", "beginner-debugging"],
       "activity_ids": ["py2-activity-b-input-somma-001"],
       "source_refs": [
@@ -113,11 +87,7 @@
       ]
     },
     {
-      "id": "py2-m05-espressioni-operatori-prime-funzioni",
-      "kind": "module",
-      "path": "content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
-      "order": 5,
-      "status": "draft",
+      "id": "py2-m05-espressioni-operatori-prime-funzioni", "kind": "module", "path": "content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md", "order": 5, "status": "draft",
       "curriculum_topics": ["expressions", "arithmetic-operators", "operator-precedence", "quotient-remainder", "f-strings", "builtins-intro", "function-preview", "return-vs-print"],
       "source_refs": [
         {"id": "python-course-content", "role": "content-origin", "locator": "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"},
@@ -126,11 +96,7 @@
       ]
     },
     {
-      "id": "py2-m06-booleani-confronti-if",
-      "kind": "module",
-      "path": "content/python/06_BOOLEANI_CONFRONTI_IF.md",
-      "order": 6,
-      "status": "draft",
+      "id": "py2-m06-booleani-confronti-if", "kind": "module", "path": "content/python/06_BOOLEANI_CONFRONTI_IF.md", "order": 6, "status": "draft",
       "curriculum_topics": ["booleans", "comparisons", "if", "if-else", "indentation", "boundary-tests", "branch-trace"],
       "source_refs": [
         {"id": "python-course-content", "role": "content-origin", "locator": "06_BOOLEANI_CONFRONTI_IF.md"},
@@ -140,11 +106,7 @@
       ]
     },
     {
-      "id": "py2-m07-elif-logica-condizioni-composte",
-      "kind": "module",
-      "path": "content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
-      "order": 7,
-      "status": "draft",
+      "id": "py2-m07-elif-logica-condizioni-composte", "kind": "module", "path": "content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md", "order": 7, "status": "draft",
       "curriculum_topics": ["elif", "exclusive-branches", "independent-if", "boolean-and", "boolean-or", "boolean-not", "chained-comparisons", "short-circuit-intro"],
       "source_refs": [
         {"id": "python-course-content", "role": "content-origin", "locator": "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md"},
@@ -154,17 +116,23 @@
       ]
     },
     {
-      "id": "py2-m08-annidamento-validazione-refactor",
-      "kind": "module",
-      "path": "content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md",
-      "order": 8,
-      "status": "draft",
+      "id": "py2-m08-annidamento-validazione-refactor", "kind": "module", "path": "content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md", "order": 8, "status": "draft",
       "curriculum_topics": ["nested-conditionals", "path-trace", "domain-validation", "boolean-naming", "refactoring", "behavior-preservation", "path-coverage"],
       "source_refs": [
         {"id": "python-course-content", "role": "content-origin", "locator": "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md"},
         {"id": "python-ref-docs", "role": "technical-reference", "locator": "Python 3.12 control flow and Boolean operations"},
         {"id": "python-ref-think-python", "role": "teacher-reference", "locator": "nested conditionals and debugging"},
         {"id": "python-ref-romeo", "role": "applied-reference", "locator": "selective path/refactor use with pinned simulator"}
+      ]
+    },
+    {
+      "id": "py2-m09-while-stato-sentinelle-validazione", "kind": "module", "path": "content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md", "order": 9, "status": "draft",
+      "curriculum_topics": ["while", "loop-state", "termination", "repeated-validation", "sentinel", "zero-one-many-iterations", "break-intro", "off-by-one"],
+      "source_refs": [
+        {"id": "python-course-content", "role": "content-origin", "locator": "09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md"},
+        {"id": "python-ref-docs", "role": "technical-reference", "locator": "Python 3.12 while and break control flow"},
+        {"id": "python-ref-think-python", "role": "teacher-reference", "locator": "iteration, reassignment and debugging"},
+        {"id": "python-ref-romeo", "role": "applied-reference", "locator": "course/activities/y1-u16-ciclo-while"}
       ]
     }
   ],
