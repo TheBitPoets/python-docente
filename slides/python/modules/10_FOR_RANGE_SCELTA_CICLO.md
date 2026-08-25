@@ -12,6 +12,24 @@ PY2-04 — Iterazione e pattern algoritmici
 
 ---
 
+# Che cosa deve restare davvero?
+
+## MUST MASTER
+
+```text
+range e stop escluso
+step e verso
+range vuoto
+off-by-one
+for vs while
+while-contatore → for
+stato ridondante
+```
+
+`break` e `continue` sono **guided exposure**, non requisito del checkpoint.
+
+---
+
 # Problema iniziale
 
 > Stampa i valori da 0 a 4.
@@ -181,48 +199,7 @@ for i in range(5):
 
 Se duplica `i`, lo stato in più non aggiunge significato.
 
----
-
-# `break`
-
-```python
-for i in range(10):
-    if i == 4:
-        break
-    print(i)
-```
-
-Interrompe il ciclo corrente.
-
-Usalo quando rende chiaro che l'obiettivo è già raggiunto.
-
----
-
-# `continue`
-
-```python
-for i in range(5):
-    if i == 2:
-        continue
-    print(i)
-```
-
-Salta il resto del corpo e passa all'iterazione successiva.
-
-Non usarlo per evitare condizioni leggibili.
-
----
-
-# Bug: step nel verso sbagliato
-
-```python
-for i in range(5, 0, 1):
-    print(i)
-```
-
-Range vuoto.
-
-Start > stop + desiderio di scendere → step negativo.
+In M11 vedremo invece contatori che misurano **un'altra quantità**.
 
 ---
 
@@ -243,6 +220,49 @@ for i in range(100):
 ```
 
 Meno stato manuale quando il percorso è già noto.
+
+---
+
+# GUIDED EXPOSURE — `break`
+
+```python
+for i in range(10):
+    if i == 4:
+        break
+    print(i)
+```
+
+Interrompe il ciclo corrente.
+
+Devi saper leggere che cosa succede; non devi usarlo per forza nei tuoi esercizi M10.
+
+---
+
+# GUIDED EXPOSURE — `continue`
+
+```python
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)
+```
+
+Salta il resto del corpo e passa all'iterazione successiva.
+
+Confronta sempre con una versione basata su un `if` normale.
+
+---
+
+# Bug: step nel verso sbagliato
+
+```python
+for i in range(5, 0, 1):
+    print(i)
+```
+
+Range vuoto.
+
+Start > stop + desiderio di scendere → step negativo.
 
 ---
 
@@ -271,7 +291,7 @@ M04 resta il canarino P1.
 
 ---
 
-# Checkpoint
+# Minimum mastery checkpoint
 
 1. Valori di `range(5)`?
 2. Perché stop è escluso?
@@ -279,7 +299,9 @@ M04 resta il canarino P1.
 4. Perché `range(5, 0)` è vuoto?
 5. Quando scegli `for`?
 6. Quando scegli `while`?
-7. Che fanno `break` e `continue`?
+7. Quale stato manuale elimina il refactoring `while`→`for`?
+
+`break` e `continue` non fanno parte del checkpoint ordinario.
 
 ---
 
