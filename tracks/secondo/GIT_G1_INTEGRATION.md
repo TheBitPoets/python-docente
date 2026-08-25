@@ -1,184 +1,48 @@
 # Git G1 — integrazione trasversale nel track Python di seconda
 
-> Stato: **design approvato / source of truth Git ora attivo**. Git resta un curriculum autonomo; questo documento definisce soltanto il sottoinsieme G1 consumato dal Python di seconda.
+> Stato: **consumer contract materializzato / G1 ancora freeze-candidate draft**.  
+> Python consuma Git G1; non possiede né duplica il curriculum Git.
 
-## Source of truth
-
-Il curriculum Git canonico è ora:
+## Source of truth canonica
 
 ```text
-TheBitPoets/git
-branch di progettazione: agent/git-course-architecture
+repository: TheBitPoets/git
+track: G1
+candidate ref: 65d8aff8c9a590560c500762d4dc7378a3239bf2
+consumer contract: doc/G1_CONSUMER_CONTRACT.md
+content pack: content/git/content-pack.json
 ```
 
-Documenti autorevoli in costruzione:
+Nel repository Python la dipendenza machine-readable è:
 
-- `doc/COURSE_ARCHITECTURE.md` — curriculum trasversale G0→G4;
-- `doc/CURRICULUM_ROADMAP.md` — progressione quinquennale;
-- `tracks/g1/COURSE_DESIGN.md` — G1 Local Git;
-- `tracks/g1/COMPETENCY_MATRIX.md`;
-- `tracks/g1/ASSESSMENT_MODEL.md`;
-- `sources/MANNING_AUDIT.md`;
-- `sources/PRO_GIT_MAPPING.md`.
+```text
+config/git-g1-consumer.json
+```
 
-Il vecchio `README.md` di `TheBitPoets/git` è una traduzione legacy/incompleta di Manning e **non è materiale canonico del corso**.
+Il vecchio `README.md` radice di `TheBitPoets/git` resta materiale legacy privato e non è la dispensa canonica.
 
-L'audit ha verificato che contiene i capitoli 1–10 su 20; non verrà completata la traduzione. Il nuovo corso è originale, verificato contro Git official docs e usa Pro Git come coverage/concept map.
+Il corso Git G1 canonico contiene M01–M08, con lesson, slide, runbook e un Git Lab canary. G1 non è ancora dichiarato frozen/approved, quindi il consumer usa un candidate ref esplicito e dovrà essere riallineato se il contratto G1 cambia prima del freeze.
 
 ---
 
 # Principio di integrazione
 
-Git non deve diventare:
-
-- una nuova UDA che sottrae settimane al Python;
-- un blocco tutto alla fine dell'anno;
-- un prerequisito delle prime settimane;
-- una serie di comandi da memorizzare senza un problema reale.
-
-Entra quando gli studenti hanno programmi che vale la pena versionare:
+Git entra nel Python quando gli studenti hanno programmi che vale la pena osservare e versionare:
 
 ```text
 programma che evolve
 → refactoring
 → bisogno di vedere cosa è cambiato
-→ status/diff
-→ stato verificato
-→ primo commit
-```
-
-Python **consuma G1-Core**, ma non possiede né duplica le lesson Git.
-
-Quando il materiale Git G1 canonico è disponibile, `student/CHECKPOINT_A.md` e i runbook Python devono linkarlo/importarlo come prerequisito/side-course invece di mantenerne una copia divergente.
-
----
-
-# Outcome G1 consumati dal Python di seconda
-
-Entro la fine dell'anno lo studente dovrebbe saper, in un repository didattico controllato:
-
-- spiegare a cosa serve uno storico delle modifiche;
-- distinguere working tree, staging/index e versione registrata/commit a livello beginner;
-- usare `git status`;
-- usare `git diff` per leggere cosa è cambiato;
-- selezionare modifiche con `git add` nel workflow guidato;
-- creare un `git commit` con messaggio comprensibile;
-- leggere una storia breve con `git log`/vista equivalente;
-- capire che commit diversi identificano stati differenti del progetto;
-- evitare comandi distruttivi improvvisati;
-- seguire una procedura sicura di recovery quando non comprende lo stato.
-
-Non è richiesto nel consumer Python G1-Core:
-
-- branch;
-- merge;
-- rebase;
-- remotes/push/pull;
-- PR;
-- conflitti;
-- reset avanzato;
-- Git internals.
-
-Questi appartengono al curriculum Git G2–G4.
-
----
-
-# Progressione nel track Python
-
-## Settimane 1–12
-
-Nessun Git come obiettivo curricolare. TheBitLab può usarlo internamente, ma lo studente non deve gestire contemporaneamente algoritmi, sintassi, runner e versionamento.
-
-## M13–M14 — osservare lo stato
-
-Micro-introduzione dal corso Git G1:
-
-```text
-git status
-```
-
-Attività tipica:
-
-1. stato prima del refactoring;
-2. modifica di una funzione;
-3. stato dopo;
-4. spiegazione di `modified`.
-
-## M14–M16 — leggere il cambiamento
-
-```text
-git diff
-```
-
-Collegamento naturale con il refactoring:
-
-> che cosa è cambiato nella struttura e quali test devono restare verdi?
-
-## Checkpoint A — primo commit guidato
-
-Workflow canonico G1-Core:
-
-```text
-status
-→ diff
+→ status / diff
 → test
-→ add
-→ status / diff --staged
+→ staging intenzionale
 → commit
-→ log
+→ storia leggibile
 ```
 
-L'aggiunta di `diff --staged` serve a costruire il modello corretto Working Tree → Index → Repository e non trasforma `git add` in una formula da memorizzare.
+Python può avere istruzioni contestuali brevi, ma per spiegazioni, remediation, Activity e rubric Git rimanda al corso G1 canonico.
 
-Il commit deve raccontare un cambiamento coerente e verificato.
-
-Messaggi:
-
-```text
-Completa checkpoint funzioni e test
-```
-
-è migliore di:
-
-```text
-modifiche
-```
-
-## Secondo semestre
-
-Git diventa routine di processo in alcune Activity/progetti:
-
-```text
-status → modifica → test → diff → add → verifica staging → commit
-```
-
-Non serve una lezione Git ogni settimana.
-
-## OOP/capstone
-
-Utili 2–3 checkpoint guidati, ad esempio:
-
-- skeleton classi;
-- comportamento;
-- bug-fix/refactor.
-
-Git non deve diventare criterio dominante del voto Python.
-
----
-
-# Relazione con G1 standalone
-
-Il corso Git G1 completo aggiunge rispetto al consumer Python:
-
-- staging intenzionale/partial staging;
-- lifecycle tracked/untracked/ignored;
-- `.gitignore`;
-- safe undo;
-- revision selection e confronto;
-- `git help` / autoapprendimento;
-- checkpoint Git dedicato.
-
-Quindi:
+Regola:
 
 ```text
 Python G1-Core ⊂ Git G1
@@ -186,101 +50,213 @@ Python G1-Core ⊂ Git G1
 
 ---
 
+# Outcome consumati
+
+## M14–M16 — evidence `guided`
+
+```text
+G1.OBSERVE.STATUS
+G1.OBSERVE.DIFF
+```
+
+Lesson canoniche:
+
+```text
+G1-M02  content/git/g1/02_WORKING_TREE_STATUS.md
+G1-M03  content/git/g1/03_DIFF.md
+```
+
+Uso didattico:
+
+- `status` prima/dopo una modifica;
+- `diff` per leggere un refactoring;
+- collegare cambiamento osservato e test da rieseguire.
+
+## Checkpoint A — evidence `guided`
+
+```text
+G1.OBSERVE.STATUS
+G1.OBSERVE.DIFF
+G1.STAGE.INTENTIONAL
+G1.COMMIT.INTENTIONAL
+G1.HISTORY.INSPECT
+G1.MODEL.HEAD
+G1.WORKFLOW.CHECKPOINT
+```
+
+Lesson canoniche:
+
+```text
+G1-M02 status
+G1-M03 diff
+G1-M04 index / staging
+G1-M05 commit / HEAD
+G1-M06 log / show
+```
+
+Workflow target:
+
+```text
+git status
+→ git diff
+→ test
+→ git add <path>
+→ git diff --staged
+→ git commit
+→ git status
+→ git log / git show
+```
+
+Canary Git Lab canonico:
+
+```text
+g1-stage-selettivo-001
+```
+
+Il canary valuta lo **stato reale del repository**, non la trascrizione dei comandi.
+
+## Secondo semestre — independent progressivo
+
+Nei progetti selezionati il workflow diventa routine:
+
+```text
+status
+→ modifica
+→ test
+→ diff
+→ staging intenzionale
+→ verifica staged
+→ commit
+→ history
+```
+
+Entrano progressivamente anche:
+
+```text
+G1.RECOVERY.BASIC
+G1.WORKFLOW.CHECKPOINT
+```
+
+Riferimenti G1-M07/M08 per recovery beginner e storia intenzionale.
+
+---
+
+# Cosa Python NON deve insegnare come proprio contenuto
+
+Non sono outcome core del consumer Python di seconda:
+
+- branch;
+- merge;
+- rebase;
+- remotes/push/pull;
+- pull request;
+- conflitti;
+- reflog;
+- reset avanzato;
+- internals/plumbing.
+
+Questi restano nel curriculum Git progressivo G2–G4.
+
+---
+
 # TheBitLab boundary
 
-Il Classroom Environment deve fornire:
+Il corso Python dichiara:
 
 ```text
 git.basic.v1
 ```
 
-G1 deve poter essere completamente locale:
+in `config/course-environment.json`.
+
+Requisiti del consumer G1:
 
 - nessun account GitHub obbligatorio;
 - nessun remote richiesto;
-- workspace confinato;
-- identità/autore gestita in modo appropriato dal profilo;
-- messaggi sicuri in caso di stato inatteso.
+- nessuna rete richiesta per il core;
+- workspace gestito da TheBitLab;
+- identità/autore gestita dal profilo;
+- recovery beginner fail-safe;
+- nessun comando distruttivo improvvisato.
 
-Per il grading repository-state è aperto il requisito piattaforma:
+Il Git Lab repository-state è stato implementato nella piattaforma in:
 
 ```text
-TheBitPoets/2cornot2c#759
+TheBitPoets/2cornot2c#761
+TheBitPoets/2cornot2c#762
 ```
 
-Target: `thebitlab.git-evidence.v1`, con ispezione sicura di index, graph, refs e tree. Fino alla sua certificazione, Git resta evidence manuale/formativa o viene valutato tramite workflow esplicito; non simuliamo autograding con stdout.
+Candidate platform pin con evidence verde:
+
+```text
+24570f7a3af67634ec0cfbf54f486660359baaf2
+```
+
+Questo non rende automaticamente verde il consumer privato `python-docente`: la CI del corso resta separatamente bloccata da `python-docente#8` prima dell'avvio del runner.
 
 ---
 
 # Recovery policy beginner
 
-Regola studente:
+Quando lo stato non è quello atteso:
 
 ```text
-se lo stato Git non è quello atteso:
 1. non cancellare file a caso
 2. non usare --force
-3. leggi status
-4. osserva diff / diff --staged
-5. salva/copia il lavoro se indicato
-6. segui la procedura di recovery del corso
+3. leggere git status
+4. osservare git diff / git diff --staged
+5. distinguere working tree e index
+6. applicare solo la procedura G1 di recovery pertinente
 ```
 
-`reset --hard`, force push e rebase non appartengono a G1.
-
-`git restore` compare soltanto dopo aver chiarito quale stato viene scartato e con un recovery scenario controllato.
+`reset --hard`, force push, rebase e recovery avanzato non appartengono a G1-Core Python.
 
 ---
 
-# Micro-evidence G1 consumate da Python
+# Valutazione nel corso Python
 
-## G1-A — Observe
+Git è prevalentemente competenza di processo/formativa.
 
-Leggere `git status`: clean / modified / staged.
-
-## G1-B — Diff
-
-Leggere un diff di una funzione e descrivere il cambiamento.
-
-## G1-C — Guided commit
-
-```text
-status → diff → test → add → diff --staged → commit → log
-```
-
-## G1-D — Safe diagnose
-
-Dato uno stato semplice, scegliere il prossimo passo sicuro senza comandi distruttivi.
-
-Le Activity canoniche devono vivere nel corso Git e venire richiamate/consumate da Python.
-
----
-
-# Valutazione
-
-Git G1 è prevalentemente competenza di processo/formativa nel track Python. Non aggiunge una quinta verifica obbligatoria.
-
-Può contribuire alle rubriche di progetto su:
+Può contribuire alle rubriche di progetto per:
 
 - processo ordinato;
+- lettura del proprio diff;
+- staging coerente;
 - checkpoint significativi;
-- capacità di leggere il proprio diff;
-- messaggi di commit comprensibili.
+- messaggi di commit comprensibili;
+- capacità di leggere una storia breve.
 
-Non penalizzare pesantemente un buon programma Python per una svista Git beginner se Git non è l'outcome esplicito della consegna.
-
-Il corso Git standalone possiede invece la propria assessment model G1.
+Non deve diventare il criterio dominante del voto Python.
 
 ---
 
-# Criteri per dichiarare G1 integrato
+# Verifica anti-divergenza
 
-- source of truth `TheBitPoets/git` stabile;
-- G1 lesson/Activity canoniche pubblicate;
-- `status`/`diff` dentro funzioni/refactoring;
-- primo commit al Checkpoint A;
-- alcuni checkpoint nel secondo semestre;
-- nessun remote/account obbligatorio;
-- toolchain gestita da TheBitLab;
-- nessuna duplicazione del corso Git autonomo;
-- grader Git #759 usato solo quando realmente certificato.
+`tests/git_g1_consumer_contract.py` deve verificare almeno:
+
+- pin e repository G1 dichiarati;
+- `git.basic.v1` richiesto dall'ambiente;
+- outcome M14–M16 e Checkpoint A coerenti col contratto;
+- presenza di `status/diff` nelle lesson Python interessate;
+- presenza del workflow completo nel Checkpoint A;
+- nessuna dipendenza da GitHub account/network per il core;
+- separazione curriculum Python/Git.
+
+La CI privata attuale può non eseguire il test a causa del blocker `#8`; il test resta comunque parte del gate appena i runner tornano disponibili.
+
+---
+
+# Criteri per dichiarare il consumer Python G1 chiuso
+
+- [x] source of truth `TheBitPoets/git` identificata;
+- [x] candidate ref G1 registrato;
+- [x] contratto consumer machine-readable creato;
+- [x] `status`/`diff` presenti in M14–M16;
+- [x] primo checkpoint Git previsto al Checkpoint A;
+- [x] `git.basic.v1` dichiarato nel Course Environment;
+- [x] Git Lab platform candidate verde;
+- [ ] test consumer eseguito realmente in CI privata o ambiente equivalente;
+- [ ] G1 freeze/decision-owner finalizzato oppure candidate ref esplicitamente accettato per il pilot;
+- [ ] rehearsal reale nel Classroom Environment/TheBitLab.
+
+Quindi l'**integrazione strutturale** può essere completata adesso; la **certificazione delivery** resta un gate successivo.
