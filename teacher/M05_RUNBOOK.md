@@ -21,7 +21,44 @@ problema
 → spiegazione della scelta
 ```
 
-Il modulo introduce anche una funzione pura minuscola per mostrare presto che un programma non deve diventare un unico blocco monolitico. **Non** anticipare ancora il corso formale su scope, API, top-down design o pytest.
+Il modulo introduce anche una funzione di calcolo minuscola per mostrare presto che un programma non deve diventare un unico blocco monolitico. **Non** anticipare ancora scope, API, top-down design o pytest.
+
+---
+
+# Priorità didattica
+
+M05 è ricco: non tutto ciò che compare nella lesson deve diventare requisito della settimana.
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. spiegare che un'espressione produce un valore;
+2. scegliere l'operatore in base al problema;
+3. distinguere `/`, `//` e `%` nei casi beginner;
+4. usare parentesi per rendere esplicito il calcolo;
+5. usare risultati intermedi con nomi significativi;
+6. definire/chiamare una prima funzione di calcolo molto semplice;
+7. distinguere operativamente `return` e `print`;
+8. proporre almeno tre casi per una trasformazione numerica semplice.
+
+`**` resta un operatore core da riconoscere e usare in problemi elementari, ma non richiede un blocco didattico lungo.
+
+## GUIDED EXPOSURE
+
+- f-string;
+- tipo prodotto da `/`;
+- relazione quoziente/resto;
+- funzione starter fornita dal docente da completare/modificare.
+
+## ENRICHMENT / BACKUP
+
+- comportamento di `//` con valori negativi;
+- conversione ore/minuti/secondi più articolata;
+- panoramica di `abs`, `round`, `min`, `max`, `len`;
+- confronti estesi fra più formulazioni equivalenti.
+
+Le built-in non sono un exit outcome autonomo di M05. In particolare `min/max` non devono sostituire il successivo apprendimento del min/max progressivo in M11.
 
 ---
 
@@ -42,7 +79,7 @@ M05 non richiede una nuova capability piattaforma rispetto a M04.
 - lesson `content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`;
 - slide `slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md`;
 - quaderno/tabella prediction;
-- M04 come richiamo;
+- M04 come retrieval;
 - nessuna nuova Activity P1 obbligatoria finché `python-docente#7` non è certificato.
 
 ---
@@ -55,9 +92,9 @@ M05 non richiede una nuova capability piattaforma rispetto a M04.
 
 Domande rapide:
 
-- che tipo restituisce `input()`?
-- differenza tra `42` e `"42"`?
-- che cosa significa prevedere prima di eseguire?
+- che tipo restituisce `input()`?;
+- differenza tra `42` e `"42"`?;
+- che cosa significa prevedere prima di eseguire?.
 
 ### 10–25 min — problema secondi → minuti/resto
 
@@ -69,9 +106,9 @@ Partire da `137` senza Python:
 
 Far emergere due risultati diversi prima di mostrare `//` e `%`.
 
-### 25–40 min — `/`, `//`, `%`
+### 25–42 min — `/`, `//`, `%`
 
-Usare REPL con prediction:
+Prediction REPL:
 
 ```python
 17 / 3
@@ -85,61 +122,71 @@ Ricostruire:
 17 = (17 // 3) * 3 + (17 % 3)
 ```
 
-### 40–50 min — `**` e errore `^`
+Usare inizialmente interi non negativi per il modello “gruppi completi + resto”.
 
-Mostrare un bug intenzionale. Non spiegare XOR in profondità; basta chiarire che `^` non è potenza.
+### 42–50 min — `**` e bug `^`
 
-### 50–60 min — precedenza
+Un solo contrasto:
 
-Confronto:
+```python
+2 ** 3
+2 ^ 3
+```
+
+Non spiegare XOR: basta chiarire che `^` non è potenza.
+
+### 50–60 min — precedenza e parentesi
+
+Confrontare:
 
 ```python
 2 + 3 * 4
 (2 + 3) * 4
 ```
 
-Regola didattica: parentesi quando rendono l'intenzione più evidente.
+Regola didattica:
+
+> Python conosce la precedenza; le parentesi aiutano anche il lettore a capire l'intenzione.
 
 ---
 
-# Ora teoria attiva 2 — leggibilità, f-string, prima funzione
+# Ora teoria attiva 2 — leggibilità, presentazione, prima funzione
 
-## 0–15 min — Microscope valore/tipo
+## 0–10 min — Microscope valore/tipo
 
-Prediction table:
+Prediction breve:
 
 ```python
 7 + 3
 7 / 2
 7 // 2
 7 % 2
-2 ** 3
 4 * 3.5
 ```
 
-Il docente chiede prima **tipo e valore**, poi fa usare `type()` per verifica.
+Prima valore e tipo previsti, poi verifica con `type()`.
 
-## 15–25 min — risultati intermedi con nomi
+## 10–22 min — risultati intermedi con nomi
 
-Confrontare una formula compatta con una decomposizione che usa nomi significativi.
+Confrontare formula compatta e decomposizione con nomi significativi.
 
-Non imporre “una variabile per ogni operazione”: l'obiettivo è semantica, non verbosità.
+Non imporre “una variabile per ogni operazione”: il nome deve comunicare un concetto.
 
-## 25–35 min — built-in e f-string
+## 22–30 min — f-string
 
-Mostrare solo strumenti con ruolo chiaro:
+Un solo esempio di presentazione:
 
 ```python
-abs
-round
-min
-max
-len
+nome = "Ada"
+punti = 27
+print(f"{nome} ha {punti} punti")
 ```
 
-Poi f-string come presentazione, ricordando che il contratto di output viene prima dell'estetica.
+Subito dopo ricordare:
 
-## 35–50 min — prima funzione pura
+> nelle Activity con output esatto viene prima il contratto, non l'estetica.
+
+## 30–50 min — prima funzione di calcolo
 
 Costruire dal calcolo già noto:
 
@@ -150,39 +197,49 @@ def area_rettangolo(base, altezza):
 
 Poi chiamarla con tre casi.
 
-Non introdurre ancora:
+Il termine “funzione pura” può restare nel lessico docente, ma non è un vocabolo da valutare in M05. Per gli studenti basta il modello:
 
-- scope avanzato;
-- default arguments;
-- `*args`/`**kwargs`;
-- type hints;
-- docstring come standard formale;
-- moduli/package.
+```text
+dati in ingresso
+→ calcolo
+→ valore restituito
+```
 
 ## 50–60 min — `return` vs `print`
 
-Confrontare due funzioni semplici. Far verbalizzare:
+Confrontare:
+
+```python
+def doppio(numero):
+    return numero * 2
+```
+
+con una funzione che stampa.
+
+Exit verbalizzato:
 
 ```text
-return → valore al chiamante
+return → valore a chi ha chiamato
 print  → output
 ```
 
-Non serve ancora spiegare formalmente `None` oltre ciò che emerge naturalmente se provato.
+### Se avanza tempo
+
+Mostrare **una o due** built-in come esempio di “funzioni già fornite da Python”. Non trasformare `abs/round/min/max/len` in una lista da memorizzare.
 
 ---
 
 # Ora laboratorio
 
-Poiché il canarino P1 M04 non è ancora certificato, il laboratorio M05 deve essere pratico ma **non introduce una nuova Activity autogradata obbligatoria**.
+Poiché il canarino P1 M04 non è ancora certificato, il laboratorio M05 è pratico ma non introduce una nuova Activity autogradata obbligatoria.
 
-## Fase 1 — predict, 10 min
+## Fase 1 — predict, 8–10 min
 
-Tabella valore/tipo su 6 espressioni.
+Tabella valore/tipo su poche espressioni mirate.
 
 ## Fase 2 — quoziente/resto, 15 min
 
-Implementare manualmente:
+Implementare:
 
 ```text
 secondi → minuti completi + secondi restanti
@@ -231,9 +288,24 @@ Lo studente propone prima tre casi.
 
 ## Fase 5 — exit explanation, 5 min
 
-Domanda orale/scritta:
+Domanda:
 
 > Perché abbiamo usato `return` nella funzione e `print` soltanto fuori?
+
+---
+
+# Minimum mastery gate — prima di PY2-03
+
+Considerare M05 sufficientemente consolidato quando lo studente riesce, con una consegna breve, a:
+
+- scegliere fra `/`, `//`, `%` spiegandone il motivo;
+- correggere una precedenza sbagliata usando parentesi;
+- prevedere valore/tipo di una piccola espressione;
+- completare una funzione con un `return` corretto;
+- distinguere `return` da `print`;
+- proporre almeno tre casi per il proprio calcolo.
+
+Se questi punti non sono stabili, usare il laboratorio/recupero per consolidarli invece di spendere tempo sulle built-in di enrichment.
 
 ---
 
@@ -241,27 +313,27 @@ Domanda orale/scritta:
 
 ## M1 — `//` significa sempre “rimuovi i decimali”
 
-Correzione: chiamarlo **floor division**. Per il modello gruppi completi usare inizialmente interi non negativi. Evitare di insegnare una falsa regola che crolla con i negativi.
+Correzione: chiamarlo **divisione intera per difetto (floor division)**. Per il modello gruppi completi usare inizialmente interi non negativi.
 
 ## M2 — `%` serve soltanto a pari/dispari
 
-Correzione: partire da quoziente/resto, packaging, tempo, ciclicità. Pari/dispari è un'applicazione.
+Correzione: partire da quoziente/resto, packaging, tempo, ciclicità. Pari/dispari è una sola applicazione.
 
 ## M3 — `^` è potenza
 
-Correzione: contrasto diretto `2 ** 3` vs `2 ^ 3`. Non serve una lezione bitwise ora.
+Correzione: contrasto diretto con `**`; niente bitwise ora.
 
 ## M4 — parentesi solo se “Python non sa” la precedenza
 
-Correzione: Python la sa; le parentesi servono anche al lettore e all'intenzione.
+Correzione: Python la sa; le parentesi comunicano intenzione.
 
 ## M5 — f-string sempre migliore
 
-Correzione: prima viene il contratto di output. Un test può richiedere solo il valore.
+Correzione: prima viene il contratto di output.
 
 ## M6 — funzione = codice più complicato
 
-Correzione: scegliere trasformazioni minuscole e già comprese. La funzione dà un nome a qualcosa che sappiamo già calcolare.
+Correzione: partire da una trasformazione già compresa e darle un nome.
 
 ## M7 — `return` stampa
 
@@ -269,7 +341,7 @@ Correzione: assegnare il risultato della funzione a un nome e usarlo in una seco
 
 ## M8 — “più corto” = “migliore”
 
-Correzione: confronto guidato su correttezza, significato e leggibilità.
+Correzione: confronto su correttezza, significato e leggibilità.
 
 ---
 
@@ -277,19 +349,19 @@ Correzione: confronto guidato su correttezza, significato e leggibilità.
 
 ## Recupero
 
-- usare soltanto interi positivi per il primo modello `//`/`%`;
+- interi positivi per il primo modello `//`/`%`;
 - disegnare gruppi da 60 o scatole da N prima del codice;
 - una espressione per riga;
 - parentesi esplicite;
-- prima funzione già fornita con `def` e parametri, lasciando da completare il `return`.
+- prima funzione già fornita, lasciando da completare il `return`.
 
 ## Enrichment
 
-- verificare la relazione `a = (a // b) * b + (a % b)` su più valori con `b != 0`;
-- osservare, senza trasformarlo in core, cosa accade con `//` su numeri negativi;
-- costruire conversione secondi → ore/minuti/secondi;
-- confrontare formula inline vs risultati intermedi;
-- scrivere un quarto caso di test che distingua due implementazioni errate.
+- verificare `a = (a // b) * b + (a % b)` con `b != 0`;
+- osservare `//` con numeri negativi senza renderlo core;
+- costruire secondi → ore/minuti/secondi;
+- esplorare una o due built-in;
+- scrivere un quarto caso che distingue due implementazioni errate.
 
 ---
 
@@ -300,7 +372,7 @@ Raccogliere almeno:
 - prediction valore/tipo;
 - programma secondi → minuti/resto;
 - una diagnosi di precedenza o operatore errato;
-- una funzione pura piccola + tre casi;
+- una funzione di calcolo piccola + tre casi;
 - spiegazione `return` vs `print`.
 
 Evidence formative; nessun voto principale obbligatorio in M05.
@@ -309,7 +381,7 @@ Evidence formative; nessun voto principale obbligatorio in M05.
 
 # Cosa NON anticipare
 
-- `if` completo (solo preview tramite resto/condizione);
+- `if` completo;
 - cicli;
 - exception handling;
 - scope/globals in profondità;
@@ -350,4 +422,4 @@ confronti
 - private Actions pre-job blocker: `python-docente#8`;
 - curriculum: **FROZEN** in `doc/CURRICULUM_FREEZE_2026_2027.md`.
 
-M05 può essere revisionato editorialmente mentre la certificazione M04 è bloccata dall'infrastruttura Actions, ma non viene promosso come contenuto classroom-ready in anticipo.
+M05 può essere revisionato editorialmente mentre la certificazione M04 è bloccata dall'infrastruttura Actions, ma non viene promosso come classroom-ready in anticipo.
