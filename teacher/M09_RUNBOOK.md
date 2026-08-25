@@ -25,6 +25,36 @@ Per ogni `while` lo studente deve saper rispondere:
 
 ---
 
+# Priorità didattica
+
+## MUST MASTER
+
+Entro la fine del modulo lo studente deve saper:
+
+1. identificare inizializzazione, condizione, corpo e aggiornamento;
+2. eseguire un trace includendo il controllo finale `False`;
+3. spiegare quale stato cambia e perché il ciclo può terminare;
+4. riconoscere aggiornamento mancante o presente soltanto su alcuni path;
+5. progettare casi con zero, una e più iterazioni;
+6. implementare una validazione ripetuta;
+7. usare una sentinella dichiarata e non elaborarla come dato normale;
+8. diagnosticare condizione invertita e off-by-one elementare.
+
+## GUIDED EXPOSURE
+
+- distinguere a parole condizione di continuazione e condizione di uscita;
+- confrontare la forma con condizione nella testata e una forma con uscita nel corpo.
+
+## ENRICHMENT / BACKUP
+
+- `while True` + `break`;
+- confronto sistematico fra due forme equivalenti;
+- Romeo `while` simulato.
+
+`while True` **non fa parte del minimum mastery gate** e non deve diventare la scorciatoia usata per evitare di progettare la terminazione.
+
+---
+
 # Preparazione
 
 ## Ambiente
@@ -84,7 +114,7 @@ aggiornamento
 
 ## 25–40 min — trace
 
-Tabella iterazione/stato/condizione/output. Far includere anche il controllo finale `False`.
+Tabella iterazione/stato/condizione/output. Includere anche il controllo finale `False`.
 
 ## 40–50 min — terminazione
 
@@ -129,13 +159,20 @@ finché valore != sentinella
 
 Far discutere perché la sentinella deve essere distinguibile dai dati normali.
 
-## 45–55 min — debug aggiornamento in un solo ramo
+## 45–60 min — debug sui path di aggiornamento
 
-Esempio in cui `0` blocca il progresso. Far seguire il path esatto.
+Esempio in cui `0` blocca il progresso perché la nuova lettura avviene soltanto in un ramo.
 
-## 55–60 min — `while True` preview
+Far seguire il path esatto e chiedere:
 
-Mostrarlo soltanto come alternativa, non come modello base. Chiedere sempre: dove si trova il percorso di uscita?
+```text
+quale stato resta invariato?
+perché la condizione continua a essere vera?
+```
+
+### Solo se il core è già stabile
+
+Mostrare `while True` + `break` come confronto/enrichment. Non usarlo come nuova tecnica da esercitare obbligatoriamente.
 
 ---
 
@@ -176,6 +213,23 @@ termina quando = ...
 
 ---
 
+# Minimum mastery gate — prima di M10
+
+Considerare M09 consolidato quando lo studente riesce a:
+
+- separare le quattro parti di un `while`;
+- completare un trace con il controllo finale falso;
+- spiegare la storia di terminazione;
+- trovare un path che impedisce l'aggiornamento;
+- scrivere una validazione ripetuta;
+- usare correttamente una sentinella;
+- progettare casi zero/una/più iterazioni;
+- trovare un off-by-one semplice.
+
+Non richiedere uso autonomo di `while True`/`break` per superare il gate.
+
+---
+
 # Misconception watchlist
 
 ## M1 — `while` = `if` scritto tante volte
@@ -192,7 +246,7 @@ Correzione: verificare ogni path che mantiene il ciclo attivo.
 
 ## M4 — `while True` è più semplice quindi sempre migliore
 
-Correzione: richiede comunque una condizione/azione di uscita spiegabile.
+Correzione: richiede comunque una condizione/azione di uscita spiegabile; in M09 è enrichment.
 
 ## M5 — la sentinella è un dato come gli altri
 
@@ -213,7 +267,7 @@ Correzione: mostrare un caso con condizione iniziale falsa.
 ## Recupero
 
 - contatori su 2–3 iterazioni;
-- evidenziare con colori stato/condizione/aggiornamento;
+- colori per stato/condizione/aggiornamento;
 - tabelle di trace già impostate;
 - validazione con un solo intervallo;
 - starter che lascia da completare solo condizione o aggiornamento.
