@@ -80,9 +80,23 @@ Implementare la più piccola, provarla, poi integrare.
 
 Partire da codice monolitico e isolare un calcolo coerente.
 
-## Fase E — review con `git diff`
+## Fase E — review con Git G1 Observe
 
-Se Git managed è disponibile, usare il diff per osservare esattamente il refactoring.
+Se il profilo managed è disponibile, riusare gli outcome G1 già introdotti in M14:
+
+```text
+G1.OBSERVE.STATUS
+G1.OBSERVE.DIFF
+```
+
+Prima e dopo il refactoring:
+
+```text
+git status
+git diff
+```
+
+La spiegazione di working tree/diff resta nel corso Git canonico `TheBitPoets/git` G1-M02/M03.
 
 ---
 
@@ -136,15 +150,15 @@ Raccogliere almeno:
 - 2–4 firme;
 - un contratto intuitivo;
 - call graph;
-- un refactoring osservato tramite diff o confronto before/after.
+- un refactoring osservato tramite `git diff` o confronto before/after.
 
 ---
 
-# Git G1
+# Git G1 boundary
 
-M15 rende `git diff` pedagogicamente significativo: lo studente può verificare che un refactoring abbia cambiato struttura senza introdurre modifiche casuali.
+M15 rende `git diff` pedagogicamente significativo ma non aggiunge nuovi outcome Git rispetto a M14. La dipendenza machine-readable resta `config/git-g1-consumer.json`.
 
-Il corso Git resta separato. `add/commit` verranno formalizzati al Checkpoint A.
+`add`, `diff --staged`, `commit`, `log/show` vengono formalizzati al Checkpoint A tramite le lesson G1-M04…M06 del corso Git, non tramite materiale duplicato in Python.
 
 ---
 
