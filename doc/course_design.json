@@ -9,7 +9,9 @@
       "files": [
         "04_INTERPRETE_REPL_VALORI_IO.md",
         "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
-        "06_BOOLEANI_CONFRONTI_IF.md"
+        "06_BOOLEANI_CONFRONTI_IF.md",
+        "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
+        "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md"
       ],
       "indexing_status": "ready"
     },
