@@ -1,53 +1,100 @@
-# Python — curriculum docente
+# Python docente
 
-Repository canonico per il curriculum Python di TheBitPoets.
+Repository di progettazione e delivery del curriculum Python TheBitPoets.
 
-## Visione
-
-Costruire un percorso di programmazione Python che parta da **zero assoluto** — problem solving, algoritmi, pseudocodice e diagrammi di flusso — e possa proseguire fino alle competenze richieste a un programmatore Python professionale.
-
-Il repository contiene un curriculum generale riusabile su più anni. Il primo track operativo è:
-
-- **Secondo anno**: 33 settimane × 3 ore = **99 ore**;
-- ingresso: nessun prerequisito di programmazione;
-- uscita target: programmazione strutturata solida, funzioni, stringhe, strutture dati fondamentali, file/eccezioni di base e introduzione completa a classi/oggetti;
-- i moduli successivi restano disponibili come curriculum avanzato per anni successivi o approfondimenti.
-
-## Principi di progettazione
-
-1. **Prima il problema, poi il codice**: analisi, decomposizione, algoritmo, pseudocodice/flow chart, test mentale, implementazione.
-2. **Scelta consapevole dei costrutti**: non basta far funzionare il programma; lo studente deve motivare `if/elif/else`, `for`, `while`, strutture dati e decomposizione scelti considerando leggibilità, correttezza e costo computazionale quando rilevante.
-3. **Composizione reale**: condizioni e cicli annidati, cicli con selezioni, strutture dati annidate, funzioni che collaborano.
-4. **Progressione per Activity**: osserva → modifica → implementa → debug → mini-progetto → prodotto integrato.
-5. **Teoria + pratica + riflessione**: lesson, slide, esempi, esercizi graduati, debugging, test, rubriche e spiegazione del perché.
-6. **Delivery riproducibile**: guide studente/docente, slide generate, CI, soluzioni/reference e integrazione TheBitLab dove supportata.
-7. **Curriculum ≠ delivery**: contenuti e obiettivi vengono governati/versionati; errata, setup e chiarimenti possono evolvere senza cambiare il curriculum.
-
-## Fonti e materiale esistente
-
-- **Pensare da informatico / Think Python** come fonte didattica principale da mappare e modernizzare, senza copiarne passaggi non necessari.
-- `TheBitPoets/friedpython` come **legacy/source pack**: esempi ed esercizi esistenti saranno auditati, classificati, revisionati e importati solo dove coerenti con il nuovo curriculum.
-- documentazione Python e altre fonti autorevoli saranno catalogate in `sources/`.
-
-## Stato
-
-**Design phase**. Non iniziare ancora la produzione massiva delle lesson finché `doc/COURSE_ARCHITECTURE.md`, `doc/CURRICULUM_ROADMAP.md` e `tracks/secondo/COURSE_DESIGN.md` non sono approvati.
-
-## Struttura prevista
+## Stato corrente
 
 ```text
-content/python/         lesson canoniche
-activities/python/      Activity e relativi asset
-slides/python/          deck sorgente
-student/                guida e navigazione studente
-teacher/                guida docente e delivery
-tracks/secondo/         track 33 settimane / 99 ore
-tracks/advanced/        prosecuzione professionale
-sources/                catalogo fonti + mapping friedpython
-projects/               progetti longitudinali/capstone
-scripts/                automazione e validazione
-tests/                  quality gates
-doc/                    architettura, roadmap, decisioni e changelog
+Secondo anno 2026/27
+Curriculum architecture        FROZEN
+Core editorial M04–M30         COMPLETE / draft
+Checkpoint A/B/C               COMPLETE / draft
+Git G1 structural consumer     COMPLETE / delivery evidence pending
+PY2-01 flow chart              SPEC-only / Flowchart Lab pending
+Content Pack 1.0 approved      NOT YET
+Ready for classroom            NOT YET
 ```
 
-La struttura e il confine didattico del secondo anno vengono definiti prima di iniziare la produzione dei moduli.
+Il curriculum annuale è congelato, ma **freeze curricolare, Content Pack approvato e classroom-ready sono gate distinti**.
+
+## Entrypoint
+
+- studente: [`student/README.md`](student/README.md)
+- docente: [`teacher/README.md`](teacher/README.md)
+- curriculum freeze: [`doc/CURRICULUM_FREEZE_2026_2027.md`](doc/CURRICULUM_FREEZE_2026_2027.md)
+- stato progetto: [`doc/PROJECT_STATUS.md`](doc/PROJECT_STATUS.md)
+- mappa moduli: [`tracks/secondo/MODULE_MAP.md`](tracks/secondo/MODULE_MAP.md)
+- integrazione Git G1: [`tracks/secondo/GIT_G1_INTEGRATION.md`](tracks/secondo/GIT_G1_INTEGRATION.md)
+- consumer contract Git: [`config/git-g1-consumer.json`](config/git-g1-consumer.json)
+
+## Architettura delivery
+
+```text
+repo checkout
+= Course Workspace mutabile
+
+Content Pack
+= identità e catalogo dei moduli
+
+Course Board
+= granularità editoriale heading-tree
+
+Git
+= storia e review del workspace
+
+Course Bundle
+= release immutabile
+```
+
+## Secondo anno
+
+Il track 2026/27 è di 33 settimane × 3 ore, da problem solving e algoritmi fino a strutture dati, file ed OOP/capstone.
+
+M04–M30 hanno lesson canonica, deck Marp e runbook docente. PY2-01 resta volutamente SPEC-only finché il Flowchart Lab non è certificato; carta/lavagna/pseudocodice/trace restano fallback valido.
+
+## Git G1
+
+Git è un curriculum separato. Python seconda consuma soltanto il sottoinsieme G1 necessario al workflow:
+
+```text
+M14–M16
+  status / diff — guided
+
+Checkpoint A
+  status → diff → test → add → diff --staged → commit → status → log/show
+
+secondo semestre
+  checkpoint/recovery G1 — independent progressivo
+```
+
+Source of truth: `TheBitPoets/git`. La dipendenza corrente è registrata in `config/git-g1-consumer.json` e verificata da `tests/git_g1_consumer_contract.py`.
+
+## Activity e grading
+
+M04 contiene il golden vertical slice P1 `py2-activity-b-input-somma-001`.
+
+Profili TheBitLab:
+
+- P0 — manual/trace/design;
+- P1 — stdin/stdout;
+- P2 — function behavior;
+- P3 — object behavior;
+- P4 — filesystem behavior;
+- `romeo-sim` — runtime applicativo separato.
+
+Non vengono creati falsi grader adattando outcome a un profilo non certificato.
+
+## Gate aperti
+
+- managed Classroom Environment / Flowchart Lab;
+- beginner REPL/editor workflow;
+- P1 canary certification;
+- private GitHub Actions pre-runner blocker;
+- P2/P3/P4;
+- `romeo-sim` cross-profile;
+- build/QA degli artifact slide;
+- teacher review, provenance/coverage finale;
+- Content Pack approval;
+- rehearsal reale TheBitLab.
+
+Vedi [`doc/PROJECT_STATUS.md`](doc/PROJECT_STATUS.md) per il checkpoint operativo aggiornato.
