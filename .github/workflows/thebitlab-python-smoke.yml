@@ -25,6 +25,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Check authoring source synchronization
+        run: python scripts/sync_authoring_catalog.py
+
       - name: Validate scalable authoring catalog
         run: python tests/course_authoring_catalog.py
 
