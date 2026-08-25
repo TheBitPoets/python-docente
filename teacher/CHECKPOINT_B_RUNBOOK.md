@@ -4,35 +4,94 @@
 
 Settimana 24: consolidamento e recupero di stringhe/liste/tuple, mini-project e preparazione alla prova V3.
 
-Non introduce nuovi prerequisiti.
+Non introduce nuovi prerequisiti e **non deve forzare l'uso contemporaneo di tutte le strutture studiate**.
 
-## Outcome
+Il checkpoint misura soprattutto:
+
+```text
+modello mentale
+→ scelta della struttura/operazione
+→ mutabilità consapevole
+→ funzioni/test/debug
+```
+
+---
+
+# Outcome raggruppati
+
+## A — Sequenze testuali
 
 Verificare:
 
-1. `str` come sequenza immutabile;
-2. indici/slicing/metodi/normalizzazione;
-3. algoritmi testuali con funzioni;
-4. liste e metodi mutanti;
-5. alias vs copia;
-6. contratto di mutazione/non-mutazione;
-7. filtraggio/ordinamento;
-8. tuple/unpacking;
-9. list vs tuple;
-10. matrici/liste annidate e row aliasing.
+- `str` come sequenza immutabile;
+- indici/slicing;
+- normalizzazione motivata;
+- algoritmo testuale con loop/funzione;
+- casi limite.
 
-## Mini-project
+## B — Mutabilità e riferimenti
 
-Richiedere un problema tabellare piccolo con:
+Verificare:
+
+- `list` mutabile;
+- metodo mutante vs nuovo valore;
+- alias vs copia;
+- contratto di mutazione/non-mutazione;
+- filtro sicuro.
+
+## C — Operazioni sulle liste
+
+Verificare:
+
+- costruzione progressiva con `append`;
+- iterazione appropriata;
+- `sort()` vs `sorted()`;
+- uso di altre API soltanto se realmente svolte e pertinenti.
+
+## D — Modello dati
+
+Verificare:
+
+- tuple/unpacking;
+- list vs tuple;
+- lista di liste;
+- row aliasing;
+- scelta motivata della struttura.
+
+## E — Metodo
+
+Continuano a contare:
+
+- funzioni;
+- trace;
+- casi/assert;
+- debug;
+- spiegazione.
+
+---
+
+# Mini-project
+
+Richiedere un problema piccolo con:
 
 ```text
 analisi
 → modello dati
-→ funzioni
+→ 2–4 funzioni
 → implementazione
 → assert/casi limite
 → breve motivazione
 ```
+
+Il dominio decide quali strutture servono.
+
+Non richiedere artificialmente:
+
+```text
+stringa + lista + tuple + matrice
+```
+
+nello stesso progetto solo per copertura.
 
 Rubriche prioritarie:
 
@@ -43,20 +102,28 @@ Rubriche prioritarie:
 - test;
 - spiegazione.
 
-## Recovery
+La quantità di feature usate non è un criterio di qualità.
+
+---
+
+# Recovery
 
 Priorità:
 
-1. indice/slicing;
-2. metodi mutanti e `None`;
+1. indice/slicing e immutabilità;
+2. mutabilità list + `append`/`None`;
 3. alias/copia;
 4. modifica durante iterazione;
-5. tuple/list choice;
-6. matrici e righe condivise.
+5. list vs tuple;
+6. matrice/lista di liste e righe condivise.
 
 Non introdurre set/dict se aliasing e mutabilità sono ancora completamente instabili: usare il checkpoint come buffer previsto dal freeze.
 
-## Preparazione V3
+Dettagli guided/enrichment non devono bloccare il recupero del core.
+
+---
+
+# Preparazione V3
 
 V3 è teorico/scritta e può essere collocata tra fine settimana 24 e inizio 25 secondo calendario reale.
 
@@ -67,33 +134,68 @@ Evidenze candidate:
 - alias diagram;
 - scelta struttura;
 - debug;
-- spiegazione di mutazione vs nuovo valore.
+- spiegazione mutazione vs nuovo valore.
 
-## `friedpython`
+Non inserire automaticamente in prova ogni API vista come exposure/enrichment (`insert`, `casefold`, nested tuple mutabili, ecc.).
+
+---
+
+# `friedpython`
 
 L'audit specifico è `sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md`.
 
-Nessun esercizio legacy viene importato automaticamente. Eventuali Activity devono essere riscritte con Python 3.12-compatible, casi limite e separazione student/teacher.
-
-## Git
-
-Continuare il workflow G1 già introdotto:
+Nessun esercizio legacy viene importato automaticamente. Eventuali Activity devono essere riscritte con:
 
 ```text
-status → diff → test → add/commit quando il lavoro è significativo
+outcome preciso
+→ Python 3.12-compatible
+→ casi limite
+→ starter/solution separati
+→ provenance
 ```
+
+---
+
+# Git — riuso G1, nessun G2
+
+Checkpoint B non introduce nuovi outcome Git.
+
+Se il mini-project usa Git, riusare il workflow G1 già acquisito:
+
+```text
+git status
+→ git diff
+→ test
+→ git add <path>
+→ git diff --staged
+→ git commit
+→ git status
+→ git log / git show
+```
+
+Git resta evidence di processo nel lavoro Python.
+
+Non abbreviare il modello in:
+
+```text
+status → diff → commit
+```
+
+perché perderebbe proprio il passaggio Working Tree → Index → History introdotto al Checkpoint A.
 
 Nessun comando G2 nuovo.
 
-## Handoff a PY2-08
+---
+
+# Handoff a PY2-08
 
 Dopo il checkpoint entra il criterio di scelta delle strutture:
 
 ```text
 unicità/membership dominante → set candidato
-lookup chiave→valore → dict candidato
-sequenza ordinata/mutabile → list
-record stabile posizionale → tuple
+lookup chiave→valore          → dict candidato
+sequenza ordinata/mutabile    → list
+record stabile posizionale    → tuple
 ```
 
-L'obiettivo non sarà imparare quattro collezioni separate, ma scegliere la struttura coerente con le operazioni del dominio.
+L'obiettivo non sarà imparare collezioni “sempre più avanzate”, ma scegliere la struttura coerente con le operazioni dominanti del dominio.
