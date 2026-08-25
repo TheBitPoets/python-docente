@@ -8,8 +8,9 @@
 2. [`tracks/secondo/ARCHITECTURE_REVIEW.md`](../tracks/secondo/ARCHITECTURE_REVIEW.md)
 3. [`tracks/secondo/COURSE_DESIGN.md`](../tracks/secondo/COURSE_DESIGN.md) e [`MODULE_MAP.md`](../tracks/secondo/MODULE_MAP.md)
 4. [`tracks/secondo/ASSESSMENT_CALENDAR.md`](../tracks/secondo/ASSESSMENT_CALENDAR.md)
-5. [`doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`](../doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md)
-6. [`doc/THEBITLAB_AUTHORING_COMPATIBILITY.md`](../doc/THEBITLAB_AUTHORING_COMPATIBILITY.md)
+5. [`tracks/secondo/GIT_G1_INTEGRATION.md`](../tracks/secondo/GIT_G1_INTEGRATION.md) e [`config/git-g1-consumer.json`](../config/git-g1-consumer.json)
+6. [`doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`](../doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md)
+7. [`doc/THEBITLAB_AUTHORING_COMPATIBILITY.md`](../doc/THEBITLAB_AUTHORING_COMPATIBILITY.md)
 
 ## Stato editoriale annuale
 
@@ -44,7 +45,7 @@ M04 resta il golden vertical slice tecnico con Activity P1 `py2-activity-b-input
 - [Guida studente](../student/CHECKPOINT_A.md)
 - [Runbook](CHECKPOINT_A_RUNBOOK.md)
 
-Git G1 entra qui: `status → diff → test → add → commit → log`.
+Git G1 entra progressivamente in PY2-05. M14–M16 consumano `G1.OBSERVE.STATUS` e `G1.OBSERVE.DIFF`; il Checkpoint A aggiunge staging, commit, history e modello HEAD tramite il corso Git canonico `TheBitPoets/git`, senza duplicare lesson.
 
 ### PY2-06 — completa editorialmente
 - M17 [lesson](../content/python/17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md) · [runbook](M17_RUNBOOK.md)
@@ -106,7 +107,13 @@ Non deformare gli outcome per adattarli a un grader non certificato.
 
 ## Git G1
 
-Da M14 usiamo `status/diff`; Checkpoint A aggiunge `add/commit/log`. Le dispense Git del docente **servono ora** per produrre il materiale G1 canonico e alimentare il corso Git autonomo, senza duplicazione dentro Python.
+Consumer contract locale: [`config/git-g1-consumer.json`](../config/git-g1-consumer.json). Source of truth: `TheBitPoets/git`, G1 candidate ref `65d8aff8c9a590560c500762d4dc7378a3239bf2`.
+
+- M14–M16: `status/diff` guided;
+- Checkpoint A: `status → diff → test → add → diff --staged → commit → status → log/show`;
+- secondo semestre: checkpoint/recovery G1 come routine progressiva.
+
+Il Git Lab platform candidate è verde su `2cornot2c#761/#762`; il test consumer del repository Python resta in attesa dell'esecuzione CI privata per il blocker `python-docente#8`.
 
 ## Course Board / Content Pack
 
@@ -117,7 +124,7 @@ Course Board → item = heading + sottoalbero
 
 Il repo è Course Workspace mutabile; Git conserva storia/review; Course Bundle è release immutabile. `2cornot2c#755` traccia Open Course e bulk whole-module insertion.
 
-`scripts/sync_authoring_catalog.py` controlla/sincronizza la source `python-course-content`; `tests/course_authoring_catalog.py` verifica lesson, deck, runbook, navigazione, provenance e Activity dichiarate.
+`scripts/sync_authoring_catalog.py` controlla/sincronizza la source `python-course-content`; `tests/course_authoring_catalog.py` verifica lesson, deck, runbook, navigazione, provenance e Activity dichiarate. `tests/git_g1_consumer_contract.py` verifica il boundary Python→Git G1.
 
 ## Ambiente TheBitLab / blocker
 
