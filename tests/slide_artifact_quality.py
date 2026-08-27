@@ -54,7 +54,7 @@ def pdf_structure(path: Path) -> tuple[int, list[float]]:
 
     try:
         reader = PdfReader(path, strict=True)
-    except Exception as error:  # pypdf exposes several parser-specific exception types
+    except Exception as error:
         raise AssertionError(f"{path.relative_to(ROOT)}: PDF page tree is not readable: {error}") from error
 
     assert not reader.is_encrypted, f"{path.relative_to(ROOT)}: release PDF must not be encrypted"
@@ -180,7 +180,7 @@ def main() -> int:
         assert len(set(counts.values())) == 1, f"{module}: artifact formats disagree: {counts}"
 
     print(
-        f"PASS: {len(entries)}/27 slide modules have complete HTML/PDF/PPTX artifacts "
+        f"PASS: {len(entries)}/{len(expected_modules)} slide modules have complete HTML/PDF/PPTX artifacts "
         "with matching source/rendered counts, real PDF page-tree validation and provenance hashes"
     )
     return 0
