@@ -17,6 +17,7 @@ COURSE_DESIGN = ROOT / "doc" / "course_design.json"
 LESSON_FILE = "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"
 LESSON_PATH = f"content/python/{LESSON_FILE}"
 ITEM_ID = "py2-m05-espressioni-operatori-prime-funzioni"
+EXPECTED_PACK_ORDER = 6  # M05 is the sixth item because Content Pack order is 1-based (M00=1).
 
 
 def fail(message: str) -> None:
@@ -65,10 +66,8 @@ def assert_lesson() -> None:
     missing = [marker for marker in required if marker not in lesson]
     if missing:
         fail(f"Lesson M05 incompleta: {missing}")
-    # Beginner correctness guard: never teach // as generic decimal truncation.
     if "taglia la parte decimale" not in lesson or "non una generica regola" not in lesson:
         fail("M05 deve esplicitare che // è floor division, non troncamento generico")
-    # Intentional delivery boundary: M05 must not materialize a second P1 canary.
     if "non materializziamo ora una seconda activity p1" not in lesson.casefold():
         fail("M05 non registra il boundary Activity/P1")
     assert_no_teacher_links(LESSON)
@@ -130,9 +129,12 @@ def assert_content_pack() -> None:
     item = items.get(ITEM_ID)
     if not item:
         fail("Content Pack senza content item M05")
-    if item.get("path") != LESSON_PATH or item.get("order") != 5 or item.get("status") != "draft":
+    if (
+        item.get("path") != LESSON_PATH
+        or item.get("order") != EXPECTED_PACK_ORDER
+        or item.get("status") != "draft"
+    ):
         fail(f"Content item M05 inatteso: {item}")
-    # No Activity is intentional until P1 canary certification.
     if item.get("activity_ids"):
         fail("M05 non deve ancora dichiarare Activity materializzate")
     refs = item.get("source_refs") or []
