@@ -15,6 +15,7 @@ CHECKS = [
     ("Git G1 consumer", [sys.executable, "tests/git_g1_consumer_contract.py"]),
     ("frozen outcome coverage", [sys.executable, "tests/coverage_contract.py"]),
     ("slide source quality", [sys.executable, "tests/slide_source_quality.py"]),
+    ("slide build profile pin", [sys.executable, "tests/slide_build_profile.py"]),
     ("M04 vertical-slice static QA", [sys.executable, "tests/m04_vertical_slice_static.py"]),
     ("M05 pedagogical static QA", [sys.executable, "tests/m05_authoring_static.py"]),
 ]
@@ -34,7 +35,7 @@ def main() -> int:
         run_check(name, command)
 
     print("\nPASS: static Python course quality suite")
-    print("NOTE: this does not execute TheBitLab-dependent consumer/rehearsal gates.")
+    print("NOTE: this does not execute Docker slide builds or TheBitLab-dependent consumer/rehearsal gates.")
     return 0
 
 
