@@ -25,23 +25,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Check authoring source synchronization
-        run: python scripts/sync_authoring_catalog.py
-
-      - name: Validate scalable authoring catalog
-        run: python tests/course_authoring_catalog.py
-
-      - name: Validate semantic review teaching boundaries
-        run: python tests/semantic_review_gate.py
-
-      - name: Validate Git G1 consumer contract
-        run: python tests/git_g1_consumer_contract.py
-
-      - name: Validate M04 authoring coherence
-        run: python tests/m04_vertical_slice_static.py
-
-      - name: Validate M05 authoring coherence
-        run: python tests/m05_authoring_static.py
+      - name: Run static course quality suite
+        run: python scripts/run_static_quality.py
 
       - name: Checkout pinned TheBitLab baseline
         uses: actions/checkout@v4
