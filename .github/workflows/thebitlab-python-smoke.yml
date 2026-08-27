@@ -44,6 +44,16 @@ jobs:
       - name: Validate first Python consumer on host Python 3.12
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
 
+      - name: Checkout PY2-01 Flowchart Lab candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: 16110b9a0bc7f274bb523427604eeab7e6815486
+          path: _flowchart-platform
+
+      - name: Validate PY2-01 managed Flowchart candidate consumer
+        run: python tests/py2_01_flowchart_candidate.py --platform _flowchart-platform
+
       - name: Checkout pinned assignment-runner source
         if: runner.os == 'Linux'
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
