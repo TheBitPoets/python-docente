@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import re
 import zipfile
 from pathlib import Path
@@ -10,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = ROOT / "config" / "slide-build-profile.json"
+TARGET_ASPECT_RATIO = 16 / 9
 
 
 def load_json(path: Path) -> dict:
@@ -20,8 +22,7 @@ def load_json(path: Path) -> dict:
 
 
 def sha256(path: Path) -> str:
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    return digest
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def source_slide_count(path: Path) -> int:
@@ -38,15 +39,43 @@ def html_slide_count(path: Path) -> int:
     return count
 
 
-def pdf_page_count(path: Path) -> int:
+def pdf_structure(path: Path) -> tuple[int, list[float]]:
     data = path.read_bytes()
     assert data.startswith(b"%PDF-"), f"{path.relative_to(ROOT)}: invalid PDF header"
     assert b"%%EOF" in data[-4096:], f"{path.relative_to(ROOT)}: missing PDF EOF marker"
-    # Chromium-generated Marp PDFs expose page dictionaries with /Type /Page.
-    # Keep the regex narrow so /Pages does not count as a page.
-    count = len(re.findall(rb"/Type\s*/Page\b", data))
+
+    # Chromium PDFs normally expose /Type /Page dictionaries. Some producers
+    # compress more aggressively, so fall back to /Pages ... /Count when needed.
+    page_objects = len(re.findall(rb"/Type\s*/Page\b", data))
+    page_tree_counts = [
+        int(match)
+        for match in re.findall(
+            rb"/Type\s*/Pages\b.{0,512}?/Count\s+(\d+)",
+            data,
+            flags=re.DOTALL,
+        )
+    ]
+    count = page_objects or (max(page_tree_counts) if page_tree_counts else 0)
     assert count > 0, f"{path.relative_to(ROOT)}: unable to detect PDF pages"
-    return count
+
+    ratios: list[float] = []
+    for width_raw, height_raw in re.findall(
+        rb"/MediaBox\s*\[\s*0(?:\.0+)?\s+0(?:\.0+)?\s+([0-9.]+)\s+([0-9.]+)\s*\]",
+        data,
+    ):
+        width = float(width_raw)
+        height = float(height_raw)
+        if width > 0 and height > 0:
+            ratios.append(width / height)
+
+    # A missing textual MediaBox is not by itself proof of a bad PDF because
+    # object streams may hide it. If visible, however, it must match 16:9.
+    for ratio in ratios:
+        assert math.isclose(ratio, TARGET_ASPECT_RATIO, rel_tol=0.015), (
+            f"{path.relative_to(ROOT)}: PDF MediaBox ratio {ratio:.4f} is not ~16:9"
+        )
+
+    return count, ratios
 
 
 def pptx_slide_count(path: Path) -> int:
@@ -75,7 +104,7 @@ def verify_artifact_entry(entry: dict, expected_slide_count: int, kind: str) -> 
     if kind == "html":
         count = html_slide_count(path)
     elif kind == "pdf":
-        count = pdf_page_count(path)
+        count, _ = pdf_structure(path)
     elif kind == "pptx":
         count = pptx_slide_count(path)
     else:
