@@ -47,15 +47,20 @@ def main() -> None:
     ]
 
     expected_paths: list[Path] = []
+    expected_numbers = list(range(0, 31))
+    actual_numbers: list[int] = []
     for item in items:
         lesson = Path(str(item["path"]))
         match = re.match(r"^(\d{2})_", lesson.name)
         assert match, f"non-canonical lesson filename: {lesson.name}"
         number = int(match.group(1))
-        if 4 <= number <= 30:
-            expected_paths.append(SLIDES_ROOT / lesson.name)
+        expected_paths.append(SLIDES_ROOT / lesson.name)
+        actual_numbers.append(number)
 
-    assert len(expected_paths) == 27, f"expected M04-M30 decks, found {len(expected_paths)}"
+    assert actual_numbers == expected_numbers, (
+        f"expected M00-M30 catalog order, found {actual_numbers}"
+    )
+    assert len(expected_paths) == 31, f"expected M00-M30 decks, found {len(expected_paths)}"
 
     actual_paths = sorted(SLIDES_ROOT.glob("[0-9][0-9]_*.md"))
     assert set(actual_paths) == set(expected_paths), (
@@ -75,12 +80,9 @@ def main() -> None:
         assert re.search(r"(?m)^title:\s*.+$", fm), f"{path.name}: title missing"
         assert f"# {module} —" in body, f"{path.name}: canonical module H1 missing"
 
-        # Student-facing decks must not expose internal grading-profile issue
-        # identifiers or teacher-only delivery labels.
         for marker in FORBIDDEN_STUDENT_DECK_MARKERS:
             assert marker not in body, f"{path.name}: internal delivery marker leaked: {marker}"
 
-        # Decks must not link into reserved teacher/solution areas.
         for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", body):
             normalized = target.replace("\\", "/").lower()
             wrapped = f"/{normalized}"
@@ -88,12 +90,10 @@ def main() -> None:
             assert "/solution/" not in wrapped, f"{path.name}: solution link leaked: {target}"
             assert "/hidden_tests/" not in wrapped, f"{path.name}: hidden-test link leaked: {target}"
 
-        # A deck may be concise or rich, but it must have enough separate
-        # teaching surfaces to be a real modular deck rather than a title card.
         separators = body.count("\n---\n")
         assert separators >= 5, f"{path.name}: suspiciously small deck ({separators} separators)"
 
-    print("PASS: 27/27 M04-M30 Marp source decks satisfy student-facing source quality gates")
+    print("PASS: 31/31 M00-M30 Marp source decks satisfy student-facing source quality gates")
 
 
 if __name__ == "__main__":
