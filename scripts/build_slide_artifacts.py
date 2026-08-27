@@ -6,6 +6,7 @@ import hashlib
 from importlib import metadata
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -15,6 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = ROOT / "config" / "slide-build-profile.json"
 PACK_PATH = ROOT / "content" / "python" / "content-pack.json"
+MODULE_FILE_RE = re.compile(r"^(\d{2})_[A-Z0-9_]+\.md$")
 
 
 def load_json(path: Path) -> dict:
@@ -48,15 +50,28 @@ def module_sources(pack: dict, profile: dict) -> list[tuple[str, Path]]:
     last = int(profile["module_range"]["last"])
     expected_count = int(profile["module_range"]["expected_count"])
 
-    result: list[tuple[str, Path]] = []
-    for item in sorted(
-        [x for x in pack.get("content_items", []) if isinstance(x, dict) and x.get("kind") == "module"],
-        key=lambda x: int(x.get("order", 0)),
-    ):
-        number = int(item.get("order", 0))
-        if not first <= number <= last:
+    parsed: list[tuple[int, Path, int]] = []
+    for item in pack.get("content_items", []):
+        if not isinstance(item, dict) or item.get("kind") != "module":
             continue
         lesson = Path(str(item["path"]))
+        match = MODULE_FILE_RE.fullmatch(lesson.name)
+        if not match:
+            raise AssertionError(f"non-canonical lesson filename: {lesson.name}")
+        number = int(match.group(1))
+        catalog_order = int(item.get("order", 0))
+        parsed.append((number, lesson, catalog_order))
+    parsed.sort(key=lambda entry: entry[0])
+
+    result: list[tuple[str, Path]] = []
+    for index, (number, lesson, catalog_order) in enumerate(parsed, start=1):
+        if catalog_order != index:
+            raise AssertionError(
+                f"{lesson.name}: Content Pack order {catalog_order} != {index}; "
+                "order is 1-based and independent from the Mxx module number"
+            )
+        if not first <= number <= last:
+            continue
         slide = ROOT / profile["source_root"] / lesson.name
         if not slide.is_file():
             raise AssertionError(f"missing slide source: {slide.relative_to(ROOT)}")
