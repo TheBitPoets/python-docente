@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install pinned slide-release QA dependencies
+        run: python -m pip install -r requirements-slide-release.txt
+
       - name: Validate slide sources and pinned build profile
         run: |
           python tests/slide_source_quality.py
@@ -40,7 +43,7 @@ jobs:
       - name: Show validated artifact inventory
         shell: bash
         run: |
-          find dist/slides/python -type f -maxdepth 3 -print | sort
+          find dist/slides/python -maxdepth 3 -type f -print | sort
           python - <<'PY'
           import json
           from pathlib import Path
@@ -58,6 +61,7 @@ jobs:
           print(f'Module count: {len(modules)}')
           print(f'Artifact counts: {counts}')
           print(f'Artifact bytes: {total_bytes}')
+          print(f"PDF parser: {manifest['toolchain']['pdf_parser']}")
           PY
 
       - name: Upload validated slide artifact bundle
