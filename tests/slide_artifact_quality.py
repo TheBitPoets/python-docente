@@ -8,6 +8,14 @@ import re
 import zipfile
 from pathlib import Path
 
+try:
+    import pypdf
+    from pypdf import PdfReader
+except ModuleNotFoundError as error:
+    raise SystemExit(
+        "pypdf is required for slide artifact QA; install requirements-slide-release.txt"
+    ) from error
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = ROOT / "config" / "slide-build-profile.json"
@@ -44,35 +52,32 @@ def pdf_structure(path: Path) -> tuple[int, list[float]]:
     assert data.startswith(b"%PDF-"), f"{path.relative_to(ROOT)}: invalid PDF header"
     assert b"%%EOF" in data[-4096:], f"{path.relative_to(ROOT)}: missing PDF EOF marker"
 
-    # Chromium PDFs normally expose /Type /Page dictionaries. Some producers
-    # compress more aggressively, so fall back to /Pages ... /Count when needed.
-    page_objects = len(re.findall(rb"/Type\s*/Page\b", data))
-    page_tree_counts = [
-        int(match)
-        for match in re.findall(
-            rb"/Type\s*/Pages\b.{0,512}?/Count\s+(\d+)",
-            data,
-            flags=re.DOTALL,
-        )
-    ]
-    count = page_objects or (max(page_tree_counts) if page_tree_counts else 0)
-    assert count > 0, f"{path.relative_to(ROOT)}: unable to detect PDF pages"
+    try:
+        reader = PdfReader(path, strict=True)
+    except Exception as error:  # pypdf exposes several parser-specific exception types
+        raise AssertionError(f"{path.relative_to(ROOT)}: PDF page tree is not readable: {error}") from error
+
+    assert not reader.is_encrypted, f"{path.relative_to(ROOT)}: release PDF must not be encrypted"
+    count = len(reader.pages)
+    assert count > 0, f"{path.relative_to(ROOT)}: PDF contains no pages"
 
     ratios: list[float] = []
-    for width_raw, height_raw in re.findall(
-        rb"/MediaBox\s*\[\s*0(?:\.0+)?\s+0(?:\.0+)?\s+([0-9.]+)\s+([0-9.]+)\s*\]",
-        data,
-    ):
-        width = float(width_raw)
-        height = float(height_raw)
-        if width > 0 and height > 0:
-            ratios.append(width / height)
-
-    # A missing textual MediaBox is not by itself proof of a bad PDF because
-    # object streams may hide it. If visible, however, it must match 16:9.
-    for ratio in ratios:
+    for index, page in enumerate(reader.pages, start=1):
+        box = page.mediabox
+        width = float(box.width)
+        height = float(box.height)
+        assert width > 0 and height > 0, (
+            f"{path.relative_to(ROOT)}: page {index} has invalid MediaBox {box}"
+        )
+        ratio = width / height
+        ratios.append(ratio)
         assert math.isclose(ratio, TARGET_ASPECT_RATIO, rel_tol=0.015), (
-            f"{path.relative_to(ROOT)}: PDF MediaBox ratio {ratio:.4f} is not ~16:9"
+            f"{path.relative_to(ROOT)}: page {index} MediaBox ratio {ratio:.4f} is not ~16:9"
+        )
+        rotation = int(page.get("/Rotate", 0) or 0) % 360
+        assert rotation in {0, 180}, (
+            f"{path.relative_to(ROOT)}: page {index} uses unexpected rotation {rotation}; "
+            "landscape geometry must come from MediaBox"
         )
 
     return count, ratios
@@ -134,6 +139,13 @@ def main() -> int:
     assert manifest.get("source_commit_sha"), "manifest source_commit_sha missing"
     assert manifest.get("build_id"), "manifest build_id missing"
 
+    pdf_parser = profile["quality"]["pdf_parser"]
+    assert pdf_parser["package"] == "pypdf"
+    expected_pypdf = str(pdf_parser["version"])
+    assert pypdf.__version__ == expected_pypdf, (
+        f"pypdf version drift: installed={pypdf.__version__}, expected={expected_pypdf}"
+    )
+
     toolchain = manifest.get("toolchain") or {}
     assert toolchain.get("container_image") == profile["runtime"]["image_ref"]
     assert toolchain.get("container_digest") == profile["runtime"]["image_digest"]
@@ -141,6 +153,9 @@ def main() -> int:
     assert str(profile["renderer"]["version"]) in str(toolchain.get("marp_cli"))
     assert str(profile["runtime"]["node_version"]) in str(toolchain.get("node"))
     assert toolchain.get("browser"), "browser reported version missing"
+    assert toolchain.get("pdf_parser") == f"pypdf {expected_pypdf}", (
+        f"manifest PDF parser provenance mismatch: {toolchain.get('pdf_parser')!r}"
+    )
 
     first = int(profile["module_range"]["first"])
     last = int(profile["module_range"]["last"])
@@ -166,7 +181,7 @@ def main() -> int:
 
     print(
         f"PASS: {len(entries)}/27 slide modules have complete HTML/PDF/PPTX artifacts "
-        "with matching source/rendered counts and provenance hashes"
+        "with matching source/rendered counts, real PDF page-tree validation and provenance hashes"
     )
     return 0
 
