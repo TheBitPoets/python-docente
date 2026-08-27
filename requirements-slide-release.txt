@@ -1,0 +1,2 @@
+# Release-only structural QA dependency. Keep exact; version is also enforced by config/slide-build-profile.json.
+pypdf==6.16.2
