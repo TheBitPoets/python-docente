@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: read
-  packages: read
 
 jobs:
   python-vertical-slice:
@@ -29,7 +28,7 @@ jobs:
       - name: Run static course quality suite
         run: python scripts/run_static_quality.py
 
-      - name: Checkout pinned TheBitLab baseline
+      - name: Checkout pinned TheBitLab consumer baseline
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: TheBitPoets/2cornot2c
@@ -45,12 +44,15 @@ jobs:
       - name: Validate first Python consumer on host Python 3.12
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
 
-      - name: Authenticate to GHCR for pinned runner
+      - name: Checkout pinned assignment-runner source
         if: runner.os == 'Linux'
-        shell: bash
-        run: echo "${{ github.token }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: bd102146a684a9b06835204ec1b7f668f7655a03
+          path: _thebitlab-runner-src
 
-      - name: Pull authoritative immutable Docker runner
+      - name: Build authoritative assignment runner from pinned source
         if: runner.os == 'Linux'
         shell: bash
         run: |
@@ -60,27 +62,53 @@ jobs:
           from pathlib import Path
           profile = json.loads(Path('config/p1-canary-profile.json').read_text(encoding='utf-8'))
           grading = profile['authoritative_grading']
-          reference = grading['immutable_reference']
-          repository = reference.split('@', 1)[0]
-          version = grading['toolchain_version']
-          print('RUNNER_IMAGE=' + shlex.quote(reference))
-          print('RUNNER_VERSION_TAG=' + shlex.quote(f'{repository}:{version}'))
+          print('RUNNER_SOURCE=' + shlex.quote(grading['runner_source_revision']))
+          print('RUNNER_TAG=' + shlex.quote(grading['local_image_tag']))
+          print('RUNNER_VERSION=' + shlex.quote(grading['toolchain_version']))
+          print('RELEASE_LOCK=' + shlex.quote(grading['release_lock_reference']))
           PY
           )"
 
-          echo "Pulling pinned grading image: $RUNNER_IMAGE"
-          if ! docker pull "$RUNNER_IMAGE"; then
-            echo "Locked manifest is unavailable from this repository token. Diagnostic only: inspect version tag $RUNNER_VERSION_TAG"
-            if docker pull "$RUNNER_VERSION_TAG"; then
-              docker image inspect "$RUNNER_VERSION_TAG" --format 'Diagnostic ImageId={{.Id}} RepoDigests={{json .RepoDigests}} Labels={{json .Config.Labels}}'
-            else
-              echo "Version tag is also inaccessible from this repository token."
-            fi
-            echo "FAIL: authoritative lock remains unchanged; no alternate tag is accepted for grading."
-            exit 1
-          fi
-          docker image inspect "$RUNNER_IMAGE" --format 'ImageId={{.Id}} RepoDigests={{json .RepoDigests}} Labels={{json .Config.Labels}}'
+          actual_source="$(git -C _thebitlab-runner-src rev-parse HEAD)"
+          test "$actual_source" = "$RUNNER_SOURCE"
 
-      - name: Validate authoritative immutable Docker grading
+          python _thebitlab-runner-src/scripts/build_assignment_runner.py \
+            --tag "$RUNNER_TAG" \
+            --source-revision "$RUNNER_SOURCE" \
+            --metadata p1-runner-metadata.json
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          profile = json.loads(Path('config/p1-canary-profile.json').read_text(encoding='utf-8'))
+          grading = profile['authoritative_grading']
+          metadata = json.loads(Path('p1-runner-metadata.json').read_text(encoding='utf-8'))
+
+          assert metadata['schema_version'] == 'thebitlab.grading-toolchain-build.v1'
+          assert metadata['version'] == grading['toolchain_version']
+          assert metadata['platform'] == grading['platform']
+          assert metadata['source_revision'] == grading['runner_source_revision']
+          assert metadata['local_tag'] == grading['local_image_tag']
+          assert metadata['worker_schema_version'] == 'thebitlab.grading-worker.v1'
+          print(
+              'PASS: source-built runner metadata matches P1 certification profile; '
+              f"release-lock provenance={grading['release_lock_reference']}"
+          )
+          PY
+
+      - name: Validate authoritative source-built Docker grading
         if: runner.os == 'Linux'
-        run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform --authoritative-docker
+        shell: bash
+        run: |
+          RUNNER_TAG="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          profile = json.loads(Path('config/p1-canary-profile.json').read_text(encoding='utf-8'))
+          print(profile['authoritative_grading']['local_image_tag'])
+          PY
+          )"
+          python tests/thebitlab_python_smoke.py \
+            --platform _thebitlab-platform \
+            --authoritative-docker \
+            --docker-image "$RUNNER_TAG"
