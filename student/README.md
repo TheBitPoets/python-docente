@@ -1,14 +1,27 @@
 # Python — percorso studente
 
-> Stato: **curriculum 2026/27 congelato; core Python M04–M30 materializzato editorialmente**. Il corso non è ancora dichiarato pronto per la classe finché i gate TheBitLab non sono certificati.
+> Stato: **curriculum 2026/27 congelato; M00–M30 materializzati editorialmente come draft**. M04–M30 hanno già semantic review completa; M00–M03 sono il nuovo blocco PY2-01 in review. Il corso non è ancora dichiarato pronto per la classe finché i gate TheBitLab e il sign-off docente non sono chiusi.
 
 ## Ambiente
 
-Tutte le attività devono essere svolte nel **Classroom Environment TheBitLab** previsto dal corso. Baseline iniziale: Python 3.12-compatible, REPL standard, workspace gestito, VS Code soltanto quando il profilo managed è certificato.
+Tutte le attività digitali devono usare il **Classroom Environment TheBitLab** previsto dal corso. Baseline iniziale: Python 3.12-compatible, REPL standard, workspace gestito, VS Code soltanto quando il profilo managed è certificato.
+
+Per PY2-01 il Flowchart Lab ha un consumer candidate reale e testato su Ubuntu/Windows, ma non è ancora una capability classroom-certified. Se non è disponibile nel profilo reale, si usa il fallback carta/lavagna/template + pseudocodice + trace + casi di test: gli outcome non cambiano.
 
 ## PY2-01 — Problem solving, algoritmi e flow chart
 
-Stato: **SPEC**. La delivery definitiva dipende dal Flowchart Lab TheBitLab. Nel frattempo restano validi carta/lavagna, pseudocodice, trace e casi di test come fallback didattico.
+- **M00** — [Problema, algoritmo, programma, input e output](../content/python/00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md) · [slide](../slides/python/modules/00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md). Orientamento iniziale integrato nella prima settimana.
+- **M01** — [Dal problema ai passi: specifica, pseudocodice e trace](../content/python/01_DAL_PROBLEMA_AI_PASSI.md) · [slide](../slides/python/modules/01_DAL_PROBLEMA_AI_PASSI.md).
+- **M02** — [Flow chart: sequenza, input/output e selezione](../content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md) · [slide](../slides/python/modules/02_FLOWCHART_SEQUENZA_SELEZIONE.md).
+- **M03** — [Flow chart: iterazione, terminazione e annidamento](../content/python/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md) · [slide](../slides/python/modules/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md).
+
+In queste tre settimane non serve conoscere Python. Il percorso è:
+
+```text
+problema → pseudocodice → flow chart → trace → test → debug
+```
+
+Quando Flowchart Lab è disponibile nel percorso managed puoi usare Run/Step/Reset, variable watch, `algorithm.flow.json` e SVG evidence. La qualità del diagramma e della spiegazione resta evidence/rubric docente: non esiste un voto automatico affidabile sulla “bellezza” dell'algoritmo.
 
 ## PY2-02 — Primi programmi Python
 
@@ -105,10 +118,11 @@ Nessun nuovo prerequisito: finalizzazione del capstone, recupero mirato, evidenc
 
 ## Policy Activity
 
-M04 resta il canarino tecnico P1. I moduli successivi hanno esercizi e Activity candidate, ma non materializziamo nuove Activity autogradate finché il relativo profilo non è certificato.
+M04 resta il canarino tecnico P1. PY2-01 usa per ora evidence manuale/Flowchart managed senza autograding autorevole. I moduli successivi hanno esercizi e Activity candidate, ma non materializziamo nuove Activity autogradate finché il relativo profilo non è certificato.
 
 Profili target:
 
+- P0 — manuale/trace/design;
 - P1 — programmi stdin/stdout;
 - P2 — funzioni pure;
 - P3 — comportamento oggetti;
@@ -129,4 +143,4 @@ Nelle attività fondazionali e nelle verifiche core non usare AI per generare la
 
 ## Stato tecnico
 
-Il curriculum è congelato e M04–M30 sono materializzati editorialmente. L'integrazione strutturale con Git G1 è completa; restano da certificare i gate TheBitLab, in particolare M04/P1 (`python-docente#7`), Actions privati (`#8`), P2/P3/P4 e `romeo-sim`. PY2-01 attende il Flowchart Lab per la delivery definitiva.
+Il curriculum è congelato e M00–M30 sono materializzati editorialmente come draft. M04/P1 ha CI host + Docker autorevole verde; PY2-01 ha un consumer Flowchart candidate verde su Ubuntu/Windows ma richiede ancora il rehearsal dei profili classroom e review umana prima della certificazione. Le slide M04–M30 hanno già un real build strutturale PASS; dopo l'aggiunta di M00–M03 il prossimo release build dovrà coprire tutti i 31 moduli. Restano inoltre P2/P3/P4, `romeo-sim`, teacher sign-off e GO classroom.
