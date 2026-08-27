@@ -111,7 +111,7 @@ def assert_navigation() -> None:
     for marker in (
         "../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
         "../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
-        "M05 — Espressioni, operatori e prime funzioni",
+        "[Espressioni, operatori e prime funzioni]",
     ):
         if marker not in student:
             fail(f"Indice studente non collega M05: {marker}")
