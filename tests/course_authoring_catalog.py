@@ -12,6 +12,23 @@ STUDENT_INDEX = ROOT / "student" / "README.md"
 TEACHER_INDEX = ROOT / "teacher" / "README.md"
 
 MODULE_FILE_RE = re.compile(r"^(\d{2})_[A-Z0-9_]+\.md$")
+EXPECTED_MODULE_NUMBERS = list(range(4, 31))
+TRACK_ID = "python-secondo-2026-2027"
+UDA_MODULE_RANGES: dict[str, tuple[int, int] | None] = {
+    "py2-01": None,
+    "py2-02": (4, 5),
+    "py2-03": (6, 8),
+    "py2-04": (9, 12),
+    "py2-05": (13, 16),
+    "checkpoint-a": None,
+    "py2-06": (17, 19),
+    "py2-07": (20, 22),
+    "checkpoint-b": None,
+    "py2-08": (23, 25),
+    "py2-09": (26, 26),
+    "py2-10": (27, 30),
+    "checkpoint-c": None,
+}
 
 
 def fail(message: str) -> None:
@@ -61,6 +78,38 @@ def design_course_source_files(design: dict) -> set[str]:
     if not source:
         fail("Course Design senza source python-course-content")
     return {str(item) for item in source.get("files", [])}
+
+
+def design_uda_content_items(design: dict) -> dict[str, list[str]]:
+    tracks = [
+        year
+        for year in design.get("years", [])
+        if isinstance(year, dict) and year.get("id") == TRACK_ID
+    ]
+    if len(tracks) != 1:
+        fail(f"Course Design: atteso un solo track {TRACK_ID}, trovati {len(tracks)}")
+
+    result: dict[str, list[str]] = {}
+    for uda in tracks[0].get("udas", []):
+        if not isinstance(uda, dict):
+            continue
+        uda_id = str(uda.get("id") or "")
+        if not uda_id or uda_id in result:
+            fail(f"Course Design UDA id mancante/duplicato: {uda_id!r}")
+        values = uda.get("content_item_ids")
+        if not isinstance(values, list) or not all(isinstance(item, str) for item in values):
+            fail(f"{uda_id}: content_item_ids mancante/non valido")
+        if len(values) != len(set(values)):
+            fail(f"{uda_id}: content_item_ids duplicati")
+        result[uda_id] = list(values)
+
+    if set(result) != set(UDA_MODULE_RANGES):
+        fail(
+            "Course Design UDA set inatteso: "
+            f"missing={sorted(set(UDA_MODULE_RANGES) - set(result))}, "
+            f"extra={sorted(set(result) - set(UDA_MODULE_RANGES))}"
+        )
+    return result
 
 
 def assert_activity(activity_id: str, lesson_filename: str) -> None:
@@ -158,6 +207,17 @@ def assert_module(
     return module_number
 
 
+def expected_uda_mapping(ids_by_number: dict[int, str]) -> dict[str, list[str]]:
+    expected: dict[str, list[str]] = {}
+    for uda_id, bounds in UDA_MODULE_RANGES.items():
+        if bounds is None:
+            expected[uda_id] = []
+            continue
+        start, stop = bounds
+        expected[uda_id] = [ids_by_number[number] for number in range(start, stop + 1)]
+    return expected
+
+
 def main() -> int:
     pack = load_object(PACK_PATH)
     design = load_object(DESIGN_PATH)
@@ -172,23 +232,27 @@ def main() -> int:
 
     module_numbers: list[int] = []
     ids: set[str] = set()
+    ids_by_number: dict[int, str] = {}
     for item in items:
         item_id = str(item.get("id") or "")
         if not item_id or item_id in ids:
             fail(f"Content item id mancante/duplicato: {item_id!r}")
         ids.add(item_id)
-        module_numbers.append(
-            assert_module(
-                item,
-                pack_files=pack_files,
-                design_files=design_files,
-                student_index=student_index,
-                teacher_index=teacher_index,
-            )
+        module_number = assert_module(
+            item,
+            pack_files=pack_files,
+            design_files=design_files,
+            student_index=student_index,
+            teacher_index=teacher_index,
         )
+        module_numbers.append(module_number)
+        ids_by_number[module_number] = item_id
 
-    if module_numbers != sorted(module_numbers):
-        fail(f"Content items non ordinati per modulo: {module_numbers}")
+    if module_numbers != EXPECTED_MODULE_NUMBERS:
+        fail(
+            "Il catalogo deve materializzare esattamente M04–M30 in ordine: "
+            f"atteso={EXPECTED_MODULE_NUMBERS}, trovato={module_numbers}"
+        )
     if len(module_numbers) != len(set(module_numbers)):
         fail(f"Numero modulo duplicato nel Content Pack: {module_numbers}")
 
@@ -206,8 +270,31 @@ def main() -> int:
             f"design-only={sorted(design_files - pack_files)}"
         )
 
+    actual_uda_mapping = design_uda_content_items(design)
+    expected_mapping = expected_uda_mapping(ids_by_number)
+    if actual_uda_mapping != expected_mapping:
+        fail(
+            "Course Design content_item_ids non coerente con il catalogo: "
+            f"atteso={expected_mapping}, trovato={actual_uda_mapping}"
+        )
+
+    mapped_ids = [
+        item_id
+        for uda_id, values in actual_uda_mapping.items()
+        if UDA_MODULE_RANGES[uda_id] is not None
+        for item_id in values
+    ]
+    if len(mapped_ids) != len(set(mapped_ids)):
+        fail("Uno o più content item sono assegnati a più UDA")
+    if set(mapped_ids) != ids:
+        fail(
+            "UDA mapping e Content Pack divergono: "
+            f"unmapped={sorted(ids - set(mapped_ids))}, "
+            f"unknown={sorted(set(mapped_ids) - ids)}"
+        )
+
     assert_no_reserved_links(STUDENT_INDEX)
-    print(f"PASS: {len(items)} moduli materializzati coerenti nel catalogo authoring")
+    print("PASS: 27 moduli M04–M30 coerenti in Content Pack, Course Design e UDA mapping")
     return 0
 
 
