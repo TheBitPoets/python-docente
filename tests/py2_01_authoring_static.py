@@ -37,6 +37,22 @@ def assert_no_reserved_links(path: Path) -> None:
         assert "/hidden_tests/" not in normalized, f"student surface links hidden tests: {path.name} -> {target}"
 
 
+def assert_pre_python_surface(number: int, body: str, *, label: str) -> None:
+    """Reject Python-as-prerequisite while allowing one explicitly negative M01 example."""
+    lowered = body.casefold()
+    fence_count = lowered.count("```python")
+    if number == 1:
+        assert fence_count <= 1, f"M01 {label}: more than one Python code fence in pre-Python module"
+        if fence_count:
+            assert (
+                "python travestito" in lowered
+                or "non serve python" in lowered
+                or "non scrivere" in lowered
+            ), f"M01 {label}: Python fence is not explicitly framed as an anti-example"
+    else:
+        assert fence_count == 0, f"M{number:02d} {label}: executable Python leaked into pre-Python module"
+
+
 def main() -> int:
     student_index = read(STUDENT_INDEX)
     teacher_index = read(TEACHER_INDEX)
@@ -62,12 +78,8 @@ def main() -> int:
 
         assert_no_reserved_links(lesson_path)
         assert_no_reserved_links(slide_path)
-
-        # PY2-01 teaches algorithms before Python syntax. Mentions of Python as
-        # a future translation/boundary are fine, but executable Python blocks
-        # would silently turn this into a programming prerequisite.
-        assert "```python" not in lesson.casefold(), f"{module}: executable Python leaked into pre-Python lesson"
-        assert "```python" not in slides.casefold(), f"{module}: executable Python leaked into pre-Python deck"
+        assert_pre_python_surface(number, lesson, label="lesson")
+        assert_pre_python_surface(number, slides, label="deck")
 
     m00 = read(ROOT / "content" / "python" / MODULES[0]).casefold()
     assert "non devi ancora scrivere codice" in m00
@@ -97,8 +109,6 @@ def main() -> int:
     assert len(flowchart) == 1
     assert flowchart[0].get("fallback_id") == "flowchart.manual-evidence.v1"
 
-    # The first authoring slice must not materialize a fake autograded
-    # Flowchart Activity while the runtime explicitly declares manual evidence.
     activity_root = ROOT / "activities" / "python"
     for activity_json in activity_root.glob("*/activity.json"):
         activity = load(activity_json)
