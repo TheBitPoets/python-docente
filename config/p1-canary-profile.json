@@ -1,0 +1,34 @@
+{
+  "schema_version": "python.p1-canary-certification.v1",
+  "activity_id": "py2-activity-b-input-somma-001",
+  "activity_path": "activities/python/py2-activity-b-input-somma-001/activity.json",
+  "host_python": "3.12",
+  "host_os": [
+    "ubuntu-latest",
+    "windows-latest"
+  ],
+  "thebitlab": {
+    "repository": "TheBitPoets/2cornot2c",
+    "ref": "cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0"
+  },
+  "authoritative_grading": {
+    "required": true,
+    "host_os": "ubuntu-latest",
+    "platform": "linux/amd64",
+    "toolchain_version": "2026.07.1",
+    "immutable_reference": "ghcr.io/thebitpoets/2cornot2c-assignment-runner@sha256:62f0f7b7bc1d48d01b7f8e5fa765e0b43be3622e70a614033b1bb4a4e522e159"
+  },
+  "expected_cases": 3,
+  "student_scaffold_files": [
+    "README.md",
+    "activity.json",
+    "main.py",
+    "GUIDA.md"
+  ],
+  "certification_policy": {
+    "direct_preflight_is_authoritative_grading": false,
+    "host_smoke_required_on_all_host_os": true,
+    "docker_grading_required_once": true,
+    "classroom_rehearsal_required": true
+  }
+}
