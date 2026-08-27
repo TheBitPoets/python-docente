@@ -230,12 +230,13 @@ def build_one(profile: dict, module: str, source: Path, output_root: Path) -> di
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build reproducible M04–M30 Marp release artifacts.")
+    parser = argparse.ArgumentParser(
+        description="Build reproducible Marp release artifacts for the module range pinned in config/slide-build-profile.json."
+    )
     parser.add_argument("--build-id", help="Release/build identifier recorded in the manifest")
     parser.add_argument("--keep", action="store_true", help="Do not clean dist/slides/python first")
     args = parser.parse_args()
 
-    # Direct local invocation must enforce the same source/pin gates as CI.
     run([sys.executable, "tests/slide_source_quality.py"])
     run([sys.executable, "tests/slide_build_profile.py"])
 
