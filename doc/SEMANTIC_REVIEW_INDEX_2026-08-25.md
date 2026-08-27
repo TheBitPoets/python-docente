@@ -1,11 +1,15 @@
-# Python secondo — Semantic Review Index 2026-08-25
+# Python secondo — Semantic Review Index
 
-> Stato: **core M04–M30 revisionato semanticamente / editorial draft**.  
+> Stato: **core M00–M30 revisionato semanticamente / editorial draft**.  
+> Review M04–M30 completate il 2026-08-25; PY2-01 M00–M03 completata il 2026-08-27 dopo la definizione/consumer evidence del Flowchart Lab candidate.  
 > Questo indice non equivale a teacher sign-off, runtime certification, Content Pack approval o classroom readiness.
 
 ## Scope completo
 
 ```text
+PY2-01
+  doc/SEMANTIC_REVIEW_PY2_01_2026-08-27.md
+
 PY2-02 / PY2-03
   doc/SEMANTIC_REVIEW_PY2_02_PY2_03_2026-08-25.md
 
@@ -25,7 +29,7 @@ PY2-10 + Checkpoint C
   doc/SEMANTIC_REVIEW_PY2_10_CHECKPOINT_C_2026-08-25.md
 ```
 
-PY2-01 resta volutamente fuori dalla review delle lesson finali perché è ancora SPEC-only in attesa del boundary Flowchart Lab/Classroom Environment. La pedagogia frozen è già definita e il fallback manuale resta valido.
+PY2-01 non è più SPEC-only: M00–M03 sono materializzati come draft. Il Flowchart Lab resta `candidate-not-certified` e il fallback manuale resta obbligatorio finché non sono completati supported-profile rehearsal e human usability review.
 
 ---
 
@@ -50,6 +54,16 @@ Scopo:
 
 # Finding trasversali consolidati
 
+## F0 — Algoritmo prima del linguaggio
+
+PY2-01 protegge la progressione:
+
+```text
+problema → pseudocodice → flow chart → trace → test → debug → Python
+```
+
+M00/M01 condividono la prima settimana; M02 e M03 completano le 9 ore frozen. Flowchart Lab è delivery, non prerequisito concettuale, e il fallback manuale preserva gli stessi outcome.
+
 ## F1 — API ≠ curriculum
 
 String/list/set/dict non vengono insegnati come cataloghi di metodi.
@@ -66,9 +80,11 @@ Contatore, accumulatore, min/max, ricerca e flag vengono ricondotti a:
 
 > che cosa deve significare questa variabile dopo i dati già elaborati?
 
+La stessa idea nasce già nel trace di PY2-01.
+
 ## F3 — Dettagli di controllo non diventano falsi prerequisiti
 
-`while True`, `break`, `continue`, short-circuit, De Morgan e Big-O restano guided/enrichment dove appropriato.
+`while True`, `break`, `continue`, short-circuit, De Morgan e Big-O restano guided/enrichment dove appropriato. In M03 il costo di una griglia resta solo intuitivo.
 
 ## F4 — Funzioni formalizzano una preview già fatta
 
@@ -83,9 +99,9 @@ full canonical lesson completion required = false
 
 Python usa Git come processo; non assorbe il corso Git standalone e non aggiunge una seconda verifica Git high-stakes.
 
-## F6 — P2/P3/P4 sono delivery boundary
+## F6 — P2/P3/P4 e Flowchart sono delivery boundary
 
-I profili di grading non sono mastery studente. Il corso insegna gli outcome anche con manual/assert evidence finché il relativo profilo non è certificato.
+I profili di grading/runtime non sono mastery studente. Il corso insegna gli outcome anche con manual/assert evidence finché il relativo profilo non è certificato. Flowchart Lab oggi dichiara esplicitamente `authoritative_grading=false`.
 
 ## F7 — Composizione OOP è core
 
@@ -127,6 +143,7 @@ Non numero di classi, righe, framework o feature.
 # Review coverage
 
 ```text
+M00–M03    reviewed
 M04–M08    reviewed
 M09–M12    reviewed
 M13–M16    reviewed
@@ -138,7 +155,7 @@ M27–M30    reviewed
 Checkpoint C reviewed
 ```
 
-Quindi il **core editorialmente materializzato M04–M30 ha una review semantica completa**.
+Quindi il **core editorialmente materializzato M00–M30 ha una review semantica completa**.
 
 ---
 
@@ -147,13 +164,12 @@ Quindi il **core editorialmente materializzato M04–M30 ha una review semantica
 Non significa:
 
 - lesson approved;
-- slide artifacts built/validated;
 - teacher sign-off finale;
 - Activities complete;
-- P1/P2/P3/P4 certified;
-- private CI verde;
+- P1/P2/P3/P4 certified per tutti i profili classroom;
+- Flowchart Lab classroom-certified;
 - `romeo-sim` certified;
-- PY2-01 delivery completata;
+- nuovo release build slide M00–M30 completato;
 - Content Pack `1.0.0 / approved`;
 - GO classroom.
 
@@ -161,15 +177,14 @@ Non significa:
 
 # Layer successivi
 
-Ordine consigliato:
+Ordine corrente:
 
-1. static semantic-review contract;
-2. coverage/provenance audit finale;
-3. slide source/artifact quality pipeline;
+1. mantenere static QA M00–M30 verde;
+2. nuovo real slide build M00–M30 + visual/PowerPoint review;
+3. supported-profile Classroom Environment / Flowchart rehearsal;
 4. teacher review finale;
-5. grading-profile certification + Activity materialization;
-6. PY2-01 Flowchart Lab boundary;
-7. private CI execution;
-8. TheBitLab rehearsal reale;
-9. Content Pack approval;
-10. GO classroom.
+5. P2/P3/P4 e `romeo-sim` certification quando richiesti dalle Activity;
+6. Activity materialization progressiva con profilo corretto;
+7. provenance/license review finale;
+8. Content Pack approval;
+9. GO classroom.
