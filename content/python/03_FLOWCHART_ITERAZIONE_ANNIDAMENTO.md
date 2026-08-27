@@ -300,6 +300,20 @@ Il lavoro dello studente resta:
 3. individuare ciò che non cambia come previsto;
 4. correggere il modello.
 
+## Fallback manuale obbligatorio
+
+Finché `flowchart.lab.v1` non è classroom-certified, lo stesso esercizio deve poter essere svolto senza il tool usando:
+
+```text
+carta / lavagna / template
++ pseudocodice
++ trace table
++ casi di test
++ rubric docente
+```
+
+Il fallback manuale non è un corso diverso: preserva gli stessi outcome di algoritmo, terminazione, trace e debug.
+
 ---
 
 # 13. Error Clinic — ciclo infinito
