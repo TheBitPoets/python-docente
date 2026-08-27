@@ -9,18 +9,21 @@ import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ACTIVITY_ROOT = ROOT / "activities" / "python" / "py2-activity-b-input-somma-001"
-ACTIVITY = ACTIVITY_ROOT / "activity.json"
+PROFILE_PATH = ROOT / "config" / "p1-canary-profile.json"
+PROFILE = json.loads(PROFILE_PATH.read_text(encoding="utf-8"))
+ACTIVITY = ROOT / str(PROFILE["activity_path"])
+ACTIVITY_ROOT = ACTIVITY.parent
+ACTIVITY_ID = str(PROFILE["activity_id"])
 STARTER = ACTIVITY_ROOT / "starter" / "main.py"
 SOLUTION = ACTIVITY_ROOT / "solution" / "main.py"
 STUDENT_GUIDE = ACTIVITY_ROOT / "student" / "GUIDA.md"
 CONTENT_PACK = ROOT / "content" / "python" / "content-pack.json"
-THEBITLAB_REF = "cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0"
-RUNNER_TOOLCHAIN_VERSION = "2026.07.1"
-RUNNER_IMAGE = (
-    "ghcr.io/thebitpoets/2cornot2c-assignment-runner@"
-    "sha256:62f0f7b7bc1d48d01b7f8e5fa765e0b43be3622e70a614033b1bb4a4e522e159"
-)
+THEBITLAB_REF = str(PROFILE["thebitlab"]["ref"])
+RUNNER_TOOLCHAIN_VERSION = str(PROFILE["authoritative_grading"]["toolchain_version"])
+RUNNER_IMAGE = str(PROFILE["authoritative_grading"]["immutable_reference"])
+HOST_PYTHON = tuple(int(part) for part in str(PROFILE["host_python"]).split("."))
+EXPECTED_SCAFFOLD_FILES = set(PROFILE["student_scaffold_files"])
+EXPECTED_CASES = int(PROFILE["expected_cases"])
 
 
 def fail(message: str) -> None:
@@ -51,10 +54,11 @@ def load_json(path: Path) -> dict:
 
 
 def validate_platform_pin(platform: Path) -> None:
-    if sys.version_info[:2] != (3, 12):
+    if sys.version_info[:2] != HOST_PYTHON:
         fail(
-            "TheBitLab M04/P1 certification smoke requires host Python 3.12; "
-            f"running {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+            "TheBitLab M04/P1 certification smoke requires host Python "
+            f"{PROFILE['host_python']}; running "
+            f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
         )
 
     revision = subprocess.run(
@@ -86,6 +90,11 @@ def validate_contracts(platform: Path) -> None:
         from scripts import content_pack_contract, validate_activity
 
         activity = load_json(ACTIVITY)
+        if activity.get("id") != ACTIVITY_ID:
+            fail(f"Activity/profile id mismatch: {activity.get('id')!r} != {ACTIVITY_ID!r}")
+        cases = activity.get("test_cases") or []
+        if not isinstance(cases, list) or len(cases) != EXPECTED_CASES:
+            fail(f"Activity/profile test-count mismatch: {len(cases) if isinstance(cases, list) else cases!r}")
         errors = validate_activity.validate_activity(activity, str(ACTIVITY))
         if errors:
             fail("Activity non valida:\n- " + "\n- ".join(errors))
@@ -106,22 +115,16 @@ def validate_contracts(platform: Path) -> None:
 
 
 def assert_student_scaffold(scaffold: Path) -> None:
-    required = {
-        "README.md",
-        "activity.json",
-        "main.py",
-        "GUIDA.md",
-    }
     actual_files = {
         path.relative_to(scaffold).as_posix()
         for path in scaffold.rglob("*")
         if path.is_file()
     }
-    if actual_files != required:
+    if actual_files != EXPECTED_SCAFFOLD_FILES:
         fail(
             "Student scaffold file surface mismatch: "
-            f"missing={sorted(required - actual_files)}, "
-            f"unexpected={sorted(actual_files - required)}"
+            f"missing={sorted(EXPECTED_SCAFFOLD_FILES - actual_files)}, "
+            f"unexpected={sorted(actual_files - EXPECTED_SCAFFOLD_FILES)}"
         )
 
     if (scaffold / "main.py").read_bytes() != STARTER.read_bytes():
@@ -233,7 +236,7 @@ def assert_solution_and_starter(
             f"exit={solution_exit}, report={solution_report}"
         )
     summary = solution_report.get("summary") or {}
-    if summary.get("passed") != 3 or summary.get("total") != 3:
+    if summary.get("passed") != EXPECTED_CASES or summary.get("total") != EXPECTED_CASES:
         fail(f"Riepilogo soluzione inatteso: {summary}")
 
     starter_exit, starter_report = grade_source(
@@ -248,8 +251,8 @@ def assert_solution_and_starter(
             "la modifica richiesta"
         )
     starter_summary = starter_report.get("summary") or {}
-    if starter_summary.get("total") != 3:
-        fail(f"Lo starter non ha eseguito i tre test: {starter_summary}")
+    if starter_summary.get("total") != EXPECTED_CASES:
+        fail(f"Lo starter non ha eseguito tutti i test: {starter_summary}")
 
 
 def main() -> int:
@@ -280,7 +283,7 @@ def main() -> int:
             "--thebitlab-ref",
             THEBITLAB_REF,
         )
-        scaffold = target / "assignments" / "py2-activity-b-input-somma-001"
+        scaffold = target / "assignments" / ACTIVITY_ID
         if not scaffold.is_dir():
             fail(f"Scaffold non creato: {scaffold}")
         assert_student_scaffold(scaffold)
