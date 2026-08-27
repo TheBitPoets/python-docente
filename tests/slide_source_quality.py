@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PACK = ROOT / "content" / "python" / "content-pack.json"
 SLIDES_ROOT = ROOT / "slides" / "python" / "modules"
+MODULE_FILE_RE = re.compile(r"^(\d{2})_[A-Z0-9_]+\.md$")
 
 FORBIDDEN_STUDENT_DECK_MARKERS = (
     "TEACHER / DELIVERY ONLY",
@@ -46,19 +47,22 @@ def main() -> None:
         if isinstance(item, dict) and item.get("kind") == "module"
     ]
 
-    expected_paths: list[Path] = []
-    expected_numbers = list(range(0, 31))
-    actual_numbers: list[int] = []
+    parsed: list[tuple[int, Path, dict]] = []
     for item in items:
         lesson = Path(str(item["path"]))
-        match = re.match(r"^(\d{2})_", lesson.name)
+        match = MODULE_FILE_RE.fullmatch(lesson.name)
         assert match, f"non-canonical lesson filename: {lesson.name}"
-        number = int(match.group(1))
-        expected_paths.append(SLIDES_ROOT / lesson.name)
-        actual_numbers.append(number)
+        parsed.append((int(match.group(1)), SLIDES_ROOT / lesson.name, item))
+    parsed.sort(key=lambda entry: entry[0])
 
+    expected_numbers = list(range(0, 31))
+    actual_numbers = [number for number, _, _ in parsed]
+    expected_paths = [path for _, path, _ in parsed]
     assert actual_numbers == expected_numbers, (
         f"expected M00-M30 catalog order, found {actual_numbers}"
+    )
+    assert [int(item.get("order", 0)) for _, _, item in parsed] == list(range(1, 32)), (
+        "Content Pack order must be 1..31 while module identity remains M00..M30"
     )
     assert len(expected_paths) == 31, f"expected M00-M30 decks, found {len(expected_paths)}"
 
