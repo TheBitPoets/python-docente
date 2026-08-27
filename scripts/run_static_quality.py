@@ -11,6 +11,7 @@ CHECKS = [
     ("authoring source synchronization", [sys.executable, "scripts/sync_authoring_catalog.py"]),
     ("source-audit manifest synchronization", [sys.executable, "scripts/sync_source_audit_manifest.py"]),
     ("authoring catalog", [sys.executable, "tests/course_authoring_catalog.py"]),
+    ("PY2-01 M00-M03 authoring boundary", [sys.executable, "tests/py2_01_authoring_static.py"]),
     ("semantic review boundaries", [sys.executable, "tests/semantic_review_gate.py"]),
     ("Git G1 consumer", [sys.executable, "tests/git_g1_consumer_contract.py"]),
     ("frozen outcome coverage", [sys.executable, "tests/coverage_contract.py"]),
