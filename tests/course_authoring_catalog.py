@@ -12,10 +12,10 @@ STUDENT_INDEX = ROOT / "student" / "README.md"
 TEACHER_INDEX = ROOT / "teacher" / "README.md"
 
 MODULE_FILE_RE = re.compile(r"^(\d{2})_[A-Z0-9_]+\.md$")
-EXPECTED_MODULE_NUMBERS = list(range(4, 31))
+EXPECTED_MODULE_NUMBERS = list(range(0, 31))
 TRACK_ID = "python-secondo-2026-2027"
 UDA_MODULE_RANGES: dict[str, tuple[int, int] | None] = {
-    "py2-01": None,
+    "py2-01": (0, 3),
     "py2-02": (4, 5),
     "py2-03": (6, 8),
     "py2-04": (9, 12),
@@ -250,7 +250,7 @@ def main() -> int:
 
     if module_numbers != EXPECTED_MODULE_NUMBERS:
         fail(
-            "Il catalogo deve materializzare esattamente M04–M30 in ordine: "
+            "Il catalogo deve materializzare esattamente M00–M30 in ordine: "
             f"atteso={EXPECTED_MODULE_NUMBERS}, trovato={module_numbers}"
         )
     if len(module_numbers) != len(set(module_numbers)):
@@ -294,7 +294,7 @@ def main() -> int:
         )
 
     assert_no_reserved_links(STUDENT_INDEX)
-    print("PASS: 27 moduli M04–M30 coerenti in Content Pack, Course Design e UDA mapping")
+    print("PASS: 31 moduli M00–M30 coerenti in Content Pack, Course Design e UDA mapping")
     return 0
 
 
