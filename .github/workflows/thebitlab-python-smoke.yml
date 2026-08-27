@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   python-vertical-slice:
@@ -40,6 +41,11 @@ jobs:
 
       - name: Validate first Python consumer on host Python 3.12
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
+
+      - name: Authenticate to GHCR for pinned runner
+        if: runner.os == 'Linux'
+        shell: bash
+        run: echo "${{ github.token }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
       - name: Pull authoritative immutable Docker runner
         if: runner.os == 'Linux'
