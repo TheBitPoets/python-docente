@@ -53,6 +53,12 @@
   "quality": {
     "source_gate": "tests/slide_source_quality.py",
     "artifact_structural_gate": "tests/slide_artifact_quality.py",
+    "release_requirements": "requirements-slide-release.txt",
+    "pdf_parser": {
+      "package": "pypdf",
+      "version": "6.16.2",
+      "policy": "real-page-tree-and-mediabox-validation"
+    },
     "visual_review_required": true,
     "visual_review_sample_modules": [4, 11, 18, 22, 26, 30]
   },
@@ -68,6 +74,7 @@
     "container_digest_required": true,
     "node_version_required": true,
     "browser_reported_version_required": true,
+    "pdf_parser_version_required": true,
     "build_or_release_id_required": true
   },
   "artifact_policy": {
