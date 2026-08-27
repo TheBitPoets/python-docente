@@ -38,5 +38,9 @@ jobs:
       - name: Validate Course Board external workspace round-trip
         run: python tests/course_board_workspace_roundtrip.py --platform _thebitlab-platform
 
-      - name: Validate first Python TheBitLab consumer
+      - name: Validate first Python consumer on host Python 3.12
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
+
+      - name: Validate authoritative immutable Docker grading
+        if: runner.os == 'Linux'
+        run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform --authoritative-docker
