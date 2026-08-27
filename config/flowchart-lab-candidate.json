@@ -1,0 +1,35 @@
+{
+  "schema_version": "python.py2-01-flowchart-candidate.v1",
+  "status": "candidate-not-certified",
+  "course": "python-secondo-2026-2027",
+  "uda": "PY2-01",
+  "platform": {
+    "repository": "TheBitPoets/2cornot2c",
+    "ref": "16110b9a0bc7f274bb523427604eeab7e6815486"
+  },
+  "runtime": {
+    "runtime_id": "flowchart-lab",
+    "plugin_version": "0.1.0",
+    "request_schema": "runtime_request.v1",
+    "artifact_schema": "thebitlab.flowchart.v1",
+    "trace_schema": "thebitlab.flowtrace.v1",
+    "artifact_name": "algorithm.flow.json"
+  },
+  "required_candidate_evidence": [
+    "runtime-probe",
+    "managed-loopback-launch",
+    "browser-ui-surface",
+    "workspace-save-load",
+    "deterministic-run",
+    "session-step-variable-watch",
+    "svg-evidence",
+    "explicit-no-authoritative-autograding"
+  ],
+  "certification_policy": {
+    "candidate_ci_is_classroom_certification": false,
+    "fallback_remains_required": true,
+    "required_fallback_id": "flowchart.manual-evidence.v1",
+    "supported_profile_rehearsal_required": true,
+    "human_usability_review_required": true
+  }
+}
