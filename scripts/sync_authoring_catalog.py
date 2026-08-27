@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 
@@ -10,6 +11,7 @@ PACK_PATH = ROOT / "content" / "python" / "content-pack.json"
 DESIGN_PATH = ROOT / "doc" / "course_design.json"
 COURSE_SOURCE_ID = "python-course-content"
 TRACK_ID = "python-secondo-2026-2027"
+MODULE_FILE_RE = re.compile(r"^(\d{2})_[A-Z0-9_]+\.md$")
 
 # M00 is orientation embedded in the first three-week PY2-01 window. Course
 # Design deliberately has no separate py2-00 UDA, so M00–M03 share py2-01.
@@ -37,14 +39,21 @@ def load_object(path: Path) -> dict:
     return value
 
 
+def module_number(filename: str) -> int:
+    match = MODULE_FILE_RE.fullmatch(filename)
+    if not match:
+        raise ValueError(f"Filename lesson non canonico: {filename}")
+    return int(match.group(1))
+
+
 def canonical_modules(pack: dict) -> list[dict]:
     items = [item for item in pack.get("content_items", []) if isinstance(item, dict)]
-    ordered = sorted(items, key=lambda item: int(item.get("order", 0)))
     result: list[dict] = []
     seen_files: set[str] = set()
     seen_ids: set[str] = set()
+    seen_numbers: set[int] = set()
 
-    for item in ordered:
+    for item in items:
         if item.get("kind") != "module":
             continue
         item_id = str(item.get("id") or "")
@@ -52,27 +61,39 @@ def canonical_modules(pack: dict) -> list[dict]:
         if path.parent.as_posix() != "content/python":
             raise ValueError(f"Content item module fuori content/python: {item_id}")
         filename = path.name
-        if not filename.endswith(".md") or not filename:
-            raise ValueError(f"Filename lesson non valido: {item_id}")
+        number = module_number(filename)
         if not item_id or item_id in seen_ids:
             raise ValueError(f"Content item id mancante/duplicato: {item_id!r}")
         if filename in seen_files:
             raise ValueError(f"Lesson duplicata nei content_items: {filename}")
+        if number in seen_numbers:
+            raise ValueError(f"Numero modulo duplicato nei content_items: M{number:02d}")
         if not (ROOT / path).is_file():
             raise ValueError(f"Lesson dichiarata ma mancante: {path.as_posix()}")
 
         seen_ids.add(item_id)
         seen_files.add(filename)
+        seen_numbers.add(number)
         result.append(
             {
                 "id": item_id,
                 "filename": filename,
-                "order": int(item.get("order", 0)),
+                "module_number": number,
+                "catalog_order": int(item.get("order", 0)),
+                "item": item,
             }
         )
 
+    result.sort(key=lambda module: int(module["module_number"]))
     if not result:
         raise ValueError("Nessun modulo materializzato nel Content Pack")
+
+    # thebitlab.content-pack.v1 requires a strictly positive integer order.
+    # Module identity is instead carried by the canonical Mxx filename, so M00
+    # maps to catalog order 1, M01 to 2, ..., M30 to 31.
+    for index, module in enumerate(result, start=1):
+        module["item"]["order"] = index
+        module["catalog_order"] = index
     return result
 
 
@@ -102,17 +123,17 @@ def find_track(design: dict) -> dict:
 
 
 def expected_uda_content_items(modules: list[dict]) -> dict[str, list[str]]:
-    by_order = {int(module["order"]): str(module["id"]) for module in modules}
+    by_number = {int(module["module_number"]): str(module["id"]) for module in modules}
     expected: dict[str, list[str]] = {}
     for uda_id, bounds in UDA_MODULE_RANGES.items():
         if bounds is None:
             expected[uda_id] = []
             continue
         start, stop = bounds
-        missing = [number for number in range(start, stop + 1) if number not in by_order]
+        missing = [number for number in range(start, stop + 1) if number not in by_number]
         if missing:
             raise ValueError(f"{uda_id}: moduli mancanti dal Content Pack: {missing}")
-        expected[uda_id] = [by_order[number] for number in range(start, stop + 1)]
+        expected[uda_id] = [by_number[number] for number in range(start, stop + 1)]
     return expected
 
 
@@ -178,7 +199,7 @@ def main() -> int:
         if current_design != expected_design:
             DESIGN_PATH.write_text(stable_json(expected_design), encoding="utf-8")
         print(
-            f"SYNC: {len(modules)} moduli M{modules[0]['order']:02d}–M{modules[-1]['order']:02d}"
+            f"SYNC: {len(modules)} moduli M{modules[0]['module_number']:02d}–M{modules[-1]['module_number']:02d}"
             + (f"; aggiornati: {', '.join(dirty)}" if dirty else "; nessuna modifica")
         )
         return 0
@@ -193,7 +214,7 @@ def main() -> int:
 
     print(
         f"PASS: authoring catalog sincronizzato su {len(modules)} moduli "
-        f"M{modules[0]['order']:02d}–M{modules[-1]['order']:02d}"
+        f"M{modules[0]['module_number']:02d}–M{modules[-1]['module_number']:02d}"
     )
     return 0
 
