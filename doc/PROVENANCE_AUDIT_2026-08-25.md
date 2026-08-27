@@ -1,6 +1,6 @@
 # Python secondo — Provenance Audit 2026-08-25
 
-> Stato: **audit editoriale/provenance**  
+> Stato: **audit editoriale/provenance aggiornato dopo allineamento manifest**  
 > Non equivale a license legal review o Content Pack approval.
 
 ## Scopo
@@ -29,47 +29,15 @@ Il materiale studente/docente canonico del corso è originale TheBitPoets:
 - semantic review;
 - coverage map.
 
-Le fonti esterne sono usate come:
-
-- technical authority;
-- pedagogical/coverage reference;
-- legacy candidate source;
-- cross-course/runtime contract.
-
-Non devono diventare copie wholesale dentro il materiale canonico.
+Le fonti esterne sono usate come technical authority, pedagogical/coverage reference, legacy candidate source o cross-course/runtime contract; non diventano copie wholesale nel materiale canonico.
 
 ---
 
-# 2. Technical authority
+# 2. Technical / teacher reference boundary
 
-## Python documentation
+Python documentation resta `technical-reference` per sintassi/semantica corrente.
 
-Ruolo:
-
-```text
-technical-reference
-```
-
-Uso corretto:
-
-- sintassi e semantica attuali;
-- comportamento built-in/stdlib;
-- correzione di affermazioni storiche;
-- non come syllabus da riprodurre.
-
-Stato: **OK** come reference model.
-
----
-
-# 3. Teacher/licensed references
-
-Riferimenti includono:
-
-- Think Python / Pensare in Python;
-- Learning Python / Imparare Python;
-- Fluent Python;
-- Python in a Nutshell;
-- Pluralsight catalog.
+Riferimenti teacher/licensed includono Think Python, Learning Python, Fluent Python, Python in a Nutshell e Pluralsight.
 
 Regola:
 
@@ -79,43 +47,26 @@ licensed/reference material
 → no wholesale reproduction
 ```
 
-Stato: **boundary corretto** nei documenti di progetto.
-
-Prima del publish finale resta necessaria una normale review di licenza/provenance dei singoli asset eventualmente importati.
+Stato: **boundary corretto**. Prima del publish finale resta necessaria la normale review di licenza/provenance degli asset effettivamente riusati.
 
 ---
 
-# 4. `friedpython` — legacy source pack
+# 3. `friedpython` legacy source pack
 
-Policy corretta:
+Policy:
 
 ```text
 legacy exercise/example
 → audit individuale
 → outcome preciso
-→ riscrittura originale/modernizzazione
+→ riscrittura/modernizzazione
 → Python 3.12
 → test/casi limite
 → starter/solution separation
 → provenance
 ```
 
-Nessun wholesale import.
-
-File audit attualmente presenti includono:
-
-```text
-sources/FRIEDPYTHON_MAPPING.md
-sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md
-sources/FRIEDPYTHON_DICTS_AUDIT.md
-sources/FRIEDPYTHON_FILES_AUDIT.md
-```
-
-## Finding P1 — source-package manifest drift
-
-Il package `python-source-audits` nel Content Pack/Course Design è nato prima degli audit dict/file e deve essere verificato/aggiornato affinché l'elenco esplicito `files` rappresenti tutti gli audit canonici correnti.
-
-Target manifest:
+Audit canonici correnti:
 
 ```text
 SOURCE_CATALOG.md
@@ -125,35 +76,63 @@ FRIEDPYTHON_DICTS_AUDIT.md
 FRIEDPYTHON_FILES_AUDIT.md
 ```
 
-Questo è un **catalog/provenance drift**, non un curriculum gap.
+## Finding P1 — RESOLVED structurally
 
-Non promuovere `Content Pack 1.0 / approved` finché il manifest non è riallineato e il check source-package è verde.
+Il precedente drift del package `python-source-audits` è stato corretto in:
+
+```text
+content/python/content-pack.json
+doc/course_design.json
+```
+
+Entrambi dichiarano esattamente i cinque file sopra.
+
+Helper/gate:
+
+```text
+scripts/sync_source_audit_manifest.py
+```
+
+Il check è incluso anche in:
+
+```text
+scripts/run_static_quality.py
+```
+
+Stato corretto:
+
+```text
+manifest alignment = implemented / structurally verified
+real GitHub Actions execution = pending #8 pre-runner blocker
+```
+
+Il finding non è più un catalog/provenance drift aperto. Resta separato il final release provenance/license sign-off.
 
 ---
 
-# 5. Source refs dei moduli
+# 4. Content item provenance M04–M30
 
-Il gate esistente `tests/course_authoring_catalog.py` verifica già per ogni content item materializzato:
+Il Content Pack ora materializza esattamente M04–M30.
+
+`tests/course_authoring_catalog.py` protegge per ogni modulo:
 
 - lesson canonica presente;
 - source `python-course-content` coerente;
 - Course Design visibility;
-- `content-origin` source ref verso la lesson;
+- `content-origin` verso la lesson;
+- lesson/deck/runbook/navigation;
 - Activity ids coerenti;
-- no reserved asset link nello student surface.
+- no reserved asset link nello student surface;
+- esatta sequenza M04–M30;
+- esatto mapping UDA → content item.
 
-Il coverage audit aggiunge una seconda vista:
+Il Content Pack e il Course Design espongono la stessa source list M04–M30.
 
-```text
-25 frozen outcomes
-→ refs alle lesson/spec/checkpoint
-```
-
-Stato strutturale: **designed / gate written, runtime execution pending #8**.
+Una validazione sintetica del nuovo contratto ha prodotto PASS; la suite completa sul checkout reale non è ancora stata eseguita da Actions perché `#8` impedisce l'avvio del runner.
 
 ---
 
-# 6. Cross-course sources
+# 5. Cross-course sources
 
 ## Git G1
 
@@ -161,47 +140,29 @@ Stato strutturale: **designed / gate written, runtime execution pending #8**.
 TheBitPoets/git
 ```
 
-Ruolo:
+Ruolo: curriculum trasversale esterno. Python consuma outcome tramite `config/git-g1-consumer.json` e non copia lesson Git.
 
-```text
-external cross-course curriculum
-```
-
-Python consuma outcome G1 tramite `config/git-g1-consumer.json`; non copia lesson Git.
-
-Stato: **boundary corretto**.
+Stato: **boundary corretto / delivery evidence pending**.
 
 ## Romeo
 
-Ruolo:
-
-```text
-selective applied domain / technical reference
-```
-
-Non sostituisce il syllabus Python e non rende hardware fisico requisito core.
+Ruolo: selective applied domain / technical reference. Non sostituisce il syllabus Python e non rende hardware fisico requisito core.
 
 Stato: **mapping presente / runtime certification pending**.
 
 ## TheBitLab / 2cornot2c
 
-Ruolo:
+Ruolo: delivery/runtime/grading contract. P1/P2/P3/P4 non sono fonti pedagogiche da copiare nelle slide studente.
 
-```text
-delivery/runtime/grading contract
-```
-
-P1/P2/P3/P4 non sono fonti pedagogiche da copiare nelle slide studente.
-
-Stato: **boundary corretto** dopo semantic review; certification pending.
+Stato: **boundary corretto / certification pending**.
 
 ---
 
-# 7. Slide provenance
+# 6. Slide provenance
 
 Il source Markdown è autorevole.
 
-Gli artifact HTML/PDF/PPTX futuri devono essere derivati e tracciabili a:
+Gli artifact HTML/PDF/PPTX futuri devono essere tracciabili a:
 
 ```text
 source path
@@ -210,21 +171,17 @@ renderer/toolchain version
 release/build id
 ```
 
-Vedi `doc/SLIDE_ARTIFACT_PIPELINE.md`.
-
-Non considerare un artifact derivato una nuova fonte editoriale.
+Vedi `doc/SLIDE_ARTIFACT_PIPELINE.md` e issue `#10`.
 
 ---
 
-# 8. Activity provenance
+# 7. Activity provenance
 
 Oggi l'unica nuova Activity Python materializzata è:
 
 ```text
 py2-activity-b-input-somma-001
 ```
-
-La sua `source_refs` deve puntare alla lesson canonica e non a materiale licensed copiato.
 
 Le future Activity devono seguire:
 
@@ -245,23 +202,24 @@ esercizio licensed/legacy
 
 ---
 
-# 9. Approval gate provenance
+# 8. Approval gate provenance
 
-Prima di `1.0.0 / approved` richiedere:
+Prima di `1.0.0 / approved` richiedere ancora:
 
-- [ ] source-package `python-source-audits` riallineato;
-- [ ] Content Pack ↔ Course Design source parity;
-- [ ] tutti i source ref risolvibili;
+- [x] source-package `python-source-audits` riallineato;
+- [x] Content Pack ↔ Course Design source parity materializzata M04–M30;
+- [ ] esecuzione reale dei gate sul checkout dopo risoluzione `#8`;
+- [ ] tutti i source ref del release candidate verificati;
 - [ ] audit individuale di ogni asset legacy effettivamente riusato;
 - [ ] nessun licensed source trasformato in student content per copia;
 - [ ] slide build manifest con provenance;
-- [ ] Activity provenance verificata;
+- [ ] Activity provenance finale verificata;
 - [ ] teacher sign-off;
 - [ ] eventuale license review finale del release candidate.
 
 ---
 
-# 10. Esito
+# 9. Esito aggiornato
 
 ```text
 Canonical course material origin       OK / original-course-material
@@ -271,8 +229,10 @@ Git cross-course boundary              OK
 Romeo applied boundary                 OK / runtime pending
 TheBitLab delivery boundary            OK / certification pending
 friedpython reuse policy               OK
-friedpython source-audit manifest       DRIFT TO FIX
+friedpython source-audit manifest       ALIGNED
+Content Pack/Course Design source       ALIGNED M04–M30
+Final executable CI evidence            BLOCKED by #8
 Final release provenance sign-off       PENDING
 ```
 
-Il solo finding concreto di manifest emerso in questo audit è il riallineamento degli audit dict/file nel source package. Va chiuso prima della promotion, ma non richiede alcuna modifica agli outcome frozen.
+Il precedente finding concreto di manifest è stato risolto strutturalmente; non è stata implicata alcuna promozione a `Content Pack 1.0 / approved`.
