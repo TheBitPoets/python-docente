@@ -11,8 +11,10 @@ DESIGN_PATH = ROOT / "doc" / "course_design.json"
 COURSE_SOURCE_ID = "python-course-content"
 TRACK_ID = "python-secondo-2026-2027"
 
+# M00 is orientation embedded in the first three-week PY2-01 window. Course
+# Design deliberately has no separate py2-00 UDA, so M00–M03 share py2-01.
 UDA_MODULE_RANGES: dict[str, tuple[int, int] | None] = {
-    "py2-01": None,
+    "py2-01": (0, 3),
     "py2-02": (4, 5),
     "py2-03": (6, 8),
     "py2-04": (9, 12),
