@@ -1,0 +1,51 @@
+name: Python slide release artifacts
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_id:
+        description: Optional release/build id recorded in provenance manifest
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build-slide-artifacts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout python-docente
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate slide sources and pinned build profile
+        run: |
+          python tests/slide_source_quality.py
+          python tests/slide_build_profile.py
+
+      - name: Pull pinned Marp release image
+        run: docker pull ghcr.io/marp-team/marp-cli@sha256:119010dd06f8dd256b47f6479d9d3c83fcbfdcac5f873d0d03db5320f130cf87
+
+      - name: Build and validate HTML PDF PPTX artifacts
+        env:
+          REQUESTED_BUILD_ID: ${{ inputs.build_id }}
+        run: |
+          BUILD_ID="$REQUESTED_BUILD_ID"
+          if [ -z "$BUILD_ID" ]; then
+            BUILD_ID="github-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          fi
+          python scripts/build_slide_artifacts.py --build-id "$BUILD_ID"
+
+      - name: Upload validated slide artifact bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-slide-release-${{ github.sha }}
+          path: dist/slides/python/
+          if-no-files-found: error
+          retention-days: 14
