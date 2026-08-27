@@ -51,15 +51,31 @@ jobs:
         if: runner.os == 'Linux'
         shell: bash
         run: |
-          RUNNER_IMAGE="$(python - <<'PY'
+          eval "$(python - <<'PY'
           import json
+          import shlex
           from pathlib import Path
           profile = json.loads(Path('config/p1-canary-profile.json').read_text(encoding='utf-8'))
-          print(profile['authoritative_grading']['immutable_reference'])
+          grading = profile['authoritative_grading']
+          reference = grading['immutable_reference']
+          repository = reference.split('@', 1)[0]
+          version = grading['toolchain_version']
+          print('RUNNER_IMAGE=' + shlex.quote(reference))
+          print('RUNNER_VERSION_TAG=' + shlex.quote(f'{repository}:{version}'))
           PY
           )"
+
           echo "Pulling pinned grading image: $RUNNER_IMAGE"
-          docker pull "$RUNNER_IMAGE"
+          if ! docker pull "$RUNNER_IMAGE"; then
+            echo "Locked manifest is unavailable. Diagnostic only: inspect immutable version tag $RUNNER_VERSION_TAG"
+            if docker pull "$RUNNER_VERSION_TAG"; then
+              docker image inspect "$RUNNER_VERSION_TAG" --format 'Diagnostic ImageId={{.Id}} RepoDigests={{json .RepoDigests}} Labels={{json .Config.Labels}}'
+            else
+              echo "Version tag is also unavailable."
+            fi
+            echo "FAIL: authoritative lock remains unchanged; no mutable/version tag is accepted for grading."
+            exit 1
+          fi
           docker image inspect "$RUNNER_IMAGE" --format 'ImageId={{.Id}} RepoDigests={{json .RepoDigests}} Labels={{json .Config.Labels}}'
 
       - name: Validate authoritative immutable Docker grading
