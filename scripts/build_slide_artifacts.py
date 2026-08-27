@@ -165,8 +165,30 @@ def build_one(profile: dict, module: str, source: Path, output_root: Path) -> di
 
     common = docker_common(profile, mount_repo=True)
     run(common + [source_rel, "-o", html_rel, "--allow-local-files"])
-    run(common + [source_rel, "--pdf", "--browser", str(profile["build"]["browser"]), "-o", pdf_rel, "--allow-local-files"])
-    run(common + [source_rel, "--pptx", "--browser", str(profile["build"]["browser"]), "-o", pptx_rel, "--allow-local-files"])
+    run(
+        common
+        + [
+            source_rel,
+            "--pdf",
+            "--browser",
+            str(profile["build"]["browser"]),
+            "-o",
+            pdf_rel,
+            "--allow-local-files",
+        ]
+    )
+    run(
+        common
+        + [
+            source_rel,
+            "--pptx",
+            "--browser",
+            str(profile["build"]["browser"]),
+            "-o",
+            pptx_rel,
+            "--allow-local-files",
+        ]
+    )
 
     artifacts = {}
     for kind, path in (("html", html), ("pdf", pdf), ("pptx", pptx)):
@@ -192,6 +214,10 @@ def main() -> int:
     parser.add_argument("--build-id", help="Release/build identifier recorded in the manifest")
     parser.add_argument("--keep", action="store_true", help="Do not clean dist/slides/python first")
     args = parser.parse_args()
+
+    # Direct local invocation must enforce the same source/pin gates as CI.
+    run([sys.executable, "tests/slide_source_quality.py"])
+    run([sys.executable, "tests/slide_build_profile.py"])
 
     if shutil.which("docker") is None:
         raise SystemExit("Docker is required for the pinned slide release build")
@@ -229,7 +255,14 @@ def main() -> int:
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    run([sys.executable, "tests/slide_artifact_quality.py", "--manifest", manifest_path.relative_to(ROOT).as_posix()])
+    run(
+        [
+            sys.executable,
+            "tests/slide_artifact_quality.py",
+            "--manifest",
+            manifest_path.relative_to(ROOT).as_posix(),
+        ]
+    )
     print(f"\nPASS: built {len(modules)} complete HTML/PDF/PPTX slide sets")
     print(f"manifest: {manifest_path.relative_to(ROOT)}")
     return 0
