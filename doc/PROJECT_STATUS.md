@@ -2,7 +2,7 @@
 
 ## Current phase
 
-**Curriculum FROZEN + M04–M30 editorialmente completi e semanticamente revisionati; delivery/release QA phase.**
+**Curriculum FROZEN + M04–M30 editorialmente completi, catalogati e semanticamente revisionati; delivery/release QA phase.**
 
 Canonical freeze: `doc/CURRICULUM_FREEZE_2026_2027.md`  
 Decision-owner approval: **2026-08-24**.  
@@ -44,7 +44,7 @@ MUST MASTER
 
 # 2. Authoritative Content Pack / Course Design catalog — M04–M30 COMPLETE
 
-Il gap tracciato da `python-docente#11` è stato materializzato sul branch.
+`python-docente#11` è chiusa come completed.
 
 Content Pack:
 
@@ -52,15 +52,15 @@ Content Pack:
 content/python/content-pack.json
 version = 0.1.0
 status = draft
-content_items = M04…M30 exactly
-python-course-content.files = M04…M30 exactly
+content_items = exactly M04…M30
+python-course-content.files = exactly M04…M30
 ```
 
 Course Design:
 
 ```text
 doc/course_design.json
-python-course-content.files = M04…M30 exactly
+python-course-content.files = exactly M04…M30
 ```
 
 Mapping machine-readable UDA → moduli:
@@ -77,9 +77,7 @@ PY2-09  M26
 PY2-10  M27–M30
 ```
 
-I checkpoint e PY2-01 non dichiarano content item M04–M30 propri.
-
-Il mapping usa `content_item_ids` separato da `items`, perché `items` appartiene al modello Course Board degli heading/subtree e non è un semplice elenco di module id.
+Il mapping usa `content_item_ids` separato da `items`, perché `items` appartiene al modello Course Board degli heading/subtree.
 
 Protection:
 
@@ -88,17 +86,24 @@ scripts/sync_authoring_catalog.py
 tests/course_authoring_catalog.py
 ```
 
-Il gate ora richiede **esattamente 27 moduli M04–M30**, source parity Content Pack/Course Design e assegnazione esatta di ogni content item a una sola UDA.
+Il gate richiede **esattamente 27 moduli M04–M30**, source parity Content Pack/Course Design e assegnazione esatta di ogni content item a una sola UDA.
 
-Una validazione sintetica locale del nuovo contratto ha prodotto PASS; la validazione sul checkout reale in GitHub Actions resta bloccata da `#8` prima dell'avvio del runner.
+Validazione sintetica del nuovo contratto:
+
+```text
+PASS: authoring catalog sincronizzato su 27 moduli M04–M30
+PASS: 27 moduli M04–M30 coerenti in Content Pack, Course Design e UDA mapping
+```
+
+Questa è evidence logica del contratto, non sostituisce l'esecuzione sul checkout reale/CI.
 
 ---
 
 # 3. Provenance source manifests — ALIGNED
 
-Il drift tracciato da `python-docente#9` è stato corretto in entrambi i manifest.
+`python-docente#9` è chiusa come completed.
 
-`python-source-audits.files` contiene ora:
+`python-source-audits.files` in Content Pack e Course Design contiene esattamente:
 
 ```text
 SOURCE_CATALOG.md
@@ -114,9 +119,9 @@ Helper/gate:
 scripts/sync_source_audit_manifest.py
 ```
 
-Il controllo è ora incluso anche nell'entrypoint statico unificato.
+Il controllo è incluso nell'entrypoint statico unificato.
 
-Nessun esercizio `friedpython` viene importato wholesale: ogni riuso resta soggetto ad audit individuale e riscrittura/modernizzazione.
+Nessun `friedpython` wholesale import: ogni riuso resta audit individuale + riscrittura/modernizzazione.
 
 ---
 
@@ -137,10 +142,11 @@ Include:
 - Git G1 consumer contract;
 - frozen outcome coverage;
 - slide source quality;
+- slide toolchain/build-profile pin gate;
 - M04 vertical-slice static QA;
 - M05 pedagogical static QA.
 
-La workflow privata esegue questo entrypoint prima dei consumer check TheBitLab, riducendo il rischio di divergenza tra CI e QA locale.
+La workflow privata usa questo entrypoint prima dei consumer check TheBitLab.
 
 ---
 
@@ -208,23 +214,23 @@ Non deformare P2/P3/P4 in P1 per ottenere un voto automatico.
 
 # 7. CI blocker #8 — CURRENT HEAD STILL PRE-RUNNER
 
-Sul current head `a0c107c1c81f5ebdf59a1b3a20ee16f05ef3d180`:
+Sul current head osservato `ceb2791013b79c4e22f53294224b56caa5726fe1`:
 
 ```text
-workflow run 33058311023 / #298
+workflow run 33059326027 / #309
 ubuntu-latest  failure / steps=null
 windows-latest failure / steps=null
 ```
 
 Nessuno step ha iniziato l'esecuzione.
 
-Quindi la run #298 **non è evidence di PASS né di FAIL** per:
+Quindi questa run **non è evidence di PASS né di FAIL** per:
 
 - static quality suite;
 - catalog M04–M30;
 - provenance manifest;
-- semantic gates;
-- Git consumer test;
+- semantic/coverage/Git gates;
+- slide build-profile gate;
 - Course Board round-trip;
 - Python TheBitLab smoke.
 
@@ -234,27 +240,53 @@ Leading hypotheses già ristrette: quota/budget/spending dei private Actions opp
 
 ---
 
-# 8. Slide artifact layer
+# 8. Slide artifact layer — TOOLCHAIN/PIPELINE IMPLEMENTED, REAL BUILD PENDING
 
 27 source deck M04–M30 presenti.
 
+Pin release:
+
 ```text
-tests/slide_source_quality.py
-doc/SLIDE_ARTIFACT_PIPELINE.md
+@marp-team/marp-cli 4.5.0
+platform: linux/amd64
+image:
+  ghcr.io/marp-team/marp-cli@sha256:119010dd06f8dd256b47f6479d9d3c83fcbfdcac5f873d0d03db5320f130cf87
+Node in upstream v4.5.0 image recipe: 26.5.0
+browser: Chromium pinned by exact image digest; reported version recorded at build
+```
+
+Surfaces:
+
+```text
 config/slide-build-profile.json
+tests/slide_source_quality.py
+tests/slide_build_profile.py
+scripts/build_slide_artifacts.py
+tests/slide_artifact_quality.py
+.github/workflows/slide-artifacts.yml
+teacher/SLIDE_VISUAL_REVIEW.md
+doc/SLIDE_ARTIFACT_PIPELINE.md
 ```
 
-Generated HTML/PDF/PPTX non sono ancora validati.
-
-Issue `#10`:
+Build target:
 
 ```text
-pin renderer/runtime
-→ reproducible build
-→ HTML/PDF/PPTX
-→ structural QA
-→ sampled visual review
+27 HTML
+27 PDF
+27 PPTX
++ build-manifest.json with source/artifact hashes + toolchain provenance
 ```
+
+La workflow slide è `workflow_dispatch` Ubuntu-only per evitare build costose a ogni PR.
+
+Issue `#10` resta aperta perché ancora mancano:
+
+- build reale 27×3;
+- structural artifact QA su file reali;
+- visual review M04/M11/M18/M22/M26/M30;
+- verifica apertura/comportamento PPTX nel consumer target.
+
+Non dichiarare artifact PASS o PPTX completamente editabile prima di questi gate.
 
 ---
 
@@ -266,7 +298,7 @@ Fallback frozen valido:
 
 ```text
 paper / whiteboard
-→ pseudocode
+→ pseudocodice
 → manual flow chart
 → trace
 → test cases
@@ -291,7 +323,7 @@ Prima di `Content Pack 1.0.0 / approved` restano almeno:
 
 1. risolvere `#8` e far eseguire sul checkout reale i gate già scritti;
 2. certificare M04/P1 `#7`;
-3. completare slide artifact build/QA `#10`;
+3. eseguire/chiudere slide artifact build + visual QA `#10`;
 4. chiudere PY2-01 Flowchart Lab/environment boundary;
 5. certificare P2/P4/P3 prima delle relative promesse di autograding;
 6. certificare `romeo-sim` prima di missioni obbligatorie;
@@ -315,10 +347,11 @@ Content Pack catalog M04–M30   COMPLETE 🟡 draft
 Course Design M04–M30 mapping  COMPLETE 🟡 draft
 Source-audit manifests         ALIGNED 🟡 runtime CI pending
 Git G1 structural consumer     COMPLETE 🟡 runtime evidence pending
+Slide toolchain/build/QA code  IMPLEMENTED 🟡 real build pending
 PY2-01 final digital delivery  BLOCKED/WAITING 🟡
 P1 golden vertical slice       CREATED / NOT CERTIFIED 🟡
 Private Actions runners        BLOCKED 🔴 #8
-Slide generated artifacts      OPEN ⏳ #10
+Slide generated artifacts      NOT YET ⏳ #10
 P2/P3/P4 grading               OPEN ⏳
 romeo-sim certification        OPEN ⏳
 Teacher sign-off               PENDING ⏳
