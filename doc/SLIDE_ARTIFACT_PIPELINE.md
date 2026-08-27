@@ -1,37 +1,26 @@
 # Python secondo — Slide Artifact Pipeline
 
-> Stato: **toolchain pinned / build+artifact QA implemented / real build pending**  
-> Scope: deck Marp M04–M30.  
-> Non dichiara artifact già costruiti o visualmente approvati.
+> Stato: **toolchain pinned / M04–M30 real build PASS / final M00–M30 rebuild pending**  
+> Scope release corrente: **31 deck Marp M00–M30**.  
+> Gli artifact sono derivati: il Markdown resta l'unica fonte editoriale.
 
 ## Obiettivo
 
-Trasformare i 27 deck Markdown canonici:
-
 ```text
-slides/python/modules/04_...md
-...
-slides/python/modules/30_...md
-```
-
-in artifact riproducibili per delivery senza creare una seconda fonte di verità.
-
-Principio:
-
-```text
-Markdown canonico
+31 Markdown canonici M00–M30
 → source QA
 → renderer/runtime pinned
-→ HTML / PDF / PPTX
+→ 31 HTML + 31 PDF + 31 PPTX
 → structural artifact QA
-→ teacher visual review
+→ engineering sample review
+→ human/target-consumer review
 ```
 
-Gli artifact sono **derivati**. Le modifiche editoriali partono sempre dal Markdown sorgente.
+La materializzazione di M00–M03 è successiva al primo build reale M04–M30; quindi quel build rimane evidence valida per il sottoinsieme storico, ma **non** soddisfa il release target finale a 31 moduli.
 
 ---
 
-# 1. Gate 0 — source inventory
+# Gate 0 — source inventory
 
 Gate:
 
@@ -39,22 +28,27 @@ Gate:
 tests/slide_source_quality.py
 ```
 
-Controlla almeno:
+Richiede esattamente:
 
-- 27/27 deck M04–M30;
+```text
+M00 ... M30 = 31 deck
+```
+
+oltre a:
+
 - frontmatter Marp;
 - `paginate: true`;
 - `size: 16:9`;
-- titolo e H1 modulo;
+- titolo/H1 modulo;
 - nessun link teacher/solution/hidden-test;
-- nessun leak di issue/profili P2/P3/P4 teacher-only;
-- deck non ridotto accidentalmente a poche card.
+- nessun leak di dettagli grader/delivery interni;
+- deck non accidentalmente ridotti a poche card.
 
-Questo è **source QA**, non prova che PDF/PPTX siano renderizzati bene.
+Source QA non equivale al rendering reale.
 
 ---
 
-# 2. Gate 1 — toolchain pinned
+# Gate 1 — toolchain pinned
 
 Profilo canonico:
 
@@ -62,126 +56,68 @@ Profilo canonico:
 config/slide-build-profile.json
 ```
 
-Pin verificato il 2026-08-27:
+Pin:
 
 ```text
 @marp-team/marp-cli 4.5.0
-release tag v4.5.0
-runtime strategy: official Marp container by immutable digest
 platform: linux/amd64
 image:
   ghcr.io/marp-team/marp-cli@sha256:119010dd06f8dd256b47f6479d9d3c83fcbfdcac5f873d0d03db5320f130cf87
-multi-arch manifest:
+multiarch manifest:
   sha256:4982f2f4e9b9ba6dc97f5cbb0eb0e286ae7654642ccf0778169d57c1c552a65a
-Node in upstream v4.5.0 Dockerfile: 26.5.0
-browser: Chromium binary contained in the exact image digest
-```
-
-Perché il digest container è l'autorità runtime:
-
-- Marp CLI 4.5.0 richiede Node >=18 e supporta HTML/PDF/PPTX;
-- PDF/PPTX richiedono un browser compatibile;
-- l'immagine ufficiale v4.5.0 usa Node 26.5.0 e installa Chromium tramite Playwright;
-- il Dockerfile upstream usa `playwright@latest` **al momento della costruzione dell'immagine**;
-- quindi ricostruire oggi soltanto dal Dockerfile/tag potrebbe scegliere un browser diverso;
-- il digest linux/amd64 congela invece i byte dell'immagine già pubblicata, incluso il browser effettivamente installato.
-
-Il build manifest registra inoltre le versioni riportate a runtime da:
-
-```text
-marp --version
-node --version
-/usr/local/bin/chrome --version
+Node: 26.5.0
+PDF structural parser: pypdf 6.16.2
+browser: Chromium binary congelato dall'image digest e riportato nel build manifest
 ```
 
 Non usare `latest` nella release pipeline.
 
-Riferimenti upstream verificati:
-
-```text
-https://www.npmjs.com/package/@marp-team/marp-cli
-https://github.com/marp-team/marp-cli/releases/tag/v4.5.0
-https://github.com/marp-team/marp-cli/blob/v4.5.0/Dockerfile
-https://github.com/marp-team/marp-cli/pkgs/container/marp-cli
-```
+Il digest del container è l'autorità runtime perché congela anche il browser effettivamente installato nell'immagine pubblicata.
 
 ---
 
-# 3. Build entrypoint
+# Gate 2 — build reale
+
+Entrypoint:
 
 ```text
 scripts/build_slide_artifacts.py
 ```
 
-Prerequisito locale/CI:
-
-```text
-Docker con supporto linux/amd64
-```
-
-Esecuzione release:
+Esecuzione:
 
 ```bash
 python scripts/build_slide_artifacts.py --build-id <release-id>
 ```
 
-Il builder:
+Il builder usa `module_range` dal profilo e quindi ora richiede M00–M30. Per ogni modulo costruisce:
 
-1. carica Content Pack e profilo;
-2. richiede esattamente M04–M30;
-3. pulisce `dist/slides/python/` salvo `--keep`;
-4. verifica Marp/Node/browser nel container pinned;
-5. costruisce per ogni modulo:
-   - `deck.html`;
-   - `deck.pdf`;
-   - `deck.pptx`;
-6. calcola SHA-256 e dimensione degli artifact;
-7. registra source SHA-256, source commit SHA, build id e toolchain;
-8. scrive:
+```text
+deck.html
+deck.pdf
+deck.pptx
+```
+
+poi registra:
+
+- source commit SHA;
+- source SHA-256;
+- build id/timestamp;
+- Marp/Node/browser/pypdf provenance;
+- artifact path/byte/SHA-256;
+- source/rendered slide count.
+
+Manifest:
 
 ```text
 dist/slides/python/build-manifest.json
 ```
 
-9. esegue automaticamente:
-
-```text
-tests/slide_artifact_quality.py
-```
-
-`dist/` è ignorato da Git: Markdown resta la fonte editoriale versionata.
+`dist/` resta non versionato.
 
 ---
 
-# 4. Output target
-
-```text
-dist/slides/python/
-  M04/
-    deck.html
-    deck.pdf
-    deck.pptx
-  ...
-  M30/
-    deck.html
-    deck.pdf
-    deck.pptx
-  build-manifest.json
-```
-
-Decisione:
-
-```text
-Markdown = versionato
-artifact = generati
-release/course bundle = include artifact approvati
-```
-
-Non committare copie derivate soltanto per far sembrare il corso più completo.
-
----
-
-# 5. Gate 2/3 — build completeness + structural artifact QA
+# Gate 3 — structural artifact QA
 
 Gate:
 
@@ -189,103 +125,119 @@ Gate:
 tests/slide_artifact_quality.py
 ```
 
-Per ogni modulo richiede:
-
-```text
-source presente e hash coerente
-HTML presente / non vuoto / hash coerente
-PDF presente / non vuoto / hash coerente
-PPTX presente / non vuoto / hash coerente
-numero slide/pagine coerente con il source
-```
+Per ogni modulo richiede coerenza tra source, HTML, PDF e PPTX.
 
 ## HTML
 
-- documento leggibile come testo;
-- almeno una `<section>` renderizzata;
-- numero di section uguale alle slide sorgente.
+- `<section>` renderizzate;
+- numero section = slide sorgente.
 
 ## PDF
 
-- header PDF valido;
-- EOF presente;
-- conteggio delle page dictionary coerente con le slide sorgente.
+- PDF leggibile tramite page tree reale;
+- non cifrato;
+- page count = slide sorgente;
+- MediaBox ~16:9;
+- rotazione coerente.
 
 ## PPTX
 
-- ZIP package valido;
-- `[Content_Types].xml` presente;
-- `ppt/presentation.xml` presente;
-- parti `ppt/slides/slideN.xml` presenti;
-- numero slide coerente col source.
+- package ZIP valido;
+- parti OOXML minime presenti;
+- numero slide XML = slide sorgente.
 
-Il gate controlla anche che manifest e profilo concordino su container digest, piattaforma, renderer e Node.
+Il conteggio atteso è profile-driven, non hardcoded a 27.
 
 ---
 
-# 6. PPTX truthfulness
+# Evidence reale già acquisita — M04–M30
 
-Marp CLI supporta la generazione PowerPoint, ma la presenza di un file `.pptx` non autorizza a promettere automaticamente:
-
-- editabilità completa degli elementi;
-- equivalenza dei font;
-- oggetti PowerPoint nativi;
-- fedeltà perfetta rispetto a HTML/PDF;
-- comportamento identico in PowerPoint e LibreOffice.
-
-La release può dichiarare soltanto:
+Il 2026-08-27 il vecchio scope 27-moduli ha completato:
 
 ```text
-PPTX structurally valid
+workflow run: 33116692428 / #1
+job:          98673027862
+result:       SUCCESS
+artifact id:  9664877644
 ```
 
-finché la review reale nel consumer target non documenta il comportamento effettivo.
+Artifact:
+
+```text
+27 HTML + 27 PDF + 27 PPTX
+515 slide complessive
+```
+
+Toolchain osservata:
+
+```text
+Marp CLI 4.5.0
+Marp Core 4.4.0
+Node 26.5.0
+Chrome for Testing 149.0.7827.55
+pypdf 6.16.2
+```
+
+Engineering PDF sample M04/M11/M18/M22/M26/M30: PASS. I sei PPTX campione sono stati aperti anche con LibreOffice Impress mantenendo il numero di slide.
+
+Dettaglio:
+
+```text
+doc/SLIDE_ARTIFACT_REVIEW_2026-08-27.md
+```
+
+Questa evidence non viene cancellata dall'aggiunta di M00–M03; semplicemente non basta più per il release completo.
 
 ---
 
-# 7. Gate 4 — visual review campionata
+# PPTX truthfulness
 
-Prima del teacher sign-off eseguire review visuale almeno su:
+L'ispezione OOXML del build reale ha mostrato che Marp esporta il contenuto renderizzato come **immagine di background della slide**.
+
+Quindi possiamo affermare:
 
 ```text
-M04 — REPL + codice
-M11 — tabelle/trace/stato progressivo
-M18 — testo/metodi/scelte
-M22 — matrici/diagrammi
-M26 — file/codice
-M30 — capstone/recap
+PPTX presentabile/renderizzabile: observed
+full native PowerPoint editability: NOT PROVIDED by this export model
 ```
 
-Controllare almeno:
+Resta richiesto il vero open/presentation check in Microsoft PowerPoint se PowerPoint è consumer target.
 
-- overflow;
-- codice troppo piccolo;
-- tabelle illeggibili;
-- sovrapposizioni;
-- pagine bianche;
-- differenze importanti HTML/PDF/PPTX;
+---
+
+# Gate 4 — visual review campionata
+
+Per il nuovo scope minimo:
+
+```text
+M00 — orientamento / testo
+M01 — pseudocodice + anti-esempio
+M02 — flow chart / decisioni
+M03 — loop / tabelle
+M04 — primo Python/codice
+M11 — trace/stato
+M18 — testo/metodi
+M22 — matrici
+M26 — file/errori
+M30 — capstone
+```
+
+Controllare artifact generati, non Markdown:
+
+- overflow/tagli;
+- codice leggibile;
+- tabelle;
+- slide bianche;
+- differenze HTML/PDF/PPTX;
 - apertura PPTX nel consumer target.
 
-Se emerge un problema sistemico, estendere la review a tutti i deck interessati.
+Se un difetto è sistemico, ampliare il campione.
 
 ---
 
-# 8. Quality criteria per studenti di seconda
+# Quality boundary
 
-Le slide non devono essere la lesson Markdown compressa.
-
-Criteri:
-
-- una domanda/modello principale per slide quando possibile;
-- codice leggibile a distanza;
-- trace e tabelle piccoli;
-- termini nuovi solo se necessari;
-- dettagli GUIDED/ENRICHMENT riconoscibili;
-- niente issue id/grader internals teacher-only;
-- niente setup unmanaged;
-- più contenuto non significa automaticamente deck migliore.
-
-La semantic review resta autorevole sul confine:
+Le slide non devono diventare una lesson compressa. Il confine didattico resta:
 
 ```text
 MUST MASTER
@@ -293,75 +245,41 @@ MUST MASTER
 → ENRICHMENT / BACKUP
 ```
 
----
-
-# 9. Source-to-artifact traceability
-
-Manifest:
+M00–M03 devono inoltre preservare:
 
 ```text
-python.slide-artifact-manifest.v1
+pre-Python pedagogy
++ Flowchart candidate/fallback boundary
++ no fake diagram autograding
 ```
-
-Registra almeno:
-
-```text
-course_id
-source commit SHA
-build id / timestamp
-Marp CLI reported version
-Node reported version
-browser reported version
-container image + digest
-module/source path
-source SHA-256
-expected slide count
-artifact path / bytes / SHA-256
-```
-
-Gli artifact non sono nuove fonti editoriali.
 
 ---
 
-# 10. CI boundary corrente
-
-`python-docente#8` impedisce ancora l'avvio dei runner privati.
-
-Quindi oggi possiamo affermare:
+# CI/release workflow
 
 ```text
-27 source deck presenti
-source quality gate scritto
-toolchain pinned
-builder implementato
-structural artifact QA implementato
+.github/workflows/slide-artifacts.yml
 ```
 
-Non possiamo ancora affermare:
+Resta `workflow_dispatch` only durante il normale sviluppo. Un trigger PR temporaneo può essere usato esclusivamente per ottenere una specifica evidence reale e deve essere rimosso subito dopo il run.
 
-```text
-27 HTML PASS
-27 PDF PASS
-27 PPTX PASS
-visual review PASS
-```
-
-finché la build reale non viene eseguita.
+GitHub Actions è ora funzionante: il vecchio blocker #8 è chiuso.
 
 ---
 
-# 11. Promotion gate
+# Promotion gate slide
 
-Prima di `Content Pack 1.0.0 / approved` per il layer slide richiedere:
+Prima di `Content Pack 1.0.0 / approved` richiedere:
 
-- source QA realmente eseguito;
-- container pinned disponibile;
-- build completa 27/27 × HTML/PDF/PPTX;
+- source QA M00–M30 verde;
+- real build **31/31 × HTML/PDF/PPTX**;
 - structural artifact QA verde;
-- visual review campionata;
+- sample review M00/M01/M02/M03/M04/M11/M18/M22/M26/M30;
+- PowerPoint target decision/open check se supportato;
 - problemi sistemici risolti;
-- teacher sign-off.
+- human visual decision;
+- teacher sign-off generale separato.
 
 ## Non-goal
 
-Il renderer non riapre il curriculum freeze. Outcome/progressione restano congelati; artifact/build sono delivery versionabile.
+La pipeline slide non riapre il curriculum freeze e non trasforma artifact derivati in fonti editoriali.
