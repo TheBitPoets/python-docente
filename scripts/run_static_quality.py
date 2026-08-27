@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 CHECKS = [
     ("authoring source synchronization", [sys.executable, "scripts/sync_authoring_catalog.py"]),
+    ("source-audit manifest synchronization", [sys.executable, "scripts/sync_source_audit_manifest.py"]),
     ("authoring catalog", [sys.executable, "tests/course_authoring_catalog.py"]),
     ("semantic review boundaries", [sys.executable, "tests/semantic_review_gate.py"]),
     ("Git G1 consumer", [sys.executable, "tests/git_g1_consumer_contract.py"]),
