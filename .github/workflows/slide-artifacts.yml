@@ -7,10 +7,6 @@ on:
         description: Optional release/build id recorded in provenance manifest
         required: false
         type: string
-  # Temporary first-real-build trigger. Remove after #10 has real artifact evidence.
-  pull_request:
-    paths:
-      - ".github/workflows/slide-artifacts.yml"
 
 permissions:
   contents: read
