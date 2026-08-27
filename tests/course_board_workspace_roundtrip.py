@@ -230,8 +230,8 @@ def main() -> int:
                 fail(f"Digest M04 non coincide dopo save/reopen: {item_id}")
 
     print(
-        "PASS: external Course Workspace M04 file → all H1 subtrees → "
-        "PY2-02 save → reopen round-trip"
+        "PASS: external Course Workspace M04 file -> all H1 subtrees -> "
+        "PY2-02 save -> reopen round-trip"
     )
     return 0
 
