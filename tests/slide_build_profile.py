@@ -15,6 +15,7 @@ EXPECTED_NODE = "26.5.0"
 EXPECTED_PDF_PARSER = "pypdf"
 EXPECTED_PDF_PARSER_VERSION = "6.16.2"
 EXPECTED_RELEASE_REQUIREMENTS = "requirements-slide-release.txt"
+EXPECTED_VISUAL_SAMPLE = [0, 1, 2, 3, 4, 11, 18, 22, 26, 30]
 
 
 def main() -> int:
@@ -46,7 +47,7 @@ def main() -> int:
     assert ":latest" not in image_ref
 
     modules = profile["module_range"]
-    assert modules == {"first": 4, "last": 30, "expected_count": 27}
+    assert modules == {"first": 0, "last": 30, "expected_count": 31}
 
     outputs = profile["outputs"]
     assert outputs["root"] == "dist/slides/python"
@@ -66,7 +67,7 @@ def main() -> int:
         "policy": "real-page-tree-and-mediabox-validation",
     }
     assert quality["visual_review_required"] is True
-    assert quality["visual_review_sample_modules"] == [4, 11, 18, 22, 26, 30]
+    assert quality["visual_review_sample_modules"] == EXPECTED_VISUAL_SAMPLE
 
     requirements_path = ROOT / EXPECTED_RELEASE_REQUIREMENTS
     assert requirements_path.is_file(), "slide release requirements file missing"
@@ -101,7 +102,7 @@ def main() -> int:
     assert "dist/" in gitignore, "generated dist/ artifacts must stay untracked"
 
     print(
-        "PASS: slide build profile pins Marp 4.5.0 + linux/amd64 immutable container "
+        "PASS: slide build profile pins M00-M30 + Marp 4.5.0 + linux/amd64 immutable container "
         "+ pypdf 6.16.2 structural PDF QA"
     )
     return 0
