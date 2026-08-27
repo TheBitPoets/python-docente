@@ -12,6 +12,9 @@ EXPECTED_PLATFORM = "linux/amd64"
 EXPECTED_IMAGE_DIGEST = "sha256:119010dd06f8dd256b47f6479d9d3c83fcbfdcac5f873d0d03db5320f130cf87"
 EXPECTED_MANIFEST_DIGEST = "sha256:4982f2f4e9b9ba6dc97f5cbb0eb0e286ae7654642ccf0778169d57c1c552a65a"
 EXPECTED_NODE = "26.5.0"
+EXPECTED_PDF_PARSER = "pypdf"
+EXPECTED_PDF_PARSER_VERSION = "6.16.2"
+EXPECTED_RELEASE_REQUIREMENTS = "requirements-slide-release.txt"
 
 
 def main() -> int:
@@ -56,8 +59,25 @@ def main() -> int:
     quality = profile["quality"]
     assert quality["source_gate"] == "tests/slide_source_quality.py"
     assert quality["artifact_structural_gate"] == "tests/slide_artifact_quality.py"
+    assert quality["release_requirements"] == EXPECTED_RELEASE_REQUIREMENTS
+    assert quality["pdf_parser"] == {
+        "package": EXPECTED_PDF_PARSER,
+        "version": EXPECTED_PDF_PARSER_VERSION,
+        "policy": "real-page-tree-and-mediabox-validation",
+    }
     assert quality["visual_review_required"] is True
     assert quality["visual_review_sample_modules"] == [4, 11, 18, 22, 26, 30]
+
+    requirements_path = ROOT / EXPECTED_RELEASE_REQUIREMENTS
+    assert requirements_path.is_file(), "slide release requirements file missing"
+    requirements = [
+        line.strip()
+        for line in requirements_path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    ]
+    assert requirements == [f"{EXPECTED_PDF_PARSER}=={EXPECTED_PDF_PARSER_VERSION}"], (
+        f"slide release PDF parser must be exactly pinned: {requirements}"
+    )
 
     build = profile["build"]
     assert build["entrypoint"] == "scripts/build_slide_artifacts.py"
@@ -65,10 +85,14 @@ def main() -> int:
     assert build["clean_output_before_build"] is True
     assert build["generated_artifacts_committed"] is False
 
+    provenance = profile["provenance"]
+    assert provenance["pdf_parser_version_required"] is True
+
     for rel in (
         "scripts/build_slide_artifacts.py",
         "tests/slide_artifact_quality.py",
         "tests/slide_source_quality.py",
+        EXPECTED_RELEASE_REQUIREMENTS,
         "doc/SLIDE_ARTIFACT_PIPELINE.md",
     ):
         assert (ROOT / rel).is_file(), f"missing slide pipeline file: {rel}"
@@ -78,7 +102,7 @@ def main() -> int:
 
     print(
         "PASS: slide build profile pins Marp 4.5.0 + linux/amd64 immutable container "
-        "and declares complete HTML/PDF/PPTX provenance/QA surfaces"
+        "+ pypdf 6.16.2 structural PDF QA"
     )
     return 0
 
