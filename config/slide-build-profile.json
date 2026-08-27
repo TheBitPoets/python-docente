@@ -3,9 +3,9 @@
   "course_id": "python-secondo-2026-2027",
   "source_root": "slides/python/modules",
   "module_range": {
-    "first": 4,
+    "first": 0,
     "last": 30,
-    "expected_count": 27
+    "expected_count": 31
   },
   "source_format": "marp-markdown",
   "layout": "16:9",
@@ -60,7 +60,7 @@
       "policy": "real-page-tree-and-mediabox-validation"
     },
     "visual_review_required": true,
-    "visual_review_sample_modules": [4, 11, 18, 22, 26, 30]
+    "visual_review_sample_modules": [0, 1, 2, 3, 4, 11, 18, 22, 26, 30]
   },
   "build": {
     "entrypoint": "scripts/build_slide_artifacts.py",
