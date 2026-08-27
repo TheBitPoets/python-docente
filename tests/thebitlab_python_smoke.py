@@ -19,8 +19,11 @@ SOLUTION = ACTIVITY_ROOT / "solution" / "main.py"
 STUDENT_GUIDE = ACTIVITY_ROOT / "student" / "GUIDA.md"
 CONTENT_PACK = ROOT / "content" / "python" / "content-pack.json"
 THEBITLAB_REF = str(PROFILE["thebitlab"]["ref"])
-RUNNER_TOOLCHAIN_VERSION = str(PROFILE["authoritative_grading"]["toolchain_version"])
-RUNNER_IMAGE = str(PROFILE["authoritative_grading"]["immutable_reference"])
+GRADING = PROFILE["authoritative_grading"]
+RUNNER_TOOLCHAIN_VERSION = str(GRADING["toolchain_version"])
+RUNNER_SOURCE_REVISION = str(GRADING["runner_source_revision"])
+RUNNER_RELEASE_LOCK = str(GRADING["release_lock_reference"])
+DEFAULT_RUNTIME_IMAGE = str(GRADING["local_image_tag"])
 HOST_PYTHON = tuple(int(part) for part in str(PROFILE["host_python"]).split("."))
 EXPECTED_SCAFFOLD_FILES = set(PROFILE["student_scaffold_files"])
 EXPECTED_CASES = int(PROFILE["expected_cases"])
@@ -77,10 +80,15 @@ def validate_platform_pin(platform: Path) -> None:
             "Assignment-runner toolchain version mismatch: "
             f"expected {RUNNER_TOOLCHAIN_VERSION}, found {lock.get('version')!r}"
         )
-    if lock.get("immutable_reference") != RUNNER_IMAGE:
+    if lock.get("source_revision") != RUNNER_SOURCE_REVISION:
         fail(
-            "Assignment-runner immutable reference mismatch: "
-            f"expected {RUNNER_IMAGE}, found {lock.get('immutable_reference')!r}"
+            "Assignment-runner source revision mismatch: "
+            f"expected {RUNNER_SOURCE_REVISION}, found {lock.get('source_revision')!r}"
+        )
+    if lock.get("immutable_reference") != RUNNER_RELEASE_LOCK:
+        fail(
+            "Assignment-runner release lock mismatch: "
+            f"expected {RUNNER_RELEASE_LOCK}, found {lock.get('immutable_reference')!r}"
         )
 
 
@@ -169,6 +177,7 @@ def grade_source(
     report: Path,
     *,
     authoritative_docker: bool,
+    docker_image: str,
 ) -> tuple[int, dict]:
     arguments = [
         "--activity",
@@ -189,11 +198,11 @@ def grade_source(
             [
                 "--docker",
                 "--docker-image",
-                RUNNER_IMAGE,
+                docker_image,
                 "--toolchain-version",
                 RUNNER_TOOLCHAIN_VERSION,
                 "--toolchain-reference",
-                RUNNER_IMAGE,
+                RUNNER_RELEASE_LOCK,
             ]
         )
 
@@ -213,8 +222,8 @@ def grade_source(
     if authoritative_docker:
         if loaded.get("toolchain_version") != RUNNER_TOOLCHAIN_VERSION:
             fail(f"Docker report senza toolchain version pinned: {loaded}")
-        if loaded.get("toolchain_reference") != RUNNER_IMAGE:
-            fail(f"Docker report senza immutable toolchain reference: {loaded}")
+        if loaded.get("toolchain_reference") != RUNNER_RELEASE_LOCK:
+            fail(f"Docker report senza release lock provenance: {loaded}")
     return result.returncode, loaded
 
 
@@ -223,12 +232,14 @@ def assert_solution_and_starter(
     temp: Path,
     *,
     authoritative_docker: bool,
+    docker_image: str,
 ) -> None:
     solution_exit, solution_report = grade_source(
         platform,
         SOLUTION,
         temp / "solution-report.json",
         authoritative_docker=authoritative_docker,
+        docker_image=docker_image,
     )
     if solution_exit != 0 or solution_report.get("passed") is not True:
         fail(
@@ -244,6 +255,7 @@ def assert_solution_and_starter(
         STARTER,
         temp / "starter-report.json",
         authoritative_docker=authoritative_docker,
+        docker_image=docker_image,
     )
     if starter_exit == 0 or starter_report.get("passed") is True:
         fail(
@@ -261,7 +273,12 @@ def main() -> int:
     parser.add_argument(
         "--authoritative-docker",
         action="store_true",
-        help="Exercise the immutable assignment-runner Docker toolchain instead of host grading.",
+        help="Exercise the pinned assignment-runner Docker toolchain instead of host grading.",
+    )
+    parser.add_argument(
+        "--docker-image",
+        default=DEFAULT_RUNTIME_IMAGE,
+        help="Runtime Docker image/tag built from the pinned runner source revision.",
     )
     args = parser.parse_args()
 
@@ -291,9 +308,10 @@ def main() -> int:
             platform,
             temp,
             authoritative_docker=args.authoritative_docker,
+            docker_image=args.docker_image,
         )
 
-    mode = "immutable Docker grading" if args.authoritative_docker else "host Python grading"
+    mode = "source-built Docker grading" if args.authoritative_docker else "host Python grading"
     print(
         "PASS: pinned Content Pack + Activity + exact student scaffold + "
         f"Python starter/solution deterministic grading ({mode})"
