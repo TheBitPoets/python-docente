@@ -153,9 +153,13 @@ def assert_module(
 
     if item.get("kind") != "module":
         fail(f"Content item {item_id} non è kind=module")
-    if item.get("order") != module_number:
-        fail(f"{item_id}: order {item.get('order')} != prefisso file {module_number}")
-    if item.get("status") not in {"draft", "review", "approved"}:
+    expected_order = module_number + 1
+    if item.get("order") != expected_order:
+        fail(
+            f"{item_id}: Content Pack order {item.get('order')} != {expected_order}; "
+            "module identity comes from the Mxx filename while order is 1-based"
+        )
+    if item.get("status") not in {"draft", "reviewed", "approved"}:
         fail(f"{item_id}: status editoriale inatteso: {item.get('status')}")
     if lesson_filename not in pack_files:
         fail(f"{item_id}: lesson non elencata nella source del Content Pack")
@@ -294,7 +298,10 @@ def main() -> int:
         )
 
     assert_no_reserved_links(STUDENT_INDEX)
-    print("PASS: 31 moduli M00–M30 coerenti in Content Pack, Course Design e UDA mapping")
+    print(
+        "PASS: 31 moduli M00–M30 coerenti in Content Pack, Course Design e UDA mapping; "
+        "Content Pack order è 1-based come richiesto da thebitlab.content-pack.v1"
+    )
     return 0
 
 
