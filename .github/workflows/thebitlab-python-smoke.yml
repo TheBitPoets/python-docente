@@ -41,6 +41,21 @@ jobs:
       - name: Validate first Python consumer on host Python 3.12
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
 
+      - name: Pull authoritative immutable Docker runner
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          RUNNER_IMAGE="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          profile = json.loads(Path('config/p1-canary-profile.json').read_text(encoding='utf-8'))
+          print(profile['authoritative_grading']['immutable_reference'])
+          PY
+          )"
+          echo "Pulling pinned grading image: $RUNNER_IMAGE"
+          docker pull "$RUNNER_IMAGE"
+          docker image inspect "$RUNNER_IMAGE" --format 'ImageId={{.Id}} RepoDigests={{json .RepoDigests}} Labels={{json .Config.Labels}}'
+
       - name: Validate authoritative immutable Docker grading
         if: runner.os == 'Linux'
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform --authoritative-docker
