@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 REVIEWS = [
+    "SEMANTIC_REVIEW_PY2_01_2026-08-27.md",
     "SEMANTIC_REVIEW_PY2_02_PY2_03_2026-08-25.md",
     "SEMANTIC_REVIEW_PY2_04_2026-08-25.md",
     "SEMANTIC_REVIEW_PY2_05_CHECKPOINT_A_2026-08-25.md",
@@ -42,13 +43,28 @@ def main() -> None:
         body = read(ROOT / "doc" / filename)
         assert "Nessun curriculum change" in body or "ripristina" in body
 
-    # Every materialized M04-M30 runbook must expose an explicit mastery/exit
-    # boundary after the semantic review. The exact heading is intentionally
-    # not standardized: the boundary matters more than one label.
-    for number in range(4, 31):
+    # Every materialized M00-M30 runbook must expose an explicit mastery/exit
+    # boundary after semantic review. The exact heading is intentionally not
+    # standardized: the boundary matters more than one label.
+    for number in range(0, 31):
         path = ROOT / "teacher" / f"M{number:02d}_RUNBOOK.md"
         body = read(path)
         assert has_mastery_boundary(body), f"missing mastery boundary: {path.name}"
+
+    # PY2-01 is deliberately pre-Python and keeps manual evidence available
+    # until Flowchart Lab is certified in the real classroom profiles.
+    py2_01_review = read(ROOT / "doc" / "SEMANTIC_REVIEW_PY2_01_2026-08-27.md")
+    for marker in (
+        "pacing 9h protected",
+        "pre-Python boundary protected",
+        "manual fallback protected",
+        "authoritative diagram grading forbidden",
+    ):
+        assert marker in py2_01_review, f"PY2-01 semantic boundary missing: {marker}"
+    flowchart_cfg = json.loads(read(ROOT / "config" / "flowchart-lab-candidate.json"))
+    assert flowchart_cfg["status"] == "candidate-not-certified"
+    assert flowchart_cfg["certification_policy"]["candidate_ci_is_classroom_certification"] is False
+    assert flowchart_cfg["certification_policy"]["fallback_remains_required"] is True
 
     git_cfg = json.loads(read(ROOT / "config" / "git-g1-consumer.json"))
     delivery = git_cfg["delivery"]
@@ -102,7 +118,7 @@ def main() -> None:
         ):
             assert command in body, f"missing {command!r} in {checkpoint.name}"
 
-    print("PASS: semantic review coverage and frozen teaching boundaries")
+    print("PASS: semantic review coverage M00-M30 and frozen teaching boundaries")
 
 
 if __name__ == "__main__":
