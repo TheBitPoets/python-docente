@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import hashlib
+from importlib import metadata
 import json
 import os
 import shutil
@@ -104,6 +105,24 @@ def docker_common(profile: dict, *, mount_repo: bool) -> list[str]:
     return command
 
 
+def pdf_parser_version(profile: dict) -> str:
+    parser = profile["quality"]["pdf_parser"]
+    package = str(parser["package"])
+    expected = str(parser["version"])
+    try:
+        installed = metadata.version(package)
+    except metadata.PackageNotFoundError as error:
+        requirements = profile["quality"]["release_requirements"]
+        raise SystemExit(
+            f"{package} is required for slide release QA; install {requirements}"
+        ) from error
+    if installed != expected:
+        raise SystemExit(
+            f"slide PDF parser version drift: installed {package} {installed}, expected {expected}"
+        )
+    return f"{package} {installed}"
+
+
 def toolchain_versions(profile: dict) -> dict:
     runtime = profile["runtime"]
     image = str(runtime["image_ref"])
@@ -127,6 +146,7 @@ def toolchain_versions(profile: dict) -> dict:
         "marp_cli": marp,
         "node": node,
         "browser": browser,
+        "pdf_parser": pdf_parser_version(profile),
         "container_image": image,
         "container_digest": runtime["image_digest"],
         "platform": runtime["platform"],
