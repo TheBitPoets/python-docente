@@ -11,37 +11,63 @@
   "layout": "16:9",
   "renderer": {
     "package": "@marp-team/marp-cli",
-    "version": null,
-    "pin_policy": "exact-version-required-before-build",
-    "status": "pin-required",
+    "version": "4.5.0",
+    "release_tag": "v4.5.0",
+    "pin_policy": "exact-version-and-container-digest",
+    "status": "pinned",
     "latest_alias_forbidden": true
   },
   "runtime": {
-    "node_version": null,
-    "browser_runtime": null,
-    "status": "pin-required-before-release-build"
+    "strategy": "official-container-by-immutable-digest",
+    "platform": "linux/amd64",
+    "container_repository": "ghcr.io/marp-team/marp-cli",
+    "container_tag_reference": "v4.5.0",
+    "multiarch_manifest_digest": "sha256:4982f2f4e9b9ba6dc97f5cbb0eb0e286ae7654642ccf0778169d57c1c552a65a",
+    "image_digest": "sha256:119010dd06f8dd256b47f6479d9d3c83fcbfdcac5f873d0d03db5320f130cf87",
+    "image_ref": "ghcr.io/marp-team/marp-cli@sha256:119010dd06f8dd256b47f6479d9d3c83fcbfdcac5f873d0d03db5320f130cf87",
+    "node_version": "26.5.0",
+    "browser_kind": "chromium",
+    "browser_binary": "/usr/local/bin/chrome",
+    "browser_pin": "exact-binary-contained-in-image-digest",
+    "browser_version_recorded_at_build": true,
+    "status": "pinned-by-container-digest",
+    "notes": "The upstream v4.5.0 Dockerfile installs Chromium through Playwright at image build time. The immutable amd64 image digest is the authority for the exact browser bytes; the build manifest records the browser's reported version."
   },
   "outputs": {
+    "root": "dist/slides/python",
     "html": {
-      "required": true
+      "required": true,
+      "filename": "deck.html"
     },
     "pdf": {
-      "required": true
+      "required": true,
+      "filename": "deck.pdf"
     },
     "pptx": {
       "required": true,
+      "filename": "deck.pptx",
       "editability_claim": "not-assumed-until-verified"
-    }
+    },
+    "manifest": "dist/slides/python/build-manifest.json"
   },
   "quality": {
     "source_gate": "tests/slide_source_quality.py",
-    "artifact_structural_gate": "planned",
+    "artifact_structural_gate": "tests/slide_artifact_quality.py",
     "visual_review_required": true,
     "visual_review_sample_modules": [4, 11, 18, 22, 26, 30]
+  },
+  "build": {
+    "entrypoint": "scripts/build_slide_artifacts.py",
+    "browser": "chrome",
+    "clean_output_before_build": true,
+    "generated_artifacts_committed": false
   },
   "provenance": {
     "source_commit_sha_required": true,
     "renderer_version_required": true,
+    "container_digest_required": true,
+    "node_version_required": true,
+    "browser_reported_version_required": true,
     "build_or_release_id_required": true
   },
   "artifact_policy": {
