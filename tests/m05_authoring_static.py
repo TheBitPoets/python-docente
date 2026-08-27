@@ -69,7 +69,7 @@ def assert_lesson() -> None:
     if "taglia la parte decimale" not in lesson or "non una generica regola" not in lesson:
         fail("M05 deve esplicitare che // è floor division, non troncamento generico")
     # Intentional delivery boundary: M05 must not materialize a second P1 canary.
-    if "non materializziamo ora una seconda Activity P1" not in lesson:
+    if "non materializziamo ora una seconda activity p1" not in lesson.casefold():
         fail("M05 non registra il boundary Activity/P1")
     assert_no_teacher_links(LESSON)
 
