@@ -17,6 +17,7 @@ CHECKS = [
     ("slide source quality", [sys.executable, "tests/slide_source_quality.py"]),
     ("slide build profile pin", [sys.executable, "tests/slide_build_profile.py"]),
     ("M04 vertical-slice static QA", [sys.executable, "tests/m04_vertical_slice_static.py"]),
+    ("M04 P1 direct preflight", [sys.executable, "tests/m04_p1_direct_preflight.py"]),
     ("M05 pedagogical static QA", [sys.executable, "tests/m05_authoring_static.py"]),
 ]
 
