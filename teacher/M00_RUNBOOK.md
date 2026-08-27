@@ -143,7 +143,7 @@ Non introdurre ancora pseudocodice formale se la distinzione dati/risultato non 
 
 ---
 
-# Evidence minima
+# Minimum mastery gate
 
 Alla fine di M00 lo studente dovrebbe riuscire, su una consegna nuova, a produrre:
 
