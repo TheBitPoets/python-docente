@@ -387,6 +387,16 @@ Completa parametro/argomento/return per più chiamate.
 
 Trasforma una funzione che stampa in una funzione che restituisce e aggiorna il chiamante.
 
+Per certificare il nuovo profilo P2 è materializzato **un solo canarino controllato**:
+
+```text
+py2-activity-b-return-area-001
+```
+
+Lo starter calcola e stampa correttamente l'area ma restituisce implicitamente `None`; la modifica richiesta sostituisce la stampa con `return`. Il canarino serve a provare che il grading distingue davvero output e valore restituito.
+
+Il profilo `python-function-v1` è attualmente validato come **release candidate TheBitLab 2026.08.1**, ma non viene ancora usato per generare in massa Activity: il lock immutabile stabile deve essere pubblicato prima della promozione.
+
 ## C — Implement
 
 Scrivi funzioni numeriche o predicate con almeno tre casi dichiarati prima del codice.
@@ -394,8 +404,6 @@ Scrivi funzioni numeriche o predicate con almeno tre casi dichiarati prima del c
 ## D — Debug
 
 Correggi `return` mancante, valore ignorato, parametro sbagliato e codice irraggiungibile.
-
-Nessuna Activity P2 viene materializzata finché `2cornot2c#756` non è implementata e certificata con un consumer reale.
 
 ---
 
@@ -443,6 +451,6 @@ Materiale originale del corso, progettato con riferimento a:
 - documentazione Python 3.12 — definizione/chiamata di funzioni e `return`;
 - *Think Python / Pensare in Python* — funzioni e modello beginner;
 - *Learning Python / Imparare Python* — reference di funzioni e scope;
-- TheBitLab `2cornot2c#756` — futuro profilo P2 function-behavior.
+- TheBitLab `2cornot2c#756` — profilo P2 function-behavior in release candidate.
 
 Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
