@@ -1,0 +1,32 @@
+{
+  "schema_version": "python.p2-canary-certification.v1",
+  "activity_id": "py2-activity-b-return-area-001",
+  "activity_path": "activities/python/py2-activity-b-return-area-001/activity.json",
+  "host_python": "3.12",
+  "host_os": "ubuntu-latest",
+  "thebitlab": {
+    "repository": "TheBitPoets/2cornot2c",
+    "ref": "ca9fe16fdcf2f840237bc15f1e0928c44f48468b",
+    "profile": "python-function-v1",
+    "pr": 763
+  },
+  "authoritative_grading": {
+    "strategy": "source-build-from-exact-platform-candidate",
+    "platform": "linux/amd64",
+    "local_image_tag": "thebitlab-python-p2-canary"
+  },
+  "expected_cases": 3,
+  "expected_solution_passed": 3,
+  "expected_starter_passed": 0,
+  "student_scaffold_files": [
+    "README.md",
+    "activity.json",
+    "main.py",
+    "GUIDA.md"
+  ],
+  "certification_policy": {
+    "candidate_profile_only": true,
+    "mass_activity_materialization_allowed": false,
+    "normal_student_lab_dispatch_required_before_stable": true
+  }
+}
