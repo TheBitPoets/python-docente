@@ -1,0 +1,34 @@
+{
+  "schema_version": "python.p4-canary-certification.v1",
+  "activity_id": "py2-activity-b-file-risultato-001",
+  "activity_path": "activities/python/py2-activity-b-file-risultato-001/activity.json",
+  "host_python": "3.12",
+  "host_os": "ubuntu-latest",
+  "thebitlab": {
+    "repository": "TheBitPoets/2cornot2c",
+    "ref": "f9ec7b98fa1df9f368a94f3e516a2828078dbe2a",
+    "profile": "python-filesystem-v1",
+    "pr": 764
+  },
+  "authoritative_grading": {
+    "strategy": "source-build-from-exact-platform-candidate",
+    "platform": "linux/amd64",
+    "local_image_tag": "thebitlab-python-p4-canary"
+  },
+  "expected_cases": 1,
+  "expected_solution_passed": 1,
+  "expected_starter_passed": 0,
+  "student_scaffold_files": [
+    "README.md",
+    "activity.json",
+    "main.py",
+    "misure.txt",
+    "GUIDA.md"
+  ],
+  "certification_policy": {
+    "candidate_profile_only": true,
+    "mass_activity_materialization_allowed": false,
+    "normal_student_lab_dispatch_required_before_stable": true,
+    "immutable_release_lock_required_before_stable": true
+  }
+}
