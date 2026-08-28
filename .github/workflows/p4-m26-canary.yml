@@ -1,0 +1,95 @@
+name: Python M26 P4 canary
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "activities/python/py2-activity-b-file-risultato-001/**"
+      - "config/p4-canary-profile.json"
+      - "tests/p4_m26_consumer.py"
+      - ".github/workflows/p4-m26-canary.yml"
+
+jobs:
+  m26-p4-canary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout python-docente
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve exact P4 candidate
+        id: p4
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          profile = json.loads(Path("config/p4-canary-profile.json").read_text(encoding="utf-8"))
+          print("ref=" + profile["thebitlab"]["ref"])
+          print("image=" + profile["authoritative_grading"]["local_image_tag"])
+          PY
+
+      - name: Checkout exact TheBitLab P4 candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: ${{ steps.p4.outputs.ref }}
+          path: _thebitlab-p4
+          persist-credentials: false
+
+      - name: Verify P4 candidate identity
+        shell: bash
+        run: |
+          test "$(git -C _thebitlab-p4 rev-parse HEAD)" = "${{ steps.p4.outputs.ref }}"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          profile = json.loads(Path("config/p4-canary-profile.json").read_text(encoding="utf-8"))
+          source = (Path("_thebitlab-p4") / "scripts" / "python_filesystem_profile.py").read_text(encoding="utf-8")
+          assert 'PROFILE_ID = "python-filesystem-v1"' in source
+          assert profile["certification_policy"]["candidate_profile_only"] is True
+          assert profile["certification_policy"]["mass_activity_materialization_allowed"] is False
+          assert profile["certification_policy"]["normal_student_lab_dispatch_required_before_stable"] is True
+          PY
+
+      - name: Build exact P4 assignment runner
+        working-directory: _thebitlab-p4
+        run: >-
+          python scripts/build_assignment_runner.py
+          --source-revision "${{ steps.p4.outputs.ref }}"
+          --tag "${{ steps.p4.outputs.image }}"
+          --metadata "$RUNNER_TEMP/python-docente-p4-runner.json"
+
+      - name: Verify P4 build source identity
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          profile = json.loads(Path("config/p4-canary-profile.json").read_text(encoding="utf-8"))
+          metadata = json.loads(
+              (Path(os.environ["RUNNER_TEMP"]) / "python-docente-p4-runner.json").read_text(encoding="utf-8")
+          )
+          assert metadata["source_revision"] == profile["thebitlab"]["ref"]
+          assert metadata["platform"] == profile["authoritative_grading"]["platform"]
+          print(
+              "PASS: M26 consumer built exact P4 candidate "
+              f"from {metadata['source_revision']} ({metadata['version']})"
+          )
+          PY
+
+      - name: Run real M26 P4 consumer
+        run: >-
+          python tests/p4_m26_consumer.py
+          --platform _thebitlab-p4
+          --docker-image "${{ steps.p4.outputs.image }}"
