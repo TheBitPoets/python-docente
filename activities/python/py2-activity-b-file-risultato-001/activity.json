@@ -10,33 +10,13 @@
   "source_name": "main.py",
   "difficulty": "B",
   "difficolta": "B",
-  "topics": [
-    "file-testo",
-    "pathlib",
-    "utf-8",
-    "persistenza"
-  ],
-  "argomenti": [
-    "file-testo",
-    "pathlib",
-    "utf-8",
-    "persistenza"
-  ],
+  "topics": ["file-testo", "pathlib", "utf-8", "persistenza"],
+  "argomenti": ["file-testo", "pathlib", "utf-8", "persistenza"],
   "instructions": "Il programma legge gli interi presenti in misure.txt e calcola gia la somma. Modifica soltanto la fase finale: invece di stampare il totale, scrivilo in risultato.txt in UTF-8, seguito da newline.",
   "consegna": "Il programma legge gli interi presenti in misure.txt e calcola gia la somma. Modifica soltanto la fase finale: invece di stampare il totale, scrivilo in risultato.txt in UTF-8, seguito da newline.",
   "student_support_mode": "feedback-tecnico",
-  "grading_policy": {
-    "compila": true,
-    "test": true,
-    "sandbox": true,
-    "ai_feedback": false
-  },
-  "correzione": {
-    "compila": true,
-    "test": true,
-    "sandbox": true,
-    "ai_feedback": false
-  },
+  "grading_policy": {"compila": true, "test": true, "sandbox": true, "ai_feedback": false},
+  "correzione": {"compila": true, "test": true, "sandbox": true, "ai_feedback": false},
   "metriche": {
     "tempo_stimato_minuti": 15,
     "traccia_tempo_dichiarato": true,
@@ -49,61 +29,23 @@
       "profile": "python-filesystem-v1",
       "name": "produce il totale nel file",
       "fixtures": [
-        {
-          "id": "misure",
-          "source": "teacher/fixtures/misure.txt",
-          "target": "misure.txt",
-          "mode": "read-only"
-        }
+        {"id": "misure", "source": "fixtures/misure.txt", "target": "misure.txt", "mode": "read-only"}
       ],
       "expected_artifacts": [
-        {
-          "path": "risultato.txt",
-          "text": "36\n",
-          "encoding": "utf-8"
-        }
+        {"path": "risultato.txt", "text": "36\n", "encoding": "utf-8"}
       ],
       "allow_unexpected_artifacts": false,
       "visibility": "teacher"
     }
   ],
   "source_refs": [
-    {
-      "source_id": "python-course-content",
-      "href": "content/python/26_FILE_TESTO_PATHLIB_ERRORI.md#m26-file-testo-pathlib-ed-errori-esterni-prevedibili"
-    }
+    {"source_id": "python-course-content", "href": "content/python/26_FILE_TESTO_PATHLIB_ERRORI.md#m26-file-testo-pathlib-ed-errori-esterni-prevedibili"}
   ],
   "assets": [
-    {
-      "type": "starter",
-      "path": "starter/main.py",
-      "target_path": "main.py",
-      "visibility": "student",
-      "description": "Programma che legge correttamente misure.txt ma stampa il totale"
-    },
-    {
-      "type": "fixture",
-      "path": "student/misure.txt",
-      "target_path": "misure.txt",
-      "visibility": "student",
-      "description": "Piccola fixture pubblica per le prove locali"
-    },
-    {
-      "type": "fixture",
-      "path": "student/GUIDA.md",
-      "target_path": "GUIDA.md",
-      "visibility": "student",
-      "description": "Guida breve alla Controlled Change"
-    },
-    {
-      "type": "teacher_only",
-      "path": "teacher/README.md",
-      "visibility": "teacher",
-      "description": "Note docente e oracle del canarino P4"
-    }
+    {"type": "starter", "path": "starter/main.py", "target_path": "main.py", "visibility": "student", "description": "Programma che legge correttamente misure.txt ma stampa il totale"},
+    {"type": "fixture", "path": "student/misure.txt", "target_path": "misure.txt", "visibility": "student", "description": "Piccola fixture pubblica per le prove locali"},
+    {"type": "fixture", "path": "student/GUIDA.md", "target_path": "GUIDA.md", "visibility": "student", "description": "Guida breve alla Controlled Change"},
+    {"type": "teacher_only", "path": "teacher/README.md", "visibility": "teacher", "description": "Note docente e oracle del canarino P4"}
   ],
-  "contesto": {
-    "percorso": "python-secondo-2026-2027",
-    "uda": "py2-09"
-  }
+  "contesto": {"percorso": "python-secondo-2026-2027", "uda": "py2-09"}
 }
