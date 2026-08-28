@@ -1,15 +1,28 @@
 # python-docente — project status
 
+> Ultimo aggiornamento: **2026-08-28**  
+> Branch: `agent/course-architecture`  
+> Draft PR: `#1`  
+> Canonical freeze: `doc/CURRICULUM_FREEZE_2026_2027.md`
+
 ## Current phase
 
-**Curriculum FROZEN + M04–M30 editorialmente completi, catalogati e semanticamente revisionati; delivery/release QA phase with real CI execution restored.**
+Il curriculum del secondo anno è **FROZEN** e il layer editoriale M04–M30 è completo in stato `draft`.
 
-Canonical freeze: `doc/CURRICULUM_FREEZE_2026_2027.md`  
-Decision-owner approval: **2026-08-24**.  
-Branch: `agent/course-architecture`  
-Draft PR: `#1`.
+Il progetto è nella fase di **delivery / runtime / release certification**.
 
-`Content Pack 1.0 / approved` e `ready for classroom` restano gate futuri separati.
+Restano separati, e non vanno confusi:
+
+```text
+curriculum frozen
+!= contenuti editoriali completi
+!= profile runtime certificati
+!= teacher sign-off
+!= Content Pack approved
+!= classroom GO
+```
+
+`Content Pack 1.0.0 / approved` e `ready for classroom` sono ancora **NO**.
 
 ---
 
@@ -23,16 +36,18 @@ Marp source deck M04–M30                COMPLETE / draft
 Teacher runbook M04–M30                 COMPLETE / draft
 Semantic review M04–M30                 COMPLETE / draft
 Checkpoint A/B/C                        COMPLETE / draft
-PY2-01 final digital delivery           implementation upstream / certification pending
+Content Pack catalog M04–M30            COMPLETE / draft
+Course Design UDA mapping               COMPLETE / draft
+Source-audit manifests                  ALIGNED
 ```
 
-Review index canonico:
+Authoritative semantic review index:
 
 ```text
 doc/SEMANTIC_REVIEW_INDEX_2026-08-25.md
 ```
 
-Regola didattica trasversale:
+Didactic pacing boundary:
 
 ```text
 MUST MASTER
@@ -40,283 +55,237 @@ MUST MASTER
 → ENRICHMENT / BACKUP
 ```
 
----
-
-# 2. Authoritative Content Pack / Course Design catalog — M04–M30 COMPLETE
-
-`python-docente#11` è chiusa come completed.
-
-Content Pack:
+Content Pack remains:
 
 ```text
 content/python/content-pack.json
 version = 0.1.0
 status = draft
-content_items = exactly M04…M30
-python-course-content.files = exactly M04…M30
 ```
 
-Course Design:
-
-```text
-doc/course_design.json
-python-course-content.files = exactly M04…M30
-```
-
-Mapping machine-readable UDA → moduli:
-
-```text
-PY2-02  M04–M05
-PY2-03  M06–M08
-PY2-04  M09–M12
-PY2-05  M13–M16
-PY2-06  M17–M19
-PY2-07  M20–M22
-PY2-08  M23–M25
-PY2-09  M26
-PY2-10  M27–M30
-```
-
-Il mapping usa `content_item_ids` separato da `items`, perché `items` appartiene al modello Course Board degli heading/subtree.
-
-Protection:
-
-```text
-scripts/sync_authoring_catalog.py
-tests/course_authoring_catalog.py
-```
-
-Il gate richiede esattamente 27 moduli M04–M30, source parity Content Pack/Course Design e assegnazione esatta di ogni content item a una sola UDA.
-
-La precedente validazione sintetica è stata superata da **esecuzione CI reale** dopo il ripristino di GitHub Actions.
+No mass Activity generation is authorized by editorial completion alone.
 
 ---
 
-# 3. Provenance source manifests — ALIGNED
+# 2. Real GitHub Actions execution — RESTORED
 
-`python-docente#9` è chiusa come completed.
+`python-docente#8` is **CLOSED / completed**.
 
-`python-source-audits.files` in Content Pack e Course Design contiene esattamente:
+After the repository became public, GitHub-hosted runners began executing normally instead of failing pre-runner with `steps=null`.
 
-```text
-SOURCE_CATALOG.md
-FRIEDPYTHON_MAPPING.md
-FRIEDPYTHON_LISTS_TUPLES_AUDIT.md
-FRIEDPYTHON_DICTS_AUDIT.md
-FRIEDPYTHON_FILES_AUDIT.md
-```
-
-Helper/gate:
+The normal vertical-slice workflow now executes real steps on Ubuntu and Windows:
 
 ```text
-scripts/sync_source_audit_manifest.py
+static course QA
+Course Workspace round-trip
+managed Activity assignment
+P1 host consumer
+PY2-01 Flowchart candidate consumer
+Ubuntu source-built authoritative Docker P1 grading
 ```
 
-Il controllo è incluso nell'entrypoint statico unificato ed è ora eseguito realmente in Actions.
+Known all-green vertical-slice evidence includes run:
 
-Nessun `friedpython` wholesale import: ogni riuso resta audit individuale + riscrittura/modernizzazione.
+```text
+33120724282 / #389
+Ubuntu  SUCCESS
+Windows SUCCESS
+```
+
+The current workflow no longer depends on cross-repository GHCR package access for P1: Ubuntu reconstructs the authoritative runner from its exact locked source revision and verifies the build metadata before grading.
 
 ---
 
-# 4. Static QA / real Actions evidence — RESTORED
+# 3. P1 — M04 stdin/stdout canary
 
-Entrypoint unico:
-
-```text
-python scripts/run_static_quality.py
-```
-
-Include:
-
-- authoring catalog synchronization;
-- source-audit manifest synchronization;
-- exact M04–M30 authoring/UDA catalog gate;
-- semantic review boundaries;
-- Git G1 consumer contract;
-- frozen outcome coverage;
-- slide source quality;
-- slide toolchain/build-profile pin gate;
-- M04 vertical-slice static QA;
-- P1 canary profile contract;
-- M04 P1 direct preflight;
-- M05 pedagogical static QA.
-
-Il 27 agosto 2026 `python-docente` è stato reso pubblico. Lo stesso workflow che da repository privato moriva pre-runner con `steps=null` ha iniziato a eseguire realmente checkout, Python e test. `python-docente#8` è quindi **CLOSED / completed**.
-
-Evidence reale ottenuta su GitHub-hosted runners:
+Activity:
 
 ```text
-Ubuntu / Python 3.12   static QA                         PASS
-Windows / Python 3.12  static QA                         PASS
-Ubuntu                  pinned TheBitLab checkout         PASS
-Windows                 pinned TheBitLab checkout         PASS
-Ubuntu                  Course Workspace round-trip       PASS
-Windows                 Course Workspace round-trip       PASS
-Ubuntu                  host P1 consumer smoke            PASS
-Windows                 host P1 consumer smoke            PASS
+py2-activity-b-input-somma-001
+M04 / PY2-02
+profile P1 — stdin/stdout
 ```
 
-Il direct P1 preflight su Python 3.12 dimostra:
-
-```text
-solution = 3/3 PASS
-starter  = 1/3 PASS, ma esegue tutti e 3 i casi
-```
-
-Quindi il set di test discrimina realmente la modifica richiesta.
-
-Due difetti ordinari emersi solo dopo l'avvio reale dei runner sono stati corretti senza cambiare la semantica del corso:
-
-1. gate M05 troppo accoppiati a maiuscole/formattazione Markdown;
-2. output finale Course Board con freccia Unicode non stampabile sulla console Windows cp1252.
-
----
-
-# 5. Git G1 consumer — STRUCTURAL COMPLETE
-
-Source of truth:
-
-```text
-TheBitPoets/git
-G1 candidate ref: 65d8aff8c9a590560c500762d4dc7378a3239bf2
-```
-
-Consumer:
-
-```text
-config/git-g1-consumer.json
-mode = embedded-outcome-subset
-full_g1_track_completion_required = false
-full_canonical_lesson_completion_required = false
-```
-
-Progressione:
-
-```text
-M14–M16          status/diff guided
-Checkpoint A     status → diff → test → add → diff --staged → commit → status → log/show
-second semester  reuse G1 + progressive recovery
-```
-
-Git resta evidence di processo nel Python, non un secondo corso high-stakes. Il contratto statico è ora eseguito realmente in CI; il rehearsal didattico resta separato.
-
----
-
-# 6. M04 / P1 Activity — SOFTWARE + IMMUTABLE DOCKER EVIDENCE PASS
-
-Unica nuova Activity Python materializzata:
-
-```text
-py2-activity-b-input-somma-001 — M04 — P1 canary
-```
-
-Certification issue: `python-docente#7`.
-
-Profilo machine-readable:
+Machine-readable certification profile:
 
 ```text
 config/p1-canary-profile.json
-TheBitLab = cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
-Python host = 3.12
-runner = ghcr.io/thebitpoets/2cornot2c-assignment-runner@sha256:62f0f7b7bc1d48d01b7f8e5fa765e0b43be3622e70a614033b1bb4a4e522e159
+host Python = 3.12
+host OS = Ubuntu + Windows
+TheBitLab consumer baseline = cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
 toolchain = 2026.07.1
 ```
 
-Real PASS evidence ora copre:
+Real evidence covers:
 
-- Content Pack validation contro il baseline pinned;
-- Activity validation;
-- generazione exact student scaffold;
-- assenza teacher/solution/hidden expected-output leakage;
-- solution 3/3;
-- starter 1/3 ma tutti e tre i casi eseguiti;
-- host smoke Python 3.12 su Ubuntu e Windows;
-- Course Workspace save/reopen round-trip su Ubuntu e Windows;
-- **authoritative immutable Docker grading**.
+- Content Pack + Activity validation;
+- exact four-file student scaffold;
+- teacher/solution/expected-output non-leakage;
+- Course Workspace save/reopen round-trip;
+- managed assignment path;
+- host grading Ubuntu + Windows;
+- authoritative Docker grading;
+- solution `3/3`;
+- starter `1/3`, with all three cases executed.
 
-Authoritative Docker run:
+`python-docente#7` remains open **only for final classroom-profile rehearsal / human delivery evidence**.
 
-```text
-TheBitPoets/2cornot2c Actions run 33083704963
-job 98557492246
-conclusion = SUCCESS
-
-python-docente = 18b0d26fa9b449f6bd613430d0c917e80567d4bc
-TheBitLab      = cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
-Python         = 3.12.14
-runner digest  = sha256:62f0f7b7bc1d48d01b7f8e5fa765e0b43be3622e70a614033b1bb4a4e522e159
-```
-
-Final worker evidence:
-
-```text
-PASS: pinned Content Pack + Activity + exact student scaffold +
-Python starter/solution deterministic grading (immutable Docker grading)
-```
-
-`#7` resta **OPEN** perché software/Docker certification non equivale ancora a classroom certification. Mancano:
-
-- apertura/assegnazione completa attraverso il vero managed student-facing path;
-- rehearsal finale dei profili Classroom Environment supportati.
-
-### GHCR cross-repository access
-
-Il normale workflow `python-docente` è volutamente fail-closed sull'ultimo step Docker perché il package GHCR del runner è repository-scoped: il token Actions di `python-docente` non riesce ancora a scaricarlo.
-
-Il package e il digest sono validi: dal repository produttore `2cornot2c` il digest è scaricabile e il P1 Docker passa. Serve ancora una configurazione GitHub Package amministrativa per concedere Actions access a `TheBitPoets/python-docente` oppure una decisione esplicita di visibilità del package.
-
-Questo è un problema di delivery/permission del workflow consumer, non un fallimento del contratto P1.
+Software certification is not classroom certification.
 
 ---
 
-# 7. Activity / grading policy
+# 4. P2 — M13 function-behavior canary
 
-Policy:
+A second Python Activity is now materialized deliberately as a single P2 canary:
+
+```text
+py2-activity-b-return-area-001
+M13 / PY2-05
+profile = python-function-v1
+```
+
+The exercise is a controlled change:
+
+```text
+print(area)
+→
+return area
+```
+
+This is intentional: the starter already computes and prints the correct numeric result, so a valid P2 grader must still fail it because the function returns `None`.
+
+Current candidate platform:
+
+```text
+TheBitPoets/2cornot2c PR #763 — DRAFT
+candidate SHA = c718c40045c69f0863a4a68c7a3f802241685230
+profile = python-function-v1
+worker schema = thebitlab.python-function-worker.v1
+```
+
+Platform evidence:
+
+```text
+Python function profile P2 candidate
+run 33182445790 / #12
+SUCCESS
+```
+
+That run proves:
+
+- strict `function_tests` contract;
+- teacher expectations stay host-side;
+- bounded deterministic value codec;
+- real top-level function invocation;
+- return / bool / exception behavior;
+- missing/non-callable/import-error handling;
+- bounded stdout/stderr;
+- unsupported-return fail closed;
+- infinite loop → bounded timeout;
+- hardened Docker sandbox reuse;
+- normal `DockerGradeActivityExecutionService` dispatch;
+- real `student_lab_runner.run_docker_assignment()` P2 path;
+- student-facing report redaction.
+
+Existing C/P1/Node/SQLite Docker regression on the same candidate family is green:
+
+```text
+Build assignment runner Docker image
+run 33182445721 / #1008
+SUCCESS
+```
+
+Real course consumer evidence:
+
+```text
+Python M13 P2 canary
+run 33182614844 / #3
+SUCCESS
+```
+
+The course consumer now uses the **normal** `DockerGradeActivityExecutionService`, not a side harness.
+
+Behavioral oracle:
+
+```text
+solution = 3/3 PASS
+starter  = 0/3 FAIL
+starter worker status = returned
+starter actual_return = None
+starter stdout = numerically correct
+```
+
+Therefore P2 is functionally proven through the real course path.
+
+### P2 promotion boundary
+
+P2 remains **candidate**, not stable.
+
+Before broader P2 Activity materialization:
+
+1. choose a new stable assignment-runner/toolchain identity for the P2-capable source;
+2. publish/update the immutable release lock;
+3. complete PR/release review and merge decision;
+4. repin `python-docente` from candidate SHA to the promoted stable platform/toolchain.
+
+Do **not** silently describe the modified candidate as the existing stable `2026.07.1` release.
+
+---
+
+# 5. Activity inventory
+
+Exactly two new Python Activities are deliberately materialized today:
+
+```text
+M04  py2-activity-b-input-somma-001   P1 stdin/stdout
+M13  py2-activity-b-return-area-001   P2 function behavior candidate
+```
+
+Policy remains:
 
 ```text
 outcome
-→ evidence profile corretto
-→ profile certification
-→ Activity materialization
+→ correct evidence profile
+→ profile implementation
+→ real profile certification
+→ one canary consumer
+→ stable promotion
+→ broader Activity materialization
 ```
 
-Profili:
-
-- P0 — manual/trace/design;
-- P1 — stdin/stdout;
-- P2 — function behavior (`2cornot2c#756`);
-- P3 — object behavior (`2cornot2c#758`);
-- P4 — filesystem behavior (`2cornot2c#757`);
-- Romeo — `romeo-sim` external runtime.
-
-Non deformare P2/P3/P4 in P1 per ottenere un voto automatico.
+P3/P4 outcomes must not be distorted into P1/P2 merely to obtain automated scores.
 
 ---
 
-# 8. Flowchart Lab / PY2-01 — IMPLEMENTED UPSTREAM, CERTIFICATION PENDING
+# 6. PY2-01 / Flowchart Lab
 
-`2cornot2c#753` / draft PR `#754` hanno ormai un managed Flowchart Lab MVP composto da:
+Upstream candidate remains `2cornot2c#753/#754`.
 
-```text
-thebitlab.flowchart.v1 artifact
-→ headless validator/executor
-→ thebitlab.flowtrace.v1
-→ loopback service/API
-→ browser editor
-→ managed algorithm.flow.json workspace persistence
-→ deterministic SVG evidence
-→ built-in runtime plugin / registry
-```
-
-Sono presenti core, API Run/Session/Step/Reset, browser editor offline same-origin, variable watch, workspace load/save, JSON import/export, SVG evidence e runtime plugin.
-
-Il boundary resta:
+Implemented surfaces include:
 
 ```text
-implemented + tested != classroom certified
+thebitlab.flowchart.v1
+headless validator/executor
+bounded deterministic trace
+loopback Run / Session / Step / Reset API
+same-origin browser editor
+variable watch
+managed algorithm.flow.json persistence
+JSON import/export
+deterministic SVG evidence
+built-in runtime plugin / registry
 ```
 
-Per questo PY2-01 non viene ancora dichiarata digitalmente pronta e il fallback frozen resta valido:
+The `python-docente` vertical-slice workflow already validates the exact pinned Flowchart candidate on Ubuntu and Windows.
+
+Boundary remains:
+
+```text
+implemented + CI consumer PASS
+!= final classroom-profile rehearsal
+```
+
+Frozen fallback remains valid:
 
 ```text
 paper / whiteboard
@@ -326,55 +295,112 @@ paper / whiteboard
 → test cases
 ```
 
-Prima della promozione servono ancora real managed-profile rehearsal/certification e il primo consumer PY2-01 nel percorso studente effettivo.
+PY2-01 is therefore much farther than SPEC-only, but is not yet declared classroom-certified.
 
 ---
 
-# 9. Slide artifact layer — TOOLCHAIN/PIPELINE IMPLEMENTED, REAL BUILD PENDING
+# 7. Git G1 consumer
 
-27 source deck M04–M30 presenti.
-
-Pin release:
+Source of truth:
 
 ```text
-@marp-team/marp-cli 4.5.0
-platform: linux/amd64
-image:
-  ghcr.io/marp-team/marp-cli@sha256:119010dd06f8dd256b47f6479d9d3c83fcbfdcac5f873d0d03db5320f130cf87
-Node in upstream v4.5.0 image recipe: 26.5.0
-browser: Chromium pinned by exact image digest; reported version recorded at build
+TheBitPoets/git
+G1 candidate ref = 65d8aff8c9a590560c500762d4dc7378a3239bf2
 ```
 
-Surfaces:
+Consumer mode:
 
 ```text
-config/slide-build-profile.json
-tests/slide_source_quality.py
-tests/slide_build_profile.py
-scripts/build_slide_artifacts.py
-tests/slide_artifact_quality.py
-.github/workflows/slide-artifacts.yml
-teacher/SLIDE_VISUAL_REVIEW.md
-doc/SLIDE_ARTIFACT_PIPELINE.md
+config/git-g1-consumer.json
+mode = embedded-outcome-subset
+full_g1_track_completion_required = false
+full_canonical_lesson_completion_required = false
 ```
 
-Build target:
+Progression:
 
 ```text
-27 HTML
-27 PDF
-27 PPTX
-+ build-manifest.json with source/artifact hashes + toolchain provenance
+M14–M16          status/diff guided
+Checkpoint A     status → diff → test → add → diff --staged → commit → status → log/show
+second semester  progressive reuse/recovery
 ```
 
-Issue `#10` resta aperta perché ancora mancano:
+Static/structural consumer is complete and exercised by course CI. Classroom rehearsal remains separate.
 
-- build reale 27×3;
-- structural artifact QA su file reali;
-- visual review M04/M11/M18/M22/M26/M30;
-- verifica apertura/comportamento PPTX nel consumer target.
+---
 
-Ora che Actions eseguono realmente, questo diventa uno dei prossimi gate praticabili.
+# 8. Slide release artifacts — REAL BUILD PASS
+
+The slide layer is no longer merely “pipeline implemented”. A real full release artifact bundle has been generated and structurally validated.
+
+Evidence:
+
+```text
+workflow: Python slide release artifacts
+run: 33116692428 / #1
+job: 98673027862
+result: SUCCESS
+artifact id: 9664877644
+artifact ZIP sha256:
+4693a11cf7c77c987e7396e2375911566409746c0378498a925b38b4e105d268
+```
+
+Manifest evidence:
+
+```text
+source commit: c6b57d98184e5937a5d449c50b5d726dc2130aa7
+modules: 27
+27 HTML + 27 PDF + 27 PPTX
+515 rendered/source slides
+```
+
+Toolchain observed:
+
+```text
+Marp CLI 4.5.0 / Marp Core 4.4.0
+Node 26.5.0
+Google Chrome for Testing 149.0.7827.55
+pypdf 6.16.2
+linux/amd64
+pinned Marp image digest = sha256:119010dd06f8dd256b47f6479d9d3c83fcbfdcac5f873d0d03db5320f130cf87
+```
+
+Engineering review:
+
+```text
+M04 / M11 / M18 / M22 / M26 / M30 PDF sample   PASS
+six mandatory PPTX opened/converted in LibreOffice   PASS
+slide counts preserved   PASS
+```
+
+OOXML inspection confirms Marp PPTX uses rendered slide background images; therefore **native PowerPoint object editability is not claimed**.
+
+Detailed evidence:
+
+```text
+doc/SLIDE_ARTIFACT_REVIEW_2026-08-27.md
+```
+
+`python-docente#10` remains open only for human/target-consumer gates:
+
+- open/present mandatory sample in target Microsoft PowerPoint, or explicitly decide it is not a supported target;
+- human decision in `teacher/SLIDE_VISUAL_REVIEW.md`;
+- expand review only if that pass reveals a systematic issue.
+
+---
+
+# 9. Profiles still pending
+
+```text
+P0 manual/trace/design                 available by pedagogy
+P1 stdin/stdout                        software certified / classroom rehearsal pending
+P2 function behavior                  integrated candidate + real consumer PASS / stable promotion pending
+P4 filesystem behavior                OPEN — 2cornot2c#757
+P3 object behavior                    OPEN — 2cornot2c#758
+romeo-sim                              certification pending
+```
+
+Next runtime priority after P2 stable-boundary work is **P4**, because M26 precedes OOP P3 in the course dependency/delivery sequence.
 
 ---
 
@@ -387,47 +413,58 @@ teacher/TEACHER_SIGNOFF_CHECKLIST.md
 status = PENDING
 ```
 
-Non può essere auto-approvato da AI/CI.
+AI/CI cannot approve this gate.
 
-Prima di `Content Pack 1.0.0 / approved` restano almeno:
+Before `Content Pack 1.0.0 / approved` and classroom GO remain at least:
 
-1. completare `#7` con managed assignment + classroom-profile rehearsal;
-2. eseguire/chiudere slide artifact build + visual QA `#10`;
-3. certificare Flowchart Lab/Classroom Environment e materializzare il consumer PY2-01 corretto;
-4. certificare P2/P4/P3 prima delle relative promesse di autograding;
-5. certificare `romeo-sim` prima di missioni obbligatorie;
-6. materializzare Activity per profilo/UDA con evidence corretta;
-7. risolvere il GHCR Actions access del consumer `python-docente` per rendere verde anche il percorso Docker nel suo workflow ordinario;
-8. teacher sign-off umano;
-9. final provenance/license review del release candidate;
-10. promuovere esplicitamente Content Pack solo dopo i gate;
-11. real TheBitLab classroom-profile rehearsal;
-12. GO classroom.
+1. final P1 Classroom Environment rehearsal;
+2. final Flowchart Lab managed classroom-profile rehearsal;
+3. P2 stable toolchain/release promotion and repin;
+4. P4 certification + first real consumer;
+5. P3 certification + first real consumer;
+6. `romeo-sim` certification before mandatory Romeo missions;
+7. human PowerPoint/slide review completion;
+8. human teacher sign-off;
+9. final provenance/license review of the release candidate;
+10. explicit Content Pack promotion;
+11. final real Classroom Environment rehearsal;
+12. explicit GO classroom decision.
 
 ---
 
 # Gate status
 
 ```text
-Curriculum architecture        FROZEN ✅
-Frozen outcome mapping         25/25 ✅
-Editorial M04–M30              COMPLETE 🟡 draft
-Semantic review M04–M30        COMPLETE 🟡 draft
-Content Pack catalog M04–M30   COMPLETE 🟡 draft
-Course Design M04–M30 mapping  COMPLETE 🟡 draft
-Source-audit manifests         ALIGNED ✅ real CI
-Static QA Ubuntu/Windows       PASS ✅
-Course Board round-trip        PASS ✅ Ubuntu + Windows
-P1 host smoke                  PASS ✅ Ubuntu + Windows / Python 3.12
-P1 immutable Docker grading    PASS ✅ exact locked runner
-P1 classroom rehearsal         PENDING ⏳ #7
-Private Actions blocker #8     RESOLVED ✅ repo public
-Git G1 structural consumer     COMPLETE ✅ static CI / rehearsal pending
-Flowchart Lab implementation   IMPLEMENTED 🟡 certification pending
-Slide generated artifacts      NOT YET ⏳ #10
-P2/P3/P4 grading               OPEN ⏳
-romeo-sim certification        OPEN ⏳
-Teacher sign-off               PENDING ⏳
-Content Pack 1.0 approved      NOT YET ⏳
-Ready for classroom / GO       NOT YET ⏳
+Curriculum architecture             FROZEN ✅
+Frozen outcome mapping              25/25 ✅
+Editorial M04–M30                   COMPLETE 🟡 draft
+Semantic review M04–M30             COMPLETE 🟡 draft
+Content Pack catalog M04–M30        COMPLETE 🟡 draft
+Course Design M04–M30 mapping       COMPLETE 🟡 draft
+Source-audit manifests              ALIGNED ✅ real CI
+GitHub Actions blocker #8           RESOLVED ✅
+Static QA Ubuntu/Windows            PASS ✅
+Course Board round-trip             PASS ✅ Ubuntu + Windows
+Managed P1 assignment               PASS ✅
+P1 host smoke                       PASS ✅ Ubuntu + Windows / Python 3.12
+P1 Docker grading                   PASS ✅ source-built locked runner
+P1 classroom rehearsal              PENDING ⏳ #7
+Flowchart Lab implementation        IMPLEMENTED ✅
+Flowchart course CI consumer        PASS ✅ Ubuntu + Windows
+Flowchart classroom rehearsal       PENDING ⏳
+P2 contract/worker                  PASS ✅
+P2 Docker sandbox                   PASS ✅
+P2 normal Student Lab dispatch      PASS ✅
+P2 real M13 consumer                PASS ✅
+P2 stable toolchain promotion       PENDING ⏳
+Slide 27×HTML/PDF/PPTX build        PASS ✅ real artifacts
+Slide structural QA                 PASS ✅
+Slide engineering sample review     PASS ✅
+PowerPoint/human slide sign-off     PENDING ⏳ #10
+P4 filesystem grading               OPEN ⏳
+P3 object grading                   OPEN ⏳
+romeo-sim certification             OPEN ⏳
+Teacher sign-off                    PENDING ⏳
+Content Pack 1.0 approved           NOT YET ⏳
+Ready for classroom / GO            NOT YET ⏳
 ```
