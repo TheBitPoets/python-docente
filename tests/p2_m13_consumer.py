@@ -109,36 +109,49 @@ def assert_student_scaffold(platform: Path, temp: Path) -> None:
             fail(f"P2 teacher oracle leaked into student scaffold: {marker}")
 
 
-def grade(platform: Path, source: Path, image: str, report: Path) -> tuple[int, dict]:
-    result = run_module(
-        platform,
-        "scripts.grade_python_function_activity",
-        "--activity",
-        str(ACTIVITY),
-        "--activity-root",
-        str(ACTIVITY_ROOT),
-        "--source",
-        str(source),
-        "--source-root",
-        str(ACTIVITY_ROOT),
-        "--docker-image",
-        image,
-        "--report",
-        str(report),
-        check=False,
-    )
-    if not report.is_file():
-        fail(
-            "P2 grader non ha scritto il report: "
-            f"exit={result.returncode}, stdout={result.stdout!r}, stderr={result.stderr!r}"
+def grade_via_execution_service(platform: Path, source: Path, image: str) -> tuple[object, dict]:
+    sys.path.insert(0, str(platform))
+    try:
+        from scripts.thebitlab_technical_services import (
+            DockerGradeActivityExecutionService,
+            ExecutionRequest,
         )
-    return result.returncode, load_object(report)
+
+        execution = DockerGradeActivityExecutionService().run(
+            ExecutionRequest(
+                activity_id=PROFILE["activity_id"],
+                student_id="p2-canary-student",
+                files={"main.py": str(source)},
+                language="python",
+                timeout_seconds=5,
+                metadata={
+                    "activity_path": ACTIVITY,
+                    "source_path": source,
+                    "docker_image": image,
+                },
+            )
+        )
+    finally:
+        sys.path.remove(str(platform))
+
+    report = execution.metadata.get("runner_report")
+    if not isinstance(report, dict):
+        fail(
+            "P2 normal Docker ExecutionService non ha prodotto runner_report: "
+            f"status={execution.status!r}, detail={execution.detail!r}, metadata={execution.metadata!r}"
+        )
+    if execution.metadata.get("grading_profile") != PROFILE_ID:
+        fail(f"P2 ExecutionService non ha dichiarato il profilo atteso: {execution.metadata}")
+    return execution, report
 
 
-def assert_grading(platform: Path, image: str, temp: Path) -> None:
-    solution_exit, solution = grade(platform, SOLUTION, image, temp / "solution.json")
-    if solution_exit != 0 or solution.get("passed") is not True:
-        fail(f"P2 solution non passa: exit={solution_exit}, report={solution}")
+def assert_grading(platform: Path, image: str) -> None:
+    solution_execution, solution = grade_via_execution_service(platform, SOLUTION, image)
+    if solution_execution.status != "passed" or solution.get("passed") is not True:
+        fail(
+            "P2 solution non passa nel normale ExecutionService: "
+            f"status={solution_execution.status}, report={solution}"
+        )
     if solution.get("profile") != PROFILE_ID:
         fail(f"P2 solution report profile inatteso: {solution}")
     if solution.get("summary") != {
@@ -147,9 +160,12 @@ def assert_grading(platform: Path, image: str, temp: Path) -> None:
     }:
         fail(f"P2 solution summary inatteso: {solution.get('summary')}")
 
-    starter_exit, starter = grade(platform, STARTER, image, temp / "starter.json")
-    if starter_exit == 0 or starter.get("passed") is True:
-        fail(f"P2 starter non discrimina print vs return: {starter}")
+    starter_execution, starter = grade_via_execution_service(platform, STARTER, image)
+    if starter_execution.status != "failed" or starter.get("passed") is True:
+        fail(
+            "P2 starter non discrimina print vs return nel normale ExecutionService: "
+            f"status={starter_execution.status}, report={starter}"
+        )
     if starter.get("summary") != {
         "passed": PROFILE["expected_starter_passed"],
         "total": EXPECTED_CASES,
@@ -179,11 +195,11 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="python-docente-p2-") as raw_temp:
         temp = Path(raw_temp)
         assert_student_scaffold(platform, temp)
-        assert_grading(platform, args.docker_image, temp)
+    assert_grading(platform, args.docker_image)
 
     print(
         "PASS: M13 P2 canary validates candidate Activity/scaffold and proves "
-        "print stdout != function return under authoritative Docker grading"
+        "print stdout != function return through the normal Docker ExecutionService"
     )
     return 0
 
