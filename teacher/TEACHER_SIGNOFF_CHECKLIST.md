@@ -126,7 +126,7 @@ Per ogni campione chiedere:
 - entra davvero in 2h teoria attiva + 1h lab?;
 - il recupero ha spazio?;
 - il deck è proiettabile senza leggere tutta la lesson?;
-- il laboratorio produce evidence osservabile?;
+- il laboratorio produce evidence osservabile?
 
 ---
 
@@ -141,7 +141,7 @@ Verificare `tracks/secondo/ASSESSMENT_CALENDAR.md` e `ASSESSMENT_MODEL.md`.
 - [ ] sintassi/API ricordate a memoria non dominano il voto;
 - [ ] Git nel corso Python resta evidence di processo e non seconda prova high-stakes;
 - [ ] una difficoltà Git beginner non annulla automaticamente una evidence Python valida;
-- [ ] P2/P3/P4 non vengono promessi finché non certificati;
+- [ ] P2/P3/P4 sono certificati a livello **release candidate**; per uso high-stakes resta richiesta la promozione a toolchain immutabile stabile e il rehearsal appropriato dell'ambiente reale;
 - [ ] nessuna prova dipende da Romeo non certificato o hardware fisico.
 
 ---
@@ -206,7 +206,7 @@ sources/SOURCE_CATALOG.md
 
 - [ ] 25/25 outcome mappati;
 - [ ] PY2-01 segnalato correttamente come SPEC/final delivery pending;
-- [ ] una sola Activity Python automatica dichiarata oggi: M04 canary;
+- [ ] quattro canary Python automatizzati dichiarati oggi: M04/P1, M13/P2, M26/P4 e M28/P3;
 - [ ] nessuna percentuale unica confonde editorial/activity/readiness;
 - [ ] source refs delle lesson sono plausibili;
 - [ ] materiale licensed è teacher-reference only;
