@@ -308,14 +308,20 @@ fixture input controllata
 + verifica host-side degli artifact
 ```
 
-È il profilo P4 tracciato in `2cornot2c#757`.
+È il profilo `python-filesystem-v1` tracciato in `2cornot2c#757`.
 
-Finché non è certificato:
+Il **candidato software P4 è ora provato end-to-end** anche attraverso il normale Student Lab Docker:
 
-- file nel Classroom Environment;
-- test diretti sulle funzioni di logica;
-- evidence/manual rubric per gli artifact;
-- nessuna promessa di grading filesystem autorevole.
+- fixture di grading teacher-side montata read-only;
+- workdir isolato e bounded;
+- expected artifact confrontato sul trusted host;
+- traversal/path esterni/symlink/subdirectory bloccati nel profilo v1;
+- `FileNotFoundError` mantenuto come errore del programma studente;
+- output limit e timeout fail-closed;
+- report teacher-only redatto prima della vista studente;
+- primo consumer reale M26 verde in CI.
+
+Questa evidenza **non equivale ancora a release P4 stabile**. Il candidato deve essere unificato con la toolchain P2 e ricevere una nuova identità/digest immutabile prima della materializzazione P4 più ampia.
 
 ---
 
@@ -334,13 +340,24 @@ Finché non è certificato:
 
 # 18. Activity candidate
 
+Resta autorizzato **un solo canarino P4**:
+
+```text
+py2-activity-b-file-risultato-001
+Controlled Change: print(totale) → risultato.txt
+```
+
+Il canarino usa una fixture pubblica piccola per le prove studente e una fixture teacher-side distinta per il grading autorevole. La soluzione deve creare l'artifact richiesto; lo starter calcola e stampa correttamente il totale ma fallisce perché non persiste `risultato.txt`.
+
+Le altre forme restano candidate editoriali, non ancora materializzate in massa:
+
 - **A — Path/contract trace:** percorso, input file, output atteso;
-- **B — Controlled Change:** cambia nome file/encoding/strategia riga mantenendo la logica;
+- **B — Controlled Change:** il canarino attuale;
 - **C — Implement:** leggi file testo e applica una funzione già testabile;
 - **D — Debug:** path, FileNotFoundError, newline, exception troppo ampia;
-- **E — Mini-persistence:** produce un file risultato con evidence manuale/P4 futuro.
+- **E — Mini-persistence:** produce un file risultato con evidence P4/manuale.
 
-Nessuna Activity P4 viene materializzata finché `2cornot2c#757` non è certificato.
+Finché P4 non riceve la release/toolchain immutabile unificata con P2, **non creare altre Activity P4 soltanto per aumentare la copertura automatica**.
 
 ---
 
