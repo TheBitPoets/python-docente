@@ -23,12 +23,12 @@ PROFILE_ID = str(PROFILE["thebitlab"]["profile"])
 INHERITED_MANIFEST_VERSION = str(
     PROFILE["authoritative_grading"]["inherited_manifest_version"]
 )
+# Questi due nomi sono esclusivamente teacher-side e non fanno parte della
+# consegna pubblica. Altri termini dei nomi scenario (es. "aggiunta valida")
+# sono invece concetti pedagogici legittimamente presenti nelle istruzioni.
 SCENARIO_MARKERS = {
-    "stato iniziale",
-    "aggiunta valida",
     "overflow rifiutato senza cambiare stato",
     "quantita negativa rifiutata",
-    "istanze indipendenti",
 }
 
 
