@@ -1,0 +1,39 @@
+{
+  "schema_version": "python.p3-canary-certification.v1",
+  "activity_id": "py2-activity-b-serbatoio-invariante-001",
+  "activity_path": "activities/python/py2-activity-b-serbatoio-invariante-001/activity.json",
+  "host_python": "3.12",
+  "host_os": "ubuntu-latest",
+  "thebitlab": {
+    "repository": "TheBitPoets/2cornot2c",
+    "ref": "1c2889530d0bdd485fa68b233311cd5f91cd67c2",
+    "profile": "python-object-v1",
+    "pr": 767,
+    "issue": 758
+  },
+  "authoritative_grading": {
+    "strategy": "source-build-from-exact-stacked-p3-candidate",
+    "platform": "linux/amd64",
+    "inherited_manifest_version": "2026.08.2",
+    "release_identity_status": "exact-source-candidate-not-stable",
+    "local_image_tag": "thebitlab-python-p3-m28-canary"
+  },
+  "expected_cases": 5,
+  "expected_solution_passed": 5,
+  "expected_starter_passed": 3,
+  "student_scaffold_files": [
+    "README.md",
+    "activity.json",
+    "main.py",
+    "GUIDA.md"
+  ],
+  "certification_policy": {
+    "candidate_profile_only": true,
+    "mass_activity_materialization_allowed": false,
+    "normal_student_lab_dispatch_required_before_stable": true,
+    "normal_student_lab_dispatch_certified_upstream": true,
+    "student_report_redaction_required": true,
+    "immutable_release_lock_required_before_stable": true,
+    "distinct_release_identity_required_before_publish": true
+  }
+}

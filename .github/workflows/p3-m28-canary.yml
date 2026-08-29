@@ -1,0 +1,132 @@
+name: Python M28 P3 canary
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "activities/python/py2-activity-b-serbatoio-invariante-001/**"
+      - "config/p3-canary-profile.json"
+      - "tests/p3_m28_consumer.py"
+      - ".github/workflows/p3-m28-canary.yml"
+
+jobs:
+  m28-p3-canary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout python-docente
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve exact P3 source candidate identity
+        id: p3
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          profile = json.loads(Path("config/p3-canary-profile.json").read_text(encoding="utf-8"))
+          print("ref=" + profile["thebitlab"]["ref"])
+          print("image=" + profile["authoritative_grading"]["local_image_tag"])
+          print("inherited_version=" + profile["authoritative_grading"]["inherited_manifest_version"])
+          PY
+
+      - name: Checkout exact P3 TheBitLab candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: ${{ steps.p3.outputs.ref }}
+          path: _thebitlab-p3
+          persist-credentials: false
+
+      - name: Verify exact P3 source candidate and release boundary
+        shell: bash
+        run: |
+          test "$(git -C _thebitlab-p3 rev-parse HEAD)" = "${{ steps.p3.outputs.ref }}"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          profile = json.loads(Path("config/p3-canary-profile.json").read_text(encoding="utf-8"))
+          root = Path("_thebitlab-p3")
+          manifest = json.loads((root / "docker" / "assignment-runner" / "toolchain.json").read_text(encoding="utf-8"))
+          lock = json.loads((root / "docker" / "assignment-runner" / "toolchain.lock.json").read_text(encoding="utf-8"))
+          p2 = (root / "scripts" / "python_function_profile.py").read_text(encoding="utf-8")
+          p3 = (root / "scripts" / "python_object_profile.py").read_text(encoding="utf-8")
+          p4 = (root / "scripts" / "python_filesystem_profile.py").read_text(encoding="utf-8")
+          dispatcher = (root / "scripts" / "thebitlab_technical_services.py").read_text(encoding="utf-8")
+          dockerfile = (root / "docker" / "assignment-runner" / "Dockerfile").read_text(encoding="utf-8")
+          dockerignore = (root / ".dockerignore").read_text(encoding="utf-8")
+
+          assert 'PROFILE_ID = "python-function-v1"' in p2
+          assert 'PROFILE_ID = "python-object-v1"' in p3
+          assert 'PROFILE_ID = "python-filesystem-v1"' in p4
+          assert '"object_tests"' in dispatcher
+          assert "grade_python_object_activity" in dispatcher
+          for path in ("scripts/python_object_profile.py", "scripts/python_object_worker.py"):
+              assert f"COPY {path} /opt/thebitlab/{Path(path).name}" in dockerfile
+              assert f"!{path}" in dockerignore
+
+          inherited = profile["authoritative_grading"]["inherited_manifest_version"]
+          assert manifest["version"] == inherited == "2026.08.2"
+          assert lock["version"] != manifest["version"]
+          assert profile["thebitlab"]["pr"] == 767
+          assert profile["thebitlab"]["issue"] == 758
+          policy = profile["certification_policy"]
+          assert policy["candidate_profile_only"] is True
+          assert policy["mass_activity_materialization_allowed"] is False
+          assert policy["normal_student_lab_dispatch_certified_upstream"] is True
+          assert policy["student_report_redaction_required"] is True
+          assert policy["immutable_release_lock_required_before_stable"] is True
+          assert policy["distinct_release_identity_required_before_publish"] is True
+          assert profile["authoritative_grading"]["release_identity_status"] == "exact-source-candidate-not-stable"
+
+          print(
+              "PASS: exact P3 source candidate pinned at "
+              f"{profile['thebitlab']['ref']} with inherited manifest {manifest['version']} "
+              "explicitly not treated as a stable release"
+          )
+          PY
+
+      - name: Build exact P3 assignment runner
+        working-directory: _thebitlab-p3
+        run: >-
+          python scripts/build_assignment_runner.py
+          --source-revision "${{ steps.p3.outputs.ref }}"
+          --tag "${{ steps.p3.outputs.image }}"
+          --metadata "$RUNNER_TEMP/python-docente-p3-runner.json"
+
+      - name: Verify built P3 source identity
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          profile = json.loads(Path("config/p3-canary-profile.json").read_text(encoding="utf-8"))
+          metadata = json.loads(
+              (Path(os.environ["RUNNER_TEMP"]) / "python-docente-p3-runner.json").read_text(encoding="utf-8")
+          )
+          assert metadata["version"] == profile["authoritative_grading"]["inherited_manifest_version"]
+          assert metadata["source_revision"] == profile["thebitlab"]["ref"]
+          assert metadata["platform"] == profile["authoritative_grading"]["platform"]
+          print(
+              "PASS: M28 consumer built exact P3 source candidate "
+              f"{metadata['source_revision']} (manifest {metadata['version']}, not stable identity)"
+          )
+          PY
+
+      - name: Run real M28 P3 consumer
+        run: >-
+          python tests/p3_m28_consumer.py
+          --platform _thebitlab-p3
+          --docker-image "${{ steps.p3.outputs.image }}"
