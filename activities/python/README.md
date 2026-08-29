@@ -35,7 +35,7 @@ Primo consumer OOP non-Romeo. Il `Serbatoio` misura comportamento dell'oggetto e
 0 <= livello <= capacita
 ```
 
-Oracle certificato sul candidato P3 exact-source:
+Oracle:
 
 ```text
 solution = 5/5
@@ -44,7 +44,26 @@ starter  = 3/5
 
 Lo starter passa stato iniziale, transizione valida e indipendenza delle istanze, ma fallisce overflow e quantità negativa perché modifica lo stato quando dovrebbe rifiutare la transizione. Il normale Docker ExecutionService/Student Lab usa `python-object-v1` e redige gli `object_tests` teacher-only.
 
-P3 è ancora un **source candidate**, non una release immutabile: il source certificato è `TheBitPoets/2cornot2c@1c2889530d0bdd485fa68b233311cd5f91cd67c2`. La branch eredita il manifest `2026.08.2` dal candidato P2+P4 e non deve essere pubblicata sotto quella stessa identità come se fosse la medesima release.
+## Candidato comune P2 + P3 + P4
+
+I tre profili comportamentali del corso sono ora allineati allo stesso candidato:
+
+```text
+TheBitPoets/2cornot2c PR #768 — DRAFT
+source = 3b482fe6a031bd6e7285342e489def786d77d197
+candidate version = 2026.08.3
+stable lock = 2026.07.1
+```
+
+Il gate course-side più forte costruisce una sola immagine `2026.08.3` e usa quella stessa immagine per:
+
+```text
+M13 / P2
+→ M28 / P3
+→ M26 / P4
+```
+
+Tutti e tre i consumer passano. `2026.08.3` resta però **release candidate, non stable**: non è stata pubblicata su GHCR e non esiste ancora un digest immutabile reale per questa versione.
 
 ## Regola di materializzazione
 
