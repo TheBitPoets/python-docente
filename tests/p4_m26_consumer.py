@@ -141,8 +141,23 @@ def run_student_lab(platform: Path, source: Path, image: str, root: Path) -> dic
 
 def assert_student_report_redacted(report: dict) -> None:
     tests = report.get("tests")
-    if tests != [{"name": "Test 1", "passed": report.get("passed") is True, "status": "passed" if report.get("passed") is True else "failed"}]:
-        fail(f"P4 student report tests non redatti come atteso: {tests}")
+    if not isinstance(tests, list) or len(tests) != 1 or not isinstance(tests[0], dict):
+        fail(f"P4 student report tests non validi: {tests}")
+    test = tests[0]
+    passed = report.get("passed") is True
+    if test.get("name") != "Test 1":
+        fail(f"P4 hidden test name non redatto: {test}")
+    if test.get("passed") is not passed:
+        fail(f"P4 redacted test outcome incoerente: {test}")
+    expected_status = "passed" if passed else "failed"
+    if test.get("status") != expected_status:
+        fail(f"P4 redacted test status incoerente: {test}")
+    message = test.get("message")
+    if message is not None:
+        allowed_message = "Test non superato: failed" if not passed else ""
+        if message != allowed_message:
+            fail(f"P4 redacted report contiene messaggio non generico: {test}")
+
     serialized = json.dumps(report, ensure_ascii=False).casefold()
     for marker in (
         "produce il totale nel file",
