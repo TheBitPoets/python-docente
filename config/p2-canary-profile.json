@@ -6,15 +6,17 @@
   "host_os": "ubuntu-latest",
   "thebitlab": {
     "repository": "TheBitPoets/2cornot2c",
-    "ref": "670bc7a7e24d6eab7b4ac9aefda9a0baef8ec6d2",
+    "ref": "3b482fe6a031bd6e7285342e489def786d77d197",
     "profile": "python-function-v1",
-    "pr": 766,
+    "pr": 768,
+    "profile_lineage_pr": 766,
     "feature_pr": 763
   },
   "authoritative_grading": {
     "strategy": "source-build-from-exact-combined-release-candidate",
     "platform": "linux/amd64",
-    "toolchain_version": "2026.08.2",
+    "toolchain_version": "2026.08.3",
+    "release_identity_status": "combined-release-candidate-not-stable",
     "local_image_tag": "thebitlab-python-grading-canaries"
   },
   "expected_cases": 3,
@@ -32,6 +34,6 @@
     "normal_student_lab_dispatch_required_before_stable": true,
     "normal_student_lab_dispatch_certified": true,
     "immutable_release_lock_required_before_stable": true,
-    "combined_p2_p4_toolchain_required": true
+    "combined_p2_p3_p4_toolchain_required": true
   }
 }

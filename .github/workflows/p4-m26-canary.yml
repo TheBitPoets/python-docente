@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Resolve exact combined P2 P4 candidate identity
+      - name: Resolve exact combined P2 P3 P4 candidate identity
         id: p4
         shell: bash
         run: |
@@ -47,7 +47,7 @@ jobs:
           path: _thebitlab-p4
           persist-credentials: false
 
-      - name: Verify combined P4 release-candidate identity
+      - name: Verify combined P2 P3 P4 release-candidate identity
         shell: bash
         run: |
           test "$(git -C _thebitlab-p4 rev-parse HEAD)" = "${{ steps.p4.outputs.ref }}"
@@ -57,19 +57,22 @@ jobs:
           profile = json.loads(Path("config/p4-canary-profile.json").read_text(encoding="utf-8"))
           root = Path("_thebitlab-p4")
           p2 = (root / "scripts" / "python_function_profile.py").read_text(encoding="utf-8")
+          p3 = (root / "scripts" / "python_object_profile.py").read_text(encoding="utf-8")
           p4 = (root / "scripts" / "python_filesystem_profile.py").read_text(encoding="utf-8")
           manifest = json.loads((root / "docker" / "assignment-runner" / "toolchain.json").read_text(encoding="utf-8"))
           lock = json.loads((root / "docker" / "assignment-runner" / "toolchain.lock.json").read_text(encoding="utf-8"))
           assert 'PROFILE_ID = "python-function-v1"' in p2
+          assert 'PROFILE_ID = "python-object-v1"' in p3
           assert 'PROFILE_ID = "python-filesystem-v1"' in p4
-          assert manifest["version"] == profile["authoritative_grading"]["toolchain_version"] == "2026.08.2"
+          assert manifest["version"] == profile["authoritative_grading"]["toolchain_version"] == "2026.08.3"
           assert lock["version"] == "2026.07.1"
-          assert profile["thebitlab"]["pr"] == 766
-          assert profile["certification_policy"]["candidate_profile_only"] is True
-          assert profile["certification_policy"]["mass_activity_materialization_allowed"] is False
-          assert profile["certification_policy"]["normal_student_lab_dispatch_certified"] is True
-          assert profile["certification_policy"]["immutable_release_lock_required_before_stable"] is True
-          assert profile["certification_policy"]["combined_p2_p4_toolchain_required"] is True
+          assert profile["thebitlab"]["pr"] == 768
+          policy = profile["certification_policy"]
+          assert policy["candidate_profile_only"] is True
+          assert policy["mass_activity_materialization_allowed"] is False
+          assert policy["normal_student_lab_dispatch_certified"] is True
+          assert policy["immutable_release_lock_required_before_stable"] is True
+          assert policy["combined_p2_p3_p4_toolchain_required"] is True
           PY
 
       - name: Build exact combined assignment runner
@@ -88,16 +91,10 @@ jobs:
           import os
           from pathlib import Path
           profile = json.loads(Path("config/p4-canary-profile.json").read_text(encoding="utf-8"))
-          metadata = json.loads(
-              (Path(os.environ["RUNNER_TEMP"]) / "python-docente-p4-runner.json").read_text(encoding="utf-8")
-          )
+          metadata = json.loads((Path(os.environ["RUNNER_TEMP"]) / "python-docente-p4-runner.json").read_text(encoding="utf-8"))
           assert metadata["version"] == profile["authoritative_grading"]["toolchain_version"]
           assert metadata["source_revision"] == profile["thebitlab"]["ref"]
           assert metadata["platform"] == profile["authoritative_grading"]["platform"]
-          print(
-              "PASS: M26 consumer built exact combined grading candidate "
-              f"{metadata['version']} from {metadata['source_revision']}"
-          )
           PY
 
       - name: Run real M26 P4 consumer

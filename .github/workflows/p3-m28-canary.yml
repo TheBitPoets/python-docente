@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Resolve exact P3 source candidate identity
+      - name: Resolve exact combined P2 P3 P4 candidate identity
         id: p3
         shell: bash
         run: |
@@ -36,10 +36,10 @@ jobs:
           profile = json.loads(Path("config/p3-canary-profile.json").read_text(encoding="utf-8"))
           print("ref=" + profile["thebitlab"]["ref"])
           print("image=" + profile["authoritative_grading"]["local_image_tag"])
-          print("inherited_version=" + profile["authoritative_grading"]["inherited_manifest_version"])
+          print("version=" + profile["authoritative_grading"]["toolchain_version"])
           PY
 
-      - name: Checkout exact P3 TheBitLab candidate
+      - name: Checkout exact combined TheBitLab candidate
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: TheBitPoets/2cornot2c
@@ -47,7 +47,7 @@ jobs:
           path: _thebitlab-p3
           persist-credentials: false
 
-      - name: Verify exact P3 source candidate and release boundary
+      - name: Verify combined P2 P3 P4 release-candidate identity
         shell: bash
         run: |
           test "$(git -C _thebitlab-p3 rev-parse HEAD)" = "${{ steps.p3.outputs.ref }}"
@@ -62,23 +62,13 @@ jobs:
           p2 = (root / "scripts" / "python_function_profile.py").read_text(encoding="utf-8")
           p3 = (root / "scripts" / "python_object_profile.py").read_text(encoding="utf-8")
           p4 = (root / "scripts" / "python_filesystem_profile.py").read_text(encoding="utf-8")
-          dispatcher = (root / "scripts" / "thebitlab_technical_services.py").read_text(encoding="utf-8")
-          dockerfile = (root / "docker" / "assignment-runner" / "Dockerfile").read_text(encoding="utf-8")
-          dockerignore = (root / ".dockerignore").read_text(encoding="utf-8")
-
           assert 'PROFILE_ID = "python-function-v1"' in p2
           assert 'PROFILE_ID = "python-object-v1"' in p3
           assert 'PROFILE_ID = "python-filesystem-v1"' in p4
-          assert '"object_tests"' in dispatcher
-          assert "grade_python_object_activity" in dispatcher
-          for path in ("scripts/python_object_profile.py", "scripts/python_object_worker.py"):
-              assert f"COPY {path} /opt/thebitlab/{Path(path).name}" in dockerfile
-              assert f"!{path}" in dockerignore
-
-          inherited = profile["authoritative_grading"]["inherited_manifest_version"]
-          assert manifest["version"] == inherited == "2026.08.2"
-          assert lock["version"] != manifest["version"]
-          assert profile["thebitlab"]["pr"] == 767
+          assert manifest["version"] == profile["authoritative_grading"]["toolchain_version"] == "2026.08.3"
+          assert lock["version"] == "2026.07.1"
+          assert profile["thebitlab"]["pr"] == 768
+          assert profile["thebitlab"]["profile_lineage_pr"] == 767
           assert profile["thebitlab"]["issue"] == 758
           policy = profile["certification_policy"]
           assert policy["candidate_profile_only"] is True
@@ -86,17 +76,11 @@ jobs:
           assert policy["normal_student_lab_dispatch_certified_upstream"] is True
           assert policy["student_report_redaction_required"] is True
           assert policy["immutable_release_lock_required_before_stable"] is True
-          assert policy["distinct_release_identity_required_before_publish"] is True
-          assert profile["authoritative_grading"]["release_identity_status"] == "exact-source-candidate-not-stable"
-
-          print(
-              "PASS: exact P3 source candidate pinned at "
-              f"{profile['thebitlab']['ref']} with inherited manifest {manifest['version']} "
-              "explicitly not treated as a stable release"
-          )
+          assert policy["combined_p2_p3_p4_toolchain_required"] is True
+          assert profile["authoritative_grading"]["release_identity_status"] == "combined-release-candidate-not-stable"
           PY
 
-      - name: Build exact P3 assignment runner
+      - name: Build exact combined assignment runner
         working-directory: _thebitlab-p3
         run: >-
           python scripts/build_assignment_runner.py
@@ -104,25 +88,18 @@ jobs:
           --tag "${{ steps.p3.outputs.image }}"
           --metadata "$RUNNER_TEMP/python-docente-p3-runner.json"
 
-      - name: Verify built P3 source identity
+      - name: Verify built combined toolchain identity
         shell: bash
         run: |
           python - <<'PY'
           import json
           import os
           from pathlib import Path
-
           profile = json.loads(Path("config/p3-canary-profile.json").read_text(encoding="utf-8"))
-          metadata = json.loads(
-              (Path(os.environ["RUNNER_TEMP"]) / "python-docente-p3-runner.json").read_text(encoding="utf-8")
-          )
-          assert metadata["version"] == profile["authoritative_grading"]["inherited_manifest_version"]
+          metadata = json.loads((Path(os.environ["RUNNER_TEMP"]) / "python-docente-p3-runner.json").read_text(encoding="utf-8"))
+          assert metadata["version"] == profile["authoritative_grading"]["toolchain_version"]
           assert metadata["source_revision"] == profile["thebitlab"]["ref"]
           assert metadata["platform"] == profile["authoritative_grading"]["platform"]
-          print(
-              "PASS: M28 consumer built exact P3 source candidate "
-              f"{metadata['source_revision']} (manifest {metadata['version']}, not stable identity)"
-          )
           PY
 
       - name: Run real M28 P3 consumer

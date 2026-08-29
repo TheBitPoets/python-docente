@@ -9,9 +9,8 @@ import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROFILE_PATH = ROOT / "config" / "p3-canary-profile.json"
-PROFILE = json.loads(PROFILE_PATH.read_text(encoding="utf-8"))
-ACTIVITY = ROOT / str(PROFILE["activity_path"])
+PROFILE = json.loads((ROOT / "config" / "p3-canary-profile.json").read_text(encoding="utf-8"))
+ACTIVITY = ROOT / PROFILE["activity_path"]
 ACTIVITY_ROOT = ACTIVITY.parent
 STARTER = ACTIVITY_ROOT / "starter" / "main.py"
 SOLUTION = ACTIVITY_ROOT / "solution" / "main.py"
@@ -20,12 +19,7 @@ EXPECTED_FILES = set(PROFILE["student_scaffold_files"])
 EXPECTED_CASES = int(PROFILE["expected_cases"])
 THEBITLAB_REF = str(PROFILE["thebitlab"]["ref"])
 PROFILE_ID = str(PROFILE["thebitlab"]["profile"])
-INHERITED_MANIFEST_VERSION = str(
-    PROFILE["authoritative_grading"]["inherited_manifest_version"]
-)
-# Questi due nomi sono esclusivamente teacher-side e non fanno parte della
-# consegna pubblica. Altri termini dei nomi scenario (es. "aggiunta valida")
-# sono invece concetti pedagogici legittimamente presenti nelle istruzioni.
+TOOLCHAIN_VERSION = str(PROFILE["authoritative_grading"]["toolchain_version"])
 SCENARIO_MARKERS = {
     "overflow rifiutato senza cambiare stato",
     "quantita negativa rifiutata",
@@ -43,16 +37,11 @@ def load_object(path: Path) -> dict:
     return value
 
 
-def run_module(
-    platform: Path,
-    module: str,
-    *args: str,
-    check: bool = True,
-) -> subprocess.CompletedProcess[str]:
+def run_module(platform: Path, module: str, *args: str) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         [sys.executable, "-m", module, *args],
         cwd=platform,
-        check=check,
+        check=True,
         capture_output=True,
         text=True,
     )
@@ -70,15 +59,17 @@ def assert_platform(platform: Path) -> None:
 
     manifest = load_object(platform / "docker" / "assignment-runner" / "toolchain.json")
     lock = load_object(platform / "docker" / "assignment-runner" / "toolchain.lock.json")
-    if manifest.get("version") != INHERITED_MANIFEST_VERSION:
+    if manifest.get("version") != TOOLCHAIN_VERSION:
         fail(
-            "P3 inherited manifest mismatch: "
-            f"expected {INHERITED_MANIFEST_VERSION}, found {manifest.get('version')}"
+            f"P3 candidate version mismatch: expected {TOOLCHAIN_VERSION}, "
+            f"found {manifest.get('version')}"
         )
-    if PROFILE["certification_policy"]["distinct_release_identity_required_before_publish"] is not True:
-        fail("P3 consumer deve impedire la pubblicazione sotto l'identita ereditata")
-    if lock.get("version") == manifest.get("version"):
-        fail("P3 source candidate non deve fingere che il manifest sia gia il lock stabile")
+    if lock.get("version") == TOOLCHAIN_VERSION:
+        fail("P3 candidate non deve fingere che 2026.08.3 sia gia il lock stabile")
+    if PROFILE["authoritative_grading"].get("release_identity_status") != (
+        "combined-release-candidate-not-stable"
+    ):
+        fail("P3 release identity status non esplicita il confine candidate/stable")
 
     sys.path.insert(0, str(platform))
     try:
@@ -89,8 +80,7 @@ def assert_platform(platform: Path) -> None:
                 f"P3 profile mismatch: expected {PROFILE_ID}, "
                 f"found {python_object_profile.PROFILE_ID}"
             )
-        activity = load_object(ACTIVITY)
-        errors = validate_activity.validate_activity(activity, str(ACTIVITY))
+        errors = validate_activity.validate_activity(load_object(ACTIVITY), str(ACTIVITY))
         if errors:
             fail("P3 Activity non valida:\n- " + "\n- ".join(errors))
     finally:
@@ -111,8 +101,6 @@ def assert_student_scaffold(platform: Path, temp: Path) -> None:
         THEBITLAB_REF,
     )
     scaffold = target / "assignments" / PROFILE["activity_id"]
-    if not scaffold.is_dir():
-        fail(f"P3 scaffold non creato: {scaffold}")
     files = {
         path.relative_to(scaffold).as_posix()
         for path in scaffold.rglob("*")
@@ -132,23 +120,18 @@ def assert_student_scaffold(platform: Path, temp: Path) -> None:
     if "object_tests" in public_activity:
         fail("object_tests teacher-only leaked into student scaffold")
     serialized = json.dumps(public_activity, ensure_ascii=False).casefold()
-    forbidden = {
+    for marker in {
         "expected_return",
         "expected_exception",
         "expected_constructor_exception",
         "additional_instances",
         *SCENARIO_MARKERS,
-    }
-    for marker in forbidden:
+    }:
         if marker.casefold() in serialized:
             fail(f"P3 teacher oracle leaked into student scaffold: {marker}")
 
 
-def grade_via_execution_service(
-    platform: Path,
-    source: Path,
-    image: str,
-) -> tuple[object, dict]:
+def grade_via_execution_service(platform: Path, source: Path, image: str) -> tuple[object, dict]:
     sys.path.insert(0, str(platform))
     try:
         from scripts.thebitlab_technical_services import (
@@ -177,8 +160,7 @@ def grade_via_execution_service(
     if not isinstance(report, dict):
         fail(
             "P3 normal Docker ExecutionService non ha prodotto runner_report: "
-            f"status={execution.status!r}, detail={execution.detail!r}, "
-            f"metadata={execution.metadata!r}"
+            f"status={execution.status!r}, detail={execution.detail!r}"
         )
     if execution.metadata.get("grading_profile") != PROFILE_ID:
         fail(f"P3 ExecutionService non ha dichiarato il profilo atteso: {execution.metadata}")
@@ -188,10 +170,7 @@ def grade_via_execution_service(
 def assert_grading(platform: Path, image: str) -> None:
     solution_execution, solution = grade_via_execution_service(platform, SOLUTION, image)
     if solution_execution.status != "passed" or solution.get("passed") is not True:
-        fail(
-            "P3 solution non passa nel normale ExecutionService: "
-            f"status={solution_execution.status}, report={solution}"
-        )
+        fail(f"P3 solution non passa nel normale ExecutionService: {solution}")
     if solution.get("profile") != PROFILE_ID:
         fail(f"P3 solution report profile inatteso: {solution}")
     if solution.get("summary") != {
@@ -202,10 +181,7 @@ def assert_grading(platform: Path, image: str) -> None:
 
     starter_execution, starter = grade_via_execution_service(platform, STARTER, image)
     if starter_execution.status != "failed" or starter.get("passed") is True:
-        fail(
-            "P3 starter non discrimina l'invariante nel normale ExecutionService: "
-            f"status={starter_execution.status}, report={starter}"
-        )
+        fail(f"P3 starter non discrimina l'invariante: {starter}")
     if starter.get("summary") != {
         "passed": PROFILE["expected_starter_passed"],
         "total": EXPECTED_CASES,
@@ -214,32 +190,24 @@ def assert_grading(platform: Path, image: str) -> None:
     if any(test.get("worker_status") != "completed" for test in starter.get("tests", [])):
         fail(f"P3 starter deve eseguire tutti gli scenari senza crashare: {starter}")
 
-    failed = {test.get("name") for test in starter.get("tests", []) if not test.get("passed")}
-    expected_failed = {
-        "overflow rifiutato senza cambiare stato",
-        "quantita negativa rifiutata",
-    }
-    if failed != expected_failed:
+    failed = {test.get("name") for test in starter["tests"] if not test.get("passed")}
+    if failed != SCENARIO_MARKERS:
         fail(f"P3 starter fallisce scenari inattesi: {failed}")
 
-    overflow = next(
-        test
-        for test in starter["tests"]
-        if test.get("name") == "overflow rifiutato senza cambiare stato"
-    )
-    negative = next(
-        test
-        for test in starter["tests"]
-        if test.get("name") == "quantita negativa rifiutata"
-    )
+    overflow = next(test for test in starter["tests"] if test.get("name") == next(
+        marker for marker in SCENARIO_MARKERS if marker.startswith("overflow")
+    ))
+    negative = next(test for test in starter["tests"] if test.get("name") == next(
+        marker for marker in SCENARIO_MARKERS if marker.startswith("quantita")
+    ))
     if overflow["observations"][1].get("actual_return") is not True:
-        fail(f"P3 starter overflow dovrebbe accettare erroneamente la seconda aggiunta: {overflow}")
+        fail(f"P3 starter overflow dovrebbe essere accettato erroneamente: {overflow}")
     if overflow["observations"][2].get("actual_value") != 12:
-        fail(f"P3 starter overflow dovrebbe violare il livello atteso: {overflow}")
+        fail(f"P3 starter overflow dovrebbe portare livello a 12: {overflow}")
     if negative["observations"][0].get("actual_return") is not True:
         fail(f"P3 starter quantita negativa dovrebbe essere accettata erroneamente: {negative}")
     if negative["observations"][1].get("actual_value") != -1:
-        fail(f"P3 starter quantita negativa dovrebbe violare l'invariante: {negative}")
+        fail(f"P3 starter quantita negativa dovrebbe portare livello a -1: {negative}")
 
 
 def student_lab_report(
@@ -287,12 +255,11 @@ def assert_public_report(report: dict, *, passed: int, total: int) -> None:
     tests = report.get("tests")
     if not isinstance(tests, list) or len(tests) != total:
         fail(f"P3 Student Lab tests inattesi: {tests}")
-    expected_names = [f"Test {index}" for index in range(1, total + 1)]
-    if [test.get("name") for test in tests] != expected_names:
+    if [test.get("name") for test in tests] != [f"Test {index}" for index in range(1, total + 1)]:
         fail(f"P3 Student Lab non ha redatto i nomi teacher-side: {tests}")
 
     serialized = json.dumps(report, ensure_ascii=False).casefold()
-    forbidden = {
+    for marker in {
         "object_tests",
         "expected_return",
         "expected_exception",
@@ -303,8 +270,7 @@ def assert_public_report(report: dict, *, passed: int, total: int) -> None:
         "observations",
         "worker_status",
         *SCENARIO_MARKERS,
-    }
-    for marker in forbidden:
+    }:
         if marker.casefold() in serialized:
             fail(f"P3 teacher evidence leaked nel report Student Lab: {marker}")
 
@@ -341,8 +307,8 @@ def main() -> int:
         assert_student_lab_redaction(platform, temp, args.docker_image)
 
     print(
-        "PASS: M28 P3 canary validates Activity/scaffold, proves the Serbatoio "
-        "invariant through normal Docker object grading, and preserves Student Lab redaction"
+        "PASS: M28 P3 canary uses the exact combined 2026.08.3 candidate, "
+        "proves the Serbatoio invariant, and preserves Student Lab redaction"
     )
     return 0
 
