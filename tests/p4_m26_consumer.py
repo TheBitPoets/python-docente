@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -14,6 +15,7 @@ ACTIVITY = ROOT / PROFILE["activity_path"]
 ACTIVITY_ROOT = ACTIVITY.parent
 STARTER = ACTIVITY_ROOT / "starter" / "main.py"
 SOLUTION = ACTIVITY_ROOT / "solution" / "main.py"
+GRADING_FIXTURE = ACTIVITY_ROOT / "fixtures" / "misure.txt"
 EXPECTED_FILES = set(PROFILE["student_scaffold_files"])
 THEBITLAB_REF = PROFILE["thebitlab"]["ref"]
 PROFILE_ID = PROFILE["thebitlab"]["profile"]
@@ -96,42 +98,81 @@ def assert_student_scaffold(platform: Path, temp: Path) -> None:
             fail(f"P4 teacher oracle leaked into scaffold: {marker}")
 
 
-def grade(platform: Path, source: Path, image: str) -> dict:
+def run_student_lab(platform: Path, source: Path, image: str, root: Path) -> dict:
+    activity_bundle = root / "activities" / PROFILE["activity_id"]
+    fixture_dir = activity_bundle / "fixtures"
+    fixture_dir.mkdir(parents=True)
+    shutil.copy2(ACTIVITY, activity_bundle / "activity.json")
+    shutil.copy2(GRADING_FIXTURE, fixture_dir / "misure.txt")
+
+    workspace = (
+        root
+        / "students"
+        / "p4-canary-student"
+        / "assignments"
+        / PROFILE["activity_id"]
+    )
+    workspace.mkdir(parents=True)
+    shutil.copy2(source, workspace / "main.py")
+
+    assignment = {
+        "assignment_id": f"assignment-{PROFILE['activity_id']}",
+        "activity_id": PROFILE["activity_id"],
+        "student_id": "p4-canary-student",
+        "activity": {"path": f"activities/{PROFILE['activity_id']}/activity.json"},
+        "workspace": {
+            "path": f"students/p4-canary-student/assignments/{PROFILE['activity_id']}"
+        },
+    }
+
     sys.path.insert(0, str(platform))
     try:
-        from scripts import grade_python_filesystem_activity
+        from scripts import student_lab_runner
 
-        return grade_python_filesystem_activity.grade_in_docker(
-            activity_path=ACTIVITY,
-            source_path=source,
-            image=image,
+        return student_lab_runner.run_docker_assignment(
+            assignment,
+            root=root,
             timeout_seconds=5,
-            activity_root=ACTIVITY_ROOT,
-            source_root=ACTIVITY_ROOT,
+            docker_image=image,
         )
     finally:
         sys.path.remove(str(platform))
 
 
-def assert_grading(platform: Path, image: str) -> None:
-    solution = grade(platform, SOLUTION, image)
-    if solution.get("passed") is not True or solution.get("summary") != {"passed": 1, "total": 1}:
-        fail(f"P4 solution non passa: {solution}")
-    test = solution["tests"][0]
-    if test.get("worker_status") != "completed":
-        fail(f"P4 solution worker status inatteso: {test}")
+def assert_student_report_redacted(report: dict) -> None:
+    tests = report.get("tests")
+    if tests != [{"name": "Test 1", "passed": report.get("passed") is True, "status": "passed" if report.get("passed") is True else "failed"}]:
+        fail(f"P4 student report tests non redatti come atteso: {tests}")
+    serialized = json.dumps(report, ensure_ascii=False).casefold()
+    for marker in (
+        "produce il totale nel file",
+        "worker_status",
+        "observed_artifacts",
+        "checks",
+        "fixtures/misure.txt",
+        "expected_artifacts",
+        '"36\\n"',
+    ):
+        if marker in serialized:
+            fail(f"P4 teacher detail leaked into Student Lab report: {marker}")
 
-    starter = grade(platform, STARTER, image)
+
+def assert_grading(platform: Path, image: str, temp: Path) -> None:
+    solution_root = temp / "solution-case"
+    solution = run_student_lab(platform, SOLUTION, image, solution_root)
+    if solution.get("passed") is not True or solution.get("summary") != {"passed": 1, "total": 1}:
+        fail(f"P4 solution non passa nel normale Student Lab: {solution}")
+    if solution.get("profile") != PROFILE_ID:
+        fail(f"P4 solution non dichiara il profilo atteso: {solution}")
+    assert_student_report_redacted(solution)
+
+    starter_root = temp / "starter-case"
+    starter = run_student_lab(platform, STARTER, image, starter_root)
     if starter.get("passed") is True or starter.get("summary") != {"passed": 0, "total": 1}:
-        fail(f"P4 starter non discrimina stdout vs artifact: {starter}")
-    test = starter["tests"][0]
-    if test.get("worker_status") != "completed":
-        fail(f"P4 starter deve completare senza crash: {test}")
-    checks = test.get("checks") or []
-    if not any(check.get("status") == "missing" and check.get("path") == "risultato.txt" for check in checks):
-        fail(f"P4 starter deve fallire per artifact mancante: {test}")
-    if "36" not in str(test.get("stdout", "")):
-        fail(f"P4 starter deve dimostrare che stdout corretto non equivale ad artifact: {test}")
+        fail(f"P4 starter non discrimina stdout vs artifact nel normale Student Lab: {starter}")
+    if starter.get("profile") != PROFILE_ID:
+        fail(f"P4 starter non dichiara il profilo atteso: {starter}")
+    assert_student_report_redacted(starter)
 
 
 def main() -> int:
@@ -146,11 +187,12 @@ def main() -> int:
     platform = args.platform.resolve(strict=True)
     assert_platform(platform)
     with tempfile.TemporaryDirectory(prefix="python-docente-p4-") as raw_temp:
-        assert_student_scaffold(platform, Path(raw_temp))
-    assert_grading(platform, args.docker_image)
+        temp = Path(raw_temp)
+        assert_student_scaffold(platform, temp)
+        assert_grading(platform, args.docker_image, temp)
     print(
-        "PASS: M26 P4 canary validates hidden grading fixture, redacted scaffold and proves "
-        "stdout != required filesystem artifact in authoritative Docker grading"
+        "PASS: M26 P4 canary validates hidden grading fixture/scaffold and proves "
+        "filesystem behavior through the normal redacted Student Lab Docker path"
     )
     return 0
 
