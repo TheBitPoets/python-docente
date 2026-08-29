@@ -17,6 +17,7 @@ Restano separati:
 curriculum frozen
 != contenuti editoriali completi
 != profili runtime tecnicamente certificati
+!= release candidate verde
 != stable immutable toolchain release
 != teacher sign-off
 != Content Pack approved
@@ -54,34 +55,146 @@ Editorial completion does not authorize mass Activity generation.
 
 ---
 
-# 2. Real GitHub Actions execution
+# 2. Python grading release candidate — P2 + P3 + P4
 
-`python-docente#8` is **CLOSED / completed**. The repository is public and GitHub-hosted runners execute normally.
-
-Current post-P3 course evidence:
+The three behavior profiles now share one truthful combined release candidate:
 
 ```text
-TheBitLab Python vertical slice
-run 33275840276 / #431
-SUCCESS
+TheBitPoets/2cornot2c PR #768 — DRAFT
+candidate version = 2026.08.3
+exact source = 3b482fe6a031bd6e7285342e489def786d77d197
+stable checked-in lock = 2026.07.1
+P2 = python-function-v1
+P3 = python-object-v1
+P4 = python-filesystem-v1
+```
 
-Python combined grading canaries
-run 33275840271 / #4
+Lineage:
+
+```text
+#766 -> combined P2 + P4 source candidate
+#767 -> P3 object behavior stacked on #766
+#768 -> distinct P2 + P3 + P4 release identity 2026.08.3
+```
+
+## Strong same-image platform proof
+
+```text
+Combined Python grading profiles
+run 33276143332 / #17
 SUCCESS
 ```
 
-The normal course regression remains green after adding the fourth deliberate Python canary.
+One image built once from the exact `2026.08.3` source passed:
+
+```text
+combined P2/P3/P4 contracts + identity  PASS
+legacy P1/C/Node/SQLite Student Lab     PASS
+P2 normal Student Lab                   PASS
+P3 normal Student Lab                   PASS
+P4 normal Student Lab                   PASS
+```
+
+## Guarded release validation
+
+```text
+Publish assignment runner toolchain
+run 33276143365 / #27
+SUCCESS
+
+validate  SUCCESS
+publish   SKIPPED — correct for PR
+```
+
+Other evidence on the same head:
+
+```text
+Build assignment runner Docker #1051      SUCCESS
+Python function profile P2 #37            SUCCESS
+Python object profile P3 #5               SUCCESS
+Python filesystem profile P4 #25          SUCCESS
+P4 Student Lab integration #14            SUCCESS
+Smoke student repository template #145    SUCCESS
+Quality #1888                              SUCCESS
+```
+
+Quality #1888 had one first-attempt Windows-only JavaScript failure after 554 other Windows tests passed. The failed Windows job was rerun unchanged; the Node/SQL step passed and the overall workflow concluded SUCCESS. No release/P2/P3/P4 code was changed for that rerun.
+
+## Stable release boundary
+
+`2026.08.3` is a **fully green release candidate, not a stable published release**.
+
+Current truth:
+
+```text
+2026.08.3 source candidate          PASS
+same-image P2/P3/P4                PASS
+publish validation                 PASS
+GHCR publication                   NOT DONE
+real 2026.08.3 immutable digest    NOT AVAILABLE YET
+stable toolchain.lock update       NOT DONE
+```
+
+No digest is invented. Merge/publication requires an explicit release decision.
 
 ---
 
-# 3. P1 — M04 stdin/stdout canary
+# 3. Course-side shared 2026.08.3 proof
+
+P2, P3 and P4 course profiles are all pinned to:
+
+```text
+TheBitPoets/2cornot2c@3b482fe6a031bd6e7285342e489def786d77d197
+version = 2026.08.3
+PR = #768
+```
+
+Static alignment:
+
+```text
+tests/python_grading_toolchain_alignment.py
+```
+
+fails if P2/P3/P4 diverge in source, version or candidate identity.
+
+## Strong same-image course proof
+
+```text
+Python combined grading canaries
+run 33276449691 / #7
+SUCCESS
+```
+
+The workflow:
+
+1. proves P2/P3/P4 pins are identical;
+2. checks out the exact `3b482fe6...` source once;
+3. builds one `2026.08.3` image once;
+4. runs M13/P2 against it;
+5. runs M28/P3 against the same image;
+6. runs M26/P4 against the same image.
+
+All three pass.
+
+Current individual/regrression course evidence:
+
+```text
+Python M13 P2 canary              run 33276449646 / #38  SUCCESS
+Python M28 P3 canary              run 33276449656 / #5   SUCCESS
+Python M26 P4 canary              run 33276449659 / #20  SUCCESS
+Python combined grading canaries  run 33276449691 / #7   SUCCESS
+TheBitLab Python vertical slice    run 33276449733 / #434 SUCCESS
+```
+
+---
+
+# 4. P1 — M04 stdin/stdout canary
 
 ```text
 Activity: py2-activity-b-input-somma-001
 M04 / PY2-02
 profile: P1 stdin/stdout
-host: Python 3.12 / Ubuntu + Windows
-TheBitLab baseline: cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
+TheBitLab stable baseline: cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
 stable toolchain lock: 2026.07.1
 ```
 
@@ -96,64 +209,13 @@ Software/Docker evidence is green. `python-docente#7` remains open only for fina
 
 ---
 
-# 4. Unified P2 + P4 grading candidate
-
-P2 and P4 use one exact platform source and one candidate toolchain:
-
-```text
-TheBitPoets/2cornot2c PR #766 — DRAFT
-combined head = 670bc7a7e24d6eab7b4ac9aefda9a0baef8ec6d2
-toolchain candidate = 2026.08.2
-stable checked-in lock = 2026.07.1
-P2 = python-function-v1
-P4 = python-filesystem-v1
-```
-
-Canonical dispatch on that lineage is fail-closed.
-
-Strong platform evidence remains green:
-
-```text
-Combined Python grading profiles
-run 33259536736 / #3
-SUCCESS
-
-Publish assignment runner toolchain / validate
-run 33259536908 / #13
-SUCCESS
-publish SKIPPED — correct for PR
-
-Quality
-run 33259536787 / #1871
-SUCCESS
-```
-
-### Stable release boundary
-
-`2026.08.2` is **technically green but not stable**. Stable promotion still requires:
-
-```text
-review / explicit merge decision for #766
-→ publish from main
-→ obtain real GHCR immutable digest
-→ reviewed toolchain.lock update
-→ stable course repin
-```
-
-No digest is invented and the old stable lock remains unchanged until that real publication exists.
-
----
-
-# 5. P2 — M13 function-behavior canary
+# 5. P2 — M13 function behavior
 
 ```text
 Activity: py2-activity-b-return-area-001
 M13 / PY2-05
 profile: python-function-v1
-platform ref: 670bc7a7e24d6eab7b4ac9aefda9a0baef8ec6d2
-candidate toolchain: 2026.08.2
-feature provenance: 2cornot2c#763
-release path: 2cornot2c#766
+candidate: 2026.08.3 @ 3b482fe6...
 ```
 
 Controlled change:
@@ -162,15 +224,7 @@ Controlled change:
 print(area) -> return area
 ```
 
-Current course evidence:
-
-```text
-Python M13 P2 canary
-run 33275840264 / #35
-SUCCESS
-```
-
-Behavioral oracle:
+Oracle:
 
 ```text
 solution = 3/3 PASS
@@ -183,16 +237,13 @@ Therefore the grader measures function return behavior rather than stdout.
 
 ---
 
-# 6. P4 — M26 filesystem-behavior canary
+# 6. P4 — M26 filesystem behavior
 
 ```text
 Activity: py2-activity-b-file-risultato-001
 M26 / PY2-09
 profile: python-filesystem-v1
-platform ref: 670bc7a7e24d6eab7b4ac9aefda9a0baef8ec6d2
-candidate toolchain: 2026.08.2
-feature provenance: 2cornot2c#764
-release path: 2cornot2c#766
+candidate: 2026.08.3 @ 3b482fe6...
 ```
 
 Controlled change:
@@ -201,41 +252,29 @@ Controlled change:
 print(totale) -> write risultato.txt
 ```
 
-Current course evidence:
-
-```text
-Python M26 P4 canary
-run 33275840262 / #17
-SUCCESS
-```
-
-Behavioral oracle:
+Oracle:
 
 ```text
 solution -> creates risultato.txt -> 1/1 PASS
-starter  -> computes and prints correct total,
-            but artifact is absent -> 0/1 FAIL
+starter  -> correct computed/printed total, no artifact -> 0/1 FAIL
 ```
 
 Teacher fixture/oracle details remain redacted from the Student Lab report.
 
 ---
 
-# 7. P3 — object behavior platform candidate
+# 7. P3 — M28 object behavior
 
-P3 is no longer an unimplemented blocker.
-
-Platform candidate:
+P3 is implemented, platform-certified and consumed by one real non-Romeo course Activity.
 
 ```text
-TheBitPoets/2cornot2c PR #767 — DRAFT
-profile = python-object-v1
-exact source = 1c2889530d0bdd485fa68b233311cd5f91cd67c2
-stacked base = 670bc7a7e24d6eab7b4ac9aefda9a0baef8ec6d2
-issue = 2cornot2c#758
+Activity: py2-activity-b-serbatoio-invariante-001
+M28 / PY2-10
+profile: python-object-v1
+candidate: 2026.08.3 @ 3b482fe6...
 ```
 
-The profile provides:
+P3 platform capabilities include:
 
 ```text
 constructor behavior
@@ -251,29 +290,7 @@ student-report redaction
 fail-closed profile ambiguity
 ```
 
-Real platform certification evidence:
-
-```text
-Python object profile P3 candidate
-run 33275402278 / #3
-SUCCESS
-```
-
-The same exact P3 head also preserved all previous platform regressions:
-
-```text
-Quality #1886                              SUCCESS
-Build assignment runner Docker #1049       SUCCESS
-Python function profile P2 #35             SUCCESS
-Python filesystem profile P4 #23           SUCCESS
-P4 Student Lab integration #12             SUCCESS
-Combined Python grading profiles #15       SUCCESS
-Publish assignment runner validate #25     SUCCESS
-Smoke student repository template #143     SUCCESS
-uTUI consumer evidence #948                 SUCCESS
-```
-
-Normal Docker dispatch now behaves as:
+Normal Docker dispatch:
 
 ```text
 function_tests   -> python-function-v1
@@ -283,108 +300,39 @@ none             -> legacy P1/C/Node/SQLite
 multiple         -> invalid_payload before student code runs
 ```
 
-## P3 release identity boundary
-
-The P3 branch is stacked on the P2+P4 candidate and still inherits the manifest string `2026.08.2`.
-
-Therefore:
-
-```text
-P3 exact-source candidate = CERTIFIED
-P3 immutable stable release = NOT YET
-```
-
-Do **not** publish P3 as though the inherited `2026.08.2` were the same immutable release already reviewed for P2+P4.
-
-A distinct P2+P3+P4 release-candidate identity/version must be prepared and validated before publication. The stable lock remains unchanged until a real publish produces a real digest.
-
----
-
-# 8. P3 — M28 real course canary
-
-The first real non-Romeo OOP consumer is now materialized and green.
-
-```text
-Activity: py2-activity-b-serbatoio-invariante-001
-M28 / PY2-10
-profile: python-object-v1
-platform exact source: 1c2889530d0bdd485fa68b233311cd5f91cd67c2
-release status: exact-source candidate / not stable
-```
-
-Pedagogical invariant:
+M28 invariant:
 
 ```text
 0 <= livello <= capacita
 ```
 
-Controlled change:
-
-```text
-starter:
-  aggiungi() modifica sempre il livello e restituisce True
-
-solution:
-  quantità negativa -> False, stato invariato
-  overflow          -> False, stato invariato
-  transizione valida -> True, stato aggiornato
-```
-
-Behavioral oracle:
+Oracle:
 
 ```text
 solution = 5/5 PASS
 starter  = 3/5
 ```
 
-The starter intentionally passes:
-
-```text
-stato iniziale
-transizione valida
-istanze indipendenti
-```
-
-and fails exactly:
+The starter passes initial state, valid transition and independent instances, but fails exactly:
 
 ```text
 overflow rifiutato senza cambiare stato
 quantita negativa rifiutata
 ```
 
-Real course evidence:
-
-```text
-Python M28 P3 canary
-run 33275840266 / #2
-SUCCESS
-```
-
-That workflow proves, against one image built from the exact P3 source:
-
-1. exact source pin and release boundary;
-2. Activity validation;
-3. exact 4-file student scaffold;
-4. no `object_tests`/expected oracle leak into the public Activity;
-5. solution 5/5 through the normal Docker ExecutionService;
-6. starter 3/5 with all five scenarios actually executed;
-7. exact failed controlled-change scenarios;
-8. normal Student Lab solution/starter execution;
-9. teacher scenario names and object observations redacted to public `Test 1…N` results.
-
-P3 now satisfies the required **one real `python-docente` OOP consumer** gate.
+The course consumer also proves exact scaffold and Student Lab redaction of teacher-side `object_tests` and observations.
 
 ---
 
-# 9. Activity inventory
+# 8. Activity inventory
 
 Exactly four deliberate Python canaries are materialized:
 
 ```text
 M04  py2-activity-b-input-somma-001             P1 stdin/stdout
-M13  py2-activity-b-return-area-001             P2 function behavior candidate
-M26  py2-activity-b-file-risultato-001          P4 filesystem behavior candidate
-M28  py2-activity-b-serbatoio-invariante-001    P3 object behavior candidate
+M13  py2-activity-b-return-area-001             P2 function behavior
+M26  py2-activity-b-file-risultato-001          P4 filesystem behavior
+M28  py2-activity-b-serbatoio-invariante-001    P3 object behavior
 ```
 
 Policy remains:
@@ -403,7 +351,7 @@ No mass Activity generation is authorized yet.
 
 ---
 
-# 10. PY2-01 / Flowchart Lab
+# 9. PY2-01 / Flowchart Lab
 
 The managed Flowchart candidate includes:
 
@@ -424,7 +372,7 @@ Course CI validates the pinned candidate on Ubuntu and Windows. Final classroom-
 
 ---
 
-# 11. Git G1 consumer
+# 10. Git G1 consumer
 
 ```text
 TheBitPoets/git
@@ -437,7 +385,7 @@ Structural/process consumer is complete and exercised by course CI. Classroom re
 
 ---
 
-# 12. Slide release artifacts — REAL BUILD PASS
+# 11. Slide release artifacts — REAL BUILD PASS
 
 ```text
 workflow: Python slide release artifacts
@@ -457,22 +405,25 @@ Engineering PDF sample M04/M11/M18/M22/M26/M30 and six mandatory PPTX LibreOffic
 
 ---
 
-# 13. Profiles / runtime status
+# 12. Profiles / runtime status
 
 ```text
 P0 manual/trace/design                 available by pedagogy
 P1 stdin/stdout                        software certified / classroom rehearsal pending
-P2 function behavior                  unified candidate + real consumer PASS / stable publish pending
-P3 object behavior                    exact-source candidate + real M28 consumer PASS / stable release identity pending
-P4 filesystem behavior                unified candidate + real consumer PASS / stable publish pending
+P2 function behavior                  2026.08.3 candidate + real consumer PASS
+P3 object behavior                    2026.08.3 candidate + real M28 consumer PASS
+P4 filesystem behavior                2026.08.3 candidate + real consumer PASS
+P2+P3+P4 same-image platform          PASS
+P2+P3+P4 same-image course            PASS
+P2/P3/P4 immutable stable release     PENDING
 romeo-sim                              certification pending
 ```
 
-P3 implementation/canary is no longer a functional blocker. Its remaining blocker is **release promotion**, not behavior certification.
+The grading-profile implementation phase is complete at **release-candidate level**. The remaining grading blocker is release promotion, not behavior implementation.
 
 ---
 
-# 14. Remaining promotion gates
+# 13. Remaining promotion gates
 
 Teacher sign-off remains `PENDING`; AI/CI cannot approve it.
 
@@ -480,10 +431,10 @@ Before `Content Pack 1.0.0 / approved` and classroom GO remain at least:
 
 1. final P1 Classroom Environment rehearsal;
 2. final Flowchart managed classroom-profile rehearsal;
-3. prepare/review a distinct combined P2+P3+P4 release candidate;
-4. merge/publish the intended runner release from the reviewed release path;
-5. obtain the real GHCR immutable digest and update the reviewed toolchain lock;
-6. repin course P2/P3/P4 consumers to the promoted stable release;
+3. explicit review/merge/release decision for the stacked `2cornot2c` candidate lineage;
+4. publish the intended `2026.08.3` runner from the guarded `main` path;
+5. obtain the real GHCR immutable digest;
+6. update the reviewed stable toolchain lock and repin the course to that immutable release;
 7. certify `romeo-sim` before mandatory Romeo missions;
 8. target Microsoft PowerPoint / human slide review;
 9. human teacher sign-off;
@@ -497,33 +448,34 @@ Before `Content Pack 1.0.0 / approved` and classroom GO remain at least:
 # Gate status
 
 ```text
-Curriculum architecture             FROZEN ✅
-Frozen outcome mapping              25/25 ✅
-Editorial M04–M30                   COMPLETE 🟡 draft
-Semantic review M04–M30             COMPLETE 🟡 draft
-Content Pack catalog M04–M30        COMPLETE 🟡 draft
-Course Design mapping               COMPLETE 🟡 draft
-Source-audit manifests              ALIGNED ✅
-GitHub Actions blocker #8           RESOLVED ✅
-Static QA / vertical slice          PASS ✅
-Course Board round-trip             PASS ✅
-P1 host/Docker grading              PASS ✅
-P1 classroom rehearsal              PENDING ⏳ #7
-Flowchart implementation/CI         PASS ✅
-Flowchart classroom rehearsal       PENDING ⏳
-P2 normal Student Lab               PASS ✅
-P3 platform candidate               PASS ✅ exact-source
-P3 normal Student Lab               PASS ✅
-P3 M28 real course canary           PASS ✅ 5/5 vs 3/5
-P4 normal Student Lab               PASS ✅
-P2+P4 same-image platform gate      PASS ✅ 2026.08.2 candidate
-P2+P4 same-image course gate        PASS ✅
-P2+P3+P4 distinct release identity  PENDING ⏳
-P2/P3/P4 immutable stable release   PENDING ⏳
-Slide real build/engineering QA     PASS ✅
-PowerPoint/human slide sign-off     PENDING ⏳ #10
-romeo-sim certification             OPEN ⏳
-Teacher sign-off                    PENDING ⏳
-Content Pack 1.0 approved           NOT YET ⏳
-Ready for classroom / GO            NOT YET ⏳
+Curriculum architecture                 FROZEN ✅
+Frozen outcome mapping                  25/25 ✅
+Editorial M04–M30                       COMPLETE 🟡 draft
+Semantic review M04–M30                 COMPLETE 🟡 draft
+Content Pack catalog M04–M30            COMPLETE 🟡 draft
+Course Design mapping                   COMPLETE 🟡 draft
+Source-audit manifests                  ALIGNED ✅
+GitHub Actions blocker #8               RESOLVED ✅
+Static QA / vertical slice              PASS ✅
+Course Board round-trip                 PASS ✅
+P1 host/Docker grading                  PASS ✅
+P1 classroom rehearsal                  PENDING ⏳ #7
+Flowchart implementation/CI             PASS ✅
+Flowchart classroom rehearsal           PENDING ⏳
+P2 normal Student Lab                   PASS ✅
+P3 normal Student Lab                   PASS ✅
+P4 normal Student Lab                   PASS ✅
+P3 M28 real course canary               PASS ✅ 5/5 vs 3/5
+P2+P3+P4 release candidate identity     PASS ✅ 2026.08.3
+P2+P3+P4 same-image platform gate       PASS ✅
+P2+P3+P4 same-image course gate         PASS ✅
+2026.08.3 publish validation             PASS ✅
+2026.08.3 actual publication            NOT DONE ⏳
+P2/P3/P4 immutable stable release       PENDING ⏳
+Slide real build/engineering QA         PASS ✅
+PowerPoint/human slide sign-off         PENDING ⏳ #10
+romeo-sim certification                 OPEN ⏳
+Teacher sign-off                        PENDING ⏳
+Content Pack 1.0 approved               NOT YET ⏳
+Ready for classroom / GO                NOT YET ⏳
 ```
