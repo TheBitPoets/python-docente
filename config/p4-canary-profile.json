@@ -6,7 +6,7 @@
   "host_os": "ubuntu-latest",
   "thebitlab": {
     "repository": "TheBitPoets/2cornot2c",
-    "ref": "f9ec7b98fa1df9f368a94f3e516a2828078dbe2a",
+    "ref": "fb3cf4b923f776dd2c57cca73126d906541531bd",
     "profile": "python-filesystem-v1",
     "pr": 764
   },
@@ -29,6 +29,7 @@
     "candidate_profile_only": true,
     "mass_activity_materialization_allowed": false,
     "normal_student_lab_dispatch_required_before_stable": true,
+    "normal_student_lab_dispatch_certified": true,
     "immutable_release_lock_required_before_stable": true
   }
 }
