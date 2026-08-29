@@ -22,11 +22,11 @@ jobs:
           persist-credentials: false
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        uses: actions/setup-python@a26af69be951213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.12"
 
-      - name: Resolve exact P2 release-candidate identity
+      - name: Resolve exact combined P2 P4 candidate identity
         id: p2
         shell: bash
         run: |
@@ -39,7 +39,7 @@ jobs:
           print("version=" + profile["authoritative_grading"]["toolchain_version"])
           PY
 
-      - name: Checkout exact TheBitLab P2 release candidate
+      - name: Checkout exact combined TheBitLab candidate
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: TheBitPoets/2cornot2c
@@ -47,7 +47,7 @@ jobs:
           path: _thebitlab-p2
           persist-credentials: false
 
-      - name: Verify P2 release-candidate identity
+      - name: Verify combined P2 release-candidate identity
         shell: bash
         run: |
           test "$(git -C _thebitlab-p2 rev-parse HEAD)" = "${{ steps.p2.outputs.ref }}"
@@ -55,22 +55,23 @@ jobs:
           import json
           from pathlib import Path
           profile = json.loads(Path("config/p2-canary-profile.json").read_text(encoding="utf-8"))
-          source = (Path("_thebitlab-p2") / "scripts" / "python_function_profile.py").read_text(encoding="utf-8")
-          manifest = json.loads(
-              (Path("_thebitlab-p2") / "docker" / "assignment-runner" / "toolchain.json").read_text(encoding="utf-8")
-          )
-          lock = json.loads(
-              (Path("_thebitlab-p2") / "docker" / "assignment-runner" / "toolchain.lock.json").read_text(encoding="utf-8")
-          )
-          assert 'PROFILE_ID = "python-function-v1"' in source
-          assert manifest["version"] == profile["authoritative_grading"]["toolchain_version"] == "2026.08.1"
+          root = Path("_thebitlab-p2")
+          p2 = (root / "scripts" / "python_function_profile.py").read_text(encoding="utf-8")
+          p4 = (root / "scripts" / "python_filesystem_profile.py").read_text(encoding="utf-8")
+          manifest = json.loads((root / "docker" / "assignment-runner" / "toolchain.json").read_text(encoding="utf-8"))
+          lock = json.loads((root / "docker" / "assignment-runner" / "toolchain.lock.json").read_text(encoding="utf-8"))
+          assert 'PROFILE_ID = "python-function-v1"' in p2
+          assert 'PROFILE_ID = "python-filesystem-v1"' in p4
+          assert manifest["version"] == profile["authoritative_grading"]["toolchain_version"] == "2026.08.2"
           assert lock["version"] == "2026.07.1"
+          assert profile["thebitlab"]["pr"] == 766
           assert profile["certification_policy"]["candidate_profile_only"] is True
           assert profile["certification_policy"]["mass_activity_materialization_allowed"] is False
           assert profile["certification_policy"]["immutable_release_lock_required_before_stable"] is True
+          assert profile["certification_policy"]["combined_p2_p4_toolchain_required"] is True
           PY
 
-      - name: Build exact P2 assignment runner
+      - name: Build exact combined assignment runner
         working-directory: _thebitlab-p2
         run: >-
           python scripts/build_assignment_runner.py
@@ -78,7 +79,7 @@ jobs:
           --tag "${{ steps.p2.outputs.image }}"
           --metadata "$RUNNER_TEMP/python-docente-p2-runner.json"
 
-      - name: Verify built P2 toolchain identity
+      - name: Verify built combined toolchain identity
         shell: bash
         run: |
           python - <<'PY'
@@ -93,7 +94,7 @@ jobs:
           assert metadata["source_revision"] == profile["thebitlab"]["ref"]
           assert metadata["platform"] == profile["authoritative_grading"]["platform"]
           print(
-              "PASS: M13 consumer built exact P2 release candidate "
+              "PASS: M13 consumer built exact combined grading candidate "
               f"{metadata['version']} from {metadata['source_revision']}"
           )
           PY
