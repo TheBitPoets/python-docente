@@ -20,6 +20,7 @@ CHECKS = [
     ("M04 vertical-slice static QA", [sys.executable, "tests/m04_vertical_slice_static.py"]),
     ("M04 P1 certification profile", [sys.executable, "tests/p1_canary_profile.py"]),
     ("M04 P1 direct preflight", [sys.executable, "tests/m04_p1_direct_preflight.py"]),
+    ("M04 vm-gui rehearsal contract", [sys.executable, "tests/m04_vm_gui_rehearsal_contract.py"]),
     ("P2/P4 combined grading alignment", [sys.executable, "tests/python_grading_toolchain_alignment.py"]),
     ("M05 pedagogical static QA", [sys.executable, "tests/m05_authoring_static.py"]),
 ]
