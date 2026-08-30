@@ -18,7 +18,8 @@ curriculum frozen
 != contenuti editoriali completi
 != runtime/grading stabile
 != managed launcher technically certified
-!= supported classroom profile rehearsed
+!= docker-light technical profile certified
+!= vm-gui / real classroom host rehearsed
 != human teacher sign-off
 != Content Pack approved
 != classroom GO
@@ -161,14 +162,14 @@ It rebuilds only the exact source that produced stable `2026.08.3`; it does not 
 
 # 5. Latest course grading proof
 
-Latest green evidence after the Flowchart/Course Environment repin:
+Latest green evidence on the head that introduced the P1 classroom-profile rehearsal:
 
 ```text
-Python M13 P2 canary              run 33321599202 / #48  SUCCESS
-Python M26 P4 canary              run 33321599221 / #30  SUCCESS
-Python M28 P3 canary              run 33321599321 / #15  SUCCESS
-Python combined grading canaries  run 33321599262 / #17  SUCCESS
-TheBitLab Python vertical slice    run 33321599326 / #444 SUCCESS
+Python M13 P2 canary              run 33322459858 / #57  SUCCESS
+Python M26 P4 canary              run 33322459901 / #39  SUCCESS
+Python M28 P3 canary              run 33322459891 / #24  SUCCESS
+Python combined grading canaries  run 33322459915 / #26  SUCCESS
+TheBitLab Python vertical slice    run 33322459876 / #453 SUCCESS
 ```
 
 The combined grading gate still proves one shared stable-source runner for P2/P3/P4.
@@ -185,7 +186,7 @@ M28  py2-activity-b-serbatoio-invariante-001    P3 object behavior
 Behavioral discrimination remains:
 
 ```text
-M04 solution 3/3; starter 1/3
+M04 solution/edit 3/3; starter 1/3
 M13 solution 3/3; starter 0/3 despite correct numeric stdout
 M26 solution 1/1; starter 0/1 despite correct computed value
 M28 solution 5/5; starter 3/5, failing exactly negative quantity + overflow invariants
@@ -262,8 +263,6 @@ Publish toolchain validation          #49 SUCCESS
 Flowchart managed launcher           #12 SUCCESS
 ```
 
-The course vertical slice #444 validates the exact pinned candidate successfully on Ubuntu and Windows.
-
 ## Truth boundary
 
 This is a **cross-platform managed-launcher technical PASS**, not final classroom certification.
@@ -315,9 +314,65 @@ This closes the technical Romeo simulator blocker for simulated course missions.
 
 ---
 
-# 8. P1 and Git G1
+# 8. P1 M04 — docker-light technical classroom profile certified
 
-P1 M04 software/Docker path is green; `python-docente#7` remains open for the final real Classroom Environment / human rehearsal.
+P1 M04 already had green host/Docker grading. It now also has a real technical rehearsal inside the actual Course Environment `docker-light` student image.
+
+Pinned environment:
+
+```text
+TheBitPoets/2cornot2c
+Course Environment source = 736bbfddfb79e431b9dedbfd1d877f06aa8b02b5
+student-dev version = 2026.07.1
+Ubuntu snapshot = 20260713T000000Z
+Python = 3.12.3
+student UID/GID = 1000
+```
+
+Authoritative technical evidence:
+
+```text
+M04 docker-light classroom profile
+run 33322459863 / #5 — SUCCESS
+linux/amd64 PASS
+linux/arm64 PASS
+```
+
+The workflow does not copy a hand-made fake workspace. It:
+
+1. checks out the exact historical TheBitLab scaffold-generation baseline pinned for M04;
+2. generates two real managed student scaffolds with `scripts.create_submission_scaffold`;
+3. preserves the public student surface only:
+   `README.md`, `activity.json`, `main.py`, `GUIDA.md`;
+4. verifies teacher tests/oracles/solution paths are not exposed;
+5. builds the exact `student-dev 2026.07.1` image from the pinned Course Environment source for both amd64 and arm64;
+6. runs as the real non-root `student` user UID 1000;
+7. proves the bind-mounted managed workspace is writable by that student;
+8. feeds the real M04 stdin cases through Docker interactive stdin;
+9. gets the exact discrimination:
+
+```text
+starter = 1/3
+corrected student edit = 3/3
+```
+
+This closes the **docker-light technical profile** portion of `python-docente#7`.
+
+## P1 truth boundary
+
+Issue #7 must remain open. This CI evidence does **not** replace:
+
+```text
+vm-gui rehearsal on the released classroom boxes
+real school/classroom host rehearsal
+human teacher evidence/sign-off
+```
+
+The two upstream classroom box releases are already physically published/collated upstream, but M04 has not yet been rehearsed inside those boxes as a course consumer.
+
+---
+
+# 9. Git G1 consumer
 
 Git G1 consumer remains structurally complete:
 
@@ -331,7 +386,7 @@ Classroom evidence for Git remains part of the final environment rehearsal rathe
 
 ---
 
-# 9. Slide release artifacts
+# 10. Slide release artifacts
 
 Existing real build evidence:
 
@@ -348,11 +403,12 @@ artifact id: 9664877644
 
 ---
 
-# 10. Runtime/profile status
+# 11. Runtime/profile status
 
 ```text
 P0 manual/trace/design                 available by pedagogy
-P1 stdin/stdout                        software certified / classroom rehearsal pending
+P1 stdin/stdout                        software PASS + docker-light amd64/arm64 PASS
+P1 vm-gui / real classroom host       PENDING
 P2 function behavior                  stable 2026.08.3 + real consumer PASS
 P3 object behavior                    stable 2026.08.3 + real M28 consumer PASS
 P4 filesystem behavior                stable 2026.08.3 + real consumer PASS
@@ -368,14 +424,14 @@ romeo-sim                              CERTIFIED managed simulator PASS
 
 ---
 
-# 11. Remaining promotion gates
+# 12. Remaining promotion gates
 
 Teacher sign-off remains `PENDING`; AI/CI cannot approve it.
 
 Before `Content Pack 1.0.0 / approved` and classroom GO remain at least:
 
 1. grant/verify cross-repository GHCR package Actions access for `python-docente`, then switch canaries from stable-source rebuild to direct immutable pull;
-2. final P1 Classroom Environment rehearsal;
+2. P1 M04 `vm-gui` rehearsal on the released classroom boxes + final real host/human evidence;
 3. Flowchart real docker-light/vm-gui classroom-profile rehearsal;
 4. Flowchart human browser usability/teacher evidence review;
 5. target Microsoft PowerPoint / human slide review;
@@ -397,14 +453,16 @@ Semantic review M04–M30                 COMPLETE 🟡 draft
 Content Pack catalog M04–M30            COMPLETE 🟡 draft
 Course Design mapping                   COMPLETE 🟡 draft
 Source-audit manifests                  ALIGNED ✅
-Static QA / vertical slice              PASS ✅ #444
+Static QA / vertical slice              PASS ✅ #453
 Course Board round-trip                 PASS ✅
 P1 host/Docker grading                  PASS ✅
-P1 classroom rehearsal                  PENDING ⏳ #7
+P1 docker-light amd64                   PASS ✅ #5
+P1 docker-light arm64                   PASS ✅ #5
+P1 vm-gui / real classroom host         PENDING ⏳ #7
 Flowchart implementation/core CI        PASS ✅
 Flowchart managed CLI lifecycle         PASS ✅ Ubuntu/Windows/macOS #12
 Flowchart reverse-DNS regression        PASS ✅
-Flowchart exact course consumer         PASS ✅ #444
+Flowchart exact course consumer         PASS ✅
 Flowchart classroom profile rehearsal   PENDING ⏳
 Flowchart human usability review        PENDING ⏳
 P2 normal Student Lab                   PASS ✅
@@ -415,7 +473,7 @@ P3 M28 real course canary               PASS ✅ 5/5 vs 3/5
 2026.08.3 real immutable digest         PASS ✅ c0594df8...
 2026.08.3 stable toolchain lock         PASS ✅ #771
 anti-republish release guard            PASS ✅
-P2/P3/P4 stable-source course gate      PASS ✅ #17
+P2/P3/P4 stable-source course gate      PASS ✅ #26
 python-docente direct GHCR pull         BLOCKED ⏳ package Actions access
 romeo-sim plugin cross-profile          PASS ✅ Ubuntu/Windows/macOS
 romeo-sim immutable Docker broker       PASS ✅ db7373cc...
