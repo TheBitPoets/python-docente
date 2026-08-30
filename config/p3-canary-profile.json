@@ -14,13 +14,15 @@
     "issue": 758
   },
   "authoritative_grading": {
-    "strategy": "pull-immutable-ghcr-release",
+    "strategy": "source-build-from-published-release-source",
     "platform": "linux/amd64",
     "toolchain_version": "2026.08.3",
     "release_identity_status": "published-immutable-stable",
     "image_repository": "ghcr.io/thebitpoets/2cornot2c-assignment-runner",
     "digest": "sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51",
-    "immutable_image_reference": "ghcr.io/thebitpoets/2cornot2c-assignment-runner@sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51"
+    "immutable_image_reference": "ghcr.io/thebitpoets/2cornot2c-assignment-runner@sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51",
+    "consumer_image_access_status": "ghcr-cross-repository-actions-access-pending",
+    "local_image_tag": "thebitlab-python-grading-stable-source"
   },
   "expected_cases": 5,
   "expected_solution_passed": 5,
@@ -39,6 +41,7 @@
     "student_report_redaction_required": true,
     "immutable_release_lock_required_before_stable": true,
     "immutable_release_lock_verified": true,
+    "direct_immutable_image_pull_verified": false,
     "combined_p2_p3_p4_toolchain_required": true
   }
 }

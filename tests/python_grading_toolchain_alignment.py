@@ -14,6 +14,9 @@ RELEASE_VERSION = "2026.08.3"
 RELEASE_DIGEST = "sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51"
 IMAGE_REPOSITORY = "ghcr.io/thebitpoets/2cornot2c-assignment-runner"
 IMMUTABLE_IMAGE = f"{IMAGE_REPOSITORY}@{RELEASE_DIGEST}"
+FALLBACK_STRATEGY = "source-build-from-published-release-source"
+ACCESS_STATUS = "ghcr-cross-repository-actions-access-pending"
+LOCAL_IMAGE_TAG = "thebitlab-python-grading-stable-source"
 
 
 def load(path: Path) -> dict:
@@ -42,9 +45,7 @@ def main() -> int:
     assert p4["thebitlab"]["feature_pr"] == 764
 
     gradings = [profile["authoritative_grading"] for profile in profiles]
-    assert {grading["strategy"] for grading in gradings} == {
-        "pull-immutable-ghcr-release"
-    }
+    assert {grading["strategy"] for grading in gradings} == {FALLBACK_STRATEGY}
     assert {grading["platform"] for grading in gradings} == {"linux/amd64"}
     assert {grading["toolchain_version"] for grading in gradings} == {RELEASE_VERSION}
     assert {grading["release_identity_status"] for grading in gradings} == {
@@ -55,6 +56,10 @@ def main() -> int:
     assert {grading["immutable_image_reference"] for grading in gradings} == {
         IMMUTABLE_IMAGE
     }
+    assert {grading["consumer_image_access_status"] for grading in gradings} == {
+        ACCESS_STATUS
+    }
+    assert {grading["local_image_tag"] for grading in gradings} == {LOCAL_IMAGE_TAG}
 
     for profile in profiles:
         policy = profile["certification_policy"]
@@ -62,11 +67,13 @@ def main() -> int:
         assert policy["mass_activity_materialization_allowed"] is False
         assert policy["immutable_release_lock_required_before_stable"] is True
         assert policy["immutable_release_lock_verified"] is True
+        assert policy["direct_immutable_image_pull_verified"] is False
         assert policy["combined_p2_p3_p4_toolchain_required"] is True
 
     print(
-        "PASS: P2, P3 and P4 course canaries share published immutable "
-        f"TheBitLab {RELEASE_VERSION} {IMMUTABLE_IMAGE} from {RELEASE_SOURCE}"
+        "PASS: P2, P3 and P4 use published TheBitLab 2026.08.3 source "
+        f"{RELEASE_SOURCE} with stable digest {RELEASE_DIGEST}; direct GHCR consumer "
+        "access remains explicitly pending, so canaries rebuild only that released source"
     )
     return 0
 
