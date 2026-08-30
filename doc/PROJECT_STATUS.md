@@ -387,7 +387,41 @@ Structural/process consumer is complete. Classroom rehearsal/final evidence rema
 
 ---
 
-# 13. Slide release artifacts
+# 13. Romeo simulator — managed runtime certified
+
+`romeo-sim` is now technically certified as a managed simulator runtime; physical Romeo hardware is neither required nor claimed as certified.
+
+Cross-profile plugin evidence:
+
+```text
+TheBitPoets/2cornot2c
+Romeo sim cross-profile certification
+run 33315344675 / #3 — SUCCESS
+Ubuntu / Windows / macOS = PASS
+```
+
+Authoritative runtime evidence uses the real Romeo 0.2.0 published sandbox:
+
+```text
+release source = 584ba489000a559f9e4cd3326a83f925d6c73a45
+release workflow = 32518993805
+image = ghcr.io/thebitpoets/romeo-runtime@sha256:db7373cc6d24337427d0071dd633f902e266ffae1c440cd2bd605564bb3c7581
+```
+
+The certification workflow successfully:
+
+1. pulls the exact immutable digest;
+2. installs the matching Romeo 0.2.0 plugin;
+3. verifies `sandbox-plan.v1` is broker-eligible only with a pinned digest;
+4. executes the official `y1-u08-avanti-indietro` and `y2-u07-json` simulated Activities through the current TheBitLab broker;
+5. verifies that TheBitLab promotes the historical local request to authoritative Docker execution;
+6. proves a mutable `:latest` image remains fail-closed.
+
+This closes the technical `romeo-sim` blocker for simulated course missions. Hardware-dependent Romeo remains optional and outside the Python core.
+
+---
+
+# 14. Slide release artifacts
 
 Existing real release build evidence:
 
@@ -404,7 +438,7 @@ artifact id: 9664877644
 
 ---
 
-# 14. Runtime/profile status
+# 15. Runtime/profile status
 
 ```text
 P0 manual/trace/design                 available by pedagogy
@@ -417,14 +451,14 @@ P2+P3+P4 shared course stable-source   PASS
 published immutable GHCR release       PASS
 stable toolchain lock                  PASS
 python-docente direct GHCR pull        BLOCKED by cross-repo package access
-romeo-sim                              certification pending
+romeo-sim                              CERTIFIED managed simulator PASS
 ```
 
-The remaining GHCR issue is operational delivery/access only; the grading semantics, release and stable lock are complete.
+The remaining grading GHCR issue is operational delivery/access only; grading semantics, release, stable lock and the Romeo simulator runtime are complete.
 
 ---
 
-# 15. Remaining promotion gates
+# 16. Remaining promotion gates
 
 Teacher sign-off remains `PENDING`; AI/CI cannot approve it.
 
@@ -433,13 +467,12 @@ Before `Content Pack 1.0.0 / approved` and classroom GO remain at least:
 1. grant/verify cross-repository GHCR package Actions access for `python-docente`, then switch canaries from stable-source rebuild to direct immutable pull;
 2. final P1 Classroom Environment rehearsal;
 3. final Flowchart managed classroom-profile rehearsal;
-4. certify `romeo-sim` before any mandatory Romeo missions;
-5. target Microsoft PowerPoint / human slide review;
-6. human teacher sign-off;
-7. final provenance/license review;
-8. explicit Content Pack promotion;
-9. final real Classroom Environment rehearsal;
-10. explicit classroom GO decision.
+4. target Microsoft PowerPoint / human slide review;
+5. human teacher sign-off;
+6. final provenance/license review;
+7. explicit Content Pack promotion;
+8. final real Classroom Environment rehearsal;
+9. explicit classroom GO decision.
 
 ---
 
@@ -469,9 +502,11 @@ P3 M28 real course canary               PASS ✅ 5/5 vs 3/5
 anti-republish release guard            PASS ✅
 P2/P3/P4 stable-source course gate      PASS ✅ #13
 python-docente direct GHCR pull         BLOCKED ⏳ package Actions access
+romeo-sim plugin cross-profile          PASS ✅ Ubuntu/Windows/macOS
+romeo-sim immutable Docker broker       PASS ✅ db7373cc...
+romeo-sim official simulated Activities PASS ✅
 Slide real build/engineering QA         PASS ✅
 PowerPoint/human slide sign-off         PENDING ⏳ #10
-romeo-sim certification                 OPEN ⏳
 Teacher sign-off                        PENDING ⏳
 Content Pack 1.0 approved               NOT YET ⏳
 Ready for classroom / GO                NOT YET ⏳
