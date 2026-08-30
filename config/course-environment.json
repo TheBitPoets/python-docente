@@ -46,7 +46,7 @@
   "notes": {
     "repl": "standard Python REPL is required; IPython is optional and not assumed",
     "vscode": "host or guest implementation is platform-owned; course instructions must not require unmanaged setup",
-    "romeo": "simulator is an optional applied capability until cross-profile certification",
-    "flowchart": "manual evidence is the frozen fallback until Flowchart Lab is implemented and certified"
+    "romeo": "managed romeo-sim 0.2.0 is technically certified cross-platform with authoritative digest-pinned Docker execution; physical hardware remains optional and non-core",
+    "flowchart": "managed Student Runtime CLI launch is technically green on Ubuntu, Windows and macOS; manual evidence remains the frozen fallback until supported classroom-profile rehearsal and human browser usability review are complete"
   }
 }
