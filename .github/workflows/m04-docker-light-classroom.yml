@@ -116,10 +116,14 @@ jobs:
           cp "$SOLUTION" \
             _classroom-rehearsal/solution-repo/assignments/py2-activity-b-input-somma-001/main.py
 
-          # Hosted Linux uses a different UID from the classroom image. Align
-          # ownership with the real student-dev USER (UID/GID 1000) before the
-          # bind mount so the rehearsal really proves a writable student workspace.
+          # Hosted Linux uses a different UID from the classroom image. Keep
+          # the real student-dev user (UID/GID 1000) as owner so write access is
+          # exercised exactly as in class, while preserving read/traverse access
+          # to the public scaffold for the host-side evidence harness.
           sudo chown -R 1000:1000 \
+            _classroom-rehearsal/starter-repo \
+            _classroom-rehearsal/solution-repo
+          sudo chmod -R u+rwX,go+rX \
             _classroom-rehearsal/starter-repo \
             _classroom-rehearsal/solution-repo
 
