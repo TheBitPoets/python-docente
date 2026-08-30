@@ -9,6 +9,12 @@ P2_PATH = ROOT / "config" / "p2-canary-profile.json"
 P3_PATH = ROOT / "config" / "p3-canary-profile.json"
 P4_PATH = ROOT / "config" / "p4-canary-profile.json"
 
+RELEASE_SOURCE = "23bc1d36c7eb8c1b10a11cbde5f226ce7554f85e"
+RELEASE_VERSION = "2026.08.3"
+RELEASE_DIGEST = "sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51"
+IMAGE_REPOSITORY = "ghcr.io/thebitpoets/2cornot2c-assignment-runner"
+IMMUTABLE_IMAGE = f"{IMAGE_REPOSITORY}@{RELEASE_DIGEST}"
+
 
 def load(path: Path) -> dict:
     value = json.loads(path.read_text(encoding="utf-8"))
@@ -25,8 +31,9 @@ def main() -> int:
     assert {profile["thebitlab"]["repository"] for profile in profiles} == {
         "TheBitPoets/2cornot2c"
     }
-    assert len({profile["thebitlab"]["ref"] for profile in profiles}) == 1
-    assert {profile["thebitlab"]["pr"] for profile in profiles} == {768}
+    assert {profile["thebitlab"]["ref"] for profile in profiles} == {RELEASE_SOURCE}
+    assert {profile["thebitlab"]["pr"] for profile in profiles} == {770}
+    assert {profile["thebitlab"]["stable_lock_pr"] for profile in profiles} == {771}
     assert p2["thebitlab"]["profile"] == "python-function-v1"
     assert p3["thebitlab"]["profile"] == "python-object-v1"
     assert p4["thebitlab"]["profile"] == "python-filesystem-v1"
@@ -36,28 +43,30 @@ def main() -> int:
 
     gradings = [profile["authoritative_grading"] for profile in profiles]
     assert {grading["strategy"] for grading in gradings} == {
-        "source-build-from-exact-combined-release-candidate"
+        "pull-immutable-ghcr-release"
     }
     assert {grading["platform"] for grading in gradings} == {"linux/amd64"}
-    assert {grading["toolchain_version"] for grading in gradings} == {"2026.08.3"}
+    assert {grading["toolchain_version"] for grading in gradings} == {RELEASE_VERSION}
     assert {grading["release_identity_status"] for grading in gradings} == {
-        "combined-release-candidate-not-stable"
+        "published-immutable-stable"
     }
-    assert {grading["local_image_tag"] for grading in gradings} == {
-        "thebitlab-python-grading-canaries"
+    assert {grading["image_repository"] for grading in gradings} == {IMAGE_REPOSITORY}
+    assert {grading["digest"] for grading in gradings} == {RELEASE_DIGEST}
+    assert {grading["immutable_image_reference"] for grading in gradings} == {
+        IMMUTABLE_IMAGE
     }
 
     for profile in profiles:
         policy = profile["certification_policy"]
-        assert policy["candidate_profile_only"] is True
+        assert policy["candidate_profile_only"] is False
         assert policy["mass_activity_materialization_allowed"] is False
         assert policy["immutable_release_lock_required_before_stable"] is True
+        assert policy["immutable_release_lock_verified"] is True
         assert policy["combined_p2_p3_p4_toolchain_required"] is True
 
-    ref = p2["thebitlab"]["ref"]
     print(
-        "PASS: P2, P3 and P4 course canaries share one exact 2026.08.3 "
-        f"TheBitLab release candidate {ref}"
+        "PASS: P2, P3 and P4 course canaries share published immutable "
+        f"TheBitLab {RELEASE_VERSION} {IMMUTABLE_IMAGE} from {RELEASE_SOURCE}"
     )
     return 0
 

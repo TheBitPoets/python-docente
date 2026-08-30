@@ -2,6 +2,7 @@ name: Python M13 P2 canary
 
 permissions:
   contents: read
+  packages: read
 
 on:
   workflow_dispatch:
@@ -26,7 +27,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Resolve exact combined P2 P3 P4 candidate identity
+      - name: Resolve immutable P2 grading release
         id: p2
         shell: bash
         run: |
@@ -34,12 +35,14 @@ jobs:
           import json
           from pathlib import Path
           profile = json.loads(Path("config/p2-canary-profile.json").read_text(encoding="utf-8"))
+          grading = profile["authoritative_grading"]
           print("ref=" + profile["thebitlab"]["ref"])
-          print("image=" + profile["authoritative_grading"]["local_image_tag"])
-          print("version=" + profile["authoritative_grading"]["toolchain_version"])
+          print("image=" + grading["immutable_image_reference"])
+          print("digest=" + grading["digest"])
+          print("version=" + grading["toolchain_version"])
           PY
 
-      - name: Checkout exact combined TheBitLab candidate
+      - name: Checkout exact published TheBitLab source
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: TheBitPoets/2cornot2c
@@ -47,7 +50,7 @@ jobs:
           path: _thebitlab-p2
           persist-credentials: false
 
-      - name: Verify combined P2 P3 P4 release-candidate identity
+      - name: Verify published P2 P3 P4 release identity
         shell: bash
         run: |
           test "$(git -C _thebitlab-p2 rev-parse HEAD)" = "${{ steps.p2.outputs.ref }}"
@@ -60,41 +63,32 @@ jobs:
           p3 = (root / "scripts" / "python_object_profile.py").read_text(encoding="utf-8")
           p4 = (root / "scripts" / "python_filesystem_profile.py").read_text(encoding="utf-8")
           manifest = json.loads((root / "docker" / "assignment-runner" / "toolchain.json").read_text(encoding="utf-8"))
-          lock = json.loads((root / "docker" / "assignment-runner" / "toolchain.lock.json").read_text(encoding="utf-8"))
+          grading = profile["authoritative_grading"]
           assert 'PROFILE_ID = "python-function-v1"' in p2
           assert 'PROFILE_ID = "python-object-v1"' in p3
           assert 'PROFILE_ID = "python-filesystem-v1"' in p4
-          assert manifest["version"] == profile["authoritative_grading"]["toolchain_version"] == "2026.08.3"
-          assert lock["version"] == "2026.07.1"
-          assert profile["thebitlab"]["pr"] == 768
+          assert manifest["version"] == grading["toolchain_version"] == "2026.08.3"
+          assert profile["thebitlab"]["pr"] == 770
+          assert profile["thebitlab"]["stable_lock_pr"] == 771
+          assert grading["strategy"] == "pull-immutable-ghcr-release"
+          assert grading["release_identity_status"] == "published-immutable-stable"
+          assert grading["immutable_image_reference"].endswith("@" + grading["digest"])
           policy = profile["certification_policy"]
-          assert policy["candidate_profile_only"] is True
+          assert policy["candidate_profile_only"] is False
           assert policy["mass_activity_materialization_allowed"] is False
-          assert policy["immutable_release_lock_required_before_stable"] is True
+          assert policy["immutable_release_lock_verified"] is True
           assert policy["combined_p2_p3_p4_toolchain_required"] is True
           PY
 
-      - name: Build exact combined assignment runner
-        working-directory: _thebitlab-p2
-        run: >-
-          python scripts/build_assignment_runner.py
-          --source-revision "${{ steps.p2.outputs.ref }}"
-          --tag "${{ steps.p2.outputs.image }}"
-          --metadata "$RUNNER_TEMP/python-docente-p2-runner.json"
+      - name: Authenticate to GHCR
+        run: echo "${{ github.token }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
-      - name: Verify built combined toolchain identity
+      - name: Pull exact immutable runner
         shell: bash
         run: |
-          python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          profile = json.loads(Path("config/p2-canary-profile.json").read_text(encoding="utf-8"))
-          metadata = json.loads((Path(os.environ["RUNNER_TEMP"]) / "python-docente-p2-runner.json").read_text(encoding="utf-8"))
-          assert metadata["version"] == profile["authoritative_grading"]["toolchain_version"]
-          assert metadata["source_revision"] == profile["thebitlab"]["ref"]
-          assert metadata["platform"] == profile["authoritative_grading"]["platform"]
-          PY
+          test "${{ steps.p2.outputs.image }}" = "ghcr.io/thebitpoets/2cornot2c-assignment-runner@${{ steps.p2.outputs.digest }}"
+          docker pull "${{ steps.p2.outputs.image }}"
+          docker image inspect "${{ steps.p2.outputs.image }}" >/dev/null
 
       - name: Run real M13 P2 consumer
         run: >-

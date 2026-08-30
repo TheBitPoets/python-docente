@@ -2,6 +2,7 @@ name: Python combined grading canaries
 
 permissions:
   contents: read
+  packages: read
 
 on:
   workflow_dispatch:
@@ -34,10 +35,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Verify P2 P3 P4 course pins are aligned
+      - name: Verify P2 P3 P4 stable pins are aligned
         run: python tests/python_grading_toolchain_alignment.py
 
-      - name: Resolve exact combined grading candidate
+      - name: Resolve immutable grading release
         id: grading
         shell: bash
         run: |
@@ -48,13 +49,15 @@ jobs:
           profiles = [json.loads(Path(path).read_text(encoding="utf-8")) for path in paths]
           assert len({p["thebitlab"]["ref"] for p in profiles}) == 1
           assert len({p["authoritative_grading"]["toolchain_version"] for p in profiles}) == 1
-          assert len({p["authoritative_grading"]["local_image_tag"] for p in profiles}) == 1
+          assert len({p["authoritative_grading"]["immutable_image_reference"] for p in profiles}) == 1
+          assert len({p["authoritative_grading"]["digest"] for p in profiles}) == 1
           print("ref=" + profiles[0]["thebitlab"]["ref"])
           print("version=" + profiles[0]["authoritative_grading"]["toolchain_version"])
-          print("image=" + profiles[0]["authoritative_grading"]["local_image_tag"])
+          print("image=" + profiles[0]["authoritative_grading"]["immutable_image_reference"])
+          print("digest=" + profiles[0]["authoritative_grading"]["digest"])
           PY
 
-      - name: Checkout exact combined TheBitLab candidate once
+      - name: Checkout exact published TheBitLab source once
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: TheBitPoets/2cornot2c
@@ -62,7 +65,7 @@ jobs:
           path: _thebitlab-grading
           persist-credentials: false
 
-      - name: Verify combined candidate source and lock boundary
+      - name: Verify published source identity
         shell: bash
         run: |
           test "$(git -C _thebitlab-grading rev-parse HEAD)" = "${{ steps.grading.outputs.ref }}"
@@ -74,37 +77,24 @@ jobs:
           assert 'PROFILE_ID = "python-object-v1"' in (root / "scripts/python_object_profile.py").read_text(encoding="utf-8")
           assert 'PROFILE_ID = "python-filesystem-v1"' in (root / "scripts/python_filesystem_profile.py").read_text(encoding="utf-8")
           manifest = json.loads((root / "docker/assignment-runner/toolchain.json").read_text(encoding="utf-8"))
-          lock = json.loads((root / "docker/assignment-runner/toolchain.lock.json").read_text(encoding="utf-8"))
           assert manifest["version"] == "2026.08.3"
-          assert lock["version"] == "2026.07.1"
           PY
 
-      - name: Build the combined assignment runner once
-        working-directory: _thebitlab-grading
-        run: >-
-          python scripts/build_assignment_runner.py
-          --source-revision "${{ steps.grading.outputs.ref }}"
-          --tag "${{ steps.grading.outputs.image }}"
-          --metadata "$RUNNER_TEMP/python-docente-combined-runner.json"
+      - name: Authenticate to GHCR
+        run: echo "${{ github.token }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
-      - name: Verify one built toolchain identity
+      - name: Pull the shared immutable runner once
         shell: bash
         run: |
-          python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          metadata = json.loads((Path(os.environ["RUNNER_TEMP"]) / "python-docente-combined-runner.json").read_text(encoding="utf-8"))
-          assert metadata["version"] == "2026.08.3"
-          assert metadata["source_revision"] == "3b482fe6a031bd6e7285342e489def786d77d197"
-          assert metadata["platform"] == "linux/amd64"
-          PY
+          test "${{ steps.grading.outputs.image }}" = "ghcr.io/thebitpoets/2cornot2c-assignment-runner@${{ steps.grading.outputs.digest }}"
+          docker pull "${{ steps.grading.outputs.image }}"
+          docker image inspect "${{ steps.grading.outputs.image }}" >/dev/null
 
-      - name: Run M13 P2 through the shared runner
+      - name: Run M13 P2 through the shared immutable runner
         run: python tests/p2_m13_consumer.py --platform _thebitlab-grading --docker-image "${{ steps.grading.outputs.image }}"
 
-      - name: Run M28 P3 through the same shared runner
+      - name: Run M28 P3 through the same immutable runner
         run: python tests/p3_m28_consumer.py --platform _thebitlab-grading --docker-image "${{ steps.grading.outputs.image }}"
 
-      - name: Run M26 P4 through the same shared runner
+      - name: Run M26 P4 through the same immutable runner
         run: python tests/p4_m26_consumer.py --platform _thebitlab-grading --docker-image "${{ steps.grading.outputs.image }}"
