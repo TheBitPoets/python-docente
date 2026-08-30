@@ -58,18 +58,37 @@ def assert_platform(platform: Path) -> None:
         fail(f"P3 platform mismatch: expected {THEBITLAB_REF}, found {revision}")
 
     manifest = load_object(platform / "docker" / "assignment-runner" / "toolchain.json")
-    lock = load_object(platform / "docker" / "assignment-runner" / "toolchain.lock.json")
+    source_snapshot_lock = load_object(
+        platform / "docker" / "assignment-runner" / "toolchain.lock.json"
+    )
     if manifest.get("version") != TOOLCHAIN_VERSION:
         fail(
-            f"P3 candidate version mismatch: expected {TOOLCHAIN_VERSION}, "
+            f"P3 stable release source version mismatch: expected {TOOLCHAIN_VERSION}, "
             f"found {manifest.get('version')}"
         )
-    if lock.get("version") == TOOLCHAIN_VERSION:
-        fail("P3 candidate non deve fingere che 2026.08.3 sia gia il lock stabile")
-    if PROFILE["authoritative_grading"].get("release_identity_status") != (
-        "combined-release-candidate-not-stable"
+
+    grading = PROFILE["authoritative_grading"]
+    if grading.get("release_identity_status") != "published-immutable-stable":
+        fail("P3 release identity deve essere la release stabile pubblicata")
+    if grading.get("strategy") != "source-build-from-published-release-source":
+        fail("P3 consumer deve usare il fallback dall'esatto source pubblicato")
+    if grading.get("consumer_image_access_status") != (
+        "ghcr-cross-repository-actions-access-pending"
     ):
-        fail("P3 release identity status non esplicita il confine candidate/stable")
+        fail("P3 deve esplicitare il blocker di accesso GHCR cross-repository")
+
+    policy = PROFILE["certification_policy"]
+    if policy.get("immutable_release_lock_verified") is not True:
+        fail("P3 deve riferire un lock stabile verificato")
+    if policy.get("direct_immutable_image_pull_verified") is not False:
+        fail("P3 non deve fingere che il pull GHCR cross-repo sia gia certificato")
+
+    # Il commit che ha prodotto la release precede necessariamente la PR che ha
+    # registrato il digest remoto nel lock. Quindi il lock dentro lo snapshot di
+    # build resta quello stabile precedente; la promozione successiva e tracciata
+    # separatamente da stable_lock_pr nel profilo del corso.
+    if source_snapshot_lock.get("version") == TOOLCHAIN_VERSION:
+        fail("P3 release source snapshot non deve incorporare retroattivamente il lock successivo")
 
     sys.path.insert(0, str(platform))
     try:
@@ -307,8 +326,9 @@ def main() -> int:
         assert_student_lab_redaction(platform, temp, args.docker_image)
 
     print(
-        "PASS: M28 P3 canary uses the exact combined 2026.08.3 candidate, "
-        "proves the Serbatoio invariant, and preserves Student Lab redaction"
+        "PASS: M28 P3 canary uses the exact published 2026.08.3 release source, "
+        "proves the Serbatoio invariant, preserves Student Lab redaction, and keeps "
+        "the GHCR cross-repository access blocker explicit"
     )
     return 0
 
