@@ -208,9 +208,9 @@ def main() -> int:
         args.platform,
         cases,
     )
-    if starter_executed != 3 or starter_passed == 3:
+    if starter_executed != 3 or starter_passed != 1:
         fail(
-            "starter discrimination failed in docker-light: "
+            "starter discrimination failed in docker-light: expected 1/3, "
             f"passed={starter_passed}, executed={starter_executed}"
         )
 
@@ -229,7 +229,7 @@ def main() -> int:
     print(
         "PASS: M04 docker-light classroom profile — "
         f"platform={args.platform}, machine={expected_machine}, "
-        f"starter={starter_passed}/3, edited=3/3, "
+        "starter=1/3, edited=3/3, "
         f"student-dev={version}, source={source}, host={host_platform.system()}"
     )
     print(
