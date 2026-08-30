@@ -41,6 +41,7 @@ def docker(
             "docker",
             "run",
             "--rm",
+            "--interactive",
             "--platform",
             platform_name,
             "--volume",
