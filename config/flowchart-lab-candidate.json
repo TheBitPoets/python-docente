@@ -5,7 +5,7 @@
   "uda": "PY2-01",
   "platform": {
     "repository": "TheBitPoets/2cornot2c",
-    "ref": "736bbfddfb79e431b9dedbfd1d877f06aa8b02b5"
+    "ref": "aa2b6bbf53a55cae6feab5e7873cdb74bccc86fe"
   },
   "runtime": {
     "runtime_id": "flowchart-lab",
@@ -29,15 +29,16 @@
   ],
   "technical_evidence": {
     "workflow": "Flowchart managed classroom certification",
-    "run_id": 33321478705,
-    "run_number": 12,
+    "run_id": 33326295476,
+    "run_number": 13,
     "result": "success",
     "profiles": [
       "ubuntu-latest",
       "windows-latest",
       "macos-latest"
     ],
-    "reverse_dns_free_loopback_bind": true
+    "reverse_dns_free_loopback_bind": true,
+    "cold_start_timeout_is_separate_from_api_timeouts": true
   },
   "certification_policy": {
     "candidate_ci_is_classroom_certification": false,
