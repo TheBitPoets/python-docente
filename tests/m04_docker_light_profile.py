@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = ROOT / "config" / "p1-canary-profile.json"
 ACTIVITY_ROOT = ROOT / "activities" / "python" / "py2-activity-b-input-somma-001"
 ACTIVITY = ACTIVITY_ROOT / "activity.json"
+STARTER = ACTIVITY_ROOT / "starter" / "main.py"
 SOLUTION = ACTIVITY_ROOT / "solution" / "main.py"
 EXPECTED_FILES = {"README.md", "activity.json", "main.py", "GUIDA.md"}
 SHA_RE = re.compile(r"^[0-9a-f]{40}$")
@@ -188,11 +189,10 @@ def main() -> int:
     solution_workspace = args.solution_workspace.resolve(strict=True)
     assert_scaffold(starter_workspace)
     assert_scaffold(solution_workspace)
-
-    # The second scaffold represents an ordinary student edit of main.py.  No
-    # solution/ or teacher/ directory is ever mounted into the classroom image.
-    (solution_workspace / "main.py").write_bytes(SOLUTION.read_bytes())
-    assert_scaffold(solution_workspace)
+    if (starter_workspace / "main.py").read_bytes() != STARTER.read_bytes():
+        fail("starter classroom workspace does not contain canonical starter main.py")
+    if (solution_workspace / "main.py").read_bytes() != SOLUTION.read_bytes():
+        fail("edited classroom workspace does not contain the expected corrected main.py")
 
     activity = load_object(ACTIVITY)
     cases = activity.get("test_cases")
