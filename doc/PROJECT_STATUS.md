@@ -11,13 +11,15 @@ Il curriculum del secondo anno è **FROZEN** e il layer editoriale M04–M30 è 
 
 Il progetto è nella fase di **delivery / classroom rehearsal / final promotion**.
 
-Restano separati:
+Restano deliberatamente separati:
 
 ```text
 curriculum frozen
 != contenuti editoriali completi
 != runtime/grading stabile
-!= teacher sign-off
+!= managed launcher technically certified
+!= supported classroom profile rehearsed
+!= human teacher sign-off
 != Content Pack approved
 != classroom GO
 ```
@@ -53,9 +55,9 @@ Editorial completion does not authorize mass Activity generation.
 
 ---
 
-# 2. Python grading toolchain — `2026.08.3` PUBLISHED + STABLE LOCK
+# 2. Python grading toolchain — `2026.08.3` PUBLISHED + STABLE
 
-TheBitLab now has one real combined P2 + P3 + P4 stable release:
+TheBitLab has one real combined P2 + P3 + P4 stable release:
 
 ```text
 version = 2026.08.3
@@ -68,14 +70,14 @@ P4 = python-filesystem-v1
 Release lineage:
 
 ```text
-#766 -> P2 + P4 source work
+#766 -> P2 + P4
 #767 -> P3 object behavior
-#768 -> combined release-candidate identity
+#768 -> combined candidate identity
 #770 -> cumulative release transition to main
-#771 -> real immutable lock promotion + anti-republish guard
+#771 -> immutable stable lock + anti-republish guard
 ```
 
-## Real publication
+Real publication:
 
 ```text
 Publish assignment runner toolchain
@@ -84,13 +86,7 @@ validate = SUCCESS
 publish  = SUCCESS
 ```
 
-Published source:
-
-```text
-23bc1d36c7eb8c1b10a11cbde5f226ce7554f85e
-```
-
-Real GHCR immutable digest:
+Real immutable digest:
 
 ```text
 sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51
@@ -102,54 +98,19 @@ Immutable reference:
 ghcr.io/thebitpoets/2cornot2c-assignment-runner@sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51
 ```
 
-This digest comes from the successful upstream publication evidence. It is not inferred or invented.
-
-## Stable lock
-
-`2cornot2c#771` promoted the exact published release into:
-
-```text
-docker/assignment-runner/toolchain.lock.json
-version = 2026.08.3
-source_revision = 23bc1d36c7eb8c1b10a11cbde5f226ce7554f85e
-immutable_reference = ...@sha256:c0594df8...
-```
-
-The lock merge commit is:
+Stable lock merge commit:
 
 ```text
 29c90735a842738c67b798e97b2e5b00696b5e25
 ```
 
-A release-safety gap was fixed before lock promotion: automatic publication on `main` is now triggered only by a reviewed change to:
-
-```text
-docker/assignment-runner/toolchain.json
-```
-
-A lock/test/documentation-only merge cannot republish the same version from a different commit.
-
-Post-merge verification confirmed that the lock promotion did **not** trigger a second `2026.08.3` publication.
+Automatic publication on `main` is restricted to a reviewed `toolchain.json` manifest/version change; lock/test/documentation-only changes cannot silently republish an existing version.
 
 ---
 
-# 3. Platform P2 + P3 + P4 certification
+# 3. Python grading platform certification
 
-The exact unified release source passed the combined platform gate:
-
-```text
-Combined Python grading profiles #17/#18/#19  SUCCESS
-P2 candidate workflow                         SUCCESS
-P3 candidate workflow                         SUCCESS
-P4 candidate workflow                         SUCCESS
-legacy P1/C/Node/SQLite Student Lab           SUCCESS
-P2 normal Student Lab                         SUCCESS
-P3 normal Student Lab                         SUCCESS
-P4 normal Student Lab                         SUCCESS
-Quality                                       SUCCESS
-```
-
-Normal Docker dispatch:
+The stable implementation supports the normal Student Lab dispatcher:
 
 ```text
 function_tests   -> python-function-v1
@@ -159,13 +120,15 @@ none             -> legacy P1/C/Node/SQLite
 multiple         -> invalid_payload before student code runs
 ```
 
-The grading-profile behavior implementation/release phase is therefore **complete**.
+Platform evidence for the unified grading line is green, including P2/P3/P4 candidates, normal Student Lab dispatch, legacy paths and shared combined gates.
+
+The grading-profile implementation/release phase is **complete**.
 
 ---
 
 # 4. Course-side stable release consumption
 
-P2/P3/P4 course profiles now reference the real stable release identity:
+P2/P3/P4 course profiles reference the real stable release identity:
 
 ```text
 TheBitLab release source = 23bc1d36c7eb8c1b10a11cbde5f226ce7554f85e
@@ -178,62 +141,37 @@ candidate_profile_only = false
 
 ## Direct GHCR consumer access — operational blocker
 
-A direct pull from `python-docente` was tested with `packages: read` and successful GHCR login, but all P2/P3/P4 workflows received:
+A direct pull from `python-docente` was tested with `packages: read` and successful GHCR login, but GHCR returned:
 
 ```text
 Error response from daemon: manifest unknown
 ```
 
-The same digest was successfully published and remotely verified by the upstream `2cornot2c` release workflow. The failure is therefore recorded as a **cross-repository GHCR Actions access/visibility blocker**, not as a grading or digest failure.
+Upstream publication and remote verification of the same digest succeeded. This remains a **cross-repository GHCR Actions access/visibility blocker**, not a grading or digest failure.
 
-Current course profile records this truth explicitly:
-
-```text
-release_identity_status = published-immutable-stable
-consumer_image_access_status = ghcr-cross-repository-actions-access-pending
-direct_immutable_image_pull_verified = false
-```
-
-Until package Actions access is granted to `TheBitPoets/python-docente`, course CI uses the fail-safe fallback:
+Until package Actions access is granted to `TheBitPoets/python-docente`, course CI uses the fail-safe delivery fallback:
 
 ```text
 source-build-from-published-release-source
 ```
 
-It rebuilds only the exact source that produced the stable release (`23bc1d36...`), with the same pinned Debian snapshot/toolchain manifest. It does **not** fall back to the older release candidate.
-
-This is a delivery workaround, not a downgrade of grading semantics.
+It rebuilds only the exact source that produced stable `2026.08.3`; it does not fall back to an older candidate.
 
 ---
 
-# 5. Strong stable-source course proof
+# 5. Latest course grading proof
 
-Latest green evidence after stable promotion/fallback:
+Latest green evidence after the Flowchart/Course Environment repin:
 
 ```text
-Python M13 P2 canary              run 33294985877 / #44  SUCCESS
-Python M28 P3 canary              run 33294985878 / #11  SUCCESS
-Python M26 P4 canary              run 33294985888 / #26  SUCCESS
-Python combined grading canaries  run 33294985932 / #13  SUCCESS
-TheBitLab Python vertical slice    run 33294985910 / #440 SUCCESS
+Python M13 P2 canary              run 33321599202 / #48  SUCCESS
+Python M26 P4 canary              run 33321599221 / #30  SUCCESS
+Python M28 P3 canary              run 33321599321 / #15  SUCCESS
+Python combined grading canaries  run 33321599262 / #17  SUCCESS
+TheBitLab Python vertical slice    run 33321599326 / #444 SUCCESS
 ```
 
-The combined course workflow:
-
-1. verifies P2/P3/P4 share the same stable release source/version/digest metadata;
-2. checks out `23bc1d36...` once;
-3. builds one `2026.08.3` runner once;
-4. runs M13/P2;
-5. runs M28/P3 against the same image;
-6. runs M26/P4 against the same image.
-
-All three pass.
-
-`tests/python_grading_toolchain_alignment.py` prevents drift between the three course profiles and keeps the GHCR direct-pull blocker explicit.
-
----
-
-# 6. Four deliberate Python canaries
+The combined grading gate still proves one shared stable-source runner for P2/P3/P4.
 
 Exactly four deliberate Python canaries are materialized:
 
@@ -244,118 +182,22 @@ M26  py2-activity-b-file-risultato-001          P4 filesystem behavior
 M28  py2-activity-b-serbatoio-invariante-001    P3 object behavior
 ```
 
-Policy remains:
+Behavioral discrimination remains:
 
 ```text
-outcome
-→ correct evidence profile
-→ implementation
-→ real certification
-→ one canary consumer
-→ stable promotion
-→ broader Activity materialization
+M04 solution 3/3; starter 1/3
+M13 solution 3/3; starter 0/3 despite correct numeric stdout
+M26 solution 1/1; starter 0/1 despite correct computed value
+M28 solution 5/5; starter 3/5, failing exactly negative quantity + overflow invariants
 ```
 
 No mass Activity generation is authorized yet.
 
 ---
 
-# 7. P1 — M04 stdin/stdout
+# 6. PY2-01 / Flowchart Lab — managed launcher technical PASS
 
-```text
-Activity = py2-activity-b-input-somma-001
-solution = 3/3 PASS
-starter  = 1/3, all cases executed
-```
-
-Software/Docker path is green. `python-docente#7` remains open for final real Classroom Environment / human rehearsal evidence.
-
----
-
-# 8. P2 — M13 function behavior
-
-```text
-Activity = py2-activity-b-return-area-001
-profile = python-function-v1
-```
-
-Controlled change:
-
-```text
-print(area) -> return area
-```
-
-Oracle:
-
-```text
-solution = 3/3 PASS
-starter  = 0/3 FAIL
-starter stdout numerically correct
-starter actual_return = None
-```
-
-The grader measures function return behavior rather than stdout.
-
----
-
-# 9. P4 — M26 filesystem behavior
-
-```text
-Activity = py2-activity-b-file-risultato-001
-profile = python-filesystem-v1
-```
-
-Controlled change:
-
-```text
-print(totale) -> write risultato.txt
-```
-
-Oracle:
-
-```text
-solution -> creates risultato.txt -> 1/1 PASS
-starter  -> correct computed/printed total, no artifact -> 0/1 FAIL
-```
-
-Teacher fixture/oracle details remain redacted from the Student Lab report.
-
----
-
-# 10. P3 — M28 object behavior
-
-```text
-Activity = py2-activity-b-serbatoio-invariante-001
-profile = python-object-v1
-```
-
-M28 invariant:
-
-```text
-0 <= livello <= capacita
-```
-
-Oracle:
-
-```text
-solution = 5/5 PASS
-starter  = 3/5
-```
-
-The starter passes initial state, valid transition and independent instances, but fails exactly:
-
-```text
-overflow rifiutato senza cambiare stato
-quantita negativa rifiutata
-```
-
-P3 also proves constructor/method/state behavior, expected exceptions, independent instances, hardened container execution and Student Lab teacher-oracle redaction.
-
----
-
-# 11. PY2-01 / Flowchart Lab
-
-The managed Flowchart candidate includes:
+The Flowchart stack includes:
 
 ```text
 thebitlab.flowchart.v1
@@ -368,62 +210,130 @@ managed algorithm.flow.json persistence
 JSON import/export
 deterministic SVG evidence
 runtime plugin / registry
+Student Runtime CLI launcher
 ```
 
-Course CI is green. Final classroom-profile rehearsal remains separate; paper/whiteboard/template remains the valid fallback.
-
----
-
-# 12. Git G1 consumer
-
-```text
-TheBitPoets/git
-G1 candidate ref = 65d8aff8c9a590560c500762d4dc7378a3239bf2
-config/git-g1-consumer.json
-mode = embedded-outcome-subset
-```
-
-Structural/process consumer is complete. Classroom rehearsal/final evidence remains separate.
-
----
-
-# 13. Romeo simulator — managed runtime certified
-
-`romeo-sim` is now technically certified as a managed simulator runtime; physical Romeo hardware is neither required nor claimed as certified.
-
-Cross-profile plugin evidence:
+Course pin:
 
 ```text
 TheBitPoets/2cornot2c
+ref = 736bbfddfb79e431b9dedbfd1d877f06aa8b02b5
+```
+
+Real managed-launcher technical evidence:
+
+```text
+Flowchart managed classroom certification
+run 33321478705 / #12 — SUCCESS
+Ubuntu / Windows / macOS = PASS
+```
+
+The rehearsal starts the **real `student_runtime_cli launch` as a subprocess** and verifies from outside that process:
+
+```text
+assignment selection
+→ runtime registry/probe
+→ managed loopback launch
+→ browser UI reachable
+→ save/load algorithm.flow.json
+→ deterministic Run
+→ Session/Step + variable watch
+→ deterministic SVG
+→ launcher owns endpoint lifecycle
+→ endpoint dies with launcher
+→ no authoritative autograding claim
+```
+
+The rehearsal exposed and fixed two real defects that in-process tests had hidden:
+
+1. the CLI returned after starting a daemon-thread server, destroying the endpoint;
+2. Python `HTTPServer.server_bind()` performed an unnecessary reverse/FQDN lookup on loopback, stalling the macOS profile.
+
+Final fix uses a dedicated loopback HTTP server bind that does **not** call `socket.getfqdn()`. A regression test forces `getfqdn()` to fail and proves server creation remains valid.
+
+Same final upstream head is green on:
+
+```text
+Quality                              #1911 SUCCESS
+Build assignment runner Docker       #1074 SUCCESS
+uTUI consumer evidence               #969 SUCCESS
+Romeo sim cross-profile              #18 SUCCESS
+Publish toolchain validation          #49 SUCCESS
+Flowchart managed launcher           #12 SUCCESS
+```
+
+The course vertical slice #444 validates the exact pinned candidate successfully on Ubuntu and Windows.
+
+## Truth boundary
+
+This is a **cross-platform managed-launcher technical PASS**, not final classroom certification.
+
+`config/flowchart-lab-candidate.json` therefore correctly remains:
+
+```text
+status = candidate-not-certified
+candidate_ci_is_classroom_certification = false
+fallback_remains_required = true
+supported_profile_rehearsal_required = true
+human_usability_review_required = true
+```
+
+`flowchart.manual-evidence.v1` remains a valid fallback until the real docker-light/vm-gui rehearsal and human browser usability review are complete.
+
+---
+
+# 7. Romeo simulator — managed runtime certified
+
+`romeo-sim` is technically certified as a managed simulator runtime. Physical Romeo hardware is neither required nor claimed as certified.
+
+Cross-profile evidence:
+
+```text
 Romeo sim cross-profile certification
 run 33315344675 / #3 — SUCCESS
 Ubuntu / Windows / macOS = PASS
 ```
 
-Authoritative runtime evidence uses the real Romeo 0.2.0 published sandbox:
+Authoritative runtime evidence:
 
 ```text
-release source = 584ba489000a559f9e4cd3326a83f925d6c73a45
+Romeo 0.2.0 release source = 584ba489000a559f9e4cd3326a83f925d6c73a45
 release workflow = 32518993805
 image = ghcr.io/thebitpoets/romeo-runtime@sha256:db7373cc6d24337427d0071dd633f902e266ffae1c440cd2bd605564bb3c7581
 ```
 
-The certification workflow successfully:
+The certification:
 
 1. pulls the exact immutable digest;
 2. installs the matching Romeo 0.2.0 plugin;
-3. verifies `sandbox-plan.v1` is broker-eligible only with a pinned digest;
-4. executes the official `y1-u08-avanti-indietro` and `y2-u07-json` simulated Activities through the current TheBitLab broker;
-5. verifies that TheBitLab promotes the historical local request to authoritative Docker execution;
-6. proves a mutable `:latest` image remains fail-closed.
+3. verifies digest-pinned sandbox eligibility;
+4. executes official `y1-u08-avanti-indietro` and `y2-u07-json` Activities through the current TheBitLab broker;
+5. verifies authoritative Docker execution;
+6. proves mutable/missing image identities fail closed.
 
-This closes the technical `romeo-sim` blocker for simulated course missions. Hardware-dependent Romeo remains optional and outside the Python core.
+This closes the technical Romeo simulator blocker for simulated course missions.
 
 ---
 
-# 14. Slide release artifacts
+# 8. P1 and Git G1
 
-Existing real release build evidence:
+P1 M04 software/Docker path is green; `python-docente#7` remains open for the final real Classroom Environment / human rehearsal.
+
+Git G1 consumer remains structurally complete:
+
+```text
+TheBitPoets/git
+G1 candidate ref = 65d8aff8c9a590560c500762d4dc7378a3239bf2
+mode = embedded-outcome-subset
+```
+
+Classroom evidence for Git remains part of the final environment rehearsal rather than a new curriculum blocker.
+
+---
+
+# 9. Slide release artifacts
+
+Existing real build evidence:
 
 ```text
 workflow: Python slide release artifacts
@@ -438,7 +348,7 @@ artifact id: 9664877644
 
 ---
 
-# 15. Runtime/profile status
+# 10. Runtime/profile status
 
 ```text
 P0 manual/trace/design                 available by pedagogy
@@ -451,14 +361,14 @@ P2+P3+P4 shared course stable-source   PASS
 published immutable GHCR release       PASS
 stable toolchain lock                  PASS
 python-docente direct GHCR pull        BLOCKED by cross-repo package access
+flowchart managed launcher             PASS Ubuntu/Windows/macOS
+flowchart final classroom approval     PENDING profile + human review
 romeo-sim                              CERTIFIED managed simulator PASS
 ```
 
-The remaining grading GHCR issue is operational delivery/access only; grading semantics, release, stable lock and the Romeo simulator runtime are complete.
-
 ---
 
-# 16. Remaining promotion gates
+# 11. Remaining promotion gates
 
 Teacher sign-off remains `PENDING`; AI/CI cannot approve it.
 
@@ -466,13 +376,14 @@ Before `Content Pack 1.0.0 / approved` and classroom GO remain at least:
 
 1. grant/verify cross-repository GHCR package Actions access for `python-docente`, then switch canaries from stable-source rebuild to direct immutable pull;
 2. final P1 Classroom Environment rehearsal;
-3. final Flowchart managed classroom-profile rehearsal;
-4. target Microsoft PowerPoint / human slide review;
-5. human teacher sign-off;
-6. final provenance/license review;
-7. explicit Content Pack promotion;
-8. final real Classroom Environment rehearsal;
-9. explicit classroom GO decision.
+3. Flowchart real docker-light/vm-gui classroom-profile rehearsal;
+4. Flowchart human browser usability/teacher evidence review;
+5. target Microsoft PowerPoint / human slide review;
+6. human teacher sign-off;
+7. final provenance/license review;
+8. explicit Content Pack promotion;
+9. final real Classroom Environment rehearsal;
+10. explicit classroom GO decision.
 
 ---
 
@@ -486,12 +397,16 @@ Semantic review M04–M30                 COMPLETE 🟡 draft
 Content Pack catalog M04–M30            COMPLETE 🟡 draft
 Course Design mapping                   COMPLETE 🟡 draft
 Source-audit manifests                  ALIGNED ✅
-Static QA / vertical slice              PASS ✅
+Static QA / vertical slice              PASS ✅ #444
 Course Board round-trip                 PASS ✅
 P1 host/Docker grading                  PASS ✅
 P1 classroom rehearsal                  PENDING ⏳ #7
-Flowchart implementation/CI             PASS ✅
-Flowchart classroom rehearsal           PENDING ⏳
+Flowchart implementation/core CI        PASS ✅
+Flowchart managed CLI lifecycle         PASS ✅ Ubuntu/Windows/macOS #12
+Flowchart reverse-DNS regression        PASS ✅
+Flowchart exact course consumer         PASS ✅ #444
+Flowchart classroom profile rehearsal   PENDING ⏳
+Flowchart human usability review        PENDING ⏳
 P2 normal Student Lab                   PASS ✅
 P3 normal Student Lab                   PASS ✅
 P4 normal Student Lab                   PASS ✅
@@ -500,7 +415,7 @@ P3 M28 real course canary               PASS ✅ 5/5 vs 3/5
 2026.08.3 real immutable digest         PASS ✅ c0594df8...
 2026.08.3 stable toolchain lock         PASS ✅ #771
 anti-republish release guard            PASS ✅
-P2/P3/P4 stable-source course gate      PASS ✅ #13
+P2/P3/P4 stable-source course gate      PASS ✅ #17
 python-docente direct GHCR pull         BLOCKED ⏳ package Actions access
 romeo-sim plugin cross-profile          PASS ✅ Ubuntu/Windows/macOS
 romeo-sim immutable Docker broker       PASS ✅ db7373cc...
