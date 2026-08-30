@@ -5,7 +5,7 @@
   "uda": "PY2-01",
   "platform": {
     "repository": "TheBitPoets/2cornot2c",
-    "ref": "16110b9a0bc7f274bb523427604eeab7e6815486"
+    "ref": "736bbfddfb79e431b9dedbfd1d877f06aa8b02b5"
   },
   "runtime": {
     "runtime_id": "flowchart-lab",
@@ -23,8 +23,22 @@
     "deterministic-run",
     "session-step-variable-watch",
     "svg-evidence",
-    "explicit-no-authoritative-autograding"
+    "explicit-no-authoritative-autograding",
+    "managed-cli-subprocess-lifecycle",
+    "cross-platform-loopback-launch"
   ],
+  "technical_evidence": {
+    "workflow": "Flowchart managed classroom certification",
+    "run_id": 33321478705,
+    "run_number": 12,
+    "result": "success",
+    "profiles": [
+      "ubuntu-latest",
+      "windows-latest",
+      "macos-latest"
+    ],
+    "reverse_dns_free_loopback_bind": true
+  },
   "certification_policy": {
     "candidate_ci_is_classroom_certification": false,
     "fallback_remains_required": true,
