@@ -21,6 +21,25 @@
     "local_image_tag": "thebitlab-assignment-runner:p1-canary-2026.07.1",
     "release_lock_reference": "ghcr.io/thebitpoets/2cornot2c-assignment-runner@sha256:62f0f7b7bc1d48d01b7f8e5fa765e0b43be3622e70a614033b1bb4a4e522e159"
   },
+  "classroom_environment": {
+    "profile": "docker-light",
+    "repository": "TheBitPoets/2cornot2c",
+    "source_revision": "736bbfddfb79e431b9dedbfd1d877f06aa8b02b5",
+    "student_dev_version": "2026.07.1",
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "machine_names": {
+      "linux/amd64": "x86_64",
+      "linux/arm64": "aarch64"
+    },
+    "build_strategy": "build-exact-student-dev-from-pinned-course-environment-source",
+    "managed_scaffold_source": "thebitlab.create_submission_scaffold",
+    "technical_profile_rehearsal_required": true,
+    "real_classroom_host_rehearsal_required": true,
+    "technical_profile_rehearsal_is_final_human_signoff": false
+  },
   "expected_cases": 3,
   "student_scaffold_files": [
     "README.md",
