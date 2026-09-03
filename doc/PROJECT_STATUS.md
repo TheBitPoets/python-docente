@@ -1,6 +1,6 @@
 # python-docente — project status
 
-> Ultimo aggiornamento: **2026-08-30**  
+> Ultimo aggiornamento: **2026-09-03**
 > Branch: `agent/course-architecture`  
 > Draft PR: `#1`  
 > Canonical freeze: `doc/CURRICULUM_FREEZE_2026_2027.md`
@@ -369,6 +369,34 @@ human teacher evidence/sign-off
 ```
 
 The two upstream classroom box releases are already physically published/collated upstream, but M04 has not yet been rehearsed inside those boxes as a course consumer.
+
+## Rehearsal kit vm-gui — READY TO RUN
+
+Il gate fisico non è stato marcato PASS. È ora disponibile un pacchetto
+eseguibile e registrabile:
+
+```text
+tests/m04_vm_gui_rehearsal.py
+teacher/M04_CLASSROOM_REHEARSAL.md
+teacher/M04_CLASSROOM_REHEARSAL_RECORD.md
+evidence/m04-vm-gui/
+```
+
+L'harness:
+
+1. rifiuta checkout con modifiche tracciate e un `2cornot2c` diverso dal pin;
+2. verifica box, provider, release attiva, Python guest e GUI;
+3. usa `.vagrant` su Windows/VirtualBox e la directory reale
+   `.vagrant-vmware` su macOS/VMware;
+4. prova starter `1/3` e modifica controllata `3/3` dentro la guest;
+5. può salvare un report JSON nuovo e non sovrascrivibile con commit, host,
+   release, manifest ed evidenza per caso;
+6. registra esplicitamente `classroom_ready = false`, human usability non
+   osservata e teacher sign-off pending.
+
+Il record umano resta separato e deve documentare launcher normale, desktop,
+editor, terminale, workspace condiviso e persistenza sul vero host. Stato
+attuale: **harness READY; physical/human evidence PENDING**.
 
 ---
 

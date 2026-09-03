@@ -12,8 +12,10 @@ Semantic review M04–M30        COMPLETE / draft
 Checkpoint A/B/C review        COMPLETE / draft
 Coverage 25 frozen outcomes    MAPPED
 Git G1 structural consumer     COMPLETE / delivery evidence pending
-PY2-01 flow chart              SPEC-only / Flowchart Lab pending
-P1/P2/P3/P4 certification      NOT COMPLETE
+PY2-01 flow chart              DRAFT / managed launcher technical PASS
+P1/P2/P3/P4 grading            SOFTWARE/CONSUMER PASS
+M04 docker-light               PASS amd64/arm64
+M04 vm-gui + human rehearsal   READY TO RUN / PHYSICAL PASS PENDING
 Teacher sign-off               PENDING
 Content Pack 1.0 approved      NOT YET
 Ready for classroom            NOT YET
@@ -33,6 +35,7 @@ Il curriculum annuale è congelato, ma **freeze curricolare, coverage editoriale
 - machine coverage: [`config/curriculum-coverage.json`](config/curriculum-coverage.json)
 - slide pipeline: [`doc/SLIDE_ARTIFACT_PIPELINE.md`](doc/SLIDE_ARTIFACT_PIPELINE.md)
 - teacher sign-off: [`teacher/TEACHER_SIGNOFF_CHECKLIST.md`](teacher/TEACHER_SIGNOFF_CHECKLIST.md)
+- rehearsal M04 reale: [`teacher/M04_CLASSROOM_REHEARSAL.md`](teacher/M04_CLASSROOM_REHEARSAL.md)
 - integrazione Git G1: [`tracks/secondo/GIT_G1_INTEGRATION.md`](tracks/secondo/GIT_G1_INTEGRATION.md)
 - consumer contract Git: [`config/git-g1-consumer.json`](config/git-g1-consumer.json)
 
@@ -67,7 +70,10 @@ MUST MASTER
 → ENRICHMENT / BACKUP
 ```
 
-PY2-01 resta volutamente SPEC-only finché il Flowchart Lab non è certificato; carta/lavagna/pseudocodice/trace restano fallback valido.
+PY2-01 M00–M03 è materializzato come draft. Il launcher gestito Flowchart Lab è
+tecnicamente verde su Ubuntu, Windows e macOS, ma resta
+`candidate-not-certified`; carta/lavagna/pseudocodice/trace restano fallback
+valido fino al rehearsal dei profili classroom e alla review umana.
 
 ## Coverage
 
@@ -83,7 +89,9 @@ coverage editoriale
 ≠ classroom readiness
 ```
 
-Oggi il corso Python materializza una sola nuova Activity automatica canonica: il canarino M04 `py2-activity-b-input-somma-001`.
+Oggi il corso Python materializza esattamente quattro canarini deliberati: M04/P1,
+M13/P2, M26/P4 e M28/P3. Questo non autorizza la produzione massiva delle
+Activity.
 
 ## Git G1
 
@@ -119,7 +127,9 @@ Non vengono creati falsi grader adattando outcome a un profilo non certificato.
 
 ## Slide delivery
 
-I 27 deck Marp M04–M30 sono source canonici. La pipeline artifact target è:
+I 27 deck Marp M04–M30 sono source canonici. La build reale HTML/PDF/PPTX e la
+QA ingegneristica sono verdi; la review umana PowerPoint resta aperta. La
+pipeline artifact è:
 
 ```text
 Markdown
@@ -131,17 +141,15 @@ Markdown
 → teacher sign-off
 ```
 
-La build reale non è ancora certificata; non confondere source deck presenti con artifact già validati.
+Non confondere la build/QA ingegneristica con il sign-off visuale umano.
 
 ## Gate aperti
 
-- managed Classroom Environment / Flowchart Lab;
-- beginner REPL/editor workflow;
-- P1 canary certification;
-- private GitHub Actions pre-runner blocker;
-- P2/P3/P4;
-- `romeo-sim` cross-profile;
-- slide artifact build/QA;
+- M04 `vm-gui` sui due profili rilasciati e real-school/human evidence;
+- Flowchart Lab sui profili classroom e review umana;
+- beginner REPL/editor workflow umano;
+- accesso diretto GHCR cross-repository per `python-docente`;
+- review PowerPoint umana;
 - teacher sign-off;
 - provenance/coverage final review;
 - real TheBitLab rehearsal;

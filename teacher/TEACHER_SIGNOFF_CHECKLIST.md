@@ -244,6 +244,9 @@ Non spuntare le build finché i file non sono stati realmente generati e aperti/
 - [ ] beginner REPL/editor workflow certificato;
 - [ ] PY2-01 Flowchart Lab/fallback delivery resa veritiera;
 - [ ] M04/P1 canary realmente eseguito;
+- [ ] M04 `vm-gui` eseguito sui profili inclusi nello scope reale, con report
+      tecnico e record umano secondo `M04_CLASSROOM_REHEARSAL.md`;
+- [ ] un eventuale pilot limitato dichiara esplicitamente i profili non provati;
 - [ ] student scaffold senza asset riservati;
 - [ ] Course Workspace open/save/reopen provato;
 - [ ] Git G1 consumer provato nel workspace;

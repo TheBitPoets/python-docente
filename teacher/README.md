@@ -15,6 +15,8 @@
 9. [`doc/SLIDE_ARTIFACT_PIPELINE.md`](../doc/SLIDE_ARTIFACT_PIPELINE.md)
 10. [`doc/SLIDE_ARTIFACT_REVIEW_2026-08-27.md`](../doc/SLIDE_ARTIFACT_REVIEW_2026-08-27.md)
 11. [`TEACHER_SIGNOFF_CHECKLIST.md`](TEACHER_SIGNOFF_CHECKLIST.md)
+12. [`M04_CLASSROOM_REHEARSAL.md`](M04_CLASSROOM_REHEARSAL.md) e
+    [`M04_CLASSROOM_REHEARSAL_RECORD.md`](M04_CLASSROOM_REHEARSAL_RECORD.md)
 
 ## Regola didattica trasversale
 
@@ -44,7 +46,11 @@ Timing: M00 orientamento + M01 condividono la settimana 1; M02 = settimana 2; M0
 - M04 [lesson](../content/python/04_INTERPRETE_REPL_VALORI_IO.md) · [slide](../slides/python/modules/04_INTERPRETE_REPL_VALORI_IO.md) · [runbook](M04_RUNBOOK.md)
 - M05 [lesson](../content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md) · [slide](../slides/python/modules/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md) · [runbook](M05_RUNBOOK.md)
 
-M04 resta il golden vertical slice tecnico con Activity P1 `py2-activity-b-input-somma-001`. Host CI Ubuntu/Windows e grading Docker source-built pinned sono PASS; #7 resta aperta per il rehearsal classroom.
+M04 resta il golden vertical slice tecnico con Activity P1
+`py2-activity-b-input-somma-001`. Host CI Ubuntu/Windows, grading Docker
+source-built pinned e `docker-light` amd64/arm64 sono PASS. Il rehearsal
+`vm-gui` è pronto da eseguire e registrare, ma #7 resta aperta finché non
+esistono evidenze fisiche e umane reali.
 
 # PY2-03 — Selezione e logica
 

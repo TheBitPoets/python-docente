@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import argparse
 import base64
+from datetime import datetime, timezone
 import json
+import os
 import platform as host_platform
 from pathlib import Path
 import re
@@ -13,6 +15,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+PROFILE_PATH = ROOT / "config" / "p1-canary-profile.json"
 ACTIVITY_DIR = ROOT / "activities" / "python" / "py2-activity-b-input-somma-001"
 ACTIVITY_PATH = ACTIVITY_DIR / "activity.json"
 STARTER_PATH = ACTIVITY_DIR / "starter" / "main.py"
@@ -82,13 +85,20 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def run(command: list[str], *, cwd: Path, check: bool = True) -> subprocess.CompletedProcess[str]:
+def run(
+    command: list[str],
+    *,
+    cwd: Path,
+    check: bool = True,
+    environment: dict[str, str] | None = None,
+) -> subprocess.CompletedProcess[str]:
     completed = subprocess.run(
         command,
         cwd=cwd,
         capture_output=True,
         text=True,
         check=False,
+        env=environment,
     )
     if check and completed.returncode != 0:
         fail(
@@ -96,6 +106,33 @@ def run(command: list[str], *, cwd: Path, check: bool = True) -> subprocess.Comp
             f"stdout:\n{completed.stdout}\nstderr:\n{completed.stderr}"
         )
     return completed
+
+
+def git_identity(repository: Path) -> dict[str, Any]:
+    head = run(["git", "rev-parse", "HEAD"], cwd=repository).stdout.strip()
+    if not re.fullmatch(r"[0-9a-f]{40}", head):
+        fail(f"HEAD Git non valido in {repository}: {head!r}")
+    tracked_changes = run(
+        ["git", "status", "--porcelain", "--untracked-files=no"],
+        cwd=repository,
+    ).stdout.strip()
+    if tracked_changes:
+        fail(
+            f"Checkout con modifiche tracciate in {repository}. "
+            "Il rehearsal deve usare sorgenti committati e riproducibili."
+        )
+    return {"commit": head, "tracked_files_clean": True}
+
+
+def vagrant_environment(provider: str) -> tuple[dict[str, str], str]:
+    environment = os.environ.copy()
+    if provider == "vmware_desktop":
+        state_directory = ".vagrant-vmware"
+        environment["VAGRANT_DOTFILE_PATH"] = state_directory
+    else:
+        state_directory = ".vagrant"
+        environment.pop("VAGRANT_DOTFILE_PATH", None)
+    return environment, state_directory
 
 
 def verify_active_release(platform: Path, target_id: str, provider: str) -> dict[str, Any]:
@@ -158,8 +195,18 @@ def parse_box_list_machine_readable(output: str) -> set[tuple[str, str]]:
     }
 
 
-def verify_installed_box(vagrant: str, platform: Path, box: str, provider: str) -> None:
-    completed = run([vagrant, "box", "list", "--machine-readable"], cwd=platform)
+def verify_installed_box(
+    vagrant: str,
+    platform: Path,
+    box: str,
+    provider: str,
+    environment: dict[str, str],
+) -> None:
+    completed = run(
+        [vagrant, "box", "list", "--machine-readable"],
+        cwd=platform,
+        environment=environment,
+    )
     installed = parse_box_list_machine_readable(completed.stdout)
     if (box, provider) not in installed:
         fail(
@@ -208,17 +255,39 @@ def prepare_workspace(platform: Path, main_source: str) -> Path:
     return workspace
 
 
-def guest_command(vagrant: str, platform: Path, shell_command: str) -> subprocess.CompletedProcess[str]:
-    return run([vagrant, "ssh", "-c", shell_command], cwd=platform)
+def prepare_human_workspace(workspace: Path, starter: str) -> None:
+    (workspace / "main.py").write_text(starter, encoding="utf-8")
+    (workspace / "guest_runner.py").unlink(missing_ok=True)
+    files = sorted(path.name for path in workspace.iterdir() if path.is_file())
+    if files != ["main.py"]:
+        fail(f"Workspace umano contiene file inattesi: {files}")
 
 
-def guest_profile(vagrant: str, platform: Path, expected_machine: str) -> dict[str, str]:
+def guest_command(
+    vagrant: str,
+    platform: Path,
+    shell_command: str,
+    environment: dict[str, str],
+) -> subprocess.CompletedProcess[str]:
+    return run(
+        [vagrant, "ssh", "-c", shell_command],
+        cwd=platform,
+        environment=environment,
+    )
+
+
+def guest_profile(
+    vagrant: str,
+    platform: Path,
+    expected_machine: str,
+    environment: dict[str, str],
+) -> dict[str, str]:
     script = (
         "python3 -c 'import platform,sys,json; "
         "print(json.dumps({\"python\": platform.python_version(), "
         "\"machine\": platform.machine(), \"executable\": sys.executable}))'"
     )
-    completed = guest_command(vagrant, platform, script)
+    completed = guest_command(vagrant, platform, script, environment)
     lines = [line.strip() for line in completed.stdout.splitlines() if line.strip().startswith("{")]
     if not lines:
         fail(f"Profilo guest non leggibile: {completed.stdout!r}")
@@ -236,6 +305,7 @@ def guest_profile(vagrant: str, platform: Path, expected_machine: str) -> dict[s
         vagrant,
         platform,
         "systemctl is-active graphical.target && systemctl is-active lightdm",
+        environment,
     )
     gui_lines = [line.strip() for line in gui.stdout.splitlines() if line.strip()]
     if gui_lines[-2:] != ["active", "active"]:
@@ -247,6 +317,7 @@ def run_cases_in_guest(
     vagrant: str,
     platform: Path,
     cases: list[dict[str, str]],
+    environment: dict[str, str],
 ) -> tuple[int, list[dict[str, Any]]]:
     passed = 0
     evidence: list[dict[str, Any]] = []
@@ -257,6 +328,7 @@ def run_cases_in_guest(
             vagrant,
             platform,
             f"cd {guest_dir} && python3 guest_runner.py {encoded}",
+            environment,
         )
         payload_lines = [
             line.strip() for line in completed.stdout.splitlines() if line.strip().startswith("{")
@@ -280,6 +352,75 @@ def run_cases_in_guest(
     return passed, evidence
 
 
+def write_report(path: Path, report: dict[str, Any]) -> Path:
+    destination = path.expanduser().resolve()
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with destination.open("x", encoding="utf-8", newline="\n") as stream:
+            json.dump(report, stream, ensure_ascii=False, indent=2, sort_keys=True)
+            stream.write("\n")
+    except FileExistsError:
+        fail(
+            f"Report già esistente: {destination}. "
+            "Usa un nuovo nome: le evidenze non vengono sovrascritte."
+        )
+    return destination
+
+
+def build_report(
+    *,
+    course_identity: dict[str, Any],
+    platform_identity: dict[str, Any],
+    target_id: str,
+    provider: str,
+    state_directory: str,
+    box: str,
+    active_release: dict[str, Any],
+    guest: dict[str, str],
+    starter_evidence: list[dict[str, Any]],
+    corrected_evidence: list[dict[str, Any]],
+) -> dict[str, Any]:
+    return {
+        "schema_version": "python.m04-vm-gui-rehearsal.v1",
+        "status": "passed",
+        "generated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "python_docente": course_identity,
+        "course_environment": platform_identity,
+        "host": {
+            "system": host_platform.system(),
+            "machine": host_platform.machine(),
+        },
+        "target_id": target_id,
+        "provider": provider,
+        "vagrant_state_directory": state_directory,
+        "box": box,
+        "active_release": active_release["version"],
+        "manifest_sha256": active_release["manifest_sha256"],
+        "guest": guest,
+        "activity_id": "py2-activity-b-input-somma-001",
+        "starter_cases": "1/3",
+        "corrected_student_edit_cases": "3/3",
+        "controlled_change": "risultato = 0 -> risultato = primo + secondo",
+        "teacher_oracle_copied_to_guest": False,
+        "solution_asset_copied_to_guest": False,
+        "evidence_scope": {
+            "technical_vm_gui_execution": "passed",
+            "normal_student_launcher_observed": False,
+            "human_usability_observed": False,
+            "real_school_host_attested": False,
+            "teacher_signoff": "pending",
+            "classroom_ready": False,
+        },
+        "limitations": [
+            "The harness invokes Vagrant directly; it does not observe the normal student launcher.",
+            "No human student-workflow or usability observation is performed by this script.",
+            "A technical PASS does not grant teacher sign-off, Content Pack approval or classroom GO.",
+        ],
+        "starter_evidence": starter_evidence,
+        "corrected_evidence": corrected_evidence,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
@@ -293,19 +434,49 @@ def main() -> int:
         action="store_true",
         help="Non rimuovere il piccolo workspace /lab usato dal rehearsal.",
     )
+    parser.add_argument(
+        "--report",
+        type=Path,
+        help=(
+            "Salva il report JSON PASS in un file nuovo. Il file non viene sovrascritto; "
+            "un tentativo fallito non produce una falsa evidenza PASS."
+        ),
+    )
     args = parser.parse_args()
+
+    report_destination = (
+        args.report.expanduser().resolve() if args.report is not None else None
+    )
+    if report_destination is not None and report_destination.exists():
+        fail(
+            f"Report già esistente: {report_destination}. "
+            "Usa un nuovo nome: le evidenze non vengono sovrascritte."
+        )
 
     platform = args.platform.expanduser().resolve(strict=True)
     if not (platform / "Vagrantfile").is_file():
         fail(f"Vagrantfile TheBitLab non trovato in {platform}")
 
     target_id, provider, expected_machine = current_target()
+    course_identity = git_identity(ROOT)
+    platform_identity = git_identity(platform)
+    profile = load_json(PROFILE_PATH)
+    classroom = profile.get("classroom_environment")
+    if not isinstance(classroom, dict):
+        fail("Profilo P1 senza classroom_environment")
+    expected_platform_commit = str(classroom.get("source_revision") or "")
+    if platform_identity["commit"] != expected_platform_commit:
+        fail(
+            "Checkout 2cornot2c non pinnato al Course Environment richiesto: "
+            f"{platform_identity['commit']}; atteso {expected_platform_commit}."
+        )
     active_release = verify_active_release(platform, target_id, provider)
     box = selected_box(platform, provider)
     vagrant = shutil.which("vagrant") or shutil.which("vagrant.exe")
     if not vagrant:
         fail("Vagrant non trovato sul vero host classroom")
-    verify_installed_box(vagrant, platform, box, provider)
+    environment, state_directory = vagrant_environment(provider)
+    verify_installed_box(vagrant, platform, box, provider, environment)
 
     starter = STARTER_PATH.read_text(encoding="utf-8")
     corrected = corrected_student_edit(starter)
@@ -313,37 +484,55 @@ def main() -> int:
     workspace = prepare_workspace(platform, starter)
 
     try:
-        run([vagrant, "up", f"--provider={provider}"], cwd=platform)
-        profile = guest_profile(vagrant, platform, expected_machine)
+        run(
+            [vagrant, "up", f"--provider={provider}"],
+            cwd=platform,
+            environment=environment,
+        )
+        guest = guest_profile(vagrant, platform, expected_machine, environment)
 
-        starter_passed, starter_evidence = run_cases_in_guest(vagrant, platform, cases)
+        starter_passed, starter_evidence = run_cases_in_guest(
+            vagrant,
+            platform,
+            cases,
+            environment,
+        )
         if starter_passed != 1:
             fail(f"Discriminazione starter inattesa nella VM: {starter_passed}/3")
 
         (workspace / "main.py").write_text(corrected, encoding="utf-8")
-        corrected_passed, corrected_evidence = run_cases_in_guest(vagrant, platform, cases)
+        corrected_passed, corrected_evidence = run_cases_in_guest(
+            vagrant,
+            platform,
+            cases,
+            environment,
+        )
         if corrected_passed != 3:
             fail(f"Student edit corretto inatteso nella VM: {corrected_passed}/3")
 
-        report = {
-            "schema_version": "python.m04-vm-gui-rehearsal.v1",
-            "status": "passed",
-            "target_id": target_id,
-            "provider": provider,
-            "box": box,
-            "active_release": active_release["version"],
-            "manifest_sha256": active_release["manifest_sha256"],
-            "guest": profile,
-            "activity_id": "py2-activity-b-input-somma-001",
-            "starter_cases": f"{starter_passed}/3",
-            "corrected_student_edit_cases": f"{corrected_passed}/3",
-            "controlled_change": "risultato = 0 -> risultato = primo + secondo",
-            "teacher_oracle_copied_to_guest": False,
-            "solution_asset_copied_to_guest": False,
-            "starter_evidence": starter_evidence,
-            "corrected_evidence": corrected_evidence,
-        }
+        if args.keep_workspace:
+            prepare_human_workspace(workspace, starter)
+
+        report = build_report(
+            course_identity=course_identity,
+            platform_identity=platform_identity,
+            target_id=target_id,
+            provider=provider,
+            state_directory=state_directory,
+            box=box,
+            active_release=active_release,
+            guest=guest,
+            starter_evidence=starter_evidence,
+            corrected_evidence=corrected_evidence,
+        )
+        report_path = (
+            write_report(report_destination, report)
+            if report_destination is not None
+            else None
+        )
         print(json.dumps(report, ensure_ascii=False, indent=2))
+        if report_path is not None:
+            print(f"REPORT: {report_path}")
     finally:
         if not args.keep_workspace and workspace.exists():
             shutil.rmtree(workspace)

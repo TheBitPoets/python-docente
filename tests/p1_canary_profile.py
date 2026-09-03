@@ -80,7 +80,33 @@ def main() -> int:
     assert classroom.get("managed_scaffold_source") == "thebitlab.create_submission_scaffold"
     assert classroom.get("technical_profile_rehearsal_required") is True
     assert classroom.get("real_classroom_host_rehearsal_required") is True
+    assert classroom.get("vm_gui_rehearsal_required") is True
+    vm_gui = classroom.get("vm_gui_rehearsal") or {}
+    assert vm_gui.get("status") == "ready-to-run"
+    assert vm_gui.get("active_release") == "1.0.0"
+    assert vm_gui.get("harness") == "tests/m04_vm_gui_rehearsal.py"
+    assert vm_gui.get("runbook") == "teacher/M04_CLASSROOM_REHEARSAL.md"
+    assert vm_gui.get("human_record_template") == "teacher/M04_CLASSROOM_REHEARSAL_RECORD.md"
+    assert vm_gui.get("evidence_directory") == "evidence/m04-vm-gui"
+    assert vm_gui.get("profiles") == {
+        "windows-amd64-virtualbox": {
+            "provider": "virtualbox",
+            "vagrant_state_directory": ".vagrant",
+            "guest_machine": "x86_64",
+        },
+        "macos-arm64-vmware": {
+            "provider": "vmware_desktop",
+            "vagrant_state_directory": ".vagrant-vmware",
+            "guest_machine": "aarch64",
+        },
+    }
+    assert vm_gui.get("technical_evidence_status") == "pending-physical-run"
+    assert vm_gui.get("human_record_required") is True
+    assert vm_gui.get("technical_pass_is_classroom_ready") is False
     assert classroom.get("technical_profile_rehearsal_is_final_human_signoff") is False
+
+    for path_key in ("harness", "runbook", "human_record_template", "evidence_directory"):
+        assert (ROOT / str(vm_gui[path_key])).exists()
 
     policy = profile.get("certification_policy") or {}
     assert policy.get("direct_preflight_is_authoritative_grading") is False
