@@ -1,0 +1,52 @@
+{
+  "schema_version": "thebitlab.course-environment.v1",
+  "course_id": "python-secondo-2026-2027",
+  "supported_profiles": [
+    "docker-light",
+    "vm-gui"
+  ],
+  "baseline": {
+    "os_family": "linux",
+    "python": ">=3.12,<3.13"
+  },
+  "capabilities": {
+    "required": [
+      "workspace.v1",
+      "shell.v1",
+      "python.v1",
+      "git.basic.v1"
+    ],
+    "optional": [
+      "editor.vscode.v1",
+      "runtime.romeo-sim.v1"
+    ],
+    "fallback": [
+      {
+        "capability": "flowchart.lab.v1",
+        "fallback_id": "flowchart.manual-evidence.v1",
+        "preserves_outcomes": [
+          "algorithm-design",
+          "flowchart-reading-writing",
+          "manual-trace",
+          "test-case-design"
+        ],
+        "student_path": "paper-or-whiteboard-flowchart + teacher rubric/manual evidence"
+      }
+    ]
+  },
+  "workspace": {
+    "course_root": ".",
+    "student_writable": true,
+    "teacher_assets_exposed": false
+  },
+  "network": {
+    "interactive_required": false,
+    "grading_required": false
+  },
+  "notes": {
+    "repl": "standard Python REPL is required; IPython is optional and not assumed",
+    "vscode": "host or guest implementation is platform-owned; course instructions must not require unmanaged setup",
+    "romeo": "managed romeo-sim 0.2.0 is technically certified cross-platform with authoritative digest-pinned Docker execution; physical hardware remains optional and non-core",
+    "flowchart": "managed Student Runtime CLI launch is technically green on Ubuntu, Windows and macOS; manual evidence remains the frozen fallback until supported classroom-profile rehearsal and human browser usability review are complete"
+  }
+}

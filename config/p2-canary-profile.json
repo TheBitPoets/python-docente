@@ -1,0 +1,46 @@
+{
+  "schema_version": "python.p2-canary-certification.v1",
+  "activity_id": "py2-activity-b-return-area-001",
+  "activity_path": "activities/python/py2-activity-b-return-area-001/activity.json",
+  "host_python": "3.12",
+  "host_os": "ubuntu-latest",
+  "thebitlab": {
+    "repository": "TheBitPoets/2cornot2c",
+    "ref": "23bc1d36c7eb8c1b10a11cbde5f226ce7554f85e",
+    "profile": "python-function-v1",
+    "pr": 770,
+    "stable_lock_pr": 771,
+    "profile_lineage_pr": 766,
+    "feature_pr": 763
+  },
+  "authoritative_grading": {
+    "strategy": "source-build-from-published-release-source",
+    "platform": "linux/amd64",
+    "toolchain_version": "2026.08.3",
+    "release_identity_status": "published-immutable-stable",
+    "image_repository": "ghcr.io/thebitpoets/2cornot2c-assignment-runner",
+    "digest": "sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51",
+    "immutable_image_reference": "ghcr.io/thebitpoets/2cornot2c-assignment-runner@sha256:c0594df833925044831463a9ee631aba2688929951a7dbcb53612b86d221ed51",
+    "consumer_image_access_status": "ghcr-cross-repository-actions-access-pending",
+    "local_image_tag": "thebitlab-python-grading-stable-source"
+  },
+  "expected_cases": 3,
+  "expected_solution_passed": 3,
+  "expected_starter_passed": 0,
+  "student_scaffold_files": [
+    "README.md",
+    "activity.json",
+    "main.py",
+    "GUIDA.md"
+  ],
+  "certification_policy": {
+    "candidate_profile_only": false,
+    "mass_activity_materialization_allowed": false,
+    "normal_student_lab_dispatch_required_before_stable": true,
+    "normal_student_lab_dispatch_certified": true,
+    "immutable_release_lock_required_before_stable": true,
+    "immutable_release_lock_verified": true,
+    "direct_immutable_image_pull_verified": false,
+    "combined_p2_p3_p4_toolchain_required": true
+  }
+}

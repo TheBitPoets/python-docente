@@ -1,0 +1,152 @@
+name: M04 docker-light classroom profile
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/m04-docker-light-classroom.yml"
+      - "config/p1-canary-profile.json"
+      - "tests/m04_docker_light_profile.py"
+      - "activities/python/py2-activity-b-input-somma-001/**"
+
+permissions:
+  contents: read
+
+jobs:
+  docker-light:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            tag: amd64
+          - platform: linux/arm64
+            tag: arm64
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout python-docente
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Checkout exact scaffold-generation baseline
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
+          path: _thebitlab-scaffold
+          persist-credentials: false
+
+      - name: Checkout exact Course Environment source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: 736bbfddfb79e431b9dedbfd1d877f06aa8b02b5
+          path: _thebitlab-classroom
+          persist-credentials: false
+
+      - name: Enable multiarch emulation
+        uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3
+
+      - name: Verify exact profile pins
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          profile = json.loads(Path("config/p1-canary-profile.json").read_text(encoding="utf-8"))
+          scaffold = profile["thebitlab"]
+          classroom = profile["classroom_environment"]
+
+          actual_scaffold = subprocess.run(
+              ["git", "-C", "_thebitlab-scaffold", "rev-parse", "HEAD"],
+              check=True,
+              capture_output=True,
+              text=True,
+          ).stdout.strip()
+          actual_classroom = subprocess.run(
+              ["git", "-C", "_thebitlab-classroom", "rev-parse", "HEAD"],
+              check=True,
+              capture_output=True,
+              text=True,
+          ).stdout.strip()
+
+          assert actual_scaffold == scaffold["ref"]
+          assert actual_classroom == classroom["source_revision"]
+          manifest = json.loads(
+              Path("_thebitlab-classroom/docker/student-dev/toolchain.json").read_text(encoding="utf-8")
+          )
+          assert manifest["version"] == classroom["student_dev_version"]
+          assert manifest["platforms"] == classroom["platforms"]
+          assert manifest["packages"]["python3"].startswith("3.12.3-")
+          print("PASS: exact scaffold baseline + Course Environment/student-dev pins verified")
+          PY
+
+      - name: Generate real managed student scaffolds
+        shell: bash
+        env:
+          ACTIVITY: ${{ github.workspace }}/activities/python/py2-activity-b-input-somma-001/activity.json
+          SOLUTION: ${{ github.workspace }}/activities/python/py2-activity-b-input-somma-001/solution/main.py
+          SCAFFOLD_REF: cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
+        run: |
+          set -euo pipefail
+          mkdir -p _classroom-rehearsal/starter-repo _classroom-rehearsal/solution-repo
+
+          (
+            cd _thebitlab-scaffold
+            python -m scripts.create_submission_scaffold \
+              --activity "$ACTIVITY" \
+              --target "$GITHUB_WORKSPACE/_classroom-rehearsal/starter-repo" \
+              --thebitlab-ref "$SCAFFOLD_REF"
+            python -m scripts.create_submission_scaffold \
+              --activity "$ACTIVITY" \
+              --target "$GITHUB_WORKSPACE/_classroom-rehearsal/solution-repo" \
+              --thebitlab-ref "$SCAFFOLD_REF"
+          )
+
+          cp "$SOLUTION" \
+            _classroom-rehearsal/solution-repo/assignments/py2-activity-b-input-somma-001/main.py
+
+          # Hosted Linux uses a different UID from the classroom image. Keep
+          # the real student-dev user (UID/GID 1000) as owner so write access is
+          # exercised exactly as in class, while preserving read/traverse access
+          # to the public scaffold for the host-side evidence harness.
+          sudo chown -R 1000:1000 \
+            _classroom-rehearsal/starter-repo \
+            _classroom-rehearsal/solution-repo
+          sudo chmod -R u+rwX,go+rX \
+            _classroom-rehearsal/starter-repo \
+            _classroom-rehearsal/solution-repo
+
+      - name: Build exact student-dev classroom image
+        shell: bash
+        env:
+          CLASSROOM_REF: 736bbfddfb79e431b9dedbfd1d877f06aa8b02b5
+          IMAGE: python-docente-student-dev:m04-${{ matrix.tag }}
+        run: |
+          set -euo pipefail
+          python _thebitlab-classroom/scripts/build_student_dev.py \
+            --platform "${{ matrix.platform }}" \
+            --tag "$IMAGE" \
+            --source-revision "$CLASSROOM_REF"
+
+      - name: Rehearse M04 inside docker-light
+        shell: bash
+        env:
+          IMAGE: python-docente-student-dev:m04-${{ matrix.tag }}
+        run: |
+          set -euo pipefail
+          python tests/m04_docker_light_profile.py \
+            --image "$IMAGE" \
+            --platform "${{ matrix.platform }}" \
+            --starter-workspace _classroom-rehearsal/starter-repo/assignments/py2-activity-b-input-somma-001 \
+            --solution-workspace _classroom-rehearsal/solution-repo/assignments/py2-activity-b-input-somma-001

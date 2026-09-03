@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "id": "py2-activity-b-serbatoio-invariante-001",
+  "title": "Proteggi l'invariante del Serbatoio",
+  "titolo": "Proteggi l'invariante del Serbatoio",
+  "kind": "laboratorio",
+  "tipo": "laboratorio",
+  "language": "python",
+  "linguaggio": "python",
+  "source_name": "main.py",
+  "difficulty": "B",
+  "difficolta": "B",
+  "topics": [
+    "classi",
+    "stato",
+    "metodi",
+    "invarianti",
+    "istanze-indipendenti"
+  ],
+  "argomenti": [
+    "classi",
+    "stato",
+    "metodi",
+    "invarianti",
+    "istanze-indipendenti"
+  ],
+  "instructions": "Lo starter del Serbatoio modifica sempre il livello e restituisce sempre True. Completa il metodo aggiungi affinche una quantita negativa o un'aggiunta oltre la capacita venga rifiutata restituendo False senza cambiare lo stato; un'aggiunta valida deve cambiare il livello e restituire True.",
+  "consegna": "Lo starter del Serbatoio modifica sempre il livello e restituisce sempre True. Completa il metodo aggiungi affinche una quantita negativa o un'aggiunta oltre la capacita venga rifiutata restituendo False senza cambiare lo stato; un'aggiunta valida deve cambiare il livello e restituire True.",
+  "student_support_mode": "feedback-tecnico",
+  "grading_policy": {
+    "compila": true,
+    "test": true,
+    "sandbox": true,
+    "ai_feedback": false
+  },
+  "correzione": {
+    "compila": true,
+    "test": true,
+    "sandbox": true,
+    "ai_feedback": false
+  },
+  "metriche": {
+    "tempo_stimato_minuti": 20,
+    "traccia_tempo_dichiarato": true,
+    "traccia_sessioni_thebitlab": true,
+    "traccia_eventi_didattici": true,
+    "traccia_errori_compilazione": true
+  },
+  "object_tests": [
+    {
+      "profile": "python-object-v1",
+      "name": "stato iniziale",
+      "class": "Serbatoio",
+      "construct": {"args": [10]},
+      "steps": [
+        {"observe": "capacita", "expected": 10},
+        {"observe": "livello", "expected": 0}
+      ]
+    },
+    {
+      "profile": "python-object-v1",
+      "name": "aggiunta valida",
+      "class": "Serbatoio",
+      "construct": {"args": [10]},
+      "steps": [
+        {"call": "aggiungi", "args": [4], "expected_return": true},
+        {"observe": "livello", "expected": 4}
+      ]
+    },
+    {
+      "profile": "python-object-v1",
+      "name": "overflow rifiutato senza cambiare stato",
+      "class": "Serbatoio",
+      "construct": {"args": [10]},
+      "steps": [
+        {"call": "aggiungi", "args": [4], "expected_return": true},
+        {"call": "aggiungi", "args": [8], "expected_return": false},
+        {"observe": "livello", "expected": 4}
+      ]
+    },
+    {
+      "profile": "python-object-v1",
+      "name": "quantita negativa rifiutata",
+      "class": "Serbatoio",
+      "construct": {"args": [10]},
+      "steps": [
+        {"call": "aggiungi", "args": [-1], "expected_return": false},
+        {"observe": "livello", "expected": 0}
+      ]
+    },
+    {
+      "profile": "python-object-v1",
+      "name": "istanze indipendenti",
+      "class": "Serbatoio",
+      "construct": {"args": [10]},
+      "additional_instances": [
+        {"id": "other", "construct": {"args": [20]}}
+      ],
+      "steps": [
+        {"call": "aggiungi", "args": [5], "expected_return": true},
+        {"observe": "livello", "expected": 5},
+        {"instance": "other", "observe": "livello", "expected": 0}
+      ]
+    }
+  ],
+  "source_refs": [
+    {
+      "source_id": "python-course-content",
+      "href": "content/python/28_METODI_STATO_INVARIANTI.md#m28-metodi-stato-e-invarianti"
+    },
+    {
+      "source_id": "python-secondo-design",
+      "href": "tracks/secondo/PY2_10_SPEC.md#m28-__init__-metodi-stato-e-invarianti"
+    }
+  ],
+  "assets": [
+    {
+      "type": "starter",
+      "path": "starter/main.py",
+      "target_path": "main.py",
+      "visibility": "student",
+      "description": "Serbatoio che non protegge ancora l'invariante del livello"
+    },
+    {
+      "type": "fixture",
+      "path": "student/GUIDA.md",
+      "target_path": "GUIDA.md",
+      "visibility": "student",
+      "description": "Guida breve alla Controlled Change sull'invariante"
+    },
+    {
+      "type": "teacher_only",
+      "path": "teacher/README.md",
+      "visibility": "teacher",
+      "description": "Note docente e criteri del canarino P3 M28"
+    }
+  ],
+  "contesto": {
+    "percorso": "python-secondo-2026-2027",
+    "uda": "py2-10"
+  }
+}

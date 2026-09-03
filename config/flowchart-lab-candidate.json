@@ -1,0 +1,50 @@
+{
+  "schema_version": "python.py2-01-flowchart-candidate.v1",
+  "status": "candidate-not-certified",
+  "course": "python-secondo-2026-2027",
+  "uda": "PY2-01",
+  "platform": {
+    "repository": "TheBitPoets/2cornot2c",
+    "ref": "aa2b6bbf53a55cae6feab5e7873cdb74bccc86fe"
+  },
+  "runtime": {
+    "runtime_id": "flowchart-lab",
+    "plugin_version": "0.1.0",
+    "request_schema": "runtime_request.v1",
+    "artifact_schema": "thebitlab.flowchart.v1",
+    "trace_schema": "thebitlab.flowtrace.v1",
+    "artifact_name": "algorithm.flow.json"
+  },
+  "required_candidate_evidence": [
+    "runtime-probe",
+    "managed-loopback-launch",
+    "browser-ui-surface",
+    "workspace-save-load",
+    "deterministic-run",
+    "session-step-variable-watch",
+    "svg-evidence",
+    "explicit-no-authoritative-autograding",
+    "managed-cli-subprocess-lifecycle",
+    "cross-platform-loopback-launch"
+  ],
+  "technical_evidence": {
+    "workflow": "Flowchart managed classroom certification",
+    "run_id": 33326295476,
+    "run_number": 13,
+    "result": "success",
+    "profiles": [
+      "ubuntu-latest",
+      "windows-latest",
+      "macos-latest"
+    ],
+    "reverse_dns_free_loopback_bind": true,
+    "cold_start_timeout_is_separate_from_api_timeouts": true
+  },
+  "certification_policy": {
+    "candidate_ci_is_classroom_certification": false,
+    "fallback_remains_required": true,
+    "required_fallback_id": "flowchart.manual-evidence.v1",
+    "supported_profile_rehearsal_required": true,
+    "human_usability_review_required": true
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "schema_version": "python.curriculum-coverage.v1",
+  "course_id": "python-secondo-2026-2027",
+  "curriculum_source": "doc/CURRICULUM_FREEZE_2026_2027.md",
+  "coverage_document": "doc/COVERAGE.md",
+  "semantic_review_index": "doc/SEMANTIC_REVIEW_INDEX_2026-08-25.md",
+  "axes": [
+    "curriculum",
+    "editorial",
+    "semantic_review",
+    "activity",
+    "automated_grading",
+    "platform_certification",
+    "teacher_signoff",
+    "classroom_rehearsal"
+  ],
+  "policy": {
+    "single_completion_percentage_forbidden": true,
+    "editorial_coverage_implies_activity_coverage": false,
+    "activity_coverage_implies_automated_grading": false,
+    "automated_grading_implies_classroom_readiness": false
+  },
+  "outcomes": [
+    {
+      "id": 1,
+      "editorial_status": "spec",
+      "refs": ["tracks/secondo/PY2_01_SPEC.md"],
+      "evidence": ["manual"],
+      "automated_activity_ids": [],
+      "delivery_status": "blocked-flowchart-lab"
+    },
+    {
+      "id": 2,
+      "editorial_status": "spec",
+      "refs": ["tracks/secondo/PY2_01_SPEC.md"],
+      "evidence": ["manual-flowchart"],
+      "automated_activity_ids": [],
+      "delivery_status": "blocked-flowchart-lab"
+    },
+    {
+      "id": 3,
+      "editorial_status": "spec-plus-draft-reinforcement",
+      "refs": ["tracks/secondo/PY2_01_SPEC.md", "content/python/06_BOOLEANI_CONFRONTI_IF.md", "content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md", "content/python/16_ASSERT_REGRESSION_TEST_REFACTOR.md"],
+      "evidence": ["manual-trace", "manual-test-design"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 4,
+      "editorial_status": "draft",
+      "refs": ["content/python/04_INTERPRETE_REPL_VALORI_IO.md", "content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"],
+      "evidence": ["manual", "p1-partial-canary"],
+      "automated_activity_ids": [],
+      "delivery_status": "blocked-p1-ci"
+    },
+    {
+      "id": 5,
+      "editorial_status": "draft",
+      "refs": ["content/python/04_INTERPRETE_REPL_VALORI_IO.md", "content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"],
+      "evidence": ["p1-canary"],
+      "automated_activity_ids": ["py2-activity-b-input-somma-001"],
+      "delivery_status": "blocked-p1-ci"
+    },
+    {
+      "id": 6,
+      "editorial_status": "draft",
+      "refs": ["content/python/06_BOOLEANI_CONFRONTI_IF.md", "content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md", "content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md"],
+      "evidence": ["manual", "candidate"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 7,
+      "editorial_status": "draft",
+      "refs": ["content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md", "content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md"],
+      "evidence": ["manual", "candidate"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 8,
+      "editorial_status": "draft",
+      "refs": ["content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md", "content/python/10_FOR_RANGE_SCELTA_CICLO.md"],
+      "evidence": ["manual", "candidate"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 9,
+      "editorial_status": "draft",
+      "refs": ["content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md", "content/python/10_FOR_RANGE_SCELTA_CICLO.md", "content/python/11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md", "content/python/12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md"],
+      "evidence": ["manual", "candidate"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 10,
+      "editorial_status": "draft",
+      "refs": ["content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md", "content/python/11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md"],
+      "evidence": ["manual", "candidate"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 11,
+      "editorial_status": "draft",
+      "refs": ["content/python/13_FUNZIONI_PARAMETRI_RETURN.md", "content/python/14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md", "content/python/15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md"],
+      "evidence": ["manual-design", "future-p2"],
+      "automated_activity_ids": [],
+      "delivery_status": "p2-open"
+    },
+    {
+      "id": 12,
+      "editorial_status": "draft",
+      "refs": ["content/python/13_FUNZIONI_PARAMETRI_RETURN.md"],
+      "evidence": ["manual", "future-p2"],
+      "automated_activity_ids": [],
+      "delivery_status": "p2-open"
+    },
+    {
+      "id": 13,
+      "editorial_status": "draft",
+      "refs": ["content/python/14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md"],
+      "evidence": ["manual", "future-p2"],
+      "automated_activity_ids": [],
+      "delivery_status": "p2-open"
+    },
+    {
+      "id": 14,
+      "editorial_status": "draft",
+      "refs": ["content/python/16_ASSERT_REGRESSION_TEST_REFACTOR.md", "student/CHECKPOINT_A.md"],
+      "evidence": ["workspace-assert", "manual-regression", "future-p2"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 15,
+      "editorial_status": "draft",
+      "refs": ["content/python/17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md", "content/python/18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md", "content/python/19_ALGORITMI_TESTO_PARSING_SEMPLICE.md"],
+      "evidence": ["manual", "future-p2"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 16,
+      "editorial_status": "draft",
+      "refs": ["content/python/20_LISTE_MUTABILITA_METODI_ITERAZIONE.md", "content/python/21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md", "content/python/22_TUPLE_UNPACKING_MATRICI.md", "student/CHECKPOINT_B.md"],
+      "evidence": ["manual", "candidate"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 17,
+      "editorial_status": "draft",
+      "refs": ["content/python/23_SET_UNICITA_MEMBERSHIP.md", "content/python/24_DIZIONARI_LOOKUP_FREQUENZE.md", "content/python/25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md"],
+      "evidence": ["manual", "candidate"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 18,
+      "editorial_status": "draft",
+      "refs": ["content/python/25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md"],
+      "evidence": ["manual-rubric"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 19,
+      "editorial_status": "draft",
+      "refs": ["content/python/12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md", "content/python/25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md"],
+      "evidence": ["manual-trace", "manual-explanation"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 20,
+      "editorial_status": "draft",
+      "refs": ["content/python/26_FILE_TESTO_PATHLIB_ERRORI.md"],
+      "evidence": ["manual", "future-p4"],
+      "automated_activity_ids": [],
+      "delivery_status": "p4-open"
+    },
+    {
+      "id": 21,
+      "editorial_status": "draft",
+      "refs": ["content/python/26_FILE_TESTO_PATHLIB_ERRORI.md"],
+      "evidence": ["manual"],
+      "automated_activity_ids": [],
+      "delivery_status": "not-certified"
+    },
+    {
+      "id": 22,
+      "editorial_status": "draft",
+      "refs": ["content/python/27_CLASSI_ISTANZE_ATTRIBUTI_SELF.md", "content/python/28_METODI_STATO_INVARIANTI.md"],
+      "evidence": ["manual", "workspace-assert", "future-p3"],
+      "automated_activity_ids": [],
+      "delivery_status": "p3-open"
+    },
+    {
+      "id": 23,
+      "editorial_status": "draft",
+      "refs": ["content/python/28_METODI_STATO_INVARIANTI.md", "content/python/30_CAPSTONE_OOP.md"],
+      "evidence": ["manual", "workspace-assert", "future-p3"],
+      "automated_activity_ids": [],
+      "delivery_status": "p3-open"
+    },
+    {
+      "id": 24,
+      "editorial_status": "draft",
+      "refs": ["content/python/29_COMPOSIZIONE_COLLABORAZIONE_RESPONSABILITA.md", "content/python/30_CAPSTONE_OOP.md", "student/CHECKPOINT_C.md"],
+      "evidence": ["manual", "workspace-assert", "future-p3"],
+      "automated_activity_ids": [],
+      "delivery_status": "p3-open"
+    },
+    {
+      "id": 25,
+      "editorial_status": "draft",
+      "refs": ["content/python/30_CAPSTONE_OOP.md", "student/CHECKPOINT_C.md"],
+      "evidence": ["manual-rubric", "workspace-assert", "future-p3-partial"],
+      "automated_activity_ids": [],
+      "delivery_status": "rehearsal-pending"
+    }
+  ],
+  "cross_course": {
+    "git_g1": {
+      "config": "config/git-g1-consumer.json",
+      "role": "embedded-process-evidence",
+      "counts_as_python_numbered_outcome": false
+    },
+    "romeo": {
+      "mapping": "tracks/secondo/ROMEO_MAPPING.md",
+      "role": "selective-applied-domain",
+      "hardware_required_for_core": false,
+      "runtime_certification_pending": true
+    }
+  }
+}

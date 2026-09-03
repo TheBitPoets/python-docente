@@ -1,0 +1,97 @@
+{
+  "schema_version": "python.p1-canary-certification.v1",
+  "activity_id": "py2-activity-b-input-somma-001",
+  "activity_path": "activities/python/py2-activity-b-input-somma-001/activity.json",
+  "host_python": "3.12",
+  "host_os": [
+    "ubuntu-latest",
+    "windows-latest"
+  ],
+  "thebitlab": {
+    "repository": "TheBitPoets/2cornot2c",
+    "ref": "cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0"
+  },
+  "authoritative_grading": {
+    "required": true,
+    "host_os": "ubuntu-latest",
+    "platform": "linux/amd64",
+    "toolchain_version": "2026.07.1",
+    "runner_source_revision": "bd102146a684a9b06835204ec1b7f668f7655a03",
+    "build_strategy": "build-from-pinned-runner-source",
+    "local_image_tag": "thebitlab-assignment-runner:p1-canary-2026.07.1",
+    "release_lock_reference": "ghcr.io/thebitpoets/2cornot2c-assignment-runner@sha256:62f0f7b7bc1d48d01b7f8e5fa765e0b43be3622e70a614033b1bb4a4e522e159"
+  },
+  "classroom_environment": {
+    "profile": "docker-light",
+    "repository": "TheBitPoets/2cornot2c",
+    "source_revision": "736bbfddfb79e431b9dedbfd1d877f06aa8b02b5",
+    "student_dev_version": "2026.07.1",
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "machine_names": {
+      "linux/amd64": "x86_64",
+      "linux/arm64": "aarch64"
+    },
+    "build_strategy": "build-exact-student-dev-from-pinned-course-environment-source",
+    "managed_scaffold_source": "thebitlab.create_submission_scaffold",
+    "technical_profile_rehearsal_required": true,
+    "technical_evidence": {
+      "workflow": "M04 docker-light classroom profile",
+      "run_id": 33322459863,
+      "run_number": 5,
+      "result": "success",
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ],
+      "student_uid": 1000,
+      "student_user": "student",
+      "starter_cases": "1/3",
+      "edited_cases": "3/3",
+      "managed_workspace_writable": true,
+      "teacher_oracle_exposed": false
+    },
+    "real_classroom_host_rehearsal_required": true,
+    "vm_gui_rehearsal_required": true,
+    "vm_gui_rehearsal": {
+      "status": "ready-to-run",
+      "active_release": "1.0.0",
+      "harness": "tests/m04_vm_gui_rehearsal.py",
+      "runbook": "teacher/M04_CLASSROOM_REHEARSAL.md",
+      "human_record_template": "teacher/M04_CLASSROOM_REHEARSAL_RECORD.md",
+      "evidence_directory": "evidence/m04-vm-gui",
+      "profiles": {
+        "windows-amd64-virtualbox": {
+          "provider": "virtualbox",
+          "vagrant_state_directory": ".vagrant",
+          "guest_machine": "x86_64"
+        },
+        "macos-arm64-vmware": {
+          "provider": "vmware_desktop",
+          "vagrant_state_directory": ".vagrant-vmware",
+          "guest_machine": "aarch64"
+        }
+      },
+      "technical_evidence_status": "pending-physical-run",
+      "human_record_required": true,
+      "technical_pass_is_classroom_ready": false
+    },
+    "technical_profile_rehearsal_is_final_human_signoff": false
+  },
+  "expected_cases": 3,
+  "student_scaffold_files": [
+    "README.md",
+    "activity.json",
+    "main.py",
+    "GUIDA.md"
+  ],
+  "certification_policy": {
+    "direct_preflight_is_authoritative_grading": false,
+    "host_smoke_required_on_all_host_os": true,
+    "docker_grading_required_once": true,
+    "published_ghcr_artifact_required_for_ci": false,
+    "classroom_rehearsal_required": true
+  }
+}

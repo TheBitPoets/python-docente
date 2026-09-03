@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "id": "py2-activity-b-return-area-001",
+  "title": "Da print a return: area rettangolo",
+  "titolo": "Da print a return: area rettangolo",
+  "kind": "laboratorio",
+  "tipo": "laboratorio",
+  "language": "python",
+  "linguaggio": "python",
+  "source_name": "main.py",
+  "difficulty": "B",
+  "difficolta": "B",
+  "topics": [
+    "funzioni",
+    "parametri",
+    "return",
+    "print-vs-return"
+  ],
+  "argomenti": [
+    "funzioni",
+    "parametri",
+    "return",
+    "print-vs-return"
+  ],
+  "instructions": "La funzione area_rettangolo(base, altezza) calcola gia il valore corretto ma lo stampa. Modificala affinche restituisca il risultato al chiamante senza stamparlo.",
+  "consegna": "La funzione area_rettangolo(base, altezza) calcola gia il valore corretto ma lo stampa. Modificala affinche restituisca il risultato al chiamante senza stamparlo.",
+  "student_support_mode": "feedback-tecnico",
+  "grading_policy": {
+    "compila": true,
+    "test": true,
+    "sandbox": true,
+    "ai_feedback": false
+  },
+  "correzione": {
+    "compila": true,
+    "test": true,
+    "sandbox": true,
+    "ai_feedback": false
+  },
+  "metriche": {
+    "tempo_stimato_minuti": 10,
+    "traccia_tempo_dichiarato": true,
+    "traccia_sessioni_thebitlab": true,
+    "traccia_eventi_didattici": true,
+    "traccia_errori_compilazione": true
+  },
+  "function_tests": [
+    {
+      "profile": "python-function-v1",
+      "name": "rettangolo 3x4",
+      "function": "area_rettangolo",
+      "args": [3, 4],
+      "expected_return": 12
+    },
+    {
+      "profile": "python-function-v1",
+      "name": "rettangolo 5x2",
+      "function": "area_rettangolo",
+      "args": [5, 2],
+      "expected_return": 10
+    },
+    {
+      "profile": "python-function-v1",
+      "name": "base zero",
+      "function": "area_rettangolo",
+      "args": [0, 7],
+      "expected_return": 0
+    }
+  ],
+  "source_refs": [
+    {
+      "source_id": "python-course-content",
+      "href": "content/python/13_FUNZIONI_PARAMETRI_RETURN.md#m13-funzioni-parametri-return"
+    },
+    {
+      "source_id": "python-secondo-design",
+      "href": "tracks/secondo/PY2_05_SPEC.md#activity-candidate"
+    }
+  ],
+  "assets": [
+    {
+      "type": "starter",
+      "path": "starter/main.py",
+      "target_path": "main.py",
+      "visibility": "student",
+      "description": "Funzione che stampa invece di restituire il risultato"
+    },
+    {
+      "type": "fixture",
+      "path": "student/GUIDA.md",
+      "target_path": "GUIDA.md",
+      "visibility": "student",
+      "description": "Guida breve alla Controlled Change print -> return"
+    },
+    {
+      "type": "teacher_only",
+      "path": "teacher/README.md",
+      "visibility": "teacher",
+      "description": "Note docente e criteri del canarino P2"
+    }
+  ],
+  "contesto": {
+    "percorso": "python-secondo-2026-2027",
+    "uda": "py2-05"
+  }
+}

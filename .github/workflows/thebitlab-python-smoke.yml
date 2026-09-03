@@ -1,0 +1,124 @@
+name: TheBitLab Python vertical slice
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-vertical-slice:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout python-docente
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Run static course quality suite
+        run: python scripts/run_static_quality.py
+
+      - name: Checkout pinned TheBitLab consumer baseline
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: cdcdf4a6c9a3b1e28cc0a9702ca4f69a521849b0
+          path: _thebitlab-platform
+
+      - name: Validate Course Board external workspace round-trip
+        run: python tests/course_board_workspace_roundtrip.py --platform _thebitlab-platform
+
+      - name: Validate managed Course Board Activity assignment
+        run: python tests/course_board_managed_assignment.py --platform _thebitlab-platform
+
+      - name: Validate first Python consumer on host Python 3.12
+        run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
+
+      - name: Checkout exact pinned PY2-01 Flowchart Lab candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: aa2b6bbf53a55cae6feab5e7873cdb74bccc86fe
+          path: _flowchart-platform
+
+      - name: Validate exact pinned PY2-01 managed Flowchart candidate
+        run: python tests/py2_01_flowchart_candidate.py --platform _flowchart-platform
+
+      - name: Checkout pinned assignment-runner source
+        if: runner.os == 'Linux'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: bd102146a684a9b06835204ec1b7f668f7655a03
+          path: _thebitlab-runner-src
+
+      - name: Build authoritative assignment runner from pinned source
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          eval "$(python - <<'PY'
+          import json
+          import shlex
+          from pathlib import Path
+          profile = json.loads(Path('config/p1-canary-profile.json').read_text(encoding='utf-8'))
+          grading = profile['authoritative_grading']
+          print('RUNNER_SOURCE=' + shlex.quote(grading['runner_source_revision']))
+          print('RUNNER_TAG=' + shlex.quote(grading['local_image_tag']))
+          print('RUNNER_VERSION=' + shlex.quote(grading['toolchain_version']))
+          print('RELEASE_LOCK=' + shlex.quote(grading['release_lock_reference']))
+          PY
+          )"
+
+          actual_source="$(git -C _thebitlab-runner-src rev-parse HEAD)"
+          test "$actual_source" = "$RUNNER_SOURCE"
+
+          python _thebitlab-runner-src/scripts/build_assignment_runner.py \
+            --tag "$RUNNER_TAG" \
+            --source-revision "$RUNNER_SOURCE" \
+            --metadata p1-runner-metadata.json
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          profile = json.loads(Path('config/p1-canary-profile.json').read_text(encoding='utf-8'))
+          grading = profile['authoritative_grading']
+          metadata = json.loads(Path('p1-runner-metadata.json').read_text(encoding='utf-8'))
+
+          assert metadata['schema_version'] == 'thebitlab.grading-toolchain-build.v1'
+          assert metadata['version'] == grading['toolchain_version']
+          assert metadata['platform'] == grading['platform']
+          assert metadata['source_revision'] == grading['runner_source_revision']
+          assert metadata['local_tag'] == grading['local_image_tag']
+          assert metadata['worker_schema_version'] == 'thebitlab.grading-worker.v1'
+          print(
+              'PASS: source-built runner metadata matches P1 certification profile; '
+              f"release-lock provenance={grading['release_lock_reference']}"
+          )
+          PY
+
+      - name: Validate authoritative source-built Docker grading
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          RUNNER_TAG="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          profile = json.loads(Path('config/p1-canary-profile.json').read_text(encoding='utf-8'))
+          print(profile['authoritative_grading']['local_image_tag'])
+          PY
+          )"
+          python tests/thebitlab_python_smoke.py \
+            --platform _thebitlab-platform \
+            --authoritative-docker \
+            --docker-image "$RUNNER_TAG"

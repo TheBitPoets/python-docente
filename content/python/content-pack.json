@@ -1,0 +1,1372 @@
+{
+  "schema_version": "thebitlab.content-pack.v1",
+  "id": "python-curriculum-2026",
+  "title": "Python - curriculum da zero a professionale",
+  "version": "0.1.0",
+  "status": "draft",
+  "language": "it",
+  "audience": {
+    "school_level": "secondaria-secondo-grado",
+    "subject": "informatica",
+    "first_track_year": 2,
+    "scope": "multi-year"
+  },
+  "ownership": {
+    "content_origin": "original-course-material",
+    "redistribution_status": "project-license-to-review",
+    "editorial_copying_allowed": false
+  },
+  "references": [
+    {
+      "id": "python-ref-think-python",
+      "kind": "book",
+      "role": "teacher-reference",
+      "provider": "greenteapress",
+      "title": "Think Python / Pensare in Python",
+      "uri": "https://greenteapress.com/wp/think-python-3rd-edition/",
+      "access": "public-reference",
+      "license_status": "reference-license-aware-reuse"
+    },
+    {
+      "id": "python-ref-learning-python",
+      "kind": "book",
+      "role": "teacher-reference",
+      "provider": "oreilly",
+      "title": "Learning Python / Imparare Python",
+      "access": "licensed-reference",
+      "license_status": "licensed-reference-only"
+    },
+    {
+      "id": "python-ref-fluent-python",
+      "kind": "book",
+      "role": "teacher-reference",
+      "provider": "oreilly",
+      "title": "Fluent Python, 2nd Edition",
+      "uri": "https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/",
+      "access": "licensed-reference",
+      "license_status": "licensed-reference-only"
+    },
+    {
+      "id": "python-ref-nutshell",
+      "kind": "book",
+      "role": "teacher-reference",
+      "provider": "oreilly",
+      "title": "Python in a Nutshell, 4th Edition",
+      "uri": "https://www.oreilly.com/library/view/python-in-a/9781098113544/",
+      "access": "licensed-reference",
+      "license_status": "licensed-reference-only"
+    },
+    {
+      "id": "python-ref-docs",
+      "kind": "documentation",
+      "role": "technical-reference",
+      "provider": "python",
+      "title": "Python 3 documentation",
+      "uri": "https://docs.python.org/3/",
+      "access": "public",
+      "license_status": "reference-and-license-aware-reuse"
+    },
+    {
+      "id": "python-ref-pluralsight",
+      "kind": "course-catalog",
+      "role": "teacher-reference",
+      "provider": "pluralsight",
+      "title": "Pluralsight Python learning catalog",
+      "uri": "https://www.pluralsight.com/",
+      "access": "licensed-reference",
+      "license_status": "licensed-reference-only"
+    },
+    {
+      "id": "python-ref-romeo",
+      "kind": "repository",
+      "role": "technical-reference",
+      "provider": "github",
+      "title": "TheBitPoets/romeo — piattaforma didattica e simulatore",
+      "uri": "https://github.com/TheBitPoets/romeo/tree/45e5f7e131802fccc89358a23a25dbed1884bbfa",
+      "access": "public",
+      "license_status": "reference-to-pinned-apache2-code-and-cc-by-sa-course-material"
+    }
+  ],
+  "sources": [
+    {
+      "id": "python-course-content",
+      "kind": "source-package",
+      "label": "Python - lesson canoniche",
+      "type": "markdown",
+      "provider": "local",
+      "role": "approved-course-content",
+      "path": "content/python",
+      "files": [
+        "00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md",
+        "01_DAL_PROBLEMA_AI_PASSI.md",
+        "02_FLOWCHART_SEQUENZA_SELEZIONE.md",
+        "03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md",
+        "04_INTERPRETE_REPL_VALORI_IO.md",
+        "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
+        "06_BOOLEANI_CONFRONTI_IF.md",
+        "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
+        "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md",
+        "09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md",
+        "10_FOR_RANGE_SCELTA_CICLO.md",
+        "11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md",
+        "12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md",
+        "13_FUNZIONI_PARAMETRI_RETURN.md",
+        "14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md",
+        "15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md",
+        "16_ASSERT_REGRESSION_TEST_REFACTOR.md",
+        "17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md",
+        "18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md",
+        "19_ALGORITMI_TESTO_PARSING_SEMPLICE.md",
+        "20_LISTE_MUTABILITA_METODI_ITERAZIONE.md",
+        "21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md",
+        "22_TUPLE_UNPACKING_MATRICI.md",
+        "23_SET_UNICITA_MEMBERSHIP.md",
+        "24_DIZIONARI_LOOKUP_FREQUENZE.md",
+        "25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md",
+        "26_FILE_TESTO_PATHLIB_ERRORI.md",
+        "27_CLASSI_ISTANZE_ATTRIBUTI_SELF.md",
+        "28_METODI_STATO_INVARIANTI.md",
+        "29_COMPOSIZIONE_COLLABORAZIONE_RESPONSABILITA.md",
+        "30_CAPSTONE_OOP.md"
+      ],
+      "license_status": "project-license-to-review",
+      "indexing_status": "ready"
+    },
+    {
+      "id": "python-secondo-design",
+      "kind": "source-package",
+      "label": "Python secondo - design e mappa moduli",
+      "type": "markdown",
+      "provider": "local",
+      "role": "course-design-source",
+      "path": "tracks/secondo",
+      "files": [
+        "MODULE_MAP.md",
+        "COURSE_DESIGN.md",
+        "DELIVERY_PROFILE.md",
+        "ASSESSMENT_CALENDAR.md",
+        "ARCHITECTURE_REVIEW.md",
+        "GIT_G1_INTEGRATION.md",
+        "ROMEO_MAPPING.md",
+        "PY2_01_SPEC.md",
+        "PY2_02_SPEC.md",
+        "PY2_03_SPEC.md",
+        "PY2_04_SPEC.md",
+        "PY2_05_SPEC.md",
+        "PY2_06_SPEC.md",
+        "PY2_07_SPEC.md",
+        "PY2_08_SPEC.md",
+        "PY2_09_SPEC.md",
+        "PY2_10_SPEC.md"
+      ],
+      "license_status": "project-license-to-review",
+      "indexing_status": "ready"
+    },
+    {
+      "id": "python-curriculum-design",
+      "kind": "source-package",
+      "label": "Python curriculum - architettura, freeze e roadmap",
+      "type": "markdown",
+      "provider": "local",
+      "role": "course-design-source",
+      "path": "doc",
+      "files": [
+        "CURRICULUM_FREEZE_2026_2027.md",
+        "CURRICULUM_FREEZE_CHECKLIST.md",
+        "PROJECT_STATUS.md",
+        "OPEN_DECISIONS.md",
+        "COURSE_ARCHITECTURE.md",
+        "CURRICULUM_ROADMAP.md",
+        "APPROVED_DECISIONS_2026_2027.md",
+        "CROSS_COURSE_CURRICULA.md",
+        "PYTHON_ACTIVITY_RUNTIME_CONTRACT.md"
+      ],
+      "license_status": "project-license-to-review",
+      "indexing_status": "ready"
+    },
+    {
+      "id": "python-source-audits",
+      "kind": "source-package",
+      "label": "Python - audit fonti legacy",
+      "type": "markdown",
+      "provider": "local",
+      "role": "source-audit",
+      "path": "sources",
+      "files": [
+        "SOURCE_CATALOG.md",
+        "FRIEDPYTHON_MAPPING.md",
+        "FRIEDPYTHON_LISTS_TUPLES_AUDIT.md",
+        "FRIEDPYTHON_DICTS_AUDIT.md",
+        "FRIEDPYTHON_FILES_AUDIT.md"
+      ],
+      "license_status": "project-license-to-review",
+      "indexing_status": "ready"
+    }
+  ],
+  "content_items": [
+    {
+      "id": "py2-m00-problema-algoritmo-input-output",
+      "kind": "module",
+      "path": "content/python/00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md",
+      "order": 1,
+      "status": "draft",
+      "curriculum_topics": [
+        "problem-analysis",
+        "algorithm",
+        "program",
+        "input-output",
+        "constraints",
+        "test-cases",
+        "counterexamples",
+        "debugging-model"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md"
+        },
+        {
+          "id": "python-secondo-design",
+          "role": "course-design",
+          "locator": "PY2_01_SPEC.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m01-dal-problema-ai-passi",
+      "kind": "module",
+      "path": "content/python/01_DAL_PROBLEMA_AI_PASSI.md",
+      "order": 2,
+      "status": "draft",
+      "curriculum_topics": [
+        "problem-decomposition",
+        "pseudocode",
+        "manual-trace",
+        "program-state",
+        "termination",
+        "test-cases",
+        "boundary-cases",
+        "minimal-debug-change"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "01_DAL_PROBLEMA_AI_PASSI.md"
+        },
+        {
+          "id": "python-secondo-design",
+          "role": "course-design",
+          "locator": "PY2_01_SPEC.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m02-flowchart-sequenza-selezione",
+      "kind": "module",
+      "path": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md",
+      "order": 3,
+      "status": "draft",
+      "curriculum_topics": [
+        "flowchart",
+        "sequence",
+        "input-output",
+        "processing",
+        "decision",
+        "true-false-branches",
+        "manual-trace",
+        "boundary-tests",
+        "manual-evidence"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "02_FLOWCHART_SEQUENZA_SELEZIONE.md"
+        },
+        {
+          "id": "python-secondo-design",
+          "role": "course-design",
+          "locator": "PY2_01_SPEC.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m03-flowchart-iterazione-annidamento",
+      "kind": "module",
+      "path": "content/python/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md",
+      "order": 4,
+      "status": "draft",
+      "curriculum_topics": [
+        "flowchart",
+        "iteration",
+        "loop-state",
+        "termination",
+        "counter",
+        "accumulator",
+        "off-by-one",
+        "nested-control-flow",
+        "manual-trace",
+        "manual-evidence"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md"
+        },
+        {
+          "id": "python-secondo-design",
+          "role": "course-design",
+          "locator": "PY2_01_SPEC.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m04-interprete-repl-io",
+      "kind": "module",
+      "path": "content/python/04_INTERPRETE_REPL_VALORI_IO.md",
+      "order": 5,
+      "status": "draft",
+      "curriculum_topics": [
+        "python-interpreter",
+        "repl",
+        "values-types",
+        "variables",
+        "input-output",
+        "type-conversion",
+        "beginner-debugging"
+      ],
+      "activity_ids": [
+        "py2-activity-b-input-somma-001"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "04_INTERPRETE_REPL_VALORI_IO.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 tutorial and built-in functions"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "values, variables, functions and debugging progression"
+        }
+      ]
+    },
+    {
+      "id": "py2-m05-espressioni-operatori-prime-funzioni",
+      "kind": "module",
+      "path": "content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md",
+      "order": 6,
+      "status": "draft",
+      "curriculum_topics": [
+        "expressions",
+        "arithmetic-operators",
+        "operator-precedence",
+        "quotient-remainder",
+        "f-strings",
+        "builtins-intro",
+        "function-preview",
+        "return-vs-print"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 tutorial numbers and expression reference"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "functions and debugging progression"
+        }
+      ]
+    },
+    {
+      "id": "py2-m06-booleani-confronti-if",
+      "kind": "module",
+      "path": "content/python/06_BOOLEANI_CONFRONTI_IF.md",
+      "order": 7,
+      "status": "draft",
+      "curriculum_topics": [
+        "booleans",
+        "comparisons",
+        "if",
+        "if-else",
+        "indentation",
+        "boundary-tests",
+        "branch-trace"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "06_BOOLEANI_CONFRONTI_IF.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 comparisons and if statement"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "conditional execution and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "course/activities/y1-u14-condizioni"
+        }
+      ]
+    },
+    {
+      "id": "py2-m07-elif-logica-condizioni-composte",
+      "kind": "module",
+      "path": "content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md",
+      "order": 8,
+      "status": "draft",
+      "curriculum_topics": [
+        "elif",
+        "exclusive-branches",
+        "independent-if",
+        "boolean-and",
+        "boolean-or",
+        "boolean-not",
+        "chained-comparisons",
+        "short-circuit-intro"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 if statement, Boolean operations and comparisons"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "conditional execution and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "selective multi-rule mission adaptation; no duplicated Activity"
+        }
+      ]
+    },
+    {
+      "id": "py2-m08-annidamento-validazione-refactor",
+      "kind": "module",
+      "path": "content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md",
+      "order": 9,
+      "status": "draft",
+      "curriculum_topics": [
+        "nested-conditionals",
+        "path-trace",
+        "domain-validation",
+        "boolean-naming",
+        "refactoring",
+        "behavior-preservation",
+        "path-coverage"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 control flow and Boolean operations"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "nested conditionals and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "selective path/refactor use with pinned simulator"
+        }
+      ]
+    },
+    {
+      "id": "py2-m09-while-stato-sentinelle-validazione",
+      "kind": "module",
+      "path": "content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md",
+      "order": 10,
+      "status": "draft",
+      "curriculum_topics": [
+        "while",
+        "loop-state",
+        "termination",
+        "repeated-validation",
+        "sentinel",
+        "zero-one-many-iterations",
+        "break-intro",
+        "off-by-one"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 while and break control flow"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "iteration, reassignment and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "course/activities/y1-u16-ciclo-while"
+        }
+      ]
+    },
+    {
+      "id": "py2-m10-for-range-scelta-ciclo",
+      "kind": "module",
+      "path": "content/python/10_FOR_RANGE_SCELTA_CICLO.md",
+      "order": 11,
+      "status": "draft",
+      "curriculum_topics": [
+        "for",
+        "range",
+        "range-stop-exclusive",
+        "range-step",
+        "off-by-one",
+        "for-vs-while",
+        "break",
+        "continue",
+        "loop-refactoring"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "10_FOR_RANGE_SCELTA_CICLO.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 for, range, break and continue control flow"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "iteration and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "course/activities/y1-u15-ciclo-for"
+        }
+      ]
+    },
+    {
+      "id": "py2-m11-contatori-accumulatori-ricerca-flag",
+      "kind": "module",
+      "path": "content/python/11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md",
+      "order": 12,
+      "status": "draft",
+      "curriculum_topics": [
+        "counter-pattern",
+        "accumulator-pattern",
+        "conditional-aggregation",
+        "progressive-min-max",
+        "linear-search",
+        "boolean-flag",
+        "loop-invariant-intro",
+        "zero-count-edge-case"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 control flow"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "iteration, accumulators and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "selective mission counters/search; no duplicated Activity"
+        }
+      ]
+    },
+    {
+      "id": "py2-m12-cicli-annidati-griglie-costo-lavoro",
+      "kind": "module",
+      "path": "content/python/12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md",
+      "order": 13,
+      "status": "draft",
+      "curriculum_topics": [
+        "nested-loops",
+        "grid-traversal",
+        "index-pairs",
+        "nested-conditionals",
+        "iteration-count",
+        "repeated-work",
+        "performance-intuition",
+        "loop-level-state"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 for/range/control flow"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "iteration and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "optional grid/pattern simulation; no duplicated Activity"
+        }
+      ]
+    },
+    {
+      "id": "py2-m13-funzioni-parametri-return",
+      "kind": "module",
+      "path": "content/python/13_FUNZIONI_PARAMETRI_RETURN.md",
+      "order": 14,
+      "status": "draft",
+      "curriculum_topics": [
+        "function-definition",
+        "function-call",
+        "parameters",
+        "arguments",
+        "return",
+        "return-vs-print",
+        "predicate-functions",
+        "none-return"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "13_FUNZIONI_PARAMETRI_RETURN.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 function definitions and return"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "functions and debugging"
+        }
+      ]
+    },
+    {
+      "id": "py2-m14-scope-locale-passaggio-dati-composizione",
+      "kind": "module",
+      "path": "content/python/14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md",
+      "order": 15,
+      "status": "draft",
+      "curriculum_topics": [
+        "local-scope",
+        "explicit-data-flow",
+        "avoid-hidden-global-state",
+        "function-composition",
+        "call-graph-intro",
+        "intermediate-values",
+        "git-status-diff-intro"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 functions and name binding"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "functions and composition"
+        }
+      ]
+    },
+    {
+      "id": "py2-m15-progettazione-top-down-responsabilita",
+      "kind": "module",
+      "path": "content/python/15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md",
+      "order": 16,
+      "status": "draft",
+      "curriculum_topics": [
+        "top-down-design",
+        "responsibility-decomposition",
+        "io-logic-separation",
+        "function-contract",
+        "precondition",
+        "postcondition",
+        "call-graph",
+        "extract-function",
+        "git-diff-refactor"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 functions"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "decomposition and debugging"
+        }
+      ]
+    },
+    {
+      "id": "py2-m16-assert-regression-test-refactor",
+      "kind": "module",
+      "path": "content/python/16_ASSERT_REGRESSION_TEST_REFACTOR.md",
+      "order": 17,
+      "status": "draft",
+      "curriculum_topics": [
+        "assert",
+        "test-cases",
+        "boundary-tests",
+        "regression-test",
+        "debug-cycle",
+        "refactoring",
+        "behavior-preservation",
+        "p2-function-grading-bridge",
+        "git-checkpoint-prep"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "16_ASSERT_REGRESSION_TEST_REFACTOR.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 assert and AssertionError"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "debugging and testing"
+        }
+      ]
+    },
+    {
+      "id": "py2-m17-stringhe-indici-slicing-immutabilita",
+      "kind": "module",
+      "path": "content/python/17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md",
+      "order": 18,
+      "status": "draft",
+      "curriculum_topics": [
+        "strings-as-sequence",
+        "string-indexing",
+        "negative-index",
+        "slicing",
+        "slice-stop-exclusive",
+        "immutability",
+        "direct-iteration",
+        "index-iteration",
+        "index-error"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 str and sequence operations"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "strings and traversal"
+        }
+      ]
+    },
+    {
+      "id": "py2-m18-stringhe-ricerca-metodi-normalizzazione",
+      "kind": "module",
+      "path": "content/python/18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md",
+      "order": 19,
+      "status": "draft",
+      "curriculum_topics": [
+        "string-membership",
+        "find",
+        "count",
+        "string-methods",
+        "string-normalization",
+        "immutable-transformations",
+        "startswith-endswith",
+        "method-vs-loop"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 str methods"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "strings and searching"
+        }
+      ]
+    },
+    {
+      "id": "py2-m19-algoritmi-testo-parsing-semplice",
+      "kind": "module",
+      "path": "content/python/19_ALGORITMI_TESTO_PARSING_SEMPLICE.md",
+      "order": 20,
+      "status": "draft",
+      "curriculum_topics": [
+        "text-algorithms",
+        "text-accumulator",
+        "palindrome",
+        "simple-parsing",
+        "text-validation",
+        "string-edge-cases",
+        "split-list-bridge",
+        "join-preview",
+        "method-vs-loop"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "19_ALGORITMI_TESTO_PARSING_SEMPLICE.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 str methods and sequence operations"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "string algorithms and debugging"
+        }
+      ]
+    },
+    {
+      "id": "py2-m20-liste-mutabilita-metodi-iterazione",
+      "kind": "module",
+      "path": "content/python/20_LISTE_MUTABILITA_METODI_ITERAZIONE.md",
+      "order": 21,
+      "status": "draft",
+      "curriculum_topics": [
+        "list",
+        "list-mutability",
+        "list-indexing",
+        "list-slicing",
+        "append",
+        "extend",
+        "insert",
+        "remove-pop",
+        "enumerate",
+        "mutating-method-none"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "20_LISTE_MUTABILITA_METODI_ITERAZIONE.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 list and sequence operations"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "lists and mutability"
+        },
+        {
+          "id": "python-source-audits",
+          "role": "legacy-audit",
+          "locator": "FRIEDPYTHON_LISTS_TUPLES_AUDIT.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m21-alias-copie-filtri-ordinamento",
+      "kind": "module",
+      "path": "content/python/21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md",
+      "order": 22,
+      "status": "draft",
+      "curriculum_topics": [
+        "list-aliasing",
+        "shallow-copy",
+        "mutation-contract",
+        "safe-filtering",
+        "list-transform",
+        "sort-vs-sorted",
+        "mutation-during-iteration",
+        "builtins-shadowing",
+        "performance-intuition"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 list copying and sorting"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "aliasing and mutability"
+        },
+        {
+          "id": "python-source-audits",
+          "role": "legacy-audit",
+          "locator": "FRIEDPYTHON_LISTS_TUPLES_AUDIT.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m22-tuple-unpacking-matrici",
+      "kind": "module",
+      "path": "content/python/22_TUPLE_UNPACKING_MATRICI.md",
+      "order": 23,
+      "status": "draft",
+      "curriculum_topics": [
+        "tuple",
+        "tuple-immutability",
+        "single-item-tuple",
+        "packing",
+        "unpacking",
+        "list-vs-tuple",
+        "nested-lists",
+        "matrix",
+        "matrix-traversal",
+        "row-aliasing"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "22_TUPLE_UNPACKING_MATRICI.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 tuple/list/sequence operations"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "tuples and lists"
+        },
+        {
+          "id": "python-source-audits",
+          "role": "legacy-audit",
+          "locator": "FRIEDPYTHON_LISTS_TUPLES_AUDIT.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m23-set-unicita-membership",
+      "kind": "module",
+      "path": "content/python/23_SET_UNICITA_MEMBERSHIP.md",
+      "order": 24,
+      "status": "draft",
+      "curriculum_topics": [
+        "set",
+        "set-uniqueness",
+        "set-membership",
+        "set-add-remove-discard",
+        "set-union-intersection-difference",
+        "deduplication",
+        "set-vs-list",
+        "hashable-intro"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "23_SET_UNICITA_MEMBERSHIP.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 set types and operations"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "data structures and modeling"
+        },
+        {
+          "id": "python-ref-fluent-python",
+          "role": "teacher-reference",
+          "locator": "set semantics and hashability check"
+        }
+      ]
+    },
+    {
+      "id": "py2-m24-dizionari-lookup-frequenze",
+      "kind": "module",
+      "path": "content/python/24_DIZIONARI_LOOKUP_FREQUENZE.md",
+      "order": 25,
+      "status": "draft",
+      "curriculum_topics": [
+        "dict",
+        "key-value-mapping",
+        "dict-lookup",
+        "dict-get",
+        "keyerror-intro",
+        "dict-items",
+        "frequency-table",
+        "keys-values-views",
+        "insertion-order-note"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "24_DIZIONARI_LOOKUP_FREQUENZE.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 mapping types and dict methods"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "dictionaries and frequency tables"
+        },
+        {
+          "id": "python-source-audits",
+          "role": "legacy-audit",
+          "locator": "FRIEDPYTHON_DICTS_AUDIT.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m25-strutture-combinate-scelta-modello",
+      "kind": "module",
+      "path": "content/python/25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md",
+      "order": 26,
+      "status": "draft",
+      "curriculum_topics": [
+        "data-model-choice",
+        "str-list-tuple-set-dict",
+        "nested-structures",
+        "list-of-tuples",
+        "list-of-dicts",
+        "dict-of-lists",
+        "parallel-lists-smell",
+        "dominant-operations",
+        "lookup-intuition"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 built-in collection types"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "data modeling with core collections"
+        },
+        {
+          "id": "python-ref-fluent-python",
+          "role": "teacher-reference",
+          "locator": "collection-model correctness check"
+        }
+      ]
+    },
+    {
+      "id": "py2-m26-file-testo-pathlib-errori",
+      "kind": "module",
+      "path": "content/python/26_FILE_TESTO_PATHLIB_ERRORI.md",
+      "order": 27,
+      "status": "draft",
+      "curriculum_topics": [
+        "persistence",
+        "pathlib",
+        "text-files",
+        "utf8",
+        "with-open",
+        "file-read-write",
+        "line-iteration",
+        "io-logic-separation",
+        "filenotfounderror",
+        "permissionerror-intro"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "26_FILE_TESTO_PATHLIB_ERRORI.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 pathlib, open and exceptions"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "files and debugging"
+        },
+        {
+          "id": "python-source-audits",
+          "role": "legacy-audit",
+          "locator": "FRIEDPYTHON_FILES_AUDIT.md"
+        }
+      ]
+    },
+    {
+      "id": "py2-m27-classi-istanze-attributi-self",
+      "kind": "module",
+      "path": "content/python/27_CLASSI_ISTANZE_ATTRIBUTI_SELF.md",
+      "order": 28,
+      "status": "draft",
+      "curriculum_topics": [
+        "class",
+        "instance",
+        "object-model-intro",
+        "attributes",
+        "self",
+        "init",
+        "instance-state",
+        "methods",
+        "independent-instances",
+        "record-to-object"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "27_CLASSI_ISTANZE_ATTRIBUTI_SELF.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 classes and instances"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "classes and objects"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "optional Robot object modeling with simulator"
+        }
+      ]
+    },
+    {
+      "id": "py2-m28-metodi-stato-invarianti",
+      "kind": "module",
+      "path": "content/python/28_METODI_STATO_INVARIANTI.md",
+      "order": 29,
+      "status": "draft",
+      "curriculum_topics": [
+        "object-state",
+        "observer-method",
+        "state-changing-method",
+        "invariant",
+        "valid-initial-state",
+        "state-transition",
+        "domain-rule",
+        "object-testing",
+        "independent-instances"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "28_METODI_STATO_INVARIANTI.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 classes, methods and exceptions"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "objects, state and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "optional stateful object behavior in simulator"
+        }
+      ]
+    },
+    {
+      "id": "py2-m29-composizione-collaborazione-responsabilita",
+      "kind": "module",
+      "path": "content/python/29_COMPOSIZIONE_COLLABORAZIONE_RESPONSABILITA.md",
+      "order": 30,
+      "status": "draft",
+      "curriculum_topics": [
+        "object-composition",
+        "object-collaboration",
+        "responsibility-separation",
+        "god-class-smell",
+        "io-domain-separation",
+        "explicit-dependencies",
+        "record-to-object-refactor",
+        "composition-over-inheritance-core"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "29_COMPOSIZIONE_COLLABORAZIONE_RESPONSABILITA.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 classes and object model"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "object-oriented decomposition"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "optional composed robot-domain objects in simulator"
+        }
+      ]
+    },
+    {
+      "id": "py2-m30-capstone-oop",
+      "kind": "module",
+      "path": "content/python/30_CAPSTONE_OOP.md",
+      "order": 31,
+      "status": "draft",
+      "curriculum_topics": [
+        "oop-capstone",
+        "requirements-analysis",
+        "data-model-choice",
+        "classes-instances",
+        "object-invariant",
+        "object-composition",
+        "io-domain-separation",
+        "testing",
+        "edge-cases",
+        "regression-refactor",
+        "design-explanation",
+        "git-checkpoints"
+      ],
+      "source_refs": [
+        {
+          "id": "python-course-content",
+          "role": "content-origin",
+          "locator": "30_CAPSTONE_OOP.md"
+        },
+        {
+          "id": "python-ref-docs",
+          "role": "technical-reference",
+          "locator": "Python 3.12 classes and core data structures"
+        },
+        {
+          "id": "python-ref-think-python",
+          "role": "teacher-reference",
+          "locator": "objects, design and debugging"
+        },
+        {
+          "id": "python-ref-romeo",
+          "role": "applied-reference",
+          "locator": "optional capstone domain with simulator; generic fallback required"
+        }
+      ]
+    }
+  ],
+  "course_designs": [
+    {
+      "id": "python-secondo-2026-2027",
+      "path": "doc/course_design.json",
+      "status": "draft"
+    }
+  ],
+  "activity_roots": [
+    "activities/python"
+  ],
+  "policies": {
+    "provenance_required": true,
+    "teacher_review_required_before_publish": true,
+    "student_teacher_asset_separation_required": true,
+    "ai_is_not_primary_source": true,
+    "restricted_source_copying_forbidden": true
+  }
+}

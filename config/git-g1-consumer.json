@@ -1,0 +1,93 @@
+{
+  "schema_version": "python.git-g1-consumer.v1",
+  "course_id": "python-secondo-2026-2027",
+  "provider": {
+    "repository": "TheBitPoets/git",
+    "track": "G1",
+    "candidate_ref": "65d8aff8c9a590560c500762d4dc7378a3239bf2",
+    "status": "freeze-candidate-draft",
+    "contract_path": "doc/G1_CONSUMER_CONTRACT.md",
+    "content_pack_path": "content/git/content-pack.json"
+  },
+  "delivery": {
+    "mode": "embedded-outcome-subset",
+    "full_g1_track_completion_required": false,
+    "full_canonical_lesson_completion_required": false,
+    "canonical_lessons_role": "source-remediation-and-context",
+    "python_checkpoint_remains_primary_time_owner": true
+  },
+  "environment": {
+    "required_capability": "git.basic.v1",
+    "network_required": false,
+    "github_account_required": false
+  },
+  "consumption": [
+    {
+      "phase": "m14-m16",
+      "evidence_level": "guided",
+      "outcomes": [
+        "G1.OBSERVE.STATUS",
+        "G1.OBSERVE.DIFF"
+      ],
+      "canonical_lessons": [
+        "content/git/g1/02_WORKING_TREE_STATUS.md",
+        "content/git/g1/03_DIFF.md"
+      ]
+    },
+    {
+      "phase": "checkpoint-a",
+      "evidence_level": "guided",
+      "outcomes": [
+        "G1.OBSERVE.STATUS",
+        "G1.OBSERVE.DIFF",
+        "G1.STAGE.INTENTIONAL",
+        "G1.COMMIT.INTENTIONAL",
+        "G1.HISTORY.INSPECT",
+        "G1.MODEL.HEAD",
+        "G1.WORKFLOW.CHECKPOINT"
+      ],
+      "canonical_lessons": [
+        "content/git/g1/02_WORKING_TREE_STATUS.md",
+        "content/git/g1/03_DIFF.md",
+        "content/git/g1/04_INDEX_STAGING.md",
+        "content/git/g1/05_COMMIT_HEAD.md",
+        "content/git/g1/06_LOG_SHOW_STORIA.md"
+      ],
+      "canonical_activity": "g1-stage-selettivo-001"
+    },
+    {
+      "phase": "second-semester-projects",
+      "evidence_level": "independent-progressive",
+      "outcomes": [
+        "G1.WORKFLOW.CHECKPOINT",
+        "G1.RECOVERY.BASIC"
+      ],
+      "canonical_lessons": [
+        "content/git/g1/07_IGNORE_RECOVERY_BEGINNER.md",
+        "content/git/g1/08_CHECKPOINT_STORIA_INTENZIONALE.md"
+      ]
+    }
+  ],
+  "python_course_boundary": {
+    "owns_git_curriculum": false,
+    "copy_git_lessons": false,
+    "git_is_primary_python_grade": false,
+    "git_is_separate_high_stakes_checkpoint": false,
+    "advanced_topics_not_required": [
+      "branch",
+      "merge",
+      "rebase",
+      "remotes",
+      "pull-request",
+      "reflog",
+      "reset-advanced",
+      "git-internals"
+    ]
+  },
+  "platform_evidence": {
+    "git_lab_issue": "TheBitPoets/2cornot2c#761",
+    "git_lab_pr": "TheBitPoets/2cornot2c#762",
+    "green_candidate_ref": "24570f7a3af67634ec0cfbf54f486660359baaf2",
+    "course_private_ci_note": "Python consumer CI remains blocked by python-docente#8 before runner startup; do not infer pass/fail from steps=null."
+  }
+}

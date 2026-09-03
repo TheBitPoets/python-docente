@@ -1,0 +1,101 @@
+name: Python M28 P3 canary
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "activities/python/py2-activity-b-serbatoio-invariante-001/**"
+      - "config/p3-canary-profile.json"
+      - "tests/p3_m28_consumer.py"
+      - ".github/workflows/p3-m28-canary.yml"
+
+jobs:
+  m28-p3-canary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout python-docente
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+
+      - name: Resolve published release source fallback
+        id: p3
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          profile = json.loads(Path("config/p3-canary-profile.json").read_text(encoding="utf-8"))
+          grading = profile["authoritative_grading"]
+          print("ref=" + profile["thebitlab"]["ref"])
+          print("image=" + grading["local_image_tag"])
+          print("version=" + grading["toolchain_version"])
+          PY
+
+      - name: Checkout exact published TheBitLab release source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: TheBitPoets/2cornot2c
+          ref: ${{ steps.p3.outputs.ref }}
+          path: _thebitlab-p3
+          persist-credentials: false
+
+      - name: Verify stable release identity and fallback boundary
+        shell: bash
+        run: |
+          test "$(git -C _thebitlab-p3 rev-parse HEAD)" = "${{ steps.p3.outputs.ref }}"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          profile = json.loads(Path("config/p3-canary-profile.json").read_text(encoding="utf-8"))
+          root = Path("_thebitlab-p3")
+          grading = profile["authoritative_grading"]
+          manifest = json.loads((root / "docker/assignment-runner/toolchain.json").read_text(encoding="utf-8"))
+          assert manifest["version"] == grading["toolchain_version"] == "2026.08.3"
+          assert grading["strategy"] == "source-build-from-published-release-source"
+          assert grading["release_identity_status"] == "published-immutable-stable"
+          assert grading["consumer_image_access_status"] == "ghcr-cross-repository-actions-access-pending"
+          assert grading["immutable_image_reference"].endswith("@" + grading["digest"])
+          policy = profile["certification_policy"]
+          assert policy["candidate_profile_only"] is False
+          assert policy["normal_student_lab_dispatch_certified_upstream"] is True
+          assert policy["student_report_redaction_required"] is True
+          assert policy["immutable_release_lock_verified"] is True
+          assert policy["direct_immutable_image_pull_verified"] is False
+          PY
+
+      - name: Build exact published release source
+        working-directory: _thebitlab-p3
+        run: >-
+          python scripts/build_assignment_runner.py
+          --source-revision "${{ steps.p3.outputs.ref }}"
+          --tag "${{ steps.p3.outputs.image }}"
+          --metadata "$RUNNER_TEMP/python-docente-p3-stable-source.json"
+
+      - name: Verify rebuilt stable source identity
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          profile = json.loads(Path("config/p3-canary-profile.json").read_text(encoding="utf-8"))
+          metadata = json.loads((Path(os.environ["RUNNER_TEMP"]) / "python-docente-p3-stable-source.json").read_text(encoding="utf-8"))
+          assert metadata["version"] == "2026.08.3"
+          assert metadata["source_revision"] == profile["thebitlab"]["ref"]
+          assert metadata["platform"] == "linux/amd64"
+          PY
+
+      - name: Run real M28 P3 consumer
+        run: >-
+          python tests/p3_m28_consumer.py
+          --platform _thebitlab-p3
+          --docker-image "${{ steps.p3.outputs.image }}"
