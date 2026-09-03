@@ -44,11 +44,11 @@ jobs:
       - name: Validate first Python consumer on host Python 3.12
         run: python tests/thebitlab_python_smoke.py --platform _thebitlab-platform
 
-      - name: Checkout PY2-01 Flowchart Lab candidate branch
+      - name: Checkout exact pinned PY2-01 Flowchart Lab candidate
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: TheBitPoets/2cornot2c
-          ref: agent/course-environment-contract
+          ref: aa2b6bbf53a55cae6feab5e7873cdb74bccc86fe
           path: _flowchart-platform
 
       - name: Validate exact pinned PY2-01 managed Flowchart candidate

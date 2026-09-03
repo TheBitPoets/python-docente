@@ -16,6 +16,7 @@ PROFILE_PATH = ROOT / "config" / "flowchart-lab-candidate.json"
 ENVIRONMENT_PATH = ROOT / "config" / "course-environment.json"
 STUDENT_INDEX = ROOT / "student" / "README.md"
 TEACHER_INDEX = ROOT / "teacher" / "README.md"
+CONSUMER_WORKFLOW = ROOT / ".github" / "workflows" / "thebitlab-python-smoke.yml"
 
 
 def read(path: Path) -> str:
@@ -93,6 +94,11 @@ def main() -> int:
 
     profile = load(PROFILE_PATH)
     assert profile["status"] == "candidate-not-certified"
+    platform_ref = str((profile.get("platform") or {}).get("ref") or "")
+    assert re.fullmatch(r"[0-9a-f]{40}", platform_ref), "Flowchart candidate ref must be immutable"
+    consumer_workflow = read(CONSUMER_WORKFLOW)
+    assert f"ref: {platform_ref}" in consumer_workflow
+    assert "ref: agent/course-environment-contract" not in consumer_workflow
     policy = profile["certification_policy"]
     assert policy["candidate_ci_is_classroom_certification"] is False
     assert policy["fallback_remains_required"] is True
