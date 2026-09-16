@@ -655,7 +655,7 @@ corpo
 aggiornamento
 ```
 
-#### A
+### A
 
 ```python
 i = 1
@@ -664,7 +664,7 @@ while i <= 3:
     i += 1
 ```
 
-#### B
+### B
 
 ```python
 parola = input()
@@ -708,19 +708,19 @@ contatore/stato
 
 <p align="justify">Candidati, senza materializzare ancora una nuova Activity P1:</p>
 
-#### A — Trace
+### A — Trace
 
 <p align="justify">Compilare tabella iterazione/stato/condizione/output.</p>
 
-#### B — Controlled Change
+### B — Controlled Change
 
 <p align="justify">Cambiare limiti di una validazione e aggiornare i test.</p>
 
-#### C — Implement
+### C — Implement
 
 <p align="justify">Richiedere un valore finché appartiene a un intervallo valido.</p>
 
-#### D — Debug
+### D — Debug
 
 <p align="justify">Correggere:</p>
 
@@ -739,7 +739,7 @@ contatore/stato
 
 ## 23. Esercizi brevi
 
-### A — Trace contatore
+## A — Trace contatore
 
 <p align="justify">Prevedi l'output:</p>
 
@@ -750,7 +750,7 @@ while i < 6:
     i += 2
 ```
 
-### B — Validazione
+## B — Validazione
 
 <p align="justify">Leggi un intero finché è compreso tra <code>1</code> e <code>5</code> inclusi. Progetta una sequenza di input che provochi:</p>
 
@@ -760,11 +760,11 @@ una ripetizione
 tre ripetizioni
 ```
 
-### C — Sentinella
+## C — Sentinella
 
 <p align="justify">Leggi parole finché non compare <code>stop</code>; stampa ogni parola normale, ma non la sentinella.</p>
 
-### D — Debug terminazione
+## D — Debug terminazione
 
 <p align="justify">Trova un input che rende infinito il programma:</p>
 
@@ -843,7 +843,7 @@ sentinella → valore che segnala la fine
 
 <p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-### Collegamenti di progettazione
+## Collegamenti di progettazione
 
 <ul>
   <li><code>tracks/secondo/PY2_04_SPEC.md</code>;</li>

@@ -233,7 +233,7 @@ assegnamento / return / print / altra espressione
 
 ## 4. `/`, `//` e `%` non sono la stessa divisione
 
-### `/` — divisione
+## `/` — divisione
 
 ```python
 8 / 2
@@ -247,7 +247,7 @@ assegnamento / return / print / altra espressione
 
 <p align="justify">In Python 3, <code>/</code> produce un risultato di tipo <code>float</code>, anche quando matematicamente il risultato è intero.</p>
 
-### `//` — floor division
+## `//` — floor division
 
 ```python
 17 // 3
@@ -267,7 +267,7 @@ assegnamento / return / print / altra espressione
 
 <p align="justify">Attenzione però: <code>//</code> è <strong>floor division</strong>, non una generica regola "taglia la parte decimale". Con numeri negativi vedremo che il comportamento segue il pavimento matematico. Per il core beginner useremo soprattutto casi positivi quando modelliamo gruppi completi.</p>
 
-### `%` — resto
+## `%` — resto
 
 ```python
 17 % 3
@@ -292,14 +292,14 @@ assegnamento / return / print / altra espressione
 
 ## 5. Worked example: secondi → minuti + resto
 
-### Specifica
+## Specifica
 
 ```text
 INPUT: secondi_totali, intero non negativo
 OUTPUT: minuti_completi e secondi_restanti
 ```
 
-### Casi di test
+## Casi di test
 
 <table align="center">
 <thead>
@@ -333,7 +333,7 @@ OUTPUT: minuti_completi e secondi_restanti
 </tbody>
 </table>
 
-### Codice
+## Codice
 
 ```python
 secondi_totali = int(input())
@@ -342,7 +342,7 @@ secondi = secondi_totali % 60
 print(minuti, secondi)
 ```
 
-### Trace con 137
+## Trace con 137
 
 ```text
 secondi_totali        → 137
@@ -446,7 +446,7 @@ potenza → **
 20
 ```
 
-### Regola pratica del corso
+## Regola pratica del corso
 
 <p align="justify">Non trasformiamo la precedenza in una gara di memoria.</p>
 
@@ -605,7 +605,7 @@ Ada ha 27 punti
 print(f"Il doppio è {numero * 2}")
 ```
 
-### Contratto prima dell'estetica
+## Contratto prima dell'estetica
 
 <p align="justify">Nelle Activity con output esatto dobbiamo comunque rispettare la specifica.</p>
 
@@ -774,7 +774,7 @@ area_rettangolo(0, 4)
 
 ## 17. Error Clinic
 
-### Caso 1 — operatore sbagliato
+## Caso 1 — operatore sbagliato
 
 ```python
 quadrato = numero ^ 2
@@ -782,7 +782,7 @@ quadrato = numero ^ 2
 
 <p align="justify">Se volevi una potenza, l'operatore non esprime l'operazione richiesta.</p>
 
-### Caso 2 — divisione sbagliata per il dominio
+## Caso 2 — divisione sbagliata per il dominio
 
 ```python
 scatole = pezzi / capacita
@@ -790,7 +790,7 @@ scatole = pezzi / capacita
 
 <p align="justify">Se il problema chiede <strong>scatole complete</strong>, probabilmente <code>/</code> non è il modello giusto.</p>
 
-### Caso 3 — resto dimenticato
+## Caso 3 — resto dimenticato
 
 ```python
 minuti = secondi_totali // 60
@@ -798,7 +798,7 @@ minuti = secondi_totali // 60
 
 <p align="justify">Se la specifica chiede anche i secondi rimanenti manca una parte dell'output.</p>
 
-### Caso 4 — precedenza non esplicita
+## Caso 4 — precedenza non esplicita
 
 ```python
 media = a + b + c / 3
@@ -812,7 +812,7 @@ media = a + b + c / 3
 media = (a + b + c) / 3
 ```
 
-### Caso 5 — funzione definita ma non chiamata
+## Caso 5 — funzione definita ma non chiamata
 
 ```python
 def doppio(numero):
@@ -825,7 +825,7 @@ risultato = doppio
 
 <p align="justify">Per invocare la trasformazione servono le parentesi e gli argomenti richiesti.</p>
 
-### Caso 6 — stampare invece di restituire
+## Caso 6 — stampare invece di restituire
 
 <p align="justify">Se una funzione deve produrre un valore riutilizzabile, sostituire <code>return</code> con <code>print</code> cambia il suo contratto.</p>
 
@@ -839,14 +839,14 @@ risultato = doppio
 <p align="justify">Converti una quantità di secondi in minuti completi e secondi restanti.</p>
 </blockquote>
 
-#### Soluzione A
+### Soluzione A
 
 ```python
 minuti = secondi_totali // 60
 resto = secondi_totali % 60
 ```
 
-#### Soluzione B
+### Soluzione B
 
 ```python
 minuti = int(secondi_totali / 60)
@@ -877,7 +877,7 @@ correttezza
 
 ## 19. Esercizi brevi
 
-### A — Predict
+## A — Predict
 
 <p align="justify">Prevedi valore e tipo:</p>
 
@@ -890,7 +890,7 @@ correttezza
 2 ** 4
 ```
 
-### B — Quoziente/resto
+## B — Quoziente/resto
 
 <p align="justify">Dato un numero di caramelle e una dimensione fissa della confezione, calcola:</p>
 
@@ -901,7 +901,7 @@ correttezza
 
 <p align="justify">Prima scrivi input/output e almeno tre casi.</p>
 
-### C — Ore, minuti, secondi
+## C — Ore, minuti, secondi
 
 <p align="justify">Dato un numero non negativo di secondi, produci:</p>
 
@@ -911,7 +911,7 @@ ore_complete minuti_restanti secondi_restanti
 
 <p align="justify">Scomponi il problema prima di scrivere il codice.</p>
 
-### D — Debug
+## D — Debug
 
 <p align="justify">Correggi:</p>
 
@@ -924,7 +924,7 @@ print(media)
 
 <p align="justify">Spiega il bug, non limitarti a modificare una riga.</p>
 
-### E — Prima funzione
+## E — Prima funzione
 
 <p align="justify">Scrivi:</p>
 
@@ -1016,7 +1016,7 @@ return ≠ print
 
 <p align="justify">Le fonti licensed sono teacher-reference e non testo da riprodurre.</p>
 
-### Collegamenti di progettazione
+## Collegamenti di progettazione
 
 <ul>
   <li><code>tracks/secondo/PY2_02_SPEC.md</code>;</li>

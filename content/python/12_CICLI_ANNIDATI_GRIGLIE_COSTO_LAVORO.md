@@ -263,7 +263,7 @@ for i in range(3):
 
 ## 8. Annidamento naturale vs accidentale
 
-### Naturale
+## Naturale
 
 ```text
 griglia
@@ -271,7 +271,7 @@ griglia
    → ogni colonna
 ```
 
-### Accidentale
+## Accidentale
 
 ```text
 per ogni valore
@@ -404,7 +404,7 @@ for riga in range(1, 4):
 
 ## 12. Error Clinic
 
-### A — variabile sbagliata
+## A — variabile sbagliata
 
 ```python
 for riga in range(3):
@@ -414,7 +414,7 @@ for riga in range(3):
 
 <p align="justify">Il ciclo interno varia, ma il programma non usa <code>colonna</code>.</p>
 
-### B — reset troppo interno
+## B — reset troppo interno
 
 ```python
 for riga in range(righe):
@@ -425,15 +425,15 @@ for riga in range(righe):
 
 <p align="justify">Il totale viene cancellato a ogni cella.</p>
 
-### C — reset troppo esterno
+## C — reset troppo esterno
 
 <p align="justify">Una variabile che dovrebbe ripartire per ogni riga viene inizializzata una sola volta prima di tutto il doppio ciclo.</p>
 
-### D — indentazione errata
+## D — indentazione errata
 
 <p align="justify">Un <code>print()</code> che dovrebbe chiudere la riga finisce dentro il ciclo delle colonne.</p>
 
-### E — lavoro ripetuto
+## E — lavoro ripetuto
 
 <p align="justify">Un valore invariabile viene ricalcolato nel ciclo interno.</p>
 
@@ -489,23 +489,23 @@ for i in range(2):
 
 ## 14. Activity candidate
 
-### A — Nested trace
+## A — Nested trace
 
 <p align="justify">Elenca tutte le coppie prodotte da due <code>range</code> piccoli.</p>
 
-### B — Controlled Change
+## B — Controlled Change
 
 <p align="justify">Cambia da griglia <code>2×3</code> a <code>4×5</code> e prevedi <strong>prima</strong> quante iterazioni/output saranno prodotti.</p>
 
-### C — Implement
+## C — Implement
 
 <p align="justify">Genera una griglia rettangolare con un pattern condizionale.</p>
 
-### D — Debug
+## D — Debug
 
 <p align="justify">Correggi variabili interne/esterne confuse, reset al livello errato, indentazione e range sbagliati.</p>
 
-### E — Mini-project
+## E — Mini-project
 
 <p align="justify">Problema con:</p>
 

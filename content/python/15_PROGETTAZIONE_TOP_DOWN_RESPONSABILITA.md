@@ -350,25 +350,25 @@ calcola_finale(subtotale, sconto) → finale
 
 ## 14. Error Clinic
 
-### A — funzione fa input e calcolo
+## A — funzione fa input e calcolo
 
 <p align="justify">Una funzione che dovrebbe calcolare il totale legge direttamente <code>input()</code>.</p>
 
 <p align="justify">Domanda: possiamo testarla con dati scelti senza simulare input?</p>
 
-### B — funzione stampa e restituisce lo stesso risultato senza motivo
+## B — funzione stampa e restituisce lo stesso risultato senza motivo
 
 <p align="justify">Qual è davvero il suo contratto?</p>
 
-### C — dipendenza globale
+## C — dipendenza globale
 
 <p align="justify">La funzione usa un valore esterno invece di riceverlo.</p>
 
-### D — duplicazione
+## D — duplicazione
 
 <p align="justify">Lo stesso calcolo appare in tre rami con piccole varianti.</p>
 
-### E — funzione troppo generica
+## E — funzione troppo generica
 
 <p align="justify">Nome come:</p>
 
@@ -384,15 +384,15 @@ gestisci
 
 ## 15. Activity candidate
 
-### A — Decomposition cards
+## A — Decomposition cards
 
 <p align="justify">Dato un problema, raggruppa azioni in responsabilità candidate.</p>
 
-### B — Extract function
+## B — Extract function
 
 <p align="justify">Estrai un calcolo coerente da un programma monolitico.</p>
 
-### C — Top-down design
+## C — Top-down design
 
 <p align="justify">Consegna prima:</p>
 
@@ -406,7 +406,7 @@ gestisci
 
 <p align="justify">Solo dopo implementa.</p>
 
-### D — Smell/debug
+## D — Smell/debug
 
 <p align="justify">Riconosci dipendenze globali, duplicazioni e funzioni con responsabilità troppo ampia.</p>
 

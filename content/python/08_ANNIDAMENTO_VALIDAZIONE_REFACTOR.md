@@ -152,7 +152,7 @@ else:
     print("negato")
 ```
 
-### Caso A
+## Caso A
 
 ```text
 credenziali_valide = False
@@ -167,7 +167,7 @@ ramo esterno else   → negato
 secondo if           → non raggiunto
 ```
 
-### Caso B
+## Caso B
 
 ```text
 credenziali_valide = True
@@ -321,7 +321,7 @@ else:
 
 <p align="justify">Nel punto attuale del corso distinguiamo due problemi diversi.</p>
 
-#### Valore numerico fuori dal dominio
+### Valore numerico fuori dal dominio
 
 ```text
 voto = 12
@@ -331,7 +331,7 @@ voto = 12
 
 <p align="justify">Possiamo rilevarlo con una condizione.</p>
 
-#### Testo non convertibile in intero
+### Testo non convertibile in intero
 
 ```text
 "ciao"
@@ -347,7 +347,7 @@ voto = 12
 
 ## 9. Worked example: voto valido + classificazione
 
-### Specifica
+## Specifica
 
 ```text
 INPUT: intero
@@ -357,7 +357,7 @@ altrimenti:
   >= 6 → sufficiente
 ```
 
-### Casi di test
+## Casi di test
 
 <table align="center">
 <thead>
@@ -394,7 +394,7 @@ altrimenti:
 </tbody>
 </table>
 
-### Codice
+## Codice
 
 ```python
 voto = int(input())
@@ -603,25 +603,25 @@ not (eta >= 18 and biglietto_valido)
 
 <p align="justify">Per ogni coppia di regole decidi se la seconda dipende dalla prima.</p>
 
-#### A
+### A
 
 ```text
 se utente autenticato, allora controlla se ha permesso admin
 ```
 
-#### B
+### B
 
 ```text
 se piove, ombrello; se freddo, giacca
 ```
 
-#### C
+### C
 
 ```text
 se voto valido, allora classificalo
 ```
 
-#### D
+### D
 
 ```text
 se ha completato quiz, badge; se ha completato progetto, bonus
@@ -635,15 +635,15 @@ se ha completato quiz, badge; se ha completato progetto, bonus
 
 <p align="justify">Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:</p>
 
-#### A — Path trace
+### A — Path trace
 
 <p align="justify">Dato codice annidato, segnare il percorso seguito per più input.</p>
 
-#### B — Controlled refactor
+### B — Controlled refactor
 
 <p align="justify">Trasformare un annidamento ridondante in una condizione composta, mantenendo gli stessi test.</p>
 
-#### C — Implement
+### C — Implement
 
 <p align="justify">Problema con:</p>
 
@@ -654,11 +654,11 @@ se ha completato quiz, badge; se ha completato progetto, bonus
   <li>tabella dei casi prima del codice.</li>
 </ul>
 
-#### D — Debug Clinic
+### D — Debug Clinic
 
 <p align="justify">Correggere validazione tardiva, dipendenza accidentale o ramo mancante.</p>
 
-#### E — Mini-project
+### E — Mini-project
 
 <p align="justify">Configuratore/regole semplici:</p>
 
@@ -782,7 +782,7 @@ leggibilità → il codice deve comunicare la regola del problema
 
 <p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-### Collegamenti di progettazione
+## Collegamenti di progettazione
 
 <ul>
   <li><code>tracks/secondo/PY2_03_SPEC.md</code>;</li>

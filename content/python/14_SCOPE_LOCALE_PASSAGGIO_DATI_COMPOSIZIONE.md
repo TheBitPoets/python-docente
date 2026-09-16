@@ -315,7 +315,7 @@ print(finale)
 
 ## 12. Error Clinic
 
-### A — locale usata fuori
+## A — locale usata fuori
 
 ```python
 def f(x):
@@ -325,11 +325,11 @@ def f(x):
 print(y)
 ```
 
-### B — dato globale nascosto
+## B — dato globale nascosto
 
 <p align="justify">La funzione usa una variabile esterna modificabile invece di riceverla.</p>
 
-### C — risultato ignorato
+## C — risultato ignorato
 
 ```python
 applica_sconto(100, 20)
@@ -338,11 +338,11 @@ print(100)
 
 <p align="justify">Il valore restituito non viene usato.</p>
 
-### D — parametro mancante
+## D — parametro mancante
 
 <p align="justify">La funzione richiede due dati ma il chiamante ne passa uno.</p>
 
-### E — composizione troppo compressa
+## E — composizione troppo compressa
 
 <p align="justify">Una lunga espressione annidata rende difficile seguire il flusso. Introdurre variabili intermedie può migliorare la leggibilità.</p>
 
@@ -350,19 +350,19 @@ print(100)
 
 ## 13. Activity candidate
 
-### A — Scope trace
+## A — Scope trace
 
 <p align="justify">Segna per ogni nome dove nasce e dove può essere usato.</p>
 
-### B — Remove global
+## B — Remove global
 
 <p align="justify">Trasforma una funzione dipendente da stato globale in una funzione con parametri/return espliciti.</p>
 
-### C — Compose
+## C — Compose
 
 <p align="justify">Costruisci 2–3 funzioni che collaborano su un piccolo calcolo.</p>
 
-### D — Debug
+## D — Debug
 
 <p align="justify">Correggi locale usata fuori, globale nascosta, parametro mancante o return ignorato.</p>
 

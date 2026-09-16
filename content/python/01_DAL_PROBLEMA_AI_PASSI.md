@@ -360,19 +360,19 @@ uscita
 
 ## 11. Error Clinic
 
-### Passaggio mancante
+## Passaggio mancante
 
 <p align="justify">Calcolo una media senza aver contato quanti valori ci sono.</p>
 
-### Stato senza significato
+## Stato senza significato
 
 <p align="justify">Uso <code>totale</code>, ma non so spiegare che cosa rappresenta in un certo punto.</p>
 
-### Caso non coperto
+## Caso non coperto
 
 <p align="justify">Gestisco A &gt; B e B &gt; A, ma non A = B.</p>
 
-### Procedura non terminante
+## Procedura non terminante
 
 <p align="justify">Ripeto un passo senza una condizione di uscita.</p>
 
@@ -427,7 +427,7 @@ TRACE di almeno un caso
   <li>proporre test prima della codifica.</li>
 </ol>
 
-### Recap
+## Recap
 
 ```text
 specifica

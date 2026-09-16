@@ -328,7 +328,7 @@ if numero > 0:
 print("fine")
 ```
 
-### Caso A — input `4`
+## Caso A — input `4`
 
 ```text
 numero           → 4
@@ -339,7 +339,7 @@ print("fine")    → eseguito
 output            → fine
 ```
 
-### Caso B — input `-2`
+## Caso B — input `-2`
 
 ```text
 numero           → -2
@@ -473,7 +473,7 @@ eta >= 18
 
 ## 11. Worked example: spedizione gratuita
 
-### Specifica
+## Specifica
 
 ```text
 INPUT: totale ordine, intero non negativo
@@ -481,7 +481,7 @@ OUTPUT: costo spedizione
 REGOLA: se totale >= 50 → 0, altrimenti → 5
 ```
 
-### Casi prima del codice
+## Casi prima del codice
 
 <table align="center">
 <thead>
@@ -510,7 +510,7 @@ REGOLA: se totale >= 50 → 0, altrimenti → 5
 </tbody>
 </table>
 
-### Codice
+## Codice
 
 ```python
 totale = int(input())
@@ -613,7 +613,7 @@ decisione / calcolo
 
 ## 14. Error Clinic
 
-### Caso 1 — confine sbagliato
+## Caso 1 — confine sbagliato
 
 <p align="justify">Specifica:</p>
 
@@ -634,7 +634,7 @@ if eta > 18:
 18
 ```
 
-### Caso 2 — condizione invertita
+## Caso 2 — condizione invertita
 
 <p align="justify">Specifica:</p>
 
@@ -651,7 +651,7 @@ if numero > 0:
 
 <p align="justify">Il programma è sintatticamente valido ma rappresenta la domanda sbagliata.</p>
 
-### Caso 3 — `=` al posto di `==`
+## Caso 3 — `=` al posto di `==`
 
 ```python
 if voto = 6:
@@ -666,7 +666,7 @@ if voto = 6:
 if voto == 6:
 ```
 
-### Caso 4 — indentazione
+## Caso 4 — indentazione
 
 ```python
 if temperatura < 0:
@@ -675,7 +675,7 @@ print("gelo")
 
 <p align="justify">Il blocco non è strutturato correttamente.</p>
 
-### Caso 5 — output nel ramo sbagliato
+## Caso 5 — output nel ramo sbagliato
 
 ```python
 if eta >= 18:
@@ -745,7 +745,7 @@ else:
 
 <p align="justify">Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:</p>
 
-#### A — Predict/Trace
+### A — Predict/Trace
 
 <p align="justify">Dato valore + condizione, prevedere:</p>
 
@@ -755,15 +755,15 @@ else:
   <li>output.</li>
 </ul>
 
-#### B — Controlled Change
+### B — Controlled Change
 
 <p align="justify">Cambiare una soglia e aggiornare i casi <code>sotto / sulla / sopra</code>.</p>
 
-#### C — Implement
+### C — Implement
 
 <p align="justify">Da un flow chart sì/no già noto a un programma <code>if/else</code>.</p>
 
-#### D — Debug
+### D — Debug
 
 <p align="justify">Correggere:</p>
 
@@ -818,7 +818,7 @@ condizione
 
 ## 19. Esercizi brevi
 
-### A — Soglia
+## A — Soglia
 
 <p align="justify">Specifica:</p>
 
@@ -828,7 +828,7 @@ condizione
 
 <p align="justify">Scrivi prima i casi <code>99</code>, <code>100</code>, <code>101</code>, poi il codice.</p>
 
-### B — Positivo o non positivo
+## B — Positivo o non positivo
 
 <p align="justify">Leggi un intero e stampa:</p>
 
@@ -844,7 +844,7 @@ non positivo
 
 <p align="justify">Quale ramo percorre <code>0</code>?</p>
 
-### C — Debug del confine
+## C — Debug del confine
 
 <p align="justify">Correggi:</p>
 
@@ -863,7 +863,7 @@ else:
 
 <p align="justify">Quale operatore cambia e perché?</p>
 
-### D — Flow chart → codice
+## D — Flow chart → codice
 
 <p align="justify">Ricevi un flow chart con una sola decisione e produci:</p>
 
@@ -936,7 +936,7 @@ indentazione → appartenenza al blocco
 
 <p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-### Collegamenti di progettazione
+## Collegamenti di progettazione
 
 <ul>
   <li><code>tracks/secondo/PY2_03_SPEC.md</code>;</li>

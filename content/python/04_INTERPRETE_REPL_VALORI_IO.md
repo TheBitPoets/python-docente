@@ -146,7 +146,7 @@ output oppure errore
 
 <p align="justify">Python svolge internamente molti passaggi più complessi, ma non servono ancora per capire i primi programmi. Più avanti potremo approfondire bytecode, virtual machine e modello di esecuzione.</p>
 
-### Una regola utile
+## Una regola utile
 
 <p align="justify">Il computer non esegue ciò che <strong>intendevi</strong> scrivere.</p>
 
@@ -183,7 +183,7 @@ Print  → mostra il risultato quando appropriato
 Loop   → torna al prompt
 ```
 
-### Primo esperimento
+## Primo esperimento
 
 <p align="justify">Prima <strong>prevedi</strong> il risultato:</p>
 
@@ -207,7 +207,7 @@ Loop   → torna al prompt
 10 / 2
 ```
 
-### Il REPL non è un indovino
+## Il REPL non è un indovino
 
 <p align="justify">Se scrivi:</p>
 
@@ -227,7 +227,7 @@ Loop   → torna al prompt
 
 <p align="justify">Python distingue diversi tipi di valore.</p>
 
-### Interi: `int`
+## Interi: `int`
 
 ```python
 42
@@ -244,7 +244,7 @@ Loop   → torna al prompt
 <class 'int'>
 ```
 
-### Numeri con parte decimale: `float`
+## Numeri con parte decimale: `float`
 
 ```python
 3.5
@@ -259,7 +259,7 @@ Loop   → torna al prompt
 <class 'float'>
 ```
 
-### Testo: `str`
+## Testo: `str`
 
 ```python
 "ciao"
@@ -278,7 +278,7 @@ Loop   → torna al prompt
 
 <p align="justify">Non sono lo stesso valore.</p>
 
-### Booleani: `bool`
+## Booleani: `bool`
 
 <p align="justify">I valori booleani sono:</p>
 
@@ -317,7 +317,7 @@ eta
 eta + 1
 ```
 
-### Modello mentale iniziale
+## Modello mentale iniziale
 
 <p align="justify">Per ora pensa a:</p>
 
@@ -329,7 +329,7 @@ eta ──> 15
 
 <p align="justify">Più avanti renderemo questo modello più preciso quando studieremo oggetti, mutabilità e alias.</p>
 
-### `=` non significa "è uguale" nel senso matematico
+## `=` non significa "è uguale" nel senso matematico
 
 <p align="justify">In:</p>
 
@@ -347,7 +347,7 @@ eta = 16
 
 <p align="justify">il nome ora fa riferimento al nuovo valore.</p>
 
-### Nomi leggibili
+## Nomi leggibili
 
 <p align="justify">Preferisci:</p>
 
@@ -394,7 +394,7 @@ print(nome)
 print(2 + 3)
 ```
 
-### REPL e `print()` non sono la stessa cosa
+## REPL e `print()` non sono la stessa cosa
 
 <p align="justify">Nel REPL:</p>
 
@@ -439,7 +439,7 @@ nome = input()
 print(nome)
 ```
 
-### Il punto fondamentale: `input()` restituisce testo
+## Il punto fondamentale: `input()` restituisce testo
 
 <p align="justify">Anche se digiti:</p>
 
@@ -513,7 +513,7 @@ numero = int(testo)
 numero = int(input())
 ```
 
-### `int()`
+## `int()`
 
 <p align="justify">Converte un testo compatibile in intero:</p>
 
@@ -535,7 +535,7 @@ int("ciao")
 
 <p align="justify">non può produrre un intero valido e genera un errore.</p>
 
-### `float()`
+## `float()`
 
 ```python
 float("3.5")
@@ -543,7 +543,7 @@ float("3.5")
 
 <p align="justify">produce un <code>float</code>.</p>
 
-### `str()`
+## `str()`
 
 ```python
 str(42)
@@ -555,7 +555,7 @@ str(42)
 "42"
 ```
 
-### Non convertire per abitudine
+## Non convertire per abitudine
 
 <p align="justify">La domanda deve essere:</p>
 
@@ -588,7 +588,7 @@ print(nome)
 
 <p align="justify">Eseguilo con il workflow TheBitLab indicato dalla guida.</p>
 
-### Perché passare presto agli script
+## Perché passare presto agli script
 
 <p align="justify">Il REPL è ottimo per:</p>
 
@@ -669,7 +669,7 @@ print(risultato)
 
 <p align="justify">Soltanto dopo eseguilo.</p>
 
-### Variante
+## Variante
 
 <p align="justify">Cambia:</p>
 
@@ -687,14 +687,14 @@ secondo = -2
 
 <p align="justify">Riprendiamo il problema iniziale.</p>
 
-### Specifica
+## Specifica
 
 ```text
 INPUT: due interi, uno per riga
 OUTPUT: la loro somma
 ```
 
-### Casi di test prima del codice
+## Casi di test prima del codice
 
 <table align="center">
 <thead>
@@ -723,7 +723,7 @@ OUTPUT: la loro somma
 </tbody>
 </table>
 
-### Codice
+## Codice
 
 ```python
 primo = int(input())
@@ -732,7 +732,7 @@ risultato = primo + secondo
 print(risultato)
 ```
 
-### Trace con `-4` e `10`
+## Trace con `-4` e `10`
 
 ```text
 input()             → "-4"
@@ -759,7 +759,7 @@ print(risultato)    → mostra 6
 
 ## 13. Confronto: due programmi che sembrano simili
 
-### Versione A
+## Versione A
 
 ```python
 primo = input()
@@ -780,7 +780,7 @@ print(primo + secondo)
 23
 ```
 
-### Versione B
+## Versione B
 
 ```python
 primo = int(input())
@@ -794,7 +794,7 @@ print(primo + secondo)
 5
 ```
 
-### Domanda
+## Domanda
 
 <p align="justify">Entrambi i programmi "funzionano" nel senso che Python li esegue.</p>
 
@@ -812,7 +812,7 @@ print(primo + secondo)
 
 <p align="justify">Gli errori fanno parte del lavoro del programmatore.</p>
 
-### Caso 1 — errore di sintassi
+## Caso 1 — errore di sintassi
 
 ```python
 print("ciao"
@@ -822,7 +822,7 @@ print("ciao"
 
 <p align="justify">Non guardare cento righe a caso. Inizia dall'informazione che l'errore fornisce e dalla riga indicata, controllando anche ciò che la precede.</p>
 
-### Caso 2 — nome non definito
+## Caso 2 — nome non definito
 
 ```python
 prezzo = 10
@@ -833,7 +833,7 @@ print(prezzo_totale)
 
 <p align="justify">Python non corregge automaticamente il nome in base a ciò che probabilmente intendevi.</p>
 
-### Caso 3 — conversione impossibile
+## Caso 3 — conversione impossibile
 
 ```python
 numero = int("ciao")
@@ -841,7 +841,7 @@ numero = int("ciao")
 
 <p align="justify">La sintassi è valida, ma il valore non può essere convertito nel modo richiesto.</p>
 
-### Caso 4 — errore logico
+## Caso 4 — errore logico
 
 ```python
 primo = int(input())
@@ -966,7 +966,7 @@ print(risultato)
 
 <p align="justify">Poi usa il report per confrontare il comportamento reale con quello atteso.</p>
 
-### Perché è un'Activity B
+## Perché è un'Activity B
 
 <p align="justify">Non stai progettando ancora tutto il programma da zero.</p>
 
@@ -978,7 +978,7 @@ print(risultato)
 
 ## 18. Esercizi brevi
 
-### A — Prevedi il tipo e il valore
+## A — Prevedi il tipo e il valore
 
 <p align="justify">Senza REPL, scrivi prima la previsione:</p>
 
@@ -991,7 +991,7 @@ str(5)
 
 <p align="justify">Poi verifica.</p>
 
-### B — Trova la differenza
+## B — Trova la differenza
 
 <p align="justify">Spiega perché:</p>
 
@@ -1004,7 +1004,7 @@ print(eta + "1")
 
 <p align="justify">Scrivi poi la versione corretta per un'età intera.</p>
 
-### C — Dal problema al codice
+## C — Dal problema al codice
 
 <p align="justify">Specifica:</p>
 
@@ -1022,7 +1022,7 @@ print(eta + "1")
   <li>codice.</li>
 </ol>
 
-### D — Debug
+## D — Debug
 
 <p align="justify">Correggi il programma:</p>
 
@@ -1102,13 +1102,13 @@ nessun traceback ≠ correttezza
 
 <p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-### Activity correlate
+## Activity correlate
 
 <ul>
   <li><code>py2-activity-b-input-somma-001</code> — <strong>Completa la somma</strong>.</li>
 </ul>
 
-### Collegamenti di progettazione
+## Collegamenti di progettazione
 
 <ul>
   <li><code>tracks/secondo/PY2_02_SPEC.md</code>;</li>

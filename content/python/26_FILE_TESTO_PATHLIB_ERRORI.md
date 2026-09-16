@@ -286,7 +286,7 @@ PermissionError
 
 ## 13. Bug vs errore esterno
 
-### Bug
+## Bug
 
 ```python
 risultato = prezzo + quantita
@@ -294,7 +294,7 @@ risultato = prezzo + quantita
 
 <p align="justify">quando serviva una moltiplicazione.</p>
 
-### Errore esterno
+## Errore esterno
 
 ```text
 file richiesto assente

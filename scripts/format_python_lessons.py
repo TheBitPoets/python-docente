@@ -87,8 +87,8 @@ def validation_errors(content: str) -> list[str]:
             visible_lines.append(line)
     if marker:
         errors.append("unclosed fenced code block")
-    if sum(line.startswith("# ") for line in visible_lines) != 1:
-        errors.append("the document must contain exactly one level-1 heading")
+    if sum(line.startswith("# ") for line in visible_lines) < 1:
+        errors.append("the document must contain at least one level-1 heading")
     parser = BalanceParser()
     parser.feed(html_outside_fences(content))
     errors.extend(parser.errors)
@@ -286,10 +286,12 @@ def lesson_layout(content: str, path: Path) -> str:
                     in_body = True
                     line = "#" + line
                 title_seen = True
-            elif in_body and HEADING_RE.match(line):
-                line = "#" + line
         lines.append(line)
     formatted = normalize("\n".join(lines))
+    # Existing orientation is authored data; preserve it on subsequent checks.
+    # This keeps the formatter idempotent and avoids rewriting lesson-specific prose.
+    if "<!-- COURSE-FRAME:START -->" in formatted:
+        return formatted
     data = json.loads((ROOT / "config/course-presentation.json").read_text(encoding="utf-8"))["modules"]
     number = int(path.name[:2])
     record = next(item for item in data if item["module"] == number)

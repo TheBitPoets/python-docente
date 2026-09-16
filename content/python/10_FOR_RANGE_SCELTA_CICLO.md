@@ -363,7 +363,7 @@ so già quali valori devo visitare
 
 ## 10. Modello di scelta
 
-### Preferisci `for` quando
+## Preferisci `for` quando
 
 ```text
 conosci i valori/iterazioni da attraversare
@@ -377,7 +377,7 @@ conosci i valori/iterazioni da attraversare
   <li>più avanti: attraversa elementi di una sequenza.</li>
 </ul>
 
-### Preferisci `while` quando
+## Preferisci `while` quando
 
 ```text
 continui finché una condizione dipendente dallo stato resta vera
@@ -584,19 +584,19 @@ romeo-y1-u15-ciclo-for
 
 <p align="justify">Candidati, senza nuova Activity P1 materializzata:</p>
 
-#### A — Range microscope
+### A — Range microscope
 
 <p align="justify">Prevedere i valori di diversi <code>range</code> senza eseguire.</p>
 
-#### B — `for` o `while`?
+### B — `for` o `while`?
 
 <p align="justify">Classificare problemi e motivare la scelta.</p>
 
-#### C — Implement
+### C — Implement
 
 <p align="justify">Countdown, ripetizione N volte, serie di trasformazioni semplici.</p>
 
-#### D — Debug
+### D — Debug
 
 <p align="justify">Correggere:</p>
 
@@ -615,7 +615,7 @@ romeo-y1-u15-ciclo-for
 
 ## 21. Esercizi brevi
 
-### A — Prevedi il range
+## A — Prevedi il range
 
 <p align="justify">Scrivi la sequenza prodotta da:</p>
 
@@ -627,15 +627,15 @@ range(5, 0, -1)
 range(5, 0)
 ```
 
-### B — Ripeti N volte
+## B — Ripeti N volte
 
 <p align="justify">Leggi <code>n</code> e stampa <code>ciao</code> esattamente <code>n</code> volte per <code>n &gt;= 0</code>.</p>
 
-### C — Countdown
+## C — Countdown
 
 <p align="justify">Stampa da <code>n</code> a <code>1</code> con <code>for</code> e <code>range</code>.</p>
 
-### D — Refactoring
+## D — Refactoring
 
 <p align="justify">Ricevi un <code>while</code> contatore corretto e riscrivilo con <code>for</code>. Spiega quale gestione manuale hai eliminato.</p>
 
@@ -695,7 +695,7 @@ scelta del ciclo → comunica il modello del problema
   <li>Romeo pinned <code>45e5f7e131802fccc89358a23a25dbed1884bbfa</code> — <code>y1-u15-ciclo-for</code> come riferimento applicativo.</li>
 </ul>
 
-### Collegamenti di progettazione
+## Collegamenti di progettazione
 
 <ul>
   <li><code>tracks/secondo/PY2_04_SPEC.md</code>;</li>

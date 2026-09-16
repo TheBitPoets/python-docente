@@ -166,7 +166,7 @@ else:
     print("ottimo")
 ```
 
-### Caso `5`
+## Caso `5`
 
 ```text
 voto < 6 → True
@@ -174,7 +174,7 @@ ramo 1   → eseguito
 resto catena → saltato
 ```
 
-### Caso `7`
+## Caso `7`
 
 ```text
 voto < 6 → False
@@ -183,7 +183,7 @@ ramo 2   → eseguito
 else     → saltato
 ```
 
-### Caso `9`
+## Caso `9`
 
 ```text
 voto < 6 → False
@@ -676,19 +676,19 @@ if indipendenti
 
 <p align="justify">Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:</p>
 
-#### A — Classifica il caso
+### A — Classifica il caso
 
 <p align="justify">Dato input + catena, prevedere il primo ramo eseguito.</p>
 
-#### B — Due `if` o `elif`?
+### B — Due `if` o `elif`?
 
 <p align="justify">Diverse specifiche brevi: scegliere la struttura e motivarla.</p>
 
-#### C — Implement
+### C — Implement
 
 <p align="justify">Classificatore a 3–4 fasce con test sui confini.</p>
 
-#### D — Debug
+### D — Debug
 
 <p align="justify">Correggere:</p>
 
@@ -731,7 +731,7 @@ selezione di un comportamento da un parametro della missione
 
 ## 20. Esercizi brevi
 
-### A — Fasce
+## A — Fasce
 
 <p align="justify">Classifica una temperatura:</p>
 
@@ -743,11 +743,11 @@ selezione di un comportamento da un parametro della missione
 
 <p align="justify">Scrivi prima i casi <code>-1</code>, <code>0</code>, <code>24</code>, <code>25</code>.</p>
 
-### B — Indipendenti o esclusivi?
+## B — Indipendenti o esclusivi?
 
 <p align="justify">Per ciascuna specifica scegli <code>if</code> indipendenti o catena <code>elif</code> e motiva in una riga.</p>
 
-### C — Accesso composto
+## C — Accesso composto
 
 <p align="justify">Specifica:</p>
 
@@ -757,7 +757,7 @@ selezione di un comportamento da un parametro della missione
 
 <p align="justify">Progetta i quattro casi della tabella di verità e poi il codice.</p>
 
-### D — Intervallo
+## D — Intervallo
 
 <p align="justify">Verifica se un numero appartiene all'intervallo chiuso <code>[10, 20]</code> prima con <code>and</code>, poi con confronto concatenato.</p>
 
@@ -822,7 +822,7 @@ intervallo → confini + casi di test
 
 <p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-### Collegamenti di progettazione
+## Collegamenti di progettazione
 
 <ul>
   <li><code>tracks/secondo/PY2_03_SPEC.md</code>;</li>

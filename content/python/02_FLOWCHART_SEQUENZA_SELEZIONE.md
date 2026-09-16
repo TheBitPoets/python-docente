@@ -407,7 +407,7 @@ TheBitLab
 
 <p align="justify">Il motore usa un linguaggio di espressioni ristretto e deterministico.</p>
 
-### Importante
+## Importante
 
 <p align="justify">Finché <code>flowchart.lab.v1</code> non è certificata nei profili classroom, il corso mantiene il fallback:</p>
 
@@ -523,7 +523,7 @@ caso che lo rivela
   <li>usare il fallback manuale senza perdere gli outcome se il tool non è disponibile.</li>
 </ol>
 
-### Recap
+## Recap
 
 ```text
 sequenza → un percorso

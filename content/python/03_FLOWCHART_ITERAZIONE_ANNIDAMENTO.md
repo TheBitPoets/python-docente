@@ -441,7 +441,7 @@ colonna
   <li>correggere il modello.</li>
 </ol>
 
-### Fallback manuale obbligatorio
+## Fallback manuale obbligatorio
 
 <p align="justify">Finché <code>flowchart.lab.v1</code> non è classroom-certified, lo stesso esercizio deve poter essere svolto senza il tool usando:</p>
 
@@ -574,7 +574,7 @@ spiegazione della terminazione
 
 <p align="justify">Non è richiesta perfezione grafica.</p>
 
-### Recap
+## Recap
 
 ```text
 problema

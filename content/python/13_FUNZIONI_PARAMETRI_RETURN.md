@@ -174,14 +174,14 @@ risultato → 5
 
 <p align="justify">Confronta.</p>
 
-### Versione A
+## Versione A
 
 ```python
 def somma(a, b):
     print(a + b)
 ```
 
-### Versione B
+## Versione B
 
 ```python
 def somma(a, b):
@@ -433,7 +433,7 @@ y = differenza(x, 3)
 
 ## 14. Error Clinic
 
-### A — chiamata dimenticata
+## A — chiamata dimenticata
 
 ```python
 x = doppio
@@ -447,7 +447,7 @@ x = doppio(5)
 
 <p align="justify">Non approfondiamo ancora le funzioni come oggetti; qui basta riconoscere che manca la chiamata richiesta.</p>
 
-### B — `return` mancante
+## B — `return` mancante
 
 ```python
 def doppio(x):
@@ -456,15 +456,15 @@ def doppio(x):
 
 <p align="justify">Il valore viene calcolato ma non restituito.</p>
 
-### C — stampa al posto di risultato
+## C — stampa al posto di risultato
 
 <p align="justify">Una funzione che dovrebbe essere usata in un calcolo stampa invece di restituire.</p>
 
-### D — parametro errato
+## D — parametro errato
 
 <p align="justify">Il corpo usa un nome diverso dal parametro definito.</p>
 
-### E — codice dopo `return`
+## E — codice dopo `return`
 
 <p align="justify">Codice non raggiungibile nella normale esecuzione di quel ramo.</p>
 
@@ -472,11 +472,11 @@ def doppio(x):
 
 ## 15. Activity candidate
 
-### A — Call trace
+## A — Call trace
 
 <p align="justify">Completa parametro/argomento/return per più chiamate.</p>
 
-### B — Controlled Change
+## B — Controlled Change
 
 <p align="justify">Trasforma una funzione che stampa in una funzione che restituisce e aggiorna il chiamante.</p>
 
@@ -490,11 +490,11 @@ py2-activity-b-return-area-001
 
 <p align="justify">Il profilo <code>python-function-v1</code> è attualmente validato come <strong>release candidate TheBitLab 2026.08.1</strong>, ma non viene ancora usato per generare in massa Activity: il lock immutabile stabile deve essere pubblicato prima della promozione.</p>
 
-### C — Implement
+## C — Implement
 
 <p align="justify">Scrivi funzioni numeriche o predicate con almeno tre casi dichiarati prima del codice.</p>
 
-### D — Debug
+## D — Debug
 
 <p align="justify">Correggi <code>return</code> mancante, valore ignorato, parametro sbagliato e codice irraggiungibile.</p>
 

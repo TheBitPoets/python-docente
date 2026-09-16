@@ -429,23 +429,23 @@ funzione + argomenti
 
 ## 17. Activity candidate
 
-### A — Test reader
+## A — Test reader
 
 <p align="justify">Prevedi quali assert passano/falliscono e perché.</p>
 
-### B — Add a test
+## B — Add a test
 
 <p align="justify">Aggiungi un caso limite che espone un bug.</p>
 
-### C — Implement from contract
+## C — Implement from contract
 
 <p align="justify">Implementa una funzione a partire da contratto + test.</p>
 
-### D — Debug regression
+## D — Debug regression
 
 <p align="justify">Riproduci bug → test rosso → fix → tutti verdi.</p>
 
-### E — Mini-project funzionale
+## E — Mini-project funzionale
 
 <p align="justify">Richiede:</p>
 

@@ -127,7 +127,7 @@ for _ in range(n):
 print(conteggio)
 ```
 
-### Invariante intuitivo
+## Invariante intuitivo
 
 <p align="justify">Dopo ogni iterazione:</p>
 
@@ -139,7 +139,7 @@ print(conteggio)
 
 <p align="justify">Se <code>conteggio += 1</code> fosse fuori dall'<code>if</code>, la frase non sarebbe più vera.</p>
 
-### Trace
+## Trace
 
 <p align="justify">Per i valori:</p>
 
@@ -194,7 +194,7 @@ for _ in range(n):
 print(totale)
 ```
 
-### Invariante
+## Invariante
 
 <blockquote>
 <p align="justify"><code>totale</code> è la somma dei valori già elaborati.</p>
@@ -274,7 +274,7 @@ minimo = 999999
 
 <p align="justify">Funziona soltanto se il dominio garantisce che nessun valore possa essere maggiore o uguale a quella scelta. Se il dominio cambia, il programma può diventare sbagliato.</p>
 
-### Strategia robusta con primo dato
+## Strategia robusta con primo dato
 
 <p align="justify">Se sappiamo che esiste almeno un valore:</p>
 
@@ -289,7 +289,7 @@ for _ in range(n - 1):
 print(minimo)
 ```
 
-### Invariante
+## Invariante
 
 <blockquote>
 <p align="justify"><code>minimo</code> è il più piccolo valore visto finora.</p>
@@ -335,7 +335,7 @@ else:
     print("assente")
 ```
 
-### Ma devo davvero leggere tutti i valori?
+## Ma devo davvero leggere tutti i valori?
 
 <p align="justify">Dipende dal contratto del problema.</p>
 
@@ -363,11 +363,11 @@ trovato = False
 <p align="justify"><code>trovato</code> indica se finora abbiamo incontrato almeno un valore che soddisfa la ricerca.</p>
 </blockquote>
 
-### Flag utile
+## Flag utile
 
 <p align="justify">Quando il valore booleano viene usato dopo il ciclo o rappresenta chiaramente uno stato.</p>
 
-### Flag ridondante
+## Flag ridondante
 
 <p align="justify">Se serve solo per imitare una condizione già disponibile o se un <code>break</code>/<code>return</code> futuro renderebbe il flusso più diretto.</p>
 
@@ -492,7 +492,7 @@ totale    = somma dei positivi già visti
 
 ## 11. Error Clinic
 
-### A — accumulatore resettato
+## A — accumulatore resettato
 
 ```python
 for _ in range(n):
@@ -502,7 +502,7 @@ for _ in range(n):
 
 <p align="justify">Domanda: quale invariante viene distrutto?</p>
 
-### B — contatore incrementato sempre
+## B — contatore incrementato sempre
 
 ```python
 if valore > 0:
@@ -512,7 +512,7 @@ conteggio += 1
 
 <p align="justify">Se volevamo contare soltanto i positivi, l'aggiornamento è nel livello sbagliato.</p>
 
-### C — media con denominatore zero
+## C — media con denominatore zero
 
 ```python
 media = totale / conteggio
@@ -520,7 +520,7 @@ media = totale / conteggio
 
 <p align="justify">Quale caso di test lo mette in crisi?</p>
 
-### D — minimo sentinella fragile
+## D — minimo sentinella fragile
 
 ```python
 minimo = 999999
@@ -528,7 +528,7 @@ minimo = 999999
 
 <p align="justify">Quale assunzione nascosta stiamo facendo?</p>
 
-### E — flag mai aggiornato
+## E — flag mai aggiornato
 
 ```python
 trovato = False
@@ -568,15 +568,15 @@ più dati
 
 ## 13. Activity candidate
 
-### A — Trace pattern
+## A — Trace pattern
 
 <p align="justify">Completa tabelle con <code>conteggio</code>, <code>totale</code>, <code>minimo</code> e <code>trovato</code> dopo ogni iterazione.</p>
 
-### B — Controlled Change
+## B — Controlled Change
 
 <p align="justify">Trasforma “conta positivi” in “conta valori nell'intervallo <code>[10, 20]</code>”, aggiornando prima i casi di test.</p>
 
-### C — Implement
+## C — Implement
 
 <p align="justify">Leggi <code>N</code> dati e calcola:</p>
 
@@ -586,7 +586,7 @@ più dati
   <li>eventuale media solo se il conteggio è diverso da zero.</li>
 </ul>
 
-### D — Debug
+## D — Debug
 
 <p align="justify">Correggi accumulatori resettati, update fuori dal ramo, minimo inizializzato male e flag incoerenti.</p>
 

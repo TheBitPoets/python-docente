@@ -102,13 +102,13 @@ VINCOLO → il pagamento deve essere sufficiente
 
 ## 2. Problema, algoritmo, programma
 
-### Problema
+## Problema
 
 <p align="justify">È ciò che vogliamo risolvere.</p>
 
 <p align="justify">Può essere espresso in linguaggio naturale e può contenere informazioni incomplete o ambigue.</p>
 
-### Algoritmo
+## Algoritmo
 
 <p align="justify">È una procedura abbastanza precisa da poter essere seguita passo-passo.</p>
 
@@ -121,7 +121,7 @@ VINCOLO → il pagamento deve essere sufficiente
   <li>verificabile con esempi concreti.</li>
 </ul>
 
-### Programma
+## Programma
 
 <p align="justify">È una descrizione dell'algoritmo in un linguaggio che il computer può eseguire.</p>
 
@@ -162,7 +162,7 @@ OUTPUT
 
 <p align="justify">Un vincolo potrebbe essere, per esempio, l'unità di misura comune.</p>
 
-### Informazioni inutili
+## Informazioni inutili
 
 <p align="justify">Se la consegna aggiunge:</p>
 
@@ -251,13 +251,13 @@ A = -2, B = -7
 
 ## 7. Caso normale, caso limite, controesempio
 
-### Caso normale
+## Caso normale
 
 <p align="justify">Rappresenta una situazione comune.</p>
 
 <p align="justify">Esempio: età 15 in una verifica <code>età &gt;= 14</code>.</p>
 
-### Caso limite
+## Caso limite
 
 <p align="justify">È vicino a un confine importante.</p>
 
@@ -270,7 +270,7 @@ A = -2, B = -7
 
 <p align="justify">per la soglia 14.</p>
 
-### Controesempio
+## Controesempio
 
 <p align="justify">È un dato che mostra che la nostra soluzione non funziona come pensavamo.</p>
 
@@ -280,17 +280,17 @@ A = -2, B = -7
 
 ## 8. Error Clinic: tre errori diversi
 
-### Ho capito male il problema
+## Ho capito male il problema
 
 <p align="justify">La specifica chiede la media, ma io progetto la somma.</p>
 
 <p align="justify">Il programma potrebbe essere eseguito perfettamente e restare comunque sbagliato.</p>
 
-### L'algoritmo è sbagliato
+## L'algoritmo è sbagliato
 
 <p align="justify">Ho capito la richiesta, ma ho ordinato male i passi o dimenticato un caso.</p>
 
-### L'esecuzione fallisce
+## L'esecuzione fallisce
 
 <p align="justify">L'algoritmo può essere corretto, ma un futuro programma può contenere un errore di sintassi, un dato non valido o un altro problema di esecuzione.</p>
 
@@ -357,7 +357,7 @@ UN CASO LIMITE
   <li>dire perché un solo esempio non garantisce che la soluzione sia corretta.</li>
 </ol>
 
-### Recap
+## Recap
 
 ```text
 capire il problema

@@ -241,13 +241,13 @@ def area(base, altezza):
 
 ## 9. Dict vs oggetto
 
-### Dict
+## Dict
 
 ```python
 studente["voto"]
 ```
 
-### Oggetto
+## Oggetto
 
 ```python
 studente.voto
@@ -278,7 +278,7 @@ class Contatore:
 
 ## 11. Error Clinic
 
-### Attributo dimenticato
+## Attributo dimenticato
 
 ```python
 class Studente:
@@ -294,11 +294,11 @@ self.nome
 self.voto
 ```
 
-### `self` dimenticato
+## `self` dimenticato
 
 <p align="justify">Metodo definito senza parametro dell'istanza.</p>
 
-### Variabile locale scambiata per attributo
+## Variabile locale scambiata per attributo
 
 ```python
 def aggiorna(self, voto):
@@ -307,7 +307,7 @@ def aggiorna(self, voto):
 
 <p align="justify">non modifica <code>self.voto</code>.</p>
 
-### Stato condiviso accidentale
+## Stato condiviso accidentale
 
 <p align="justify">Liste/dict mutabili messi come attributi di classe quando dovevano appartenere a ogni istanza: tema da diagnosticare, senza approfondire ancora tutti gli attributi di classe.</p>
 

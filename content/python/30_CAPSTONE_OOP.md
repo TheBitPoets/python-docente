@@ -120,7 +120,7 @@ analisi
 
 <p align="justify">Scrivi:</p>
 
-### Oggetti candidati
+## Oggetti candidati
 
 ```text
 nome classe
@@ -130,13 +130,13 @@ metodi candidati
 invariante
 ```
 
-### Relazioni
+## Relazioni
 
 ```text
 chi usa/possiede chi?
 ```
 
-### Dati
+## Dati
 
 ```text
 list / tuple / set / dict
