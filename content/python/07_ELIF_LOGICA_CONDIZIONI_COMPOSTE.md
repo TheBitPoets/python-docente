@@ -1,40 +1,92 @@
 # M07 — `elif`, casi esclusivi e condizioni composte
 
-> **Stato:** draft / controlled authoring continuation  
-> **UDA:** PY2-03 — Selezione e logica  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Più casi richiedono di distinguere alternative esclusive e condizioni indipendenti.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Usare confronti e if/else e verificare una soglia come in M06.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+costruire una catena <code>if/elif/else</code> con più casi;<br>spiegare che in una catena viene eseguito il <strong>primo ramo vero</strong>;<br>distinguere più <code>if</code> indipendenti da casi mutuamente esclusivi; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Un confronto produce un booleano; and, or e not combinano condizioni già comprensibili. Riprendi <a href="06_BOOLEANI_CONFRONTI_IF.md">M06 — Booleani, confronti e prima selezione con <code>if</code></a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md">M08 — Selezioni annidate, validazione e refactoring</a>. La validazione stabilisce quando una seconda decisione ha senso e guida un refactoring verificabile.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Traccia la classificazione del voto e confrontala con più if indipendenti sugli stessi valori di frontiera.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft / controlled authoring continuation<br>
+<strong>UDA:</strong> PY2-03 — Selezione e logica<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine di questo modulo dovresti saper:
+<p align="justify">Alla fine di questo modulo dovresti saper:</p>
 
-- costruire una catena `if/elif/else` con più casi;
-- spiegare che in una catena viene eseguito il **primo ramo vero**;
-- distinguere più `if` indipendenti da casi mutuamente esclusivi;
-- usare `and`, `or`, `not` in condizioni semplici;
-- leggere una piccola tabella di verità;
-- esprimere intervalli numerici in modo corretto;
-- comprendere la forma concatenata `a <= x <= b` dopo aver compreso la forma con `and`;
-- progettare un test per ogni ramo e per ogni confine importante;
-- individuare soglie nell'ordine sbagliato, rami irraggiungibili e condizioni sovrapposte;
-- spiegare perché una soluzione usa `elif` oppure più `if`.
+<ul>
+  <li>costruire una catena <code>if/elif/else</code> con più casi;</li>
+  <li>spiegare che in una catena viene eseguito il <strong>primo ramo vero</strong>;</li>
+  <li>distinguere più <code>if</code> indipendenti da casi mutuamente esclusivi;</li>
+  <li>usare <code>and</code>, <code>or</code>, <code>not</code> in condizioni semplici;</li>
+  <li>leggere una piccola tabella di verità;</li>
+  <li>esprimere intervalli numerici in modo corretto;</li>
+  <li>comprendere la forma concatenata <code>a &lt;= x &lt;= b</code> dopo aver compreso la forma con <code>and</code>;</li>
+  <li>progettare un test per ogni ramo e per ogni confine importante;</li>
+  <li>individuare soglie nell'ordine sbagliato, rami irraggiungibili e condizioni sovrapposte;</li>
+  <li>spiegare perché una soluzione usa <code>elif</code> oppure più <code>if</code>.</li>
+</ul>
 
 ## Prerequisiti
 
-Da M06 dovresti già saper:
+<p align="justify">Da M06 dovresti già saper:</p>
 
-- valutare confronti semplici;
-- usare `if` e `if/else`;
-- distinguere `=` e `==`;
-- fare il trace di un ramo;
-- testare una soglia sotto/sulla/sopra;
-- comprendere l'indentazione come struttura del blocco.
+<ul>
+  <li>valutare confronti semplici;</li>
+  <li>usare <code>if</code> e <code>if/else</code>;</li>
+  <li>distinguere <code>=</code> e <code>==</code>;</li>
+  <li>fare il trace di un ramo;</li>
+  <li>testare una soglia sotto/sulla/sopra;</li>
+  <li>comprendere l'indentazione come struttura del blocco.</li>
+</ul>
 
 ---
 
-# 1. Problema iniziale: classificare un voto
+## 1. Problema iniziale: classificare un voto
 
-Specifica:
+<p align="justify">Specifica:</p>
 
 ```text
 voto < 6      → insufficiente
@@ -42,9 +94,9 @@ voto < 6      → insufficiente
 voto >= 8     → ottimo
 ```
 
-I tre casi si escludono a vicenda: per un singolo voto vogliamo **una sola classificazione**.
+<p align="justify">I tre casi si escludono a vicenda: per un singolo voto vogliamo <strong>una sola classificazione</strong>.</p>
 
-Possiamo descrivere la decisione così:
+<p align="justify">Possiamo descrivere la decisione così:</p>
 
 ```text
 voto < 6 ?
@@ -54,7 +106,7 @@ voto < 6 ?
            no → ottimo
 ```
 
-In Python questa struttura si esprime naturalmente con:
+<p align="justify">In Python questa struttura si esprime naturalmente con:</p>
 
 ```python
 if voto < 6:
@@ -67,9 +119,9 @@ else:
 
 ---
 
-# 2. `elif` significa “altrimenti, se…”
+## 2. `elif` significa “altrimenti, se…”
 
-Una catena:
+<p align="justify">Una catena:</p>
 
 ```python
 if condizione_1:
@@ -80,7 +132,7 @@ else:
     ...
 ```
 
-si legge concettualmente:
+<p align="justify">si legge concettualmente:</p>
 
 ```text
 se condizione_1 è vera
@@ -91,15 +143,17 @@ altrimenti
     esegui ramo finale
 ```
 
-Punto fondamentale:
+<p align="justify">Punto fondamentale:</p>
 
-> dopo il primo ramo vero, gli altri rami della stessa catena non vengono più scelti.
+<blockquote>
+<p align="justify">dopo il primo ramo vero, gli altri rami della stessa catena non vengono più scelti.</p>
+</blockquote>
 
 ---
 
-# 3. Trace della catena: il primo ramo vero vince
+## 3. Trace della catena: il primo ramo vero vince
 
-Programma:
+<p align="justify">Programma:</p>
 
 ```python
 voto = int(input())
@@ -112,7 +166,7 @@ else:
     print("ottimo")
 ```
 
-## Caso `5`
+### Caso `5`
 
 ```text
 voto < 6 → True
@@ -120,7 +174,7 @@ ramo 1   → eseguito
 resto catena → saltato
 ```
 
-## Caso `7`
+### Caso `7`
 
 ```text
 voto < 6 → False
@@ -129,7 +183,7 @@ ramo 2   → eseguito
 else     → saltato
 ```
 
-## Caso `9`
+### Caso `9`
 
 ```text
 voto < 6 → False
@@ -139,45 +193,47 @@ else     → eseguito
 
 ---
 
-# 4. Perché nel secondo `elif` basta `voto < 8`?
+## 4. Perché nel secondo `elif` basta `voto < 8`?
 
-La specifica del caso centrale è:
+<p align="justify">La specifica del caso centrale è:</p>
 
 ```text
 6 <= voto < 8
 ```
 
-Eppure il codice usa:
+<p align="justify">Eppure il codice usa:</p>
 
 ```python
 elif voto < 8:
 ```
 
-Perché?
+<p align="justify">Perché?</p>
 
-Se siamo arrivati a quell'`elif`, sappiamo già che:
+<p align="justify">Se siamo arrivati a quell'<code>elif</code>, sappiamo già che:</p>
 
 ```python
 voto < 6
 ```
 
-è falso.
+<p align="justify">è falso.</p>
 
-Quindi il voto è già almeno 6.
+<p align="justify">Quindi il voto è già almeno 6.</p>
 
-Il contesto creato dai rami precedenti può rendere inutile ripetere una parte della condizione.
+<p align="justify">Il contesto creato dai rami precedenti può rendere inutile ripetere una parte della condizione.</p>
 
-Questo non significa che dobbiamo sempre scrivere condizioni più corte: la condizione deve restare comprensibile.
+<p align="justify">Questo non significa che dobbiamo sempre scrivere condizioni più corte: la condizione deve restare comprensibile.</p>
 
 ---
 
-# 5. Più `if` indipendenti: quando possono verificarsi più effetti
+## 5. Più `if` indipendenti: quando possono verificarsi più effetti
 
-Problema diverso:
+<p align="justify">Problema diverso:</p>
 
-> Se piove, porta l'ombrello. Se fa freddo, indossa la giacca.
+<blockquote>
+<p align="justify">Se piove, porta l'ombrello. Se fa freddo, indossa la giacca.</p>
+</blockquote>
 
-Le due condizioni sono indipendenti: possono essere vere entrambe.
+<p align="justify">Le due condizioni sono indipendenti: possono essere vere entrambe.</p>
 
 ```python
 if piove:
@@ -187,7 +243,7 @@ if fa_freddo:
     print("giacca")
 ```
 
-Possibili risultati:
+<p align="justify">Possibili risultati:</p>
 
 ```text
 nessun messaggio
@@ -196,148 +252,218 @@ solo giacca
 ombrello + giacca
 ```
 
-Se trasformassimo il secondo `if` in `elif`, impediremmo l'esecuzione di entrambi i comportamenti nella stessa esecuzione.
+<p align="justify">Se trasformassimo il secondo <code>if</code> in <code>elif</code>, impediremmo l'esecuzione di entrambi i comportamenti nella stessa esecuzione.</p>
 
 ---
 
-# 6. Domanda guida: “quanti rami possono essere eseguiti?”
+## 6. Domanda guida: “quanti rami possono essere eseguiti?”
 
-Prima di scegliere la sintassi chiediti:
+<p align="justify">Prima di scegliere la sintassi chiediti:</p>
 
 ```text
 I casi sono mutuamente esclusivi?
 ```
 
-Se vogliamo **un solo risultato** tra alternative:
+<p align="justify">Se vogliamo <strong>un solo risultato</strong> tra alternative:</p>
 
 ```text
 if / elif / else
 ```
 
-Se più condizioni possono produrre **più effetti contemporaneamente**:
+<p align="justify">Se più condizioni possono produrre <strong>più effetti contemporaneamente</strong>:</p>
 
 ```text
 if indipendenti
 ```
 
-Non è una regola basata sul numero di condizioni, ma sulla relazione tra i casi del problema.
+<p align="justify">Non è una regola basata sul numero di condizioni, ma sulla relazione tra i casi del problema.</p>
 
 ---
 
-# 7. `and`: devono essere vere entrambe
+## 7. `and`: devono essere vere entrambe
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Accesso consentito se l'età è almeno 18 **e** il biglietto è valido.
+<blockquote>
+<p align="justify">Accesso consentito se l'età è almeno 18 <strong>e</strong> il biglietto è valido.</p>
+</blockquote>
 
-Possiamo modellare:
+<p align="justify">Possiamo modellare:</p>
 
 ```python
 eta >= 18 and biglietto_valido
 ```
 
-`and` produce `True` solo quando entrambe le parti sono vere.
+<p align="justify"><code>and</code> produce <code>True</code> solo quando entrambe le parti sono vere.</p>
 
-| A | B | `A and B` |
-|---|---|---|
-| False | False | False |
-| False | True | False |
-| True | False | False |
-| True | True | True |
+<table align="center">
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th><code>A and B</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
 
-Prima formula la frase in linguaggio naturale; poi traduci in Python.
+<p align="justify">Prima formula la frase in linguaggio naturale; poi traduci in Python.</p>
 
 ---
 
-# 8. `or`: basta che almeno una sia vera
+## 8. `or`: basta che almeno una sia vera
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Accesso gratuito se sei minore di 6 anni **oppure** hai almeno 65 anni.
+<blockquote>
+<p align="justify">Accesso gratuito se sei minore di 6 anni <strong>oppure</strong> hai almeno 65 anni.</p>
+</blockquote>
 
 ```python
 eta < 6 or eta >= 65
 ```
 
-| A | B | `A or B` |
-|---|---|---|
-| False | False | False |
-| False | True | True |
-| True | False | True |
-| True | True | True |
+<table align="center">
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th><code>A or B</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
 
-`or` non significa “scegli una delle due condizioni a caso”.
+<p align="justify"><code>or</code> non significa “scegli una delle due condizioni a caso”.</p>
 
-Significa che il risultato complessivo è vero se almeno una parte è vera.
+<p align="justify">Significa che il risultato complessivo è vero se almeno una parte è vera.</p>
 
 ---
 
-# 9. `not`: nega una condizione già compresa
+## 9. `not`: nega una condizione già compresa
 
-Se:
+<p align="justify">Se:</p>
 
 ```python
 account_attivo
 ```
 
-è un booleano, allora:
+<p align="justify">è un booleano, allora:</p>
 
 ```python
 not account_attivo
 ```
 
-produce il valore opposto.
+<p align="justify">produce il valore opposto.</p>
 
-| A | `not A` |
-|---|---|
-| False | True |
-| True | False |
+<table align="center">
+<thead>
+<tr>
+<th>A</th>
+<th><code>not A</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
 
-Non usare `not` per rendere artificialmente più complicata una condizione che potresti esprimere direttamente.
+<p align="justify">Non usare <code>not</code> per rendere artificialmente più complicata una condizione che potresti esprimere direttamente.</p>
 
-Confronta:
+<p align="justify">Confronta:</p>
 
 ```python
 not eta < 18
 ```
 
-con:
+<p align="justify">con:</p>
 
 ```python
 eta >= 18
 ```
 
-La seconda forma comunica direttamente la soglia che ci interessa.
+<p align="justify">La seconda forma comunica direttamente la soglia che ci interessa.</p>
 
 ---
 
-# 10. Intervalli: prima la logica, poi la forma compatta
+## 10. Intervalli: prima la logica, poi la forma compatta
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> `x` deve essere compreso tra 0 e 10, estremi inclusi.
+<blockquote>
+<p align="justify"><code>x</code> deve essere compreso tra 0 e 10, estremi inclusi.</p>
+</blockquote>
 
-Forma logica esplicita:
+<p align="justify">Forma logica esplicita:</p>
 
 ```python
 x >= 0 and x <= 10
 ```
 
-Dopo aver compreso questa forma, Python permette anche:
+<p align="justify">Dopo aver compreso questa forma, Python permette anche:</p>
 
 ```python
 0 <= x <= 10
 ```
 
-Nel corso useremo la forma concatenata quando rende la condizione più naturale da leggere.
+<p align="justify">Nel corso useremo la forma concatenata quando rende la condizione più naturale da leggere.</p>
 
-Non la impariamo come formula magica: rappresenta lo stesso intervallo che sappiamo già spiegare con `and`.
+<p align="justify">Non la impariamo come formula magica: rappresenta lo stesso intervallo che sappiamo già spiegare con <code>and</code>.</p>
 
 ---
 
-# 11. Worked example: tariffa per fasce
+## 11. Worked example: tariffa per fasce
 
-Specifica semplificata:
+<p align="justify">Specifica semplificata:</p>
 
 ```text
 eta < 6        → 0 euro
@@ -345,17 +471,40 @@ eta < 6        → 0 euro
 eta >= 18      → 10 euro
 ```
 
-Casi di test:
+<p align="justify">Casi di test:</p>
 
-| età | tariffa |
-|---:|---:|
-| 5 | 0 |
-| 6 | 5 |
-| 17 | 5 |
-| 18 | 10 |
-| 70 | 10 |
+<table align="center">
+<thead>
+<tr>
+<th>età</th>
+<th>tariffa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr>
+<td>17</td>
+<td>5</td>
+</tr>
+<tr>
+<td>18</td>
+<td>10</td>
+</tr>
+<tr>
+<td>70</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
 
-Codice:
+<p align="justify">Codice:</p>
 
 ```python
 eta = int(input())
@@ -370,13 +519,13 @@ else:
 print(tariffa)
 ```
 
-I test sui confini `6` e `18` sono essenziali.
+<p align="justify">I test sui confini <code>6</code> e <code>18</code> sono essenziali.</p>
 
 ---
 
-# 12. Error Clinic: soglie nell'ordine sbagliato
+## 12. Error Clinic: soglie nell'ordine sbagliato
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 if voto >= 6:
@@ -385,17 +534,17 @@ elif voto >= 8:
     print("ottimo")
 ```
 
-Per `9`:
+<p align="justify">Per <code>9</code>:</p>
 
 ```text
 voto >= 6 → True
 ```
 
-Il primo ramo viene eseguito e il secondo non viene mai raggiunto.
+<p align="justify">Il primo ramo viene eseguito e il secondo non viene mai raggiunto.</p>
 
-Il problema non è la sintassi: è l'ordine dei casi.
+<p align="justify">Il problema non è la sintassi: è l'ordine dei casi.</p>
 
-Una possibile struttura coerente è:
+<p align="justify">Una possibile struttura coerente è:</p>
 
 ```python
 if voto >= 8:
@@ -408,9 +557,9 @@ else:
 
 ---
 
-# 13. Error Clinic: più `if` quando volevamo un solo risultato
+## 13. Error Clinic: più `if` quando volevamo un solo risultato
 
-Bug concettuale:
+<p align="justify">Bug concettuale:</p>
 
 ```python
 if voto >= 6:
@@ -420,22 +569,22 @@ if voto >= 8:
     print("ottimo")
 ```
 
-Con `9` otteniamo due classificazioni.
+<p align="justify">Con <code>9</code> otteniamo due classificazioni.</p>
 
-Se la specifica chiede **una sola fascia**, i due `if` indipendenti non rappresentano correttamente il problema.
+<p align="justify">Se la specifica chiede <strong>una sola fascia</strong>, i due <code>if</code> indipendenti non rappresentano correttamente il problema.</p>
 
 ---
 
-# 14. Error Clinic: `elif` quando due effetti possono coesistere
+## 14. Error Clinic: `elif` quando due effetti possono coesistere
 
-Specifica:
+<p align="justify">Specifica:</p>
 
 ```text
 se piove → ombrello
 se fa freddo → giacca
 ```
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 if piove:
@@ -444,70 +593,76 @@ elif fa_freddo:
     print("giacca")
 ```
 
-Se piove **e** fa freddo, viene stampato soltanto `ombrello`.
+<p align="justify">Se piove <strong>e</strong> fa freddo, viene stampato soltanto <code>ombrello</code>.</p>
 
-Il problema richiede due condizioni indipendenti.
+<p align="justify">Il problema richiede due condizioni indipendenti.</p>
 
 ---
 
-# 15. Error Clinic: `and` invece di `or`
+## 15. Error Clinic: `and` invece di `or`
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> gratis se età < 6 oppure età >= 65.
+<blockquote>
+<p align="justify">gratis se età &lt; 6 oppure età &gt;= 65.</p>
+</blockquote>
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 if eta < 6 and eta >= 65:
     print("gratis")
 ```
 
-Nessuna età può soddisfare contemporaneamente entrambe le condizioni.
+<p align="justify">Nessuna età può soddisfare contemporaneamente entrambe le condizioni.</p>
 
-La traduzione della parola **oppure** è stata sbagliata.
+<p align="justify">La traduzione della parola <strong>oppure</strong> è stata sbagliata.</p>
 
 ---
 
-# 16. Short-circuit: un'intuizione utile
+## 16. Short-circuit: un'intuizione utile
 
-Python valuta `and` e `or` da sinistra a destra e può non aver bisogno di valutare la seconda parte.
+<p align="justify">Python valuta <code>and</code> e <code>or</code> da sinistra a destra e può non aver bisogno di valutare la seconda parte.</p>
 
-Esempio guidato:
+<p align="justify">Esempio guidato:</p>
 
 ```python
 if divisore != 0 and numero / divisore > 2:
     print("ok")
 ```
 
-Se `divisore != 0` è `False`, l'intera condizione `and` è già falsa: non serve valutare la divisione.
+<p align="justify">Se <code>divisore != 0</code> è <code>False</code>, l'intera condizione <code>and</code> è già falsa: non serve valutare la divisione.</p>
 
-Per ora non memorizziamo trucchi.
+<p align="justify">Per ora non memorizziamo trucchi.</p>
 
-Portiamo con noi soltanto due idee:
+<p align="justify">Portiamo con noi soltanto due idee:</p>
 
-- l'ordine delle condizioni può avere un significato;
-- una condizione semplice/sicura può precedere un'operazione che ha senso solo in alcuni casi.
+<ul>
+  <li>l'ordine delle condizioni può avere un significato;</li>
+  <li>una condizione semplice/sicura può precedere un'operazione che ha senso solo in alcuni casi.</li>
+</ul>
 
-Approfondiremo questi temi quando avremo più esperienza.
+<p align="justify">Approfondiremo questi temi quando avremo più esperienza.</p>
 
 ---
 
-# 17. Microscope: classifica la struttura prima del codice
+## 17. Microscope: classifica la struttura prima del codice
 
-Per ogni specifica indica prima:
+<p align="justify">Per ogni specifica indica prima:</p>
 
 ```text
 A) un solo ramo possibile
 B) più effetti possibili
 ```
 
-1. “classifica il voto come insufficiente/buono/ottimo”;
-2. “se piove prendi ombrello; se fa freddo prendi giacca”;
-3. “scegli una tariffa tra tre fasce”;
-4. “se hai completato il quiz assegna badge; se hai completato il progetto assegna bonus”.
+<ol>
+  <li>“classifica il voto come insufficiente/buono/ottimo”;</li>
+  <li>“se piove prendi ombrello; se fa freddo prendi giacca”;</li>
+  <li>“scegli una tariffa tra tre fasce”;</li>
+  <li>“se hai completato il quiz assegna badge; se hai completato il progetto assegna bonus”.</li>
+</ol>
 
-Soltanto dopo scegli:
+<p align="justify">Soltanto dopo scegli:</p>
 
 ```text
 if / elif / else
@@ -517,41 +672,43 @@ if indipendenti
 
 ---
 
-# 18. Activity planning — M07
+## 18. Activity planning — M07
 
-Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:
+<p align="justify">Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:</p>
 
-### A — Classifica il caso
+#### A — Classifica il caso
 
-Dato input + catena, prevedere il primo ramo eseguito.
+<p align="justify">Dato input + catena, prevedere il primo ramo eseguito.</p>
 
-### B — Due `if` o `elif`?
+#### B — Due `if` o `elif`?
 
-Diverse specifiche brevi: scegliere la struttura e motivarla.
+<p align="justify">Diverse specifiche brevi: scegliere la struttura e motivarla.</p>
 
-### C — Implement
+#### C — Implement
 
-Classificatore a 3–4 fasce con test sui confini.
+<p align="justify">Classificatore a 3–4 fasce con test sui confini.</p>
 
-### D — Debug
+#### D — Debug
 
-Correggere:
+<p align="justify">Correggere:</p>
 
-- soglie nell'ordine sbagliato;
-- ramo irraggiungibile;
-- due `if` quando serviva un solo risultato;
-- `elif` quando due effetti possono coesistere;
-- `and`/`or` sbagliato.
+<ul>
+  <li>soglie nell'ordine sbagliato;</li>
+  <li>ramo irraggiungibile;</li>
+  <li>due <code>if</code> quando serviva un solo risultato;</li>
+  <li><code>elif</code> quando due effetti possono coesistere;</li>
+  <li><code>and</code>/<code>or</code> sbagliato.</li>
+</ul>
 
-M04 resta il canarino P1 fino alla certificazione `python-docente#7`.
+<p align="justify">M04 resta il canarino P1 fino alla certificazione <code>python-docente#7</code>.</p>
 
 ---
 
-# 19. Romeo come applicazione selettiva
+## 19. Romeo come applicazione selettiva
 
-Romeo non è necessario per imparare `elif`, `and` o `or`.
+<p align="justify">Romeo non è necessario per imparare <code>elif</code>, <code>and</code> o <code>or</code>.</p>
 
-Dopo i problemi generali, il simulatore può offrire una variante di missione con regole multiple, ad esempio:
+<p align="justify">Dopo i problemi generali, il simulatore può offrire una variante di missione con regole multiple, ad esempio:</p>
 
 ```text
 modalità sicura + limite di velocità
@@ -559,22 +716,24 @@ oppure
 selezione di un comportamento da un parametro della missione
 ```
 
-La variante deve:
+<p align="justify">La variante deve:</p>
 
-- usare soltanto API già appropriate al livello;
-- rimanere deterministica;
-- non introdurre sensori/networking non ancora studiati;
-- essere opzionale finché `romeo-sim` non è certificato nel Classroom Environment.
+<ul>
+  <li>usare soltanto API già appropriate al livello;</li>
+  <li>rimanere deterministica;</li>
+  <li>non introdurre sensori/networking non ancora studiati;</li>
+  <li>essere opzionale finché <code>romeo-sim</code> non è certificato nel Classroom Environment.</li>
+</ul>
 
-Non duplichiamo ora una nuova Activity Romeo nel repo Python.
+<p align="justify">Non duplichiamo ora una nuova Activity Romeo nel repo Python.</p>
 
 ---
 
-# 20. Esercizi brevi
+## 20. Esercizi brevi
 
-## A — Fasce
+### A — Fasce
 
-Classifica una temperatura:
+<p align="justify">Classifica una temperatura:</p>
 
 ```text
 < 0      → gelo
@@ -582,47 +741,51 @@ Classifica una temperatura:
 >= 25    → caldo
 ```
 
-Scrivi prima i casi `-1`, `0`, `24`, `25`.
+<p align="justify">Scrivi prima i casi <code>-1</code>, <code>0</code>, <code>24</code>, <code>25</code>.</p>
 
-## B — Indipendenti o esclusivi?
+### B — Indipendenti o esclusivi?
 
-Per ciascuna specifica scegli `if` indipendenti o catena `elif` e motiva in una riga.
+<p align="justify">Per ciascuna specifica scegli <code>if</code> indipendenti o catena <code>elif</code> e motiva in una riga.</p>
 
-## C — Accesso composto
+### C — Accesso composto
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> consentito se età >= 18 e biglietto valido.
+<blockquote>
+<p align="justify">consentito se età &gt;= 18 e biglietto valido.</p>
+</blockquote>
 
-Progetta i quattro casi della tabella di verità e poi il codice.
+<p align="justify">Progetta i quattro casi della tabella di verità e poi il codice.</p>
 
-## D — Intervallo
+### D — Intervallo
 
-Verifica se un numero appartiene all'intervallo chiuso `[10, 20]` prima con `and`, poi con confronto concatenato.
+<p align="justify">Verifica se un numero appartiene all'intervallo chiuso <code>[10, 20]</code> prima con <code>and</code>, poi con confronto concatenato.</p>
 
-Spiega perché le due condizioni rappresentano lo stesso insieme di valori.
-
----
-
-# 21. Checkpoint M07
-
-Senza eseguire Python, spiega:
-
-1. Che cosa significa “primo ramo vero” in una catena `if/elif/else`?
-2. Perché `elif voto < 8` può essere sufficiente dopo `if voto < 6`?
-3. Quando sono corretti due `if` indipendenti?
-4. Quando è preferibile una catena mutuamente esclusiva?
-5. Quando `A and B` è vero?
-6. Quando `A or B` è vero?
-7. Che cosa produce `not True`?
-8. Che insieme di valori rappresenta `0 <= x <= 10`?
-9. Perché l'ordine `if voto >= 6` poi `elif voto >= 8` è problematico?
+<p align="justify">Spiega perché le due condizioni rappresentano lo stesso insieme di valori.</p>
 
 ---
 
-# 22. Sintesi
+## 21. Checkpoint M07
 
-Porta con te questi modelli:
+<p align="justify">Senza eseguire Python, spiega:</p>
+
+<ol>
+  <li>Che cosa significa “primo ramo vero” in una catena <code>if/elif/else</code>?</li>
+  <li>Perché <code>elif voto &lt; 8</code> può essere sufficiente dopo <code>if voto &lt; 6</code>?</li>
+  <li>Quando sono corretti due <code>if</code> indipendenti?</li>
+  <li>Quando è preferibile una catena mutuamente esclusiva?</li>
+  <li>Quando <code>A and B</code> è vero?</li>
+  <li>Quando <code>A or B</code> è vero?</li>
+  <li>Che cosa produce <code>not True</code>?</li>
+  <li>Che insieme di valori rappresenta <code>0 &lt;= x &lt;= 10</code>?</li>
+  <li>Perché l'ordine <code>if voto &gt;= 6</code> poi <code>elif voto &gt;= 8</code> è problematico?</li>
+</ol>
+
+---
+
+## 22. Sintesi
+
+<p align="justify">Porta con te questi modelli:</p>
 
 ```text
 if / elif / else → scegli il primo ramo vero
@@ -642,24 +805,28 @@ not → negazione
 intervallo → confini + casi di test
 ```
 
-Nel prossimo modulo useremo selezioni annidate, validazione e refactoring per capire quando una decisione dipende realmente da un'altra e quando invece il codice può essere reso più semplice.
+<p align="justify">Nel prossimo modulo useremo selezioni annidate, validazione e refactoring per capire quando una decisione dipende realmente da un'altra e quando invece il codice può essere reso più semplice.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Questa lesson è materiale originale del corso. Per progettazione/verifica:
+<p align="justify">Questa lesson è materiale originale del corso. Per progettazione/verifica:</p>
 
-- documentazione Python 3.12 — `if` statement, Boolean operations, comparisons e chained comparisons;
-- Allen Downey, *Think Python / Pensare in Python* — conditional execution, recursion-free beginner reasoning e debugging;
-- Mark Lutz, *Learning Python / Imparare Python* — Boolean expressions, control flow e statement semantics;
-- Romeo pinned `45e5f7e131802fccc89358a23a25dbed1884bbfa` — solo riferimento applicativo selettivo.
+<ul>
+  <li>documentazione Python 3.12 — <code>if</code> statement, Boolean operations, comparisons e chained comparisons;</li>
+  <li>Allen Downey, <em>Think Python / Pensare in Python</em> — conditional execution, recursion-free beginner reasoning e debugging;</li>
+  <li>Mark Lutz, <em>Learning Python / Imparare Python</em> — Boolean expressions, control flow e statement semantics;</li>
+  <li>Romeo pinned <code>45e5f7e131802fccc89358a23a25dbed1884bbfa</code> — solo riferimento applicativo selettivo.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-## Collegamenti di progettazione
+### Collegamenti di progettazione
 
-- `tracks/secondo/PY2_03_SPEC.md`;
-- `tracks/secondo/ROMEO_MAPPING.md`;
-- `doc/CURRICULUM_FREEZE_2026_2027.md`;
-- `doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`.
+<ul>
+  <li><code>tracks/secondo/PY2_03_SPEC.md</code>;</li>
+  <li><code>tracks/secondo/ROMEO_MAPPING.md</code>;</li>
+  <li><code>doc/CURRICULUM_FREEZE_2026_2027.md</code>;</li>
+  <li><code>doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md</code>.</li>
+</ul>

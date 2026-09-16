@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../21-alias-copia.svg">
+<title id="title">Alias e copia: nomi e oggetti distinti</title>
+<desc id="desc">A sinistra a e b riferiscono la stessa lista: una modifica tramite b è visibile anche tramite a. A destra b riferisce una nuova lista esterna ottenuta con a.copy(). Gli elementi annidati non sono duplicati ricorsivamente.</desc>
+<defs id="visual-kit-components"/>
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="{{line}}"/></marker></defs>
+<rect width="1920" height="1080" fill="{{canvas}}"/>
+<g font-family="{{family}}">
+<text x="64" y="106" font-size="48" fill="{{surface}}">Alias e copia: nomi e oggetti distinti</text>
+<text x="64" y="160" font-size="28" fill="{{muted}}">Le frecce indicano riferimenti. I riquadri rappresentano oggetti.</text>
+<rect x="64" y="210" width="864" height="688" rx="24" fill="{{panel}}"/>
+<rect x="992" y="210" width="864" height="688" rx="24" fill="{{panel}}"/>
+<g fill="{{surface}}" font-size="36"><text x="104" y="274">b = a</text><text x="1032" y="274">b = a.copy()</text></g>
+<g fill="{{muted}}" font-size="28"><text x="104" y="324">Due nomi, una lista</text><text x="1032" y="324">Due nomi, due liste esterne</text></g>
+<g fill="{{surface}}" font-size="32"><text x="132" y="450">a</text><text x="132" y="666">b</text><text x="1060" y="450">a</text><text x="1060" y="666">b</text></g>
+<use href="#tpsi-binding" x="170" y="379" width="140" height="105"/>
+<use href="#tpsi-binding" x="170" y="595" width="140" height="105"/>
+<use href="#tpsi-binding" x="1098" y="379" width="140" height="105"/>
+<use href="#tpsi-binding" x="1098" y="595" width="140" height="105"/>
+<g fill="none" stroke="{{line}}" stroke-width="5" marker-end="url(#arrow)"><path d="M320 432L565 520"/><path d="M320 648L565 558"/><path d="M1248 432H1490"/><path d="M1248 648H1490"/></g>
+<use href="#tpsi-sequence" x="584" y="440" width="256" height="192"/>
+<use href="#tpsi-sequence" x="1512" y="336" width="256" height="192"/>
+<use href="#tpsi-sequence" x="1512" y="552" width="256" height="192"/>
+<g fill="{{surface}}" font-size="28"><text x="600" y="680">[1, 2, 3]</text><text x="1536" y="542">[1, 2, 3]</text><text x="1536" y="754">[1, 2, 3]</text></g>
+<g fill="{{muted}}" font-size="28"><text x="104" y="806">b[0] = 9 cambia la lista condivisa.</text><text x="104" y="852">Anche a[0] diventa 9.</text><text x="1032" y="806">b[0] = 9 modifica solo la nuova lista.</text><text x="1032" y="852">a[0] rimane 1.</text></g>
+<text x="64" y="976" fill="{{surface}}" font-size="28">Copia superficiale: gli eventuali oggetti annidati restano condivisi.</text>
+<text x="64" y="1020" fill="{{muted}}" font-size="24">Esempio di composizione del Visual System · M21 · La posizione sul foglio non rappresenta indirizzi di memoria.</text>
+</g>
+</svg>

@@ -1,32 +1,82 @@
 # M17 — Stringhe: indici, slicing e immutabilità
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-06 — Stringhe come sequenze e testo  
-> **Baseline:** Python 3.12-compatible
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Le stringhe sono sequenze immutabili da leggere per posizione o attraversare direttamente.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Usare stringhe semplici, cicli, funzioni e test; riprendere le competenze consolidate nel Checkpoint A.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+descrivere una <code>str</code> come sequenza ordinata immutabile di testo Unicode a livello beginner;<br>usare <code>len()</code>;<br>usare indici da <code>0</code> e indici negativi; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Come in range, lo stop dello slicing è escluso; un nuovo risultato non implica una mutazione dell&#x27;originale. Riprendi <a href="16_ASSERT_REGRESSION_TEST_REFACTOR.md">M16 — <code>assert</code>, regression test, debug e refactoring</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md">M18 — Ricerca, membership, metodi e normalizzazione delle stringhe</a>. Ricerca e normalizzazione scelgono metodi coerenti con la domanda posta sul testo.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Disegna gli indici di una stringa breve e prevedi una slice, un indice negativo e un accesso fuori intervallo.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-06 — Stringhe come sequenze e testo<br>
+<strong>Baseline:</strong> Python 3.12-compatible</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- descrivere una `str` come sequenza ordinata immutabile di testo Unicode a livello beginner;
-- usare `len()`;
-- usare indici da `0` e indici negativi;
-- leggere/scrivere slicing `start:stop` con stop escluso;
-- usare uno step semplice quando serve;
-- distinguere `IndexError` da slicing fuori range;
-- spiegare perché `testo[0] = ...` non è ammesso;
-- creare una nuova stringa invece di modificare quella esistente;
-- scegliere iterazione diretta o per indice in base al problema.
+<ul>
+  <li>descrivere una <code>str</code> come sequenza ordinata immutabile di testo Unicode a livello beginner;</li>
+  <li>usare <code>len()</code>;</li>
+  <li>usare indici da <code>0</code> e indici negativi;</li>
+  <li>leggere/scrivere slicing <code>start:stop</code> con stop escluso;</li>
+  <li>usare uno step semplice quando serve;</li>
+  <li>distinguere <code>IndexError</code> da slicing fuori range;</li>
+  <li>spiegare perché <code>testo[0] = ...</code> non è ammesso;</li>
+  <li>creare una nuova stringa invece di modificare quella esistente;</li>
+  <li>scegliere iterazione diretta o per indice in base al problema.</li>
+</ul>
 
 ---
 
-# 1. Una stringa è una sequenza
+## 1. Una stringa è una sequenza
 
 ```python
 parola = "python"
 ```
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 indice       0  1  2  3  4  5
@@ -34,27 +84,27 @@ indice       0  1  2  3  4  5
 indice neg. -6 -5 -4 -3 -2 -1
 ```
 
-La posizione fa parte della struttura.
+<p align="justify">La posizione fa parte della struttura.</p>
 
 ---
 
-# 2. Lunghezza
+## 2. Lunghezza
 
 ```python
 len("python")
 ```
 
-restituisce:
+<p align="justify">restituisce:</p>
 
 ```text
 6
 ```
 
-Gli indici validi positivi vanno da `0` a `len(testo) - 1`.
+<p align="justify">Gli indici validi positivi vanno da <code>0</code> a <code>len(testo) - 1</code>.</p>
 
 ---
 
-# 3. Accesso con indice
+## 3. Accesso con indice
 
 ```python
 parola[0]   # 'p'
@@ -62,58 +112,60 @@ parola[5]   # 'n'
 parola[-1]  # 'n'
 ```
 
-Prima di eseguire, prevedi sempre carattere e posizione.
+<p align="justify">Prima di eseguire, prevedi sempre carattere e posizione.</p>
 
 ---
 
-# 4. `IndexError`
+## 4. `IndexError`
 
 ```python
 parola[6]
 ```
 
-con `parola = "python"` tenta di accedere a una posizione inesistente e genera `IndexError`.
+<p align="justify">con <code>parola = "python"</code> tenta di accedere a una posizione inesistente e genera <code>IndexError</code>.</p>
 
-Domanda di debug:
+<p align="justify">Domanda di debug:</p>
 
-> qual è l'ultimo indice valido?
+<blockquote>
+<p align="justify">qual è l'ultimo indice valido?</p>
+</blockquote>
 
 ---
 
-# 5. Slicing
+## 5. Slicing
 
 ```python
 parola[1:4]
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 'yth'
 ```
 
-Regola:
+<p align="justify">Regola:</p>
 
 ```text
 start incluso
 stop escluso
 ```
 
-È lo stesso modello già incontrato con `range`.
+<p align="justify">È lo stesso modello già incontrato con <code>range</code>.</p>
 
 ---
 
-# 6. Slice fuori range
+## 6. Slice fuori range
 
-A differenza dell'accesso singolo, uno slice può oltrepassare il limite senza `IndexError`:
+<p align="justify">A differenza dell'accesso singolo, uno slice può oltrepassare il limite senza <code>IndexError</code>:</p>
 
 ```python
 parola[3:100]
 ```
 
-produce la parte disponibile da indice 3 in poi.
+<p align="justify">produce la parte disponibile da indice 3 in poi.</p>
 
-Non confondere:
+<p align="justify">Non confondere:</p>
 
 ```text
 indice singolo fuori range → errore
@@ -122,67 +174,67 @@ slice oltre il limite      → taglio della parte disponibile
 
 ---
 
-# 7. Indici negativi
+## 7. Indici negativi
 
 ```python
 parola[-1]
 parola[-2]
 ```
 
-sono utili quando il problema parla naturalmente di ultimo/penultimo carattere.
+<p align="justify">sono utili quando il problema parla naturalmente di ultimo/penultimo carattere.</p>
 
-Non usarli per rendere il codice “più furbo” quando un indice positivo comunica meglio l'intenzione.
+<p align="justify">Non usarli per rendere il codice “più furbo” quando un indice positivo comunica meglio l'intenzione.</p>
 
 ---
 
-# 8. Step nello slicing
+## 8. Step nello slicing
 
 ```python
 parola[::2]
 ```
 
-prende un carattere ogni due.
+<p align="justify">prende un carattere ogni due.</p>
 
 ```python
 parola[::-1]
 ```
 
-produce una stringa in ordine inverso.
+<p align="justify">produce una stringa in ordine inverso.</p>
 
-Queste forme devono essere spiegate tramite `start:stop:step`, non memorizzate come trucchi.
+<p align="justify">Queste forme devono essere spiegate tramite <code>start:stop:step</code>, non memorizzate come trucchi.</p>
 
 ---
 
-# 9. Immutabilità
+## 9. Immutabilità
 
-Questo non è ammesso:
+<p align="justify">Questo non è ammesso:</p>
 
 ```python
 parola[0] = "P"
 ```
 
-Una stringa non viene modificata “in posto” carattere per carattere.
+<p align="justify">Una stringa non viene modificata “in posto” carattere per carattere.</p>
 
-Per ottenere un nuovo valore:
+<p align="justify">Per ottenere un nuovo valore:</p>
 
 ```python
 nuova = "P" + parola[1:]
 ```
 
-Il valore originale resta invariato.
+<p align="justify">Il valore originale resta invariato.</p>
 
 ---
 
-# 10. Iterazione diretta
+## 10. Iterazione diretta
 
-Se serve soltanto il carattere:
+<p align="justify">Se serve soltanto il carattere:</p>
 
 ```python
 for carattere in parola:
     print(carattere)
 ```
 
-È spesso più chiaro di:
+<p align="justify">È spesso più chiaro di:</p>
 
 ```python
 for i in range(len(parola)):
@@ -191,34 +243,38 @@ for i in range(len(parola)):
 
 ---
 
-# 11. Quando serve l'indice
+## 11. Quando serve l'indice
 
-L'indice è utile se la posizione è parte del problema:
+<p align="justify">L'indice è utile se la posizione è parte del problema:</p>
 
-- confrontare caratteri in posizioni diverse;
-- estrarre campi fissi;
-- costruire un trace posizione/carattere;
-- verificare un pattern posizionale.
+<ul>
+  <li>confrontare caratteri in posizioni diverse;</li>
+  <li>estrarre campi fissi;</li>
+  <li>costruire un trace posizione/carattere;</li>
+  <li>verificare un pattern posizionale.</li>
+</ul>
 
-La scelta deve essere motivata.
-
----
-
-# 12. Unicode: modello leggero ma corretto
-
-Core:
-
-> `str` rappresenta testo Unicode.
-
-Per il secondo anno non serve approfondire encoding/code point/grapheme cluster.
-
-Teacher note: evitare affermazioni assolute del tipo “ogni simbolo visibile è sempre un singolo indice”. I dettagli Unicode completi appartengono al percorso avanzato.
+<p align="justify">La scelta deve essere motivata.</p>
 
 ---
 
-# 13. Letterali ed escape
+## 12. Unicode: modello leggero ma corretto
 
-Consolidare:
+<p align="justify">Core:</p>
+
+<blockquote>
+<p align="justify"><code>str</code> rappresenta testo Unicode.</p>
+</blockquote>
+
+<p align="justify">Per il secondo anno non serve approfondire encoding/code point/grapheme cluster.</p>
+
+<p align="justify">Teacher note: evitare affermazioni assolute del tipo “ogni simbolo visibile è sempre un singolo indice”. I dettagli Unicode completi appartengono al percorso avanzato.</p>
+
+---
+
+## 13. Letterali ed escape
+
+<p align="justify">Consolidare:</p>
 
 ```python
 "ciao"
@@ -228,15 +284,17 @@ Consolidare:
 "C:\\cartella"
 ```
 
-Triple quote e raw string possono comparire come preview mirata, non come prerequisito.
+<p align="justify">Triple quote e raw string possono comparire come preview mirata, non come prerequisito.</p>
 
 ---
 
-# 14. Worked example: prefisso e suffisso
+## 14. Worked example: prefisso e suffisso
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Da un codice `ABC-123` estrai le tre lettere iniziali e le tre cifre finali.
+<blockquote>
+<p align="justify">Da un codice <code>ABC-123</code> estrai le tre lettere iniziali e le tre cifre finali.</p>
+</blockquote>
 
 ```python
 codice = "ABC-123"
@@ -244,47 +302,53 @@ prefisso = codice[:3]
 suffisso = codice[-3:]
 ```
 
-Casi di test devono chiarire la forma attesa del codice prima di affidarsi alle posizioni.
+<p align="justify">Casi di test devono chiarire la forma attesa del codice prima di affidarsi alle posizioni.</p>
 
 ---
 
-# 15. Error Clinic
+## 15. Error Clinic
 
-- indice `len(testo)` usato come se fosse valido;
-- stop incluso invece di escluso;
-- tentativo di mutazione;
-- indice usato quando bastava il carattere;
-- variabile indice riutilizzata male;
-- confusione tra slice fuori range e accesso singolo fuori range.
-
----
-
-# 16. Activity candidate
-
-- **A — Index/slice microscope:** prevedi valore o errore;
-- **B — Controlled Change:** cambia uno slice e spiega inclusione/esclusione;
-- **C — Implement:** estrai/ricomponi parti di un codice testuale;
-- **D — Debug:** correggi indice, slice, mutazione o scelta di iterazione.
-
-Nessuna nuova Activity P2/P1 viene materializzata in questa fase.
+<ul>
+  <li>indice <code>len(testo)</code> usato come se fosse valido;</li>
+  <li>stop incluso invece di escluso;</li>
+  <li>tentativo di mutazione;</li>
+  <li>indice usato quando bastava il carattere;</li>
+  <li>variabile indice riutilizzata male;</li>
+  <li>confusione tra slice fuori range e accesso singolo fuori range.</li>
+</ul>
 
 ---
 
-# 17. Checkpoint
+## 16. Activity candidate
 
-Sai spiegare:
+<ul>
+  <li><strong>A — Index/slice microscope:</strong> prevedi valore o errore;</li>
+  <li><strong>B — Controlled Change:</strong> cambia uno slice e spiega inclusione/esclusione;</li>
+  <li><strong>C — Implement:</strong> estrai/ricomponi parti di un codice testuale;</li>
+  <li><strong>D — Debug:</strong> correggi indice, slice, mutazione o scelta di iterazione.</li>
+</ul>
 
-1. perché il primo indice è 0;
-2. qual è l'ultimo indice positivo valido;
-3. `start` incluso / `stop` escluso;
-4. indice singolo fuori range vs slice fuori range;
-5. che cosa significa immutabile;
-6. iterazione diretta vs per indice;
-7. perché uno slicing crea una nuova stringa.
+<p align="justify">Nessuna nuova Activity P2/P1 viene materializzata in questa fase.</p>
 
 ---
 
-# 18. Sintesi
+## 17. Checkpoint
+
+<p align="justify">Sai spiegare:</p>
+
+<ol>
+  <li>perché il primo indice è 0;</li>
+  <li>qual è l'ultimo indice positivo valido;</li>
+  <li><code>start</code> incluso / <code>stop</code> escluso;</li>
+  <li>indice singolo fuori range vs slice fuori range;</li>
+  <li>che cosa significa immutabile;</li>
+  <li>iterazione diretta vs per indice;</li>
+  <li>perché uno slicing crea una nuova stringa.</li>
+</ol>
+
+---
+
+## 18. Sintesi
 
 ```text
 str = sequenza ordinata immutabile
@@ -300,16 +364,18 @@ serve solo il carattere? → for diretto
 serve la posizione?      → indice
 ```
 
-Nel prossimo modulo useremo membership, ricerca e metodi per normalizzare e trasformare il testo in modo consapevole.
+<p align="justify">Nel prossimo modulo useremo membership, ricerca e metodi per normalizzare e trasformare il testo in modo consapevole.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale, con riferimento a:
+<p align="justify">Materiale originale, con riferimento a:</p>
 
-- documentazione Python 3.12 `str`;
-- *Think Python / Pensare in Python* — strings/traversal;
-- *Learning Python / Imparare Python* — string object coverage;
-- *Fluent Python* — controllo correttezza Unicode/sequence;
-- `friedpython@cb3f3dc...` come source pack legacy, non copiato direttamente.
+<ul>
+  <li>documentazione Python 3.12 <code>str</code>;</li>
+  <li><em>Think Python / Pensare in Python</em> — strings/traversal;</li>
+  <li><em>Learning Python / Imparare Python</em> — string object coverage;</li>
+  <li><em>Fluent Python</em> — controllo correttezza Unicode/sequence;</li>
+  <li><code>friedpython@cb3f3dc...</code> come source pack legacy, non copiato direttamente.</li>
+</ul>

@@ -1,97 +1,149 @@
 # M22 — Tuple, unpacking, liste annidate e matrici
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-07 — Liste, tuple e dati tabellari  
-> **Baseline:** Python 3.12-compatible
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Tuple e liste annidate rappresentano record, coordinate e dati tabellari con regole diverse di mutabilità.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Usare liste, copie, alias e cicli annidati da M12 e M20–M21.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+creare e leggere una <code>tuple</code>;<br>spiegare che una tupla è una sequenza immutabile;<br>creare correttamente una tupla a un elemento <code>(x,)</code>; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+La copia superficiale non duplica gli oggetti interni; la stessa attenzione serve quando costruisci righe di una matrice. Riprendi <a href="21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md">M21 — Alias, copie, filtri e ordinamento delle liste</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="23_SET_UNICITA_MEMBERSHIP.md">M23 — Set: unicità, membership e operazioni insiemistiche</a>. Il set modella unicità e appartenenza e permette operazioni fra insiemi.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Costruisci una matrice con righe indipendenti e confrontala con la versione che riusa la stessa riga.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-07 — Liste, tuple e dati tabellari<br>
+<strong>Baseline:</strong> Python 3.12-compatible</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- creare e leggere una `tuple`;
-- spiegare che una tupla è una sequenza immutabile;
-- creare correttamente una tupla a un elemento `(x,)`;
-- usare packing e unpacking semplici;
-- scegliere intuitivamente `list` vs `tuple`;
-- usare tuple come piccoli record posizionali/coordinate quando appropriato;
-- usare liste di tuple e strutture combinate semplici;
-- creare e attraversare una lista di liste;
-- usare accesso `[riga][colonna]`;
-- riusare cicli annidati sui dati tabellari;
-- diagnosticare la trappola delle righe condivise nella costruzione di matrici.
+<ul>
+  <li>creare e leggere una <code>tuple</code>;</li>
+  <li>spiegare che una tupla è una sequenza immutabile;</li>
+  <li>creare correttamente una tupla a un elemento <code>(x,)</code>;</li>
+  <li>usare packing e unpacking semplici;</li>
+  <li>scegliere intuitivamente <code>list</code> vs <code>tuple</code>;</li>
+  <li>usare tuple come piccoli record posizionali/coordinate quando appropriato;</li>
+  <li>usare liste di tuple e strutture combinate semplici;</li>
+  <li>creare e attraversare una lista di liste;</li>
+  <li>usare accesso <code>[riga][colonna]</code>;</li>
+  <li>riusare cicli annidati sui dati tabellari;</li>
+  <li>diagnosticare la trappola delle righe condivise nella costruzione di matrici.</li>
+</ul>
 
 ---
 
-# 1. Una tupla è una sequenza immutabile
+## 1. Una tupla è una sequenza immutabile
 
 ```python
 punto = (3, 5)
 ```
 
-Come una lista, ha ordine e indici.
+<p align="justify">Come una lista, ha ordine e indici.</p>
 
 ```python
 punto[0]
 punto[1]
 ```
 
-Ma non puoi fare:
+<p align="justify">Ma non puoi fare:</p>
 
 ```python
 punto[0] = 10
 ```
 
-Il contenitore tupla è immutabile.
+<p align="justify">Il contenitore tupla è immutabile.</p>
 
 ---
 
-# 2. Perché scegliere una tupla?
+## 2. Perché scegliere una tupla?
 
-Domanda beginner:
+<p align="justify">Domanda beginner:</p>
 
 ```text
 questa sequenza deve crescere/cambiare
 oppure rappresenta un raggruppamento stabile di valori posizionali?
 ```
 
-Esempi candidati:
+<p align="justify">Esempi candidati:</p>
 
-- voti da aggiungere/rimuovere → `list`;
-- coordinata `(x, y)` → `tuple`;
-- colore RGB `(r, g, b)` → `tuple` candidata;
-- lista modificabile di coordinate → lista di tuple.
+<ul>
+  <li>voti da aggiungere/rimuovere → <code>list</code>;</li>
+  <li>coordinata <code>(x, y)</code> → <code>tuple</code>;</li>
+  <li>colore RGB <code>(r, g, b)</code> → <code>tuple</code> candidata;</li>
+  <li>lista modificabile di coordinate → lista di tuple.</li>
+</ul>
 
-Non scegliamo tuple perché “sono sempre più veloci”. Il criterio principale è il modello dei dati.
+<p align="justify">Non scegliamo tuple perché “sono sempre più veloci”. Il criterio principale è il modello dei dati.</p>
 
 ---
 
-# 3. La virgola conta
+## 3. La virgola conta
 
 ```python
 x = (40)
 ```
 
-`x` è un intero.
+<p align="justify"><code>x</code> è un intero.</p>
 
 ```python
 y = (40,)
 ```
 
-`y` è una tupla a un elemento.
+<p align="justify"><code>y</code> è una tupla a un elemento.</p>
 
-È la virgola che costruisce il raggruppamento tuple in questo caso.
+<p align="justify">È la virgola che costruisce il raggruppamento tuple in questo caso.</p>
 
 ---
 
-# 4. Packing
+## 4. Packing
 
-Python può creare una tupla anche tramite comma expression:
+<p align="justify">Python può creare una tupla anche tramite comma expression:</p>
 
 ```python
 punto = 3, 5
 ```
 
-Per il corso beginner preferiamo spesso le parentesi quando migliorano la leggibilità:
+<p align="justify">Per il corso beginner preferiamo spesso le parentesi quando migliorano la leggibilità:</p>
 
 ```python
 punto = (3, 5)
@@ -99,73 +151,75 @@ punto = (3, 5)
 
 ---
 
-# 5. Unpacking
+## 5. Unpacking
 
 ```python
 punto = (3, 5)
 x, y = punto
 ```
 
-Ora:
+<p align="justify">Ora:</p>
 
 ```text
 x → 3
 y → 5
 ```
 
-L'unpacking dà nomi significativi ai ruoli dei valori.
+<p align="justify">L'unpacking dà nomi significativi ai ruoli dei valori.</p>
 
 ---
 
-# 6. `enumerate()` riletto con unpacking
+## 6. `enumerate()` riletto con unpacking
 
-Abbiamo già scritto:
+<p align="justify">Abbiamo già scritto:</p>
 
 ```python
 for indice, valore in enumerate(valori):
     ...
 ```
 
-Ora possiamo capire meglio il modello:
+<p align="justify">Ora possiamo capire meglio il modello:</p>
 
 ```text
 enumerate produce coppie
 → la coppia viene unpacked in indice, valore
 ```
 
-Non serve approfondire il tipo interno dell'iteratore.
+<p align="justify">Non serve approfondire il tipo interno dell'iteratore.</p>
 
 ---
 
-# 7. Tuple contenenti oggetti mutabili
+## 7. Tuple contenenti oggetti mutabili
 
-Enrichment controllato:
+<p align="justify">Enrichment controllato:</p>
 
 ```python
 t = (1, [2, 3], 4)
 ```
 
-Non puoi sostituire:
+<p align="justify">Non puoi sostituire:</p>
 
 ```python
 t[1] = []
 ```
 
-ma la lista che si trova dentro è ancora un oggetto mutabile:
+<p align="justify">ma la lista che si trova dentro è ancora un oggetto mutabile:</p>
 
 ```python
 t[1].append(9)
 ```
 
-Quindi:
+<p align="justify">Quindi:</p>
 
-> immutabilità della tupla significa che i riferimenti dei suoi elementi non possono essere riassegnati tramite la tupla; non significa che ogni oggetto contenuto diventi magicamente immutabile.
+<blockquote>
+<p align="justify">immutabilità della tupla significa che i riferimenti dei suoi elementi non possono essere riassegnati tramite la tupla; non significa che ogni oggetto contenuto diventi magicamente immutabile.</p>
+</blockquote>
 
-Questo è enrichment, non prerequisito della scelta list/tuple.
+<p align="justify">Questo è enrichment, non prerequisito della scelta list/tuple.</p>
 
 ---
 
-# 8. Liste annidate
+## 8. Liste annidate
 
 ```python
 matrice = [
@@ -174,9 +228,9 @@ matrice = [
 ]
 ```
 
-Una lista può contenere altre liste.
+<p align="justify">Una lista può contenere altre liste.</p>
 
-Accesso:
+<p align="justify">Accesso:</p>
 
 ```python
 matrice[0]       # prima riga
@@ -185,30 +239,32 @@ matrice[1][2]    # 6
 
 ---
 
-# 9. Dati tabellari
+## 9. Dati tabellari
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 riga 0 → [1, 2, 3]
 riga 1 → [4, 5, 6]
 ```
 
-Questo rappresenta naturalmente problemi come:
+<p align="justify">Questo rappresenta naturalmente problemi come:</p>
 
-- griglie;
-- posti occupati/liberi;
-- tabelle di misure;
-- board semplici;
-- matrici numeriche elementari.
+<ul>
+  <li>griglie;</li>
+  <li>posti occupati/liberi;</li>
+  <li>tabelle di misure;</li>
+  <li>board semplici;</li>
+  <li>matrici numeriche elementari.</li>
+</ul>
 
-Non usare una matrice se una lista piatta comunica meglio il dominio.
+<p align="justify">Non usare una matrice se una lista piatta comunica meglio il dominio.</p>
 
 ---
 
-# 10. Attraversare una matrice
+## 10. Attraversare una matrice
 
-Per valore:
+<p align="justify">Per valore:</p>
 
 ```python
 for riga in matrice:
@@ -216,7 +272,7 @@ for riga in matrice:
         print(valore)
 ```
 
-Se servono coordinate:
+<p align="justify">Se servono coordinate:</p>
 
 ```python
 for r in range(len(matrice)):
@@ -224,11 +280,11 @@ for r in range(len(matrice)):
         print(r, c, matrice[r][c])
 ```
 
-La scelta riusa M12: valore soltanto vs posizione necessaria.
+<p align="justify">La scelta riusa M12: valore soltanto vs posizione necessaria.</p>
 
 ---
 
-# 11. Worked example: somma per riga
+## 11. Worked example: somma per riga
 
 ```python
 def somme_righe(matrice):
@@ -243,41 +299,45 @@ def somme_righe(matrice):
     return risultati
 ```
 
-Invariante interno:
+<p align="justify">Invariante interno:</p>
 
-> `totale` è la somma dei valori già visti nella riga corrente.
+<blockquote>
+<p align="justify"><code>totale</code> è la somma dei valori già visti nella riga corrente.</p>
+</blockquote>
 
-Invariante esterno:
+<p align="justify">Invariante esterno:</p>
 
-> `risultati` contiene le somme delle righe già elaborate.
+<blockquote>
+<p align="justify"><code>risultati</code> contiene le somme delle righe già elaborate.</p>
+</blockquote>
 
 ---
 
-# 12. Alias trap nella costruzione
+## 12. Alias trap nella costruzione
 
-Questo sembra creare righe indipendenti:
+<p align="justify">Questo sembra creare righe indipendenti:</p>
 
 ```python
 matrice = [[0] * colonne] * righe
 ```
 
-ma le righe possono riferirsi **alla stessa lista interna**.
+<p align="justify">ma le righe possono riferirsi <strong>alla stessa lista interna</strong>.</p>
 
-Poi:
+<p align="justify">Poi:</p>
 
 ```python
 matrice[0][0] = 1
 ```
 
-può modificare la prima posizione di tutte le righe.
+<p align="justify">può modificare la prima posizione di tutte le righe.</p>
 
-È M21 che ritorna dentro le matrici.
+<p align="justify">È M21 che ritorna dentro le matrici.</p>
 
 ---
 
-# 13. Costruzione sicura beginner
+## 13. Costruzione sicura beginner
 
-Forma esplicita:
+<p align="justify">Forma esplicita:</p>
 
 ```python
 matrice = []
@@ -286,21 +346,21 @@ for _ in range(righe):
     matrice.append([0] * colonne)
 ```
 
-Ogni iterazione crea una nuova lista riga.
+<p align="justify">Ogni iterazione crea una nuova lista riga.</p>
 
-Una comprehension equivalente può essere mostrata solo dopo:
+<p align="justify">Una comprehension equivalente può essere mostrata solo dopo:</p>
 
 ```python
 matrice = [[0] * colonne for _ in range(righe)]
 ```
 
-come enrichment, non come prerequisito.
+<p align="justify">come enrichment, non come prerequisito.</p>
 
 ---
 
-# 14. Ragged rows
+## 14. Ragged rows
 
-Non tutte le liste di liste sono matrici rettangolari:
+<p align="justify">Non tutte le liste di liste sono matrici rettangolari:</p>
 
 ```python
 dati = [
@@ -309,90 +369,129 @@ dati = [
 ]
 ```
 
-Per questo, quando usiamo indici, spesso il limite corretto della colonna è:
+<p align="justify">Per questo, quando usiamo indici, spesso il limite corretto della colonna è:</p>
 
 ```python
 len(matrice[r])
 ```
 
-non una costante assunta senza contratto.
+<p align="justify">non una costante assunta senza contratto.</p>
 
 ---
 
-# 15. List vs tuple: confronto
+## 15. List vs tuple: confronto
 
-| Domanda | `list` | `tuple` |
-|---|---|---|
-| sequenza ordinata | sì | sì |
-| mutabile | sì | no, al primo livello del contenitore |
-| append/remove | sì | no |
-| record posizionale stabile | possibile | spesso naturale |
-| collezione che cresce | naturale | di solito no |
+<table align="center">
+<thead>
+<tr>
+<th>Domanda</th>
+<th><code>list</code></th>
+<th><code>tuple</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sequenza ordinata</td>
+<td>sì</td>
+<td>sì</td>
+</tr>
+<tr>
+<td>mutabile</td>
+<td>sì</td>
+<td>no, al primo livello del contenitore</td>
+</tr>
+<tr>
+<td>append/remove</td>
+<td>sì</td>
+<td>no</td>
+</tr>
+<tr>
+<td>record posizionale stabile</td>
+<td>possibile</td>
+<td>spesso naturale</td>
+</tr>
+<tr>
+<td>collezione che cresce</td>
+<td>naturale</td>
+<td>di solito no</td>
+</tr>
+</tbody>
+</table>
 
-La scelta dipende dal significato dei dati.
-
----
-
-# 16. Error Clinic
-
-- `(5)` pensato come tupla a un elemento;
-- tentativo di assegnamento a elemento tuple;
-- unpacking con numero di valori incompatibile;
-- `[riga][colonna]` invertiti;
-- range colonne fisso su righe di lunghezza diversa;
-- `[[0] * C] * R` con righe alias;
-- lista annidata scelta senza motivo quando bastava una lista piatta.
-
----
-
-# 17. Activity candidate
-
-- **A — List or tuple?** struttura + motivazione;
-- **B — Unpacking trace:** coppie/coordinate;
-- **C — Matrix traversal:** somma/ricerca per righe e colonne;
-- **D — Alias matrix debug:** diagnosticare righe condivise;
-- **E — Mini-project tabellare:** più funzioni, matrice piccola, test, spiegazione del modello dati.
-
-Nessuna nuova Activity autogradata viene materializzata finché il profilo richiesto non è certificato.
-
----
-
-# 18. Friedpython tuple: cosa riusiamo e cosa no
-
-Spunti validi:
-
-- immutabilità;
-- conversione list/tuple;
-- `index`/`count`;
-- tupla a un elemento;
-- oggetto mutabile annidato come enrichment.
-
-Da non copiare:
-
-- sintassi `print T` Python 2;
-- note storiche non necessarie;
-- comprehension prima del nostro ordine didattico.
+<p align="justify">La scelta dipende dal significato dei dati.</p>
 
 ---
 
-# 19. Exit checkpoint PY2-07
+## 16. Error Clinic
 
-Dovresti saper:
-
-- usare liste e metodi essenziali;
-- prevedere mutazioni;
-- spiegare alias vs copia;
-- filtrare/trasformare senza mutazione accidentale;
-- usare `sort`/`sorted` correttamente;
-- usare tuple/unpacking;
-- scegliere list vs tuple;
-- costruire e attraversare una lista di liste;
-- evitare righe condivise involontarie;
-- motivare la struttura usata.
+<ul>
+  <li><code>(5)</code> pensato come tupla a un elemento;</li>
+  <li>tentativo di assegnamento a elemento tuple;</li>
+  <li>unpacking con numero di valori incompatibile;</li>
+  <li><code>[riga][colonna]</code> invertiti;</li>
+  <li>range colonne fisso su righe di lunghezza diversa;</li>
+  <li><code>[[0] * C] * R</code> con righe alias;</li>
+  <li>lista annidata scelta senza motivo quando bastava una lista piatta.</li>
+</ul>
 
 ---
 
-# 20. Sintesi
+## 17. Activity candidate
+
+<ul>
+  <li><strong>A — List or tuple?</strong> struttura + motivazione;</li>
+  <li><strong>B — Unpacking trace:</strong> coppie/coordinate;</li>
+  <li><strong>C — Matrix traversal:</strong> somma/ricerca per righe e colonne;</li>
+  <li><strong>D — Alias matrix debug:</strong> diagnosticare righe condivise;</li>
+  <li><strong>E — Mini-project tabellare:</strong> più funzioni, matrice piccola, test, spiegazione del modello dati.</li>
+</ul>
+
+<p align="justify">Nessuna nuova Activity autogradata viene materializzata finché il profilo richiesto non è certificato.</p>
+
+---
+
+## 18. Friedpython tuple: cosa riusiamo e cosa no
+
+<p align="justify">Spunti validi:</p>
+
+<ul>
+  <li>immutabilità;</li>
+  <li>conversione list/tuple;</li>
+  <li><code>index</code>/<code>count</code>;</li>
+  <li>tupla a un elemento;</li>
+  <li>oggetto mutabile annidato come enrichment.</li>
+</ul>
+
+<p align="justify">Da non copiare:</p>
+
+<ul>
+  <li>sintassi <code>print T</code> Python 2;</li>
+  <li>note storiche non necessarie;</li>
+  <li>comprehension prima del nostro ordine didattico.</li>
+</ul>
+
+---
+
+## 19. Exit checkpoint PY2-07
+
+<p align="justify">Dovresti saper:</p>
+
+<ul>
+  <li>usare liste e metodi essenziali;</li>
+  <li>prevedere mutazioni;</li>
+  <li>spiegare alias vs copia;</li>
+  <li>filtrare/trasformare senza mutazione accidentale;</li>
+  <li>usare <code>sort</code>/<code>sorted</code> correttamente;</li>
+  <li>usare tuple/unpacking;</li>
+  <li>scegliere list vs tuple;</li>
+  <li>costruire e attraversare una lista di liste;</li>
+  <li>evitare righe condivise involontarie;</li>
+  <li>motivare la struttura usata.</li>
+</ul>
+
+---
+
+## 20. Sintesi
 
 ```text
 list  → sequenza mutabile
@@ -407,15 +506,17 @@ matrice = lista di righe
 aliasing non sparisce nelle strutture annidate
 ```
 
-Checkpoint B consoliderà stringhe, liste e tuple prima di set e dizionari.
+<p align="justify">Checkpoint B consoliderà stringhe, liste e tuple prima di set e dizionari.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale, con riferimento a:
+<p align="justify">Materiale originale, con riferimento a:</p>
 
-- documentazione Python 3.12 tuple/liste/sequenze;
-- *Think Python / Pensare in Python* — tuples/lists;
-- *Learning Python / Imparare Python* — sequence types;
-- audit `sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md`.
+<ul>
+  <li>documentazione Python 3.12 tuple/liste/sequenze;</li>
+  <li><em>Think Python / Pensare in Python</em> — tuples/lists;</li>
+  <li><em>Learning Python / Imparare Python</em> — sequence types;</li>
+  <li>audit <code>sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md</code>.</li>
+</ul>

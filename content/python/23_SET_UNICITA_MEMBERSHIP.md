@@ -1,39 +1,89 @@
 # M23 — Set: unicità, membership e operazioni insiemistiche
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-08 — Set, dizionari e modellazione dei dati  
-> **Baseline:** Python 3.12-compatible
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Il set modella unicità e appartenenza e permette operazioni fra insiemi.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Usare membership, cicli e collezioni da M20–M22; consolidare il Checkpoint B.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+creare un <code>set</code> non vuoto;<br>creare un set vuoto con <code>set()</code> e distinguere <code>{}</code>;<br>spiegare che gli elementi sono unici; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Una struttura si sceglie per le operazioni richieste: la posizione nella lista non è il modello del set. Riprendi <a href="22_TUPLE_UNPACKING_MATRICI.md">M22 — Tuple, unpacking, liste annidate e matrici</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="24_DIZIONARI_LOOKUP_FREQUENZE.md">M24 — Dizionari: chiave→valore, lookup e frequenze</a>. Il dizionario associa chiavi uniche a valori e sostiene lookup e conteggi di frequenza.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Calcola unione, intersezione e differenza dei corsi frequentati, senza dipendere dall&#x27;ordine di stampa.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-08 — Set, dizionari e modellazione dei dati<br>
+<strong>Baseline:</strong> Python 3.12-compatible</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- creare un `set` non vuoto;
-- creare un set vuoto con `set()` e distinguere `{}`;
-- spiegare che gli elementi sono unici;
-- usare `add`, `remove`, `discard` consapevolmente;
-- usare membership `in`/`not in`;
-- usare unione, intersezione e differenza;
-- deduplicare quando l'ordine non è requisito dominante;
-- scegliere `set` vs `list` in base a unicità/membership/ordine;
-- non dipendere dall'ordine di iterazione/stampa di un set;
-- capire a livello beginner che gli elementi devono essere hashable.
+<ul>
+  <li>creare un <code>set</code> non vuoto;</li>
+  <li>creare un set vuoto con <code>set()</code> e distinguere <code>{}</code>;</li>
+  <li>spiegare che gli elementi sono unici;</li>
+  <li>usare <code>add</code>, <code>remove</code>, <code>discard</code> consapevolmente;</li>
+  <li>usare membership <code>in</code>/<code>not in</code>;</li>
+  <li>usare unione, intersezione e differenza;</li>
+  <li>deduplicare quando l'ordine non è requisito dominante;</li>
+  <li>scegliere <code>set</code> vs <code>list</code> in base a unicità/membership/ordine;</li>
+  <li>non dipendere dall'ordine di iterazione/stampa di un set;</li>
+  <li>capire a livello beginner che gli elementi devono essere hashable.</li>
+</ul>
 
 ---
 
-# 1. Il set non è una lista senza duplicati
+## 1. Il set non è una lista senza duplicati
 
 ```python
 tag = {"python", "git", "linux"}
 ```
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 set = collezione di valori distinti
 ```
 
-Le domande naturali sono:
+<p align="justify">Le domande naturali sono:</p>
 
 ```text
 questo valore appartiene all'insieme?
@@ -41,153 +91,161 @@ quali valori sono comuni?
 quali valori sono presenti solo da una parte?
 ```
 
-Non:
+<p align="justify">Non:</p>
 
 ```text
 qual è l'elemento in posizione 2?
 ```
 
-Il set non è una sequenza indicizzata.
+<p align="justify">Il set non è una sequenza indicizzata.</p>
 
 ---
 
-# 2. Set vuoto
+## 2. Set vuoto
 
-Questo crea un **dict vuoto**:
+<p align="justify">Questo crea un <strong>dict vuoto</strong>:</p>
 
 ```python
 x = {}
 ```
 
-Per un set vuoto:
+<p align="justify">Per un set vuoto:</p>
 
 ```python
 x = set()
 ```
 
-È un Error Clinic obbligatorio.
+<p align="justify">È un Error Clinic obbligatorio.</p>
 
 ---
 
-# 3. Unicità
+## 3. Unicità
 
 ```python
 nomi = ["anna", "luca", "anna", "marta"]
 unici = set(nomi)
 ```
 
-Semanticamente otteniamo i valori distinti.
+<p align="justify">Semanticamente otteniamo i valori distinti.</p>
 
-Se l'ordine originale è requisito, convertire semplicemente in set può perdere informazione importante sul modello.
+<p align="justify">Se l'ordine originale è requisito, convertire semplicemente in set può perdere informazione importante sul modello.</p>
 
 ---
 
-# 4. Membership
+## 4. Membership
 
 ```python
 "python" in tag
 ```
 
-Quando la domanda dominante è membership ripetuta, il set è una struttura naturale.
+<p align="justify">Quando la domanda dominante è membership ripetuta, il set è una struttura naturale.</p>
 
-Intuizione prestazionale:
+<p align="justify">Intuizione prestazionale:</p>
 
 ```text
 list → ricerca lungo la sequenza
 set  → progettato per membership tramite hashing
 ```
 
-Non introduciamo ancora Big-O formale né promesse assolute sul tempo.
+<p align="justify">Non introduciamo ancora Big-O formale né promesse assolute sul tempo.</p>
 
 ---
 
-# 5. `add()`
+## 5. `add()`
 
 ```python
 tag.add("docker")
 ```
 
-Se l'elemento è già presente, il set continua ad averne una sola copia.
+<p align="justify">Se l'elemento è già presente, il set continua ad averne una sola copia.</p>
 
-Questa proprietà deriva dalla semantica del set, non da un controllo manuale sui duplicati.
+<p align="justify">Questa proprietà deriva dalla semantica del set, non da un controllo manuale sui duplicati.</p>
 
 ---
 
-# 6. `remove()` vs `discard()`
+## 6. `remove()` vs `discard()`
 
 ```python
 insieme.remove(x)
 ```
 
-se `x` manca, segnala un errore.
+<p align="justify">se <code>x</code> manca, segnala un errore.</p>
 
 ```python
 insieme.discard(x)
 ```
 
-se `x` manca, non genera errore.
+<p align="justify">se <code>x</code> manca, non genera errore.</p>
 
-La scelta dipende dal contratto:
+<p align="justify">La scelta dipende dal contratto:</p>
 
-- assenza inattesa → `remove` può evidenziare un problema;
-- “assicura che x non ci sia” → `discard` può essere naturale.
+<ul>
+  <li>assenza inattesa → <code>remove</code> può evidenziare un problema;</li>
+  <li>“assicura che x non ci sia” → <code>discard</code> può essere naturale.</li>
+</ul>
 
 ---
 
-# 7. Unione
+## 7. Unione
 
 ```python
 A | B
 ```
 
-oppure:
+<p align="justify">oppure:</p>
 
 ```python
 A.union(B)
 ```
 
-Domanda:
+<p align="justify">Domanda:</p>
 
-> quali elementi appartengono ad almeno uno dei due insiemi?
+<blockquote>
+<p align="justify">quali elementi appartengono ad almeno uno dei due insiemi?</p>
+</blockquote>
 
 ---
 
-# 8. Intersezione
+## 8. Intersezione
 
 ```python
 A & B
 ```
 
-Domanda:
+<p align="justify">Domanda:</p>
 
-> quali elementi appartengono a entrambi?
+<blockquote>
+<p align="justify">quali elementi appartengono a entrambi?</p>
+</blockquote>
 
-Esempio naturale: studenti iscritti a due attività.
+<p align="justify">Esempio naturale: studenti iscritti a due attività.</p>
 
 ---
 
-# 9. Differenza
+## 9. Differenza
 
 ```python
 A - B
 ```
 
-Domanda:
+<p align="justify">Domanda:</p>
 
-> quali elementi sono in A ma non in B?
+<blockquote>
+<p align="justify">quali elementi sono in A ma non in B?</p>
+</blockquote>
 
-L'ordine degli operandi conta.
+<p align="justify">L'ordine degli operandi conta.</p>
 
 ---
 
-# 10. Worked example: corsi frequentati
+## 10. Worked example: corsi frequentati
 
 ```python
 python = {"Anna", "Luca", "Marta"}
 git = {"Luca", "Paolo", "Marta"}
 ```
 
-Possiamo chiedere:
+<p align="justify">Possiamo chiedere:</p>
 
 ```python
 entrambi = python & git
@@ -195,28 +253,61 @@ almeno_uno = python | git
 solo_python = python - git
 ```
 
-Prima di eseguire, prevedi semanticamente i gruppi.
+<p align="justify">Prima di eseguire, prevedi semanticamente i gruppi.</p>
 
 ---
 
-# 11. Set vs list
+## 11. Set vs list
 
-| Esigenza | `list` | `set` |
-|---|---|---|
-| ordine/posizione | naturale | non è il criterio del set |
-| duplicati significativi | sì | no |
-| mutazione sequenziale | sì | sì, con semantica insiemistica |
-| membership dominante | possibile | naturale |
-| indice/slicing | sì | no |
-| unione/intersezione | manuale | naturale |
+<table align="center">
+<thead>
+<tr>
+<th>Esigenza</th>
+<th><code>list</code></th>
+<th><code>set</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ordine/posizione</td>
+<td>naturale</td>
+<td>non è il criterio del set</td>
+</tr>
+<tr>
+<td>duplicati significativi</td>
+<td>sì</td>
+<td>no</td>
+</tr>
+<tr>
+<td>mutazione sequenziale</td>
+<td>sì</td>
+<td>sì, con semantica insiemistica</td>
+</tr>
+<tr>
+<td>membership dominante</td>
+<td>possibile</td>
+<td>naturale</td>
+</tr>
+<tr>
+<td>indice/slicing</td>
+<td>sì</td>
+<td>no</td>
+</tr>
+<tr>
+<td>unione/intersezione</td>
+<td>manuale</td>
+<td>naturale</td>
+</tr>
+</tbody>
+</table>
 
 ---
 
-# 12. Hashability beginner
+## 12. Hashability beginner
 
-Per appartenere a un set, un elemento deve poter essere usato come valore hashable/stabile.
+<p align="justify">Per appartenere a un set, un elemento deve poter essere usato come valore hashable/stabile.</p>
 
-Candidati comuni:
+<p align="justify">Candidati comuni:</p>
 
 ```text
 str
@@ -226,62 +317,68 @@ bool
 tuple di elementi hashable
 ```
 
-Non puoi inserire direttamente una `list` mutabile come elemento di un set.
+<p align="justify">Non puoi inserire direttamente una <code>list</code> mutabile come elemento di un set.</p>
 
-Gli internals dell'hash table arrivano più avanti.
+<p align="justify">Gli internals dell'hash table arrivano più avanti.</p>
 
 ---
 
-# 13. Non dipendere dall'ordine
+## 13. Non dipendere dall'ordine
 
-Non scrivere un algoritmo che assume:
+<p align="justify">Non scrivere un algoritmo che assume:</p>
 
 ```text
 "il primo elemento stampato dal set sarà..."
 ```
 
-Se l'ordine è requisito del problema, scegli una struttura/strategia che lo rappresenti esplicitamente.
+<p align="justify">Se l'ordine è requisito del problema, scegli una struttura/strategia che lo rappresenti esplicitamente.</p>
 
 ---
 
-# 14. Error Clinic
+## 14. Error Clinic
 
-- `{}` usato come set vuoto;
-- aspettarsi duplicati;
-- usare indice/slice su set;
-- affidarsi all'ordine di iterazione;
-- `remove` su elemento assente quando il contratto voleva idempotenza;
-- lista mutabile usata come elemento;
-- set scelto quando l'ordine di prima occorrenza era parte del requisito.
-
----
-
-# 15. Activity candidate
-
-- **A — Set microscope:** prevedi contenuto semantico dopo add/duplicati;
-- **B — List or set?** scegli e motiva;
-- **C — Implement:** unione/intersezione/differenza tra gruppi/tag;
-- **D — Debug:** `{}`, ordine, duplicati, remove/discard, elemento non hashable.
-
-Nessuna nuova Activity autogradata viene materializzata finché il profilo richiesto non è certificato.
+<ul>
+  <li><code>{}</code> usato come set vuoto;</li>
+  <li>aspettarsi duplicati;</li>
+  <li>usare indice/slice su set;</li>
+  <li>affidarsi all'ordine di iterazione;</li>
+  <li><code>remove</code> su elemento assente quando il contratto voleva idempotenza;</li>
+  <li>lista mutabile usata come elemento;</li>
+  <li>set scelto quando l'ordine di prima occorrenza era parte del requisito.</li>
+</ul>
 
 ---
 
-# 16. Checkpoint
+## 15. Activity candidate
 
-Sai spiegare:
+<ul>
+  <li><strong>A — Set microscope:</strong> prevedi contenuto semantico dopo add/duplicati;</li>
+  <li><strong>B — List or set?</strong> scegli e motiva;</li>
+  <li><strong>C — Implement:</strong> unione/intersezione/differenza tra gruppi/tag;</li>
+  <li><strong>D — Debug:</strong> <code>{}</code>, ordine, duplicati, remove/discard, elemento non hashable.</li>
+</ul>
 
-1. perché `{}` non è set vuoto;
-2. unicità;
-3. membership come operazione dominante;
-4. `remove` vs `discard`;
-5. unione/intersezione/differenza;
-6. list vs set;
-7. perché non usare indici/ordine come proprietà del set.
+<p align="justify">Nessuna nuova Activity autogradata viene materializzata finché il profilo richiesto non è certificato.</p>
 
 ---
 
-# 17. Sintesi
+## 16. Checkpoint
+
+<p align="justify">Sai spiegare:</p>
+
+<ol>
+  <li>perché <code>{}</code> non è set vuoto;</li>
+  <li>unicità;</li>
+  <li>membership come operazione dominante;</li>
+  <li><code>remove</code> vs <code>discard</code>;</li>
+  <li>unione/intersezione/differenza;</li>
+  <li>list vs set;</li>
+  <li>perché non usare indici/ordine come proprietà del set.</li>
+</ol>
+
+---
+
+## 17. Sintesi
 
 ```text
 set → valori unici + membership + operazioni insiemistiche
@@ -291,23 +388,25 @@ set → valori unici + membership + operazioni insiemistiche
 ordine importante? → chiediti se set è davvero il modello giusto
 ```
 
-Nel prossimo modulo passeremo da “appartiene?” a una domanda diversa:
+<p align="justify">Nel prossimo modulo passeremo da “appartiene?” a una domanda diversa:</p>
 
 ```text
 chiave → quale valore associato?
 ```
 
-cioè il modello del dizionario.
+<p align="justify">cioè il modello del dizionario.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale, con riferimento a:
+<p align="justify">Materiale originale, con riferimento a:</p>
 
-- documentazione Python 3.12 `set`/`frozenset` (solo `set` core);
-- *Fluent Python* come controllo teacher-side su hashing/collections;
-- *Learning Python / Imparare Python* — set coverage;
-- Pluralsight come gap-check.
+<ul>
+  <li>documentazione Python 3.12 <code>set</code>/<code>frozenset</code> (solo <code>set</code> core);</li>
+  <li><em>Fluent Python</em> come controllo teacher-side su hashing/collections;</li>
+  <li><em>Learning Python / Imparare Python</em> — set coverage;</li>
+  <li>Pluralsight come gap-check.</li>
+</ul>
 
-`friedpython` non dispone di un blocco set centrale equivalente; M23 è quindi originale.
+<p align="justify"><code>friedpython</code> non dispone di un blocco set centrale equivalente; M23 è quindi originale.</p>

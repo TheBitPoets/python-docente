@@ -1,37 +1,87 @@
 # M12 — Cicli annidati, griglie e costo del lavoro
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-04 — Iterazione e pattern algoritmici  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+I cicli annidati percorrono coppie e griglie e rendono osservabile la quantità di lavoro.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Scrivere cicli con range e usare contatori e accumulatori da M10–M11.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+leggere un ciclo dentro un altro ciclo;<br>distinguere ciclo esterno e ciclo interno;<br>eseguire il trace di coppie <code>(i, j)</code> su intervalli piccoli; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+L&#x27;inizializzazione va collocata al livello corrispondente al significato dello stato. Riprendi <a href="11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md">M11 — Contatori, accumulatori, minimo/massimo, ricerca e flag</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="13_FUNZIONI_PARAMETRI_RETURN.md">M13 — Funzioni produttive: parametri, argomenti e <code>return</code></a>. Le funzioni formalizzano la trasformazione nominata introdotta in M05: parametri in ingresso e risultato restituito.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Elenca le coppie di una griglia 2×3 e verifica che il corpo interno venga eseguito sei volte.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-04 — Iterazione e pattern algoritmici<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- leggere un ciclo dentro un altro ciclo;
-- distinguere ciclo esterno e ciclo interno;
-- eseguire il trace di coppie `(i, j)` su intervalli piccoli;
-- determinare quante volte viene eseguito il corpo interno in casi semplici;
-- generare tabelle, griglie e pattern rettangolari;
-- usare `if` dentro cicli annidati quando il problema lo richiede;
-- riconoscere variabili resettate al livello sbagliato;
-- distinguere annidamento naturale da lavoro ripetuto inutile;
-- spostare fuori dal ciclo calcoli che non dipendono dall'iterazione corrente;
-- confrontare intuitivamente una scansione singola con una scansione doppia;
-- motivare una soluzione rispetto a correttezza, leggibilità e quantità di lavoro.
+<ul>
+  <li>leggere un ciclo dentro un altro ciclo;</li>
+  <li>distinguere ciclo esterno e ciclo interno;</li>
+  <li>eseguire il trace di coppie <code>(i, j)</code> su intervalli piccoli;</li>
+  <li>determinare quante volte viene eseguito il corpo interno in casi semplici;</li>
+  <li>generare tabelle, griglie e pattern rettangolari;</li>
+  <li>usare <code>if</code> dentro cicli annidati quando il problema lo richiede;</li>
+  <li>riconoscere variabili resettate al livello sbagliato;</li>
+  <li>distinguere annidamento naturale da lavoro ripetuto inutile;</li>
+  <li>spostare fuori dal ciclo calcoli che non dipendono dall'iterazione corrente;</li>
+  <li>confrontare intuitivamente una scansione singola con una scansione doppia;</li>
+  <li>motivare una soluzione rispetto a correttezza, leggibilità e quantità di lavoro.</li>
+</ul>
 
 ---
 
-# 1. Per ogni riga, tutte le colonne
+## 1. Per ogni riga, tutte le colonne
 
-Pensa a una griglia:
+<p align="justify">Pensa a una griglia:</p>
 
 ```text
 R righe
 C colonne
 ```
 
-Per visitare ogni cella possiamo descrivere:
+<p align="justify">Per visitare ogni cella possiamo descrivere:</p>
 
 ```text
 per ogni riga
@@ -39,7 +89,7 @@ per ogni riga
         visita la cella
 ```
 
-In Python:
+<p align="justify">In Python:</p>
 
 ```python
 for riga in range(righe):
@@ -47,13 +97,13 @@ for riga in range(righe):
         print(riga, colonna)
 ```
 
-Il ciclo interno completa il proprio percorso **per ogni** valore del ciclo esterno.
+<p align="justify">Il ciclo interno completa il proprio percorso <strong>per ogni</strong> valore del ciclo esterno.</p>
 
 ---
 
-# 2. Trace delle coppie
+## 2. Trace delle coppie
 
-Esempio:
+<p align="justify">Esempio:</p>
 
 ```python
 for i in range(2):
@@ -61,7 +111,7 @@ for i in range(2):
         print(i, j)
 ```
 
-Prima prevedi:
+<p align="justify">Prima prevedi:</p>
 
 ```text
 (0, 0)
@@ -72,47 +122,66 @@ Prima prevedi:
 (1, 2)
 ```
 
-Tabella:
+<p align="justify">Tabella:</p>
 
-| iterazione esterna | `i` | `j` visitati |
-|---:|---:|---|
-| 1 | 0 | 0, 1, 2 |
-| 2 | 1 | 0, 1, 2 |
+<table align="center">
+<thead>
+<tr>
+<th>iterazione esterna</th>
+<th><code>i</code></th>
+<th><code>j</code> visitati</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0, 1, 2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>0, 1, 2</td>
+</tr>
+</tbody>
+</table>
 
 ---
 
-# 3. Quante volte viene eseguito il corpo interno?
+## 3. Quante volte viene eseguito il corpo interno?
 
-Se abbiamo:
+<p align="justify">Se abbiamo:</p>
 
 ```text
 R valori nel ciclo esterno
 C valori nel ciclo interno
 ```
 
-il corpo interno viene eseguito:
+<p align="justify">il corpo interno viene eseguito:</p>
 
 ```text
 R × C
 ```
 
-volte.
+<p align="justify">volte.</p>
 
-Esempio:
+<p align="justify">Esempio:</p>
 
 ```text
 2 × 3 = 6
 ```
 
-Non serve ancora il formalismo Big-O per capire che raddoppiare entrambe le dimensioni aumenta molto il lavoro.
+<p align="justify">Non serve ancora il formalismo Big-O per capire che raddoppiare entrambe le dimensioni aumenta molto il lavoro.</p>
 
 ---
 
-# 4. Una tabella rettangolare
+## 4. Una tabella rettangolare
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Stampa una griglia di `righe × colonne` asterischi.
+<blockquote>
+<p align="justify">Stampa una griglia di <code>righe × colonne</code> asterischi.</p>
+</blockquote>
 
 ```python
 for _ in range(righe):
@@ -121,9 +190,9 @@ for _ in range(righe):
     print()
 ```
 
-Per ora `end=""` viene usato come strumento di output, non come nuovo argomento da approfondire.
+<p align="justify">Per ora <code>end=""</code> viene usato come strumento di output, non come nuovo argomento da approfondire.</p>
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 ciclo esterno → cambia riga
@@ -132,27 +201,29 @@ ciclo interno → produce le colonne della riga
 
 ---
 
-# 5. Reset al livello giusto
+## 5. Reset al livello giusto
 
-Supponiamo di voler calcolare un totale per ogni riga.
+<p align="justify">Supponiamo di voler calcolare un totale per ogni riga.</p>
 
-La variabile che rappresenta **il totale della riga corrente** deve essere azzerata:
+<p align="justify">La variabile che rappresenta <strong>il totale della riga corrente</strong> deve essere azzerata:</p>
 
 ```text
 una volta per riga
 ```
 
-non una volta per cella e non una sola volta per tutta la griglia.
+<p align="justify">non una volta per cella e non una sola volta per tutta la griglia.</p>
 
-Questo è un errore di scope temporale del pattern, anche prima di studiare lo scope formale delle funzioni.
+<p align="justify">Questo è un errore di scope temporale del pattern, anche prima di studiare lo scope formale delle funzioni.</p>
 
 ---
 
-# 6. Pattern con condizione dentro due cicli
+## 6. Pattern con condizione dentro due cicli
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Stampa `#` sulla diagonale di una piccola griglia quadrata e `.` altrove.
+<blockquote>
+<p align="justify">Stampa <code>#</code> sulla diagonale di una piccola griglia quadrata e <code>.</code> altrove.</p>
+</blockquote>
 
 ```python
 for riga in range(n):
@@ -164,15 +235,15 @@ for riga in range(n):
     print()
 ```
 
-Qui la selezione dipende dalla coppia corrente `(riga, colonna)`.
+<p align="justify">Qui la selezione dipende dalla coppia corrente <code>(riga, colonna)</code>.</p>
 
 ---
 
-# 7. Tutte le coppie
+## 7. Tutte le coppie
 
-Un doppio ciclo è naturale quando il problema chiede di considerare tutte le coppie di due piccoli insiemi di valori.
+<p align="justify">Un doppio ciclo è naturale quando il problema chiede di considerare tutte le coppie di due piccoli insiemi di valori.</p>
 
-Esempio:
+<p align="justify">Esempio:</p>
 
 ```python
 for i in range(3):
@@ -180,17 +251,19 @@ for i in range(3):
         ...
 ```
 
-Domanda importante:
+<p align="justify">Domanda importante:</p>
 
-> il problema richiede davvero tutte le coppie?
+<blockquote>
+<p align="justify">il problema richiede davvero tutte le coppie?</p>
+</blockquote>
 
-Se no, il doppio ciclo può essere lavoro inutile.
+<p align="justify">Se no, il doppio ciclo può essere lavoro inutile.</p>
 
 ---
 
-# 8. Annidamento naturale vs accidentale
+## 8. Annidamento naturale vs accidentale
 
-## Naturale
+### Naturale
 
 ```text
 griglia
@@ -198,14 +271,14 @@ griglia
    → ogni colonna
 ```
 
-## Accidentale
+### Accidentale
 
 ```text
 per ogni valore
     ricalcolo qualcosa che non dipende dal valore corrente
 ```
 
-Esempio concettuale:
+<p align="justify">Esempio concettuale:</p>
 
 ```python
 for i in range(n):
@@ -213,7 +286,7 @@ for i in range(n):
     ...
 ```
 
-Se il calcolo non cambia:
+<p align="justify">Se il calcolo non cambia:</p>
 
 ```python
 valore_costante = calcolo_che_non_dipende_da_i()
@@ -221,44 +294,67 @@ for i in range(n):
     ...
 ```
 
-comunica meglio anche l'intenzione.
+<p align="justify">comunica meglio anche l'intenzione.</p>
 
 ---
 
-# 9. Quantità di lavoro: primo modello
+## 9. Quantità di lavoro: primo modello
 
-Con una scansione singola:
+<p align="justify">Con una scansione singola:</p>
 
 ```text
 N valori
 → circa N elaborazioni
 ```
 
-Con due cicli entrambi su `N`:
+<p align="justify">Con due cicli entrambi su <code>N</code>:</p>
 
 ```text
 N × N
 ```
 
-Esempi:
+<p align="justify">Esempi:</p>
 
-| N | singolo ciclo | doppio ciclo N×N |
-|---:|---:|---:|
-| 3 | 3 | 9 |
-| 10 | 10 | 100 |
-| 100 | 100 | 10000 |
+<table align="center">
+<thead>
+<tr>
+<th>N</th>
+<th>singolo ciclo</th>
+<th>doppio ciclo N×N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10</td>
+<td>100</td>
+</tr>
+<tr>
+<td>100</td>
+<td>100</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
 
-Non stiamo ancora studiando formalmente la complessità asintotica.
+<p align="justify">Non stiamo ancora studiando formalmente la complessità asintotica.</p>
 
-Stiamo imparando a chiederci:
+<p align="justify">Stiamo imparando a chiederci:</p>
 
-> quanto lavoro sto facendo e perché?
+<blockquote>
+<p align="justify">quanto lavoro sto facendo e perché?</p>
+</blockquote>
 
 ---
 
-# 10. Ordine dei criteri
+## 10. Ordine dei criteri
 
-Per una soluzione di seconda usiamo questo ordine:
+<p align="justify">Per una soluzione di seconda usiamo questo ordine:</p>
 
 ```text
 1. correttezza
@@ -268,22 +364,24 @@ Per una soluzione di seconda usiamo questo ordine:
 5. efficienza quando il volume dei dati la rende rilevante
 ```
 
-Non useremo:
+<p align="justify">Non useremo:</p>
 
 ```text
 più corto = più veloce
 più Pythonico = sempre migliore
 ```
 
-come regole automatiche.
+<p align="justify">come regole automatiche.</p>
 
 ---
 
-# 11. Worked example: tabellina rettangolare
+## 11. Worked example: tabellina rettangolare
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Per righe da 1 a 3 e colonne da 1 a 4 stampa il prodotto della coppia corrente.
+<blockquote>
+<p align="justify">Per righe da 1 a 3 e colonne da 1 a 4 stampa il prodotto della coppia corrente.</p>
+</blockquote>
 
 ```python
 for riga in range(1, 4):
@@ -292,7 +390,7 @@ for riga in range(1, 4):
     print()
 ```
 
-Prima del codice puoi prevedere:
+<p align="justify">Prima del codice puoi prevedere:</p>
 
 ```text
 3 righe
@@ -300,13 +398,13 @@ Prima del codice puoi prevedere:
 12 prodotti
 ```
 
-Questa previsione è già ragionamento sulla quantità di lavoro.
+<p align="justify">Questa previsione è già ragionamento sulla quantità di lavoro.</p>
 
 ---
 
-# 12. Error Clinic
+## 12. Error Clinic
 
-## A — variabile sbagliata
+### A — variabile sbagliata
 
 ```python
 for riga in range(3):
@@ -314,9 +412,9 @@ for riga in range(3):
         print(riga, riga)
 ```
 
-Il ciclo interno varia, ma il programma non usa `colonna`.
+<p align="justify">Il ciclo interno varia, ma il programma non usa <code>colonna</code>.</p>
 
-## B — reset troppo interno
+### B — reset troppo interno
 
 ```python
 for riga in range(righe):
@@ -325,25 +423,25 @@ for riga in range(righe):
         totale_riga += valore
 ```
 
-Il totale viene cancellato a ogni cella.
+<p align="justify">Il totale viene cancellato a ogni cella.</p>
 
-## C — reset troppo esterno
+### C — reset troppo esterno
 
-Una variabile che dovrebbe ripartire per ogni riga viene inizializzata una sola volta prima di tutto il doppio ciclo.
+<p align="justify">Una variabile che dovrebbe ripartire per ogni riga viene inizializzata una sola volta prima di tutto il doppio ciclo.</p>
 
-## D — indentazione errata
+### D — indentazione errata
 
-Un `print()` che dovrebbe chiudere la riga finisce dentro il ciclo delle colonne.
+<p align="justify">Un <code>print()</code> che dovrebbe chiudere la riga finisce dentro il ciclo delle colonne.</p>
 
-## E — lavoro ripetuto
+### E — lavoro ripetuto
 
-Un valore invariabile viene ricalcolato nel ciclo interno.
+<p align="justify">Un valore invariabile viene ricalcolato nel ciclo interno.</p>
 
 ---
 
-# 13. Trace di un doppio ciclo
+## 13. Trace di un doppio ciclo
 
-Per:
+<p align="justify">Per:</p>
 
 ```python
 for i in range(2):
@@ -351,83 +449,114 @@ for i in range(2):
         print(i + j)
 ```
 
-compila:
+<p align="justify">compila:</p>
 
-| `i` | `j` | `i + j` |
-|---:|---:|---:|
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 2 |
+<table align="center">
+<thead>
+<tr>
+<th><code>i</code></th>
+<th><code>j</code></th>
+<th><code>i + j</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
 
-Il trace deve mostrare che il ciclo interno riparte da capo a ogni nuova iterazione esterna.
-
----
-
-# 14. Activity candidate
-
-## A — Nested trace
-
-Elenca tutte le coppie prodotte da due `range` piccoli.
-
-## B — Controlled Change
-
-Cambia da griglia `2×3` a `4×5` e prevedi **prima** quante iterazioni/output saranno prodotti.
-
-## C — Implement
-
-Genera una griglia rettangolare con un pattern condizionale.
-
-## D — Debug
-
-Correggi variabili interne/esterne confuse, reset al livello errato, indentazione e range sbagliati.
-
-## E — Mini-project
-
-Problema con:
-
-- almeno un ciclo;
-- almeno una selezione;
-- contatore/accumulatore oppure annidamento;
-- casi di test progettati prima del codice;
-- breve motivazione del costrutto scelto;
-- stima semplice del numero di iterazioni principali.
-
-Nessuna nuova Activity autogradata viene materializzata finché il profilo richiesto non è certificato.
+<p align="justify">Il trace deve mostrare che il ciclo interno riparte da capo a ogni nuova iterazione esterna.</p>
 
 ---
 
-# 15. Romeo opzionale
+## 14. Activity candidate
 
-Romeo può usare griglie o sequenze ripetute per visualizzare:
+### A — Nested trace
 
-- percorsi rettangolari;
-- combinazioni riga/colonna;
-- ripetizione di pattern;
-- confronto fra comando duplicato e ciclo.
+<p align="justify">Elenca tutte le coppie prodotte da due <code>range</code> piccoli.</p>
 
-Il simulatore è applicazione, non prerequisito. Hardware fisico resta fuori dal core.
+### B — Controlled Change
+
+<p align="justify">Cambia da griglia <code>2×3</code> a <code>4×5</code> e prevedi <strong>prima</strong> quante iterazioni/output saranno prodotti.</p>
+
+### C — Implement
+
+<p align="justify">Genera una griglia rettangolare con un pattern condizionale.</p>
+
+### D — Debug
+
+<p align="justify">Correggi variabili interne/esterne confuse, reset al livello errato, indentazione e range sbagliati.</p>
+
+### E — Mini-project
+
+<p align="justify">Problema con:</p>
+
+<ul>
+  <li>almeno un ciclo;</li>
+  <li>almeno una selezione;</li>
+  <li>contatore/accumulatore oppure annidamento;</li>
+  <li>casi di test progettati prima del codice;</li>
+  <li>breve motivazione del costrutto scelto;</li>
+  <li>stima semplice del numero di iterazioni principali.</li>
+</ul>
+
+<p align="justify">Nessuna nuova Activity autogradata viene materializzata finché il profilo richiesto non è certificato.</p>
 
 ---
 
-# 16. Exit checkpoint PY2-04
+## 15. Romeo opzionale
 
-Alla fine dell'UDA dovresti saper:
+<p align="justify">Romeo può usare griglie o sequenze ripetute per visualizzare:</p>
 
-- scegliere `while` o `for` e motivarlo;
-- garantire la terminazione di un `while`;
-- usare sentinelle e validazione ripetuta;
-- usare contatori e accumulatori;
-- mantenere min/max progressivi;
-- costruire una semplice ricerca/flag;
-- combinare selezione e iterazione;
-- leggere/scrivere un doppio ciclo semplice;
-- stimare il numero di esecuzioni principali in casi piccoli;
-- riconoscere lavoro chiaramente ripetuto senza necessità.
+<ul>
+  <li>percorsi rettangolari;</li>
+  <li>combinazioni riga/colonna;</li>
+  <li>ripetizione di pattern;</li>
+  <li>confronto fra comando duplicato e ciclo.</li>
+</ul>
+
+<p align="justify">Il simulatore è applicazione, non prerequisito. Hardware fisico resta fuori dal core.</p>
 
 ---
 
-# 17. Sintesi
+## 16. Exit checkpoint PY2-04
+
+<p align="justify">Alla fine dell'UDA dovresti saper:</p>
+
+<ul>
+  <li>scegliere <code>while</code> o <code>for</code> e motivarlo;</li>
+  <li>garantire la terminazione di un <code>while</code>;</li>
+  <li>usare sentinelle e validazione ripetuta;</li>
+  <li>usare contatori e accumulatori;</li>
+  <li>mantenere min/max progressivi;</li>
+  <li>costruire una semplice ricerca/flag;</li>
+  <li>combinare selezione e iterazione;</li>
+  <li>leggere/scrivere un doppio ciclo semplice;</li>
+  <li>stimare il numero di esecuzioni principali in casi piccoli;</li>
+  <li>riconoscere lavoro chiaramente ripetuto senza necessità.</li>
+</ul>
+
+---
+
+## 17. Sintesi
 
 ```text
 ciclo singolo
@@ -452,17 +581,19 @@ correttezza
 → efficienza quando serve
 ```
 
-Il prossimo blocco del corso sposta l'attenzione dal controllo del flusso alla **decomposizione in funzioni testabili**.
+<p align="justify">Il prossimo blocco del corso sposta l'attenzione dal controllo del flusso alla <strong>decomposizione in funzioni testabili</strong>.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale del corso, progettato con riferimento a:
+<p align="justify">Materiale originale del corso, progettato con riferimento a:</p>
 
-- documentazione Python 3.12 — `for`, `range`, `if` e controllo del flusso;
-- *Think Python / Pensare in Python* — iterazione e debugging;
-- *Learning Python / Imparare Python* — reference sistematico;
-- Romeo pinned — applicazioni simulate opzionali.
+<ul>
+  <li>documentazione Python 3.12 — <code>for</code>, <code>range</code>, <code>if</code> e controllo del flusso;</li>
+  <li><em>Think Python / Pensare in Python</em> — iterazione e debugging;</li>
+  <li><em>Learning Python / Imparare Python</em> — reference sistematico;</li>
+  <li>Romeo pinned — applicazioni simulate opzionali.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>

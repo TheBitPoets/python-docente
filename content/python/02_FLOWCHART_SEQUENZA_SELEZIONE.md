@@ -1,29 +1,79 @@
 # M02 — Flow chart: sequenza, input/output e selezione
 
-> **Stato:** draft  
-> **UDA:** PY2-01 — Problem solving, algoritmi e flow chart  
-> **Delivery:** Flowchart Lab candidate quando disponibile; fallback manuale sempre valido finché la capability non è classroom-certified
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+I passi e le decisioni diventano un diagramma di flusso leggibile anche senza computer.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Saper scomporre una consegna ed eseguire un dry-run come in M01.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+leggere i simboli fondamentali di un diagramma di flusso;<br>costruire una sequenza con input, elaborazione e output;<br>rappresentare una decisione booleana; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Il diagramma rappresenta lo stesso algoritmo dello pseudocodice: cambia la notazione, non il risultato atteso. Riprendi <a href="01_DAL_PROBLEMA_AI_PASSI.md">M01 — Dal problema ai passi: specifica, pseudocodice e trace</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md">M03 — Flow chart: iterazione, terminazione e annidamento</a>. La ripetizione aggiunge al diagramma uno stato che cambia e una condizione di terminazione.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Disegna la selezione sulla soglia e segui entrambi i rami con due input concreti, su carta o nel Flowchart Lab disponibile.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft<br>
+<strong>UDA:</strong> PY2-01 — Problem solving, algoritmi e flow chart<br>
+<strong>Delivery:</strong> Flowchart Lab candidate quando disponibile; fallback manuale sempre valido finché la capability non è classroom-certified</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine di questo modulo dovresti saper:
+<p align="justify">Alla fine di questo modulo dovresti saper:</p>
 
-- leggere i simboli fondamentali di un diagramma di flusso;
-- costruire una sequenza con input, elaborazione e output;
-- rappresentare una decisione booleana;
-- costruire selezione semplice e doppia;
-- seguire un diagramma passo-passo con dati concreti;
-- compilare una trace table elementare;
-- diagnosticare rami mancanti, condizioni invertite e output collocati nel punto sbagliato;
-- salvare, quando il Flowchart Lab è disponibile, l'artifact gestito `algorithm.flow.json` senza confondere la validità strutturale con la qualità dell'algoritmo.
+<ul>
+  <li>leggere i simboli fondamentali di un diagramma di flusso;</li>
+  <li>costruire una sequenza con input, elaborazione e output;</li>
+  <li>rappresentare una decisione booleana;</li>
+  <li>costruire selezione semplice e doppia;</li>
+  <li>seguire un diagramma passo-passo con dati concreti;</li>
+  <li>compilare una trace table elementare;</li>
+  <li>diagnosticare rami mancanti, condizioni invertite e output collocati nel punto sbagliato;</li>
+  <li>salvare, quando il Flowchart Lab è disponibile, l'artifact gestito <code>algorithm.flow.json</code> senza confondere la validità strutturale con la qualità dell'algoritmo.</li>
+</ul>
 
 ---
 
-# 1. Perché un diagramma?
+## 1. Perché un diagramma?
 
-Lo pseudocodice descrive i passi con testo.
+<p align="justify">Lo pseudocodice descrive i passi con testo.</p>
 
-Un flow chart rende visibile il **flusso di controllo**:
+<p align="justify">Un flow chart rende visibile il <strong>flusso di controllo</strong>:</p>
 
 ```text
 inizio
@@ -37,38 +87,71 @@ decisione
 ...     ...
 ```
 
-Non serve a “decorare” l'algoritmo. Serve a mostrare:
+<p align="justify">Non serve a “decorare” l'algoritmo. Serve a mostrare:</p>
 
-- che cosa succede prima e dopo;
-- dove il flusso si divide;
-- dove i rami si ricongiungono;
-- se ogni percorso può arrivare a una conclusione.
-
----
-
-# 2. Simboli core del corso
-
-Usiamo un insieme piccolo e stabile.
-
-| Idea | Forma convenzionale | Significato |
-|---|---|---|
-| start/end | terminatore | inizio/fine |
-| input/output | parallelogramma | dato acquisito o mostrato |
-| processing | rettangolo | calcolo/assegnamento |
-| decision | rombo | condizione con rami |
-| freccia | collegamento | prossimo passo |
-
-La forma grafica aiuta, ma la correttezza dipende soprattutto dal significato dei nodi e dei collegamenti.
+<ul>
+  <li>che cosa succede prima e dopo;</li>
+  <li>dove il flusso si divide;</li>
+  <li>dove i rami si ricongiungono;</li>
+  <li>se ogni percorso può arrivare a una conclusione.</li>
+</ul>
 
 ---
 
-# 3. Prima sequenza
+## 2. Simboli core del corso
 
-Problema:
+<p align="justify">Usiamo un insieme piccolo e stabile.</p>
 
-> Leggi due numeri e mostra la loro somma.
+<table align="center">
+<thead>
+<tr>
+<th>Idea</th>
+<th>Forma convenzionale</th>
+<th>Significato</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start/end</td>
+<td>terminatore</td>
+<td>inizio/fine</td>
+</tr>
+<tr>
+<td>input/output</td>
+<td>parallelogramma</td>
+<td>dato acquisito o mostrato</td>
+</tr>
+<tr>
+<td>processing</td>
+<td>rettangolo</td>
+<td>calcolo/assegnamento</td>
+</tr>
+<tr>
+<td>decision</td>
+<td>rombo</td>
+<td>condizione con rami</td>
+</tr>
+<tr>
+<td>freccia</td>
+<td>collegamento</td>
+<td>prossimo passo</td>
+</tr>
+</tbody>
+</table>
 
-Modello:
+<p align="justify">La forma grafica aiuta, ma la correttezza dipende soprattutto dal significato dei nodi e dei collegamenti.</p>
+
+---
+
+## 3. Prima sequenza
+
+<p align="justify">Problema:</p>
+
+<blockquote>
+<p align="justify">Leggi due numeri e mostra la loro somma.</p>
+</blockquote>
+
+<p align="justify">Modello:</p>
 
 ```text
 START
@@ -84,41 +167,84 @@ OUTPUT SOMMA
 END
 ```
 
-Ogni passo ha un solo successore.
+<p align="justify">Ogni passo ha un solo successore.</p>
 
-Questa è una **sequenza**.
-
----
-
-# 4. Trace della sequenza
-
-Con input `2` e `3`:
-
-| nodo | A | B | somma | output |
-|---|---:|---:|---:|---:|
-| start | — | — | — | — |
-| input A | 2 | — | — | — |
-| input B | 2 | 3 | — | — |
-| calcolo | 2 | 3 | 5 | — |
-| output | 2 | 3 | 5 | 5 |
-
-Il diagramma non sostituisce il trace: ci dice **dove andare**, il trace mostra **che cosa succede ai dati**.
+<p align="justify">Questa è una <strong>sequenza</strong>.</p>
 
 ---
 
-# 5. La decisione
+## 4. Trace della sequenza
 
-Problema:
+<p align="justify">Con input <code>2</code> e <code>3</code>:</p>
 
-> Leggi una temperatura e indica se supera 30.
+<table align="center">
+<thead>
+<tr>
+<th>nodo</th>
+<th>A</th>
+<th>B</th>
+<th>somma</th>
+<th>output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>input A</td>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>input B</td>
+<td>2</td>
+<td>3</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>calcolo</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>—</td>
+</tr>
+<tr>
+<td>output</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
 
-La condizione è:
+<p align="justify">Il diagramma non sostituisce il trace: ci dice <strong>dove andare</strong>, il trace mostra <strong>che cosa succede ai dati</strong>.</p>
+
+---
+
+## 5. La decisione
+
+<p align="justify">Problema:</p>
+
+<blockquote>
+<p align="justify">Leggi una temperatura e indica se supera 30.</p>
+</blockquote>
+
+<p align="justify">La condizione è:</p>
 
 ```text
 temperatura > 30 ?
 ```
 
-Dal rombo partono due possibilità:
+<p align="justify">Dal rombo partono due possibilità:</p>
 
 ```text
            temperatura > 30?
@@ -128,20 +254,20 @@ Dal rombo partono due possibilità:
      "sopra soglia"  "entro soglia"
 ```
 
-Una condizione deve poter essere valutata come vera o falsa nel punto in cui viene usata.
+<p align="justify">Una condizione deve poter essere valutata come vera o falsa nel punto in cui viene usata.</p>
 
 ---
 
-# 6. Selezione doppia
+## 6. Selezione doppia
 
-Nel nostro Flowchart Lab i rami di una decisione sono espliciti:
+<p align="justify">Nel nostro Flowchart Lab i rami di una decisione sono espliciti:</p>
 
 ```text
 true
 false
 ```
 
-Per la soglia:
+<p align="justify">Per la soglia:</p>
 
 ```text
 START
@@ -155,21 +281,25 @@ OUTPUT alta   OUTPUT normale
           END
 ```
 
-Domanda importante:
+<p align="justify">Domanda importante:</p>
 
-> Tutti i possibili input seguono uno dei due rami?
+<blockquote>
+<p align="justify">Tutti i possibili input seguono uno dei due rami?</p>
+</blockquote>
 
-Per una condizione booleana sì: o è vera o è falsa.
+<p align="justify">Per una condizione booleana sì: o è vera o è falsa.</p>
 
 ---
 
-# 7. Selezione semplice
+## 7. Selezione semplice
 
-A volte un ramo non richiede un'azione specifica.
+<p align="justify">A volte un ramo non richiede un'azione specifica.</p>
 
-Esempio:
+<p align="justify">Esempio:</p>
 
-> Se il saldo è negativo, mostra un avviso; poi continua.
+<blockquote>
+<p align="justify">Se il saldo è negativo, mostra un avviso; poi continua.</p>
+</blockquote>
 
 ```text
 [saldo < 0?]
@@ -179,17 +309,19 @@ AVVISO       |
       prossimo passo
 ```
 
-Anche quando un ramo “non fa nulla”, il flusso deve restare chiaro.
+<p align="justify">Anche quando un ramo “non fa nulla”, il flusso deve restare chiaro.</p>
 
 ---
 
-# 8. Condizione invertita
+## 8. Condizione invertita
 
-Specificazione:
+<p align="justify">Specificazione:</p>
 
-> Mostra “ammesso” se età >= 14.
+<blockquote>
+<p align="justify">Mostra “ammesso” se età &gt;= 14.</p>
+</blockquote>
 
-Diagramma sbagliato:
+<p align="justify">Diagramma sbagliato:</p>
 
 ```text
 età >= 14?
@@ -197,25 +329,27 @@ true  → "non ammesso"
 false → "ammesso"
 ```
 
-Il diagramma può essere strutturalmente valido ma semanticamente sbagliato.
+<p align="justify">Il diagramma può essere strutturalmente valido ma semanticamente sbagliato.</p>
 
-Questo è un punto fondamentale:
+<p align="justify">Questo è un punto fondamentale:</p>
 
 ```text
 file/schema valido ≠ algoritmo corretto
 ```
 
-Per questo la qualità dell'algoritmo resta evidence/rubric docente.
+<p align="justify">Per questo la qualità dell'algoritmo resta evidence/rubric docente.</p>
 
 ---
 
-# 9. Output troppo presto
+## 9. Output troppo presto
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Applica uno sconto se il prezzo supera 100, poi mostra il prezzo finale.
+<blockquote>
+<p align="justify">Applica uno sconto se il prezzo supera 100, poi mostra il prezzo finale.</p>
+</blockquote>
 
-Errore:
+<p align="justify">Errore:</p>
 
 ```text
 INPUT prezzo
@@ -225,19 +359,21 @@ OUTPUT prezzo
 decisione sconto
 ```
 
-Il risultato viene mostrato **prima** della decisione che dovrebbe modificarlo.
+<p align="justify">Il risultato viene mostrato <strong>prima</strong> della decisione che dovrebbe modificarlo.</p>
 
-Il trace individua immediatamente il primo punto di divergenza.
+<p align="justify">Il trace individua immediatamente il primo punto di divergenza.</p>
 
 ---
 
-# 10. Più casi
+## 10. Più casi
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Classifica un valore come negativo, zero o positivo.
+<blockquote>
+<p align="justify">Classifica un valore come negativo, zero o positivo.</p>
+</blockquote>
 
-Possiamo usare due decisioni:
+<p align="justify">Possiamo usare due decisioni:</p>
 
 ```text
 n < 0?
@@ -247,15 +383,15 @@ n < 0?
           false → positivo
 ```
 
-Non abbiamo bisogno di un nuovo simbolo per ogni possibile problema.
+<p align="justify">Non abbiamo bisogno di un nuovo simbolo per ogni possibile problema.</p>
 
-Componiamo poche primitive chiare.
+<p align="justify">Componiamo poche primitive chiare.</p>
 
 ---
 
-# 11. Flowchart Lab: che cosa deve fare per noi
+## 11. Flowchart Lab: che cosa deve fare per noi
 
-Quando il runtime managed è disponibile, il percorso è:
+<p align="justify">Quando il runtime managed è disponibile, il percorso è:</p>
 
 ```text
 TheBitLab
@@ -267,13 +403,13 @@ TheBitLab
 → algorithm.flow.json nel workspace
 ```
 
-Il browser non esegue Python dello studente.
+<p align="justify">Il browser non esegue Python dello studente.</p>
 
-Il motore usa un linguaggio di espressioni ristretto e deterministico.
+<p align="justify">Il motore usa un linguaggio di espressioni ristretto e deterministico.</p>
 
-## Importante
+### Importante
 
-Finché `flowchart.lab.v1` non è certificata nei profili classroom, il corso mantiene il fallback:
+<p align="justify">Finché <code>flowchart.lab.v1</code> non è certificata nei profili classroom, il corso mantiene il fallback:</p>
 
 ```text
 carta / lavagna / template
@@ -282,37 +418,43 @@ carta / lavagna / template
 + rubric docente
 ```
 
-Gli outcome didattici non dipendono dalla disponibilità del tool.
+<p align="justify">Gli outcome didattici non dipendono dalla disponibilità del tool.</p>
 
 ---
 
-# 12. Save non significa “consegna perfetta”
+## 12. Save non significa “consegna perfetta”
 
-Il Flowchart Lab può verificare cose deterministiche:
+<p align="justify">Il Flowchart Lab può verificare cose deterministiche:</p>
 
-- schema valido;
-- nodi e archi coerenti;
-- esecuzione terminata entro il limite;
-- output/trace per input dichiarati.
+<ul>
+  <li>schema valido;</li>
+  <li>nodi e archi coerenti;</li>
+  <li>esecuzione terminata entro il limite;</li>
+  <li>output/trace per input dichiarati.</li>
+</ul>
 
-Non può assegnare automaticamente un voto affidabile a:
+<p align="justify">Non può assegnare automaticamente un voto affidabile a:</p>
 
-- chiarezza della decomposizione;
-- scelta più appropriata dei costrutti;
-- semplicità del diagramma;
-- qualità della spiegazione.
+<ul>
+  <li>chiarezza della decomposizione;</li>
+  <li>scelta più appropriata dei costrutti;</li>
+  <li>semplicità del diagramma;</li>
+  <li>qualità della spiegazione.</li>
+</ul>
 
-Questi aspetti restano manuali.
+<p align="justify">Questi aspetti restano manuali.</p>
 
 ---
 
-# 13. Laboratorio guidato — soglia
+## 13. Laboratorio guidato — soglia
 
-Costruisci il diagramma:
+<p align="justify">Costruisci il diagramma:</p>
 
-> Leggi `temperatura`. Se è maggiore di 30 mostra “sopra soglia”, altrimenti mostra “entro soglia”.
+<blockquote>
+<p align="justify">Leggi <code>temperatura</code>. Se è maggiore di 30 mostra “sopra soglia”, altrimenti mostra “entro soglia”.</p>
+</blockquote>
 
-Prima di eseguirlo, prepara i test:
+<p align="justify">Prima di eseguirlo, prepara i test:</p>
 
 ```text
 31 → sopra soglia
@@ -320,38 +462,42 @@ Prima di eseguirlo, prepara i test:
 29 → entro soglia
 ```
 
-Perché 30 è il caso più importante da non dimenticare?
+<p align="justify">Perché 30 è il caso più importante da non dimenticare?</p>
 
 ---
 
-# 14. Controlled Change
+## 14. Controlled Change
 
-Parti dal diagramma funzionante e cambia soltanto:
+<p align="justify">Parti dal diagramma funzionante e cambia soltanto:</p>
 
 ```text
 soglia 30 → soglia 25
 ```
 
-Poi aggiorna i casi di test.
+<p align="justify">Poi aggiorna i casi di test.</p>
 
-Obiettivo:
+<p align="justify">Obiettivo:</p>
 
-> modificare il requisito senza ridisegnare parti non coinvolte.
+<blockquote>
+<p align="justify">modificare il requisito senza ridisegnare parti non coinvolte.</p>
+</blockquote>
 
 ---
 
-# 15. Error Clinic
+## 15. Error Clinic
 
-Diagnostica uno alla volta:
+<p align="justify">Diagnostica uno alla volta:</p>
 
-1. ramo `false` mancante;
-2. condizione invertita;
-3. output prima dell'assegnamento;
-4. nodo non raggiungibile;
-5. ramo che non arriva a `end`;
-6. trace atteso diverso dall'esecuzione.
+<ol>
+  <li>ramo <code>false</code> mancante;</li>
+  <li>condizione invertita;</li>
+  <li>output prima dell'assegnamento;</li>
+  <li>nodo non raggiungibile;</li>
+  <li>ramo che non arriva a <code>end</code>;</li>
+  <li>trace atteso diverso dall'esecuzione.</li>
+</ol>
 
-Per ogni errore scrivi:
+<p align="justify">Per ogni errore scrivi:</p>
 
 ```text
 sintomo
@@ -362,20 +508,22 @@ caso che lo rivela
 
 ---
 
-# Minimum mastery checkpoint
+## Minimum mastery checkpoint
 
-Dovresti saper:
+<p align="justify">Dovresti saper:</p>
 
-1. riconoscere start/end, input/output, processing e decision;
-2. costruire una sequenza;
-3. costruire una selezione doppia;
-4. seguire true/false con un input concreto;
-5. compilare una trace table;
-6. progettare almeno un test sul confine;
-7. distinguere validità strutturale e correttezza semantica;
-8. usare il fallback manuale senza perdere gli outcome se il tool non è disponibile.
+<ol>
+  <li>riconoscere start/end, input/output, processing e decision;</li>
+  <li>costruire una sequenza;</li>
+  <li>costruire una selezione doppia;</li>
+  <li>seguire true/false con un input concreto;</li>
+  <li>compilare una trace table;</li>
+  <li>progettare almeno un test sul confine;</li>
+  <li>distinguere validità strutturale e correttezza semantica;</li>
+  <li>usare il fallback manuale senza perdere gli outcome se il tool non è disponibile.</li>
+</ol>
 
-## Recap
+### Recap
 
 ```text
 sequenza → un percorso
@@ -384,4 +532,4 @@ trace → rende visibile stato e percorso
 test → prova casi diversi, soprattutto i confini
 ```
 
-Prossimo modulo: introduciamo ripetizione, terminazione e annidamento nei diagrammi.
+<p align="justify">Prossimo modulo: introduciamo ripetizione, terminazione e annidamento nei diagrammi.</p>

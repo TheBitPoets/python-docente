@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Oggetti del corso Python</title>
+  <desc id="desc">Libreria di simboli per algoritmi, dati, funzioni e oggetti. Le etichette sono responsabilità della scena.</desc>
+  <defs>
+    <style>.tpsi-line{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:8}.tpsi-thin{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:5}</style>
+    <symbol id="tpsi-step" viewBox="0 0 240 180">
+      <rect x="20" y="40" width="200" height="100" rx="4" fill="#dbeafe" stroke="{{process}}" stroke-width="6" />
+      <path d="M58 75h124M58 105h84" stroke="{{process}}" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-terminator" viewBox="0 0 240 180">
+      <rect x="20" y="45" width="200" height="90" rx="45" fill="#dbeafe" stroke="{{process}}" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-io" viewBox="0 0 240 180">
+      <path d="M52 40h174l-38 100H14z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="6" />
+      <path d="M65 78h112M56 103h112" stroke="{{thread}}" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-decision" viewBox="0 0 240 180">
+      <path d="M120 12l108 78-108 78L12 90z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="6" />
+      <path d="M102 62a20 20 0 1 1 30 19l-12 10v13" fill="none" stroke="{{ink}}" stroke-width="6" />
+      <circle cx="120" cy="123" r="4" fill="{{ink}}" />
+    </symbol>
+    <symbol id="tpsi-binding" viewBox="0 0 240 180">
+      <path d="M20 42h145l55 48-55 48H20z" fill="#e0f2fe" stroke="{{process}}" stroke-width="6" />
+      <circle cx="181" cy="90" r="9" fill="{{surface}}" stroke="{{process}}" stroke-width="4" />
+      <path d="M47 77h95M47 102h70" stroke="{{process}}" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-value" viewBox="0 0 240 180">
+      <rect x="42" y="30" width="156" height="120" rx="20" fill="#eef2ff" stroke="{{data}}" stroke-width="6" />
+      <circle cx="120" cy="90" r="30" fill="#c7d2fe" stroke="{{data}}" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-reference" viewBox="0 0 240 180">
+      <rect x="14" y="59" width="48" height="62" rx="8" fill="#dbeafe" stroke="{{process}}" stroke-width="5" />
+      <path d="M62 90h95m-20-18 20 18-20 18" fill="none" stroke="{{data}}" stroke-width="6" />
+      <rect x="173" y="40" width="52" height="100" rx="10" fill="#eef2ff" stroke="{{data}}" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-sequence" viewBox="0 0 240 180">
+      <rect x="15" y="50" width="210" height="80" rx="8" fill="#eef2ff" stroke="{{data}}" stroke-width="6" />
+      <path d="M85 50v80M155 50v80" stroke="{{data}}" stroke-width="5" />
+      <circle cx="50" cy="90" r="12" fill="#818cf8" />
+      <circle cx="120" cy="90" r="12" fill="#818cf8" />
+      <circle cx="190" cy="90" r="12" fill="#818cf8" />
+    </symbol>
+    <symbol id="tpsi-tuple" viewBox="0 0 240 180">
+      <path d="M35 38C8 65 8 115 35 142M205 38c27 27 27 77 0 104" fill="none" stroke="{{data}}" stroke-width="7" />
+      <rect x="54" y="60" width="54" height="60" rx="7" fill="#e0e7ff" stroke="{{data}}" stroke-width="4" />
+      <rect x="132" y="60" width="54" height="60" rx="7" fill="#e0e7ff" stroke="{{data}}" stroke-width="4" />
+      <path d="M116 118l-4 12" stroke="{{data}}" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-grid" viewBox="0 0 240 180">
+      <rect x="20" y="20" width="200" height="140" rx="8" fill="#eef2ff" stroke="{{data}}" stroke-width="6" />
+      <path d="M20 90h200M87 20v140M153 20v140" stroke="{{data}}" stroke-width="4" />
+      <rect x="25" y="25" width="57" height="60" rx="4" fill="#818cf8" />
+    </symbol>
+    <symbol id="tpsi-set" viewBox="0 0 240 180">
+      <ellipse cx="120" cy="90" rx="103" ry="73" fill="#eef2ff" stroke="{{data}}" stroke-width="6" />
+      <circle cx="71" cy="76" r="19" fill="#818cf8" />
+      <rect x="121" y="49" width="35" height="35" rx="5" fill="#a5b4fc" />
+      <path d="M125 106l23 32h-46z" fill="{{data}}" />
+    </symbol>
+    <symbol id="tpsi-mapping" viewBox="0 0 240 180">
+      <g fill="#eef2ff" stroke="{{data}}" stroke-width="5">
+        <rect x="15" y="27" width="70" height="50" rx="6" />
+        <rect x="15" y="103" width="70" height="50" rx="6" />
+        <rect x="155" y="27" width="70" height="50" rx="6" />
+        <rect x="155" y="103" width="70" height="50" rx="6" />
+      </g>
+      <path d="M91 52h55m-12-12 12 12-12 12M91 128h55m-12-12 12 12-12 12" fill="none" stroke="{{data}}" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-trace" viewBox="0 0 240 180">
+      <rect x="25" y="15" width="190" height="150" rx="8" fill="{{surface}}" stroke="{{process}}" stroke-width="5" />
+      <path d="M25 55h190M25 93h190M25 131h190M88 15v150M153 15v150" stroke="#93c5fd" stroke-width="4" />
+      <path d="M42 72h29M105 110h29M170 148h29" stroke="{{process}}" stroke-width="7" />
+    </symbol>
+    <symbol id="tpsi-runtime" viewBox="0 0 240 180">
+      <rect x="45" y="25" width="150" height="130" rx="15" fill="#fef3c7" stroke="{{runtime}}" stroke-width="6" />
+      <path d="M105 58l45 32-45 32z" fill="{{runtime}}" />
+      <path d="M20 50h25M20 90h25M20 130h25M195 50h25M195 90h25M195 130h25" stroke="{{runtime}}" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-function" viewBox="0 0 240 180">
+      <rect x="58" y="28" width="124" height="124" rx="18" fill="#ccfbf1" stroke="{{thread}}" stroke-width="6" />
+      <path d="M12 90h38m-12-13 12 13-12 13M190 90h38m-12-13 12 13-12 13" fill="none" stroke="{{thread}}" stroke-width="6" />
+      <path d="M105 55h30M120 55v70M105 125h30" stroke="{{thread}}" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-frame" viewBox="0 0 240 180">
+      <rect x="15" y="15" width="210" height="150" rx="12" fill="#f0fdfa" stroke="{{thread}}" stroke-width="6" />
+      <path d="M15 52h210" stroke="{{thread}}" stroke-width="5" />
+      <rect x="36" y="76" width="63" height="28" rx="5" fill="#99f6e4" />
+      <rect x="141" y="116" width="63" height="28" rx="5" fill="#99f6e4" />
+      <path d="M103 90h61v18" fill="none" stroke="{{thread}}" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-contract" viewBox="0 0 240 180">
+      <path d="M120 14l86 30v56c0 34-40 55-86 68-46-13-86-34-86-68V44z" fill="#ede9fe" stroke="{{testing}}" stroke-width="6" />
+      <path d="M79 89l26 28 56-58" fill="none" stroke="{{testing}}" stroke-width="8" />
+    </symbol>
+    <symbol id="tpsi-error" viewBox="0 0 240 180">
+      <path d="M120 15l107 145H13z" fill="#ffe4e6" stroke="{{security}}" stroke-width="6" />
+      <path d="M120 62v49" stroke="{{security}}" stroke-width="9" stroke-linecap="round" />
+      <circle cx="120" cy="133" r="6" fill="{{security}}" />
+    </symbol>
+    <symbol id="tpsi-path" viewBox="0 0 240 180">
+      <path d="M20 50V27h75l20 23h105v108H20z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="6" />
+      <path d="M48 82h45v43h84m-16-15 16 15-16 15" fill="none" stroke="{{runtime}}" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-class" viewBox="0 0 240 180">
+      <rect x="25" y="15" width="190" height="150" rx="6" fill="#dbeafe" stroke="{{process}}" stroke-width="6" />
+      <path d="M25 60h190M25 113h190" stroke="{{process}}" stroke-width="4" />
+      <path d="M62 37h116M49 85h78M49 139h115" stroke="{{process}}" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-instance" viewBox="0 0 240 180">
+      <rect x="25" y="15" width="190" height="150" rx="24" fill="#eef2ff" stroke="{{data}}" stroke-width="6" />
+      <path d="M55 46h130M55 54h130M25 72h190" stroke="{{data}}" stroke-width="4" />
+      <rect x="51" y="95" width="51" height="40" rx="6" fill="#a5b4fc" />
+      <rect x="138" y="95" width="51" height="40" rx="6" fill="#818cf8" />
+    </symbol>
+    <symbol id="tpsi-document" viewBox="0 0 280 340">
+      <path d="M35 10h140l70 70v250H35z" fill="{{surface}}" stroke="#94a3b8" stroke-width="6" />
+      <path d="M175 10v70h70" fill="#dbeafe" stroke="#94a3b8" stroke-width="6" />
+      <path d="M72 130h136M72 174h136M72 218h105M72 262h120" class="tpsi-thin" stroke="#64748b" />
+    </symbol>
+    <symbol id="tpsi-terminal" viewBox="0 0 420 280">
+      <rect x="10" y="15" width="400" height="250" rx="24" fill="#111827" stroke="#64748b" stroke-width="6" />
+      <path d="M10 60h400" stroke="#64748b" stroke-width="5" />
+      <circle cx="38" cy="38" r="8" fill="#ef4444" />
+      <circle cx="64" cy="38" r="8" fill="#f59e0b" />
+      <circle cx="90" cy="38" r="8" fill="#22c55e" />
+      <path d="M65 115l38 32-38 32M129 185h95" class="tpsi-line" stroke="#a7f3d0" />
+    </symbol>
+    <symbol id="tpsi-repository" viewBox="0 0 360 280">
+      <rect x="45" y="32" width="270" height="64" rx="14" fill="#d1fae5" stroke="#34d399" stroke-width="5" />
+      <rect x="45" y="108" width="270" height="64" rx="14" fill="#a7f3d0" stroke="#10b981" stroke-width="5" />
+      <rect x="45" y="184" width="270" height="64" rx="14" fill="#6ee7b7" stroke="#059669" stroke-width="5" />
+      <path d="M82 64h196M82 140h196M82 216h196" class="tpsi-thin" stroke="#065f46" />
+    </symbol>
+    <symbol id="tpsi-test" viewBox="0 0 300 320">
+      <path d="M108 20h84M126 20v89L55 261a27 27 0 0 0 25 39h140a27 27 0 0 0 25-39l-71-152V20" fill="#ede9fe" stroke="{{testing}}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M83 238h134" stroke="#a78bfa" stroke-width="45" stroke-linecap="round" opacity=".7" />
+      <path d="M106 220l31 31 66-76" class="tpsi-line" stroke="#16a34a" />
+    </symbol>
+  </defs>
+</svg>

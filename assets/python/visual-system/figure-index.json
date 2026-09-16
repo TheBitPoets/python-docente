@@ -1,0 +1,613 @@
+[
+  {
+    "id": "py-m00-01",
+    "module": "M00",
+    "title": "Dal problema al programma",
+    "lesson_section": "content/python/00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md#2-problema-algoritmo-programma",
+    "purpose": "Tre piani distinti: consegna del resto, procedura ordinata, sua futura traduzione in programma. Il programma non sostituisce l'analisi.",
+    "components": [
+      "tpsi-document",
+      "tpsi-step",
+      "tpsi-terminal"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Tre piani distinti: consegna del resto, procedura ordinata, sua futura traduzione in programma. Il programma non sostituisce l'analisi.",
+    "caption_draft": "Dal problema al programma. Tre piani distinti: consegna del resto, procedura ordinata, sua futura traduzione in programma. Il programma non sostituisce l'analisi.",
+    "existing_images": 0,
+    "existing_text_blocks": 11
+  },
+  {
+    "id": "py-m01-01",
+    "module": "M01",
+    "title": "Lo stato lungo una traccia",
+    "lesson_section": "content/python/01_DAL_PROBLEMA_AI_PASSI.md#7-lo-stato-cambia-nel-tempo",
+    "purpose": "Affiancare passo eseguito e fotografia dello stato, distinguendo dati iniziali e valori aggiornati. Leggere la traccia dall'alto verso il basso.",
+    "components": [
+      "tpsi-step",
+      "tpsi-binding",
+      "tpsi-trace"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Affiancare passo eseguito e fotografia dello stato, distinguendo dati iniziali e valori aggiornati. Leggere la traccia dall'alto verso il basso.",
+    "caption_draft": "Lo stato lungo una traccia. Affiancare passo eseguito e fotografia dello stato, distinguendo dati iniziali e valori aggiornati. Leggere la traccia dall'alto verso il basso.",
+    "existing_images": 0,
+    "existing_text_blocks": 18
+  },
+  {
+    "id": "py-m02-01",
+    "module": "M02",
+    "title": "Due rami, una decisione",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#6-selezione-doppia",
+    "purpose": "Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
+    "caption_draft": "Due rami, una decisione. Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
+    "existing_images": 0,
+    "existing_text_blocks": 17
+  },
+  {
+    "id": "py-m03-01",
+    "module": "M03",
+    "title": "Anatomia del ciclo",
+    "lesson_section": "content/python/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md#3-ciclo-controllato-da-condizione",
+    "purpose": "Inizializzazione fuori dal ciclo, test prima del corpo, aggiornamento e freccia di ritorno al test; ramo falso verso l'uscita.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-step",
+      "tpsi-decision",
+      "tpsi-trace"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Inizializzazione fuori dal ciclo, test prima del corpo, aggiornamento e freccia di ritorno al test; ramo falso verso l'uscita.",
+    "caption_draft": "Anatomia del ciclo. Inizializzazione fuori dal ciclo, test prima del corpo, aggiornamento e freccia di ritorno al test; ramo falso verso l'uscita.",
+    "existing_images": 0,
+    "existing_text_blocks": 20
+  },
+  {
+    "id": "py-m04-01",
+    "module": "M04",
+    "title": "REPL e script",
+    "lesson_section": "content/python/04_INTERPRETE_REPL_VALORI_IO.md#10-dal-repl-al-primo-script",
+    "purpose": "Due percorsi distinti verso l'interprete: espressione nel REPL e file sorgente eseguito. Mostrare output e posizione degli errori senza confondere editor e terminale.",
+    "components": [
+      "tpsi-terminal",
+      "tpsi-document",
+      "tpsi-runtime",
+      "tpsi-value",
+      "tpsi-error"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Due percorsi distinti verso l'interprete: espressione nel REPL e file sorgente eseguito. Mostrare output e posizione degli errori senza confondere editor e terminale.",
+    "caption_draft": "REPL e script. Due percorsi distinti verso l'interprete: espressione nel REPL e file sorgente eseguito. Mostrare output e posizione degli errori senza confondere editor e terminale.",
+    "existing_images": 0,
+    "existing_text_blocks": 35
+  },
+  {
+    "id": "py-m05-01",
+    "module": "M05",
+    "title": "Quoziente e resto",
+    "lesson_section": "content/python/05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md#5-worked-example-secondi--minuti--resto",
+    "purpose": "Suddividere 137 secondi in due gruppi da 60 e 17 residui; collegare // e % ai due risultati senza confonderli con /.",
+    "components": [
+      "tpsi-value",
+      "tpsi-sequence",
+      "tpsi-function"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Suddividere 137 secondi in due gruppi da 60 e 17 residui; collegare // e % ai due risultati senza confonderli con /.",
+    "caption_draft": "Quoziente e resto. Suddividere 137 secondi in due gruppi da 60 e 17 residui; collegare // e % ai due risultati senza confonderli con /.",
+    "existing_images": 0,
+    "existing_text_blocks": 33
+  },
+  {
+    "id": "py-m06-01",
+    "module": "M06",
+    "title": "Un solo ramo di if/else",
+    "lesson_section": "content/python/06_BOOLEANI_CONFRONTI_IF.md#9-un-solo-ramo-di-ifelse-viene-eseguito",
+    "purpose": "Affiancare decisione e blocchi indentati, evidenziando un solo cammino per un input dato e l'istruzione comune dopo il ricongiungimento.",
+    "components": [
+      "tpsi-decision",
+      "tpsi-step",
+      "tpsi-io"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Affiancare decisione e blocchi indentati, evidenziando un solo cammino per un input dato e l'istruzione comune dopo il ricongiungimento.",
+    "caption_draft": "Un solo ramo di if/else. Affiancare decisione e blocchi indentati, evidenziando un solo cammino per un input dato e l'istruzione comune dopo il ricongiungimento.",
+    "existing_images": 0,
+    "existing_text_blocks": 26
+  },
+  {
+    "id": "py-m07-01",
+    "module": "M07",
+    "title": "Catena esclusiva o decisioni indipendenti",
+    "lesson_section": "content/python/07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md#5-più-if-indipendenti-quando-possono-verificarsi-più-effetti",
+    "purpose": "Confronto a pannelli: nella catena elif il primo ramo vero interrompe la selezione; con if indipendenti si valutano anche le condizioni successive.",
+    "components": [
+      "tpsi-decision",
+      "tpsi-step",
+      "tpsi-trace"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Confronto a pannelli: nella catena elif il primo ramo vero interrompe la selezione; con if indipendenti si valutano anche le condizioni successive.",
+    "caption_draft": "Catena esclusiva o decisioni indipendenti. Confronto a pannelli: nella catena elif il primo ramo vero interrompe la selezione; con if indipendenti si valutano anche le condizioni successive.",
+    "existing_images": 0,
+    "existing_text_blocks": 22
+  },
+  {
+    "id": "py-m08-01",
+    "module": "M08",
+    "title": "Mappa dei percorsi annidati",
+    "lesson_section": "content/python/08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md#3-path-trace-segui-il-percorso-non-tutto-il-codice",
+    "purpose": "Validazione esterna e classificazione interna con tre tracce: dato non valido, valido sotto soglia, valido sopra soglia. Mostrare quali test coprono i percorsi.",
+    "components": [
+      "tpsi-decision",
+      "tpsi-trace",
+      "tpsi-test"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Validazione esterna e classificazione interna con tre tracce: dato non valido, valido sotto soglia, valido sopra soglia. Mostrare quali test coprono i percorsi.",
+    "caption_draft": "Mappa dei percorsi annidati. Validazione esterna e classificazione interna con tre tracce: dato non valido, valido sotto soglia, valido sopra soglia. Mostrare quali test coprono i percorsi.",
+    "existing_images": 0,
+    "existing_text_blocks": 27
+  },
+  {
+    "id": "py-m09-01",
+    "module": "M09",
+    "title": "while: controllo e aggiornamento",
+    "lesson_section": "content/python/09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md#2-il-modello-del-while",
+    "purpose": "Mostrare il test prima del corpo, il ritorno dopo l'aggiornamento e il percorso a zero iterazioni; affiancare i valori della condizione nella traccia.",
+    "components": [
+      "tpsi-decision",
+      "tpsi-step",
+      "tpsi-binding",
+      "tpsi-trace"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Mostrare il test prima del corpo, il ritorno dopo l'aggiornamento e il percorso a zero iterazioni; affiancare i valori della condizione nella traccia.",
+    "caption_draft": "while: controllo e aggiornamento. Mostrare il test prima del corpo, il ritorno dopo l'aggiornamento e il percorso a zero iterazioni; affiancare i valori della condizione nella traccia.",
+    "existing_images": 0,
+    "existing_text_blocks": 25
+  },
+  {
+    "id": "py-m10-01",
+    "module": "M10",
+    "title": "range e limite escluso",
+    "lesson_section": "content/python/10_FOR_RANGE_SCELTA_CICLO.md#5-rangestart-stop-step",
+    "purpose": "Retta dei valori con start, stop escluso e frecce del passo; due esempi con passo positivo e negativo e un range vuoto esplicito.",
+    "components": [
+      "tpsi-sequence",
+      "tpsi-value",
+      "tpsi-trace"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Retta dei valori con start, stop escluso e frecce del passo; due esempi con passo positivo e negativo e un range vuoto esplicito.",
+    "caption_draft": "range e limite escluso. Retta dei valori con start, stop escluso e frecce del passo; due esempi con passo positivo e negativo e un range vuoto esplicito.",
+    "existing_images": 0,
+    "existing_text_blocks": 20
+  },
+  {
+    "id": "py-m11-01",
+    "module": "M11",
+    "title": "Conteggio e somma avanzano insieme",
+    "lesson_section": "content/python/11_CONTATORI_ACCUMULATORI_RICERCA_FLAG.md#4-contatore--accumulatore-la-media",
+    "purpose": "Scansione di pochi valori con due corsie di stato: contatore e accumulatore. Il calcolo della media avviene solo con conteggio valido.",
+    "components": [
+      "tpsi-sequence",
+      "tpsi-binding",
+      "tpsi-trace",
+      "tpsi-decision"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Scansione di pochi valori con due corsie di stato: contatore e accumulatore. Il calcolo della media avviene solo con conteggio valido.",
+    "caption_draft": "Conteggio e somma avanzano insieme. Scansione di pochi valori con due corsie di stato: contatore e accumulatore. Il calcolo della media avviene solo con conteggio valido.",
+    "existing_images": 0,
+    "existing_text_blocks": 9
+  },
+  {
+    "id": "py-m12-01",
+    "module": "M12",
+    "title": "Percorso riga per colonna",
+    "lesson_section": "content/python/12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md#2-trace-delle-coppie",
+    "purpose": "Griglia 2×3 numerata nell'ordine delle visite; evidenziare il completamento del ciclo interno prima dell'avanzamento della riga.",
+    "components": [
+      "tpsi-grid",
+      "tpsi-trace",
+      "tpsi-value"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Griglia 2×3 numerata nell'ordine delle visite; evidenziare il completamento del ciclo interno prima dell'avanzamento della riga.",
+    "caption_draft": "Percorso riga per colonna. Griglia 2×3 numerata nell'ordine delle visite; evidenziare il completamento del ciclo interno prima dell'avanzamento della riga.",
+    "existing_images": 0,
+    "existing_text_blocks": 19
+  },
+  {
+    "id": "py-m13-01",
+    "module": "M13",
+    "title": "Dalla chiamata al risultato",
+    "lesson_section": "content/python/13_FUNZIONI_PARAMETRI_RETURN.md#4-modello-della-chiamata",
+    "purpose": "Argomenti del chiamante, parametri nel contesto locale, calcolo e freccia di ritorno al chiamante. La stampa resta un'operazione separata.",
+    "components": [
+      "tpsi-function",
+      "tpsi-frame",
+      "tpsi-value",
+      "tpsi-io"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Argomenti del chiamante, parametri nel contesto locale, calcolo e freccia di ritorno al chiamante. La stampa resta un'operazione separata.",
+    "caption_draft": "Dalla chiamata al risultato. Argomenti del chiamante, parametri nel contesto locale, calcolo e freccia di ritorno al chiamante. La stampa resta un'operazione separata.",
+    "existing_images": 0,
+    "existing_text_blocks": 7
+  },
+  {
+    "id": "py-m14-01",
+    "module": "M14",
+    "title": "Due chiamate, due contesti",
+    "lesson_section": "content/python/14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md#10-due-chiamate-due-contesti-locali",
+    "purpose": "Due riquadri di chiamata con lo stesso nome locale ma valori distinti; collegare ogni risultato al proprio chiamante senza una variabile globale condivisa.",
+    "components": [
+      "tpsi-frame",
+      "tpsi-binding",
+      "tpsi-function",
+      "tpsi-value"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Due riquadri di chiamata con lo stesso nome locale ma valori distinti; collegare ogni risultato al proprio chiamante senza una variabile globale condivisa.",
+    "caption_draft": "Due chiamate, due contesti. Due riquadri di chiamata con lo stesso nome locale ma valori distinti; collegare ogni risultato al proprio chiamante senza una variabile globale condivisa.",
+    "existing_images": 0,
+    "existing_text_blocks": 9
+  },
+  {
+    "id": "py-m15-01",
+    "module": "M15",
+    "title": "Responsabilità e chiamate",
+    "lesson_section": "content/python/15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md#9-call-graph",
+    "purpose": "Call graph del calcolatore con acquisizione, logica e presentazione; frecce etichettate come chiamate, distinguendo il grafo dal flusso dei dati.",
+    "components": [
+      "tpsi-document",
+      "tpsi-function",
+      "tpsi-io",
+      "tpsi-contract"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Call graph del calcolatore con acquisizione, logica e presentazione; frecce etichettate come chiamate, distinguendo il grafo dal flusso dei dati.",
+    "caption_draft": "Responsabilità e chiamate. Call graph del calcolatore con acquisizione, logica e presentazione; frecce etichettate come chiamate, distinguendo il grafo dal flusso dei dati.",
+    "existing_images": 0,
+    "existing_text_blocks": 13
+  },
+  {
+    "id": "py-m16-01",
+    "module": "M16",
+    "title": "Ciclo di debug protetto dai test",
+    "lesson_section": "content/python/16_ASSERT_REGRESSION_TEST_REFACTOR.md#14-ciclo-di-debug-protetto-dai-test",
+    "purpose": "Test fallito, diagnosi, correzione, regressione e refactoring con ritorni etichettati. Un test verde verifica i casi scelti, non tutti i casi possibili.",
+    "components": [
+      "tpsi-test",
+      "tpsi-error",
+      "tpsi-step",
+      "tpsi-repository"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Test fallito, diagnosi, correzione, regressione e refactoring con ritorni etichettati. Un test verde verifica i casi scelti, non tutti i casi possibili.",
+    "caption_draft": "Ciclo di debug protetto dai test. Test fallito, diagnosi, correzione, regressione e refactoring con ritorni etichettati. Un test verde verifica i casi scelti, non tutti i casi possibili.",
+    "existing_images": 0,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-m17-01",
+    "module": "M17",
+    "title": "Indici, confini e slice",
+    "lesson_section": "content/python/17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md#5-slicing",
+    "purpose": "Celle dei caratteri con indici positivi e negativi; evidenziare start incluso e stop escluso e mostrare la nuova stringa prodotta.",
+    "components": [
+      "tpsi-sequence",
+      "tpsi-value",
+      "tpsi-binding"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Celle dei caratteri con indici positivi e negativi; evidenziare start incluso e stop escluso e mostrare la nuova stringa prodotta.",
+    "caption_draft": "Indici, confini e slice. Celle dei caratteri con indici positivi e negativi; evidenziare start incluso e stop escluso e mostrare la nuova stringa prodotta.",
+    "existing_images": 0,
+    "existing_text_blocks": 8
+  },
+  {
+    "id": "py-m18-01",
+    "module": "M18",
+    "title": "Normalizzare produce nuove stringhe",
+    "lesson_section": "content/python/18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md#13-normalizzazione",
+    "purpose": "Testo originale, risultato di strip e risultato di lower in tre oggetti distinti; frecce di trasformazione etichettate, originale conservato.",
+    "components": [
+      "tpsi-sequence",
+      "tpsi-function",
+      "tpsi-binding"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Testo originale, risultato di strip e risultato di lower in tre oggetti distinti; frecce di trasformazione etichettate, originale conservato.",
+    "caption_draft": "Normalizzare produce nuove stringhe. Testo originale, risultato di strip e risultato di lower in tre oggetti distinti; frecce di trasformazione etichettate, originale conservato.",
+    "existing_images": 0,
+    "existing_text_blocks": 7
+  },
+  {
+    "id": "py-m19-01",
+    "module": "M19",
+    "title": "Pipeline del palindromo",
+    "lesson_section": "content/python/19_ALGORITMI_TESTO_PARSING_SEMPLICE.md#6-normalizzazione-del-palindromo",
+    "purpose": "Input, normalizzazione dichiarata, confronto e booleano finale; distinguere analisi dalla formattazione dell'output e rendere espliciti i casi limite.",
+    "components": [
+      "tpsi-sequence",
+      "tpsi-function",
+      "tpsi-decision",
+      "tpsi-test"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Input, normalizzazione dichiarata, confronto e booleano finale; distinguere analisi dalla formattazione dell'output e rendere espliciti i casi limite.",
+    "caption_draft": "Pipeline del palindromo. Input, normalizzazione dichiarata, confronto e booleano finale; distinguere analisi dalla formattazione dell'output e rendere espliciti i casi limite.",
+    "existing_images": 0,
+    "existing_text_blocks": 9
+  },
+  {
+    "id": "py-m20-01",
+    "module": "M20",
+    "title": "Mutazione e valore restituito",
+    "lesson_section": "content/python/20_LISTE_MUTABILITA_METODI_ITERAZIONE.md#5-bug-fondamentale-metodo-mutante--assegnamento",
+    "purpose": "Stessa lista prima e dopo append, più il risultato separato None; mostrare perché assegnare tale risultato al nome perde il riferimento alla lista.",
+    "components": [
+      "tpsi-binding",
+      "tpsi-sequence",
+      "tpsi-value",
+      "tpsi-error"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Stessa lista prima e dopo append, più il risultato separato None; mostrare perché assegnare tale risultato al nome perde il riferimento alla lista.",
+    "caption_draft": "Mutazione e valore restituito. Stessa lista prima e dopo append, più il risultato separato None; mostrare perché assegnare tale risultato al nome perde il riferimento alla lista.",
+    "existing_images": 0,
+    "existing_text_blocks": 11
+  },
+  {
+    "id": "py-m21-01",
+    "module": "M21",
+    "title": "Alias e copia superficiale",
+    "lesson_section": "content/python/21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md#3-copia-superficiale",
+    "purpose": "Pannelli affiancati: due nomi verso una lista; due nomi verso liste esterne distinte. Una seconda figura mostrerà i riferimenti annidati ancora condivisi.",
+    "components": [
+      "tpsi-binding",
+      "tpsi-sequence",
+      "tpsi-reference"
+    ],
+    "priority": "P1",
+    "status": "prototype-not-in-lesson",
+    "asset": "assets/python/21-alias-copia.svg",
+    "alt_draft": "Pannelli affiancati: due nomi verso una lista; due nomi verso liste esterne distinte. Una seconda figura mostrerà i riferimenti annidati ancora condivisi.",
+    "caption_draft": "Alias e copia superficiale. Pannelli affiancati: due nomi verso una lista; due nomi verso liste esterne distinte. Una seconda figura mostrerà i riferimenti annidati ancora condivisi.",
+    "existing_images": 0,
+    "existing_text_blocks": 9
+  },
+  {
+    "id": "py-m22-01",
+    "module": "M22",
+    "title": "Righe indipendenti o condivise",
+    "lesson_section": "content/python/22_TUPLE_UNPACKING_MATRICI.md#12-alias-trap-nella-costruzione",
+    "purpose": "Due grafi di riferimenti: lista esterna verso una sola riga ripetuta, oppure verso righe distinte; evidenziare l'effetto di una modifica di cella.",
+    "components": [
+      "tpsi-sequence",
+      "tpsi-grid",
+      "tpsi-reference",
+      "tpsi-binding"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Due grafi di riferimenti: lista esterna verso una sola riga ripetuta, oppure verso righe distinte; evidenziare l'effetto di una modifica di cella.",
+    "caption_draft": "Righe indipendenti o condivise. Due grafi di riferimenti: lista esterna verso una sola riga ripetuta, oppure verso righe distinte; evidenziare l'effetto di una modifica di cella.",
+    "existing_images": 0,
+    "existing_text_blocks": 7
+  },
+  {
+    "id": "py-m23-01",
+    "module": "M23",
+    "title": "Operazioni fra insiemi",
+    "lesson_section": "content/python/23_SET_UNICITA_MEMBERSHIP.md#10-worked-example-corsi-frequentati",
+    "purpose": "Tre pannelli con elementi etichettati per unione, intersezione e differenza A meno B; evitare indici o frecce che suggeriscano un ordine.",
+    "components": [
+      "tpsi-set",
+      "tpsi-value"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Tre pannelli con elementi etichettati per unione, intersezione e differenza A meno B; evitare indici o frecce che suggeriscano un ordine.",
+    "caption_draft": "Operazioni fra insiemi. Tre pannelli con elementi etichettati per unione, intersezione e differenza A meno B; evitare indici o frecce che suggeriscano un ordine.",
+    "existing_images": 0,
+    "existing_text_blocks": 9
+  },
+  {
+    "id": "py-m24-01",
+    "module": "M24",
+    "title": "Una chiave, un conteggio aggiornato",
+    "lesson_section": "content/python/24_DIZIONARI_LOOKUP_FREQUENZE.md#10-pattern-frequenze",
+    "purpose": "Tre istanti del conteggio: chiave assente, inserimento, aggiornamento della stessa associazione. Le chiavi non si duplicano.",
+    "components": [
+      "tpsi-mapping",
+      "tpsi-value",
+      "tpsi-trace"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Tre istanti del conteggio: chiave assente, inserimento, aggiornamento della stessa associazione. Le chiavi non si duplicano.",
+    "caption_draft": "Una chiave, un conteggio aggiornato. Tre istanti del conteggio: chiave assente, inserimento, aggiornamento della stessa associazione. Le chiavi non si duplicano.",
+    "existing_images": 0,
+    "existing_text_blocks": 9
+  },
+  {
+    "id": "py-m25-01",
+    "module": "M25",
+    "title": "Mappa di scelta delle strutture",
+    "lesson_section": "content/python/25_STRUTTURE_COMBINATE_SCELTA_MODELLO.md#2-mappa-di-scelta-beginner",
+    "purpose": "Mappa con domande su posizione, mutabilità, unicità e lookup; esempi di list, tuple, set e dict senza presentare una struttura come universalmente migliore.",
+    "components": [
+      "tpsi-decision",
+      "tpsi-sequence",
+      "tpsi-tuple",
+      "tpsi-set",
+      "tpsi-mapping"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Mappa con domande su posizione, mutabilità, unicità e lookup; esempi di list, tuple, set e dict senza presentare una struttura come universalmente migliore.",
+    "caption_draft": "Mappa di scelta delle strutture. Mappa con domande su posizione, mutabilità, unicità e lookup; esempi di list, tuple, set e dict senza presentare una struttura come universalmente migliore.",
+    "existing_images": 0,
+    "existing_text_blocks": 14
+  },
+  {
+    "id": "py-m26-01",
+    "module": "M26",
+    "title": "Confine fra file e logica",
+    "lesson_section": "content/python/26_FILE_TESTO_PATHLIB_ERRORI.md#9-separare-io-e-logica",
+    "purpose": "Percorso verso il file, lettura, testo in memoria, funzione e scrittura. Segnalare il punto di FileNotFoundError e il confine del workspace.",
+    "components": [
+      "tpsi-path",
+      "tpsi-document",
+      "tpsi-sequence",
+      "tpsi-function",
+      "tpsi-error"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Percorso verso il file, lettura, testo in memoria, funzione e scrittura. Segnalare il punto di FileNotFoundError e il confine del workspace.",
+    "caption_draft": "Confine fra file e logica. Percorso verso il file, lettura, testo in memoria, funzione e scrittura. Segnalare il punto di FileNotFoundError e il confine del workspace.",
+    "existing_images": 0,
+    "existing_text_blocks": 11
+  },
+  {
+    "id": "py-m27-01",
+    "module": "M27",
+    "title": "Una classe, due istanze",
+    "lesson_section": "content/python/27_CLASSI_ISTANZE_ATTRIBUTI_SELF.md#7-due-istanze-indipendenti",
+    "purpose": "Classe come descrizione e due istanze con attributi separati; self riferisce l'istanza della chiamata corrente, senza diventare un terzo oggetto.",
+    "components": [
+      "tpsi-class",
+      "tpsi-instance",
+      "tpsi-binding",
+      "tpsi-reference"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Classe come descrizione e due istanze con attributi separati; self riferisce l'istanza della chiamata corrente, senza diventare un terzo oggetto.",
+    "caption_draft": "Una classe, due istanze. Classe come descrizione e due istanze con attributi separati; self riferisce l'istanza della chiamata corrente, senza diventare un terzo oggetto.",
+    "existing_images": 0,
+    "existing_text_blocks": 6
+  },
+  {
+    "id": "py-m28-01",
+    "module": "M28",
+    "title": "Transizioni e invariante",
+    "lesson_section": "content/python/28_METODI_STATO_INVARIANTI.md#6-transizione-valida",
+    "purpose": "Stato valido prima e dopo un metodo, transizione rifiutata con policy dichiarata e invariante sempre leggibile. Non usare il solo colore per distinguere gli esiti.",
+    "components": [
+      "tpsi-instance",
+      "tpsi-contract",
+      "tpsi-decision",
+      "tpsi-test",
+      "tpsi-error"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Stato valido prima e dopo un metodo, transizione rifiutata con policy dichiarata e invariante sempre leggibile. Non usare il solo colore per distinguere gli esiti.",
+    "caption_draft": "Transizioni e invariante. Stato valido prima e dopo un metodo, transizione rifiutata con policy dichiarata e invariante sempre leggibile. Non usare il solo colore per distinguere gli esiti.",
+    "existing_images": 0,
+    "existing_text_blocks": 9
+  },
+  {
+    "id": "py-m29-01",
+    "module": "M29",
+    "title": "Collaborazione fra oggetti",
+    "lesson_section": "content/python/29_COMPOSIZIONE_COLLABORAZIONE_RESPONSABILITA.md#5-collaborazione-esplicita",
+    "purpose": "Due istanze, relazione ha/usa e chiamata di un metodo; distinguere possesso o riferimento dalla direzione del messaggio. Nessuna gerarchia di ereditarietà.",
+    "components": [
+      "tpsi-instance",
+      "tpsi-reference",
+      "tpsi-contract",
+      "tpsi-io"
+    ],
+    "priority": "P1",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Due istanze, relazione ha/usa e chiamata di un metodo; distinguere possesso o riferimento dalla direzione del messaggio. Nessuna gerarchia di ereditarietà.",
+    "caption_draft": "Collaborazione fra oggetti. Due istanze, relazione ha/usa e chiamata di un metodo; distinguere possesso o riferimento dalla direzione del messaggio. Nessuna gerarchia di ereditarietà.",
+    "existing_images": 0,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-m30-01",
+    "module": "M30",
+    "title": "Mappa del capstone verificabile",
+    "lesson_section": "content/python/30_CAPSTONE_OOP.md#3-prima-del-codice-il-modello",
+    "purpose": "Specifica collegata a responsabilità di almeno due oggetti, invariante e test; I/O separato e repository come storia delle revisioni, non requisito nuovo.",
+    "components": [
+      "tpsi-document",
+      "tpsi-instance",
+      "tpsi-contract",
+      "tpsi-test",
+      "tpsi-repository"
+    ],
+    "priority": "P2",
+    "status": "planned",
+    "asset": null,
+    "alt_draft": "Specifica collegata a responsabilità di almeno due oggetti, invariante e test; I/O separato e repository come storia delle revisioni, non requisito nuovo.",
+    "caption_draft": "Mappa del capstone verificabile. Specifica collegata a responsabilità di almeno due oggetti, invariante e test; I/O separato e repository come storia delle revisioni, non requisito nuovo.",
+    "existing_images": 0,
+    "existing_text_blocks": 17
+  }
+]

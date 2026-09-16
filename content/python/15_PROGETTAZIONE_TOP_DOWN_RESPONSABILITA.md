@@ -1,31 +1,81 @@
 # M15 — Progettazione top-down e responsabilità
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-05 — Funzioni, decomposizione e testing  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+La progettazione top-down divide una specifica in responsabilità e contratti di funzione controllabili.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Passare dati esplicitamente e comporre funzioni da M13–M14.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+partire da una specifica e individuare sotto-problemi;<br>dare un nome alle responsabilità prima di scrivere i corpi delle funzioni;<br>distinguere acquisizione dati, logica e presentazione; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Separare calcolo e presentazione permette di verificare la logica con dati scelti. Riprendi <a href="14_SCOPE_LOCALE_PASSAGGIO_DATI_COMPOSIZIONE.md">M14 — Scope locale, passaggio dei dati e composizione</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="16_ASSERT_REGRESSION_TEST_REFACTOR.md">M16 — <code>assert</code>, regression test, debug e refactoring</a>. I casi scelti diventano assert e proteggono correzioni e refactoring dalle regressioni.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Proponi le firme del calcolatore di spedizione e annota input e risultato atteso prima dei corpi.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-05 — Funzioni, decomposizione e testing<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- partire da una specifica e individuare sotto-problemi;
-- dare un nome alle responsabilità prima di scrivere i corpi delle funzioni;
-- distinguere acquisizione dati, logica e presentazione;
-- proporre firme di funzioni con parametri e `return` coerenti;
-- descrivere input/output attesi di una funzione;
-- formulare pre-condizioni e post-condizioni semplici in linguaggio naturale;
-- riconoscere una funzione che fa troppe cose non correlate;
-- estrarre una responsabilità comune quando c'è duplicazione significativa;
-- costruire un piccolo call graph;
-- implementare e verificare una funzione alla volta.
+<ul>
+  <li>partire da una specifica e individuare sotto-problemi;</li>
+  <li>dare un nome alle responsabilità prima di scrivere i corpi delle funzioni;</li>
+  <li>distinguere acquisizione dati, logica e presentazione;</li>
+  <li>proporre firme di funzioni con parametri e <code>return</code> coerenti;</li>
+  <li>descrivere input/output attesi di una funzione;</li>
+  <li>formulare pre-condizioni e post-condizioni semplici in linguaggio naturale;</li>
+  <li>riconoscere una funzione che fa troppe cose non correlate;</li>
+  <li>estrarre una responsabilità comune quando c'è duplicazione significativa;</li>
+  <li>costruire un piccolo call graph;</li>
+  <li>implementare e verificare una funzione alla volta.</li>
+</ul>
 
 ---
 
-# 1. Prima il progetto, poi i dettagli
+## 1. Prima il progetto, poi i dettagli
 
-Quando il programma cresce, iniziare subito a scrivere righe può produrre un unico blocco difficile da controllare.
+<p align="justify">Quando il programma cresce, iniziare subito a scrivere righe può produrre un unico blocco difficile da controllare.</p>
 
-Processo top-down:
+<p align="justify">Processo top-down:</p>
 
 ```text
 problema complessivo
@@ -37,19 +87,21 @@ problema complessivo
 → implementazione progressiva
 ```
 
-Non significa progettare tutto perfettamente prima di provare.
+<p align="justify">Non significa progettare tutto perfettamente prima di provare.</p>
 
-Significa avere una mappa prima di perdere il controllo dei dettagli.
+<p align="justify">Significa avere una mappa prima di perdere il controllo dei dettagli.</p>
 
 ---
 
-# 2. Esempio: calcolatore di spedizione
+## 2. Esempio: calcolatore di spedizione
 
-Specifica semplificata:
+<p align="justify">Specifica semplificata:</p>
 
-> Leggi prezzo, quantità e distanza. Calcola il subtotale, applica uno sconto se previsto, calcola la spedizione e stampa il totale finale.
+<blockquote>
+<p align="justify">Leggi prezzo, quantità e distanza. Calcola il subtotale, applica uno sconto se previsto, calcola la spedizione e stampa il totale finale.</p>
+</blockquote>
 
-Possibili responsabilità:
+<p align="justify">Possibili responsabilità:</p>
 
 ```text
 calcola_subtotale
@@ -58,13 +110,13 @@ calcola_spedizione
 calcola_totale
 ```
 
-Lettura e stampa possono restare nel flusso principale.
+<p align="justify">Lettura e stampa possono restare nel flusso principale.</p>
 
 ---
 
-# 3. Scrivere prima le firme
+## 3. Scrivere prima le firme
 
-Prima dei corpi:
+<p align="justify">Prima dei corpi:</p>
 
 ```python
 def calcola_subtotale(prezzo, quantita):
@@ -79,37 +131,41 @@ def calcola_spedizione(distanza):
     ...
 ```
 
-Questo costringe a chiedersi:
+<p align="justify">Questo costringe a chiedersi:</p>
 
-- quali dati servono?;
-- quale risultato produce la funzione?;
-- quale funzione dipende da quale altra?.
+<ul>
+  <li>quali dati servono?;</li>
+  <li>quale risultato produce la funzione?;</li>
+  <li>quale funzione dipende da quale altra?.</li>
+</ul>
 
 ---
 
-# 4. Responsabilità singola, senza slogan rigidi
+## 4. Responsabilità singola, senza slogan rigidi
 
-Una buona funzione dovrebbe avere una responsabilità che possiamo nominare chiaramente.
+<p align="justify">Una buona funzione dovrebbe avere una responsabilità che possiamo nominare chiaramente.</p>
 
-Domanda utile:
+<p align="justify">Domanda utile:</p>
 
-> Per descriverla devo dire “fa questo **e poi anche** quest'altra cosa non collegata”?
+<blockquote>
+<p align="justify">Per descriverla devo dire “fa questo <strong>e poi anche</strong> quest'altra cosa non collegata”?</p>
+</blockquote>
 
-Se sì, forse contiene più responsabilità.
+<p align="justify">Se sì, forse contiene più responsabilità.</p>
 
-Non useremo regole meccaniche come:
+<p align="justify">Non useremo regole meccaniche come:</p>
 
 ```text
 massimo 10 righe
 ```
 
-La dimensione non sostituisce il ragionamento sul significato.
+<p align="justify">La dimensione non sostituisce il ragionamento sul significato.</p>
 
 ---
 
-# 5. Separare input, logica e output
+## 5. Separare input, logica e output
 
-Pattern target beginner:
+<p align="justify">Pattern target beginner:</p>
 
 ```python
 def calcola_sconto(prezzo, percentuale):
@@ -125,15 +181,15 @@ def main():
 main()
 ```
 
-La funzione di logica può essere verificata senza dover simulare tutta l'interfaccia.
+<p align="justify">La funzione di logica può essere verificata senza dover simulare tutta l'interfaccia.</p>
 
-`main()` qui è soltanto un modo per organizzare il flusso. Il guard `if __name__ == "__main__"` non è ancora obbligatorio.
+<p align="justify"><code>main()</code> qui è soltanto un modo per organizzare il flusso. Il guard <code>if __name__ == "__main__"</code> non è ancora obbligatorio.</p>
 
 ---
 
-# 6. Contratto intuitivo
+## 6. Contratto intuitivo
 
-Per una funzione possiamo scrivere:
+<p align="justify">Per una funzione possiamo scrivere:</p>
 
 ```text
 nome: calcola_sconto
@@ -143,48 +199,50 @@ side effect: nessuno
 non stampa
 ```
 
-Non stiamo ancora introducendo design by contract formale.
+<p align="justify">Non stiamo ancora introducendo design by contract formale.</p>
 
-Stiamo rendendo esplicite le aspettative.
+<p align="justify">Stiamo rendendo esplicite le aspettative.</p>
 
 ---
 
-# 7. Pre-condizione
+## 7. Pre-condizione
 
-Una pre-condizione descrive ciò che deve essere vero prima di usare correttamente la funzione.
+<p align="justify">Una pre-condizione descrive ciò che deve essere vero prima di usare correttamente la funzione.</p>
 
-Esempio:
+<p align="justify">Esempio:</p>
 
 ```text
 percentuale deve essere tra 0 e 100
 ```
 
-La funzione può:
+<p align="justify">La funzione può:</p>
 
-- assumere che il chiamante rispetti il contratto in un esercizio controllato;
-- oppure validare se la specifica richiede quella responsabilità.
+<ul>
+  <li>assumere che il chiamante rispetti il contratto in un esercizio controllato;</li>
+  <li>oppure validare se la specifica richiede quella responsabilità.</li>
+</ul>
 
-La scelta deve essere esplicita.
+<p align="justify">La scelta deve essere esplicita.</p>
 
 ---
 
-# 8. Post-condizione
+## 8. Post-condizione
 
-Descrive ciò che deve essere vero sul risultato se la funzione termina correttamente.
+<p align="justify">Descrive ciò che deve essere vero sul risultato se la funzione termina correttamente.</p>
 
-Esempio:
+<p align="justify">Esempio:</p>
 
 ```text
 calcola_sconto restituisce un valore tra 0 e prezzo
 ```
 
-Queste frasi aiutano a progettare i test.
+<p align="justify">Queste frasi aiutano a progettare i test.</p>
 
 ---
 
-# 9. Call graph
+## 9. Call graph
 
-Per il programma di esempio:
+<p align="justify">Per il programma di esempio:</p>
 
 ```text
 main
@@ -194,15 +252,15 @@ main
 └─ calcola_totale
 ```
 
-Un call graph non mostra tutti i dettagli.
+<p align="justify">Un call graph non mostra tutti i dettagli.</p>
 
-Mostra la struttura delle collaborazioni.
+<p align="justify">Mostra la struttura delle collaborazioni.</p>
 
 ---
 
-# 10. Implementare una funzione alla volta
+## 10. Implementare una funzione alla volta
 
-Strategia:
+<p align="justify">Strategia:</p>
 
 ```text
 1. scegli funzione piccola
@@ -213,32 +271,32 @@ Strategia:
 6. integra
 ```
 
-Questo riduce il numero di cose sconosciute contemporaneamente.
+<p align="justify">Questo riduce il numero di cose sconosciute contemporaneamente.</p>
 
 ---
 
-# 11. Duplicazione significativa
+## 11. Duplicazione significativa
 
-Se lo stesso calcolo coerente compare in più punti:
+<p align="justify">Se lo stesso calcolo coerente compare in più punti:</p>
 
 ```python
 sconto = prezzo * percentuale / 100
 ```
 
-può avere senso estrarlo:
+<p align="justify">può avere senso estrarlo:</p>
 
 ```python
 def calcola_sconto(prezzo, percentuale):
     return prezzo * percentuale / 100
 ```
 
-Non estraiamo una funzione per ogni singola riga solo per aumentare il numero di funzioni.
+<p align="justify">Non estraiamo una funzione per ogni singola riga solo per aumentare il numero di funzioni.</p>
 
-Il nome deve rappresentare un concetto utile.
+<p align="justify">Il nome deve rappresentare un concetto utile.</p>
 
 ---
 
-# 12. Smell: funzione che fa tutto
+## 12. Smell: funzione che fa tutto
 
 ```python
 def gestisci_ordine():
@@ -251,25 +309,29 @@ def gestisci_ordine():
     ...
 ```
 
-Non è automaticamente sbagliata perché lunga.
+<p align="justify">Non è automaticamente sbagliata perché lunga.</p>
 
-Ma è difficile:
+<p align="justify">Ma è difficile:</p>
 
-- testare una sola responsabilità;
-- riusare un calcolo;
-- capire dove correggere un bug.
+<ul>
+  <li>testare una sola responsabilità;</li>
+  <li>riusare un calcolo;</li>
+  <li>capire dove correggere un bug.</li>
+</ul>
 
-Questo è il momento di cercare sotto-problemi.
+<p align="justify">Questo è il momento di cercare sotto-problemi.</p>
 
 ---
 
-# 13. Worked example top-down
+## 13. Worked example top-down
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Calcola il costo finale di una prenotazione con prezzo base, numero persone e sconto percentuale.
+<blockquote>
+<p align="justify">Calcola il costo finale di una prenotazione con prezzo base, numero persone e sconto percentuale.</p>
+</blockquote>
 
-Piano:
+<p align="justify">Piano:</p>
 
 ```text
 calcola_subtotale(prezzo, persone) → subtotale
@@ -277,7 +339,7 @@ calcola_sconto(subtotale, percentuale) → sconto
 calcola_finale(subtotale, sconto) → finale
 ```
 
-Prima dei corpi, casi di test:
+<p align="justify">Prima dei corpi, casi di test:</p>
 
 ```text
 100, 2, 10% → subtotale 200, sconto 20, finale 180
@@ -286,29 +348,29 @@ Prima dei corpi, casi di test:
 
 ---
 
-# 14. Error Clinic
+## 14. Error Clinic
 
-## A — funzione fa input e calcolo
+### A — funzione fa input e calcolo
 
-Una funzione che dovrebbe calcolare il totale legge direttamente `input()`.
+<p align="justify">Una funzione che dovrebbe calcolare il totale legge direttamente <code>input()</code>.</p>
 
-Domanda: possiamo testarla con dati scelti senza simulare input?
+<p align="justify">Domanda: possiamo testarla con dati scelti senza simulare input?</p>
 
-## B — funzione stampa e restituisce lo stesso risultato senza motivo
+### B — funzione stampa e restituisce lo stesso risultato senza motivo
 
-Qual è davvero il suo contratto?
+<p align="justify">Qual è davvero il suo contratto?</p>
 
-## C — dipendenza globale
+### C — dipendenza globale
 
-La funzione usa un valore esterno invece di riceverlo.
+<p align="justify">La funzione usa un valore esterno invece di riceverlo.</p>
 
-## D — duplicazione
+### D — duplicazione
 
-Lo stesso calcolo appare in tre rami con piccole varianti.
+<p align="justify">Lo stesso calcolo appare in tre rami con piccole varianti.</p>
 
-## E — funzione troppo generica
+### E — funzione troppo generica
 
-Nome come:
+<p align="justify">Nome come:</p>
 
 ```text
 fai_tutto
@@ -316,71 +378,77 @@ processa
 gestisci
 ```
 
-senza responsabilità comprensibile.
+<p align="justify">senza responsabilità comprensibile.</p>
 
 ---
 
-# 15. Activity candidate
+## 15. Activity candidate
 
-## A — Decomposition cards
+### A — Decomposition cards
 
-Dato un problema, raggruppa azioni in responsabilità candidate.
+<p align="justify">Dato un problema, raggruppa azioni in responsabilità candidate.</p>
 
-## B — Extract function
+### B — Extract function
 
-Estrai un calcolo coerente da un programma monolitico.
+<p align="justify">Estrai un calcolo coerente da un programma monolitico.</p>
 
-## C — Top-down design
+### C — Top-down design
 
-Consegna prima:
+<p align="justify">Consegna prima:</p>
 
-- funzioni;
-- parametri;
-- return;
-- call graph;
-- casi di test.
+<ul>
+  <li>funzioni;</li>
+  <li>parametri;</li>
+  <li>return;</li>
+  <li>call graph;</li>
+  <li>casi di test.</li>
+</ul>
 
-Solo dopo implementa.
+<p align="justify">Solo dopo implementa.</p>
 
-## D — Smell/debug
+### D — Smell/debug
 
-Riconosci dipendenze globali, duplicazioni e funzioni con responsabilità troppo ampia.
+<p align="justify">Riconosci dipendenze globali, duplicazioni e funzioni con responsabilità troppo ampia.</p>
 
 ---
 
-# 16. Git G1: `diff` come strumento di refactoring
+## 16. Git G1: `diff` come strumento di refactoring
 
-Dopo un refactoring:
+<p align="justify">Dopo un refactoring:</p>
 
 ```text
 git diff
 ```
 
-può aiutarci a rispondere:
+<p align="justify">può aiutarci a rispondere:</p>
 
-- quali righe ho spostato?;
-- quali responsabilità ho estratto?;
-- ho cambiato anche il comportamento senza volerlo?.
+<ul>
+  <li>quali righe ho spostato?;</li>
+  <li>quali responsabilità ho estratto?;</li>
+  <li>ho cambiato anche il comportamento senza volerlo?.</li>
+</ul>
 
-Git resta curriculum separato, ma qui diventa parte naturale del workflow.
-
----
-
-# 17. Checkpoint
-
-Sai:
-
-1. individuare 2–4 responsabilità in un problema;
-2. proporre firme prima dei corpi;
-3. separare I/O e logica;
-4. scrivere un contratto intuitivo;
-5. distinguere pre/post-condizione;
-6. disegnare un piccolo call graph;
-7. spiegare perché una funzione ha una responsabilità coerente.
+<p align="justify">Git resta curriculum separato, ma qui diventa parte naturale del workflow.</p>
 
 ---
 
-# 18. Sintesi
+## 17. Checkpoint
+
+<p align="justify">Sai:</p>
+
+<ol>
+  <li>individuare 2–4 responsabilità in un problema;</li>
+  <li>proporre firme prima dei corpi;</li>
+  <li>separare I/O e logica;</li>
+  <li>scrivere un contratto intuitivo;</li>
+  <li>distinguere pre/post-condizione;</li>
+  <li>disegnare un piccolo call graph;</li>
+  <li>spiegare perché una funzione ha una responsabilità coerente.</li>
+</ol>
+
+---
+
+## 18. Sintesi
 
 ```text
 specifica
@@ -392,17 +460,19 @@ specifica
 → integrazione
 ```
 
-Nel prossimo modulo useremo `assert` per rendere eseguibili molti dei casi di test e useremo i test per proteggere debugging e refactoring.
+<p align="justify">Nel prossimo modulo useremo <code>assert</code> per rendere eseguibili molti dei casi di test e useremo i test per proteggere debugging e refactoring.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale del corso, progettato con riferimento a:
+<p align="justify">Materiale originale del corso, progettato con riferimento a:</p>
 
-- documentazione Python 3.12 — funzioni e controllo del flusso;
-- *Think Python / Pensare in Python* — decomposizione, funzioni e debugging;
-- *Learning Python / Imparare Python* — reference sulle funzioni;
-- principi professionali di separazione delle responsabilità adattati al livello beginner.
+<ul>
+  <li>documentazione Python 3.12 — funzioni e controllo del flusso;</li>
+  <li><em>Think Python / Pensare in Python</em> — decomposizione, funzioni e debugging;</li>
+  <li><em>Learning Python / Imparare Python</em> — reference sulle funzioni;</li>
+  <li>principi professionali di separazione delle responsabilità adattati al livello beginner.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>

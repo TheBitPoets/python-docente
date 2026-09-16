@@ -1,40 +1,92 @@
 # M09 — `while`, stato, sentinelle e validazione ripetuta
 
-> **Stato:** draft / controlled authoring continuation  
-> **UDA:** PY2-04 — Iterazione e pattern algoritmici  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Il while ripete un lavoro finché lo stato soddisfa una condizione, anche quando il numero di ripetizioni non è noto.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Costruire condizioni e validare un valore con selezioni come in M06–M08.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+spiegare che <code>while</code> ripete un blocco finché una condizione resta vera;<br>identificare stato iniziale, condizione, corpo e aggiornamento;<br>eseguire il trace di un ciclo <code>while</code>; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Il ciclo algoritmico di M03 aveva già inizializzazione, test, corpo e aggiornamento. Riprendi <a href="08_ANNIDAMENTO_VALIDAZIONE_REFACTOR.md">M08 — Selezioni annidate, validazione e refactoring</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="10_FOR_RANGE_SCELTA_CICLO.md">M10 — <code>for</code>, <code>range</code> e scelta <code>for</code> vs <code>while</code></a>. Il for attraversa valori; range rende espliciti inizio, limite escluso e passo.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Traccia la validazione ripetuta e una sequenza con sentinella, includendo l&#x27;uscita al primo controllo.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft / controlled authoring continuation<br>
+<strong>UDA:</strong> PY2-04 — Iterazione e pattern algoritmici<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine di questo modulo dovresti saper:
+<p align="justify">Alla fine di questo modulo dovresti saper:</p>
 
-- spiegare che `while` ripete un blocco finché una condizione resta vera;
-- identificare stato iniziale, condizione, corpo e aggiornamento;
-- eseguire il trace di un ciclo `while`;
-- spiegare quale valore deve cambiare perché il ciclo possa terminare;
-- riconoscere un ciclo infinito e un aggiornamento mancante;
-- usare un contatore in un `while`;
-- ripetere una richiesta finché un valore rientra nel dominio valido;
-- usare una sentinella per indicare la fine di una sequenza di input;
-- distinguere condizione di continuazione e condizione di uscita;
-- progettare test con zero, una e più iterazioni quando il problema lo consente;
-- usare `while True`/`break` soltanto dopo aver compreso e motivato la condizione di terminazione.
+<ul>
+  <li>spiegare che <code>while</code> ripete un blocco finché una condizione resta vera;</li>
+  <li>identificare stato iniziale, condizione, corpo e aggiornamento;</li>
+  <li>eseguire il trace di un ciclo <code>while</code>;</li>
+  <li>spiegare quale valore deve cambiare perché il ciclo possa terminare;</li>
+  <li>riconoscere un ciclo infinito e un aggiornamento mancante;</li>
+  <li>usare un contatore in un <code>while</code>;</li>
+  <li>ripetere una richiesta finché un valore rientra nel dominio valido;</li>
+  <li>usare una sentinella per indicare la fine di una sequenza di input;</li>
+  <li>distinguere condizione di continuazione e condizione di uscita;</li>
+  <li>progettare test con zero, una e più iterazioni quando il problema lo consente;</li>
+  <li>usare <code>while True</code>/<code>break</code> soltanto dopo aver compreso e motivato la condizione di terminazione.</li>
+</ul>
 
 ## Prerequisiti
 
-Da PY2-03 dovresti già saper:
+<p align="justify">Da PY2-03 dovresti già saper:</p>
 
-- costruire condizioni con confronti, `and`, `or`, `not`;
-- validare un valore con `if/else`;
-- fare path trace;
-- distinguere dato fuori dominio da errore di conversione;
-- progettare casi di test sui confini.
+<ul>
+  <li>costruire condizioni con confronti, <code>and</code>, <code>or</code>, <code>not</code>;</li>
+  <li>validare un valore con <code>if/else</code>;</li>
+  <li>fare path trace;</li>
+  <li>distinguere dato fuori dominio da errore di conversione;</li>
+  <li>progettare casi di test sui confini.</li>
+</ul>
 
 ---
 
-# 1. Problema iniziale: chiedi di nuovo finché il voto è valido
+## 1. Problema iniziale: chiedi di nuovo finché il voto è valido
 
-In M08 sapevamo fare questo:
+<p align="justify">In M08 sapevamo fare questo:</p>
 
 ```python
 voto = int(input())
@@ -45,19 +97,21 @@ else:
     print("dato valido")
 ```
 
-Ma la specifica ora cambia:
+<p align="justify">Ma la specifica ora cambia:</p>
 
-> Continua a chiedere un voto finché l'utente inserisce un intero tra 0 e 10.
+<blockquote>
+<p align="justify">Continua a chiedere un voto finché l'utente inserisce un intero tra 0 e 10.</p>
+</blockquote>
 
-Non basta più una decisione eseguita una sola volta.
+<p align="justify">Non basta più una decisione eseguita una sola volta.</p>
 
-Serve una **ripetizione controllata da una condizione**.
+<p align="justify">Serve una <strong>ripetizione controllata da una condizione</strong>.</p>
 
 ---
 
-# 2. Il modello del `while`
+## 2. Il modello del `while`
 
-Schema:
+<p align="justify">Schema:</p>
 
 ```text
 stato iniziale
@@ -72,18 +126,18 @@ aggiornamento dello stato
      └───────────────↺
 ```
 
-In Python:
+<p align="justify">In Python:</p>
 
 ```python
 while condizione:
     corpo
 ```
 
-Il corpo viene ripetuto finché la condizione continua a produrre `True`.
+<p align="justify">Il corpo viene ripetuto finché la condizione continua a produrre <code>True</code>.</p>
 
 ---
 
-# 3. Primo ciclo con contatore
+## 3. Primo ciclo con contatore
 
 ```python
 i = 0
@@ -93,7 +147,7 @@ while i < 3:
     i = i + 1
 ```
 
-Output:
+<p align="justify">Output:</p>
 
 ```text
 0
@@ -101,7 +155,7 @@ Output:
 2
 ```
 
-Quattro parti da riconoscere:
+<p align="justify">Quattro parti da riconoscere:</p>
 
 ```text
 inizializzazione → i = 0
@@ -112,9 +166,9 @@ aggiornamento    → i = i + 1
 
 ---
 
-# 4. Trace riga per riga
+## 4. Trace riga per riga
 
-Per:
+<p align="justify">Per:</p>
 
 ```python
 i = 0
@@ -123,20 +177,55 @@ while i < 3:
     i = i + 1
 ```
 
-| controllo | `i` prima | `i < 3` | output | `i` dopo aggiornamento |
-|---:|---:|---|---:|---:|
-| 1 | 0 | True | 0 | 1 |
-| 2 | 1 | True | 1 | 2 |
-| 3 | 2 | True | 2 | 3 |
-| 4 | 3 | False | — | — |
+<table align="center">
+<thead>
+<tr>
+<th>controllo</th>
+<th><code>i</code> prima</th>
+<th><code>i &lt; 3</code></th>
+<th>output</th>
+<th><code>i</code> dopo aggiornamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>True</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>True</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>True</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>False</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 
-L'ultimo controllo esiste anche se il corpo non viene più eseguito.
+<p align="justify">L'ultimo controllo esiste anche se il corpo non viene più eseguito.</p>
 
 ---
 
-# 5. Domanda obbligatoria: “perché questo ciclo può finire?”
+## 5. Domanda obbligatoria: “perché questo ciclo può finire?”
 
-Nel ciclo precedente:
+<p align="justify">Nel ciclo precedente:</p>
 
 ```text
 i parte da 0
@@ -144,20 +233,22 @@ i parte da 0
 → prima o poi i < 3 diventa False
 ```
 
-Ogni volta che scrivi un `while`, devi saper rispondere:
+<p align="justify">Ogni volta che scrivi un <code>while</code>, devi saper rispondere:</p>
 
-1. quale parte della condizione dipende dallo stato?
-2. quale istruzione cambia quello stato?
-3. esiste un percorso in cui l'aggiornamento non avviene?
-4. può la condizione diventare falsa?
+<ol>
+  <li>quale parte della condizione dipende dallo stato?</li>
+  <li>quale istruzione cambia quello stato?</li>
+  <li>esiste un percorso in cui l'aggiornamento non avviene?</li>
+  <li>può la condizione diventare falsa?</li>
+</ol>
 
-Questa è una regola di progettazione, non soltanto di debugging.
+<p align="justify">Questa è una regola di progettazione, non soltanto di debugging.</p>
 
 ---
 
-# 6. Ciclo infinito: aggiornamento mancante
+## 6. Ciclo infinito: aggiornamento mancante
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 i = 0
@@ -166,21 +257,21 @@ while i < 3:
     print(i)
 ```
 
-`i` resta sempre `0`.
+<p align="justify"><code>i</code> resta sempre <code>0</code>.</p>
 
-Quindi:
+<p align="justify">Quindi:</p>
 
 ```text
 0 < 3 → True
 ```
 
-continua a essere vero.
+<p align="justify">continua a essere vero.</p>
 
-Il problema non è “Python si è bloccato”: il programma non contiene alcun meccanismo che renda falsa la condizione.
+<p align="justify">Il problema non è “Python si è bloccato”: il programma non contiene alcun meccanismo che renda falsa la condizione.</p>
 
 ---
 
-# 7. Zero iterazioni è un comportamento valido
+## 7. Zero iterazioni è un comportamento valido
 
 ```python
 i = 5
@@ -189,11 +280,11 @@ while i < 3:
     print(i)
 ```
 
-La condizione iniziale è subito `False`.
+<p align="justify">La condizione iniziale è subito <code>False</code>.</p>
 
-Il corpo viene eseguito **zero volte**.
+<p align="justify">Il corpo viene eseguito <strong>zero volte</strong>.</p>
 
-Per questo i test di un `while` devono considerare, quando la specifica lo permette:
+<p align="justify">Per questo i test di un <code>while</code> devono considerare, quando la specifica lo permette:</p>
 
 ```text
 zero iterazioni
@@ -203,11 +294,13 @@ più iterazioni
 
 ---
 
-# 8. Validazione ripetuta
+## 8. Validazione ripetuta
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Leggi un voto finché è compreso tra 0 e 10.
+<blockquote>
+<p align="justify">Leggi un voto finché è compreso tra 0 e 10.</p>
+</blockquote>
 
 ```python
 voto = int(input())
@@ -218,7 +311,7 @@ while voto < 0 or voto > 10:
 print(voto)
 ```
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 leggi
@@ -227,13 +320,13 @@ leggi
     no → continua dopo il ciclo
 ```
 
-Il nuovo input è l'aggiornamento dello stato.
+<p align="justify">Il nuovo input è l'aggiornamento dello stato.</p>
 
 ---
 
-# 9. Trace della validazione
+## 9. Trace della validazione
 
-Input forniti, uno dopo l'altro:
+<p align="justify">Input forniti, uno dopo l'altro:</p>
 
 ```text
 12
@@ -241,7 +334,7 @@ Input forniti, uno dopo l'altro:
 7
 ```
 
-Trace:
+<p align="justify">Trace:</p>
 
 ```text
 voto = 12
@@ -254,42 +347,46 @@ voto = 7
 7 fuori 0..10 → False → fine ciclo
 ```
 
-Output finale:
+<p align="justify">Output finale:</p>
 
 ```text
 7
 ```
 
-Il numero di iterazioni non era noto in anticipo.
+<p align="justify">Il numero di iterazioni non era noto in anticipo.</p>
 
 ---
 
-# 10. Condizione di continuazione vs condizione di uscita
+## 10. Condizione di continuazione vs condizione di uscita
 
-Nel codice:
+<p align="justify">Nel codice:</p>
 
 ```python
 while voto < 0 or voto > 10:
     voto = int(input())
 ```
 
-la condizione dice:
+<p align="justify">la condizione dice:</p>
 
-> **continua** mentre il voto è invalido.
+<blockquote>
+<p align="justify"><strong>continua</strong> mentre il voto è invalido.</p>
+</blockquote>
 
-La condizione di uscita equivalente, in linguaggio naturale, è:
+<p align="justify">La condizione di uscita equivalente, in linguaggio naturale, è:</p>
 
-> esci quando `0 <= voto <= 10`.
+<blockquote>
+<p align="justify">esci quando <code>0 &lt;= voto &lt;= 10</code>.</p>
+</blockquote>
 
-Non confondere le due frasi.
+<p align="justify">Non confondere le due frasi.</p>
 
-Se la specifica dice “ripeti finché non è valido”, prima scrivi chiaramente quale condizione mantiene attivo il ciclo.
+<p align="justify">Se la specifica dice “ripeti finché non è valido”, prima scrivi chiaramente quale condizione mantiene attivo il ciclo.</p>
 
 ---
 
-# 11. Variante con booleano nominato
+## 11. Variante con booleano nominato
 
-Possiamo scrivere:
+<p align="justify">Possiamo scrivere:</p>
 
 ```python
 voto = int(input())
@@ -300,27 +397,31 @@ while voto_non_valido:
     voto_non_valido = voto < 0 or voto > 10
 ```
 
-È corretto, ma introduce un obbligo in più:
+<p align="justify">È corretto, ma introduce un obbligo in più:</p>
 
-> aggiornare anche `voto_non_valido` ogni volta che cambia `voto`.
+<blockquote>
+<p align="justify">aggiornare anche <code>voto_non_valido</code> ogni volta che cambia <code>voto</code>.</p>
+</blockquote>
 
-Nel problema semplice la condizione diretta è più difficile da desincronizzare:
+<p align="justify">Nel problema semplice la condizione diretta è più difficile da desincronizzare:</p>
 
 ```python
 while voto < 0 or voto > 10:
 ```
 
-Un nome booleano è utile quando aggiunge significato senza creare stato duplicato inutile.
+<p align="justify">Un nome booleano è utile quando aggiunge significato senza creare stato duplicato inutile.</p>
 
 ---
 
-# 12. Sentinella: un valore che segnala “fine”
+## 12. Sentinella: un valore che segnala “fine”
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Leggi numeri e stampali. Il valore `-1` indica che l'inserimento è terminato e non deve essere elaborato.
+<blockquote>
+<p align="justify">Leggi numeri e stampali. Il valore <code>-1</code> indica che l'inserimento è terminato e non deve essere elaborato.</p>
+</blockquote>
 
-Schema:
+<p align="justify">Schema:</p>
 
 ```text
 leggi valore
@@ -329,7 +430,7 @@ finché valore != -1:
     leggi nuovo valore
 ```
 
-Python:
+<p align="justify">Python:</p>
 
 ```python
 numero = int(input())
@@ -339,29 +440,29 @@ while numero != -1:
     numero = int(input())
 ```
 
-`-1` è la **sentinella**.
+<p align="justify"><code>-1</code> è la <strong>sentinella</strong>.</p>
 
 ---
 
-# 13. La sentinella deve essere fuori dai dati normali
+## 13. La sentinella deve essere fuori dai dati normali
 
-Se `-1` è un valore valido del dominio, usarlo come segnale di fine crea ambiguità.
+<p align="justify">Se <code>-1</code> è un valore valido del dominio, usarlo come segnale di fine crea ambiguità.</p>
 
-Prima di scegliere una sentinella chiediti:
+<p align="justify">Prima di scegliere una sentinella chiediti:</p>
 
 ```text
 può comparire come dato normale?
 ```
 
-In esercizi scolastici la specifica dichiarerà chiaramente il valore sentinella.
+<p align="justify">In esercizi scolastici la specifica dichiarerà chiaramente il valore sentinella.</p>
 
-In applicazioni reali esistono molte altre forme di terminazione; qui impariamo il pattern.
+<p align="justify">In applicazioni reali esistono molte altre forme di terminazione; qui impariamo il pattern.</p>
 
 ---
 
-# 14. Trace della sentinella
+## 14. Trace della sentinella
 
-Input:
+<p align="justify">Input:</p>
 
 ```text
 4
@@ -369,19 +470,44 @@ Input:
 -1
 ```
 
-| valore letto | `numero != -1` | elaborato? | nuova lettura? |
-|---:|---|---|---|
-| 4 | True | sì | sì |
-| 8 | True | sì | sì |
-| -1 | False | no | no |
+<table align="center">
+<thead>
+<tr>
+<th>valore letto</th>
+<th><code>numero != -1</code></th>
+<th>elaborato?</th>
+<th>nuova lettura?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>True</td>
+<td>sì</td>
+<td>sì</td>
+</tr>
+<tr>
+<td>8</td>
+<td>True</td>
+<td>sì</td>
+<td>sì</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>False</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
 
-Il valore di fine controlla il ciclo ma non viene elaborato.
+<p align="justify">Il valore di fine controlla il ciclo ma non viene elaborato.</p>
 
 ---
 
-# 15. Error Clinic: aggiornamento solo in un ramo
+## 15. Error Clinic: aggiornamento solo in un ramo
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 numero = int(input())
@@ -392,7 +518,7 @@ while numero != -1:
         numero = int(input())
 ```
 
-Che succede se `numero` vale `0`?
+<p align="justify">Che succede se <code>numero</code> vale <code>0</code>?</p>
 
 ```text
 numero != -1 → True
@@ -401,28 +527,30 @@ nuova lettura → non avviene
 numero resta 0
 ```
 
-Il ciclo diventa infinito.
+<p align="justify">Il ciclo diventa infinito.</p>
 
-L'aggiornamento deve avvenire su tutti i percorsi che devono far progredire il ciclo.
+<p align="justify">L'aggiornamento deve avvenire su tutti i percorsi che devono far progredire il ciclo.</p>
 
 ---
 
-# 16. Error Clinic: condizione invertita
+## 16. Error Clinic: condizione invertita
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> ripeti mentre il voto è fuori 0..10.
+<blockquote>
+<p align="justify">ripeti mentre il voto è fuori 0..10.</p>
+</blockquote>
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 while 0 <= voto <= 10:
     voto = int(input())
 ```
 
-Questa condizione ripete **quando il voto è valido**.
+<p align="justify">Questa condizione ripete <strong>quando il voto è valido</strong>.</p>
 
-Prima del codice verbalizza sempre:
+<p align="justify">Prima del codice verbalizza sempre:</p>
 
 ```text
 quando devo continuare?
@@ -430,13 +558,15 @@ quando devo continuare?
 
 ---
 
-# 17. Error Clinic: off-by-one con contatore
+## 17. Error Clinic: off-by-one con contatore
 
-Obiettivo:
+<p align="justify">Obiettivo:</p>
 
-> stampa `0`, `1`, `2`.
+<blockquote>
+<p align="justify">stampa <code>0</code>, <code>1</code>, <code>2</code>.</p>
+</blockquote>
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 i = 0
@@ -445,15 +575,15 @@ while i <= 3:
     i += 1
 ```
 
-Produce anche `3`.
+<p align="justify">Produce anche <code>3</code>.</p>
 
-I test del primo/ultimo valore sono fondamentali anche nei cicli.
+<p align="justify">I test del primo/ultimo valore sono fondamentali anche nei cicli.</p>
 
 ---
 
-# 18. `while True` e `break`: non come scorciatoia iniziale
+## 18. `while True` e `break`: non come scorciatoia iniziale
 
-Python permette:
+<p align="justify">Python permette:</p>
 
 ```python
 while True:
@@ -462,11 +592,11 @@ while True:
         break
 ```
 
-Questa forma può essere utile quando la condizione di uscita emerge naturalmente **dentro** il corpo.
+<p align="justify">Questa forma può essere utile quando la condizione di uscita emerge naturalmente <strong>dentro</strong> il corpo.</p>
 
-Ma non è il nostro modello introduttivo primario.
+<p align="justify">Ma non è il nostro modello introduttivo primario.</p>
 
-Prima devi saper progettare:
+<p align="justify">Prima devi saper progettare:</p>
 
 ```text
 stato
@@ -475,17 +605,19 @@ aggiornamento
 terminazione
 ```
 
-Regola:
+<p align="justify">Regola:</p>
 
-> `while True` non serve a evitare di pensare alla condizione di fine.
+<blockquote>
+<p align="justify"><code>while True</code> non serve a evitare di pensare alla condizione di fine.</p>
+</blockquote>
 
-Se usi `break`, devi indicare con precisione quale percorso lo raggiunge e perché.
+<p align="justify">Se usi <code>break</code>, devi indicare con precisione quale percorso lo raggiunge e perché.</p>
 
 ---
 
-# 19. Confronto di due validazioni
+## 19. Confronto di due validazioni
 
-Versione A:
+<p align="justify">Versione A:</p>
 
 ```python
 voto = int(input())
@@ -493,7 +625,7 @@ while voto < 0 or voto > 10:
     voto = int(input())
 ```
 
-Versione B:
+<p align="justify">Versione B:</p>
 
 ```python
 while True:
@@ -502,19 +634,19 @@ while True:
         break
 ```
 
-Entrambe possono essere corrette.
+<p align="justify">Entrambe possono essere corrette.</p>
 
-Per il primo apprendimento preferiamo A perché rende la condizione di continuazione visibile nella testata del ciclo.
+<p align="justify">Per il primo apprendimento preferiamo A perché rende la condizione di continuazione visibile nella testata del ciclo.</p>
 
-B diventa utile quando il flusso interno rende più chiara l'uscita.
+<p align="justify">B diventa utile quando il flusso interno rende più chiara l'uscita.</p>
 
-La scelta va motivata, non trasformata in una regola assoluta.
+<p align="justify">La scelta va motivata, non trasformata in una regola assoluta.</p>
 
 ---
 
-# 20. Microscope: individua le quattro parti
+## 20. Microscope: individua le quattro parti
 
-Per ciascun ciclo identifica:
+<p align="justify">Per ciascun ciclo identifica:</p>
 
 ```text
 stato iniziale
@@ -523,7 +655,7 @@ corpo
 aggiornamento
 ```
 
-### A
+#### A
 
 ```python
 i = 1
@@ -532,7 +664,7 @@ while i <= 3:
     i += 1
 ```
 
-### B
+#### B
 
 ```python
 parola = input()
@@ -541,23 +673,25 @@ while parola != "fine":
     parola = input()
 ```
 
-Poi rispondi:
+<p align="justify">Poi rispondi:</p>
 
-> quale valore può rendere falsa la condizione?
+<blockquote>
+<p align="justify">quale valore può rendere falsa la condizione?</p>
+</blockquote>
 
 ---
 
-# 21. Romeo: ripetizione controllata nel simulatore
+## 21. Romeo: ripetizione controllata nel simulatore
 
-Romeo può rendere visibile un ciclo, ma soltanto dopo il modello generale.
+<p align="justify">Romeo può rendere visibile un ciclo, ma soltanto dopo il modello generale.</p>
 
-Il repo Romeo pinned contiene attività su `while` e simulazione deterministica, ad esempio:
+<p align="justify">Il repo Romeo pinned contiene attività su <code>while</code> e simulazione deterministica, ad esempio:</p>
 
 ```text
 romeo-y1-u16-ciclo-while
 ```
 
-Uso didattico possibile:
+<p align="justify">Uso didattico possibile:</p>
 
 ```text
 contatore/stato
@@ -566,46 +700,48 @@ contatore/stato
 → stop
 ```
 
-Il simulatore deve essere certificato nel Classroom Environment prima di diventare delivery obbligatoria. Hardware fisico non è richiesto.
+<p align="justify">Il simulatore deve essere certificato nel Classroom Environment prima di diventare delivery obbligatoria. Hardware fisico non è richiesto.</p>
 
 ---
 
-# 22. Activity planning — M09
+## 22. Activity planning — M09
 
-Candidati, senza materializzare ancora una nuova Activity P1:
+<p align="justify">Candidati, senza materializzare ancora una nuova Activity P1:</p>
 
-### A — Trace
+#### A — Trace
 
-Compilare tabella iterazione/stato/condizione/output.
+<p align="justify">Compilare tabella iterazione/stato/condizione/output.</p>
 
-### B — Controlled Change
+#### B — Controlled Change
 
-Cambiare limiti di una validazione e aggiornare i test.
+<p align="justify">Cambiare limiti di una validazione e aggiornare i test.</p>
 
-### C — Implement
+#### C — Implement
 
-Richiedere un valore finché appartiene a un intervallo valido.
+<p align="justify">Richiedere un valore finché appartiene a un intervallo valido.</p>
 
-### D — Debug
+#### D — Debug
 
-Correggere:
+<p align="justify">Correggere:</p>
 
-- aggiornamento mancante;
-- aggiornamento in un solo ramo;
-- condizione invertita;
-- inizializzazione errata;
-- off-by-one;
-- sentinella elaborata per errore.
+<ul>
+  <li>aggiornamento mancante;</li>
+  <li>aggiornamento in un solo ramo;</li>
+  <li>condizione invertita;</li>
+  <li>inizializzazione errata;</li>
+  <li>off-by-one;</li>
+  <li>sentinella elaborata per errore.</li>
+</ul>
 
-M04 resta il canarino P1 fino alla certificazione `python-docente#7`.
+<p align="justify">M04 resta il canarino P1 fino alla certificazione <code>python-docente#7</code>.</p>
 
 ---
 
-# 23. Esercizi brevi
+## 23. Esercizi brevi
 
-## A — Trace contatore
+### A — Trace contatore
 
-Prevedi l'output:
+<p align="justify">Prevedi l'output:</p>
 
 ```python
 i = 2
@@ -614,9 +750,9 @@ while i < 6:
     i += 2
 ```
 
-## B — Validazione
+### B — Validazione
 
-Leggi un intero finché è compreso tra `1` e `5` inclusi. Progetta una sequenza di input che provochi:
+<p align="justify">Leggi un intero finché è compreso tra <code>1</code> e <code>5</code> inclusi. Progetta una sequenza di input che provochi:</p>
 
 ```text
 zero ripetizioni
@@ -624,13 +760,13 @@ una ripetizione
 tre ripetizioni
 ```
 
-## C — Sentinella
+### C — Sentinella
 
-Leggi parole finché non compare `stop`; stampa ogni parola normale, ma non la sentinella.
+<p align="justify">Leggi parole finché non compare <code>stop</code>; stampa ogni parola normale, ma non la sentinella.</p>
 
-## D — Debug terminazione
+### D — Debug terminazione
 
-Trova un input che rende infinito il programma:
+<p align="justify">Trova un input che rende infinito il programma:</p>
 
 ```python
 x = int(input())
@@ -639,30 +775,32 @@ while x != 0:
         x -= 1
 ```
 
-Spiega perché.
+<p align="justify">Spiega perché.</p>
 
 ---
 
-# 24. Checkpoint M09
+## 24. Checkpoint M09
 
-Senza eseguire Python, spiega:
+<p align="justify">Senza eseguire Python, spiega:</p>
 
-1. Che cosa significa “`while` ripete finché la condizione è vera”?
-2. Quali sono le quattro parti del nostro modello di ciclo?
-3. Perché `i = 0; while i < 3:` richiede un aggiornamento di `i`?
-4. Che cosa significa zero iterazioni?
-5. Qual è l'aggiornamento nella validazione ripetuta del voto?
-6. Che differenza c'è tra condizione di continuazione e condizione di uscita?
-7. Che cos'è una sentinella?
-8. Perché una sentinella deve essere distinguibile dai dati normali?
-9. Perché un aggiornamento presente solo in un ramo può creare un ciclo infinito?
-10. Perché `while True` non deve essere una scorciatoia per evitare di progettare la terminazione?
+<ol>
+  <li>Che cosa significa “<code>while</code> ripete finché la condizione è vera”?</li>
+  <li>Quali sono le quattro parti del nostro modello di ciclo?</li>
+  <li>Perché <code>i = 0; while i &lt; 3:</code> richiede un aggiornamento di <code>i</code>?</li>
+  <li>Che cosa significa zero iterazioni?</li>
+  <li>Qual è l'aggiornamento nella validazione ripetuta del voto?</li>
+  <li>Che differenza c'è tra condizione di continuazione e condizione di uscita?</li>
+  <li>Che cos'è una sentinella?</li>
+  <li>Perché una sentinella deve essere distinguibile dai dati normali?</li>
+  <li>Perché un aggiornamento presente solo in un ramo può creare un ciclo infinito?</li>
+  <li>Perché <code>while True</code> non deve essere una scorciatoia per evitare di progettare la terminazione?</li>
+</ol>
 
 ---
 
-# 25. Sintesi
+## 25. Sintesi
 
-Porta con te questi modelli:
+<p align="justify">Porta con te questi modelli:</p>
 
 ```text
 while → ripeti finché una condizione resta vera
@@ -688,24 +826,28 @@ validazione ripetuta → controlla / rileggi / ricontrolla
 sentinella → valore che segnala la fine
 ```
 
-Nel prossimo modulo confronteremo `while` con `for`: quando sappiamo già quali valori/iterazioni attraversare, `for` spesso comunica meglio l'intenzione e riduce gli errori di gestione manuale del contatore.
+<p align="justify">Nel prossimo modulo confronteremo <code>while</code> con <code>for</code>: quando sappiamo già quali valori/iterazioni attraversare, <code>for</code> spesso comunica meglio l'intenzione e riduce gli errori di gestione manuale del contatore.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Questa lesson è materiale originale del corso. Per progettazione/verifica:
+<p align="justify">Questa lesson è materiale originale del corso. Per progettazione/verifica:</p>
 
-- documentazione Python 3.12 — `while`, `break`, control flow;
-- Allen Downey, *Think Python / Pensare in Python* — iteration, reassignment, debugging;
-- Mark Lutz, *Learning Python / Imparare Python* — loops and control-flow semantics;
-- Romeo pinned `45e5f7e131802fccc89358a23a25dbed1884bbfa` — `y1-u16-ciclo-while` come riferimento applicativo.
+<ul>
+  <li>documentazione Python 3.12 — <code>while</code>, <code>break</code>, control flow;</li>
+  <li>Allen Downey, <em>Think Python / Pensare in Python</em> — iteration, reassignment, debugging;</li>
+  <li>Mark Lutz, <em>Learning Python / Imparare Python</em> — loops and control-flow semantics;</li>
+  <li>Romeo pinned <code>45e5f7e131802fccc89358a23a25dbed1884bbfa</code> — <code>y1-u16-ciclo-while</code> come riferimento applicativo.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-## Collegamenti di progettazione
+### Collegamenti di progettazione
 
-- `tracks/secondo/PY2_04_SPEC.md`;
-- `tracks/secondo/ROMEO_MAPPING.md`;
-- `doc/CURRICULUM_FREEZE_2026_2027.md`;
-- `doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`.
+<ul>
+  <li><code>tracks/secondo/PY2_04_SPEC.md</code>;</li>
+  <li><code>tracks/secondo/ROMEO_MAPPING.md</code>;</li>
+  <li><code>doc/CURRICULUM_FREEZE_2026_2027.md</code>;</li>
+  <li><code>doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md</code>.</li>
+</ul>

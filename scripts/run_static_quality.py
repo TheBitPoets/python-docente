@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 CHECKS = [
+    ("course presentation and visual system", [sys.executable, "tests/course_presentation.py"]),
     ("authoring source synchronization", [sys.executable, "scripts/sync_authoring_catalog.py"]),
     ("source-audit manifest synchronization", [sys.executable, "scripts/sync_source_audit_manifest.py"]),
     ("authoring catalog", [sys.executable, "tests/course_authoring_catalog.py"]),

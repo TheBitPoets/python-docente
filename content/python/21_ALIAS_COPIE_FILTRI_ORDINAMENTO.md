@@ -1,27 +1,77 @@
 # M21 — Alias, copie, filtri e ordinamento delle liste
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-07 — Liste, tuple e dati tabellari  
-> **Baseline:** Python 3.12-compatible
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Alias e copie spiegano gli effetti delle mutazioni; filtri e ordinamenti vanno scelti considerando anche l&#x27;input.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Creare e modificare liste e distinguere mutazione e risultato da M20.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+spiegare che due nomi possono riferirsi alla stessa lista;<br>prevedere gli effetti di una mutazione attraverso un alias;<br>creare una copia superficiale con <code>.copy()</code> o slicing; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Il nome riferisce un oggetto: assegnare un altro nome non costruisce automaticamente una nuova lista. Riprendi <a href="20_LISTE_MUTABILITA_METODI_ITERAZIONE.md">M20 — Liste: mutabilità, metodi essenziali e iterazione</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="22_TUPLE_UNPACKING_MATRICI.md">M22 — Tuple, unpacking, liste annidate e matrici</a>. Tuple e liste annidate rappresentano record, coordinate e dati tabellari con regole diverse di mutabilità.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Confronta b = a e b = a.copy(), modifica un elemento e controlla entrambi i nomi.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-07 — Liste, tuple e dati tabellari<br>
+<strong>Baseline:</strong> Python 3.12-compatible</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- spiegare che due nomi possono riferirsi alla stessa lista;
-- prevedere gli effetti di una mutazione attraverso un alias;
-- creare una copia superficiale con `.copy()` o slicing;
-- distinguere alias e copia;
-- capire che una copia superficiale non duplica ricorsivamente gli oggetti annidati;
-- evitare mutazioni strutturali ingenue durante l'iterazione;
-- filtrare/trasformare una lista costruendone una nuova con loop esplicito;
-- cercare, contare e aggregare elementi riusando i pattern già noti;
-- distinguere `sort()` e `sorted()`;
-- verificare sia il risultato sia l'eventuale mutazione dell'input.
+<ul>
+  <li>spiegare che due nomi possono riferirsi alla stessa lista;</li>
+  <li>prevedere gli effetti di una mutazione attraverso un alias;</li>
+  <li>creare una copia superficiale con <code>.copy()</code> o slicing;</li>
+  <li>distinguere alias e copia;</li>
+  <li>capire che una copia superficiale non duplica ricorsivamente gli oggetti annidati;</li>
+  <li>evitare mutazioni strutturali ingenue durante l'iterazione;</li>
+  <li>filtrare/trasformare una lista costruendone una nuova con loop esplicito;</li>
+  <li>cercare, contare e aggregare elementi riusando i pattern già noti;</li>
+  <li>distinguere <code>sort()</code> e <code>sorted()</code>;</li>
+  <li>verificare sia il risultato sia l'eventuale mutazione dell'input.</li>
+</ul>
 
 ---
 
-# 1. Due nomi, un solo oggetto
+## 1. Due nomi, un solo oggetto
 
 ```python
 a = [10, 20]
@@ -29,13 +79,13 @@ b = a
 b.append(30)
 ```
 
-Che cosa contiene `a`?
+<p align="justify">Che cosa contiene <code>a</code>?</p>
 
 ```text
 [10, 20, 30]
 ```
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 a ─┐
@@ -43,46 +93,46 @@ a ─┐
 b ─┘
 ```
 
-`b = a` non crea una nuova lista.
+<p align="justify"><code>b = a</code> non crea una nuova lista.</p>
 
 ---
 
-# 2. Alias
+## 2. Alias
 
-Un alias è un altro nome per lo stesso oggetto.
+<p align="justify">Un alias è un altro nome per lo stesso oggetto.</p>
 
-Se l'oggetto è mutabile, una mutazione osservata tramite un nome è visibile anche tramite gli altri alias.
+<p align="justify">Se l'oggetto è mutabile, una mutazione osservata tramite un nome è visibile anche tramite gli altri alias.</p>
 
-Questo modello sarà importante anche per parametri mutabili e OOP.
+<p align="justify">Questo modello sarà importante anche per parametri mutabili e OOP.</p>
 
 ---
 
-# 3. Copia superficiale
+## 3. Copia superficiale
 
 ```python
 a = [10, 20]
 b = a.copy()
 ```
 
-oppure:
+<p align="justify">oppure:</p>
 
 ```python
 b = a[:]
 ```
 
-Ora `a` e `b` sono liste esterne diverse.
+<p align="justify">Ora <code>a</code> e <code>b</code> sono liste esterne diverse.</p>
 
-Per liste piatte di valori immutabili:
+<p align="justify">Per liste piatte di valori immutabili:</p>
 
 ```python
 b.append(30)
 ```
 
-non modifica `a`.
+<p align="justify">non modifica <code>a</code>.</p>
 
 ---
 
-# 4. Copia non significa clonazione infinita
+## 4. Copia non significa clonazione infinita
 
 ```python
 a = [[1], [2]]
@@ -90,28 +140,30 @@ b = a.copy()
 b[0].append(9)
 ```
 
-Le liste esterne sono diverse, ma gli oggetti interni sono ancora condivisi.
+<p align="justify">Le liste esterne sono diverse, ma gli oggetti interni sono ancora condivisi.</p>
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 a ─> [ ─────> [1, 9], ─────> [2] ]
 b ─> [ ─────> [1, 9], ─────> [2] ]
 ```
 
-Per il core basta capire:
+<p align="justify">Per il core basta capire:</p>
 
-> una copia superficiale copia il contenitore esterno, non ricrea ricorsivamente tutto ciò che contiene.
+<blockquote>
+<p align="justify">una copia superficiale copia il contenitore esterno, non ricrea ricorsivamente tutto ciò che contiene.</p>
+</blockquote>
 
-`deepcopy` non è prerequisito.
+<p align="justify"><code>deepcopy</code> non è prerequisito.</p>
 
 ---
 
-# 5. Testare alias e copia
+## 5. Testare alias e copia
 
-Non testare soltanto il risultato finale.
+<p align="justify">Non testare soltanto il risultato finale.</p>
 
-Se una funzione promette di non mutare l'input:
+<p align="justify">Se una funzione promette di non mutare l'input:</p>
 
 ```python
 originale = [3, -1, 5]
@@ -121,13 +173,13 @@ assert risultato == [3, 5]
 assert originale == [3, -1, 5]
 ```
 
-Il secondo assert verifica il contratto di non-mutazione.
+<p align="justify">Il secondo assert verifica il contratto di non-mutazione.</p>
 
 ---
 
-# 6. Mutare la lista mentre la percorri
+## 6. Mutare la lista mentre la percorri
 
-Questo pattern è rischioso:
+<p align="justify">Questo pattern è rischioso:</p>
 
 ```python
 for valore in numeri:
@@ -135,11 +187,11 @@ for valore in numeri:
         numeri.remove(valore)
 ```
 
-Mentre il `for` avanza, la struttura cambia e alcuni elementi possono essere saltati.
+<p align="justify">Mentre il <code>for</code> avanza, la struttura cambia e alcuni elementi possono essere saltati.</p>
 
 ---
 
-# 7. Strategia sicura: nuova lista
+## 7. Strategia sicura: nuova lista
 
 ```python
 positivi = []
@@ -149,18 +201,20 @@ for valore in numeri:
         positivi.append(valore)
 ```
 
-Vantaggi beginner:
+<p align="justify">Vantaggi beginner:</p>
 
-- input resta leggibile;
-- output è separato;
-- il contratto è chiaro;
-- il test può verificare che l'input non cambi.
+<ul>
+  <li>input resta leggibile;</li>
+  <li>output è separato;</li>
+  <li>il contratto è chiaro;</li>
+  <li>il test può verificare che l'input non cambi.</li>
+</ul>
 
 ---
 
-# 8. Iterare su una copia
+## 8. Iterare su una copia
 
-Quando la specifica richiede davvero di modificare la lista originale:
+<p align="justify">Quando la specifica richiede davvero di modificare la lista originale:</p>
 
 ```python
 for valore in numeri.copy():
@@ -168,13 +222,13 @@ for valore in numeri.copy():
         numeri.remove(valore)
 ```
 
-È una strategia possibile, ma va usata consapevolmente.
+<p align="justify">È una strategia possibile, ma va usata consapevolmente.</p>
 
-Spesso costruire una nuova lista resta più chiaro.
+<p align="justify">Spesso costruire una nuova lista resta più chiaro.</p>
 
 ---
 
-# 9. Filtrare
+## 9. Filtrare
 
 ```python
 def solo_positivi(numeri):
@@ -185,7 +239,7 @@ def solo_positivi(numeri):
     return risultato
 ```
 
-Questo riusa:
+<p align="justify">Questo riusa:</p>
 
 ```text
 loop + if + append + return + test
@@ -193,7 +247,7 @@ loop + if + append + return + test
 
 ---
 
-# 10. Trasformare
+## 10. Trasformare
 
 ```python
 def doppi(numeri):
@@ -203,65 +257,71 @@ def doppi(numeri):
     return risultato
 ```
 
-La lista originale non viene modificata se il contratto non lo richiede.
+<p align="justify">La lista originale non viene modificata se il contratto non lo richiede.</p>
 
 ---
 
-# 11. Comprehension: solo confronto opzionale
+## 11. Comprehension: solo confronto opzionale
 
-Dopo aver compreso il loop:
+<p align="justify">Dopo aver compreso il loop:</p>
 
 ```python
 positivi = [x for x in numeri if x > 0]
 ```
 
-può essere mostrata come forma equivalente e concisa.
+<p align="justify">può essere mostrata come forma equivalente e concisa.</p>
 
-Non è prerequisito del core di seconda.
+<p align="justify">Non è prerequisito del core di seconda.</p>
 
 ---
 
-# 12. `sort()` vs `sorted()`
+## 12. `sort()` vs `sorted()`
 
 ```python
 numeri.sort()
 ```
 
-- modifica `numeri`;
-- restituisce `None`.
+<ul>
+  <li>modifica <code>numeri</code>;</li>
+  <li>restituisce <code>None</code>.</li>
+</ul>
 
 ```python
 ordinati = sorted(numeri)
 ```
 
-- produce una nuova lista ordinata;
-- lascia `numeri` invariata.
+<ul>
+  <li>produce una nuova lista ordinata;</li>
+  <li>lascia <code>numeri</code> invariata.</li>
+</ul>
 
-Domanda:
+<p align="justify">Domanda:</p>
 
-> devo preservare l'ordine originale?
+<blockquote>
+<p align="justify">devo preservare l'ordine originale?</p>
+</blockquote>
 
 ---
 
-# 13. Bug `sort()` assegnato
+## 13. Bug `sort()` assegnato
 
 ```python
 numeri = numeri.sort()
 ```
 
-Dopo:
+<p align="justify">Dopo:</p>
 
 ```text
 numeri → None
 ```
 
-È lo stesso modello già visto con `append()`.
+<p align="justify">È lo stesso modello già visto con <code>append()</code>.</p>
 
 ---
 
-# 14. Ricerca e aggregazione sulle liste
+## 14. Ricerca e aggregazione sulle liste
 
-I pattern M11 ora lavorano su dati conservati:
+<p align="justify">I pattern M11 ora lavorano su dati conservati:</p>
 
 ```python
 def massimo_lista(numeri):
@@ -272,33 +332,33 @@ def massimo_lista(numeri):
     return massimo
 ```
 
-Nota: non usare `max` come nome variabile perché oscura la built-in `max()`.
+<p align="justify">Nota: non usare <code>max</code> come nome variabile perché oscura la built-in <code>max()</code>.</p>
 
 ---
 
-# 15. Friedpython: massimo da modernizzare
+## 15. Friedpython: massimo da modernizzare
 
-L'esercizio legacy sul massimo è concettualmente buono, ma usa:
+<p align="justify">L'esercizio legacy sul massimo è concettualmente buono, ma usa:</p>
 
 ```python
 max = numeri[0]
 ```
 
-Nel corso lo riscriviamo con:
+<p align="justify">Nel corso lo riscriviamo con:</p>
 
 ```python
 massimo = numeri[0]
 ```
 
-per non oscurare il nome built-in.
+<p align="justify">per non oscurare il nome built-in.</p>
 
 ---
 
-# 16. Friedpython: lista inversa come confronto
+## 16. Friedpython: lista inversa come confronto
 
-Lo spunto legacy usa `reversed()` + `append`.
+<p align="justify">Lo spunto legacy usa <code>reversed()</code> + <code>append</code>.</p>
 
-Possiamo confrontare:
+<p align="justify">Possiamo confrontare:</p>
 
 ```text
 nuova lista costruita manualmente
@@ -307,59 +367,69 @@ numeri[::-1]
 numeri.reverse()
 ```
 
-La domanda centrale è:
+<p align="justify">La domanda centrale è:</p>
 
-> creo un nuovo oggetto o modifico l'originale?
-
----
-
-# 17. Performance intuitiva
-
-Senza Big-O formale:
-
-- ricerca in lista → in generale scansione finché trovi/fine;
-- inserimento/rimozione in mezzo → può spostare elementi;
-- `append` → crescita naturale in coda;
-- se domina unicità o lookup per chiave, una lista potrebbe non essere la struttura migliore.
-
-Set/dict arriveranno presto proprio per questo.
+<blockquote>
+<p align="justify">creo un nuovo oggetto o modifico l'originale?</p>
+</blockquote>
 
 ---
 
-# 18. Error Clinic
+## 17. Performance intuitiva
 
-- alias involontario;
-- `.copy()` interpretato come copia ricorsiva;
-- rimozione durante `for` sulla stessa lista;
-- `sort()` assegnato;
-- funzione che muta input quando prometteva nuova lista;
-- nome `max`/`list`/`str` usato come variabile oscurando built-in importanti.
+<p align="justify">Senza Big-O formale:</p>
 
----
+<ul>
+  <li>ricerca in lista → in generale scansione finché trovi/fine;</li>
+  <li>inserimento/rimozione in mezzo → può spostare elementi;</li>
+  <li><code>append</code> → crescita naturale in coda;</li>
+  <li>se domina unicità o lookup per chiave, una lista potrebbe non essere la struttura migliore.</li>
+</ul>
 
-# 19. Activity candidate
-
-- **A — Alias microscope:** disegna nomi e oggetti;
-- **B — Safe filtering:** ripara mutazione durante iterazione;
-- **C — Implement:** funzione che filtra/trasforma senza mutare input;
-- **D — Debug:** alias, shallow copy, sort/None, mutation contract.
+<p align="justify">Set/dict arriveranno presto proprio per questo.</p>
 
 ---
 
-# 20. Checkpoint
+## 18. Error Clinic
 
-Sai spiegare:
-
-1. `b = a` vs `b = a.copy()`;
-2. shallow copy;
-3. perché rimuovere durante iterazione può saltare elementi;
-4. `sort` vs `sorted`;
-5. come testare che l'input non venga mutato;
-6. perché evitare di oscurare built-in con nomi variabile.
+<ul>
+  <li>alias involontario;</li>
+  <li><code>.copy()</code> interpretato come copia ricorsiva;</li>
+  <li>rimozione durante <code>for</code> sulla stessa lista;</li>
+  <li><code>sort()</code> assegnato;</li>
+  <li>funzione che muta input quando prometteva nuova lista;</li>
+  <li>nome <code>max</code>/<code>list</code>/<code>str</code> usato come variabile oscurando built-in importanti.</li>
+</ul>
 
 ---
 
-# 21. Sintesi
+## 19. Activity candidate
+
+<ul>
+  <li><strong>A — Alias microscope:</strong> disegna nomi e oggetti;</li>
+  <li><strong>B — Safe filtering:</strong> ripara mutazione durante iterazione;</li>
+  <li><strong>C — Implement:</strong> funzione che filtra/trasforma senza mutare input;</li>
+  <li><strong>D — Debug:</strong> alias, shallow copy, sort/None, mutation contract.</li>
+</ul>
+
+---
+
+## 20. Checkpoint
+
+<p align="justify">Sai spiegare:</p>
+
+<ol>
+  <li><code>b = a</code> vs <code>b = a.copy()</code>;</li>
+  <li>shallow copy;</li>
+  <li>perché rimuovere durante iterazione può saltare elementi;</li>
+  <li><code>sort</code> vs <code>sorted</code>;</li>
+  <li>come testare che l'input non venga mutato;</li>
+  <li>perché evitare di oscurare built-in con nomi variabile.</li>
+</ol>
+
+---
+
+## 21. Sintesi
 
 ```text
 alias → stesso oggetto
@@ -376,15 +446,17 @@ sort()   → in-place / None
 sorted() → nuova lista
 ```
 
-Nel prossimo modulo confronteremo liste e tuple e useremo liste annidate per dati tabellari e matrici.
+<p align="justify">Nel prossimo modulo confronteremo liste e tuple e useremo liste annidate per dati tabellari e matrici.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale, con riferimento a:
+<p align="justify">Materiale originale, con riferimento a:</p>
 
-- documentazione Python 3.12 su liste/copie/ordinamento;
-- *Think Python / Pensare in Python* — aliasing/mutability;
-- *Learning Python / Imparare Python* — list operations;
-- audit `sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md`.
+<ul>
+  <li>documentazione Python 3.12 su liste/copie/ordinamento;</li>
+  <li><em>Think Python / Pensare in Python</em> — aliasing/mutability;</li>
+  <li><em>Learning Python / Imparare Python</em> — list operations;</li>
+  <li>audit <code>sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md</code>.</li>
+</ul>

@@ -1,59 +1,109 @@
 # M20 — Liste: mutabilità, metodi essenziali e iterazione
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-07 — Liste, tuple e dati tabellari  
-> **Baseline:** Python 3.12-compatible
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Le liste mantengono una sequenza modificabile; alcuni metodi cambiano l&#x27;oggetto senza restituire la lista.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Usare sequenze, indici, slicing e iterazione da M17–M19.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+creare una <code>list</code>;<br>usare <code>len()</code>, indici positivi/negativi e slicing;<br>modificare un elemento per indice; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Una stringa richiede un nuovo oggetto per cambiare testo; una lista può cambiare mantenendo la propria identità. Riprendi <a href="19_ALGORITMI_TESTO_PARSING_SEMPLICE.md">M19 — Algoritmi su testo e parsing semplice</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="21_ALIAS_COPIE_FILTRI_ORDINAMENTO.md">M21 — Alias, copie, filtri e ordinamento delle liste</a>. Alias e copie spiegano gli effetti delle mutazioni; filtri e ordinamenti vanno scelti considerando anche l&#x27;input.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Traccia append e pop distinguendo lo stato della lista dal valore restituito dal metodo.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-07 — Liste, tuple e dati tabellari<br>
+<strong>Baseline:</strong> Python 3.12-compatible</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- creare una `list`;
-- usare `len()`, indici positivi/negativi e slicing;
-- modificare un elemento per indice;
-- usare `append`, `extend`, `insert`, `remove`, `pop` con semantica corretta;
-- distinguere metodi che modificano la lista da operazioni che producono un nuovo valore;
-- evitare il bug `lista = lista.append(...)`;
-- iterare direttamente sugli elementi;
-- usare indice quando la posizione serve davvero;
-- usare `enumerate()` quando servono indice e valore;
-- verificare membership con `in`;
-- spiegare la differenza fondamentale tra `str` immutabile e `list` mutabile.
+<ul>
+  <li>creare una <code>list</code>;</li>
+  <li>usare <code>len()</code>, indici positivi/negativi e slicing;</li>
+  <li>modificare un elemento per indice;</li>
+  <li>usare <code>append</code>, <code>extend</code>, <code>insert</code>, <code>remove</code>, <code>pop</code> con semantica corretta;</li>
+  <li>distinguere metodi che modificano la lista da operazioni che producono un nuovo valore;</li>
+  <li>evitare il bug <code>lista = lista.append(...)</code>;</li>
+  <li>iterare direttamente sugli elementi;</li>
+  <li>usare indice quando la posizione serve davvero;</li>
+  <li>usare <code>enumerate()</code> quando servono indice e valore;</li>
+  <li>verificare membership con <code>in</code>;</li>
+  <li>spiegare la differenza fondamentale tra <code>str</code> immutabile e <code>list</code> mutabile.</li>
+</ul>
 
 ---
 
-# 1. Da `str` a `list`
+## 1. Da `str` a `list`
 
-Con una stringa:
+<p align="justify">Con una stringa:</p>
 
 ```python
 testo = "ciao"
 ```
 
-non puoi fare:
+<p align="justify">non puoi fare:</p>
 
 ```python
 testo[0] = "C"
 ```
 
-Con una lista:
+<p align="justify">Con una lista:</p>
 
 ```python
 numeri = [10, 20, 30]
 numeri[0] = 99
 ```
 
-la struttura cambia:
+<p align="justify">la struttura cambia:</p>
 
 ```text
 [99, 20, 30]
 ```
 
-La mutabilità è il nuovo modello mentale dell'UDA.
+<p align="justify">La mutabilità è il nuovo modello mentale dell'UDA.</p>
 
 ---
 
-# 2. Creazione e accesso
+## 2. Creazione e accesso
 
 ```python
 numeri = [12, 45, 7]
@@ -66,196 +116,198 @@ numeri[-1]
 numeri[1:3]
 ```
 
-Indici e slicing riusano il modello imparato sulle stringhe.
+<p align="justify">Indici e slicing riusano il modello imparato sulle stringhe.</p>
 
-Differenza importante: la lista può essere modificata.
+<p align="justify">Differenza importante: la lista può essere modificata.</p>
 
 ---
 
-# 3. Modifica per indice
+## 3. Modifica per indice
 
 ```python
 numeri = [10, 20, 30]
 numeri[1] = 25
 ```
 
-Ora:
+<p align="justify">Ora:</p>
 
 ```text
 [10, 25, 30]
 ```
 
-Non è stata creata automaticamente una nuova lista: abbiamo mutato l'oggetto esistente.
+<p align="justify">Non è stata creata automaticamente una nuova lista: abbiamo mutato l'oggetto esistente.</p>
 
 ---
 
-# 4. `append()`
+## 4. `append()`
 
 ```python
 numeri = [10, 20]
 numeri.append(30)
 ```
 
-Risultato:
+<p align="justify">Risultato:</p>
 
 ```text
 [10, 20, 30]
 ```
 
-`append()` aggiunge **un elemento** in fondo.
+<p align="justify"><code>append()</code> aggiunge <strong>un elemento</strong> in fondo.</p>
 
 ---
 
-# 5. Bug fondamentale: metodo mutante + assegnamento
+## 5. Bug fondamentale: metodo mutante + assegnamento
 
-Questo è sbagliato:
+<p align="justify">Questo è sbagliato:</p>
 
 ```python
 numeri = [10, 20]
 numeri = numeri.append(30)
 ```
 
-`append()` modifica la lista e restituisce `None`.
+<p align="justify"><code>append()</code> modifica la lista e restituisce <code>None</code>.</p>
 
-Dopo l'assegnamento:
+<p align="justify">Dopo l'assegnamento:</p>
 
 ```text
 numeri → None
 ```
 
-Questo stesso modello tornerà con `sort()`.
+<p align="justify">Questo stesso modello tornerà con <code>sort()</code>.</p>
 
 ---
 
-# 6. `append()` vs `extend()`
+## 6. `append()` vs `extend()`
 
 ```python
 x = [1, 2]
 x.append([3, 4])
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 [1, 2, [3, 4]]
 ```
 
-Invece:
+<p align="justify">Invece:</p>
 
 ```python
 x = [1, 2]
 x.extend([3, 4])
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 [1, 2, 3, 4]
 ```
 
-Domanda:
+<p align="justify">Domanda:</p>
 
-> voglio aggiungere **un elemento** che è una lista oppure incorporare **più elementi**?
+<blockquote>
+<p align="justify">voglio aggiungere <strong>un elemento</strong> che è una lista oppure incorporare <strong>più elementi</strong>?</p>
+</blockquote>
 
 ---
 
-# 7. `insert()`
+## 7. `insert()`
 
 ```python
 nomi = ["Anna", "Carlo"]
 nomi.insert(1, "Bruno")
 ```
 
-Usalo quando la posizione è davvero parte del requisito.
+<p align="justify">Usalo quando la posizione è davvero parte del requisito.</p>
 
-Non scegliere `insert()` solo perché esiste.
+<p align="justify">Non scegliere <code>insert()</code> solo perché esiste.</p>
 
 ---
 
-# 8. `remove()` vs `pop()`
+## 8. `remove()` vs `pop()`
 
 ```python
 valori.remove(7)
 ```
 
-rimuove la prima occorrenza del **valore** `7`.
+<p align="justify">rimuove la prima occorrenza del <strong>valore</strong> <code>7</code>.</p>
 
 ```python
 ultimo = valori.pop()
 ```
 
-rimuove e restituisce l'ultimo elemento.
+<p align="justify">rimuove e restituisce l'ultimo elemento.</p>
 
 ```python
 x = valori.pop(2)
 ```
 
-rimuove e restituisce l'elemento in **posizione** 2.
+<p align="justify">rimuove e restituisce l'elemento in <strong>posizione</strong> 2.</p>
 
-Valore e posizione non sono la stessa cosa.
+<p align="justify">Valore e posizione non sono la stessa cosa.</p>
 
 ---
 
-# 9. Iterazione diretta
+## 9. Iterazione diretta
 
-Se serve soltanto il valore:
+<p align="justify">Se serve soltanto il valore:</p>
 
 ```python
 for numero in numeri:
     print(numero)
 ```
 
-È la forma naturale per molte scansioni.
+<p align="justify">È la forma naturale per molte scansioni.</p>
 
 ---
 
-# 10. Iterazione per indice
+## 10. Iterazione per indice
 
-Se la posizione serve al problema:
+<p align="justify">Se la posizione serve al problema:</p>
 
 ```python
 for i in range(len(numeri)):
     print(i, numeri[i])
 ```
 
-Non usare l'indice come rituale.
+<p align="justify">Non usare l'indice come rituale.</p>
 
 ---
 
-# 11. `enumerate()`
+## 11. `enumerate()`
 
-Quando servono insieme indice e valore:
+<p align="justify">Quando servono insieme indice e valore:</p>
 
 ```python
 for i, numero in enumerate(numeri):
     print(i, numero)
 ```
 
-Ora possiamo rileggere `i, numero` come unpacking di una coppia prodotta dall'iterazione.
+<p align="justify">Ora possiamo rileggere <code>i, numero</code> come unpacking di una coppia prodotta dall'iterazione.</p>
 
 ---
 
-# 12. Membership
+## 12. Membership
 
 ```python
 7 in numeri
 ```
 
-restituisce un booleano.
+<p align="justify">restituisce un booleano.</p>
 
-Il modello è identico alla membership nelle stringhe, ma ora gli elementi possono essere valori di tipi diversi secondo il contratto della lista.
+<p align="justify">Il modello è identico alla membership nelle stringhe, ma ora gli elementi possono essere valori di tipi diversi secondo il contratto della lista.</p>
 
 ---
 
-# 13. Slicing di una lista
+## 13. Slicing di una lista
 
 ```python
 prima_parte = numeri[:3]
 ```
 
-produce una nuova lista superficiale con gli elementi selezionati.
+<p align="justify">produce una nuova lista superficiale con gli elementi selezionati.</p>
 
-Nel prossimo modulo distingueremo in dettaglio:
+<p align="justify">Nel prossimo modulo distingueremo in dettaglio:</p>
 
 ```text
 alias
@@ -265,7 +317,7 @@ copia
 
 ---
 
-# 14. Worked example: raccolta di N valori
+## 14. Worked example: raccolta di N valori
 
 ```python
 n = int(input())
@@ -275,26 +327,28 @@ for _ in range(n):
     valori.append(int(input()))
 ```
 
-Ora i dati rimangono disponibili per più elaborazioni successive.
+<p align="justify">Ora i dati rimangono disponibili per più elaborazioni successive.</p>
 
-Questo è diverso da elaborare ogni valore e dimenticarlo subito.
-
----
-
-# 15. Error Clinic
-
-- `lista = lista.append(x)`;
-- `append([a, b])` quando serviva `extend([a, b])`;
-- `remove(indice)` pensando che rimuova per posizione;
-- indice fuori range;
-- iterazione per indice quando la posizione non serve;
-- modifica dell'elemento sbagliato.
+<p align="justify">Questo è diverso da elaborare ogni valore e dimenticarlo subito.</p>
 
 ---
 
-# 16. Confronto da `friedpython`
+## 15. Error Clinic
 
-Gli esercizi legacy 1 e 2 mostrano bene lo stesso attraversamento con:
+<ul>
+  <li><code>lista = lista.append(x)</code>;</li>
+  <li><code>append([a, b])</code> quando serviva <code>extend([a, b])</code>;</li>
+  <li><code>remove(indice)</code> pensando che rimuova per posizione;</li>
+  <li>indice fuori range;</li>
+  <li>iterazione per indice quando la posizione non serve;</li>
+  <li>modifica dell'elemento sbagliato.</li>
+</ul>
+
+---
+
+## 16. Confronto da `friedpython`
+
+<p align="justify">Gli esercizi legacy 1 e 2 mostrano bene lo stesso attraversamento con:</p>
 
 ```text
 while + indice
@@ -302,37 +356,41 @@ vs
 for diretto sugli elementi
 ```
 
-Nel corso 2026/27 li trattiamo come **confronto di intenzione**, non come due sintassi equivalenti da memorizzare.
+<p align="justify">Nel corso 2026/27 li trattiamo come <strong>confronto di intenzione</strong>, non come due sintassi equivalenti da memorizzare.</p>
 
-Se la posizione non serve, il `for` diretto comunica meglio il problema.
-
----
-
-# 17. Activity candidate
-
-- **A — Predict mutation:** prevedi lista e return dopo operazioni;
-- **B — Controlled Change:** scegli `append/extend/insert/remove/pop` da una specifica;
-- **C — Implement:** costruisci una lista da N input e calcola proprietà già note;
-- **D — Debug:** metodo mutante assegnato, indice, remove/pop, append/extend.
-
-Nessuna nuova Activity autogradata viene materializzata finché il profilo richiesto non è certificato.
+<p align="justify">Se la posizione non serve, il <code>for</code> diretto comunica meglio il problema.</p>
 
 ---
 
-# 18. Checkpoint
+## 17. Activity candidate
 
-Sai spiegare:
+<ul>
+  <li><strong>A — Predict mutation:</strong> prevedi lista e return dopo operazioni;</li>
+  <li><strong>B — Controlled Change:</strong> scegli <code>append/extend/insert/remove/pop</code> da una specifica;</li>
+  <li><strong>C — Implement:</strong> costruisci una lista da N input e calcola proprietà già note;</li>
+  <li><strong>D — Debug:</strong> metodo mutante assegnato, indice, remove/pop, append/extend.</li>
+</ul>
 
-1. `str` immutabile vs `list` mutabile;
-2. `append` vs `extend`;
-3. `remove` vs `pop`;
-4. perché `lista = lista.append(x)` è un bug;
-5. valore vs indice;
-6. `for` diretto vs indice vs `enumerate`.
+<p align="justify">Nessuna nuova Activity autogradata viene materializzata finché il profilo richiesto non è certificato.</p>
 
 ---
 
-# 19. Sintesi
+## 18. Checkpoint
+
+<p align="justify">Sai spiegare:</p>
+
+<ol>
+  <li><code>str</code> immutabile vs <code>list</code> mutabile;</li>
+  <li><code>append</code> vs <code>extend</code>;</li>
+  <li><code>remove</code> vs <code>pop</code>;</li>
+  <li>perché <code>lista = lista.append(x)</code> è un bug;</li>
+  <li>valore vs indice;</li>
+  <li><code>for</code> diretto vs indice vs <code>enumerate</code>.</li>
+</ol>
+
+---
+
+## 19. Sintesi
 
 ```text
 list = sequenza ordinata mutabile
@@ -349,15 +407,17 @@ solo valore → for diretto
 indice+valore → enumerate
 ```
 
-Nel prossimo modulo vedremo che due nomi possono riferirsi **alla stessa lista**: alias, copie e mutazioni diventano quindi fondamentali.
+<p align="justify">Nel prossimo modulo vedremo che due nomi possono riferirsi <strong>alla stessa lista</strong>: alias, copie e mutazioni diventano quindi fondamentali.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale, con riferimento a:
+<p align="justify">Materiale originale, con riferimento a:</p>
 
-- documentazione Python 3.12 sulle liste;
-- *Think Python / Pensare in Python* — lists/mutability;
-- *Learning Python / Imparare Python* — list object coverage;
-- `friedpython@cb3f3dc...` auditato in `sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md`.
+<ul>
+  <li>documentazione Python 3.12 sulle liste;</li>
+  <li><em>Think Python / Pensare in Python</em> — lists/mutability;</li>
+  <li><em>Learning Python / Imparare Python</em> — list object coverage;</li>
+  <li><code>friedpython@cb3f3dc...</code> auditato in <code>sources/FRIEDPYTHON_LISTS_TUPLES_AUDIT.md</code>.</li>
+</ul>

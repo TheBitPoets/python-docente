@@ -1,5 +1,13 @@
 # Python docente
 
+<p align="justify">Revisione di formattazione M00–M30: prosa HTML giustificata, liste e tabelle HTML e orientamento con le icone dei corsi TPSI. La nuova revisione dei contenuti resta la fase successiva.</p>
+
+<ul>
+<li><a href="content/python/STYLE_GUIDE.md">Regole di formattazione delle 31 lezioni</a>.</li>
+<li><a href="doc/VISUAL_AUDIT.md">Audit delle immagini e collocazioni per tutti i moduli</a>.</li>
+<li><a href="assets/python/visual-system/README.md">Collezione di 25 oggetti SVG, tre cataloghi ed esempio di composizione</a>.</li>
+</ul>
+
 Repository di progettazione e delivery del curriculum Python TheBitPoets.
 
 ## Stato corrente

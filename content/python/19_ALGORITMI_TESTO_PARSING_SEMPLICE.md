@@ -1,29 +1,79 @@
 # M19 — Algoritmi su testo e parsing semplice
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-06 — Stringhe come sequenze e testo  
-> **Baseline:** Python 3.12-compatible
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Algoritmi sul testo combinano cicli, condizioni e funzioni con una politica di normalizzazione dichiarata.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Usare accesso, slicing, ricerca e metodi di stringa da M17–M18.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+combinare funzioni, cicli, selezione e metodi su stringhe;<br>contare caratteri che soddisfano una proprietà;<br>costruire progressivamente una nuova stringa quando serve; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+I casi limite e i risultati attesi vanno scelti prima di confrontare due implementazioni. Riprendi <a href="18_STRINGHE_RICERCA_METODI_NORMALIZZAZIONE.md">M18 — Ricerca, membership, metodi e normalizzazione delle stringhe</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="20_LISTE_MUTABILITA_METODI_ITERAZIONE.md">M20 — Liste: mutabilità, metodi essenziali e iterazione</a>. Le liste mantengono una sequenza modificabile; alcuni metodi cambiano l&#x27;oggetto senza restituire la lista.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Progetta il controllo di un palindromo e verifica stringa vuota, un carattere e testo con spazi secondo la politica scelta.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-06 — Stringhe come sequenze e testo<br>
+<strong>Baseline:</strong> Python 3.12-compatible</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- combinare funzioni, cicli, selezione e metodi su stringhe;
-- contare caratteri che soddisfano una proprietà;
-- costruire progressivamente una nuova stringa quando serve;
-- progettare e testare un palindromo semplice con normalizzazione dichiarata;
-- validare pattern testuali elementari senza regex;
-- estrarre parti con indici/slicing;
-- progettare casi limite su stringa vuota, un carattere, spazi e maiuscole/minuscole;
-- distinguere analisi del testo e formattazione dell'output;
-- confrontare algoritmo manuale e soluzione basata su metodi;
-- usare `split()` come ponte consapevole verso la prossima UDA sulle liste.
+<ul>
+  <li>combinare funzioni, cicli, selezione e metodi su stringhe;</li>
+  <li>contare caratteri che soddisfano una proprietà;</li>
+  <li>costruire progressivamente una nuova stringa quando serve;</li>
+  <li>progettare e testare un palindromo semplice con normalizzazione dichiarata;</li>
+  <li>validare pattern testuali elementari senza regex;</li>
+  <li>estrarre parti con indici/slicing;</li>
+  <li>progettare casi limite su stringa vuota, un carattere, spazi e maiuscole/minuscole;</li>
+  <li>distinguere analisi del testo e formattazione dell'output;</li>
+  <li>confrontare algoritmo manuale e soluzione basata su metodi;</li>
+  <li>usare <code>split()</code> come ponte consapevole verso la prossima UDA sulle liste.</li>
+</ul>
 
 ---
 
-# 1. Le stringhe riusano tutto ciò che abbiamo imparato
+## 1. Le stringhe riusano tutto ciò che abbiamo imparato
 
-Un algoritmo su testo combina:
+<p align="justify">Un algoritmo su testo combina:</p>
 
 ```text
 funzioni
@@ -35,11 +85,11 @@ funzioni
 + test
 ```
 
-La stringa cambia il dominio del problema, non le regole fondamentali del ragionamento.
+<p align="justify">La stringa cambia il dominio del problema, non le regole fondamentali del ragionamento.</p>
 
 ---
 
-# 2. Conteggio di caratteri
+## 2. Conteggio di caratteri
 
 ```python
 def conta_cifre(testo):
@@ -50,15 +100,17 @@ def conta_cifre(testo):
     return conteggio
 ```
 
-Invariante:
+<p align="justify">Invariante:</p>
 
-> `conteggio` è il numero di caratteri cifra già elaborati.
+<blockquote>
+<p align="justify"><code>conteggio</code> è il numero di caratteri cifra già elaborati.</p>
+</blockquote>
 
 ---
 
-# 3. Costruire una nuova stringa
+## 3. Costruire una nuova stringa
 
-Per piccoli esercizi beginner:
+<p align="justify">Per piccoli esercizi beginner:</p>
 
 ```python
 def solo_lettere(testo):
@@ -69,21 +121,23 @@ def solo_lettere(testo):
     return risultato
 ```
 
-Qui `risultato` è un accumulatore testuale.
+<p align="justify">Qui <code>risultato</code> è un accumulatore testuale.</p>
 
-Teacher note: per grandi quantità di frammenti esistono strategie più efficienti; non serve complicare ora il modello.
+<p align="justify">Teacher note: per grandi quantità di frammenti esistono strategie più efficienti; non serve complicare ora il modello.</p>
 
 ---
 
-# 4. Palindromo: prima l'algoritmo
+## 4. Palindromo: prima l'algoritmo
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Una parola è uguale letta da sinistra a destra e da destra a sinistra?
+<blockquote>
+<p align="justify">Una parola è uguale letta da sinistra a destra e da destra a sinistra?</p>
+</blockquote>
 
-Prima del trucco compatto, ragioniamo sulle posizioni opposte.
+<p align="justify">Prima del trucco compatto, ragioniamo sulle posizioni opposte.</p>
 
-Esempio:
+<p align="justify">Esempio:</p>
 
 ```text
 radar
@@ -92,35 +146,39 @@ radar
 centro
 ```
 
-L'obiettivo è capire il confronto, non memorizzare una slice.
+<p align="justify">L'obiettivo è capire il confronto, non memorizzare una slice.</p>
 
 ---
 
-# 5. Versione con inversione
+## 5. Versione con inversione
 
-Dopo aver compreso l'algoritmo possiamo confrontare:
+<p align="justify">Dopo aver compreso l'algoritmo possiamo confrontare:</p>
 
 ```python
 def palindroma(testo):
     return testo == testo[::-1]
 ```
 
-Domande:
+<p align="justify">Domande:</p>
 
-- è corretta rispetto al contratto?;
-- come gestiamo maiuscole?;
-- spazi/punteggiatura vanno ignorati?;
-- il requisito parla di parola o frase?.
+<ul>
+  <li>è corretta rispetto al contratto?;</li>
+  <li>come gestiamo maiuscole?;</li>
+  <li>spazi/punteggiatura vanno ignorati?;</li>
+  <li>il requisito parla di parola o frase?.</li>
+</ul>
 
-La normalizzazione deve essere definita prima.
+<p align="justify">La normalizzazione deve essere definita prima.</p>
 
 ---
 
-# 6. Normalizzazione del palindromo
+## 6. Normalizzazione del palindromo
 
-Esempio di contratto semplice:
+<p align="justify">Esempio di contratto semplice:</p>
 
-> Ignora spazi ai bordi e differenze maiuscole/minuscole; non rimuovere punteggiatura interna.
+<blockquote>
+<p align="justify">Ignora spazi ai bordi e differenze maiuscole/minuscole; non rimuovere punteggiatura interna.</p>
+</blockquote>
 
 ```python
 def palindroma(testo):
@@ -128,13 +186,13 @@ def palindroma(testo):
     return normalizzato == normalizzato[::-1]
 ```
 
-Se il contratto cambia, cambiano anche i test.
+<p align="justify">Se il contratto cambia, cambiano anche i test.</p>
 
 ---
 
-# 7. Casi limite
+## 7. Casi limite
 
-Per una funzione testuale considera almeno:
+<p align="justify">Per una funzione testuale considera almeno:</p>
 
 ```text
 ""        stringa vuota
@@ -143,19 +201,19 @@ Per una funzione testuale considera almeno:
 " radar " spazi ai bordi
 ```
 
-Non esiste una risposta universale per ogni contratto: definisci prima il comportamento atteso.
+<p align="justify">Non esiste una risposta universale per ogni contratto: definisci prima il comportamento atteso.</p>
 
 ---
 
-# 8. Parsing semplice con posizioni note
+## 8. Parsing semplice con posizioni note
 
-Codice:
+<p align="justify">Codice:</p>
 
 ```text
 ABC-123
 ```
 
-Contratto:
+<p align="justify">Contratto:</p>
 
 ```text
 3 lettere
@@ -163,7 +221,7 @@ Contratto:
 3 cifre
 ```
 
-Possiamo controllare:
+<p align="justify">Possiamo controllare:</p>
 
 ```python
 def codice_valido(codice):
@@ -172,26 +230,28 @@ def codice_valido(codice):
     return codice[:3].isalpha() and codice[3] == "-" and codice[4:].isdigit()
 ```
 
-Questo è parsing posizionale semplice, senza regex.
+<p align="justify">Questo è parsing posizionale semplice, senza regex.</p>
 
 ---
 
-# 9. Perché niente regex adesso?
+## 9. Perché niente regex adesso?
 
-Le espressioni regolari sono potenti, ma introdurle qui può nascondere:
+<p align="justify">Le espressioni regolari sono potenti, ma introdurle qui può nascondere:</p>
 
-- indici;
-- slicing;
-- composizione booleana;
-- struttura del formato.
+<ul>
+  <li>indici;</li>
+  <li>slicing;</li>
+  <li>composizione booleana;</li>
+  <li>struttura del formato.</li>
+</ul>
 
-Regex appartiene al percorso avanzato/optional dopo che il modello base è stabile.
+<p align="justify">Regex appartiene al percorso avanzato/optional dopo che il modello base è stabile.</p>
 
 ---
 
-# 10. Analisi vs presentazione
+## 10. Analisi vs presentazione
 
-Preferiamo:
+<p align="justify">Preferiamo:</p>
 
 ```python
 def conta_vocali(testo):
@@ -199,30 +259,32 @@ def conta_vocali(testo):
     return conteggio
 ```
 
-poi:
+<p align="justify">poi:</p>
 
 ```python
 risultato = conta_vocali(testo)
 print(risultato)
 ```
 
-La funzione di analisi non deve stampare se il suo contratto è produrre un valore.
+<p align="justify">La funzione di analisi non deve stampare se il suo contratto è produrre un valore.</p>
 
 ---
 
-# 11. Metodo vs loop: confronto esplicito
+## 11. Metodo vs loop: confronto esplicito
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Quante volte compare `a`?
+<blockquote>
+<p align="justify">Quante volte compare <code>a</code>?</p>
+</blockquote>
 
-Versione standard:
+<p align="justify">Versione standard:</p>
 
 ```python
 testo.count("a")
 ```
 
-Versione manuale:
+<p align="justify">Versione manuale:</p>
 
 ```python
 conteggio = 0
@@ -231,42 +293,44 @@ for carattere in testo:
         conteggio += 1
 ```
 
-Entrambe possono essere corrette.
+<p align="justify">Entrambe possono essere corrette.</p>
 
-La scelta dipende dall'outcome:
+<p align="justify">La scelta dipende dall'outcome:</p>
 
-- imparare scansione/contatore? → loop;
-- esprimere una operazione standard? → metodo.
+<ul>
+  <li>imparare scansione/contatore? → loop;</li>
+  <li>esprimere una operazione standard? → metodo.</li>
+</ul>
 
 ---
 
-# 12. `split()` come ponte verso le liste
+## 12. `split()` come ponte verso le liste
 
 ```python
 parti = "rosso,verde,blu".split(",")
 ```
 
-Il risultato non è una stringa.
+<p align="justify">Il risultato non è una stringa.</p>
 
-È una:
+<p align="justify">È una:</p>
 
 ```text
 list
 ```
 
-Per ora basta sapere che `split()` produce più pezzi raccolti in una struttura. Nella prossima UDA studieremo davvero liste, mutabilità, alias e metodi.
+<p align="justify">Per ora basta sapere che <code>split()</code> produce più pezzi raccolti in una struttura. Nella prossima UDA studieremo davvero liste, mutabilità, alias e metodi.</p>
 
 ---
 
-# 13. `join()` come preview controllata
+## 13. `join()` come preview controllata
 
-Se abbiamo già una sequenza di frammenti, Python può unirli:
+<p align="justify">Se abbiamo già una sequenza di frammenti, Python può unirli:</p>
 
 ```python
 ",".join(parti)
 ```
 
-Non serve ancora padroneggiare tutte le regole delle liste. È un ponte concettuale:
+<p align="justify">Non serve ancora padroneggiare tutte le regole delle liste. È un ponte concettuale:</p>
 
 ```text
 stringa → split → più parti
@@ -275,14 +339,16 @@ più parti → join → stringa
 
 ---
 
-# 14. Worked example: normalizzatore di username
+## 14. Worked example: normalizzatore di username
 
-Contratto semplice:
+<p align="justify">Contratto semplice:</p>
 
-- rimuovi spazi ai bordi;
-- converti in minuscolo;
-- deve avere almeno 3 caratteri;
-- deve contenere solo lettere/cifre/underscore.
+<ul>
+  <li>rimuovi spazi ai bordi;</li>
+  <li>converti in minuscolo;</li>
+  <li>deve avere almeno 3 caratteri;</li>
+  <li>deve contenere solo lettere/cifre/underscore.</li>
+</ul>
 
 ```python
 def username_valido(testo):
@@ -297,52 +363,58 @@ def username_valido(testo):
     return True
 ```
 
-Questo riusa funzioni, loop, `if`, metodi e `return`.
+<p align="justify">Questo riusa funzioni, loop, <code>if</code>, metodi e <code>return</code>.</p>
 
 ---
 
-# 15. Error Clinic
+## 15. Error Clinic
 
-- stringa vuota non considerata;
-- off-by-one sugli indici;
-- normalizzazione incompleta;
-- tentativo di mutazione;
-- risultato di un metodo ignorato;
-- parsing che assume lunghezza senza verificarla;
-- `split()` usato senza capire che restituisce una lista.
-
----
-
-# 16. Activity candidate
-
-- **A — Text trace:** indice/carattere/accumulatore;
-- **B — Controlled Change:** cambia regola di normalizzazione e aggiorna i test;
-- **C — Implement:** funzione testuale con contratto e casi limite;
-- **D — Debug:** off-by-one, immutabilità, metodi, stringa vuota;
-- **E — Mini-project:** analizzatore/normalizzatore con più funzioni e almeno 5 casi.
-
-Nessuna nuova Activity P2 viene materializzata finché il profilo function-behavior non è certificato.
+<ul>
+  <li>stringa vuota non considerata;</li>
+  <li>off-by-one sugli indici;</li>
+  <li>normalizzazione incompleta;</li>
+  <li>tentativo di mutazione;</li>
+  <li>risultato di un metodo ignorato;</li>
+  <li>parsing che assume lunghezza senza verificarla;</li>
+  <li><code>split()</code> usato senza capire che restituisce una lista.</li>
+</ul>
 
 ---
 
-# 17. Exit checkpoint PY2-06
+## 16. Activity candidate
 
-Dovresti saper:
+<ul>
+  <li><strong>A — Text trace:</strong> indice/carattere/accumulatore;</li>
+  <li><strong>B — Controlled Change:</strong> cambia regola di normalizzazione e aggiorna i test;</li>
+  <li><strong>C — Implement:</strong> funzione testuale con contratto e casi limite;</li>
+  <li><strong>D — Debug:</strong> off-by-one, immutabilità, metodi, stringa vuota;</li>
+  <li><strong>E — Mini-project:</strong> analizzatore/normalizzatore con più funzioni e almeno 5 casi.</li>
+</ul>
 
-- trattare `str` come sequenza immutabile;
-- usare indici/slicing;
-- scegliere iterazione diretta/per indice;
-- usare membership e metodi appropriati;
-- normalizzare consapevolmente;
-- implementare un algoritmo testuale con loop;
-- progettare casi limite;
-- scrivere funzioni testabili su testo;
-- motivare metodo vs loop;
-- capire che `split()` produce una lista.
+<p align="justify">Nessuna nuova Activity P2 viene materializzata finché il profilo function-behavior non è certificato.</p>
 
 ---
 
-# 18. Sintesi
+## 17. Exit checkpoint PY2-06
+
+<p align="justify">Dovresti saper:</p>
+
+<ul>
+  <li>trattare <code>str</code> come sequenza immutabile;</li>
+  <li>usare indici/slicing;</li>
+  <li>scegliere iterazione diretta/per indice;</li>
+  <li>usare membership e metodi appropriati;</li>
+  <li>normalizzare consapevolmente;</li>
+  <li>implementare un algoritmo testuale con loop;</li>
+  <li>progettare casi limite;</li>
+  <li>scrivere funzioni testabili su testo;</li>
+  <li>motivare metodo vs loop;</li>
+  <li>capire che <code>split()</code> produce una lista.</li>
+</ul>
+
+---
+
+## 18. Sintesi
 
 ```text
 str + loop + if + funzioni + test
@@ -354,16 +426,18 @@ split()
 → ponte verso list
 ```
 
-La prossima UDA studierà proprio le liste: come si modificano, come si copiano e perché due nomi possono riferirsi alla stessa struttura.
+<p align="justify">La prossima UDA studierà proprio le liste: come si modificano, come si copiano e perché due nomi possono riferirsi alla stessa struttura.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale, con riferimento a:
+<p align="justify">Materiale originale, con riferimento a:</p>
 
-- documentazione Python 3.12 `str`;
-- *Think Python / Pensare in Python* — string algorithms;
-- *Learning Python / Imparare Python* — strings;
-- *Fluent Python* — controllo teacher-side su Unicode/sequence;
-- `friedpython` pinned come legacy source pack da auditare prima di riuso.
+<ul>
+  <li>documentazione Python 3.12 <code>str</code>;</li>
+  <li><em>Think Python / Pensare in Python</em> — string algorithms;</li>
+  <li><em>Learning Python / Imparare Python</em> — strings;</li>
+  <li><em>Fluent Python</em> — controllo teacher-side su Unicode/sequence;</li>
+  <li><code>friedpython</code> pinned come legacy source pack da auditare prima di riuso.</li>
+</ul>

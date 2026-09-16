@@ -1,45 +1,99 @@
 # M04 — Interprete, REPL, script, valori e input/output
 
-> **Stato:** draft / vertical slice di authoring  
-> **UDA:** PY2-02 — Primi programmi Python  
-> **Baseline:** Python 3.12 nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Gli algoritmi già tracciati vengono eseguiti dall&#x27;interprete, prima nel REPL e poi in uno script.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Individuare input/output, descrivere passi e proporre casi di test; nessuna conoscenza precedente di Python.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+spiegare in modo semplice che cosa fa l'interprete Python;<br>usare il REPL per provare un'espressione alla volta;<br>distinguere un valore, un nome/variabile e un'espressione; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Confronta il risultato atteso dal trace manuale con quello prodotto dal programma. Riprendi <a href="03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md">M03 — Flow chart: iterazione, terminazione e annidamento</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md">M05 — Espressioni, operatori e prime funzioni</a>. Le espressioni trasformano valori; una prima funzione dà un nome al calcolo e ne restituisce il risultato.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Prova la somma con input testuali, conversione in numeri e stampa; esegui poi lo stesso calcolo da un file .py.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft / vertical slice di authoring<br>
+<strong>UDA:</strong> PY2-02 — Primi programmi Python<br>
+<strong>Baseline:</strong> Python 3.12 nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine di questo modulo dovresti saper:
+<p align="justify">Alla fine di questo modulo dovresti saper:</p>
 
-- spiegare in modo semplice che cosa fa l'interprete Python;
-- usare il REPL per provare un'espressione alla volta;
-- distinguere un valore, un nome/variabile e un'espressione;
-- riconoscere i tipi fondamentali `int`, `float`, `str` e `bool` nei casi più semplici;
-- assegnare un valore a una variabile;
-- usare `print()` per produrre output;
-- usare `input()` e ricordare che restituisce una stringa;
-- convertire dati con `int()`, `float()` e `str()` quando serve;
-- salvare ed eseguire un piccolo programma `.py`;
-- leggere la parte essenziale di un errore/traceback;
-- provare lo stesso programma con più casi e confrontare risultato atteso e ottenuto.
+<ul>
+  <li>spiegare in modo semplice che cosa fa l'interprete Python;</li>
+  <li>usare il REPL per provare un'espressione alla volta;</li>
+  <li>distinguere un valore, un nome/variabile e un'espressione;</li>
+  <li>riconoscere i tipi fondamentali <code>int</code>, <code>float</code>, <code>str</code> e <code>bool</code> nei casi più semplici;</li>
+  <li>assegnare un valore a una variabile;</li>
+  <li>usare <code>print()</code> per produrre output;</li>
+  <li>usare <code>input()</code> e ricordare che restituisce una stringa;</li>
+  <li>convertire dati con <code>int()</code>, <code>float()</code> e <code>str()</code> quando serve;</li>
+  <li>salvare ed eseguire un piccolo programma <code>.py</code>;</li>
+  <li>leggere la parte essenziale di un errore/traceback;</li>
+  <li>provare lo stesso programma con più casi e confrontare risultato atteso e ottenuto.</li>
+</ul>
 
 ## Prerequisiti
 
-Dovresti già saper, almeno su problemi semplici:
+<p align="justify">Dovresti già saper, almeno su problemi semplici:</p>
 
-- individuare input e output;
-- descrivere un algoritmo come passi ordinati;
-- eseguire un trace manuale;
-- proporre qualche caso di test.
+<ul>
+  <li>individuare input e output;</li>
+  <li>descrivere un algoritmo come passi ordinati;</li>
+  <li>eseguire un trace manuale;</li>
+  <li>proporre qualche caso di test.</li>
+</ul>
 
-Non serve conoscere già Python.
+<p align="justify">Non serve conoscere già Python.</p>
 
 ---
 
-# 1. Problema iniziale: dal procedimento al programma
+## 1. Problema iniziale: dal procedimento al programma
 
-Considera questo problema:
+<p align="justify">Considera questo problema:</p>
 
-> Leggi due numeri interi e mostra la loro somma.
+<blockquote>
+<p align="justify">Leggi due numeri interi e mostra la loro somma.</p>
+</blockquote>
 
-Prima del codice possiamo descriverlo così:
+<p align="justify">Prima del codice possiamo descriverlo così:</p>
 
 ```text
 INPUT: primo numero, secondo numero
@@ -51,9 +105,9 @@ OUTPUT: somma
 4. mostra il risultato
 ```
 
-Il programma Python non inventa la soluzione: **traduce questo algoritmo in istruzioni che l'interprete può eseguire**.
+<p align="justify">Il programma Python non inventa la soluzione: <strong>traduce questo algoritmo in istruzioni che l'interprete può eseguire</strong>.</p>
 
-Una possibile traduzione è:
+<p align="justify">Una possibile traduzione è:</p>
 
 ```python
 primo = int(input())
@@ -62,23 +116,23 @@ risultato = primo + secondo
 print(risultato)
 ```
 
-Non preoccuparti ancora di ricordare tutto. In questo modulo smonteremo il programma riga per riga.
+<p align="justify">Non preoccuparti ancora di ricordare tutto. In questo modulo smonteremo il programma riga per riga.</p>
 
 ---
 
-# 2. Che cosa fa l'interprete Python
+## 2. Che cosa fa l'interprete Python
 
-Un file Python contiene testo con istruzioni Python.
+<p align="justify">Un file Python contiene testo con istruzioni Python.</p>
 
-Quando esegui:
+<p align="justify">Quando esegui:</p>
 
 ```text
 python programma.py
 ```
 
-stai chiedendo all'interprete Python di leggere ed eseguire il programma.
+<p align="justify">stai chiedendo all'interprete Python di leggere ed eseguire il programma.</p>
 
-Un modello mentale sufficiente per iniziare è:
+<p align="justify">Un modello mentale sufficiente per iniziare è:</p>
 
 ```text
 sorgente .py
@@ -90,15 +144,15 @@ esecuzione delle istruzioni
 output oppure errore
 ```
 
-Python svolge internamente molti passaggi più complessi, ma non servono ancora per capire i primi programmi. Più avanti potremo approfondire bytecode, virtual machine e modello di esecuzione.
+<p align="justify">Python svolge internamente molti passaggi più complessi, ma non servono ancora per capire i primi programmi. Più avanti potremo approfondire bytecode, virtual machine e modello di esecuzione.</p>
 
-## Una regola utile
+### Una regola utile
 
-Il computer non esegue ciò che **intendevi** scrivere.
+<p align="justify">Il computer non esegue ciò che <strong>intendevi</strong> scrivere.</p>
 
-Esegue ciò che il programma **dice realmente**, secondo le regole del linguaggio.
+<p align="justify">Esegue ciò che il programma <strong>dice realmente</strong>, secondo le regole del linguaggio.</p>
 
-Per questo impariamo a:
+<p align="justify">Per questo impariamo a:</p>
 
 ```text
 prevedere
@@ -110,17 +164,17 @@ prevedere
 
 ---
 
-# 3. Il REPL: un laboratorio per fare esperimenti
+## 3. Il REPL: un laboratorio per fare esperimenti
 
-Python può essere usato in modalità interattiva.
+<p align="justify">Python può essere usato in modalità interattiva.</p>
 
-Nel Classroom Environment apri il REPL Python secondo il comando/launcher indicato dalla guida TheBitLab. Vedrai un prompt simile a:
+<p align="justify">Nel Classroom Environment apri il REPL Python secondo il comando/launcher indicato dalla guida TheBitLab. Vedrai un prompt simile a:</p>
 
 ```text
 >>>
 ```
 
-REPL significa:
+<p align="justify">REPL significa:</p>
 
 ```text
 Read   → leggi ciò che scrivi
@@ -129,23 +183,23 @@ Print  → mostra il risultato quando appropriato
 Loop   → torna al prompt
 ```
 
-## Primo esperimento
+### Primo esperimento
 
-Prima **prevedi** il risultato:
+<p align="justify">Prima <strong>prevedi</strong> il risultato:</p>
 
 ```python
 2 + 3
 ```
 
-Poi esegui.
+<p align="justify">Poi esegui.</p>
 
-Dovresti osservare:
+<p align="justify">Dovresti osservare:</p>
 
 ```text
 5
 ```
 
-Prova allo stesso modo:
+<p align="justify">Prova allo stesso modo:</p>
 
 ```python
 10 - 4
@@ -153,27 +207,27 @@ Prova allo stesso modo:
 10 / 2
 ```
 
-## Il REPL non è un indovino
+### Il REPL non è un indovino
 
-Se scrivi:
+<p align="justify">Se scrivi:</p>
 
 ```python
 2 +
 ```
 
-l'espressione non rispetta la sintassi richiesta e Python segnala un errore.
+<p align="justify">l'espressione non rispetta la sintassi richiesta e Python segnala un errore.</p>
 
-Un errore non è una sconfitta: è **informazione sul programma che hai realmente scritto**.
+<p align="justify">Un errore non è una sconfitta: è <strong>informazione sul programma che hai realmente scritto</strong>.</p>
 
 ---
 
-# 4. Valori e tipi
+## 4. Valori e tipi
 
-Un programma lavora con dati.
+<p align="justify">Un programma lavora con dati.</p>
 
-Python distingue diversi tipi di valore.
+<p align="justify">Python distingue diversi tipi di valore.</p>
 
-## Interi: `int`
+### Interi: `int`
 
 ```python
 42
@@ -181,16 +235,16 @@ Python distingue diversi tipi di valore.
 0
 ```
 
-sono valori interi.
+<p align="justify">sono valori interi.</p>
 
-Nel REPL:
+<p align="justify">Nel REPL:</p>
 
 ```python
 >>> type(42)
 <class 'int'>
 ```
 
-## Numeri con parte decimale: `float`
+### Numeri con parte decimale: `float`
 
 ```python
 3.5
@@ -198,14 +252,14 @@ Nel REPL:
 2.0
 ```
 
-Nel REPL:
+<p align="justify">Nel REPL:</p>
 
 ```python
 >>> type(3.5)
 <class 'float'>
 ```
 
-## Testo: `str`
+### Testo: `str`
 
 ```python
 "ciao"
@@ -213,196 +267,196 @@ Nel REPL:
 "Python"
 ```
 
-sono stringhe.
+<p align="justify">sono stringhe.</p>
 
-Nota importante:
+<p align="justify">Nota importante:</p>
 
 ```text
 42      numero intero
 "42"    testo formato dai caratteri 4 e 2
 ```
 
-Non sono lo stesso valore.
+<p align="justify">Non sono lo stesso valore.</p>
 
-## Booleani: `bool`
+### Booleani: `bool`
 
-I valori booleani sono:
+<p align="justify">I valori booleani sono:</p>
 
 ```python
 True
 False
 ```
 
-Diventeranno fondamentali quando studieremo le decisioni con `if`.
+<p align="justify">Diventeranno fondamentali quando studieremo le decisioni con <code>if</code>.</p>
 
 ---
 
-# 5. Variabili: dare un nome a un valore
+## 5. Variabili: dare un nome a un valore
 
-Nel REPL prova:
+<p align="justify">Nel REPL prova:</p>
 
 ```python
 eta = 15
 ```
 
-Poi:
+<p align="justify">Poi:</p>
 
 ```python
 eta
 ```
 
-Il risultato è:
+<p align="justify">Il risultato è:</p>
 
 ```text
 15
 ```
 
-Possiamo usare il nome in un'espressione:
+<p align="justify">Possiamo usare il nome in un'espressione:</p>
 
 ```python
 eta + 1
 ```
 
-## Modello mentale iniziale
+### Modello mentale iniziale
 
-Per ora pensa a:
+<p align="justify">Per ora pensa a:</p>
 
 ```text
 eta ──> 15
 ```
 
-Il nome `eta` permette di riferirsi al valore.
+<p align="justify">Il nome <code>eta</code> permette di riferirsi al valore.</p>
 
-Più avanti renderemo questo modello più preciso quando studieremo oggetti, mutabilità e alias.
+<p align="justify">Più avanti renderemo questo modello più preciso quando studieremo oggetti, mutabilità e alias.</p>
 
-## `=` non significa "è uguale" nel senso matematico
+### `=` non significa "è uguale" nel senso matematico
 
-In:
+<p align="justify">In:</p>
 
 ```python
 eta = 15
 ```
 
-`=` rappresenta un **assegnamento**: associa il nome `eta` al valore prodotto a destra.
+<p align="justify"><code>=</code> rappresenta un <strong>assegnamento</strong>: associa il nome <code>eta</code> al valore prodotto a destra.</p>
 
-Se poi scrivi:
+<p align="justify">Se poi scrivi:</p>
 
 ```python
 eta = 16
 ```
 
-il nome ora fa riferimento al nuovo valore.
+<p align="justify">il nome ora fa riferimento al nuovo valore.</p>
 
-## Nomi leggibili
+### Nomi leggibili
 
-Preferisci:
+<p align="justify">Preferisci:</p>
 
 ```python
 prezzo_totale = 25
 ```
 
-rispetto a:
+<p align="justify">rispetto a:</p>
 
 ```python
 x = 25
 ```
 
-quando il nome aiuta a capire il significato del dato.
+<p align="justify">quando il nome aiuta a capire il significato del dato.</p>
 
-Un nome breve non è automaticamente migliore.
+<p align="justify">Un nome breve non è automaticamente migliore.</p>
 
 ---
 
-# 6. `print()`: produrre output
+## 6. `print()`: produrre output
 
-Nel REPL:
+<p align="justify">Nel REPL:</p>
 
 ```python
 print("ciao")
 ```
 
-mostra:
+<p align="justify">mostra:</p>
 
 ```text
 ciao
 ```
 
-Possiamo stampare una variabile:
+<p align="justify">Possiamo stampare una variabile:</p>
 
 ```python
 nome = "Anna"
 print(nome)
 ```
 
-oppure un'espressione:
+<p align="justify">oppure un'espressione:</p>
 
 ```python
 print(2 + 3)
 ```
 
-## REPL e `print()` non sono la stessa cosa
+### REPL e `print()` non sono la stessa cosa
 
-Nel REPL:
+<p align="justify">Nel REPL:</p>
 
 ```python
 >>> 2 + 3
 5
 ```
 
-il REPL visualizza il valore dell'espressione.
+<p align="justify">il REPL visualizza il valore dell'espressione.</p>
 
-In un file `.py`, invece:
+<p align="justify">In un file <code>.py</code>, invece:</p>
 
 ```python
 2 + 3
 ```
 
-calcola il valore, ma non hai chiesto al programma di mostrarlo.
+<p align="justify">calcola il valore, ma non hai chiesto al programma di mostrarlo.</p>
 
-Per produrre l'output:
+<p align="justify">Per produrre l'output:</p>
 
 ```python
 print(2 + 3)
 ```
 
-Questa differenza è importante nel passaggio REPL → script.
+<p align="justify">Questa differenza è importante nel passaggio REPL → script.</p>
 
 ---
 
-# 7. `input()`: ricevere dati
+## 7. `input()`: ricevere dati
 
-Prova:
+<p align="justify">Prova:</p>
 
 ```python
 nome = input()
 ```
 
-Il programma aspetta che tu scriva qualcosa e prema Invio.
+<p align="justify">Il programma aspetta che tu scriva qualcosa e prema Invio.</p>
 
-Poi:
+<p align="justify">Poi:</p>
 
 ```python
 print(nome)
 ```
 
-## Il punto fondamentale: `input()` restituisce testo
+### Il punto fondamentale: `input()` restituisce testo
 
-Anche se digiti:
+<p align="justify">Anche se digiti:</p>
 
 ```text
 12
 ```
 
-il risultato di `input()` è una stringa.
+<p align="justify">il risultato di <code>input()</code> è una stringa.</p>
 
-Verificalo:
+<p align="justify">Verificalo:</p>
 
 ```python
 dato = input()
 print(type(dato))
 ```
 
-Se digiti `12`, vedrai comunque:
+<p align="justify">Se digiti <code>12</code>, vedrai comunque:</p>
 
 ```text
 <class 'str'>
@@ -410,153 +464,159 @@ Se digiti `12`, vedrai comunque:
 
 ---
 
-# 8. Perché `"2" + "3"` non fa `5`
+## 8. Perché `"2" + "3"` non fa `5`
 
-Prima prevedi:
+<p align="justify">Prima prevedi:</p>
 
 ```python
 "2" + "3"
 ```
 
-Il risultato è:
+<p align="justify">Il risultato è:</p>
 
 ```text
 '23'
 ```
 
-Per le stringhe, `+` concatena testo.
+<p align="justify">Per le stringhe, <code>+</code> concatena testo.</p>
 
-Con gli interi:
+<p align="justify">Con gli interi:</p>
 
 ```python
 2 + 3
 ```
 
-il risultato è:
+<p align="justify">il risultato è:</p>
 
 ```text
 5
 ```
 
-Il simbolo è lo stesso, ma l'operazione dipende dai tipi coinvolti.
+<p align="justify">Il simbolo è lo stesso, ma l'operazione dipende dai tipi coinvolti.</p>
 
-Questa è una delle ragioni per cui **capire i tipi** è importante.
+<p align="justify">Questa è una delle ragioni per cui <strong>capire i tipi</strong> è importante.</p>
 
 ---
 
-# 9. Conversioni: trasformare il dato quando il problema lo richiede
+## 9. Conversioni: trasformare il dato quando il problema lo richiede
 
-Se vuoi usare come numero ciò che è stato letto con `input()`, devi convertirlo.
+<p align="justify">Se vuoi usare come numero ciò che è stato letto con <code>input()</code>, devi convertirlo.</p>
 
 ```python
 testo = input()
 numero = int(testo)
 ```
 
-Spesso si scrive direttamente:
+<p align="justify">Spesso si scrive direttamente:</p>
 
 ```python
 numero = int(input())
 ```
 
-## `int()`
+### `int()`
 
-Converte un testo compatibile in intero:
+<p align="justify">Converte un testo compatibile in intero:</p>
 
 ```python
 int("42")
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 42
 ```
 
-Ma:
+<p align="justify">Ma:</p>
 
 ```python
 int("ciao")
 ```
 
-non può produrre un intero valido e genera un errore.
+<p align="justify">non può produrre un intero valido e genera un errore.</p>
 
-## `float()`
+### `float()`
 
 ```python
 float("3.5")
 ```
 
-produce un `float`.
+<p align="justify">produce un <code>float</code>.</p>
 
-## `str()`
+### `str()`
 
 ```python
 str(42)
 ```
 
-produce il testo:
+<p align="justify">produce il testo:</p>
 
 ```text
 "42"
 ```
 
-## Non convertire per abitudine
+### Non convertire per abitudine
 
-La domanda deve essere:
+<p align="justify">La domanda deve essere:</p>
 
-> Quale tipo mi serve per l'operazione che devo fare?
+<blockquote>
+<p align="justify">Quale tipo mi serve per l'operazione che devo fare?</p>
+</blockquote>
 
-Se stai leggendo un nome, non ha senso convertirlo in `int`.
+<p align="justify">Se stai leggendo un nome, non ha senso convertirlo in <code>int</code>.</p>
 
 ---
 
-# 10. Dal REPL al primo script
+## 10. Dal REPL al primo script
 
-Un esperimento REPL scompare quando chiudi la sessione.
+<p align="justify">Un esperimento REPL scompare quando chiudi la sessione.</p>
 
-Un programma che vuoi conservare e rieseguire va scritto in un file.
+<p align="justify">Un programma che vuoi conservare e rieseguire va scritto in un file.</p>
 
-Crea nel workspace gestito dal corso un file:
+<p align="justify">Crea nel workspace gestito dal corso un file:</p>
 
 ```text
 main.py
 ```
 
-con:
+<p align="justify">con:</p>
 
 ```python
 nome = input()
 print(nome)
 ```
 
-Eseguilo con il workflow TheBitLab indicato dalla guida.
+<p align="justify">Eseguilo con il workflow TheBitLab indicato dalla guida.</p>
 
-## Perché passare presto agli script
+### Perché passare presto agli script
 
-Il REPL è ottimo per:
+<p align="justify">Il REPL è ottimo per:</p>
 
-- esperimenti;
-- espressioni;
-- controllare un'ipotesi;
-- capire un errore piccolo.
+<ul>
+  <li>esperimenti;</li>
+  <li>espressioni;</li>
+  <li>controllare un'ipotesi;</li>
+  <li>capire un errore piccolo.</li>
+</ul>
 
-Lo script è migliore quando vuoi:
+<p align="justify">Lo script è migliore quando vuoi:</p>
 
-- conservare il programma;
-- eseguirlo di nuovo;
-- modificarlo;
-- testarlo;
-- versionarlo;
-- costruire qualcosa di più grande.
+<ul>
+  <li>conservare il programma;</li>
+  <li>eseguirlo di nuovo;</li>
+  <li>modificarlo;</li>
+  <li>testarlo;</li>
+  <li>versionarlo;</li>
+  <li>costruire qualcosa di più grande.</li>
+</ul>
 
-Non sono concorrenti: sono strumenti diversi.
+<p align="justify">Non sono concorrenti: sono strumenti diversi.</p>
 
 ---
 
-# 11. Microscope: esegui mentalmente questo programma
+## 11. Microscope: esegui mentalmente questo programma
 
-Prima di provarlo, completa il trace:
+<p align="justify">Prima di provarlo, completa il trace:</p>
 
 ```python
 primo = 4
@@ -565,49 +625,105 @@ risultato = primo + secondo
 print(risultato)
 ```
 
-| Passo | `primo` | `secondo` | `risultato` | output |
-|---|---:|---:|---:|---|
-| dopo riga 1 | 4 | — | — | — |
-| dopo riga 2 | 4 | 6 | — | — |
-| dopo riga 3 | 4 | 6 | ? | — |
-| dopo riga 4 | 4 | 6 | ? | ? |
+<table align="center">
+<thead>
+<tr>
+<th>Passo</th>
+<th><code>primo</code></th>
+<th><code>secondo</code></th>
+<th><code>risultato</code></th>
+<th>output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dopo riga 1</td>
+<td>4</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>dopo riga 2</td>
+<td>4</td>
+<td>6</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>dopo riga 3</td>
+<td>4</td>
+<td>6</td>
+<td>?</td>
+<td>—</td>
+</tr>
+<tr>
+<td>dopo riga 4</td>
+<td>4</td>
+<td>6</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
 
-Soltanto dopo eseguilo.
+<p align="justify">Soltanto dopo eseguilo.</p>
 
-## Variante
+### Variante
 
-Cambia:
+<p align="justify">Cambia:</p>
 
 ```python
 secondo = -2
 ```
 
-Prevedi di nuovo prima dell'esecuzione.
+<p align="justify">Prevedi di nuovo prima dell'esecuzione.</p>
 
-Questa abitudine — **predict before run** — continuerà per tutto il corso.
+<p align="justify">Questa abitudine — <strong>predict before run</strong> — continuerà per tutto il corso.</p>
 
 ---
 
-# 12. Worked example: somma di due numeri letti dall'utente
+## 12. Worked example: somma di due numeri letti dall'utente
 
-Riprendiamo il problema iniziale.
+<p align="justify">Riprendiamo il problema iniziale.</p>
 
-## Specifica
+### Specifica
 
 ```text
 INPUT: due interi, uno per riga
 OUTPUT: la loro somma
 ```
 
-## Casi di test prima del codice
+### Casi di test prima del codice
 
-| input 1 | input 2 | output atteso |
-|---:|---:|---:|
-| 2 | 3 | 5 |
-| 0 | 0 | 0 |
-| -4 | 10 | 6 |
+<table align="center">
+<thead>
+<tr>
+<th>input 1</th>
+<th>input 2</th>
+<th>output atteso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>-4</td>
+<td>10</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
 
-## Codice
+### Codice
 
 ```python
 primo = int(input())
@@ -616,7 +732,7 @@ risultato = primo + secondo
 print(risultato)
 ```
 
-## Trace con `-4` e `10`
+### Trace con `-4` e `10`
 
 ```text
 input()             → "-4"
@@ -632,7 +748,7 @@ risultato           → 6
 print(risultato)    → mostra 6
 ```
 
-Notare la distinzione tra:
+<p align="justify">Notare la distinzione tra:</p>
 
 ```text
 "10"   stringa letta
@@ -641,9 +757,9 @@ Notare la distinzione tra:
 
 ---
 
-# 13. Confronto: due programmi che sembrano simili
+## 13. Confronto: due programmi che sembrano simili
 
-## Versione A
+### Versione A
 
 ```python
 primo = input()
@@ -651,20 +767,20 @@ secondo = input()
 print(primo + secondo)
 ```
 
-Con input:
+<p align="justify">Con input:</p>
 
 ```text
 2
 3
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 23
 ```
 
-## Versione B
+### Versione B
 
 ```python
 primo = int(input())
@@ -672,58 +788,60 @@ secondo = int(input())
 print(primo + secondo)
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 5
 ```
 
-## Domanda
+### Domanda
 
-Entrambi i programmi "funzionano" nel senso che Python li esegue.
+<p align="justify">Entrambi i programmi "funzionano" nel senso che Python li esegue.</p>
 
-Ma soltanto uno rispetta la specifica **somma di due interi**.
+<p align="justify">Ma soltanto uno rispetta la specifica <strong>somma di due interi</strong>.</p>
 
-Quindi:
+<p align="justify">Quindi:</p>
 
-> programma eseguibile ≠ programma corretto rispetto al problema.
+<blockquote>
+<p align="justify">programma eseguibile ≠ programma corretto rispetto al problema.</p>
+</blockquote>
 
 ---
 
-# 14. Error Clinic
+## 14. Error Clinic
 
-Gli errori fanno parte del lavoro del programmatore.
+<p align="justify">Gli errori fanno parte del lavoro del programmatore.</p>
 
-## Caso 1 — errore di sintassi
+### Caso 1 — errore di sintassi
 
 ```python
 print("ciao"
 ```
 
-Python non riesce a interpretare correttamente la struttura del programma.
+<p align="justify">Python non riesce a interpretare correttamente la struttura del programma.</p>
 
-Non guardare cento righe a caso. Inizia dall'informazione che l'errore fornisce e dalla riga indicata, controllando anche ciò che la precede.
+<p align="justify">Non guardare cento righe a caso. Inizia dall'informazione che l'errore fornisce e dalla riga indicata, controllando anche ciò che la precede.</p>
 
-## Caso 2 — nome non definito
+### Caso 2 — nome non definito
 
 ```python
 prezzo = 10
 print(prezzo_totale)
 ```
 
-Hai assegnato un valore a `prezzo`, ma chiedi di usare `prezzo_totale`.
+<p align="justify">Hai assegnato un valore a <code>prezzo</code>, ma chiedi di usare <code>prezzo_totale</code>.</p>
 
-Python non corregge automaticamente il nome in base a ciò che probabilmente intendevi.
+<p align="justify">Python non corregge automaticamente il nome in base a ciò che probabilmente intendevi.</p>
 
-## Caso 3 — conversione impossibile
+### Caso 3 — conversione impossibile
 
 ```python
 numero = int("ciao")
 ```
 
-La sintassi è valida, ma il valore non può essere convertito nel modo richiesto.
+<p align="justify">La sintassi è valida, ma il valore non può essere convertito nel modo richiesto.</p>
 
-## Caso 4 — errore logico
+### Caso 4 — errore logico
 
 ```python
 primo = int(input())
@@ -732,9 +850,9 @@ risultato = primo - secondo
 print(risultato)
 ```
 
-Il programma può terminare senza traceback, ma non calcola ciò che la specifica chiede.
+<p align="justify">Il programma può terminare senza traceback, ma non calcola ciò che la specifica chiede.</p>
 
-Questo è un punto fondamentale:
+<p align="justify">Questo è un punto fondamentale:</p>
 
 ```text
 nessun errore Python
@@ -742,50 +860,56 @@ nessun errore Python
 soluzione corretta
 ```
 
-I casi di test ci aiutano a scoprirlo.
+<p align="justify">I casi di test ci aiutano a scoprirlo.</p>
 
 ---
 
-# 15. Come leggere un traceback beginner
+## 15. Come leggere un traceback beginner
 
-Non devi capire subito ogni riga.
+<p align="justify">Non devi capire subito ogni riga.</p>
 
-Per ora usa questa strategia:
+<p align="justify">Per ora usa questa strategia:</p>
 
-1. individua il **tipo di errore** nell'ultima parte;
-2. leggi il messaggio;
-3. individua la riga del tuo file indicata;
-4. collega l'errore a ciò che quella riga sta tentando di fare;
-5. modifica una cosa alla volta;
-6. riesegui il caso che falliva.
+<ol>
+  <li>individua il <strong>tipo di errore</strong> nell'ultima parte;</li>
+  <li>leggi il messaggio;</li>
+  <li>individua la riga del tuo file indicata;</li>
+  <li>collega l'errore a ciò che quella riga sta tentando di fare;</li>
+  <li>modifica una cosa alla volta;</li>
+  <li>riesegui il caso che falliva.</li>
+</ol>
 
-Esempio concettuale:
+<p align="justify">Esempio concettuale:</p>
 
 ```text
 ValueError: invalid literal for int() ...
 ```
 
-Domanda utile:
+<p align="justify">Domanda utile:</p>
 
-> quale testo sto tentando di convertire in intero?
+<blockquote>
+<p align="justify">quale testo sto tentando di convertire in intero?</p>
+</blockquote>
 
-Non:
+<p align="justify">Non:</p>
 
-> come faccio a far sparire il messaggio?
+<blockquote>
+<p align="justify">come faccio a far sparire il messaggio?</p>
+</blockquote>
 
 ---
 
-# 16. Output deterministico e TheBitLab
+## 16. Output deterministico e TheBitLab
 
-In alcune Activity automatiche il contratto dice esattamente quale output deve produrre il programma.
+<p align="justify">In alcune Activity automatiche il contratto dice esattamente quale output deve produrre il programma.</p>
 
-Se la specifica è:
+<p align="justify">Se la specifica è:</p>
 
 ```text
 leggi due interi e stampa soltanto la somma
 ```
 
-questa soluzione è coerente:
+<p align="justify">questa soluzione è coerente:</p>
 
 ```python
 primo = int(input())
@@ -793,7 +917,7 @@ secondo = int(input())
 print(primo + secondo)
 ```
 
-Questa invece aggiunge output non richiesto:
+<p align="justify">Questa invece aggiunge output non richiesto:</p>
 
 ```python
 primo = int(input("Inserisci il primo numero: "))
@@ -801,25 +925,27 @@ secondo = int(input("Inserisci il secondo numero: "))
 print("La somma è", primo + secondo)
 ```
 
-In un'applicazione reale i prompt possono essere utilissimi. Qui, però, **l'interfaccia testuale non è l'obiettivo** e il test automatico deve poter confrontare input e output in modo deterministico.
+<p align="justify">In un'applicazione reale i prompt possono essere utilissimi. Qui, però, <strong>l'interfaccia testuale non è l'obiettivo</strong> e il test automatico deve poter confrontare input e output in modo deterministico.</p>
 
-La regola non è "non usare mai prompt".
+<p align="justify">La regola non è "non usare mai prompt".</p>
 
-La regola è:
+<p align="justify">La regola è:</p>
 
-> rispetta il contratto dell'interfaccia che stai implementando.
+<blockquote>
+<p align="justify">rispetta il contratto dell'interfaccia che stai implementando.</p>
+</blockquote>
 
 ---
 
-# 17. Activity B — Completa la somma
+## 17. Activity B — Completa la somma
 
-Il primo vertical slice TheBitLab del corso è:
+<p align="justify">Il primo vertical slice TheBitLab del corso è:</p>
 
 ```text
 py2-activity-b-input-somma-001
 ```
 
-Ricevi uno starter simile a:
+<p align="justify">Ricevi uno starter simile a:</p>
 
 ```python
 primo = int(input())
@@ -828,9 +954,9 @@ risultato = 0
 print(risultato)
 ```
 
-Devi modificare **soltanto ciò che serve** affinché rispetti la specifica.
+<p align="justify">Devi modificare <strong>soltanto ciò che serve</strong> affinché rispetti la specifica.</p>
 
-Prima di eseguire, prevedi l'output per:
+<p align="justify">Prima di eseguire, prevedi l'output per:</p>
 
 ```text
 2, 3
@@ -838,23 +964,23 @@ Prima di eseguire, prevedi l'output per:
 -4, 10
 ```
 
-Poi usa il report per confrontare il comportamento reale con quello atteso.
+<p align="justify">Poi usa il report per confrontare il comportamento reale con quello atteso.</p>
 
-## Perché è un'Activity B
+### Perché è un'Activity B
 
-Non stai progettando ancora tutto il programma da zero.
+<p align="justify">Non stai progettando ancora tutto il programma da zero.</p>
 
-Stai facendo una **modifica controllata** a una struttura già comprensibile.
+<p align="justify">Stai facendo una <strong>modifica controllata</strong> a una struttura già comprensibile.</p>
 
-In Activity successive passeremo a implementazione autonoma, debug e mini-progetti.
+<p align="justify">In Activity successive passeremo a implementazione autonoma, debug e mini-progetti.</p>
 
 ---
 
-# 18. Esercizi brevi
+## 18. Esercizi brevi
 
-## A — Prevedi il tipo e il valore
+### A — Prevedi il tipo e il valore
 
-Senza REPL, scrivi prima la previsione:
+<p align="justify">Senza REPL, scrivi prima la previsione:</p>
 
 ```python
 3 + 4
@@ -863,38 +989,42 @@ int("8") + 2
 str(5)
 ```
 
-Poi verifica.
+<p align="justify">Poi verifica.</p>
 
-## B — Trova la differenza
+### B — Trova la differenza
 
-Spiega perché:
+<p align="justify">Spiega perché:</p>
 
 ```python
 eta = input()
 print(eta + "1")
 ```
 
-non significa "aumenta l'età di uno".
+<p align="justify">non significa "aumenta l'età di uno".</p>
 
-Scrivi poi la versione corretta per un'età intera.
+<p align="justify">Scrivi poi la versione corretta per un'età intera.</p>
 
-## C — Dal problema al codice
+### C — Dal problema al codice
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Leggi un numero intero e mostra il suo doppio.
+<blockquote>
+<p align="justify">Leggi un numero intero e mostra il suo doppio.</p>
+</blockquote>
 
-Produci:
+<p align="justify">Produci:</p>
 
-1. input;
-2. output;
-3. algoritmo;
-4. due casi di test;
-5. codice.
+<ol>
+  <li>input;</li>
+  <li>output;</li>
+  <li>algoritmo;</li>
+  <li>due casi di test;</li>
+  <li>codice.</li>
+</ol>
 
-## D — Debug
+### D — Debug
 
-Correggi il programma:
+<p align="justify">Correggi il programma:</p>
 
 ```python
 prezzo = int(input())
@@ -903,30 +1033,32 @@ totale = prezzo + quantita
 print(totale)
 ```
 
-se la specifica chiede il costo totale di `quantita` pezzi allo stesso prezzo.
+<p align="justify">se la specifica chiede il costo totale di <code>quantita</code> pezzi allo stesso prezzo.</p>
 
-Non limitarti a cambiare il simbolo: spiega perché.
-
----
-
-# 19. Verifica rapida
-
-Rispondi senza eseguire Python.
-
-1. Che tipo restituisce `input()`?
-2. Che differenza c'è tra `42` e `"42"`?
-3. A cosa serve `int()` in `int(input())`?
-4. Perché il REPL mostra il risultato di `2 + 3`, mentre una riga `2 + 3` in uno script non produce necessariamente output visibile?
-5. Un programma senza traceback è sicuramente corretto? Perché?
-6. Qual è il primo passo utile quando compare un traceback?
-
-Dopo aver risposto, verifica con piccoli esperimenti soltanto le risposte di cui non sei sicuro.
+<p align="justify">Non limitarti a cambiare il simbolo: spiega perché.</p>
 
 ---
 
-# 20. Sintesi
+## 19. Verifica rapida
 
-Porta con te questi modelli:
+<p align="justify">Rispondi senza eseguire Python.</p>
+
+<ol>
+  <li>Che tipo restituisce <code>input()</code>?</li>
+  <li>Che differenza c'è tra <code>42</code> e <code>"42"</code>?</li>
+  <li>A cosa serve <code>int()</code> in <code>int(input())</code>?</li>
+  <li>Perché il REPL mostra il risultato di <code>2 + 3</code>, mentre una riga <code>2 + 3</code> in uno script non produce necessariamente output visibile?</li>
+  <li>Un programma senza traceback è sicuramente corretto? Perché?</li>
+  <li>Qual è il primo passo utile quando compare un traceback?</li>
+</ol>
+
+<p align="justify">Dopo aver risposto, verifica con piccoli esperimenti soltanto le risposte di cui non sei sicuro.</p>
+
+---
+
+## 20. Sintesi
+
+<p align="justify">Porta con te questi modelli:</p>
 
 ```text
 Python esegue il programma scritto, non quello immaginato.
@@ -953,27 +1085,33 @@ prevedi → esegui → confronta → correggi
 nessun traceback ≠ correttezza
 ```
 
-Nel prossimo modulo useremo espressioni e operatori con maggiore precisione e inizieremo a dare un nome a piccole trasformazioni tramite funzioni.
+<p align="justify">Nel prossimo modulo useremo espressioni e operatori con maggiore precisione e inizieremo a dare un nome a piccole trasformazioni tramite funzioni.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Questa lesson è materiale originale del corso. Per progettazione e verifica tecnica usa:
+<p align="justify">Questa lesson è materiale originale del corso. Per progettazione e verifica tecnica usa:</p>
 
-- Allen Downey, *Think Python / Pensare in Python* — modello beginner, valori/variabili/funzioni/debugging;
-- Mark Lutz, *Learning Python / Imparare Python* — coverage di tipi, espressioni e statement;
-- documentazione Python 3.12 — tutorial, built-in `input`, `print`, `int`, `float`, `str`, `type`;
-- Pluralsight Python Essentials — gap-check di percorso/laboratorio.
+<ul>
+  <li>Allen Downey, <em>Think Python / Pensare in Python</em> — modello beginner, valori/variabili/funzioni/debugging;</li>
+  <li>Mark Lutz, <em>Learning Python / Imparare Python</em> — coverage di tipi, espressioni e statement;</li>
+  <li>documentazione Python 3.12 — tutorial, built-in <code>input</code>, <code>print</code>, <code>int</code>, <code>float</code>, <code>str</code>, <code>type</code>;</li>
+  <li>Pluralsight Python Essentials — gap-check di percorso/laboratorio.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-## Activity correlate
+### Activity correlate
 
-- `py2-activity-b-input-somma-001` — **Completa la somma**.
+<ul>
+  <li><code>py2-activity-b-input-somma-001</code> — <strong>Completa la somma</strong>.</li>
+</ul>
 
-## Collegamenti di progettazione
+### Collegamenti di progettazione
 
-- `tracks/secondo/PY2_02_SPEC.md`;
-- `doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`;
-- `tracks/secondo/ARCHITECTURE_REVIEW.md`.
+<ul>
+  <li><code>tracks/secondo/PY2_02_SPEC.md</code>;</li>
+  <li><code>doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md</code>;</li>
+  <li><code>tracks/secondo/ARCHITECTURE_REVIEW.md</code>.</li>
+</ul>

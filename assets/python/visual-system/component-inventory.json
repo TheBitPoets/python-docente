@@ -1,0 +1,152 @@
+[
+  {
+    "id": "tpsi-document",
+    "label": "Documento / sorgente",
+    "origin": "TPSI quarto, derivato da TPSI quinto",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-terminal",
+    "label": "Terminale / REPL",
+    "origin": "TPSI quarto, derivato da TPSI quinto",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-repository",
+    "label": "Repository",
+    "origin": "TPSI quarto, derivato da TPSI quinto",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-test",
+    "label": "Caso di test",
+    "origin": "TPSI quarto, derivato da TPSI quinto",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-step",
+    "label": "Passo di elaborazione",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-terminator",
+    "label": "Inizio / fine",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-io",
+    "label": "Input / output",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-decision",
+    "label": "Decisione",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-binding",
+    "label": "Nome / variabile",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-value",
+    "label": "Valore / oggetto",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-reference",
+    "label": "Riferimento",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-sequence",
+    "label": "Sequenza",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-tuple",
+    "label": "Tupla",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-grid",
+    "label": "Griglia / matrice",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-set",
+    "label": "Insieme",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-mapping",
+    "label": "Chiave e valore",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-trace",
+    "label": "Tabella di traccia",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-runtime",
+    "label": "Interprete",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-function",
+    "label": "Funzione",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-frame",
+    "label": "Contesto di chiamata",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-contract",
+    "label": "Contratto / invariante",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-error",
+    "label": "Errore / rifiuto",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-path",
+    "label": "Percorso nel workspace",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-class",
+    "label": "Classe",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  },
+  {
+    "id": "tpsi-instance",
+    "label": "Istanza",
+    "origin": "Originale Python, 2026-09-16",
+    "usage": "Etichettare nella scena; il simbolo da solo non definisce il comportamento."
+  }
+]

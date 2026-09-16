@@ -1,44 +1,98 @@
 # M08 — Selezioni annidate, validazione e refactoring
 
-> **Stato:** draft / controlled authoring continuation  
-> **UDA:** PY2-03 — Selezione e logica  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+La validazione stabilisce quando una seconda decisione ha senso e guida un refactoring verificabile.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Leggere if/elif/else, condizioni composte e intervalli da M06–M07.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+leggere e scrivere una selezione annidata semplice;<br>seguire il percorso dei rami con un trace;<br>riconoscere quando una seconda decisione dipende davvero dalla prima; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Un ramo non percorso non esegue le istruzioni che contiene; conta la dipendenza fra decisioni. Riprendi <a href="07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md">M07 — <code>elif</code>, casi esclusivi e condizioni composte</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="09_WHILE_STATO_SENTINELLE_VALIDAZIONE.md">M09 — <code>while</code>, stato, sentinelle e validazione ripetuta</a>. Il while ripete un lavoro finché lo stato soddisfa una condizione, anche quando il numero di ripetizioni non è noto.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Prova il classificatore con un voto non valido e con i confini validi, poi confronta i risultati prima e dopo la semplificazione.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft / controlled authoring continuation<br>
+<strong>UDA:</strong> PY2-03 — Selezione e logica<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine di questo modulo dovresti saper:
+<p align="justify">Alla fine di questo modulo dovresti saper:</p>
 
-- leggere e scrivere una selezione annidata semplice;
-- seguire il percorso dei rami con un trace;
-- riconoscere quando una seconda decisione dipende davvero dalla prima;
-- distinguere annidamento necessario da annidamento accidentale;
-- rilevare un input non valido e separare caso valido/non valido;
-- progettare casi di test che percorrono i principali path;
-- confrontare annidamento e condizione composta quando entrambi sono corretti;
-- usare una variabile booleana con un nome quando aggiunge significato;
-- semplificare codice senza cambiare il comportamento osservabile;
-- spiegare perché una versione è più leggibile o più aderente alla specifica.
+<ul>
+  <li>leggere e scrivere una selezione annidata semplice;</li>
+  <li>seguire il percorso dei rami con un trace;</li>
+  <li>riconoscere quando una seconda decisione dipende davvero dalla prima;</li>
+  <li>distinguere annidamento necessario da annidamento accidentale;</li>
+  <li>rilevare un input non valido e separare caso valido/non valido;</li>
+  <li>progettare casi di test che percorrono i principali path;</li>
+  <li>confrontare annidamento e condizione composta quando entrambi sono corretti;</li>
+  <li>usare una variabile booleana con un nome quando aggiunge significato;</li>
+  <li>semplificare codice senza cambiare il comportamento osservabile;</li>
+  <li>spiegare perché una versione è più leggibile o più aderente alla specifica.</li>
+</ul>
 
 ## Prerequisiti
 
-Da M06–M07 dovresti già saper:
+<p align="justify">Da M06–M07 dovresti già saper:</p>
 
-- costruire `if`, `if/else`, `if/elif/else`;
-- distinguere condizioni indipendenti e casi esclusivi;
-- usare confronti, `and`, `or`, `not`;
-- testare soglie e intervalli;
-- individuare rami irraggiungibili o sovrapposti;
-- fare il trace del primo ramo vero.
+<ul>
+  <li>costruire <code>if</code>, <code>if/else</code>, <code>if/elif/else</code>;</li>
+  <li>distinguere condizioni indipendenti e casi esclusivi;</li>
+  <li>usare confronti, <code>and</code>, <code>or</code>, <code>not</code>;</li>
+  <li>testare soglie e intervalli;</li>
+  <li>individuare rami irraggiungibili o sovrapposti;</li>
+  <li>fare il trace del primo ramo vero.</li>
+</ul>
 
 ---
 
-# 1. Problema iniziale: una domanda che ha senso solo dopo un'altra
+## 1. Problema iniziale: una domanda che ha senso solo dopo un'altra
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Prima controlla se le credenziali sono valide. Soltanto se lo sono, controlla se l'account è attivo.
+<blockquote>
+<p align="justify">Prima controlla se le credenziali sono valide. Soltanto se lo sono, controlla se l'account è attivo.</p>
+</blockquote>
 
-La seconda domanda dipende dalla prima:
+<p align="justify">La seconda domanda dipende dalla prima:</p>
 
 ```text
 credenziali valide?
@@ -48,7 +102,7 @@ credenziali valide?
               sì  → accesso consentito
 ```
 
-Una traduzione diretta è:
+<p align="justify">Una traduzione diretta è:</p>
 
 ```python
 if credenziali_valide:
@@ -60,13 +114,13 @@ else:
     print("accesso negato")
 ```
 
-Qui l'annidamento rappresenta una **dipendenza reale fra decisioni**.
+<p align="justify">Qui l'annidamento rappresenta una <strong>dipendenza reale fra decisioni</strong>.</p>
 
 ---
 
-# 2. Che cosa significa “annidare”
+## 2. Che cosa significa “annidare”
 
-Un `if` è annidato quando compare dentro il blocco di un'altra selezione.
+<p align="justify">Un <code>if</code> è annidato quando compare dentro il blocco di un'altra selezione.</p>
 
 ```python
 if condizione_1:
@@ -74,19 +128,19 @@ if condizione_1:
         ...
 ```
 
-Il secondo `if` viene raggiunto soltanto quando:
+<p align="justify">Il secondo <code>if</code> viene raggiunto soltanto quando:</p>
 
 ```text
 condizione_1 → True
 ```
 
-Quindi il percorso del programma dipende da più decisioni successive.
+<p align="justify">Quindi il percorso del programma dipende da più decisioni successive.</p>
 
 ---
 
-# 3. Path trace: segui il percorso, non tutto il codice
+## 3. Path trace: segui il percorso, non tutto il codice
 
-Programma:
+<p align="justify">Programma:</p>
 
 ```python
 if credenziali_valide:
@@ -98,14 +152,14 @@ else:
     print("negato")
 ```
 
-## Caso A
+### Caso A
 
 ```text
 credenziali_valide = False
 account_attivo = True
 ```
 
-Trace:
+<p align="justify">Trace:</p>
 
 ```text
 credenziali_valide? → False
@@ -113,14 +167,14 @@ ramo esterno else   → negato
 secondo if           → non raggiunto
 ```
 
-## Caso B
+### Caso B
 
 ```text
 credenziali_valide = True
 account_attivo = False
 ```
 
-Trace:
+<p align="justify">Trace:</p>
 
 ```text
 credenziali_valide? → True
@@ -128,34 +182,61 @@ account_attivo?     → False
 ramo interno else   → disabilitato
 ```
 
-Il trace segue **un path** per volta.
+<p align="justify">Il trace segue <strong>un path</strong> per volta.</p>
 
 ---
 
-# 4. Costruire una tabella dei path
+## 4. Costruire una tabella dei path
 
-Per due booleani:
+<p align="justify">Per due booleani:</p>
 
-| credenziali valide | account attivo | output atteso |
-|---|---|---|
-| False | False | negato |
-| False | True | negato |
-| True | False | disabilitato |
-| True | True | accesso |
+<table align="center">
+<thead>
+<tr>
+<th>credenziali valide</th>
+<th>account attivo</th>
+<th>output atteso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>False</td>
+<td>False</td>
+<td>negato</td>
+</tr>
+<tr>
+<td>False</td>
+<td>True</td>
+<td>negato</td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+<td>disabilitato</td>
+</tr>
+<tr>
+<td>True</td>
+<td>True</td>
+<td>accesso</td>
+</tr>
+</tbody>
+</table>
 
-Notare che quando le credenziali non sono valide, il valore di `account_attivo` non cambia il risultato.
+<p align="justify">Notare che quando le credenziali non sono valide, il valore di <code>account_attivo</code> non cambia il risultato.</p>
 
-Questa tabella ci aiuta a capire la struttura prima del codice.
+<p align="justify">Questa tabella ci aiuta a capire la struttura prima del codice.</p>
 
 ---
 
-# 5. Annidamento oppure condizione composta?
+## 5. Annidamento oppure condizione composta?
 
-Specifica più semplice:
+<p align="justify">Specifica più semplice:</p>
 
-> Stampa `accesso` soltanto se credenziali valide **e** account attivo.
+<blockquote>
+<p align="justify">Stampa <code>accesso</code> soltanto se credenziali valide <strong>e</strong> account attivo.</p>
+</blockquote>
 
-Versione annidata:
+<p align="justify">Versione annidata:</p>
 
 ```python
 if credenziali_valide:
@@ -163,52 +244,56 @@ if credenziali_valide:
         print("accesso")
 ```
 
-Versione composta:
+<p align="justify">Versione composta:</p>
 
 ```python
 if credenziali_valide and account_attivo:
     print("accesso")
 ```
 
-In questa specifica ridotta possono essere equivalenti per l'output richiesto.
+<p align="justify">In questa specifica ridotta possono essere equivalenti per l'output richiesto.</p>
 
-La seconda comunica direttamente:
+<p align="justify">La seconda comunica direttamente:</p>
 
 ```text
 entrambe le condizioni devono essere vere
 ```
 
-Ma se dobbiamo distinguere anche `credenziali non valide` da `account disabilitato`, l'annidamento o una struttura multi-ramo può rappresentare meglio il dominio.
+<p align="justify">Ma se dobbiamo distinguere anche <code>credenziali non valide</code> da <code>account disabilitato</code>, l'annidamento o una struttura multi-ramo può rappresentare meglio il dominio.</p>
 
 ---
 
-# 6. Meno annidamento non significa automaticamente codice migliore
+## 6. Meno annidamento non significa automaticamente codice migliore
 
-Evita regole meccaniche come:
+<p align="justify">Evita regole meccaniche come:</p>
 
 ```text
 meno righe = meglio
 meno livelli = sempre meglio
 ```
 
-Confronta invece:
+<p align="justify">Confronta invece:</p>
 
-1. quali casi deve distinguere la specifica;
-2. quali condizioni hanno senso solo dopo altre;
-3. quali output/comportamenti devono restare differenti;
-4. quale struttura rende evidente il percorso.
+<ol>
+  <li>quali casi deve distinguere la specifica;</li>
+  <li>quali condizioni hanno senso solo dopo altre;</li>
+  <li>quali output/comportamenti devono restare differenti;</li>
+  <li>quale struttura rende evidente il percorso.</li>
+</ol>
 
-Il refactoring deve preservare il comportamento richiesto, non soltanto ridurre l'indentazione.
+<p align="justify">Il refactoring deve preservare il comportamento richiesto, non soltanto ridurre l'indentazione.</p>
 
 ---
 
-# 7. Validazione: separare dati validi e non validi
+## 7. Validazione: separare dati validi e non validi
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Leggi un voto tra 0 e 10. Se è fuori intervallo stampa `dato non valido`; altrimenti classificalo.
+<blockquote>
+<p align="justify">Leggi un voto tra 0 e 10. Se è fuori intervallo stampa <code>dato non valido</code>; altrimenti classificalo.</p>
+</blockquote>
 
-Per ora sappiamo **rilevare** l'errore:
+<p align="justify">Per ora sappiamo <strong>rilevare</strong> l'errore:</p>
 
 ```python
 voto = int(input())
@@ -222,45 +307,47 @@ else:
         print("sufficiente")
 ```
 
-Importante:
+<p align="justify">Importante:</p>
 
-> non sappiamo ancora ripetere automaticamente la richiesta finché il dato diventa valido.
+<blockquote>
+<p align="justify">non sappiamo ancora ripetere automaticamente la richiesta finché il dato diventa valido.</p>
+</blockquote>
 
-Quello richiederà `while` in PY2-04.
+<p align="justify">Quello richiederà <code>while</code> in PY2-04.</p>
 
 ---
 
-# 8. Validare non significa “mettere un try ovunque”
+## 8. Validare non significa “mettere un try ovunque”
 
-Nel punto attuale del corso distinguiamo due problemi diversi.
+<p align="justify">Nel punto attuale del corso distinguiamo due problemi diversi.</p>
 
-### Valore numerico fuori dal dominio
+#### Valore numerico fuori dal dominio
 
 ```text
 voto = 12
 ```
 
-Il dato è un intero, ma non è valido per la nostra specifica `0..10`.
+<p align="justify">Il dato è un intero, ma non è valido per la nostra specifica <code>0..10</code>.</p>
 
-Possiamo rilevarlo con una condizione.
+<p align="justify">Possiamo rilevarlo con una condizione.</p>
 
-### Testo non convertibile in intero
+#### Testo non convertibile in intero
 
 ```text
 "ciao"
 ```
 
-`int("ciao")` produce un errore di conversione.
+<p align="justify"><code>int("ciao")</code> produce un errore di conversione.</p>
 
-Non introduciamo ancora `try/except` come nuovo argomento: la gestione programmata delle eccezioni verrà affrontata più avanti.
+<p align="justify">Non introduciamo ancora <code>try/except</code> come nuovo argomento: la gestione programmata delle eccezioni verrà affrontata più avanti.</p>
 
-Per ora i test delle selezioni usano input del tipo già previsto dal contratto.
+<p align="justify">Per ora i test delle selezioni usano input del tipo già previsto dal contratto.</p>
 
 ---
 
-# 9. Worked example: voto valido + classificazione
+## 9. Worked example: voto valido + classificazione
 
-## Specifica
+### Specifica
 
 ```text
 INPUT: intero
@@ -270,18 +357,44 @@ altrimenti:
   >= 6 → sufficiente
 ```
 
-## Casi di test
+### Casi di test
 
-| input | atteso |
-|---:|---|
-| -1 | dato non valido |
-| 0 | insufficiente |
-| 5 | insufficiente |
-| 6 | sufficiente |
-| 10 | sufficiente |
-| 11 | dato non valido |
+<table align="center">
+<thead>
+<tr>
+<th>input</th>
+<th>atteso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-1</td>
+<td>dato non valido</td>
+</tr>
+<tr>
+<td>0</td>
+<td>insufficiente</td>
+</tr>
+<tr>
+<td>5</td>
+<td>insufficiente</td>
+</tr>
+<tr>
+<td>6</td>
+<td>sufficiente</td>
+</tr>
+<tr>
+<td>10</td>
+<td>sufficiente</td>
+</tr>
+<tr>
+<td>11</td>
+<td>dato non valido</td>
+</tr>
+</tbody>
+</table>
 
-## Codice
+### Codice
 
 ```python
 voto = int(input())
@@ -295,19 +408,19 @@ else:
         print("sufficiente")
 ```
 
-I casi `-1`, `0`, `10`, `11` controllano i confini della validità; `5` e `6` controllano la soglia della classificazione.
+<p align="justify">I casi <code>-1</code>, <code>0</code>, <code>10</code>, <code>11</code> controllano i confini della validità; <code>5</code> e <code>6</code> controllano la soglia della classificazione.</p>
 
 ---
 
-# 10. Variante: condizione di validità nominata
+## 10. Variante: condizione di validità nominata
 
-Quando un nome aggiunge significato:
+<p align="justify">Quando un nome aggiunge significato:</p>
 
 ```python
 voto_valido = 0 <= voto <= 10
 ```
 
-Poi:
+<p align="justify">Poi:</p>
 
 ```python
 if voto_valido:
@@ -319,15 +432,15 @@ else:
     print("dato non valido")
 ```
 
-Il nome `voto_valido` rende esplicita una regola del dominio.
+<p align="justify">Il nome <code>voto_valido</code> rende esplicita una regola del dominio.</p>
 
-Non trasformiamo però ogni confronto in una variabile booleana: il nome deve spiegare qualcosa.
+<p align="justify">Non trasformiamo però ogni confronto in una variabile booleana: il nome deve spiegare qualcosa.</p>
 
 ---
 
-# 11. Refactoring controllato: stessi test prima e dopo
+## 11. Refactoring controllato: stessi test prima e dopo
 
-Supponiamo che questo comportamento sia sufficiente:
+<p align="justify">Supponiamo che questo comportamento sia sufficiente:</p>
 
 ```python
 if credenziali_valide:
@@ -335,31 +448,35 @@ if credenziali_valide:
         print("accesso")
 ```
 
-Possibile refactoring:
+<p align="justify">Possibile refactoring:</p>
 
 ```python
 if credenziali_valide and account_attivo:
     print("accesso")
 ```
 
-Prima di dire che il refactoring è corretto:
+<p align="justify">Prima di dire che il refactoring è corretto:</p>
 
-1. conserva i casi di test;
-2. esegui mentalmente o realmente gli stessi input;
-3. verifica che output/comportamento restino uguali;
-4. spiega quale versione comunica meglio l'intenzione.
+<ol>
+  <li>conserva i casi di test;</li>
+  <li>esegui mentalmente o realmente gli stessi input;</li>
+  <li>verifica che output/comportamento restino uguali;</li>
+  <li>spiega quale versione comunica meglio l'intenzione.</li>
+</ol>
 
-Il test non serve solo a trovare bug nuovi: protegge anche durante le modifiche.
+<p align="justify">Il test non serve solo a trovare bug nuovi: protegge anche durante le modifiche.</p>
 
 ---
 
-# 12. Error Clinic: annidamento che cambia il significato
+## 12. Error Clinic: annidamento che cambia il significato
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> se piove stampa `ombrello`; se fa freddo stampa `giacca`. I due effetti possono coesistere.
+<blockquote>
+<p align="justify">se piove stampa <code>ombrello</code>; se fa freddo stampa <code>giacca</code>. I due effetti possono coesistere.</p>
+</blockquote>
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 if piove:
@@ -368,11 +485,11 @@ if piove:
     print("ombrello")
 ```
 
-Se `fa_freddo` è True ma `piove` è False, `giacca` non viene mai stampato.
+<p align="justify">Se <code>fa_freddo</code> è True ma <code>piove</code> è False, <code>giacca</code> non viene mai stampato.</p>
 
-L'annidamento ha introdotto una dipendenza che la specifica non aveva.
+<p align="justify">L'annidamento ha introdotto una dipendenza che la specifica non aveva.</p>
 
-Corretto per effetti indipendenti:
+<p align="justify">Corretto per effetti indipendenti:</p>
 
 ```python
 if piove:
@@ -384,9 +501,9 @@ if fa_freddo:
 
 ---
 
-# 13. Error Clinic: ramo valido nel posto sbagliato
+## 13. Error Clinic: ramo valido nel posto sbagliato
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 if voto < 6:
@@ -398,21 +515,21 @@ else:
         print("sufficiente")
 ```
 
-Con `voto = -1`:
+<p align="justify">Con <code>voto = -1</code>:</p>
 
 ```text
 voto < 6 → True
 ```
 
-quindi viene stampato `insufficiente` prima ancora di controllare che il dato sia fuori dominio.
+<p align="justify">quindi viene stampato <code>insufficiente</code> prima ancora di controllare che il dato sia fuori dominio.</p>
 
-La validazione deve avvenire **prima** della classificazione se la classificazione ha senso solo per valori validi.
+<p align="justify">La validazione deve avvenire <strong>prima</strong> della classificazione se la classificazione ha senso solo per valori validi.</p>
 
 ---
 
-# 14. Error Clinic: condizione composta che perde informazioni
+## 14. Error Clinic: condizione composta che perde informazioni
 
-Versione:
+<p align="justify">Versione:</p>
 
 ```python
 if credenziali_valide and account_attivo:
@@ -421,34 +538,34 @@ else:
     print("negato")
 ```
 
-È corretta se la specifica distingue soltanto:
+<p align="justify">È corretta se la specifica distingue soltanto:</p>
 
 ```text
 accesso / non accesso
 ```
 
-Non è sufficiente se dobbiamo distinguere:
+<p align="justify">Non è sufficiente se dobbiamo distinguere:</p>
 
 ```text
 credenziali errate
 account disabilitato
 ```
 
-Una semplificazione sintattica può perdere informazioni richieste dal dominio.
+<p align="justify">Una semplificazione sintattica può perdere informazioni richieste dal dominio.</p>
 
 ---
 
-# 15. Path coverage: quali percorsi abbiamo davvero provato?
+## 15. Path coverage: quali percorsi abbiamo davvero provato?
 
-Per una selezione annidata non basta dire “ho fatto tre test”.
+<p align="justify">Per una selezione annidata non basta dire “ho fatto tre test”.</p>
 
-Chiediti:
+<p align="justify">Chiediti:</p>
 
 ```text
 quali path del diagramma/codice percorrono?
 ```
 
-Esempio credenziali/account:
+<p align="justify">Esempio credenziali/account:</p>
 
 ```text
 P1 → credenziali false
@@ -456,132 +573,142 @@ P2 → credenziali true, account false
 P3 → credenziali true, account true
 ```
 
-Questi tre path coprono i tre risultati distinti.
+<p align="justify">Questi tre path coprono i tre risultati distinti.</p>
 
-La combinazione `credenziali false, account true` può essere utile per confermare che il secondo dato è irrilevante quando la prima decisione fallisce.
+<p align="justify">La combinazione <code>credenziali false, account true</code> può essere utile per confermare che il secondo dato è irrilevante quando la prima decisione fallisce.</p>
 
 ---
 
-# 16. De Morgan: solo una lente, non un capitolo
+## 16. De Morgan: solo una lente, non un capitolo
 
-A volte incontreremo negazioni come:
+<p align="justify">A volte incontreremo negazioni come:</p>
 
 ```python
 not (eta >= 18 and biglietto_valido)
 ```
 
-Esistono regole logiche per trasformare condizioni negate, ma in questa fase non facciamo algebra booleana formale.
+<p align="justify">Esistono regole logiche per trasformare condizioni negate, ma in questa fase non facciamo algebra booleana formale.</p>
 
-Regola pratica:
+<p align="justify">Regola pratica:</p>
 
-> se una condizione è difficile da leggere, prima riscrivila in linguaggio naturale e verifica i casi; non cercare una forma “furba”.
+<blockquote>
+<p align="justify">se una condizione è difficile da leggere, prima riscrivila in linguaggio naturale e verifica i casi; non cercare una forma “furba”.</p>
+</blockquote>
 
-Eventuali equivalenze di De Morgan vengono usate soltanto come piccoli esempi guidati.
+<p align="justify">Eventuali equivalenze di De Morgan vengono usate soltanto come piccoli esempi guidati.</p>
 
 ---
 
-# 17. Microscope: dipendenza reale o accidentale?
+## 17. Microscope: dipendenza reale o accidentale?
 
-Per ogni coppia di regole decidi se la seconda dipende dalla prima.
+<p align="justify">Per ogni coppia di regole decidi se la seconda dipende dalla prima.</p>
 
-### A
+#### A
 
 ```text
 se utente autenticato, allora controlla se ha permesso admin
 ```
 
-### B
+#### B
 
 ```text
 se piove, ombrello; se freddo, giacca
 ```
 
-### C
+#### C
 
 ```text
 se voto valido, allora classificalo
 ```
 
-### D
+#### D
 
 ```text
 se ha completato quiz, badge; se ha completato progetto, bonus
 ```
 
-Prima descrivi la relazione; poi scegli annidamento, condizione composta o `if` indipendenti.
+<p align="justify">Prima descrivi la relazione; poi scegli annidamento, condizione composta o <code>if</code> indipendenti.</p>
 
 ---
 
-# 18. Activity planning — M08
+## 18. Activity planning — M08
 
-Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:
+<p align="justify">Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:</p>
 
-### A — Path trace
+#### A — Path trace
 
-Dato codice annidato, segnare il percorso seguito per più input.
+<p align="justify">Dato codice annidato, segnare il percorso seguito per più input.</p>
 
-### B — Controlled refactor
+#### B — Controlled refactor
 
-Trasformare un annidamento ridondante in una condizione composta, mantenendo gli stessi test.
+<p align="justify">Trasformare un annidamento ridondante in una condizione composta, mantenendo gli stessi test.</p>
 
-### C — Implement
+#### C — Implement
 
-Problema con:
+<p align="justify">Problema con:</p>
 
-- validazione iniziale;
-- almeno tre casi validi;
-- output deterministico;
-- tabella dei casi prima del codice.
+<ul>
+  <li>validazione iniziale;</li>
+  <li>almeno tre casi validi;</li>
+  <li>output deterministico;</li>
+  <li>tabella dei casi prima del codice.</li>
+</ul>
 
-### D — Debug Clinic
+#### D — Debug Clinic
 
-Correggere validazione tardiva, dipendenza accidentale o ramo mancante.
+<p align="justify">Correggere validazione tardiva, dipendenza accidentale o ramo mancante.</p>
 
-### E — Mini-project
+#### E — Mini-project
 
-Configuratore/regole semplici:
+<p align="justify">Configuratore/regole semplici:</p>
 
-1. input/output/vincoli;
-2. flow chart o pseudocodice;
-3. tabella casi/path;
-4. implementazione;
-5. test;
-6. spiegazione della struttura scelta.
+<ol>
+  <li>input/output/vincoli;</li>
+  <li>flow chart o pseudocodice;</li>
+  <li>tabella casi/path;</li>
+  <li>implementazione;</li>
+  <li>test;</li>
+  <li>spiegazione della struttura scelta.</li>
+</ol>
 
-M04 resta il canarino P1 fino alla certificazione `python-docente#7`.
+<p align="justify">M04 resta il canarino P1 fino alla certificazione <code>python-docente#7</code>.</p>
 
 ---
 
-# 19. Romeo come problema di path/refactoring
+## 19. Romeo come problema di path/refactoring
 
-Romeo resta opzionale.
+<p align="justify">Romeo resta opzionale.</p>
 
-Un uso sensato in M08 è confrontare due modi di esprimere regole di una missione simulata:
+<p align="justify">Un uso sensato in M08 è confrontare due modi di esprimere regole di una missione simulata:</p>
 
 ```text
 prima valida un parametro
 → poi scegli un comportamento
 ```
 
-oppure fare il path trace di una missione già nota.
+<p align="justify">oppure fare il path trace di una missione già nota.</p>
 
-Vincoli:
+<p align="justify">Vincoli:</p>
 
-- niente hardware necessario;
-- niente nuove API avanzate;
-- niente networking;
-- nessuna Activity Romeo duplicata nel repo Python;
-- `romeo-sim` solo quando certificato.
+<ul>
+  <li>niente hardware necessario;</li>
+  <li>niente nuove API avanzate;</li>
+  <li>niente networking;</li>
+  <li>nessuna Activity Romeo duplicata nel repo Python;</li>
+  <li><code>romeo-sim</code> solo quando certificato.</li>
+</ul>
 
 ---
 
-# 20. Mini-project: classificatore validato
+## 20. Mini-project: classificatore validato
 
-Specifica candidata:
+<p align="justify">Specifica candidata:</p>
 
-> Leggi un punteggio intero tra 0 e 100. Se non è valido stampa `errore`. Se è valido, classificalo in tre fasce definite dalla consegna.
+<blockquote>
+<p align="justify">Leggi un punteggio intero tra 0 e 100. Se non è valido stampa <code>errore</code>. Se è valido, classificalo in tre fasce definite dalla consegna.</p>
+</blockquote>
 
-Deliverable:
+<p align="justify">Deliverable:</p>
 
 ```text
 input/output/vincoli
@@ -592,29 +719,31 @@ trace di un path
 spiegazione di una scelta strutturale
 ```
 
-Non serve un progetto grande: il valore è integrare analisi, selezione, test e refactoring.
+<p align="justify">Non serve un progetto grande: il valore è integrare analisi, selezione, test e refactoring.</p>
 
 ---
 
-# 21. Checkpoint M08 / uscita PY2-03
+## 21. Checkpoint M08 / uscita PY2-03
 
-Senza eseguire Python, spiega:
+<p align="justify">Senza eseguire Python, spiega:</p>
 
-1. Quando un `if` annidato rappresenta una dipendenza reale?
-2. Perché l'annidamento pioggia → freddo sarebbe sbagliato se i due effetti sono indipendenti?
-3. Perché validiamo un voto prima di classificarlo?
-4. In questa fase, che cosa facciamo con un voto fuori `0..10`?
-5. Perché non ripetiamo ancora automaticamente l'input?
-6. Quando `if A: if B:` può essere sostituito da `if A and B:` senza perdere comportamento richiesto?
-7. Che cosa significa preservare i test durante un refactoring?
-8. Perché una variabile come `voto_valido` può migliorare la leggibilità?
-9. Che cosa significa coprire i principali path?
+<ol>
+  <li>Quando un <code>if</code> annidato rappresenta una dipendenza reale?</li>
+  <li>Perché l'annidamento pioggia → freddo sarebbe sbagliato se i due effetti sono indipendenti?</li>
+  <li>Perché validiamo un voto prima di classificarlo?</li>
+  <li>In questa fase, che cosa facciamo con un voto fuori <code>0..10</code>?</li>
+  <li>Perché non ripetiamo ancora automaticamente l'input?</li>
+  <li>Quando <code>if A: if B:</code> può essere sostituito da <code>if A and B:</code> senza perdere comportamento richiesto?</li>
+  <li>Che cosa significa preservare i test durante un refactoring?</li>
+  <li>Perché una variabile come <code>voto_valido</code> può migliorare la leggibilità?</li>
+  <li>Che cosa significa coprire i principali path?</li>
+</ol>
 
 ---
 
-# 22. Sintesi
+## 22. Sintesi
 
-Porta con te questi modelli:
+<p align="justify">Porta con te questi modelli:</p>
 
 ```text
 annidamento → una decisione dipende da un'altra
@@ -636,25 +765,29 @@ test/path → proteggono anche durante le modifiche
 leggibilità → il codice deve comunicare la regola del problema
 ```
 
-La prossima UDA introduce la ripetizione: useremo `while` per ripetere una richiesta finché una condizione cambia e `for` quando il numero/insieme delle iterazioni è noto.
+<p align="justify">La prossima UDA introduce la ripetizione: useremo <code>while</code> per ripetere una richiesta finché una condizione cambia e <code>for</code> quando il numero/insieme delle iterazioni è noto.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Questa lesson è materiale originale del corso. Per progettazione/verifica:
+<p align="justify">Questa lesson è materiale originale del corso. Per progettazione/verifica:</p>
 
-- documentazione Python 3.12 — control flow, Boolean operations e comparisons;
-- Allen Downey, *Think Python / Pensare in Python* — conditional execution, nested conditionals, debugging;
-- Mark Lutz, *Learning Python / Imparare Python* — statement nesting, Boolean logic e control flow;
-- Romeo pinned `45e5f7e131802fccc89358a23a25dbed1884bbfa` — riferimento applicativo selettivo.
+<ul>
+  <li>documentazione Python 3.12 — control flow, Boolean operations e comparisons;</li>
+  <li>Allen Downey, <em>Think Python / Pensare in Python</em> — conditional execution, nested conditionals, debugging;</li>
+  <li>Mark Lutz, <em>Learning Python / Imparare Python</em> — statement nesting, Boolean logic e control flow;</li>
+  <li>Romeo pinned <code>45e5f7e131802fccc89358a23a25dbed1884bbfa</code> — riferimento applicativo selettivo.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-## Collegamenti di progettazione
+### Collegamenti di progettazione
 
-- `tracks/secondo/PY2_03_SPEC.md`;
-- `tracks/secondo/ASSESSMENT_CALENDAR.md`;
-- `tracks/secondo/ROMEO_MAPPING.md`;
-- `doc/CURRICULUM_FREEZE_2026_2027.md`;
-- `doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`.
+<ul>
+  <li><code>tracks/secondo/PY2_03_SPEC.md</code>;</li>
+  <li><code>tracks/secondo/ASSESSMENT_CALENDAR.md</code>;</li>
+  <li><code>tracks/secondo/ROMEO_MAPPING.md</code>;</li>
+  <li><code>doc/CURRICULUM_FREEZE_2026_2027.md</code>;</li>
+  <li><code>doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md</code>.</li>
+</ul>

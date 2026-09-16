@@ -1,45 +1,99 @@
 # M06 — Booleani, confronti e prima selezione con `if`
 
-> **Stato:** draft / controlled authoring continuation  
-> **UDA:** PY2-03 — Selezione e logica  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Una condizione booleana permette al programma di scegliere il comportamento richiesto.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Leggere input, valutare espressioni e progettare casi di test da M04–M05.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+riconoscere un'espressione che produce <code>True</code> o <code>False</code>;<br>usare <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code> nei casi semplici;<br>distinguere assegnamento <code>=</code> e confronto <code>==</code>; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Riprendi il rombo del flow chart e associa i rami vero/falso ai blocchi indentati. Riprendi <a href="05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md">M05 — Espressioni, operatori e prime funzioni</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="07_ELIF_LOGICA_CONDIZIONI_COMPOSTE.md">M07 — <code>elif</code>, casi esclusivi e condizioni composte</a>. Più casi richiedono di distinguere alternative esclusive e condizioni indipendenti.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Verifica la spedizione gratuita sotto, sulla e sopra la soglia, spiegando il ramo percorso.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft / controlled authoring continuation<br>
+<strong>UDA:</strong> PY2-03 — Selezione e logica<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine di questo modulo dovresti saper:
+<p align="justify">Alla fine di questo modulo dovresti saper:</p>
 
-- riconoscere un'espressione che produce `True` o `False`;
-- usare `==`, `!=`, `<`, `<=`, `>`, `>=` nei casi semplici;
-- distinguere assegnamento `=` e confronto `==`;
-- prevedere il risultato di un confronto prima di eseguirlo;
-- tradurre una decisione sì/no in un `if`;
-- usare `if/else` quando i due casi sono complementari;
-- capire che l'indentazione definisce il blocco eseguito dal ramo;
-- fare il trace di una selezione con dati concreti;
-- progettare test **sotto, sulla e sopra** una soglia;
-- diagnosticare condizioni invertite, confini sbagliati e rami con output errato;
-- spiegare a parole perché un certo input percorre un certo ramo.
+<ul>
+  <li>riconoscere un'espressione che produce <code>True</code> o <code>False</code>;</li>
+  <li>usare <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code> nei casi semplici;</li>
+  <li>distinguere assegnamento <code>=</code> e confronto <code>==</code>;</li>
+  <li>prevedere il risultato di un confronto prima di eseguirlo;</li>
+  <li>tradurre una decisione sì/no in un <code>if</code>;</li>
+  <li>usare <code>if/else</code> quando i due casi sono complementari;</li>
+  <li>capire che l'indentazione definisce il blocco eseguito dal ramo;</li>
+  <li>fare il trace di una selezione con dati concreti;</li>
+  <li>progettare test <strong>sotto, sulla e sopra</strong> una soglia;</li>
+  <li>diagnosticare condizioni invertite, confini sbagliati e rami con output errato;</li>
+  <li>spiegare a parole perché un certo input percorre un certo ramo.</li>
+</ul>
 
 ## Prerequisiti
 
-Da M04–M05 dovresti già saper:
+<p align="justify">Da M04–M05 dovresti già saper:</p>
 
-- leggere input e convertire tipi;
-- usare variabili, espressioni e output;
-- distinguere `/`, `//`, `%` nei problemi appropriati;
-- prevedere valore e tipo di espressioni semplici;
-- progettare più casi di test;
-- leggere errori beginner e correggere una modifica alla volta.
+<ul>
+  <li>leggere input e convertire tipi;</li>
+  <li>usare variabili, espressioni e output;</li>
+  <li>distinguere <code>/</code>, <code>//</code>, <code>%</code> nei problemi appropriati;</li>
+  <li>prevedere valore e tipo di espressioni semplici;</li>
+  <li>progettare più casi di test;</li>
+  <li>leggere errori beginner e correggere una modifica alla volta.</li>
+</ul>
 
 ---
 
-# 1. Problema iniziale: lo sconto si applica oppure no?
+## 1. Problema iniziale: lo sconto si applica oppure no?
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Se il totale dell'ordine è almeno 50 euro, la spedizione è gratuita. Altrimenti costa 5 euro.
+<blockquote>
+<p align="justify">Se il totale dell'ordine è almeno 50 euro, la spedizione è gratuita. Altrimenti costa 5 euro.</p>
+</blockquote>
 
-Prima di Python dobbiamo capire la **decisione**.
+<p align="justify">Prima di Python dobbiamo capire la <strong>decisione</strong>.</p>
 
 ```text
 totale >= 50 ?
@@ -47,21 +101,21 @@ totale >= 50 ?
     no  → spedizione = 5
 ```
 
-La parte più importante è la soglia:
+<p align="justify">La parte più importante è la soglia:</p>
 
 ```text
 almeno 50
 ```
 
-significa che **50 è incluso**.
+<p align="justify">significa che <strong>50 è incluso</strong>.</p>
 
-Quindi la domanda corretta è:
+<p align="justify">Quindi la domanda corretta è:</p>
 
 ```python
 totale >= 50
 ```
 
-non:
+<p align="justify">non:</p>
 
 ```python
 totale > 50
@@ -69,39 +123,39 @@ totale > 50
 
 ---
 
-# 2. Una condizione è un'espressione che produce `bool`
+## 2. Una condizione è un'espressione che produce `bool`
 
-Nel REPL, prima prevedi:
+<p align="justify">Nel REPL, prima prevedi:</p>
 
 ```python
 7 > 3
 ```
 
-Il risultato è:
+<p align="justify">Il risultato è:</p>
 
 ```python
 True
 ```
 
-Poi:
+<p align="justify">Poi:</p>
 
 ```python
 7 < 3
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```python
 False
 ```
 
-Il tipo è:
+<p align="justify">Il tipo è:</p>
 
 ```python
 bool
 ```
 
-Modello mentale:
+<p align="justify">Modello mentale:</p>
 
 ```text
 valori
@@ -111,24 +165,57 @@ confronto
 True oppure False
 ```
 
-Questa risposta vero/falso può controllare quale ramo del programma viene eseguito.
+<p align="justify">Questa risposta vero/falso può controllare quale ramo del programma viene eseguito.</p>
 
 ---
 
-# 3. Operatori di confronto
+## 3. Operatori di confronto
 
-| Operatore | Domanda | Esempio |
-|---|---|---|
-| `==` | ha lo stesso valore? | `voto == 6` |
-| `!=` | ha valore diverso? | `voto != 6` |
-| `<` | minore di? | `eta < 18` |
-| `<=` | minore o uguale? | `temperatura <= 0` |
-| `>` | maggiore di? | `punti > 100` |
-| `>=` | maggiore o uguale? | `totale >= 50` |
+<table align="center">
+<thead>
+<tr>
+<th>Operatore</th>
+<th>Domanda</th>
+<th>Esempio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>==</code></td>
+<td>ha lo stesso valore?</td>
+<td><code>voto == 6</code></td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>ha valore diverso?</td>
+<td><code>voto != 6</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>minore di?</td>
+<td><code>eta &lt; 18</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>minore o uguale?</td>
+<td><code>temperatura &lt;= 0</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>maggiore di?</td>
+<td><code>punti &gt; 100</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>maggiore o uguale?</td>
+<td><code>totale &gt;= 50</code></td>
+</tr>
+</tbody>
+</table>
 
-Non scegliere l'operatore guardando soltanto il simbolo.
+<p align="justify">Non scegliere l'operatore guardando soltanto il simbolo.</p>
 
-Traduci prima la frase:
+<p align="justify">Traduci prima la frase:</p>
 
 ```text
 più di 10        → > 10
@@ -140,44 +227,46 @@ esattamente 10   → == 10
 
 ---
 
-# 4. `=` e `==` fanno lavori diversi
+## 4. `=` e `==` fanno lavori diversi
 
-In M04 abbiamo usato:
+<p align="justify">In M04 abbiamo usato:</p>
 
 ```python
 eta = 15
 ```
 
-Questo è un **assegnamento**: associa un nome a un valore.
+<p align="justify">Questo è un <strong>assegnamento</strong>: associa un nome a un valore.</p>
 
-Per fare una domanda di uguaglianza usiamo:
+<p align="justify">Per fare una domanda di uguaglianza usiamo:</p>
 
 ```python
 eta == 15
 ```
 
-che produce:
+<p align="justify">che produce:</p>
 
 ```text
 True oppure False
 ```
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 =   → assegna
 ==  → confronta
 ```
 
-Python non considera questi due operatori intercambiabili.
+<p align="justify">Python non considera questi due operatori intercambiabili.</p>
 
 ---
 
-# 5. Primo `if`: esegui qualcosa soltanto quando la condizione è vera
+## 5. Primo `if`: esegui qualcosa soltanto quando la condizione è vera
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Se la temperatura è sotto zero, stampa `gelo`.
+<blockquote>
+<p align="justify">Se la temperatura è sotto zero, stampa <code>gelo</code>.</p>
+</blockquote>
 
 ```python
 temperatura = int(input())
@@ -186,33 +275,35 @@ if temperatura < 0:
     print("gelo")
 ```
 
-Se l'input è `-3`, la condizione è vera e il ramo viene eseguito.
+<p align="justify">Se l'input è <code>-3</code>, la condizione è vera e il ramo viene eseguito.</p>
 
-Se l'input è `5`, la condizione è falsa e quel `print` non viene eseguito.
+<p align="justify">Se l'input è <code>5</code>, la condizione è falsa e quel <code>print</code> non viene eseguito.</p>
 
-Questo **non è un errore**: è proprio il comportamento richiesto da un `if` senza `else`.
+<p align="justify">Questo <strong>non è un errore</strong>: è proprio il comportamento richiesto da un <code>if</code> senza <code>else</code>.</p>
 
 ---
 
-# 6. I due punti e l'indentazione fanno parte della struttura
+## 6. I due punti e l'indentazione fanno parte della struttura
 
-Osserva:
+<p align="justify">Osserva:</p>
 
 ```python
 if temperatura < 0:
     print("gelo")
 ```
 
-Due elementi sono strutturali:
+<p align="justify">Due elementi sono strutturali:</p>
 
-1. `:` dopo la condizione;
-2. il blocco indentato sotto `if`.
+<ol>
+  <li><code>:</code> dopo la condizione;</li>
+  <li>il blocco indentato sotto <code>if</code>.</li>
+</ol>
 
-L'indentazione non è soltanto estetica.
+<p align="justify">L'indentazione non è soltanto estetica.</p>
 
-Indica quali istruzioni appartengono al ramo.
+<p align="justify">Indica quali istruzioni appartengono al ramo.</p>
 
-Confronta:
+<p align="justify">Confronta:</p>
 
 ```python
 if temperatura < 0:
@@ -220,13 +311,13 @@ if temperatura < 0:
 print("fine")
 ```
 
-`print("fine")` viene eseguito comunque perché non appartiene al blocco dell'`if`.
+<p align="justify"><code>print("fine")</code> viene eseguito comunque perché non appartiene al blocco dell'<code>if</code>.</p>
 
 ---
 
-# 7. Trace di un `if`
+## 7. Trace di un `if`
 
-Programma:
+<p align="justify">Programma:</p>
 
 ```python
 numero = int(input())
@@ -237,7 +328,7 @@ if numero > 0:
 print("fine")
 ```
 
-## Caso A — input `4`
+### Caso A — input `4`
 
 ```text
 numero           → 4
@@ -248,7 +339,7 @@ print("fine")    → eseguito
 output            → fine
 ```
 
-## Caso B — input `-2`
+### Caso B — input `-2`
 
 ```text
 numero           → -2
@@ -258,17 +349,19 @@ print("fine")    → eseguito
 output            → fine
 ```
 
-Il trace deve seguire il valore concreto della condizione, non ciò che "sembra probabile".
+<p align="justify">Il trace deve seguire il valore concreto della condizione, non ciò che "sembra probabile".</p>
 
 ---
 
-# 8. Quando serve `else`
+## 8. Quando serve `else`
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Stampa `maggiorenne` se l'età è almeno 18, altrimenti stampa `minorenne`.
+<blockquote>
+<p align="justify">Stampa <code>maggiorenne</code> se l'età è almeno 18, altrimenti stampa <code>minorenne</code>.</p>
+</blockquote>
 
-I casi sono complementari:
+<p align="justify">I casi sono complementari:</p>
 
 ```text
 eta >= 18
@@ -276,7 +369,7 @@ oppure
 eta < 18
 ```
 
-Possiamo scrivere:
+<p align="justify">Possiamo scrivere:</p>
 
 ```python
 eta = int(input())
@@ -287,17 +380,19 @@ else:
     print("minorenne")
 ```
 
-`else` significa:
+<p align="justify"><code>else</code> significa:</p>
 
-> se la condizione dell'`if` non è vera, esegui questo altro ramo.
+<blockquote>
+<p align="justify">se la condizione dell'<code>if</code> non è vera, esegui questo altro ramo.</p>
+</blockquote>
 
-Non serve riscrivere la condizione opposta.
+<p align="justify">Non serve riscrivere la condizione opposta.</p>
 
 ---
 
-# 9. Un solo ramo di `if/else` viene eseguito
+## 9. Un solo ramo di `if/else` viene eseguito
 
-Con:
+<p align="justify">Con:</p>
 
 ```python
 if eta >= 18:
@@ -306,22 +401,22 @@ else:
     print("minorenne")
 ```
 
-per ogni singola esecuzione:
+<p align="justify">per ogni singola esecuzione:</p>
 
 ```text
 condizione True  → ramo if
 condizione False → ramo else
 ```
 
-Non vengono eseguiti entrambi.
+<p align="justify">Non vengono eseguiti entrambi.</p>
 
-Questa idea diventerà importante in M07 quando confronteremo:
+<p align="justify">Questa idea diventerà importante in M07 quando confronteremo:</p>
 
 ```text
 più if indipendenti
 ```
 
-con:
+<p align="justify">con:</p>
 
 ```text
 if / elif / else
@@ -329,39 +424,56 @@ if / elif / else
 
 ---
 
-# 10. I casi di frontiera: sotto, sulla, sopra
+## 10. I casi di frontiera: sotto, sulla, sopra
 
-Per una soglia `18`, non basta provare un valore lontano.
+<p align="justify">Per una soglia <code>18</code>, non basta provare un valore lontano.</p>
 
-Casi minimi:
+<p align="justify">Casi minimi:</p>
 
-| età | atteso |
-|---:|---|
-| 17 | minorenne |
-| 18 | maggiorenne |
-| 19 | maggiorenne |
+<table align="center">
+<thead>
+<tr>
+<th>età</th>
+<th>atteso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>17</td>
+<td>minorenne</td>
+</tr>
+<tr>
+<td>18</td>
+<td>maggiorenne</td>
+</tr>
+<tr>
+<td>19</td>
+<td>maggiorenne</td>
+</tr>
+</tbody>
+</table>
 
-Perché `18` è fondamentale?
+<p align="justify">Perché <code>18</code> è fondamentale?</p>
 
-Perché distingue:
+<p align="justify">Perché distingue:</p>
 
 ```python
 eta > 18
 ```
 
-da:
+<p align="justify">da:</p>
 
 ```python
 eta >= 18
 ```
 
-Un test sul confine trova errori che un caso come `25` non vede.
+<p align="justify">Un test sul confine trova errori che un caso come <code>25</code> non vede.</p>
 
 ---
 
-# 11. Worked example: spedizione gratuita
+## 11. Worked example: spedizione gratuita
 
-## Specifica
+### Specifica
 
 ```text
 INPUT: totale ordine, intero non negativo
@@ -369,16 +481,36 @@ OUTPUT: costo spedizione
 REGOLA: se totale >= 50 → 0, altrimenti → 5
 ```
 
-## Casi prima del codice
+### Casi prima del codice
 
-| totale | spedizione attesa |
-|---:|---:|
-| 49 | 5 |
-| 50 | 0 |
-| 51 | 0 |
-| 0 | 5 |
+<table align="center">
+<thead>
+<tr>
+<th>totale</th>
+<th>spedizione attesa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>49</td>
+<td>5</td>
+</tr>
+<tr>
+<td>50</td>
+<td>0</td>
+</tr>
+<tr>
+<td>51</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
 
-## Codice
+### Codice
 
 ```python
 totale = int(input())
@@ -391,13 +523,13 @@ else:
 print(spedizione)
 ```
 
-Il `print` è fuori dalla selezione perché in entrambi i casi vogliamo mostrare il valore finale di `spedizione`.
+<p align="justify">Il <code>print</code> è fuori dalla selezione perché in entrambi i casi vogliamo mostrare il valore finale di <code>spedizione</code>.</p>
 
 ---
 
-# 12. Confronto: duplicare output oppure calcolare prima?
+## 12. Confronto: duplicare output oppure calcolare prima?
 
-Versione A:
+<p align="justify">Versione A:</p>
 
 ```python
 if totale >= 50:
@@ -406,7 +538,7 @@ else:
     print(5)
 ```
 
-Versione B:
+<p align="justify">Versione B:</p>
 
 ```python
 if totale >= 50:
@@ -417,100 +549,133 @@ else:
 print(spedizione)
 ```
 
-Entrambe possono essere corrette per questa specifica.
+<p align="justify">Entrambe possono essere corrette per questa specifica.</p>
 
-La B separa meglio:
+<p align="justify">La B separa meglio:</p>
 
 ```text
 decisione / calcolo
 → presentazione finale
 ```
 
-Ma non trasformiamo questa preferenza in una regola meccanica: confrontiamo sempre chiarezza e obiettivo del problema.
+<p align="justify">Ma non trasformiamo questa preferenza in una regola meccanica: confrontiamo sempre chiarezza e obiettivo del problema.</p>
 
 ---
 
-# 13. Microscope: prevedi `True` o `False`
+## 13. Microscope: prevedi `True` o `False`
 
-Senza REPL, completa prima:
+<p align="justify">Senza REPL, completa prima:</p>
 
-| Espressione | Risultato previsto |
-|---|---|
-| `5 > 2` | ? |
-| `5 < 2` | ? |
-| `5 == 5` | ? |
-| `5 != 5` | ? |
-| `10 >= 10` | ? |
-| `9 >= 10` | ? |
-| `0 <= 0` | ? |
+<table align="center">
+<thead>
+<tr>
+<th>Espressione</th>
+<th>Risultato previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>5 &gt; 2</code></td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>5 &lt; 2</code></td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>5 == 5</code></td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>5 != 5</code></td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>10 &gt;= 10</code></td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>9 &gt;= 10</code></td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>0 &lt;= 0</code></td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
 
-Poi verifica.
+<p align="justify">Poi verifica.</p>
 
-Il simbolo `=` singolo non compare nella tabella perché non è un confronto.
+<p align="justify">Il simbolo <code>=</code> singolo non compare nella tabella perché non è un confronto.</p>
 
 ---
 
-# 14. Error Clinic
+## 14. Error Clinic
 
-## Caso 1 — confine sbagliato
+### Caso 1 — confine sbagliato
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> accesso consentito da 18 anni compresi.
+<blockquote>
+<p align="justify">accesso consentito da 18 anni compresi.</p>
+</blockquote>
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 if eta > 18:
     print("consentito")
 ```
 
-Quale input distingue subito il bug?
+<p align="justify">Quale input distingue subito il bug?</p>
 
 ```text
 18
 ```
 
-## Caso 2 — condizione invertita
+### Caso 2 — condizione invertita
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> stampa `negativo` se il numero è minore di zero.
+<blockquote>
+<p align="justify">stampa <code>negativo</code> se il numero è minore di zero.</p>
+</blockquote>
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 if numero > 0:
     print("negativo")
 ```
 
-Il programma è sintatticamente valido ma rappresenta la domanda sbagliata.
+<p align="justify">Il programma è sintatticamente valido ma rappresenta la domanda sbagliata.</p>
 
-## Caso 3 — `=` al posto di `==`
+### Caso 3 — `=` al posto di `==`
 
 ```python
 if voto = 6:
     print("sei")
 ```
 
-Qui stai tentando di usare un assegnamento dove Python richiede un'espressione valida come condizione.
+<p align="justify">Qui stai tentando di usare un assegnamento dove Python richiede un'espressione valida come condizione.</p>
 
-Per confrontare il valore:
+<p align="justify">Per confrontare il valore:</p>
 
 ```python
 if voto == 6:
 ```
 
-## Caso 4 — indentazione
+### Caso 4 — indentazione
 
 ```python
 if temperatura < 0:
 print("gelo")
 ```
 
-Il blocco non è strutturato correttamente.
+<p align="justify">Il blocco non è strutturato correttamente.</p>
 
-## Caso 5 — output nel ramo sbagliato
+### Caso 5 — output nel ramo sbagliato
 
 ```python
 if eta >= 18:
@@ -519,29 +684,29 @@ else:
     print("maggiorenne")
 ```
 
-La sintassi è valida; il comportamento non rispetta la specifica.
+<p align="justify">La sintassi è valida; il comportamento non rispetta la specifica.</p>
 
 ---
 
-# 15. `is` non è il sostituto di `==`
+## 15. `is` non è il sostituto di `==`
 
-Per confrontare normalmente valori numerici o stringhe nel nostro corso usiamo:
+<p align="justify">Per confrontare normalmente valori numerici o stringhe nel nostro corso usiamo:</p>
 
 ```python
 ==
 ```
 
-Non insegniamo:
+<p align="justify">Non insegniamo:</p>
 
 ```python
 is
 ```
 
-come scorciatoia per l'uguaglianza di valore.
+<p align="justify">come scorciatoia per l'uguaglianza di valore.</p>
 
-`is` riguarda l'identità degli oggetti e verrà contestualizzato molto più avanti, quando avremo un modello degli oggetti sufficiente.
+<p align="justify"><code>is</code> riguarda l'identità degli oggetti e verrà contestualizzato molto più avanti, quando avremo un modello degli oggetti sufficiente.</p>
 
-Regola beginner:
+<p align="justify">Regola beginner:</p>
 
 ```text
 uguaglianza di valore → ==
@@ -549,9 +714,9 @@ uguaglianza di valore → ==
 
 ---
 
-# 16. Dal flow chart al Python
+## 16. Dal flow chart al Python
 
-Decisione algoritmica:
+<p align="justify">Decisione algoritmica:</p>
 
 ```text
         eta >= 18 ?
@@ -561,7 +726,7 @@ Decisione algoritmica:
 maggiorenne      minorenne
 ```
 
-Python:
+<p align="justify">Python:</p>
 
 ```python
 if eta >= 18:
@@ -570,63 +735,69 @@ else:
     print("minorenne")
 ```
 
-La sintassi cambia, ma il modello della decisione è lo stesso.
+<p align="justify">La sintassi cambia, ma il modello della decisione è lo stesso.</p>
 
-Per questo il flow chart non era un esercizio separato da Python: rappresentava la struttura che ora codifichiamo.
-
----
-
-# 17. Activity planning — M06
-
-Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:
-
-### A — Predict/Trace
-
-Dato valore + condizione, prevedere:
-
-- `True`/`False`;
-- ramo eseguito;
-- output.
-
-### B — Controlled Change
-
-Cambiare una soglia e aggiornare i casi `sotto / sulla / sopra`.
-
-### C — Implement
-
-Da un flow chart sì/no già noto a un programma `if/else`.
-
-### D — Debug
-
-Correggere:
-
-- `>` vs `>=`;
-- condizione invertita;
-- `=` vs `==`;
-- indentazione;
-- messaggi nei rami sbagliati.
-
-M04 resta il canarino P1 finché `python-docente#7` non è certificato.
+<p align="justify">Per questo il flow chart non era un esercizio separato da Python: rappresentava la struttura che ora codifichiamo.</p>
 
 ---
 
-# 18. Romeo come applicazione opzionale
+## 17. Activity planning — M06
 
-Il concetto di selezione deve essere padroneggiato anche senza Romeo.
+<p align="justify">Candidati, non ancora materializzati come nuove Activity P1 obbligatorie:</p>
 
-Dopo gli esercizi generali possiamo usare il simulatore come problema concreto.
+#### A — Predict/Trace
 
-La piattaforma Romeo pinned contiene già una missione didattica:
+<p align="justify">Dato valore + condizione, prevedere:</p>
+
+<ul>
+  <li><code>True</code>/<code>False</code>;</li>
+  <li>ramo eseguito;</li>
+  <li>output.</li>
+</ul>
+
+#### B — Controlled Change
+
+<p align="justify">Cambiare una soglia e aggiornare i casi <code>sotto / sulla / sopra</code>.</p>
+
+#### C — Implement
+
+<p align="justify">Da un flow chart sì/no già noto a un programma <code>if/else</code>.</p>
+
+#### D — Debug
+
+<p align="justify">Correggere:</p>
+
+<ul>
+  <li><code>&gt;</code> vs <code>&gt;=</code>;</li>
+  <li>condizione invertita;</li>
+  <li><code>=</code> vs <code>==</code>;</li>
+  <li>indentazione;</li>
+  <li>messaggi nei rami sbagliati.</li>
+</ul>
+
+<p align="justify">M04 resta il canarino P1 finché <code>python-docente#7</code> non è certificato.</p>
+
+---
+
+## 18. Romeo come applicazione opzionale
+
+<p align="justify">Il concetto di selezione deve essere padroneggiato anche senza Romeo.</p>
+
+<p align="justify">Dopo gli esercizi generali possiamo usare il simulatore come problema concreto.</p>
+
+<p align="justify">La piattaforma Romeo pinned contiene già una missione didattica:</p>
 
 ```text
 romeo-y1-u14-condizioni — Decidi con if
 ```
 
-Idea della missione:
+<p align="justify">Idea della missione:</p>
 
-> se la modalità sicura è attiva, usa una velocità ridotta; completa la missione e fermati.
+<blockquote>
+<p align="justify">se la modalità sicura è attiva, usa una velocità ridotta; completa la missione e fermati.</p>
+</blockquote>
 
-Il valore didattico è vedere che:
+<p align="justify">Il valore didattico è vedere che:</p>
 
 ```text
 condizione
@@ -634,44 +805,48 @@ condizione
 → effetto osservabile nel simulatore
 ```
 
-Regole:
+<p align="justify">Regole:</p>
 
-- `romeo-sim` soltanto nel Classroom Environment certificato;
-- hardware fisico non richiesto;
-- niente networking/FastAPI/WebSocket;
-- la missione è applicazione del concetto, non il suo prerequisito.
+<ul>
+  <li><code>romeo-sim</code> soltanto nel Classroom Environment certificato;</li>
+  <li>hardware fisico non richiesto;</li>
+  <li>niente networking/FastAPI/WebSocket;</li>
+  <li>la missione è applicazione del concetto, non il suo prerequisito.</li>
+</ul>
 
 ---
 
-# 19. Esercizi brevi
+## 19. Esercizi brevi
 
-## A — Soglia
+### A — Soglia
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Se il punteggio è almeno 100, stampa `livello`; altrimenti stampa `continua`.
+<blockquote>
+<p align="justify">Se il punteggio è almeno 100, stampa <code>livello</code>; altrimenti stampa <code>continua</code>.</p>
+</blockquote>
 
-Scrivi prima i casi `99`, `100`, `101`, poi il codice.
+<p align="justify">Scrivi prima i casi <code>99</code>, <code>100</code>, <code>101</code>, poi il codice.</p>
 
-## B — Positivo o non positivo
+### B — Positivo o non positivo
 
-Leggi un intero e stampa:
+<p align="justify">Leggi un intero e stampa:</p>
 
 ```text
 positivo
 ```
 
-se è maggiore di zero, altrimenti:
+<p align="justify">se è maggiore di zero, altrimenti:</p>
 
 ```text
 non positivo
 ```
 
-Quale ramo percorre `0`?
+<p align="justify">Quale ramo percorre <code>0</code>?</p>
 
-## C — Debug del confine
+### C — Debug del confine
 
-Correggi:
+<p align="justify">Correggi:</p>
 
 ```python
 if temperatura > 0:
@@ -680,41 +855,47 @@ else:
     print("zero o sotto")
 ```
 
-solo se una nuova specifica dice:
+<p align="justify">solo se una nuova specifica dice:</p>
 
-> `sopra zero` deve essere stampato anche per `0`.
+<blockquote>
+<p align="justify"><code>sopra zero</code> deve essere stampato anche per <code>0</code>.</p>
+</blockquote>
 
-Quale operatore cambia e perché?
+<p align="justify">Quale operatore cambia e perché?</p>
 
-## D — Flow chart → codice
+### D — Flow chart → codice
 
-Ricevi un flow chart con una sola decisione e produci:
+<p align="justify">Ricevi un flow chart con una sola decisione e produci:</p>
 
-1. tabella di tre casi;
-2. condizione Python;
-3. `if/else`;
-4. trace di un caso.
-
----
-
-# 20. Checkpoint M06
-
-Senza eseguire Python, spiega:
-
-1. Che tipo produce `7 >= 7`?
-2. Differenza fra `=` e `==`?
-3. Perché `eta >= 18` include il valore 18?
-4. Che cosa succede al blocco `if` se la condizione è `False` e non esiste `else`?
-5. Perché l'indentazione non è soltanto estetica?
-6. Quali tre valori sceglieresti per testare una soglia 50?
-7. Perché non usiamo `is` come sostituto di `==`?
-8. In che modo il flow chart della decisione corrisponde a `if/else`?
+<ol>
+  <li>tabella di tre casi;</li>
+  <li>condizione Python;</li>
+  <li><code>if/else</code>;</li>
+  <li>trace di un caso.</li>
+</ol>
 
 ---
 
-# 21. Sintesi
+## 20. Checkpoint M06
 
-Porta con te questi modelli:
+<p align="justify">Senza eseguire Python, spiega:</p>
+
+<ol>
+  <li>Che tipo produce <code>7 &gt;= 7</code>?</li>
+  <li>Differenza fra <code>=</code> e <code>==</code>?</li>
+  <li>Perché <code>eta &gt;= 18</code> include il valore 18?</li>
+  <li>Che cosa succede al blocco <code>if</code> se la condizione è <code>False</code> e non esiste <code>else</code>?</li>
+  <li>Perché l'indentazione non è soltanto estetica?</li>
+  <li>Quali tre valori sceglieresti per testare una soglia 50?</li>
+  <li>Perché non usiamo <code>is</code> come sostituto di <code>==</code>?</li>
+  <li>In che modo il flow chart della decisione corrisponde a <code>if/else</code>?</li>
+</ol>
+
+---
+
+## 21. Sintesi
+
+<p align="justify">Porta con te questi modelli:</p>
 
 ```text
 confronto → bool
@@ -738,24 +919,28 @@ soglia → test sotto / sulla / sopra
 indentazione → appartenenza al blocco
 ```
 
-Nel prossimo modulo passeremo da due casi a più casi e capiremo quando usare `elif`, quando usare più `if` indipendenti e come comporre condizioni con `and`, `or`, `not`.
+<p align="justify">Nel prossimo modulo passeremo da due casi a più casi e capiremo quando usare <code>elif</code>, quando usare più <code>if</code> indipendenti e come comporre condizioni con <code>and</code>, <code>or</code>, <code>not</code>.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Questa lesson è materiale originale del corso. Per progettazione/verifica:
+<p align="justify">Questa lesson è materiale originale del corso. Per progettazione/verifica:</p>
 
-- documentazione Python 3.12 — confronti, `if` e control flow;
-- Allen Downey, *Think Python / Pensare in Python* — conditional execution e debugging;
-- Mark Lutz, *Learning Python / Imparare Python* — espressioni booleane, statement e controllo;
-- Romeo pinned `45e5f7e131802fccc89358a23a25dbed1884bbfa` — riferimento tecnico/applicativo per `romeo-y1-u14-condizioni`.
+<ul>
+  <li>documentazione Python 3.12 — confronti, <code>if</code> e control flow;</li>
+  <li>Allen Downey, <em>Think Python / Pensare in Python</em> — conditional execution e debugging;</li>
+  <li>Mark Lutz, <em>Learning Python / Imparare Python</em> — espressioni booleane, statement e controllo;</li>
+  <li>Romeo pinned <code>45e5f7e131802fccc89358a23a25dbed1884bbfa</code> — riferimento tecnico/applicativo per <code>romeo-y1-u14-condizioni</code>.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>
 
-## Collegamenti di progettazione
+### Collegamenti di progettazione
 
-- `tracks/secondo/PY2_03_SPEC.md`;
-- `tracks/secondo/ROMEO_MAPPING.md`;
-- `doc/CURRICULUM_FREEZE_2026_2027.md`;
-- `doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`.
+<ul>
+  <li><code>tracks/secondo/PY2_03_SPEC.md</code>;</li>
+  <li><code>tracks/secondo/ROMEO_MAPPING.md</code>;</li>
+  <li><code>doc/CURRICULUM_FREEZE_2026_2027.md</code>;</li>
+  <li><code>doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md</code>.</li>
+</ul>

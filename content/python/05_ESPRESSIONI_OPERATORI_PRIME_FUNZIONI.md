@@ -1,51 +1,105 @@
 # M05 — Espressioni, operatori e prime funzioni
 
-> **Stato:** draft / controlled authoring continuation  
-> **UDA:** PY2-02 — Primi programmi Python  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Le espressioni trasformano valori; una prima funzione dà un nome al calcolo e ne restituisce il risultato.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Usare REPL, script, variabili, input, output e conversioni semplici da M04.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+costruire espressioni aritmetiche leggibili;<br>usare <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code> e <code>**</code> nei problemi appropriati;<br>prevedere il valore e il tipo di espressioni semplici; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Valore, tipo e risultato stampato sono osservazioni diverse della stessa prova. Riprendi <a href="04_INTERPRETE_REPL_VALORI_IO.md">M04 — Interprete, REPL, script, valori e input/output</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="06_BOOLEANI_CONFRONTI_IF.md">M06 — Booleani, confronti e prima selezione con <code>if</code></a>. Una condizione booleana permette al programma di scegliere il comportamento richiesto.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Converti 137 secondi in minuti e resto, poi controlla 60, 59 e 0 con la funzione proposta.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft / controlled authoring continuation<br>
+<strong>UDA:</strong> PY2-02 — Primi programmi Python<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine di questo modulo dovresti saper:
+<p align="justify">Alla fine di questo modulo dovresti saper:</p>
 
-- costruire espressioni aritmetiche leggibili;
-- usare `+`, `-`, `*`, `/`, `//`, `%` e `**` nei problemi appropriati;
-- prevedere il valore e il tipo di espressioni semplici;
-- usare parentesi per rendere esplicita l'intenzione del calcolo;
-- distinguere divisione `/`, divisione intera verso il basso `//` e resto `%`;
-- usare `%` per problemi di quoziente/resto e divisibilità elementare;
-- produrre output leggibile con f-string;
-- usare alcune funzioni built-in quando rendono il programma più chiaro;
-- riconoscere la differenza fra **calcolare**, **restituire** e **stampare**;
-- definire e chiamare una prima funzione pura molto semplice;
-- progettare casi di test prima di considerare concluso un piccolo programma.
+<ul>
+  <li>costruire espressioni aritmetiche leggibili;</li>
+  <li>usare <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code> e <code>**</code> nei problemi appropriati;</li>
+  <li>prevedere il valore e il tipo di espressioni semplici;</li>
+  <li>usare parentesi per rendere esplicita l'intenzione del calcolo;</li>
+  <li>distinguere divisione <code>/</code>, divisione intera verso il basso <code>//</code> e resto <code>%</code>;</li>
+  <li>usare <code>%</code> per problemi di quoziente/resto e divisibilità elementare;</li>
+  <li>produrre output leggibile con f-string;</li>
+  <li>usare alcune funzioni built-in quando rendono il programma più chiaro;</li>
+  <li>riconoscere la differenza fra <strong>calcolare</strong>, <strong>restituire</strong> e <strong>stampare</strong>;</li>
+  <li>definire e chiamare una prima funzione pura molto semplice;</li>
+  <li>progettare casi di test prima di considerare concluso un piccolo programma.</li>
+</ul>
 
 ## Prerequisiti
 
-Da M04 dovresti già saper:
+<p align="justify">Da M04 dovresti già saper:</p>
 
-- usare REPL e script `.py`;
-- riconoscere `int`, `float`, `str`, `bool` nei casi base;
-- usare variabili, `input()`, `print()` e conversioni semplici;
-- leggere un traceback beginner;
-- verificare uno script con più input.
+<ul>
+  <li>usare REPL e script <code>.py</code>;</li>
+  <li>riconoscere <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code> nei casi base;</li>
+  <li>usare variabili, <code>input()</code>, <code>print()</code> e conversioni semplici;</li>
+  <li>leggere un traceback beginner;</li>
+  <li>verificare uno script con più input.</li>
+</ul>
 
 ---
 
-# 1. Problema iniziale: quanti minuti e quanti secondi?
+## 1. Problema iniziale: quanti minuti e quanti secondi?
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Leggi un numero intero di secondi e mostra quanti minuti completi contiene e quanti secondi restano.
+<blockquote>
+<p align="justify">Leggi un numero intero di secondi e mostra quanti minuti completi contiene e quanti secondi restano.</p>
+</blockquote>
 
-Esempio:
+<p align="justify">Esempio:</p>
 
 ```text
 INPUT: 137
 OUTPUT: 2 17
 ```
 
-Prima del codice:
+<p align="justify">Prima del codice:</p>
 
 ```text
 137 secondi
@@ -53,48 +107,48 @@ Prima del codice:
 + 17 secondi rimanenti
 ```
 
-Quindi servono **due risultati diversi**:
+<p align="justify">Quindi servono <strong>due risultati diversi</strong>:</p>
 
 ```text
 quoziente intero → 2
 resto             → 17
 ```
 
-Python possiede operatori che esprimono direttamente queste due idee.
+<p align="justify">Python possiede operatori che esprimono direttamente queste due idee.</p>
 
 ---
 
-# 2. Un'espressione produce un valore
+## 2. Un'espressione produce un valore
 
-Nel REPL:
+<p align="justify">Nel REPL:</p>
 
 ```python
 2 + 3
 ```
 
-è un'espressione.
+<p align="justify">è un'espressione.</p>
 
-Produce il valore:
+<p align="justify">Produce il valore:</p>
 
 ```text
 5
 ```
 
-Anche:
+<p align="justify">Anche:</p>
 
 ```python
 prezzo * quantita
 ```
 
-è un'espressione se i nomi hanno già un valore associato.
+<p align="justify">è un'espressione se i nomi hanno già un valore associato.</p>
 
-Possiamo usare il risultato in un assegnamento:
+<p align="justify">Possiamo usare il risultato in un assegnamento:</p>
 
 ```python
 totale = prezzo * quantita
 ```
 
-Modello mentale:
+<p align="justify">Modello mentale:</p>
 
 ```text
 valori / nomi
@@ -108,104 +162,178 @@ assegnamento / return / print / altra espressione
 
 ---
 
-# 3. Operatori aritmetici fondamentali
+## 3. Operatori aritmetici fondamentali
 
-Con numeri, incontreremo spesso:
+<p align="justify">Con numeri, incontreremo spesso:</p>
 
-| Operatore | Idea | Esempio | Risultato |
-|---|---|---|---:|
-| `+` | somma | `7 + 3` | `10` |
-| `-` | differenza | `7 - 3` | `4` |
-| `*` | prodotto | `7 * 3` | `21` |
-| `/` | divisione | `7 / 2` | `3.5` |
-| `//` | floor division | `7 // 2` | `3` |
-| `%` | resto/modulo | `7 % 2` | `1` |
-| `**` | potenza | `2 ** 3` | `8` |
+<table align="center">
+<thead>
+<tr>
+<th>Operatore</th>
+<th>Idea</th>
+<th>Esempio</th>
+<th>Risultato</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>somma</td>
+<td><code>7 + 3</code></td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>differenza</td>
+<td><code>7 - 3</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>prodotto</td>
+<td><code>7 * 3</code></td>
+<td><code>21</code></td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>divisione</td>
+<td><code>7 / 2</code></td>
+<td><code>3.5</code></td>
+</tr>
+<tr>
+<td><code>//</code></td>
+<td>floor division</td>
+<td><code>7 // 2</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>resto/modulo</td>
+<td><code>7 % 2</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>potenza</td>
+<td><code>2 ** 3</code></td>
+<td><code>8</code></td>
+</tr>
+</tbody>
+</table>
 
-Non scegliere un operatore perché "sembra giusto".
+<p align="justify">Non scegliere un operatore perché "sembra giusto".</p>
 
-Chiediti:
+<p align="justify">Chiediti:</p>
 
-> Quale trasformazione richiede il problema?
+<blockquote>
+<p align="justify">Quale trasformazione richiede il problema?</p>
+</blockquote>
 
 ---
 
-# 4. `/`, `//` e `%` non sono la stessa divisione
+## 4. `/`, `//` e `%` non sono la stessa divisione
 
-## `/` — divisione
+### `/` — divisione
 
 ```python
 8 / 2
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 4.0
 ```
 
-In Python 3, `/` produce un risultato di tipo `float`, anche quando matematicamente il risultato è intero.
+<p align="justify">In Python 3, <code>/</code> produce un risultato di tipo <code>float</code>, anche quando matematicamente il risultato è intero.</p>
 
-## `//` — floor division
+### `//` — floor division
 
 ```python
 17 // 3
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 5
 ```
 
-Per numeri positivi puoi leggerlo inizialmente come:
+<p align="justify">Per numeri positivi puoi leggerlo inizialmente come:</p>
 
-> quanti gruppi completi da 3 stanno in 17?
+<blockquote>
+<p align="justify">quanti gruppi completi da 3 stanno in 17?</p>
+</blockquote>
 
-Attenzione però: `//` è **floor division**, non una generica regola "taglia la parte decimale". Con numeri negativi vedremo che il comportamento segue il pavimento matematico. Per il core beginner useremo soprattutto casi positivi quando modelliamo gruppi completi.
+<p align="justify">Attenzione però: <code>//</code> è <strong>floor division</strong>, non una generica regola "taglia la parte decimale". Con numeri negativi vedremo che il comportamento segue il pavimento matematico. Per il core beginner useremo soprattutto casi positivi quando modelliamo gruppi completi.</p>
 
-## `%` — resto
+### `%` — resto
 
 ```python
 17 % 3
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 2
 ```
 
-I tre valori sono collegati:
+<p align="justify">I tre valori sono collegati:</p>
 
 ```text
 17 = (17 // 3) * 3 + (17 % 3)
 17 = 5 * 3 + 2
 ```
 
-Questa relazione è un ottimo strumento di controllo.
+<p align="justify">Questa relazione è un ottimo strumento di controllo.</p>
 
 ---
 
-# 5. Worked example: secondi → minuti + resto
+## 5. Worked example: secondi → minuti + resto
 
-## Specifica
+### Specifica
 
 ```text
 INPUT: secondi_totali, intero non negativo
 OUTPUT: minuti_completi e secondi_restanti
 ```
 
-## Casi di test
+### Casi di test
 
-| input | minuti | resto |
-|---:|---:|---:|
-| 137 | 2 | 17 |
-| 60 | 1 | 0 |
-| 59 | 0 | 59 |
-| 0 | 0 | 0 |
+<table align="center">
+<thead>
+<tr>
+<th>input</th>
+<th>minuti</th>
+<th>resto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>137</td>
+<td>2</td>
+<td>17</td>
+</tr>
+<tr>
+<td>60</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>59</td>
+<td>0</td>
+<td>59</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 
-## Codice
+### Codice
 
 ```python
 secondi_totali = int(input())
@@ -214,7 +342,7 @@ secondi = secondi_totali % 60
 print(minuti, secondi)
 ```
 
-## Trace con 137
+### Trace con 137
 
 ```text
 secondi_totali        → 137
@@ -225,64 +353,64 @@ secondi                → 17
 print(minuti, secondi) → 2 17
 ```
 
-Il codice è corto perché il problema è stato modellato bene prima.
+<p align="justify">Il codice è corto perché il problema è stato modellato bene prima.</p>
 
 ---
 
-# 6. `%` come domanda sul resto
+## 6. `%` come domanda sul resto
 
-Un numero intero è divisibile per 2 quando il resto della divisione per 2 è zero:
+<p align="justify">Un numero intero è divisibile per 2 quando il resto della divisione per 2 è zero:</p>
 
 ```python
 numero % 2
 ```
 
-Esempi:
+<p align="justify">Esempi:</p>
 
 ```text
 8 % 2 → 0
 9 % 2 → 1
 ```
 
-Per ora osserviamo soltanto il valore del resto.
+<p align="justify">Per ora osserviamo soltanto il valore del resto.</p>
 
-Nel prossimo blocco, con `if`, useremo una condizione come:
+<p align="justify">Nel prossimo blocco, con <code>if</code>, useremo una condizione come:</p>
 
 ```python
 numero % 2 == 0
 ```
 
-per decidere fra comportamenti diversi.
+<p align="justify">per decidere fra comportamenti diversi.</p>
 
-Non anticipiamo ancora tutta la selezione: qui impariamo la trasformazione numerica.
+<p align="justify">Non anticipiamo ancora tutta la selezione: qui impariamo la trasformazione numerica.</p>
 
 ---
 
-# 7. Potenze: `**`, non `^`
+## 7. Potenze: `**`, non `^`
 
-In Python:
+<p align="justify">In Python:</p>
 
 ```python
 2 ** 5
 ```
 
-produce:
+<p align="justify">produce:</p>
 
 ```text
 32
 ```
 
-Un errore comune è scrivere:
+<p align="justify">Un errore comune è scrivere:</p>
 
 ```python
 2 ^ 5
 ```
 
-pensando che `^` significhi potenza.
+<p align="justify">pensando che <code>^</code> significhi potenza.</p>
 
-In Python `^` ha un altro significato (XOR bit-a-bit), che non ci serve ora.
+<p align="justify">In Python <code>^</code> ha un altro significato (XOR bit-a-bit), che non ci serve ora.</p>
 
-Regola beginner:
+<p align="justify">Regola beginner:</p>
 
 ```text
 potenza → **
@@ -290,45 +418,47 @@ potenza → **
 
 ---
 
-# 8. Precedenza: Python deve sapere cosa calcolare prima
+## 8. Precedenza: Python deve sapere cosa calcolare prima
 
-Considera:
+<p align="justify">Considera:</p>
 
 ```python
 2 + 3 * 4
 ```
 
-Python applica regole di precedenza e produce:
+<p align="justify">Python applica regole di precedenza e produce:</p>
 
 ```text
 14
 ```
 
-perché il prodotto viene eseguito prima della somma.
+<p align="justify">perché il prodotto viene eseguito prima della somma.</p>
 
-Con:
+<p align="justify">Con:</p>
 
 ```python
 (2 + 3) * 4
 ```
 
-il risultato diventa:
+<p align="justify">il risultato diventa:</p>
 
 ```text
 20
 ```
 
-## Regola pratica del corso
+### Regola pratica del corso
 
-Non trasformiamo la precedenza in una gara di memoria.
+<p align="justify">Non trasformiamo la precedenza in una gara di memoria.</p>
 
-Usa le parentesi quando:
+<p align="justify">Usa le parentesi quando:</p>
 
-- cambiano realmente l'ordine del calcolo;
-- rendono più evidente l'intenzione;
-- evitano a chi legge di dover ricostruire mentalmente un'espressione complessa.
+<ul>
+  <li>cambiano realmente l'ordine del calcolo;</li>
+  <li>rendono più evidente l'intenzione;</li>
+  <li>evitano a chi legge di dover ricostruire mentalmente un'espressione complessa.</li>
+</ul>
 
-Per il nostro livello basta ricordare la struttura generale:
+<p align="justify">Per il nostro livello basta ricordare la struttura generale:</p>
 
 ```text
 parentesi
@@ -337,19 +467,19 @@ parentesi
 → +, -
 ```
 
-Per casi più sottili, meglio rendere il codice esplicito invece di affidarsi alla memoria.
+<p align="justify">Per casi più sottili, meglio rendere il codice esplicito invece di affidarsi alla memoria.</p>
 
 ---
 
-# 9. Espressione corretta ma difficile da leggere
+## 9. Espressione corretta ma difficile da leggere
 
-Confronta:
+<p align="justify">Confronta:</p>
 
 ```python
 risultato = a + b * c - d / e
 ```
 
-con:
+<p align="justify">con:</p>
 
 ```python
 costo_componenti = b * c
@@ -357,30 +487,65 @@ quota = d / e
 risultato = a + costo_componenti - quota
 ```
 
-Le due forme non sono sempre equivalenti dal punto di vista del dominio, ma mostrano un criterio importante:
+<p align="justify">Le due forme non sono sempre equivalenti dal punto di vista del dominio, ma mostrano un criterio importante:</p>
 
-> un risultato intermedio con un buon nome può spiegare **che cosa significa** una parte del calcolo.
+<blockquote>
+<p align="justify">un risultato intermedio con un buon nome può spiegare <strong>che cosa significa</strong> una parte del calcolo.</p>
+</blockquote>
 
-Non estrarre variabili inutili per ogni singolo simbolo; usale quando comunicano un concetto.
+<p align="justify">Non estrarre variabili inutili per ogni singolo simbolo; usale quando comunicano un concetto.</p>
 
 ---
 
-# 10. Microscope: tipo e valore
+## 10. Microscope: tipo e valore
 
-Prima di eseguire, completa la tabella.
+<p align="justify">Prima di eseguire, completa la tabella.</p>
 
-| Espressione | Valore previsto | Tipo previsto |
-|---|---|---|
-| `7 + 3` | ? | ? |
-| `7 / 2` | ? | ? |
-| `7 // 2` | ? | ? |
-| `7 % 2` | ? | ? |
-| `2 ** 3` | ? | ? |
-| `4 * 3.5` | ? | ? |
+<table align="center">
+<thead>
+<tr>
+<th>Espressione</th>
+<th>Valore previsto</th>
+<th>Tipo previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>7 + 3</code></td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>7 / 2</code></td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>7 // 2</code></td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>7 % 2</code></td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>2 ** 3</code></td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>4 * 3.5</code></td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
 
-Poi verifica nel REPL con `type()` soltanto dopo aver scritto le previsioni.
+<p align="justify">Poi verifica nel REPL con <code>type()</code> soltanto dopo aver scritto le previsioni.</p>
 
-Obiettivo:
+<p align="justify">Obiettivo:</p>
 
 ```text
 prevedere
@@ -388,15 +553,15 @@ prevedere
 → spiegare una differenza
 ```
 
-non copiare l'output del REPL.
+<p align="justify">non copiare l'output del REPL.</p>
 
 ---
 
-# 11. Built-in: usare uno strumento quando esprime bene l'intenzione
+## 11. Built-in: usare uno strumento quando esprime bene l'intenzione
 
-Python fornisce funzioni built-in utili.
+<p align="justify">Python fornisce funzioni built-in utili.</p>
 
-Esempi semplici:
+<p align="justify">Esempi semplici:</p>
 
 ```python
 abs(-8)
@@ -406,19 +571,21 @@ max(8, 3, 12)
 len("Python")
 ```
 
-Non dobbiamo imparare una lunga lista di built-in.
+<p align="justify">Non dobbiamo imparare una lunga lista di built-in.</p>
 
-La domanda è:
+<p align="justify">La domanda è:</p>
 
-> questa funzione esprime meglio l'operazione che voglio fare rispetto a riscriverla manualmente?
+<blockquote>
+<p align="justify">questa funzione esprime meglio l'operazione che voglio fare rispetto a riscriverla manualmente?</p>
+</blockquote>
 
-`len()` era già comparsa come lente sulle stringhe; `min()` e `max()` qui sono semplici strumenti. Più avanti impareremo anche a calcolare min/max progressivamente per capire l'algoritmo sottostante.
+<p align="justify"><code>len()</code> era già comparsa come lente sulle stringhe; <code>min()</code> e <code>max()</code> qui sono semplici strumenti. Più avanti impareremo anche a calcolare min/max progressivamente per capire l'algoritmo sottostante.</p>
 
 ---
 
-# 12. Output leggibile con f-string
+## 12. Output leggibile con f-string
 
-Per un programma destinato a una persona possiamo voler scrivere:
+<p align="justify">Per un programma destinato a una persona possiamo voler scrivere:</p>
 
 ```python
 nome = "Ada"
@@ -426,43 +593,43 @@ punti = 27
 print(f"{nome} ha {punti} punti")
 ```
 
-Output:
+<p align="justify">Output:</p>
 
 ```text
 Ada ha 27 punti
 ```
 
-Dentro `{...}` possiamo inserire espressioni semplici:
+<p align="justify">Dentro <code>{...}</code> possiamo inserire espressioni semplici:</p>
 
 ```python
 print(f"Il doppio è {numero * 2}")
 ```
 
-## Contratto prima dell'estetica
+### Contratto prima dell'estetica
 
-Nelle Activity con output esatto dobbiamo comunque rispettare la specifica.
+<p align="justify">Nelle Activity con output esatto dobbiamo comunque rispettare la specifica.</p>
 
-Se il contratto dice:
+<p align="justify">Se il contratto dice:</p>
 
 ```text
 OUTPUT: 54
 ```
 
-stampare:
+<p align="justify">stampare:</p>
 
 ```text
 Il doppio è 54
 ```
 
-è un output diverso.
+<p align="justify">è un output diverso.</p>
 
-Le f-string sono uno strumento di presentazione, non un motivo per ignorare l'interfaccia richiesta.
+<p align="justify">Le f-string sono uno strumento di presentazione, non un motivo per ignorare l'interfaccia richiesta.</p>
 
 ---
 
-# 13. Calcolare e stampare sono responsabilità diverse
+## 13. Calcolare e stampare sono responsabilità diverse
 
-Considera:
+<p align="justify">Considera:</p>
 
 ```python
 base = 5
@@ -471,7 +638,7 @@ area = base * altezza
 print(area)
 ```
 
-Qui possiamo distinguere:
+<p align="justify">Qui possiamo distinguere:</p>
 
 ```text
 calcolo       → base * altezza
@@ -479,27 +646,27 @@ risultato     → area
 presentazione → print(area)
 ```
 
-Questa separazione diventerà sempre più utile quando i programmi cresceranno.
+<p align="justify">Questa separazione diventerà sempre più utile quando i programmi cresceranno.</p>
 
 ---
 
-# 14. Prima funzione: dare un nome a una trasformazione
+## 14. Prima funzione: dare un nome a una trasformazione
 
-Possiamo dare un nome al calcolo dell'area:
+<p align="justify">Possiamo dare un nome al calcolo dell'area:</p>
 
 ```python
 def area_rettangolo(base, altezza):
     return base * altezza
 ```
 
-Poi usarlo:
+<p align="justify">Poi usarlo:</p>
 
 ```python
 area = area_rettangolo(5, 3)
 print(area)
 ```
 
-Per ora ci basta questo modello:
+<p align="justify">Per ora ci basta questo modello:</p>
 
 ```text
 input della trasformazione
@@ -513,13 +680,13 @@ return
 valore prodotto
 ```
 
-Non stiamo ancora facendo il modulo completo sulle funzioni: scope, progettazione top-down, contratti e decomposizione sistematica arriveranno in PY2-05.
+<p align="justify">Non stiamo ancora facendo il modulo completo sulle funzioni: scope, progettazione top-down, contratti e decomposizione sistematica arriveranno in PY2-05.</p>
 
 ---
 
-# 15. `return` non è `print`
+## 15. `return` non è `print`
 
-Queste due funzioni non hanno lo stesso comportamento:
+<p align="justify">Queste due funzioni non hanno lo stesso comportamento:</p>
 
 ```python
 def doppio(numero):
@@ -531,44 +698,65 @@ def mostra_doppio(numero):
     print(numero * 2)
 ```
 
-La prima **produce un valore** che può essere usato altrove:
+<p align="justify">La prima <strong>produce un valore</strong> che può essere usato altrove:</p>
 
 ```python
 risultato = doppio(4)
 print(risultato + 1)
 ```
 
-La seconda produce output sul terminale, ma non sta restituendo quel numero al chiamante.
+<p align="justify">La seconda produce output sul terminale, ma non sta restituendo quel numero al chiamante.</p>
 
-Per ora ricordiamo soltanto:
+<p align="justify">Per ora ricordiamo soltanto:</p>
 
 ```text
 return → valore verso chi ha chiamato la funzione
 print  → output verso l'esterno
 ```
 
-Approfondiremo questa distinzione con molti esempi in PY2-05.
+<p align="justify">Approfondiremo questa distinzione con molti esempi in PY2-05.</p>
 
 ---
 
-# 16. Testare una piccola funzione
+## 16. Testare una piccola funzione
 
-Per:
+<p align="justify">Per:</p>
 
 ```python
 def area_rettangolo(base, altezza):
     return base * altezza
 ```
 
-possiamo pensare ai casi prima del codice:
+<p align="justify">possiamo pensare ai casi prima del codice:</p>
 
-| base | altezza | atteso |
-|---:|---:|---:|
-| 5 | 3 | 15 |
-| 1 | 7 | 7 |
-| 0 | 4 | 0 |
+<table align="center">
+<thead>
+<tr>
+<th>base</th>
+<th>altezza</th>
+<th>atteso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>3</td>
+<td>15</td>
+</tr>
+<tr>
+<td>1</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 
-E poi verificare nel REPL:
+<p align="justify">E poi verificare nel REPL:</p>
 
 ```python
 area_rettangolo(5, 3)
@@ -576,53 +764,55 @@ area_rettangolo(1, 7)
 area_rettangolo(0, 4)
 ```
 
-Non serve ancora un framework di testing per imparare l'idea fondamentale:
+<p align="justify">Non serve ancora un framework di testing per imparare l'idea fondamentale:</p>
 
-> una trasformazione dovrebbe poter essere verificata con esempi scelti consapevolmente.
+<blockquote>
+<p align="justify">una trasformazione dovrebbe poter essere verificata con esempi scelti consapevolmente.</p>
+</blockquote>
 
 ---
 
-# 17. Error Clinic
+## 17. Error Clinic
 
-## Caso 1 — operatore sbagliato
+### Caso 1 — operatore sbagliato
 
 ```python
 quadrato = numero ^ 2
 ```
 
-Se volevi una potenza, l'operatore non esprime l'operazione richiesta.
+<p align="justify">Se volevi una potenza, l'operatore non esprime l'operazione richiesta.</p>
 
-## Caso 2 — divisione sbagliata per il dominio
+### Caso 2 — divisione sbagliata per il dominio
 
 ```python
 scatole = pezzi / capacita
 ```
 
-Se il problema chiede **scatole complete**, probabilmente `/` non è il modello giusto.
+<p align="justify">Se il problema chiede <strong>scatole complete</strong>, probabilmente <code>/</code> non è il modello giusto.</p>
 
-## Caso 3 — resto dimenticato
+### Caso 3 — resto dimenticato
 
 ```python
 minuti = secondi_totali // 60
 ```
 
-Se la specifica chiede anche i secondi rimanenti manca una parte dell'output.
+<p align="justify">Se la specifica chiede anche i secondi rimanenti manca una parte dell'output.</p>
 
-## Caso 4 — precedenza non esplicita
+### Caso 4 — precedenza non esplicita
 
 ```python
 media = a + b + c / 3
 ```
 
-La formula non calcola la media aritmetica dei tre valori.
+<p align="justify">La formula non calcola la media aritmetica dei tre valori.</p>
 
-Una forma corretta e chiara è:
+<p align="justify">Una forma corretta e chiara è:</p>
 
 ```python
 media = (a + b + c) / 3
 ```
 
-## Caso 5 — funzione definita ma non chiamata
+### Caso 5 — funzione definita ma non chiamata
 
 ```python
 def doppio(numero):
@@ -631,48 +821,50 @@ def doppio(numero):
 risultato = doppio
 ```
 
-`doppio` e `doppio(5)` non sono la stessa cosa.
+<p align="justify"><code>doppio</code> e <code>doppio(5)</code> non sono la stessa cosa.</p>
 
-Per invocare la trasformazione servono le parentesi e gli argomenti richiesti.
+<p align="justify">Per invocare la trasformazione servono le parentesi e gli argomenti richiesti.</p>
 
-## Caso 6 — stampare invece di restituire
+### Caso 6 — stampare invece di restituire
 
-Se una funzione deve produrre un valore riutilizzabile, sostituire `return` con `print` cambia il suo contratto.
+<p align="justify">Se una funzione deve produrre un valore riutilizzabile, sostituire <code>return</code> con <code>print</code> cambia il suo contratto.</p>
 
 ---
 
-# 18. Confrontare soluzioni
+## 18. Confrontare soluzioni
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Converti una quantità di secondi in minuti completi e secondi restanti.
+<blockquote>
+<p align="justify">Converti una quantità di secondi in minuti completi e secondi restanti.</p>
+</blockquote>
 
-### Soluzione A
+#### Soluzione A
 
 ```python
 minuti = secondi_totali // 60
 resto = secondi_totali % 60
 ```
 
-### Soluzione B
+#### Soluzione B
 
 ```python
 minuti = int(secondi_totali / 60)
 resto = secondi_totali - minuti * 60
 ```
 
-Per input non negativi entrambe possono produrre lo stesso risultato nei casi semplici.
+<p align="justify">Per input non negativi entrambe possono produrre lo stesso risultato nei casi semplici.</p>
 
-Ma la A comunica direttamente le due operazioni del problema:
+<p align="justify">Ma la A comunica direttamente le due operazioni del problema:</p>
 
 ```text
 gruppi completi
 resto
 ```
 
-Il confronto non riguarda soltanto il numero di caratteri.
+<p align="justify">Il confronto non riguarda soltanto il numero di caratteri.</p>
 
-Criteri:
+<p align="justify">Criteri:</p>
 
 ```text
 correttezza
@@ -683,11 +875,11 @@ correttezza
 
 ---
 
-# 19. Esercizi brevi
+## 19. Esercizi brevi
 
-## A — Predict
+### A — Predict
 
-Prevedi valore e tipo:
+<p align="justify">Prevedi valore e tipo:</p>
 
 ```python
 15 / 4
@@ -698,28 +890,30 @@ Prevedi valore e tipo:
 2 ** 4
 ```
 
-## B — Quoziente/resto
+### B — Quoziente/resto
 
-Dato un numero di caramelle e una dimensione fissa della confezione, calcola:
+<p align="justify">Dato un numero di caramelle e una dimensione fissa della confezione, calcola:</p>
 
-- confezioni complete;
-- caramelle rimaste.
+<ul>
+  <li>confezioni complete;</li>
+  <li>caramelle rimaste.</li>
+</ul>
 
-Prima scrivi input/output e almeno tre casi.
+<p align="justify">Prima scrivi input/output e almeno tre casi.</p>
 
-## C — Ore, minuti, secondi
+### C — Ore, minuti, secondi
 
-Dato un numero non negativo di secondi, produci:
+<p align="justify">Dato un numero non negativo di secondi, produci:</p>
 
 ```text
 ore_complete minuti_restanti secondi_restanti
 ```
 
-Scomponi il problema prima di scrivere il codice.
+<p align="justify">Scomponi il problema prima di scrivere il codice.</p>
 
-## D — Debug
+### D — Debug
 
-Correggi:
+<p align="justify">Correggi:</p>
 
 ```python
 a = int(input())
@@ -728,52 +922,56 @@ media = a + b / 2
 print(media)
 ```
 
-Spiega il bug, non limitarti a modificare una riga.
+<p align="justify">Spiega il bug, non limitarti a modificare una riga.</p>
 
-## E — Prima funzione
+### E — Prima funzione
 
-Scrivi:
+<p align="justify">Scrivi:</p>
 
 ```python
 def perimetro_rettangolo(base, altezza):
     ...
 ```
 
-La funzione deve **restituire** il valore. Proponi tre casi di test prima dell'implementazione.
+<p align="justify">La funzione deve <strong>restituire</strong> il valore. Proponi tre casi di test prima dell'implementazione.</p>
 
 ---
 
-# 20. Activity planning — non ancora materializzato
+## 20. Activity planning — non ancora materializzato
 
-Per M05 sono candidati:
+<p align="justify">Per M05 sono candidati:</p>
 
-- **A Observe/Trace:** precedenza, valore e tipo;
-- **B Controlled Change:** correggere una formula mantenendo invariato il contratto I/O;
-- **C Implement:** conversione secondi → unità + resti;
-- **D Debug:** precedenza, `/` vs `//`, `%`, `^` vs `**`;
-- **E Mini-program:** piccolo calcolatore a una sola trasformazione, senza selezione.
+<ul>
+  <li><strong>A Observe/Trace:</strong> precedenza, valore e tipo;</li>
+  <li><strong>B Controlled Change:</strong> correggere una formula mantenendo invariato il contratto I/O;</li>
+  <li><strong>C Implement:</strong> conversione secondi → unità + resti;</li>
+  <li><strong>D Debug:</strong> precedenza, <code>/</code> vs <code>//</code>, <code>%</code>, <code>^</code> vs <code>**</code>;</li>
+  <li><strong>E Mini-program:</strong> piccolo calcolatore a una sola trasformazione, senza selezione.</li>
+</ul>
 
-Non materializziamo ora una seconda Activity P1 nel repository: `py2-activity-b-input-somma-001` resta il canarino tecnico finché `python-docente#7` non è certificato.
-
----
-
-# 21. Checkpoint M05
-
-Senza eseguire Python, spiega:
-
-1. Qual è la differenza tra `/`, `//` e `%`?
-2. Perché `17 // 3` e `17 % 3` descrivono due parti dello stesso problema?
-3. Perché `(a + b + c) / 3` è diverso da `a + b + c / 3`?
-4. Qual è l'operatore di potenza in Python?
-5. Perché una f-string può rendere sbagliato un output autogradato anche se il calcolo è corretto?
-6. Che differenza c'è tra `return` e `print` nel nostro modello iniziale?
-7. Perché mostriamo una funzione già ora senza approfondire ancora scope e decomposizione?
+<p align="justify">Non materializziamo ora una seconda Activity P1 nel repository: <code>py2-activity-b-input-somma-001</code> resta il canarino tecnico finché <code>python-docente#7</code> non è certificato.</p>
 
 ---
 
-# 22. Sintesi
+## 21. Checkpoint M05
 
-Porta con te questi modelli:
+<p align="justify">Senza eseguire Python, spiega:</p>
+
+<ol>
+  <li>Qual è la differenza tra <code>/</code>, <code>//</code> e <code>%</code>?</li>
+  <li>Perché <code>17 // 3</code> e <code>17 % 3</code> descrivono due parti dello stesso problema?</li>
+  <li>Perché <code>(a + b + c) / 3</code> è diverso da <code>a + b + c / 3</code>?</li>
+  <li>Qual è l'operatore di potenza in Python?</li>
+  <li>Perché una f-string può rendere sbagliato un output autogradato anche se il calcolo è corretto?</li>
+  <li>Che differenza c'è tra <code>return</code> e <code>print</code> nel nostro modello iniziale?</li>
+  <li>Perché mostriamo una funzione già ora senza approfondire ancora scope e decomposizione?</li>
+</ol>
+
+---
+
+## 22. Sintesi
+
+<p align="justify">Porta con te questi modelli:</p>
 
 ```text
 espressione → valore
@@ -801,23 +999,27 @@ funzione piccola = trasformazione con un nome
 return ≠ print
 ```
 
-Nel prossimo blocco useremo espressioni che producono `True`/`False` per prendere decisioni con `if`, `elif` ed `else`.
+<p align="justify">Nel prossimo blocco useremo espressioni che producono <code>True</code>/<code>False</code> per prendere decisioni con <code>if</code>, <code>elif</code> ed <code>else</code>.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Questa lesson è materiale originale del corso. Per progettazione e verifica tecnica:
+<p align="justify">Questa lesson è materiale originale del corso. Per progettazione e verifica tecnica:</p>
 
-- documentazione Python 3.12 — tutorial sui numeri/espressioni e reference delle espressioni;
-- Allen Downey, *Think Python / Pensare in Python* — progressione beginner, funzioni e debugging;
-- Mark Lutz, *Learning Python / Imparare Python* — copertura sistematica di espressioni/operatori/funzioni;
-- Pluralsight Python Essentials — gap-check del percorso e dei laboratori.
+<ul>
+  <li>documentazione Python 3.12 — tutorial sui numeri/espressioni e reference delle espressioni;</li>
+  <li>Allen Downey, <em>Think Python / Pensare in Python</em> — progressione beginner, funzioni e debugging;</li>
+  <li>Mark Lutz, <em>Learning Python / Imparare Python</em> — copertura sistematica di espressioni/operatori/funzioni;</li>
+  <li>Pluralsight Python Essentials — gap-check del percorso e dei laboratori.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference e non testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference e non testo da riprodurre.</p>
 
-## Collegamenti di progettazione
+### Collegamenti di progettazione
 
-- `tracks/secondo/PY2_02_SPEC.md`;
-- `doc/CURRICULUM_FREEZE_2026_2027.md`;
-- `doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md`.
+<ul>
+  <li><code>tracks/secondo/PY2_02_SPEC.md</code>;</li>
+  <li><code>doc/CURRICULUM_FREEZE_2026_2027.md</code>;</li>
+  <li><code>doc/PYTHON_ACTIVITY_RUNTIME_CONTRACT.md</code>.</li>
+</ul>

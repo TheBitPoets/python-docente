@@ -1,44 +1,96 @@
 # M11 — Contatori, accumulatori, minimo/massimo, ricerca e flag
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-04 — Iterazione e pattern algoritmici  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Contatori, accumulatori e flag descrivono che cosa ricordare durante un&#x27;elaborazione iterativa.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Usare for/while e selezioni e seguire l&#x27;aggiornamento delle variabili da M09–M10.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+riconoscere quando un problema richiede un contatore oppure un accumulatore;<br>usare <code>if</code> dentro <code>for</code> e <code>while</code> per elaborare solo i casi rilevanti;<br>mantenere una somma progressiva e ricavarne una media quando il conteggio è valido; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Una variabile di stato deve avere un significato che puoi spiegare dopo ogni iterazione. Riprendi <a href="10_FOR_RANGE_SCELTA_CICLO.md">M10 — <code>for</code>, <code>range</code> e scelta <code>for</code> vs <code>while</code></a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="12_CICLI_ANNIDATI_GRIGLIE_COSTO_LAVORO.md">M12 — Cicli annidati, griglie e costo del lavoro</a>. I cicli annidati percorrono coppie e griglie e rendono osservabile la quantità di lavoro.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Traccia conteggio e somma dei positivi; verifica il caso senza positivi prima di calcolare la media.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-04 — Iterazione e pattern algoritmici<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- riconoscere quando un problema richiede un contatore oppure un accumulatore;
-- usare `if` dentro `for` e `while` per elaborare solo i casi rilevanti;
-- mantenere una somma progressiva e ricavarne una media quando il conteggio è valido;
-- mantenere un minimo o un massimo progressivo senza usare valori-sentinella arbitrari;
-- distinguere “trova il primo” da “conta/trova tutti”;
-- usare un flag booleano quando rappresenta davvero uno stato utile;
-- riconoscere quando un flag è ridondante;
-- progettare casi di test per nessun match, un match, più match e confini significativi;
-- descrivere con una frase che cosa rappresenta una variabile durante il ciclo.
+<ul>
+  <li>riconoscere quando un problema richiede un contatore oppure un accumulatore;</li>
+  <li>usare <code>if</code> dentro <code>for</code> e <code>while</code> per elaborare solo i casi rilevanti;</li>
+  <li>mantenere una somma progressiva e ricavarne una media quando il conteggio è valido;</li>
+  <li>mantenere un minimo o un massimo progressivo senza usare valori-sentinella arbitrari;</li>
+  <li>distinguere “trova il primo” da “conta/trova tutti”;</li>
+  <li>usare un flag booleano quando rappresenta davvero uno stato utile;</li>
+  <li>riconoscere quando un flag è ridondante;</li>
+  <li>progettare casi di test per nessun match, un match, più match e confini significativi;</li>
+  <li>descrivere con una frase che cosa rappresenta una variabile durante il ciclo.</li>
+</ul>
 
 ---
 
-# 1. Il problema non è il ciclo: è che cosa devo ricordare
+## 1. Il problema non è il ciclo: è che cosa devo ricordare
 
-Considera una sequenza di valori:
+<p align="justify">Considera una sequenza di valori:</p>
 
 ```text
 4  -2  7  0  5
 ```
 
-Potremmo voler sapere:
+<p align="justify">Potremmo voler sapere:</p>
 
-- quanti sono positivi;
-- qual è la loro somma;
-- qual è il valore più piccolo;
-- se compare almeno uno zero;
-- dove si trova il primo valore maggiore di 6.
+<ul>
+  <li>quanti sono positivi;</li>
+  <li>qual è la loro somma;</li>
+  <li>qual è il valore più piccolo;</li>
+  <li>se compare almeno uno zero;</li>
+  <li>dove si trova il primo valore maggiore di 6.</li>
+</ul>
 
-Il ciclo attraversa i dati. La parte importante è capire **quale informazione deve sopravvivere da un'iterazione alla successiva**.
+<p align="justify">Il ciclo attraversa i dati. La parte importante è capire <strong>quale informazione deve sopravvivere da un'iterazione alla successiva</strong>.</p>
 
-Modello:
+<p align="justify">Modello:</p>
 
 ```text
 valore corrente
@@ -50,17 +102,19 @@ stato aggiornato
 iterazione successiva
 ```
 
-Quello stato può essere un contatore, un totale, un minimo, un massimo, un flag o un risultato di ricerca.
+<p align="justify">Quello stato può essere un contatore, un totale, un minimo, un massimo, un flag o un risultato di ricerca.</p>
 
 ---
 
-# 2. Pattern contatore
+## 2. Pattern contatore
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Leggi `N` valori e conta quanti sono positivi.
+<blockquote>
+<p align="justify">Leggi <code>N</code> valori e conta quanti sono positivi.</p>
+</blockquote>
 
-Una forma tipica è:
+<p align="justify">Una forma tipica è:</p>
 
 ```python
 conteggio = 0
@@ -73,37 +127,62 @@ for _ in range(n):
 print(conteggio)
 ```
 
-## Invariante intuitivo
+### Invariante intuitivo
 
-Dopo ogni iterazione:
+<p align="justify">Dopo ogni iterazione:</p>
 
-> `conteggio` è il numero di valori positivi già elaborati.
+<blockquote>
+<p align="justify"><code>conteggio</code> è il numero di valori positivi già elaborati.</p>
+</blockquote>
 
-Questa frase ci permette di controllare il programma.
+<p align="justify">Questa frase ci permette di controllare il programma.</p>
 
-Se `conteggio += 1` fosse fuori dall'`if`, la frase non sarebbe più vera.
+<p align="justify">Se <code>conteggio += 1</code> fosse fuori dall'<code>if</code>, la frase non sarebbe più vera.</p>
 
-## Trace
+### Trace
 
-Per i valori:
+<p align="justify">Per i valori:</p>
 
 ```text
 4, -2, 7
 ```
 
-| valore | `valore > 0` | `conteggio` dopo l'iterazione |
-|---:|---|---:|
-| 4 | True | 1 |
-| -2 | False | 1 |
-| 7 | True | 2 |
+<table align="center">
+<thead>
+<tr>
+<th>valore</th>
+<th><code>valore &gt; 0</code></th>
+<th><code>conteggio</code> dopo l'iterazione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>True</td>
+<td>1</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>False</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>True</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
 
 ---
 
-# 3. Pattern accumulatore
+## 3. Pattern accumulatore
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Calcola la somma di `N` valori.
+<blockquote>
+<p align="justify">Calcola la somma di <code>N</code> valori.</p>
+</blockquote>
 
 ```python
 totale = 0
@@ -115,13 +194,15 @@ for _ in range(n):
 print(totale)
 ```
 
-## Invariante
+### Invariante
 
-> `totale` è la somma dei valori già elaborati.
+<blockquote>
+<p align="justify"><code>totale</code> è la somma dei valori già elaborati.</p>
+</blockquote>
 
-Questa frase spiega perché `totale` deve essere inizializzato **prima** del ciclo.
+<p align="justify">Questa frase spiega perché <code>totale</code> deve essere inizializzato <strong>prima</strong> del ciclo.</p>
 
-Errore classico:
+<p align="justify">Errore classico:</p>
 
 ```python
 for _ in range(n):
@@ -130,20 +211,20 @@ for _ in range(n):
     totale += valore
 ```
 
-Qui il totale viene azzerato a ogni iterazione.
+<p align="justify">Qui il totale viene azzerato a ogni iterazione.</p>
 
 ---
 
-# 4. Contatore + accumulatore: la media
+## 4. Contatore + accumulatore: la media
 
-Per una media servono almeno:
+<p align="justify">Per una media servono almeno:</p>
 
 ```text
 somma
 conteggio
 ```
 
-Se il numero di valori è noto e tutti sono validi:
+<p align="justify">Se il numero di valori è noto e tutti sono validi:</p>
 
 ```python
 totale = 0
@@ -154,7 +235,7 @@ for _ in range(n):
 media = totale / n
 ```
 
-Ma se contiamo soltanto i valori che soddisfano una condizione:
+<p align="justify">Ma se contiamo soltanto i valori che soddisfano una condizione:</p>
 
 ```python
 totale = 0
@@ -167,31 +248,35 @@ for _ in range(n):
         conteggio += 1
 ```
 
-prima della divisione dobbiamo chiederci:
+<p align="justify">prima della divisione dobbiamo chiederci:</p>
 
-> `conteggio` può essere zero?
+<blockquote>
+<p align="justify"><code>conteggio</code> può essere zero?</p>
+</blockquote>
 
-Una soluzione deve gestire esplicitamente quel caso.
+<p align="justify">Una soluzione deve gestire esplicitamente quel caso.</p>
 
 ---
 
-# 5. Minimo e massimo progressivo
+## 5. Minimo e massimo progressivo
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Tra più valori trova il minimo.
+<blockquote>
+<p align="justify">Tra più valori trova il minimo.</p>
+</blockquote>
 
-Una cattiva abitudine è inventare una sentinella numerica:
+<p align="justify">Una cattiva abitudine è inventare una sentinella numerica:</p>
 
 ```python
 minimo = 999999
 ```
 
-Funziona soltanto se il dominio garantisce che nessun valore possa essere maggiore o uguale a quella scelta. Se il dominio cambia, il programma può diventare sbagliato.
+<p align="justify">Funziona soltanto se il dominio garantisce che nessun valore possa essere maggiore o uguale a quella scelta. Se il dominio cambia, il programma può diventare sbagliato.</p>
 
-## Strategia robusta con primo dato
+### Strategia robusta con primo dato
 
-Se sappiamo che esiste almeno un valore:
+<p align="justify">Se sappiamo che esiste almeno un valore:</p>
 
 ```python
 minimo = int(input())
@@ -204,27 +289,33 @@ for _ in range(n - 1):
 print(minimo)
 ```
 
-## Invariante
+### Invariante
 
-> `minimo` è il più piccolo valore visto finora.
+<blockquote>
+<p align="justify"><code>minimo</code> è il più piccolo valore visto finora.</p>
+</blockquote>
 
-Per il massimo:
+<p align="justify">Per il massimo:</p>
 
-> `massimo` è il più grande valore visto finora.
+<blockquote>
+<p align="justify"><code>massimo</code> è il più grande valore visto finora.</p>
+</blockquote>
 
-Queste frasi sono più importanti della forma esatta del codice.
+<p align="justify">Queste frasi sono più importanti della forma esatta del codice.</p>
 
 ---
 
-# 6. Ricerca: primo match oppure tutti i match?
+## 6. Ricerca: primo match oppure tutti i match?
 
-Domanda:
+<p align="justify">Domanda:</p>
 
-> Tra i valori compare almeno un numero uguale a 0?
+<blockquote>
+<p align="justify">Tra i valori compare almeno un numero uguale a 0?</p>
+</blockquote>
 
-Se ci interessa soltanto sapere se esiste, possiamo fermarci al primo match.
+<p align="justify">Se ci interessa soltanto sapere se esiste, possiamo fermarci al primo match.</p>
 
-Esempio concettuale:
+<p align="justify">Esempio concettuale:</p>
 
 ```python
 trovato = False
@@ -235,7 +326,7 @@ for _ in range(n):
         trovato = True
 ```
 
-Al termine:
+<p align="justify">Al termine:</p>
 
 ```python
 if trovato:
@@ -244,49 +335,53 @@ else:
     print("assente")
 ```
 
-## Ma devo davvero leggere tutti i valori?
+### Ma devo davvero leggere tutti i valori?
 
-Dipende dal contratto del problema.
+<p align="justify">Dipende dal contratto del problema.</p>
 
-Se i dati arrivano da una struttura già disponibile, una ricerca del primo match può fermarsi con `break`.
+<p align="justify">Se i dati arrivano da una struttura già disponibile, una ricerca del primo match può fermarsi con <code>break</code>.</p>
 
-Se i dati arrivano uno alla volta da input e il contratto richiede comunque di consumarli tutti, il comportamento può essere diverso.
+<p align="justify">Se i dati arrivano uno alla volta da input e il contratto richiede comunque di consumarli tutti, il comportamento può essere diverso.</p>
 
-Il pattern non si sceglie isolatamente: dipende dall'interfaccia e dall'obiettivo.
+<p align="justify">Il pattern non si sceglie isolatamente: dipende dall'interfaccia e dall'obiettivo.</p>
 
 ---
 
-# 7. Flag booleani
+## 7. Flag booleani
 
-Un flag è una variabile booleana che rappresenta uno stato significativo.
+<p align="justify">Un flag è una variabile booleana che rappresenta uno stato significativo.</p>
 
-Esempio:
+<p align="justify">Esempio:</p>
 
 ```python
 trovato = False
 ```
 
-Invariante:
+<p align="justify">Invariante:</p>
 
-> `trovato` indica se finora abbiamo incontrato almeno un valore che soddisfa la ricerca.
+<blockquote>
+<p align="justify"><code>trovato</code> indica se finora abbiamo incontrato almeno un valore che soddisfa la ricerca.</p>
+</blockquote>
 
-## Flag utile
+### Flag utile
 
-Quando il valore booleano viene usato dopo il ciclo o rappresenta chiaramente uno stato.
+<p align="justify">Quando il valore booleano viene usato dopo il ciclo o rappresenta chiaramente uno stato.</p>
 
-## Flag ridondante
+### Flag ridondante
 
-Se serve solo per imitare una condizione già disponibile o se un `break`/`return` futuro renderebbe il flusso più diretto.
+<p align="justify">Se serve solo per imitare una condizione già disponibile o se un <code>break</code>/<code>return</code> futuro renderebbe il flusso più diretto.</p>
 
-Non esiste la regola “i flag sono sbagliati”. La domanda è:
+<p align="justify">Non esiste la regola “i flag sono sbagliati”. La domanda è:</p>
 
-> questa variabile aggiunge significato o aggiunge soltanto meccanica?
+<blockquote>
+<p align="justify">questa variabile aggiunge significato o aggiunge soltanto meccanica?</p>
+</blockquote>
 
 ---
 
-# 8. Selezione dentro iterazione
+## 8. Selezione dentro iterazione
 
-Molti algoritmi combinano:
+<p align="justify">Molti algoritmi combinano:</p>
 
 ```text
 ripeti
@@ -295,7 +390,7 @@ ripeti
 → aggiorna lo stato
 ```
 
-Esempio: conta quanti valori sono compresi tra 10 e 20 inclusi.
+<p align="justify">Esempio: conta quanti valori sono compresi tra 10 e 20 inclusi.</p>
 
 ```python
 conteggio = 0
@@ -306,13 +401,13 @@ for _ in range(n):
         conteggio += 1
 ```
 
-Questo è un uso naturale di `if` dentro `for`.
+<p align="justify">Questo è un uso naturale di <code>if</code> dentro <code>for</code>.</p>
 
 ---
 
-# 9. Ciclo dentro una decisione
+## 9. Ciclo dentro una decisione
 
-Anche il contrario può essere naturale:
+<p align="justify">Anche il contrario può essere naturale:</p>
 
 ```python
 if n > 0:
@@ -322,29 +417,54 @@ else:
     print("nessun dato")
 ```
 
-Il punto non è collezionare combinazioni sintattiche.
+<p align="justify">Il punto non è collezionare combinazioni sintattiche.</p>
 
-La domanda resta:
+<p align="justify">La domanda resta:</p>
 
-> la struttura rappresenta davvero il problema?
+<blockquote>
+<p align="justify">la struttura rappresenta davvero il problema?</p>
+</blockquote>
 
 ---
 
-# 10. Worked example: statistiche sui valori positivi
+## 10. Worked example: statistiche sui valori positivi
 
-Specifica:
+<p align="justify">Specifica:</p>
 
-> Leggi `N` interi. Stampa quanti sono positivi e la loro somma.
+<blockquote>
+<p align="justify">Leggi <code>N</code> interi. Stampa quanti sono positivi e la loro somma.</p>
+</blockquote>
 
-Casi da progettare prima:
+<p align="justify">Casi da progettare prima:</p>
 
-| valori | positivi | somma positiva |
-|---|---:|---:|
-| `2, 5, -1` | 2 | 7 |
-| `-3, 0, -2` | 0 | 0 |
-| `4` | 1 | 4 |
+<table align="center">
+<thead>
+<tr>
+<th>valori</th>
+<th>positivi</th>
+<th>somma positiva</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2, 5, -1</code></td>
+<td>2</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>-3, 0, -2</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>1</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
 
-Codice:
+<p align="justify">Codice:</p>
 
 ```python
 n = int(input())
@@ -361,7 +481,7 @@ print(conteggio)
 print(totale)
 ```
 
-Invarianti:
+<p align="justify">Invarianti:</p>
 
 ```text
 conteggio = numero di positivi già visti
@@ -370,9 +490,9 @@ totale    = somma dei positivi già visti
 
 ---
 
-# 11. Error Clinic
+## 11. Error Clinic
 
-## A — accumulatore resettato
+### A — accumulatore resettato
 
 ```python
 for _ in range(n):
@@ -380,9 +500,9 @@ for _ in range(n):
     totale += int(input())
 ```
 
-Domanda: quale invariante viene distrutto?
+<p align="justify">Domanda: quale invariante viene distrutto?</p>
 
-## B — contatore incrementato sempre
+### B — contatore incrementato sempre
 
 ```python
 if valore > 0:
@@ -390,25 +510,25 @@ if valore > 0:
 conteggio += 1
 ```
 
-Se volevamo contare soltanto i positivi, l'aggiornamento è nel livello sbagliato.
+<p align="justify">Se volevamo contare soltanto i positivi, l'aggiornamento è nel livello sbagliato.</p>
 
-## C — media con denominatore zero
+### C — media con denominatore zero
 
 ```python
 media = totale / conteggio
 ```
 
-Quale caso di test lo mette in crisi?
+<p align="justify">Quale caso di test lo mette in crisi?</p>
 
-## D — minimo sentinella fragile
+### D — minimo sentinella fragile
 
 ```python
 minimo = 999999
 ```
 
-Quale assunzione nascosta stiamo facendo?
+<p align="justify">Quale assunzione nascosta stiamo facendo?</p>
 
-## E — flag mai aggiornato
+### E — flag mai aggiornato
 
 ```python
 trovato = False
@@ -417,87 +537,95 @@ for ...:
         print("trovato")
 ```
 
-Dopo il ciclo `trovato` è ancora `False`.
+<p align="justify">Dopo il ciclo <code>trovato</code> è ancora <code>False</code>.</p>
 
 ---
 
-# 12. Ricerca lineare: ragionare sul lavoro
+## 12. Ricerca lineare: ragionare sul lavoro
 
-Se controlliamo i valori uno dopo l'altro, nel caso peggiore possiamo doverli esaminare tutti.
+<p align="justify">Se controlliamo i valori uno dopo l'altro, nel caso peggiore possiamo doverli esaminare tutti.</p>
 
-Per ora basta questa intuizione:
+<p align="justify">Per ora basta questa intuizione:</p>
 
 ```text
 più dati
 → più confronti
 ```
 
-Non introduciamo ancora il formalismo Big-O.
+<p align="justify">Non introduciamo ancora il formalismo Big-O.</p>
 
-Ma iniziamo a distinguere:
+<p align="justify">Ma iniziamo a distinguere:</p>
 
-- ricerca del primo match;
-- conteggio di tutti i match;
-- elaborazione completa obbligatoria.
+<ul>
+  <li>ricerca del primo match;</li>
+  <li>conteggio di tutti i match;</li>
+  <li>elaborazione completa obbligatoria.</li>
+</ul>
 
-Queste tre richieste possono produrre algoritmi diversi.
-
----
-
-# 13. Activity candidate
-
-## A — Trace pattern
-
-Completa tabelle con `conteggio`, `totale`, `minimo` e `trovato` dopo ogni iterazione.
-
-## B — Controlled Change
-
-Trasforma “conta positivi” in “conta valori nell'intervallo `[10, 20]`”, aggiornando prima i casi di test.
-
-## C — Implement
-
-Leggi `N` dati e calcola:
-
-- somma;
-- conteggio di quelli validi;
-- eventuale media solo se il conteggio è diverso da zero.
-
-## D — Debug
-
-Correggi accumulatori resettati, update fuori dal ramo, minimo inizializzato male e flag incoerenti.
-
-Nessuna nuova Activity autogradata viene materializzata finché il profilo P1 canarino non è certificato.
+<p align="justify">Queste tre richieste possono produrre algoritmi diversi.</p>
 
 ---
 
-# 14. Romeo come applicazione selettiva
+## 13. Activity candidate
 
-Una missione simulata può richiedere di:
+### A — Trace pattern
 
-- contare quante azioni soddisfano una condizione;
-- accumulare una distanza/tempo concettuale;
-- rilevare se un checkpoint è stato raggiunto;
-- fermare una ricerca quando l'obiettivo è trovato.
+<p align="justify">Completa tabelle con <code>conteggio</code>, <code>totale</code>, <code>minimo</code> e <code>trovato</code> dopo ogni iterazione.</p>
 
-Romeo non sostituisce gli esercizi generali e non introduce hardware fisico nel core.
+### B — Controlled Change
+
+<p align="justify">Trasforma “conta positivi” in “conta valori nell'intervallo <code>[10, 20]</code>”, aggiornando prima i casi di test.</p>
+
+### C — Implement
+
+<p align="justify">Leggi <code>N</code> dati e calcola:</p>
+
+<ul>
+  <li>somma;</li>
+  <li>conteggio di quelli validi;</li>
+  <li>eventuale media solo se il conteggio è diverso da zero.</li>
+</ul>
+
+### D — Debug
+
+<p align="justify">Correggi accumulatori resettati, update fuori dal ramo, minimo inizializzato male e flag incoerenti.</p>
+
+<p align="justify">Nessuna nuova Activity autogradata viene materializzata finché il profilo P1 canarino non è certificato.</p>
 
 ---
 
-# 15. Checkpoint
+## 14. Romeo come applicazione selettiva
 
-Dovresti saper spiegare senza eseguire il codice:
+<p align="justify">Una missione simulata può richiedere di:</p>
 
-1. differenza tra contatore e accumulatore;
-2. perché un accumulatore si inizializza prima del ciclo;
-3. perché `minimo = 999999` può essere fragile;
-4. quale invariante rappresenta un minimo progressivo;
-5. differenza tra “trova il primo” e “conta tutti”;
-6. quando un flag aggiunge significato;
-7. quale test protegge una media da divisione per zero.
+<ul>
+  <li>contare quante azioni soddisfano una condizione;</li>
+  <li>accumulare una distanza/tempo concettuale;</li>
+  <li>rilevare se un checkpoint è stato raggiunto;</li>
+  <li>fermare una ricerca quando l'obiettivo è trovato.</li>
+</ul>
+
+<p align="justify">Romeo non sostituisce gli esercizi generali e non introduce hardware fisico nel core.</p>
 
 ---
 
-# 16. Sintesi
+## 15. Checkpoint
+
+<p align="justify">Dovresti saper spiegare senza eseguire il codice:</p>
+
+<ol>
+  <li>differenza tra contatore e accumulatore;</li>
+  <li>perché un accumulatore si inizializza prima del ciclo;</li>
+  <li>perché <code>minimo = 999999</code> può essere fragile;</li>
+  <li>quale invariante rappresenta un minimo progressivo;</li>
+  <li>differenza tra “trova il primo” e “conta tutti”;</li>
+  <li>quando un flag aggiunge significato;</li>
+  <li>quale test protegge una media da divisione per zero.</li>
+</ol>
+
+---
+
+## 16. Sintesi
 
 ```text
 ciclo = attraversa/ripete
@@ -512,21 +640,25 @@ flag         → stato sì/no
 ricerca      → primo / esiste / tutti?
 ```
 
-La domanda di debugging più potente del modulo è:
+<p align="justify">La domanda di debugging più potente del modulo è:</p>
 
-> quale frase dovrebbe essere vera su questa variabile dopo ogni iterazione?
+<blockquote>
+<p align="justify">quale frase dovrebbe essere vera su questa variabile dopo ogni iterazione?</p>
+</blockquote>
 
-Nel prossimo modulo useremo più cicli insieme e inizieremo a ragionare su griglie, coppie di indici e quantità di lavoro svolto.
+<p align="justify">Nel prossimo modulo useremo più cicli insieme e inizieremo a ragionare su griglie, coppie di indici e quantità di lavoro svolto.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale del corso, progettato con riferimento a:
+<p align="justify">Materiale originale del corso, progettato con riferimento a:</p>
 
-- documentazione Python 3.12 — `for`, `while`, `if`, `break` e semantica di base;
-- *Think Python / Pensare in Python* — iterazione, accumulator patterns e debugging;
-- *Learning Python / Imparare Python* — controllo del flusso come reference di copertura;
-- Romeo pinned — dominio applicativo opzionale.
+<ul>
+  <li>documentazione Python 3.12 — <code>for</code>, <code>while</code>, <code>if</code>, <code>break</code> e semantica di base;</li>
+  <li><em>Think Python / Pensare in Python</em> — iterazione, accumulator patterns e debugging;</li>
+  <li><em>Learning Python / Imparare Python</em> — controllo del flusso come reference di copertura;</li>
+  <li>Romeo pinned — dominio applicativo opzionale.</li>
+</ul>
 
-Le fonti licensed sono riferimenti, non testo da riprodurre.
+<p align="justify">Le fonti licensed sono riferimenti, non testo da riprodurre.</p>

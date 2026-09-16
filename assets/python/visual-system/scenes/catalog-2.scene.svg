@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../catalog/catalog-2.svg">
+<title id="title">Oggetti Python &#183; tavola 2</title>
+<desc id="desc">Catalogo dei componenti riutilizzabili con nome e identificatore stabile. I colori accompagnano sempre le etichette.</desc>
+<defs id="visual-kit-components"/>
+<rect width="1920" height="1080" fill="{{canvas}}"/>
+<g font-family="{{family}}">
+<text x="64" y="100" font-size="48" fill="{{surface}}">Oggetti Python &#183; tavola 2 / 3</text>
+<text x="64" y="152" font-size="28" fill="{{muted}}">Stesso concetto, stesso oggetto &#183; simboli senza etichette incorporate</text>
+<rect x="64" y="200" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-value" x="88" y="220" width="150" height="168"/>
+<text x="260" y="294" font-size="26" fill="{{ink}}">Valore / oggetto</text>
+<text x="260" y="346" font-size="23" fill="{{data}}">tpsi-value</text>
+<rect x="672" y="200" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-reference" x="696" y="220" width="150" height="168"/>
+<text x="868" y="294" font-size="26" fill="{{ink}}">Riferimento</text>
+<text x="868" y="346" font-size="23" fill="{{data}}">tpsi-reference</text>
+<rect x="1280" y="200" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-sequence" x="1304" y="220" width="150" height="168"/>
+<text x="1476" y="294" font-size="26" fill="{{ink}}">Sequenza</text>
+<text x="1476" y="346" font-size="23" fill="{{data}}">tpsi-sequence</text>
+<rect x="64" y="480" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-tuple" x="88" y="500" width="150" height="168"/>
+<text x="260" y="574" font-size="26" fill="{{ink}}">Tupla</text>
+<text x="260" y="626" font-size="23" fill="{{data}}">tpsi-tuple</text>
+<rect x="672" y="480" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-grid" x="696" y="500" width="150" height="168"/>
+<text x="868" y="574" font-size="26" fill="{{ink}}">Griglia / matrice</text>
+<text x="868" y="626" font-size="23" fill="{{data}}">tpsi-grid</text>
+<rect x="1280" y="480" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-set" x="1304" y="500" width="150" height="168"/>
+<text x="1476" y="574" font-size="26" fill="{{ink}}">Insieme</text>
+<text x="1476" y="626" font-size="23" fill="{{data}}">tpsi-set</text>
+<rect x="64" y="760" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-mapping" x="88" y="780" width="150" height="168"/>
+<text x="260" y="854" font-size="26" fill="{{ink}}">Chiave e valore</text>
+<text x="260" y="906" font-size="23" fill="{{data}}">tpsi-mapping</text>
+<rect x="672" y="760" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-trace" x="696" y="780" width="150" height="168"/>
+<text x="868" y="854" font-size="26" fill="{{ink}}">Tabella di traccia</text>
+<text x="868" y="906" font-size="23" fill="{{data}}">tpsi-trace</text>
+<rect x="1280" y="760" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-runtime" x="1304" y="780" width="150" height="168"/>
+<text x="1476" y="854" font-size="26" fill="{{ink}}">Interprete</text>
+<text x="1476" y="906" font-size="23" fill="{{data}}">tpsi-runtime</text>
+</g>
+</svg>

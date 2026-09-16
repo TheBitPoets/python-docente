@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../catalog/catalog-3.svg">
+<title id="title">Oggetti Python &#183; tavola 3</title>
+<desc id="desc">Catalogo dei componenti riutilizzabili con nome e identificatore stabile. I colori accompagnano sempre le etichette.</desc>
+<defs id="visual-kit-components"/>
+<rect width="1920" height="1080" fill="{{canvas}}"/>
+<g font-family="{{family}}">
+<text x="64" y="100" font-size="48" fill="{{surface}}">Oggetti Python &#183; tavola 3 / 3</text>
+<text x="64" y="152" font-size="28" fill="{{muted}}">Stesso concetto, stesso oggetto &#183; simboli senza etichette incorporate</text>
+<rect x="64" y="200" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-function" x="88" y="220" width="150" height="168"/>
+<text x="260" y="294" font-size="26" fill="{{ink}}">Funzione</text>
+<text x="260" y="346" font-size="23" fill="{{data}}">tpsi-function</text>
+<rect x="672" y="200" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-frame" x="696" y="220" width="150" height="168"/>
+<text x="868" y="294" font-size="26" fill="{{ink}}">Contesto di chiamata</text>
+<text x="868" y="346" font-size="23" fill="{{data}}">tpsi-frame</text>
+<rect x="1280" y="200" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-contract" x="1304" y="220" width="150" height="168"/>
+<text x="1476" y="294" font-size="26" fill="{{ink}}">Contratto / invariante</text>
+<text x="1476" y="346" font-size="23" fill="{{data}}">tpsi-contract</text>
+<rect x="64" y="480" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-error" x="88" y="500" width="150" height="168"/>
+<text x="260" y="574" font-size="26" fill="{{ink}}">Errore / rifiuto</text>
+<text x="260" y="626" font-size="23" fill="{{data}}">tpsi-error</text>
+<rect x="672" y="480" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-path" x="696" y="500" width="150" height="168"/>
+<text x="868" y="574" font-size="26" fill="{{ink}}">Percorso nel workspace</text>
+<text x="868" y="626" font-size="23" fill="{{data}}">tpsi-path</text>
+<rect x="1280" y="480" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-class" x="1304" y="500" width="150" height="168"/>
+<text x="1476" y="574" font-size="26" fill="{{ink}}">Classe</text>
+<text x="1476" y="626" font-size="23" fill="{{data}}">tpsi-class</text>
+<rect x="64" y="760" width="576" height="248" rx="20" fill="{{surface}}"/>
+<use href="#tpsi-instance" x="88" y="780" width="150" height="168"/>
+<text x="260" y="854" font-size="26" fill="{{ink}}">Istanza</text>
+<text x="260" y="906" font-size="23" fill="{{data}}">tpsi-instance</text>
+</g>
+</svg>

@@ -1,44 +1,111 @@
 # M16 — `assert`, regression test, debug e refactoring
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-05 — Funzioni, decomposizione e testing  
-> **Baseline:** Python 3.12-compatible nel Classroom Environment TheBitLab
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+I casi scelti diventano assert e proteggono correzioni e refactoring dalle regressioni.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Scrivere funzioni con contratti semplici e scegliere casi normali e limite da M13–M15.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+trasformare casi di test in semplici <code>assert</code>;<br>distinguere caso normale, confine e caso non valido previsto dal contratto;<br>leggere un <code>AssertionError</code> elementare; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Un risultato atteso nasce dalla specifica; un test fallito può rivelare un errore nel programma o nel test. Riprendi <a href="15_PROGETTAZIONE_TOP_DOWN_RESPONSABILITA.md">M15 — Progettazione top-down e responsabilità</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="17_STRINGHE_INDICI_SLICING_IMMUTABILITA.md">M17 — Stringhe: indici, slicing e immutabilità</a>. Le stringhe sono sequenze immutabili da leggere per posizione o attraversare direttamente.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Riproduci un bug con un assert, correggilo e riesegui i casi precedenti prima di refactorare; prepara il Checkpoint A.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-05 — Funzioni, decomposizione e testing<br>
+<strong>Baseline:</strong> Python 3.12-compatible nel Classroom Environment TheBitLab</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- trasformare casi di test in semplici `assert`;
-- distinguere caso normale, confine e caso non valido previsto dal contratto;
-- leggere un `AssertionError` elementare;
-- capire che un test fallito è informazione, non una soluzione automatica;
-- aggiungere un test quando scopri un bug;
-- verificare che la correzione non rompa casi già funzionanti;
-- refactorare mantenendo invariato il comportamento richiesto;
-- distinguere bug nel codice e test scritto male;
-- confrontare due implementazioni con lo stesso contratto;
-- spiegare il ciclo red → diagnose → fix → regression → refactor.
+<ul>
+  <li>trasformare casi di test in semplici <code>assert</code>;</li>
+  <li>distinguere caso normale, confine e caso non valido previsto dal contratto;</li>
+  <li>leggere un <code>AssertionError</code> elementare;</li>
+  <li>capire che un test fallito è informazione, non una soluzione automatica;</li>
+  <li>aggiungere un test quando scopri un bug;</li>
+  <li>verificare che la correzione non rompa casi già funzionanti;</li>
+  <li>refactorare mantenendo invariato il comportamento richiesto;</li>
+  <li>distinguere bug nel codice e test scritto male;</li>
+  <li>confrontare due implementazioni con lo stesso contratto;</li>
+  <li>spiegare il ciclo red → diagnose → fix → regression → refactor.</li>
+</ul>
 
 ---
 
-# 1. Dai casi su carta a test eseguibili
+## 1. Dai casi su carta a test eseguibili
 
-Finora abbiamo scritto tabelle come:
+<p align="justify">Finora abbiamo scritto tabelle come:</p>
 
-| input | atteso |
-|---:|---:|
-| 3 | 6 |
-| 0 | 0 |
-| -2 | -4 |
+<table align="center">
+<thead>
+<tr>
+<th>input</th>
+<th>atteso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>-4</td>
+</tr>
+</tbody>
+</table>
 
-Per:
+<p align="justify">Per:</p>
 
 ```python
 def doppio(x):
     return x * 2
 ```
 
-possiamo scrivere:
+<p align="justify">possiamo scrivere:</p>
 
 ```python
 assert doppio(3) == 6
@@ -46,23 +113,23 @@ assert doppio(0) == 0
 assert doppio(-2) == -4
 ```
 
-`assert` rende eseguibile una aspettativa.
+<p align="justify"><code>assert</code> rende eseguibile una aspettativa.</p>
 
 ---
 
-# 2. Che cosa significa un `assert`
+## 2. Che cosa significa un `assert`
 
 ```python
 assert espressione_booleana
 ```
 
-Se l'espressione è `True`, l'esecuzione continua.
+<p align="justify">Se l'espressione è <code>True</code>, l'esecuzione continua.</p>
 
-Se è `False`, Python segnala un `AssertionError`.
+<p align="justify">Se è <code>False</code>, Python segnala un <code>AssertionError</code>.</p>
 
-Non stiamo ancora studiando un framework di test.
+<p align="justify">Non stiamo ancora studiando un framework di test.</p>
 
-Stiamo costruendo un ponte tra:
+<p align="justify">Stiamo costruendo un ponte tra:</p>
 
 ```text
 caso di test pensato
@@ -71,33 +138,35 @@ caso di test pensato
 
 ---
 
-# 3. Un test verde non dimostra tutto
+## 3. Un test verde non dimostra tutto
 
-Tre assert che passano non dimostrano automaticamente che una funzione sia corretta per ogni possibile input.
+<p align="justify">Tre assert che passano non dimostrano automaticamente che una funzione sia corretta per ogni possibile input.</p>
 
-I test danno **evidenza** e trovano bug.
+<p align="justify">I test danno <strong>evidenza</strong> e trovano bug.</p>
 
-La qualità dipende anche dai casi scelti.
+<p align="justify">La qualità dipende anche dai casi scelti.</p>
 
-Domande:
+<p align="justify">Domande:</p>
 
-- ho provato un caso normale?;
-- un confine?;
-- un valore negativo se il dominio lo permette?;
-- un caso che in passato falliva?.
+<ul>
+  <li>ho provato un caso normale?;</li>
+  <li>un confine?;</li>
+  <li>un valore negativo se il dominio lo permette?;</li>
+  <li>un caso che in passato falliva?.</li>
+</ul>
 
 ---
 
-# 4. Caso normale, confine, caso non valido
+## 4. Caso normale, confine, caso non valido
 
-Per:
+<p align="justify">Per:</p>
 
 ```python
 def eta_valida(eta):
     return 0 <= eta <= 120
 ```
 
-possiamo scegliere:
+<p align="justify">possiamo scegliere:</p>
 
 ```python
 assert eta_valida(30) is True
@@ -107,13 +176,13 @@ assert eta_valida(-1) is False
 assert eta_valida(121) is False
 ```
 
-I confini sono particolarmente importanti quando compaiono `<`, `<=`, `>` e `>=`.
+<p align="justify">I confini sono particolarmente importanti quando compaiono <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> e <code>&gt;=</code>.</p>
 
 ---
 
-# 5. Test fallito = domanda diagnostica
+## 5. Test fallito = domanda diagnostica
 
-Supponiamo:
+<p align="justify">Supponiamo:</p>
 
 ```python
 def doppio(x):
@@ -122,9 +191,9 @@ def doppio(x):
 assert doppio(3) == 6
 ```
 
-Il test fallisce.
+<p align="justify">Il test fallisce.</p>
 
-Workflow:
+<p align="justify">Workflow:</p>
 
 ```text
 quale caso?
@@ -137,44 +206,46 @@ quale caso?
 
 ---
 
-# 6. Il test può essere sbagliato
+## 6. Il test può essere sbagliato
 
 ```python
 assert doppio(3) == 7
 ```
 
-Se la specifica dice “moltiplica per due”, il bug è nel test.
+<p align="justify">Se la specifica dice “moltiplica per due”, il bug è nel test.</p>
 
-Non bisogna modificare il codice soltanto per far diventare verde un test errato.
+<p align="justify">Non bisogna modificare il codice soltanto per far diventare verde un test errato.</p>
 
-Fonte autorevole:
+<p align="justify">Fonte autorevole:</p>
 
 ```text
 specifica / contratto
 ```
 
-Il test deve rappresentarla correttamente.
+<p align="justify">Il test deve rappresentarla correttamente.</p>
 
 ---
 
-# 7. Regression test
+## 7. Regression test
 
-Scenario:
+<p align="justify">Scenario:</p>
 
-1. scopri un bug;
-2. trovi un input che lo riproduce;
-3. aggiungi un test per quell'input;
-4. il test deve fallire prima della correzione;
-5. correggi il codice;
-6. riesegui il nuovo test e quelli precedenti.
+<ol>
+  <li>scopri un bug;</li>
+  <li>trovi un input che lo riproduce;</li>
+  <li>aggiungi un test per quell'input;</li>
+  <li>il test deve fallire prima della correzione;</li>
+  <li>correggi il codice;</li>
+  <li>riesegui il nuovo test e quelli precedenti.</li>
+</ol>
 
-Questo test protegge dal ritorno dello stesso bug in futuro.
+<p align="justify">Questo test protegge dal ritorno dello stesso bug in futuro.</p>
 
 ---
 
-# 8. Esempio di regression
+## 8. Esempio di regression
 
-Bug:
+<p align="justify">Bug:</p>
 
 ```python
 def massimo(a, b):
@@ -183,15 +254,15 @@ def massimo(a, b):
     return a
 ```
 
-Caso che espone il problema:
+<p align="justify">Caso che espone il problema:</p>
 
 ```python
 assert massimo(2, 5) == 5
 ```
 
-Prima della correzione il test fallisce.
+<p align="justify">Prima della correzione il test fallisce.</p>
 
-Poi correggiamo:
+<p align="justify">Poi correggiamo:</p>
 
 ```python
 def massimo(a, b):
@@ -200,65 +271,69 @@ def massimo(a, b):
     return b
 ```
 
-E rieseguiamo tutti i test.
+<p align="justify">E rieseguiamo tutti i test.</p>
 
 ---
 
-# 9. Refactoring
+## 9. Refactoring
 
-Definizione operativa:
+<p align="justify">Definizione operativa:</p>
 
-> migliorare la struttura del codice senza cambiare il comportamento richiesto.
+<blockquote>
+<p align="justify">migliorare la struttura del codice senza cambiare il comportamento richiesto.</p>
+</blockquote>
 
-Esempi:
+<p align="justify">Esempi:</p>
 
-- rinominare;
-- estrarre una funzione;
-- eliminare duplicazione;
-- semplificare una condizione;
-- separare I/O da logica;
-- rimuovere una dipendenza globale.
+<ul>
+  <li>rinominare;</li>
+  <li>estrarre una funzione;</li>
+  <li>eliminare duplicazione;</li>
+  <li>semplificare una condizione;</li>
+  <li>separare I/O da logica;</li>
+  <li>rimuovere una dipendenza globale.</li>
+</ul>
 
-I test aiutano a capire se il comportamento osservabile è rimasto lo stesso.
+<p align="justify">I test aiutano a capire se il comportamento osservabile è rimasto lo stesso.</p>
 
 ---
 
-# 10. Test prima e dopo il refactoring
+## 10. Test prima e dopo il refactoring
 
-Prima:
+<p align="justify">Prima:</p>
 
 ```python
 assert calcola_sconto(100, 10) == 10
 assert calcola_sconto(50, 0) == 0
 ```
 
-Refactoring della funzione.
+<p align="justify">Refactoring della funzione.</p>
 
-Dopo:
+<p align="justify">Dopo:</p>
 
 ```text
 riesegui gli stessi test
 ```
 
-Se diventano rossi, il refactoring potrebbe aver cambiato il comportamento.
+<p align="justify">Se diventano rossi, il refactoring potrebbe aver cambiato il comportamento.</p>
 
 ---
 
-# 11. `assert` non sostituisce la gestione degli errori
+## 11. `assert` non sostituisce la gestione degli errori
 
-Non usiamo `assert` per gestire input utente invalido o errori esterni prevedibili.
+<p align="justify">Non usiamo <code>assert</code> per gestire input utente invalido o errori esterni prevedibili.</p>
 
-Qui `assert` serve a verificare aspettative durante sviluppo/esercitazione.
+<p align="justify">Qui <code>assert</code> serve a verificare aspettative durante sviluppo/esercitazione.</p>
 
-La gestione delle eccezioni e dei confini esterni verrà affrontata nel blocco file/errori.
+<p align="justify">La gestione delle eccezioni e dei confini esterni verrà affrontata nel blocco file/errori.</p>
 
 ---
 
-# 12. Più test, responsabilità più piccole
+## 12. Più test, responsabilità più piccole
 
-Una funzione piccola e con contratto chiaro è più semplice da testare.
+<p align="justify">Una funzione piccola e con contratto chiaro è più semplice da testare.</p>
 
-Questo collega M15 e M16:
+<p align="justify">Questo collega M15 e M16:</p>
 
 ```text
 responsabilità chiara
@@ -269,24 +344,26 @@ responsabilità chiara
 
 ---
 
-# 13. Due implementazioni, stesso contratto
+## 13. Due implementazioni, stesso contratto
 
-Supponiamo due funzioni che devono entrambe calcolare il valore assoluto di un intero.
+<p align="justify">Supponiamo due funzioni che devono entrambe calcolare il valore assoluto di un intero.</p>
 
-Se rispettano lo stesso contratto, possiamo applicare gli stessi casi a entrambe.
+<p align="justify">Se rispettano lo stesso contratto, possiamo applicare gli stessi casi a entrambe.</p>
 
-Questo permette di confrontare:
+<p align="justify">Questo permette di confrontare:</p>
 
-- correttezza;
-- leggibilità;
-- struttura;
-- lavoro svolto quando rilevante.
+<ul>
+  <li>correttezza;</li>
+  <li>leggibilità;</li>
+  <li>struttura;</li>
+  <li>lavoro svolto quando rilevante.</li>
+</ul>
 
-Non scegliamo soltanto la versione con meno righe.
+<p align="justify">Non scegliamo soltanto la versione con meno righe.</p>
 
 ---
 
-# 14. Ciclo di debug protetto dai test
+## 14. Ciclo di debug protetto dai test
 
 ```text
 test rosso
@@ -299,36 +376,36 @@ test rosso
 → tutti i test ancora verdi
 ```
 
-È un modello professionale ridotto a scala beginner.
+<p align="justify">È un modello professionale ridotto a scala beginner.</p>
 
 ---
 
-# 15. Git G1: diff e primo checkpoint
+## 15. Git G1: diff e primo checkpoint
 
-Durante un fix/refactor:
+<p align="justify">Durante un fix/refactor:</p>
 
 ```text
 git diff
 ```
 
-mostra ciò che è cambiato.
+<p align="justify">mostra ciò che è cambiato.</p>
 
-Al Checkpoint A arriveranno:
+<p align="justify">Al Checkpoint A arriveranno:</p>
 
 ```text
 git add
 git commit
 ```
 
-per salvare uno stato significativo del progetto.
+<p align="justify">per salvare uno stato significativo del progetto.</p>
 
-Il corso Git rimane separato e più ampio.
+<p align="justify">Il corso Git rimane separato e più ampio.</p>
 
 ---
 
-# 16. TheBitLab P2
+## 16. TheBitLab P2
 
-Questa UDA richiede idealmente test diretti delle funzioni:
+<p align="justify">Questa UDA richiede idealmente test diretti delle funzioni:</p>
 
 ```text
 funzione + argomenti
@@ -337,67 +414,73 @@ funzione + argomenti
 → confronto host-side con expected
 ```
 
-Questo è il profilo `P2 / python-function-v1` tracciato in `2cornot2c#756`.
+<p align="justify">Questo è il profilo <code>P2 / python-function-v1</code> tracciato in <code>2cornot2c#756</code>.</p>
 
-Fino alla certificazione:
+<p align="justify">Fino alla certificazione:</p>
 
-- `assert` nel workspace come evidence;
-- verifiche manuali/formative;
-- niente parser fragile del codice;
-- niente trasformazione forzata in stdin/stdout quando l'obiettivo è il comportamento della funzione.
-
----
-
-# 17. Activity candidate
-
-## A — Test reader
-
-Prevedi quali assert passano/falliscono e perché.
-
-## B — Add a test
-
-Aggiungi un caso limite che espone un bug.
-
-## C — Implement from contract
-
-Implementa una funzione a partire da contratto + test.
-
-## D — Debug regression
-
-Riproduci bug → test rosso → fix → tutti verdi.
-
-## E — Mini-project funzionale
-
-Richiede:
-
-- almeno 3 funzioni/responsabilità;
-- I/O separato;
-- selezione/cicli già appresi;
-- almeno 5 casi complessivi;
-- call graph breve;
-- spiegazione di un refactoring.
+<ul>
+  <li><code>assert</code> nel workspace come evidence;</li>
+  <li>verifiche manuali/formative;</li>
+  <li>niente parser fragile del codice;</li>
+  <li>niente trasformazione forzata in stdin/stdout quando l'obiettivo è il comportamento della funzione.</li>
+</ul>
 
 ---
 
-# 18. Exit checkpoint PY2-05
+## 17. Activity candidate
 
-Dovresti saper:
+### A — Test reader
 
-- definire/chiamare funzioni;
-- distinguere parametro/argomento;
-- usare `return`;
-- distinguere `return`/`print`;
-- capire scope locale beginner;
-- comporre funzioni;
-- progettare top-down;
-- separare I/O/logica/output;
-- scrivere casi e `assert`;
-- aggiungere un regression test;
-- refactorare con protezione dei test.
+<p align="justify">Prevedi quali assert passano/falliscono e perché.</p>
+
+### B — Add a test
+
+<p align="justify">Aggiungi un caso limite che espone un bug.</p>
+
+### C — Implement from contract
+
+<p align="justify">Implementa una funzione a partire da contratto + test.</p>
+
+### D — Debug regression
+
+<p align="justify">Riproduci bug → test rosso → fix → tutti verdi.</p>
+
+### E — Mini-project funzionale
+
+<p align="justify">Richiede:</p>
+
+<ul>
+  <li>almeno 3 funzioni/responsabilità;</li>
+  <li>I/O separato;</li>
+  <li>selezione/cicli già appresi;</li>
+  <li>almeno 5 casi complessivi;</li>
+  <li>call graph breve;</li>
+  <li>spiegazione di un refactoring.</li>
+</ul>
 
 ---
 
-# 19. Sintesi
+## 18. Exit checkpoint PY2-05
+
+<p align="justify">Dovresti saper:</p>
+
+<ul>
+  <li>definire/chiamare funzioni;</li>
+  <li>distinguere parametro/argomento;</li>
+  <li>usare <code>return</code>;</li>
+  <li>distinguere <code>return</code>/<code>print</code>;</li>
+  <li>capire scope locale beginner;</li>
+  <li>comporre funzioni;</li>
+  <li>progettare top-down;</li>
+  <li>separare I/O/logica/output;</li>
+  <li>scrivere casi e <code>assert</code>;</li>
+  <li>aggiungere un regression test;</li>
+  <li>refactorare con protezione dei test.</li>
+</ul>
+
+---
+
+## 19. Sintesi
 
 ```text
 contratto
@@ -419,17 +502,19 @@ specifica autorevole
 → codice coerente
 ```
 
-Il Checkpoint A consoliderà il primo grande nucleo del corso e introdurrà il primo commit Git guidato.
+<p align="justify">Il Checkpoint A consoliderà il primo grande nucleo del corso e introdurrà il primo commit Git guidato.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale del corso, progettato con riferimento a:
+<p align="justify">Materiale originale del corso, progettato con riferimento a:</p>
 
-- documentazione Python 3.12 — `assert`, funzioni e `AssertionError`;
-- *Think Python / Pensare in Python* — debugging e testing beginner;
-- pratiche professionali di regression testing/refactoring adattate al secondo anno;
-- TheBitLab `2cornot2c#756` — profilo P2 function-behavior.
+<ul>
+  <li>documentazione Python 3.12 — <code>assert</code>, funzioni e <code>AssertionError</code>;</li>
+  <li><em>Think Python / Pensare in Python</em> — debugging e testing beginner;</li>
+  <li>pratiche professionali di regression testing/refactoring adattate al secondo anno;</li>
+  <li>TheBitLab <code>2cornot2c#756</code> — profilo P2 function-behavior.</li>
+</ul>
 
-Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.
+<p align="justify">Le fonti licensed sono teacher-reference; non costituiscono testo da riprodurre.</p>

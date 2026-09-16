@@ -1,47 +1,101 @@
 # M01 — Dal problema ai passi: specifica, pseudocodice e trace
 
-> **Stato:** draft  
-> **UDA:** PY2-01 — Problem solving, algoritmi e flow chart  
-> **Prerequisiti:** M00; nessun linguaggio di programmazione richiesto
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+Una consegna diventa una sequenza di passi verificabile con una traccia manuale.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Distinguere input, output e vincoli come in M00; Python non è richiesto.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+leggere una specifica breve e separare dati, risultato e vincoli;<br>decomporre un problema in passi piccoli e controllabili;<br>riconoscere un algoritmo ambiguo, incompleto o non terminante; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Riprendi il resto e separa i dati iniziali dai valori calcolati durante la procedura. Riprendi <a href="00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md">M00 — Problema, algoritmo, programma, input e output</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="02_FLOWCHART_SEQUENZA_SELEZIONE.md">M02 — Flow chart: sequenza, input/output e selezione</a>. I passi e le decisioni diventano un diagramma di flusso leggibile anche senza computer.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiamento di stato.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft<br>
+<strong>UDA:</strong> PY2-01 — Problem solving, algoritmi e flow chart<br>
+<strong>Prerequisiti:</strong> M00; nessun linguaggio di programmazione richiesto</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine di questo modulo dovresti saper:
+<p align="justify">Alla fine di questo modulo dovresti saper:</p>
 
-- leggere una specifica breve e separare dati, risultato e vincoli;
-- decomporre un problema in passi piccoli e controllabili;
-- riconoscere un algoritmo ambiguo, incompleto o non terminante;
-- scrivere pseudocodice semplice senza mascherarlo da Python;
-- eseguire un dry-run manuale;
-- annotare come cambia lo stato durante l'esecuzione;
-- scegliere casi normali, casi limite e controesempi.
+<ul>
+  <li>leggere una specifica breve e separare dati, risultato e vincoli;</li>
+  <li>decomporre un problema in passi piccoli e controllabili;</li>
+  <li>riconoscere un algoritmo ambiguo, incompleto o non terminante;</li>
+  <li>scrivere pseudocodice semplice senza mascherarlo da Python;</li>
+  <li>eseguire un dry-run manuale;</li>
+  <li>annotare come cambia lo stato durante l'esecuzione;</li>
+  <li>scegliere casi normali, casi limite e controesempi.</li>
+</ul>
 
 ---
 
-# 1. Una specifica è un contratto da capire
+## 1. Una specifica è un contratto da capire
 
-Problema:
+<p align="justify">Problema:</p>
 
-> Leggi due prezzi e indica quale dei due è maggiore. Se sono uguali, dichiaralo.
+<blockquote>
+<p align="justify">Leggi due prezzi e indica quale dei due è maggiore. Se sono uguali, dichiaralo.</p>
+</blockquote>
 
-Prima di pensare alla soluzione estraiamo:
+<p align="justify">Prima di pensare alla soluzione estraiamo:</p>
 
 ```text
 INPUT  → prezzo A, prezzo B
 OUTPUT → A maggiore / B maggiore / uguali
 ```
 
-La parola **uguali** è importante: senza quel caso una soluzione apparentemente corretta potrebbe essere incompleta.
+<p align="justify">La parola <strong>uguali</strong> è importante: senza quel caso una soluzione apparentemente corretta potrebbe essere incompleta.</p>
 
-Domanda guida:
+<p align="justify">Domanda guida:</p>
 
-> Che cosa deve essere vero dell'output per ogni input ammesso?
+<blockquote>
+<p align="justify">Che cosa deve essere vero dell'output per ogni input ammesso?</p>
+</blockquote>
 
 ---
 
-# 2. Decomporre non significa complicare
+## 2. Decomporre non significa complicare
 
-Una soluzione utile può essere divisa così:
+<p align="justify">Una soluzione utile può essere divisa così:</p>
 
 ```text
 1. acquisisci A
@@ -51,20 +105,22 @@ Una soluzione utile può essere divisa così:
 5. comunica il risultato
 ```
 
-Non serve spezzare ogni gesto in decine di micro-passaggi.
+<p align="justify">Non serve spezzare ogni gesto in decine di micro-passaggi.</p>
 
-La decomposizione serve a rendere visibili:
+<p align="justify">La decomposizione serve a rendere visibili:</p>
 
-- decisioni;
-- trasformazioni dei dati;
-- punti in cui potrebbe mancare un caso;
-- parti che potremo verificare separatamente.
+<ul>
+  <li>decisioni;</li>
+  <li>trasformazioni dei dati;</li>
+  <li>punti in cui potrebbe mancare un caso;</li>
+  <li>parti che potremo verificare separatamente.</li>
+</ul>
 
 ---
 
-# 3. Ambiguo per chi?
+## 3. Ambiguo per chi?
 
-Considera:
+<p align="justify">Considera:</p>
 
 ```text
 1. prendi due numeri
@@ -72,11 +128,11 @@ Considera:
 3. stampa
 ```
 
-Per l'autore può sembrare chiaro, ma **“quello giusto”** non definisce una regola eseguibile.
+<p align="justify">Per l'autore può sembrare chiaro, ma <strong>“quello giusto”</strong> non definisce una regola eseguibile.</p>
 
-Un algoritmo deve comunicare la decisione, non solo l'intenzione.
+<p align="justify">Un algoritmo deve comunicare la decisione, non solo l'intenzione.</p>
 
-Versione migliore:
+<p align="justify">Versione migliore:</p>
 
 ```text
 se A > B
@@ -87,15 +143,15 @@ altrimenti
     risultato ← "uguali"
 ```
 
-Qui la freccia `←` significa “assegna/aggiorna il valore concettuale”, non è sintassi Python.
+<p align="justify">Qui la freccia <code>←</code> significa “assegna/aggiorna il valore concettuale”, non è sintassi Python.</p>
 
 ---
 
-# 4. Pseudocodice: scrivere per persone
+## 4. Pseudocodice: scrivere per persone
 
-Lo pseudocodice non ha un unico standard universale per il nostro corso.
+<p align="justify">Lo pseudocodice non ha un unico standard universale per il nostro corso.</p>
 
-Usiamo convenzioni semplici e coerenti:
+<p align="justify">Usiamo convenzioni semplici e coerenti:</p>
 
 ```text
 LEGGI dato
@@ -108,7 +164,7 @@ FINE SE
 MOSTRA valore
 ```
 
-Più avanti useremo anche:
+<p align="justify">Più avanti useremo anche:</p>
 
 ```text
 MENTRE condizione
@@ -116,22 +172,22 @@ MENTRE condizione
 FINE MENTRE
 ```
 
-Lo scopo è esprimere l'algoritmo senza essere bloccati dalla sintassi di un linguaggio.
+<p align="justify">Lo scopo è esprimere l'algoritmo senza essere bloccati dalla sintassi di un linguaggio.</p>
 
 ---
 
-# 5. Non scrivere “Python travestito” troppo presto
+## 5. Non scrivere “Python travestito” troppo presto
 
-Se ancora non conosci Python, questo:
+<p align="justify">Se ancora non conosci Python, questo:</p>
 
 ```text
 if x >= 10:
     print(x)
 ```
 
-non è davvero pseudocodice neutro: introduce già regole di un linguaggio specifico.
+<p align="justify">non è davvero pseudocodice neutro: introduce già regole di un linguaggio specifico.</p>
 
-Per ora preferiamo:
+<p align="justify">Per ora preferiamo:</p>
 
 ```text
 SE x >= 10
@@ -139,13 +195,13 @@ SE x >= 10
 FINE SE
 ```
 
-Quando arriverà Python, collegheremo idee già comprese a una sintassi concreta.
+<p align="justify">Quando arriverà Python, collegheremo idee già comprese a una sintassi concreta.</p>
 
 ---
 
-# 6. Dry-run: eseguire con carta e penna
+## 6. Dry-run: eseguire con carta e penna
 
-Algoritmo:
+<p align="justify">Algoritmo:</p>
 
 ```text
 LEGGI prezzo
@@ -157,41 +213,84 @@ ASSEGNA finale ← prezzo - sconto
 MOSTRA finale
 ```
 
-Proviamo `prezzo = 120`.
+<p align="justify">Proviamo <code>prezzo = 120</code>.</p>
 
-| passo | prezzo | sconto | finale | output |
-|---:|---:|---:|---:|---:|
-| iniziale | 120 | — | — | — |
-| sconto iniziale | 120 | 0 | — | — |
-| decisione | 120 | 10 | — | — |
-| calcolo | 120 | 10 | 110 | — |
-| output | 120 | 10 | 110 | 110 |
+<table align="center">
+<thead>
+<tr>
+<th>passo</th>
+<th>prezzo</th>
+<th>sconto</th>
+<th>finale</th>
+<th>output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iniziale</td>
+<td>120</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>sconto iniziale</td>
+<td>120</td>
+<td>0</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>decisione</td>
+<td>120</td>
+<td>10</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>calcolo</td>
+<td>120</td>
+<td>10</td>
+<td>110</td>
+<td>—</td>
+</tr>
+<tr>
+<td>output</td>
+<td>120</td>
+<td>10</td>
+<td>110</td>
+<td>110</td>
+</tr>
+</tbody>
+</table>
 
-Il trace rende visibile lo **stato** dell'algoritmo.
+<p align="justify">Il trace rende visibile lo <strong>stato</strong> dell'algoritmo.</p>
 
 ---
 
-# 7. Lo stato cambia nel tempo
+## 7. Lo stato cambia nel tempo
 
-Una variabile concettuale non è soltanto un'etichetta su un foglio.
+<p align="justify">Una variabile concettuale non è soltanto un'etichetta su un foglio.</p>
 
-Durante il trace può cambiare:
+<p align="justify">Durante il trace può cambiare:</p>
 
 ```text
 saldo: 100 → 80 → 65
 ```
 
-Per capire un algoritmo chiediti spesso:
+<p align="justify">Per capire un algoritmo chiediti spesso:</p>
 
-> Che cosa rappresenta questo valore **dopo** il passo appena eseguito?
+<blockquote>
+<p align="justify">Che cosa rappresenta questo valore <strong>dopo</strong> il passo appena eseguito?</p>
+</blockquote>
 
-Questa domanda tornerà nei cicli, nei contatori e negli accumulatori.
+<p align="justify">Questa domanda tornerà nei cicli, nei contatori e negli accumulatori.</p>
 
 ---
 
-# 8. Ordine dei passi
+## 8. Ordine dei passi
 
-Algoritmo sbagliato:
+<p align="justify">Algoritmo sbagliato:</p>
 
 ```text
 1. MOSTRA totale
@@ -199,9 +298,9 @@ Algoritmo sbagliato:
 3. ASSEGNA totale ← prezzo + 5
 ```
 
-Il risultato viene chiesto prima di essere determinato.
+<p align="justify">Il risultato viene chiesto prima di essere determinato.</p>
 
-Correzione minima:
+<p align="justify">Correzione minima:</p>
 
 ```text
 1. LEGGI prezzo
@@ -209,25 +308,25 @@ Correzione minima:
 3. MOSTRA totale
 ```
 
-Il debug non richiede sempre di riscrivere tutto: cerca la **modifica minima che ripristina il contratto**.
+<p align="justify">Il debug non richiede sempre di riscrivere tutto: cerca la <strong>modifica minima che ripristina il contratto</strong>.</p>
 
 ---
 
-# 9. Finitezza e terminazione
+## 9. Finitezza e terminazione
 
-Procedura:
+<p align="justify">Procedura:</p>
 
 ```text
 ripeti "prova ancora"
 ```
 
-Quando finisce?
+<p align="justify">Quando finisce?</p>
 
-Non è dichiarato.
+<p align="justify">Non è dichiarato.</p>
 
-Una procedura automatica deve avere una regola di terminazione o un numero finito di passi.
+<p align="justify">Una procedura automatica deve avere una regola di terminazione o un numero finito di passi.</p>
 
-In M03 studieremo i cicli e impareremo a cercare esplicitamente:
+<p align="justify">In M03 studieremo i cicli e impareremo a cercare esplicitamente:</p>
 
 ```text
 inizializzazione
@@ -238,9 +337,9 @@ uscita
 
 ---
 
-# 10. Test prima del programma
+## 10. Test prima del programma
 
-Per il problema “maggiore tra due prezzi” scegliamo:
+<p align="justify">Per il problema “maggiore tra due prezzi” scegliamo:</p>
 
 ```text
 10, 5   → primo maggiore
@@ -248,53 +347,57 @@ Per il problema “maggiore tra due prezzi” scegliamo:
 7, 7    → uguali
 ```
 
-Poi aggiungiamo, se ammessi:
+<p align="justify">Poi aggiungiamo, se ammessi:</p>
 
 ```text
 0, 0
 -2, -5
 ```
 
-Non dobbiamo aspettare di avere un programma per progettare test utili.
+<p align="justify">Non dobbiamo aspettare di avere un programma per progettare test utili.</p>
 
 ---
 
-# 11. Error Clinic
+## 11. Error Clinic
 
-## Passaggio mancante
+### Passaggio mancante
 
-Calcolo una media senza aver contato quanti valori ci sono.
+<p align="justify">Calcolo una media senza aver contato quanti valori ci sono.</p>
 
-## Stato senza significato
+### Stato senza significato
 
-Uso `totale`, ma non so spiegare che cosa rappresenta in un certo punto.
+<p align="justify">Uso <code>totale</code>, ma non so spiegare che cosa rappresenta in un certo punto.</p>
 
-## Caso non coperto
+### Caso non coperto
 
-Gestisco A > B e B > A, ma non A = B.
+<p align="justify">Gestisco A &gt; B e B &gt; A, ma non A = B.</p>
 
-## Procedura non terminante
+### Procedura non terminante
 
-Ripeto un passo senza una condizione di uscita.
+<p align="justify">Ripeto un passo senza una condizione di uscita.</p>
 
-Per ogni errore prova a rispondere:
+<p align="justify">Per ogni errore prova a rispondere:</p>
 
-1. qual è il contratto violato?;
-2. qual è il primo passo in cui il trace diverge?;
-3. qual è la modifica minima?.
+<ol>
+  <li>qual è il contratto violato?;</li>
+  <li>qual è il primo passo in cui il trace diverge?;</li>
+  <li>qual è la modifica minima?.</li>
+</ol>
 
 ---
 
-# 12. Laboratorio: dal testo all'algoritmo
+## 12. Laboratorio: dal testo all'algoritmo
 
-Scegli uno dei problemi:
+<p align="justify">Scegli uno dei problemi:</p>
 
-- tariffa base + supplemento sopra una soglia;
-- maggiore tra due valori;
-- temperatura dentro/fuori intervallo;
-- tre mosse di un robot su griglia.
+<ul>
+  <li>tariffa base + supplemento sopra una soglia;</li>
+  <li>maggiore tra due valori;</li>
+  <li>temperatura dentro/fuori intervallo;</li>
+  <li>tre mosse di un robot su griglia.</li>
+</ul>
 
-Consegna:
+<p align="justify">Consegna:</p>
 
 ```text
 INPUT
@@ -306,23 +409,25 @@ PSEUDOCODICE
 TRACE di almeno un caso
 ```
 
-Il compagno che riceve il tuo lavoro deve poter simulare l'algoritmo senza chiederti spiegazioni aggiuntive.
+<p align="justify">Il compagno che riceve il tuo lavoro deve poter simulare l'algoritmo senza chiederti spiegazioni aggiuntive.</p>
 
 ---
 
-# Minimum mastery checkpoint
+## Minimum mastery checkpoint
 
-Dovresti saper:
+<p align="justify">Dovresti saper:</p>
 
-1. estrarre input/output/vincoli;
-2. trasformare una consegna in passi ordinati;
-3. usare pseudocodice leggibile e non dipendente da Python;
-4. fare un trace con almeno una variabile che cambia;
-5. riconoscere un caso non coperto;
-6. spiegare perché un algoritmo finisce;
-7. proporre test prima della codifica.
+<ol>
+  <li>estrarre input/output/vincoli;</li>
+  <li>trasformare una consegna in passi ordinati;</li>
+  <li>usare pseudocodice leggibile e non dipendente da Python;</li>
+  <li>fare un trace con almeno una variabile che cambia;</li>
+  <li>riconoscere un caso non coperto;</li>
+  <li>spiegare perché un algoritmo finisce;</li>
+  <li>proporre test prima della codifica.</li>
+</ol>
 
-## Recap
+### Recap
 
 ```text
 specifica
@@ -332,4 +437,4 @@ specifica
 → casi di test
 ```
 
-Prossimo modulo: rappresentiamo sequenze e decisioni con diagrammi di flusso.
+<p align="justify">Prossimo modulo: rappresentiamo sequenze e decisioni con diagrammi di flusso.</p>

@@ -1,29 +1,79 @@
 # M28 — Metodi, stato e invarianti
 
-> **Stato:** draft editoriale controllato  
-> **UDA:** PY2-10 — Classi, oggetti e capstone  
-> **Baseline:** Python 3.12-compatible
+<!-- COURSE-FRAME:START -->
+<table align="center">
+<tr><td>
+<details>
+<summary>&#129517; <strong>Orientamento della sezione</strong></summary>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128506;</span> Contesto:</strong>
+I metodi controllano le transizioni e preservano una regola valida dello stato dell&#x27;oggetto.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128736;</span> Prerequisiti:</strong>
+Definire una classe con __init__, attributi e metodi e distinguere due istanze da M27.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#127919;</span> Obiettivi:</strong>
+descrivere lo stato corrente di un oggetto tramite i suoi attributi;<br>distinguere metodo osservatore e metodo che cambia lo stato;<br>definire una semplice invariante di dominio; <a href="#obiettivi">Tutti gli obiettivi del modulo</a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128257;</span> Richiamo:</strong>
+Un test di oggetto osserva lo stato prima e dopo una chiamata, oltre al suo eventuale risultato. Riprendi <a href="27_CLASSI_ISTANZE_ATTRIBUTI_SELF.md">M27 — Classi, istanze, attributi e <code>self</code></a>.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128064;</span> Anticipazione:</strong>
+Il percorso prosegue con <a href="29_COMPOSIZIONE_COLLABORAZIONE_RESPONSABILITA.md">M29 — Composizione, collaborazione e responsabilità</a>. La composizione distribuisce le responsabilità fra oggetti che collaborano con dipendenze esplicite.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#10145;</span> Prossimo passo:</strong>
+Verifica stato iniziale, transizione valida e tentativo oltre il limite di ContatoreLimitato.
+</p>
+
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128279;</span> Rimando:</strong>
+<a href="../../student/README.md">Indice del percorso studente</a>; <a href="#obiettivi">obiettivi della lezione</a>.
+</p>
+
+</details>
+</td></tr>
+</table>
+<!-- COURSE-FRAME:END -->
+
+<blockquote>
+<p align="justify"><strong>Stato:</strong> draft editoriale controllato<br>
+<strong>UDA:</strong> PY2-10 — Classi, oggetti e capstone<br>
+<strong>Baseline:</strong> Python 3.12-compatible</p>
+</blockquote>
 
 ## Obiettivi
 
-Alla fine del modulo dovresti saper:
+<p align="justify">Alla fine del modulo dovresti saper:</p>
 
-- descrivere lo stato corrente di un oggetto tramite i suoi attributi;
-- distinguere metodo osservatore e metodo che cambia lo stato;
-- definire una semplice invariante di dominio;
-- inizializzare un oggetto in uno stato valido;
-- modificare lo stato attraverso metodi coerenti col dominio;
-- impedire o segnalare transizioni non valide con una policy semplice;
-- testare stato iniziale, transizioni valide e casi limite;
-- verificare che due istanze restino indipendenti;
-- riconoscere una classe che espone stato ma non protegge nessuna regola utile;
-- evitare setter generici usati senza motivo.
+<ul>
+  <li>descrivere lo stato corrente di un oggetto tramite i suoi attributi;</li>
+  <li>distinguere metodo osservatore e metodo che cambia lo stato;</li>
+  <li>definire una semplice invariante di dominio;</li>
+  <li>inizializzare un oggetto in uno stato valido;</li>
+  <li>modificare lo stato attraverso metodi coerenti col dominio;</li>
+  <li>impedire o segnalare transizioni non valide con una policy semplice;</li>
+  <li>testare stato iniziale, transizioni valide e casi limite;</li>
+  <li>verificare che due istanze restino indipendenti;</li>
+  <li>riconoscere una classe che espone stato ma non protegge nessuna regola utile;</li>
+  <li>evitare setter generici usati senza motivo.</li>
+</ul>
 
 ---
 
-# 1. Stato
+## 1. Stato
 
-Per un conto semplice:
+<p align="justify">Per un conto semplice:</p>
 
 ```python
 class Conto:
@@ -31,17 +81,17 @@ class Conto:
         self.saldo = saldo_iniziale
 ```
 
-Lo stato osservabile include:
+<p align="justify">Lo stato osservabile include:</p>
 
 ```text
 saldo
 ```
 
-Un metodo può leggerlo o cambiarlo.
+<p align="justify">Un metodo può leggerlo o cambiarlo.</p>
 
 ---
 
-# 2. Metodo osservatore
+## 2. Metodo osservatore
 
 ```python
 class Conto:
@@ -51,13 +101,13 @@ class Conto:
         return self.saldo
 ```
 
-Non modifica lo stato.
+<p align="justify">Non modifica lo stato.</p>
 
-Risponde a una domanda sull'oggetto.
+<p align="justify">Risponde a una domanda sull'oggetto.</p>
 
 ---
 
-# 3. Metodo che cambia lo stato
+## 3. Metodo che cambia lo stato
 
 ```python
 class Conto:
@@ -67,37 +117,41 @@ class Conto:
         self.saldo += importo
 ```
 
-Ora dobbiamo porre una domanda più importante:
+<p align="justify">Ora dobbiamo porre una domanda più importante:</p>
 
-> qualunque `importo` è valido?
+<blockquote>
+<p align="justify">qualunque <code>importo</code> è valido?</p>
+</blockquote>
 
 ---
 
-# 4. Invariante
+## 4. Invariante
 
-Un'invariante è una proprietà che vogliamo mantenere vera per gli stati validi dell'oggetto.
+<p align="justify">Un'invariante è una proprietà che vogliamo mantenere vera per gli stati validi dell'oggetto.</p>
 
-Esempio semplificato:
+<p align="justify">Esempio semplificato:</p>
 
 ```text
 saldo >= 0
 ```
 
-oppure per un serbatoio:
+<p align="justify">oppure per un serbatoio:</p>
 
 ```text
 0 <= livello <= capacita
 ```
 
-Non serve formalismo matematico avanzato.
+<p align="justify">Non serve formalismo matematico avanzato.</p>
 
-Serve saper dire:
+<p align="justify">Serve saper dire:</p>
 
-> quali stati non devono esistere?
+<blockquote>
+<p align="justify">quali stati non devono esistere?</p>
+</blockquote>
 
 ---
 
-# 5. Costruzione valida
+## 5. Costruzione valida
 
 ```python
 class Serbatoio:
@@ -106,13 +160,13 @@ class Serbatoio:
         self.livello = 0
 ```
 
-Se la capacità deve essere positiva, la specifica deve dichiararlo.
+<p align="justify">Se la capacità deve essere positiva, la specifica deve dichiararlo.</p>
 
-Una classe dovrebbe evitare di creare oggetti già invalidi.
+<p align="justify">Una classe dovrebbe evitare di creare oggetti già invalidi.</p>
 
 ---
 
-# 6. Transizione valida
+## 6. Transizione valida
 
 ```python
 class Serbatoio:
@@ -131,45 +185,47 @@ class Serbatoio:
         return True
 ```
 
-Policy beginner:
+<p align="justify">Policy beginner:</p>
 
 ```text
 operazione valida → cambia stato
 operazione non valida → stato invariato + risultato che segnala il fallimento
 ```
 
-Non è l'unica API possibile; è una scelta semplice da testare.
+<p align="justify">Non è l'unica API possibile; è una scelta semplice da testare.</p>
 
 ---
 
-# 7. Perché non modificare tutto direttamente?
+## 7. Perché non modificare tutto direttamente?
 
-Se qualunque codice fa:
+<p align="justify">Se qualunque codice fa:</p>
 
 ```python
 serbatoio.livello = 999999
 ```
 
-può violare l'invariante.
+<p align="justify">può violare l'invariante.</p>
 
-Nel core di seconda non imponiamo ancora property/private convention come prerequisiti.
+<p align="justify">Nel core di seconda non imponiamo ancora property/private convention come prerequisiti.</p>
 
-Ma costruiamo il principio:
+<p align="justify">Ma costruiamo il principio:</p>
 
-> i metodi del dominio dovrebbero essere il percorso normale per le transizioni significative.
+<blockquote>
+<p align="justify">i metodi del dominio dovrebbero essere il percorso normale per le transizioni significative.</p>
+</blockquote>
 
 ---
 
-# 8. Setter generico vs metodo del dominio
+## 8. Setter generico vs metodo del dominio
 
-Confronta:
+<p align="justify">Confronta:</p>
 
 ```python
 def set_livello(self, valore):
     self.livello = valore
 ```
 
-con:
+<p align="justify">con:</p>
 
 ```python
 def aggiungi(self, quantita):
@@ -179,13 +235,13 @@ def consuma(self, quantita):
     ...
 ```
 
-I secondi metodi raccontano **che cosa succede nel dominio** e possono proteggere le regole.
+<p align="justify">I secondi metodi raccontano <strong>che cosa succede nel dominio</strong> e possono proteggere le regole.</p>
 
-Non creare `get_...` / `set_...` meccanicamente per ogni attributo.
+<p align="justify">Non creare <code>get_...</code> / <code>set_...</code> meccanicamente per ogni attributo.</p>
 
 ---
 
-# 9. Test dello stato iniziale
+## 9. Test dello stato iniziale
 
 ```python
 s = Serbatoio(10)
@@ -194,11 +250,11 @@ assert s.capacita == 10
 assert s.livello == 0
 ```
 
-Il costruttore è parte del comportamento da verificare.
+<p align="justify">Il costruttore è parte del comportamento da verificare.</p>
 
 ---
 
-# 10. Test delle transizioni
+## 10. Test delle transizioni
 
 ```python
 s = Serbatoio(10)
@@ -210,15 +266,15 @@ assert s.aggiungi(8) is False
 assert s.livello == 4
 ```
 
-Il test non verifica soltanto il return.
+<p align="justify">Il test non verifica soltanto il return.</p>
 
-Verifica anche lo stato dopo una transizione rifiutata.
+<p align="justify">Verifica anche lo stato dopo una transizione rifiutata.</p>
 
 ---
 
-# 11. Casi limite
+## 11. Casi limite
 
-Per capacità 10:
+<p align="justify">Per capacità 10:</p>
 
 ```text
 aggiungi 0
@@ -229,11 +285,11 @@ consuma esattamente tutto
 consuma oltre disponibile
 ```
 
-Gli invarianti rendono naturali i casi di test.
+<p align="justify">Gli invarianti rendono naturali i casi di test.</p>
 
 ---
 
-# 12. Istanze indipendenti
+## 12. Istanze indipendenti
 
 ```python
 a = Serbatoio(10)
@@ -242,38 +298,40 @@ b = Serbatoio(20)
 a.aggiungi(5)
 ```
 
-Dobbiamo avere:
+<p align="justify">Dobbiamo avere:</p>
 
 ```text
 a.livello = 5
 b.livello = 0
 ```
 
-È un regression test importante dopo M27.
+<p align="justify">È un regression test importante dopo M27.</p>
 
 ---
 
-# 13. `assert` interno: uso prudente
+## 13. `assert` interno: uso prudente
 
-Possiamo usare `assert` per controllare una supposizione interna durante sviluppo, ma non come normale gestione dell'input utente o di un comando non valido.
+<p align="justify">Possiamo usare <code>assert</code> per controllare una supposizione interna durante sviluppo, ma non come normale gestione dell'input utente o di un comando non valido.</p>
 
-Nel core preferiamo che il contratto del metodo dica come segnala una transizione non ammessa.
-
----
-
-# 14. Error Clinic
-
-- metodo mutante che aggiorna prima di validare e lascia stato invalido;
-- transizione rifiutata ma stato già cambiato;
-- attributo dimenticato in `__init__`;
-- lista mutabile condivisa tra istanze;
-- setter generico che bypassa tutte le regole;
-- test che controlla solo il return ma non lo stato;
-- stato derivato memorizzato e lasciato incoerente senza necessità.
+<p align="justify">Nel core preferiamo che il contratto del metodo dica come segnala una transizione non ammessa.</p>
 
 ---
 
-# 15. Worked example: `ContatoreLimitato`
+## 14. Error Clinic
+
+<ul>
+  <li>metodo mutante che aggiorna prima di validare e lascia stato invalido;</li>
+  <li>transizione rifiutata ma stato già cambiato;</li>
+  <li>attributo dimenticato in <code>__init__</code>;</li>
+  <li>lista mutabile condivisa tra istanze;</li>
+  <li>setter generico che bypassa tutte le regole;</li>
+  <li>test che controlla solo il return ma non lo stato;</li>
+  <li>stato derivato memorizzato e lasciato incoerente senza necessità.</li>
+</ul>
+
+---
+
+## 15. Worked example: `ContatoreLimitato`
 
 ```python
 class ContatoreLimitato:
@@ -289,13 +347,13 @@ class ContatoreLimitato:
         return True
 ```
 
-Invariante:
+<p align="justify">Invariante:</p>
 
 ```text
 0 <= valore <= massimo
 ```
 
-Test:
+<p align="justify">Test:</p>
 
 ```python
 c = ContatoreLimitato(2)
@@ -307,46 +365,52 @@ assert c.valore == 2
 
 ---
 
-# 16. Romeo come applicazione
+## 16. Romeo come applicazione
 
-Un `Robot` simulato possiede stato/backend e metodi di movimento.
+<p align="justify">Un <code>Robot</code> simulato possiede stato/backend e metodi di movimento.</p>
 
-Domande OOP utili:
+<p align="justify">Domande OOP utili:</p>
 
-- quali valori di velocità/azione sono ammessi?;
-- quali transizioni cambiano lo stato simulato?;
-- quali controlli devono restare nel `Robot` e quali nella `Missione`?.
+<ul>
+  <li>quali valori di velocità/azione sono ammessi?;</li>
+  <li>quali transizioni cambiano lo stato simulato?;</li>
+  <li>quali controlli devono restare nel <code>Robot</code> e quali nella <code>Missione</code>?.</li>
+</ul>
 
-Non aggiungere hardware o networking come prerequisito.
-
----
-
-# 17. Activity candidate
-
-- **A — State trace:** stato prima/dopo ogni metodo;
-- **B — Add invariant:** inserisci una regola semplice senza rompere i casi validi;
-- **C — Implement:** classe con stato, osservatore e 2 transizioni;
-- **D — Debug:** stato invalido, update-before-validation, istanze condivise.
-
-Nessuna Activity P3 viene materializzata finché `2cornot2c#758` non è certificato.
+<p align="justify">Non aggiungere hardware o networking come prerequisito.</p>
 
 ---
 
-# 18. Checkpoint
+## 17. Activity candidate
 
-Sai spiegare:
+<ul>
+  <li><strong>A — State trace:</strong> stato prima/dopo ogni metodo;</li>
+  <li><strong>B — Add invariant:</strong> inserisci una regola semplice senza rompere i casi validi;</li>
+  <li><strong>C — Implement:</strong> classe con stato, osservatore e 2 transizioni;</li>
+  <li><strong>D — Debug:</strong> stato invalido, update-before-validation, istanze condivise.</li>
+</ul>
 
-1. stato;
-2. metodo osservatore vs mutante;
-3. invariante;
-4. transizione valida/non valida;
-5. perché testare anche lo stato;
-6. perché metodo del dominio è spesso migliore di setter generico;
-7. istanze indipendenti.
+<p align="justify">Nessuna Activity P3 viene materializzata finché <code>2cornot2c#758</code> non è certificato.</p>
 
 ---
 
-# 19. Sintesi
+## 18. Checkpoint
+
+<p align="justify">Sai spiegare:</p>
+
+<ol>
+  <li>stato;</li>
+  <li>metodo osservatore vs mutante;</li>
+  <li>invariante;</li>
+  <li>transizione valida/non valida;</li>
+  <li>perché testare anche lo stato;</li>
+  <li>perché metodo del dominio è spesso migliore di setter generico;</li>
+  <li>istanze indipendenti.</li>
+</ol>
+
+---
+
+## 19. Sintesi
 
 ```text
 oggetto valido
@@ -360,16 +424,18 @@ invariante
 → guida API + test + debug
 ```
 
-Nel prossimo modulo più oggetti collaboreranno tramite **composizione**. Il problema non sarà più soltanto “come proteggo un oggetto?”, ma “chi è responsabile di che cosa?”.
+<p align="justify">Nel prossimo modulo più oggetti collaboreranno tramite <strong>composizione</strong>. Il problema non sarà più soltanto “come proteggo un oggetto?”, ma “chi è responsabile di che cosa?”.</p>
 
 ---
 
-# Fonti e riferimenti docente
+## Fonti e riferimenti docente
 
-Materiale originale, con riferimento a:
+<p align="justify">Materiale originale, con riferimento a:</p>
 
-- documentazione Python 3.12 — classes;
-- *Think Python / Pensare in Python* — object state;
-- pratiche di object design/invariants adattate al beginner;
-- `TheBitPoets/romeo@45e5f7e1...` come applied domain;
-- TheBitLab `2cornot2c#758` — P3 object behavior.
+<ul>
+  <li>documentazione Python 3.12 — classes;</li>
+  <li><em>Think Python / Pensare in Python</em> — object state;</li>
+  <li>pratiche di object design/invariants adattate al beginner;</li>
+  <li><code>TheBitPoets/romeo@45e5f7e1...</code> come applied domain;</li>
+  <li>TheBitLab <code>2cornot2c#758</code> — P3 object behavior.</li>
+</ul>
