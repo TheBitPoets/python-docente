@@ -61,6 +61,17 @@ def outputs() -> dict[Path, str]:
         components = [f"{part}" for part in component_text.split(",")]
         target = lesson.relative_to(ROOT).as_posix() + "#" + anchor(section)
         figures.append({"id": ident, "module": "M00", "title": title, "lesson_section": target, "purpose": purpose, "components": components, "priority": "P1", "status": "prototype-realized", "asset": f"assets/python/{asset}", "alt_draft": purpose, "caption_draft": title, "existing_images": 4, "existing_text_blocks": 0})
+
+    m01_extras = [
+        ("py-m01-02", "m01-specifica.svg", "Specifica come contratto", "1. Una specifica è un contratto da capire", "tpsi-document,tpsi-value,tpsi-decision", "La consegna sui prezzi definisce input e tre output possibili."),
+        ("py-m01-03", "m01-decomposizione.svg", "Decomposizione in passi", "2. Decomporre non significa complicare", "tpsi-step", "Cinque passi collegano acquisizione, confronto, scelta e comunicazione."),
+        ("py-m01-04", "m01-trace-stato.svg", "Trace e stato", "7. Lo stato cambia nel tempo", "tpsi-value,tpsi-decision", "Il trace mostra come i valori cambiano durante l'esecuzione."),
+        ("py-m01-05", "m01-ordine-test.svg", "Ordine dei passi e test", "8. Ordine dei passi", "tpsi-decision", "Il valore viene calcolato prima dell'output e i test coprono i casi principali."),
+    ]
+    for ident, asset, title, section, component_text, purpose in m01_extras:
+        components = component_text.split(",")
+        target = f"content/python/01_DAL_PROBLEMA_AI_PASSI.md#{anchor(section)}"
+        figures.append({"id": ident, "module": "M01", "title": title, "lesson_section": target, "purpose": purpose, "components": components, "priority": "P1", "status": "prototype-realized", "asset": f"assets/python/{asset}", "alt_draft": purpose, "caption_draft": title, "existing_images": 0, "existing_text_blocks": 1})
         rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [f'<a href="../{escape(target, quote=True)}">M00 — {escape(section)}</a>', escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components), 'P1; prototipo realizzato', 'immagine inserita']) + '</tr>')
     audit = '''# Audit delle immagini del corso Python
 

@@ -76,12 +76,10 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 <p align="justify">Leggi due prezzi e indica quale dei due è maggiore. Se sono uguali, dichiaralo.</p>
 </blockquote>
 
-<p align="justify">Prima di pensare alla soluzione estraiamo:</p>
+<p align="justify">Prima di pensare alla soluzione estraiamo i dati e il risultato atteso. La consegna &egrave; completa solo se prevede anche il caso in cui i prezzi siano uguali.</p>
 
-```text
-INPUT  → prezzo A, prezzo B
-OUTPUT → A maggiore / B maggiore / uguali
-```
+<p align="center"><img src="../../assets/python/m01-specifica.svg" alt="La consegna sui due prezzi viene scomposta in input e nei tre possibili output: A maggiore, B maggiore oppure uguali." width="960"></p>
+<p align="center"><em>Una specifica definisce quali dati entrano e quale risposta deve uscire per ogni caso.</em></p>
 
 <p align="justify">La parola <strong>uguali</strong> è importante: senza quel caso una soluzione apparentemente corretta potrebbe essere incompleta.</p>
 
@@ -95,15 +93,10 @@ OUTPUT → A maggiore / B maggiore / uguali
 
 ## 2. Decomporre non significa complicare
 
-<p align="justify">Una soluzione utile può essere divisa così:</p>
+<p align="justify">Una soluzione utile pu&ograve; essere divisa in passi abbastanza piccoli da poter essere controllati, senza descrivere ogni gesto irrilevante.</p>
 
-```text
-1. acquisisci A
-2. acquisisci B
-3. confronta A e B
-4. scegli uno dei tre risultati
-5. comunica il risultato
-```
+<p align="center"><img src="../../assets/python/m01-decomposizione.svg" alt="Cinque passi collegati: acquisire A, acquisire B, confrontare i valori, scegliere il caso e comunicare il risultato." width="960"></p>
+<p align="center"><em>La decomposizione rende visibili le decisioni e i punti che potremo verificare.</em></p>
 
 <p align="justify">Non serve spezzare ogni gesto in decine di micro-passaggi.</p>
 
@@ -272,11 +265,10 @@ MOSTRA finale
 
 <p align="justify">Una variabile concettuale non è soltanto un'etichetta su un foglio.</p>
 
-<p align="justify">Durante il trace può cambiare:</p>
+<p align="justify">Durante il trace pu&ograve; cambiare. Per esempio, il prezzo 120 parte senza sconto, riceve lo sconto quando la condizione &egrave; vera e produce il valore finale 110.</p>
 
-```text
-saldo: 100 → 80 → 65
-```
+<p align="center"><img src="../../assets/python/m01-trace-stato.svg" alt="Il trace segue prezzo, sconto e valore finale attraverso input, stato, decisione e output." width="960"></p>
+<p align="center"><em>Lo stato &egrave; l'insieme dei valori disponibili in un determinato momento dell'esecuzione.</em></p>
 
 <p align="justify">Per capire un algoritmo chiediti spesso:</p>
 
@@ -290,23 +282,10 @@ saldo: 100 → 80 → 65
 
 ## 8. Ordine dei passi
 
-<p align="justify">Algoritmo sbagliato:</p>
+<p align="justify">Un algoritmo &egrave; sbagliato se prova a mostrare un valore prima di averlo calcolato. L'ordine corretto e i casi di test sono illustrati qui:</p>
 
-```text
-1. MOSTRA totale
-2. LEGGI prezzo
-3. ASSEGNA totale ← prezzo + 5
-```
-
-<p align="justify">Il risultato viene chiesto prima di essere determinato.</p>
-
-<p align="justify">Correzione minima:</p>
-
-```text
-1. LEGGI prezzo
-2. ASSEGNA totale ← prezzo + 5
-3. MOSTRA totale
-```
+<p align="center"><img src="../../assets/python/m01-ordine-test.svg" alt="Il valore totale viene prima letto e calcolato, poi mostrato; tre casi di test coprono primo maggiore, secondo maggiore e valori uguali." width="960"></p>
+<p align="center"><em>Prima si determina il dato, poi lo si comunica; i test controllano i rami della specifica.</em></p>
 
 <p align="justify">Il debug non richiede sempre di riscrivere tutto: cerca la <strong>modifica minima che ripristina il contratto</strong>.</p>
 
@@ -339,20 +318,7 @@ uscita
 
 ## 10. Test prima del programma
 
-<p align="justify">Per il problema “maggiore tra due prezzi” scegliamo:</p>
-
-```text
-10, 5   → primo maggiore
-5, 10   → secondo maggiore
-7, 7    → uguali
-```
-
-<p align="justify">Poi aggiungiamo, se ammessi:</p>
-
-```text
-0, 0
--2, -5
-```
+<p align="justify">Per il problema &ldquo;maggiore tra due prezzi&rdquo; scegliamo i tre casi che cambiano l'esito: il primo prezzo maggiore, il secondo prezzo maggiore e i prezzi uguali. Se la specifica ammette anche zero o valori negativi, aggiungiamo almeno un esempio per verificare quei vincoli.</p>
 
 <p align="justify">Non dobbiamo aspettare di avere un programma per progettare test utili.</p>
 

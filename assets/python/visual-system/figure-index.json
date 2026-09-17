@@ -34,8 +34,8 @@
     "asset": null,
     "alt_draft": "Affiancare passo eseguito e fotografia dello stato, distinguendo dati iniziali e valori aggiornati. Leggere la traccia dall'alto verso il basso.",
     "caption_draft": "Lo stato lungo una traccia. Affiancare passo eseguito e fotografia dello stato, distinguendo dati iniziali e valori aggiornati. Leggere la traccia dall'alto verso il basso.",
-    "existing_images": 0,
-    "existing_text_blocks": 18
+    "existing_images": 4,
+    "existing_text_blocks": 11
   },
   {
     "id": "py-m02-01",
@@ -665,5 +665,76 @@
     "caption_draft": "Test e diagnosi degli errori",
     "existing_images": 4,
     "existing_text_blocks": 0
+  },
+  {
+    "id": "py-m01-02",
+    "module": "M01",
+    "title": "Specifica come contratto",
+    "lesson_section": "content/python/01_DAL_PROBLEMA_AI_PASSI.md#1-una-specifica-è-un-contratto-da-capire",
+    "purpose": "La consegna sui prezzi definisce input e tre output possibili.",
+    "components": [
+      "tpsi-document",
+      "tpsi-value",
+      "tpsi-decision"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m01-specifica.svg",
+    "alt_draft": "La consegna sui prezzi definisce input e tre output possibili.",
+    "caption_draft": "Specifica come contratto",
+    "existing_images": 0,
+    "existing_text_blocks": 1
+  },
+  {
+    "id": "py-m01-03",
+    "module": "M01",
+    "title": "Decomposizione in passi",
+    "lesson_section": "content/python/01_DAL_PROBLEMA_AI_PASSI.md#2-decomporre-non-significa-complicare",
+    "purpose": "Cinque passi collegano acquisizione, confronto, scelta e comunicazione.",
+    "components": [
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m01-decomposizione.svg",
+    "alt_draft": "Cinque passi collegano acquisizione, confronto, scelta e comunicazione.",
+    "caption_draft": "Decomposizione in passi",
+    "existing_images": 0,
+    "existing_text_blocks": 1
+  },
+  {
+    "id": "py-m01-04",
+    "module": "M01",
+    "title": "Trace e stato",
+    "lesson_section": "content/python/01_DAL_PROBLEMA_AI_PASSI.md#7-lo-stato-cambia-nel-tempo",
+    "purpose": "Il trace mostra come i valori cambiano durante l'esecuzione.",
+    "components": [
+      "tpsi-value",
+      "tpsi-decision"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m01-trace-stato.svg",
+    "alt_draft": "Il trace mostra come i valori cambiano durante l'esecuzione.",
+    "caption_draft": "Trace e stato",
+    "existing_images": 0,
+    "existing_text_blocks": 1
+  },
+  {
+    "id": "py-m01-05",
+    "module": "M01",
+    "title": "Ordine dei passi e test",
+    "lesson_section": "content/python/01_DAL_PROBLEMA_AI_PASSI.md#8-ordine-dei-passi",
+    "purpose": "Il valore viene calcolato prima dell'output e i test coprono i casi principali.",
+    "components": [
+      "tpsi-decision"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m01-ordine-test.svg",
+    "alt_draft": "Il valore viene calcolato prima dell'output e i test coprono i casi principali.",
+    "caption_draft": "Ordine dei passi e test",
+    "existing_images": 0,
+    "existing_text_blocks": 1
   }
 ]
