@@ -116,8 +116,11 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
   <li>finita;</li>
   <li>non ambigua al livello necessario;</li>
   <li>eseguibile con i dati disponibili;</li>
+  <li>generale, cioè capace di risolvere il caso generale del problema per tutti gli input ammessi;</li>
   <li>verificabile con esempi concreti.</li>
 </ul>
+
+<p align="justify">Un esempio serve a controllare l'idea, ma non definisce da solo la soluzione. Un algoritmo è generale quando applica la stessa regola a ogni caso previsto dalla consegna, anche quando i valori sono diversi da quelli usati durante la spiegazione.</p>
 
 ## Programma
 
