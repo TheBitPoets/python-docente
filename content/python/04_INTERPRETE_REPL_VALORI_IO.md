@@ -85,7 +85,7 @@ Prova la somma con input testuali, conversione in numeri e stampa; esegui poi lo
 
 ---
 
-## 1. Problema iniziale: dal procedimento al programma
+# 1. Problema iniziale: dal procedimento al programma
 
 <p align="justify">Considera questo problema:</p>
 
@@ -120,7 +120,7 @@ print(risultato)
 
 ---
 
-## 2. Che cosa fa l'interprete Python
+# 2. Che cosa fa l'interprete Python
 
 <p align="justify">Un file Python contiene testo con istruzioni Python.</p>
 
@@ -164,7 +164,7 @@ prevedere
 
 ---
 
-## 3. Il REPL: un laboratorio per fare esperimenti
+# 3. Il REPL: un laboratorio per fare esperimenti
 
 <p align="justify">Python può essere usato in modalità interattiva.</p>
 
@@ -221,7 +221,7 @@ Loop   → torna al prompt
 
 ---
 
-## 4. Valori e tipi
+# 4. Valori e tipi
 
 <p align="justify">Un programma lavora con dati.</p>
 
@@ -291,7 +291,7 @@ False
 
 ---
 
-## 5. Variabili: dare un nome a un valore
+# 5. Variabili: dare un nome a un valore
 
 <p align="justify">Nel REPL prova:</p>
 
@@ -367,7 +367,7 @@ x = 25
 
 ---
 
-## 6. `print()`: produrre output
+# 6. `print()`: produrre output
 
 <p align="justify">Nel REPL:</p>
 
@@ -423,7 +423,7 @@ print(2 + 3)
 
 ---
 
-## 7. `input()`: ricevere dati
+# 7. `input()`: ricevere dati
 
 <p align="justify">Prova:</p>
 
@@ -464,7 +464,7 @@ print(type(dato))
 
 ---
 
-## 8. Perché `"2" + "3"` non fa `5`
+# 8. Perché `"2" + "3"` non fa `5`
 
 <p align="justify">Prima prevedi:</p>
 
@@ -498,7 +498,7 @@ print(type(dato))
 
 ---
 
-## 9. Conversioni: trasformare il dato quando il problema lo richiede
+# 9. Conversioni: trasformare il dato quando il problema lo richiede
 
 <p align="justify">Se vuoi usare come numero ciò che è stato letto con <code>input()</code>, devi convertirlo.</p>
 
@@ -567,7 +567,7 @@ str(42)
 
 ---
 
-## 10. Dal REPL al primo script
+# 10. Dal REPL al primo script
 
 <p align="justify">Un esperimento REPL scompare quando chiudi la sessione.</p>
 
@@ -614,7 +614,7 @@ print(nome)
 
 ---
 
-## 11. Microscope: esegui mentalmente questo programma
+# 11. Microscope: esegui mentalmente questo programma
 
 <p align="justify">Prima di provarlo, completa il trace:</p>
 
@@ -683,7 +683,7 @@ secondo = -2
 
 ---
 
-## 12. Worked example: somma di due numeri letti dall'utente
+# 12. Worked example: somma di due numeri letti dall'utente
 
 <p align="justify">Riprendiamo il problema iniziale.</p>
 
@@ -757,7 +757,7 @@ print(risultato)    → mostra 6
 
 ---
 
-## 13. Confronto: due programmi che sembrano simili
+# 13. Confronto: due programmi che sembrano simili
 
 ## Versione A
 
@@ -808,7 +808,7 @@ print(primo + secondo)
 
 ---
 
-## 14. Error Clinic
+# 14. Error Clinic
 
 <p align="justify">Gli errori fanno parte del lavoro del programmatore.</p>
 
@@ -864,7 +864,7 @@ soluzione corretta
 
 ---
 
-## 15. Come leggere un traceback beginner
+# 15. Come leggere un traceback beginner
 
 <p align="justify">Non devi capire subito ogni riga.</p>
 
@@ -899,7 +899,7 @@ ValueError: invalid literal for int() ...
 
 ---
 
-## 16. Output deterministico e TheBitLab
+# 16. Output deterministico e TheBitLab
 
 <p align="justify">In alcune Activity automatiche il contratto dice esattamente quale output deve produrre il programma.</p>
 
@@ -937,7 +937,7 @@ print("La somma è", primo + secondo)
 
 ---
 
-## 17. Activity B — Completa la somma
+# 17. Activity B — Completa la somma
 
 <p align="justify">Il primo vertical slice TheBitLab del corso è:</p>
 
@@ -976,7 +976,7 @@ print(risultato)
 
 ---
 
-## 18. Esercizi brevi
+# 18. Esercizi brevi
 
 ## A — Prevedi il tipo e il valore
 
@@ -1039,7 +1039,7 @@ print(totale)
 
 ---
 
-## 19. Verifica rapida
+# 19. Verifica rapida
 
 <p align="justify">Rispondi senza eseguire Python.</p>
 
@@ -1056,7 +1056,7 @@ print(totale)
 
 ---
 
-## 20. Sintesi
+# 20. Sintesi
 
 <p align="justify">Porta con te questi modelli:</p>
 

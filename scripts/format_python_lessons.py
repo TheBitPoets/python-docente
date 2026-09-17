@@ -282,7 +282,7 @@ def lesson_layout(content: str, path: Path) -> str:
             fence = None if fence == match.group(1) else match.group(1)
         elif fence is None:
             if line.startswith("# "):
-                if title_seen:
+                if title_seen and path.name != "04_INTERPRETE_REPL_VALORI_IO.md":
                     in_body = True
                     line = "#" + line
                 title_seen = True

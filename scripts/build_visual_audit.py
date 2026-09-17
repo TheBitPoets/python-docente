@@ -25,7 +25,7 @@ def outputs() -> dict[Path, str]:
         n = record["module"]
         lesson = next((ROOT / "content/python").glob(f"{n:02d}_*.md"))
         text = lesson.read_text(encoding="utf-8")
-        headings = re.findall(r"^## (.+)$", text, re.M)
+        headings = re.findall(r"^#{1,2} (.+)$", text, re.M)
         heading = next(h for h in headings if h.startswith(f"{record['section']}. "))
         components = ["tpsi-" + name for name in record["objects"]]
         if set(components) - known:
