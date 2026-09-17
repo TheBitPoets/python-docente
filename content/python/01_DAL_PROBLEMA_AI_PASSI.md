@@ -113,30 +113,18 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 ## 3. Ambiguo per chi?
 
-<p align="justify">Considera:</p>
+<p align="justify">Considera una descrizione volutamente vaga: dice di scegliere ?quello giusto?, ma non spiega come riconoscerlo.</p>
 
-```text
-1. prendi due numeri
-2. scegli quello giusto
-3. stampa
-```
+<p align="center"><img src="../../assets/python/m01-ambiguita.svg" alt="Confronto fra una descrizione vaga senza regola e una decisione esplicita che copre A maggiore, B maggiore e valori uguali." width="960"></p>
+<p align="center"><em>La figura rende visibile la differenza tra intenzione e regola eseguibile.</em></p>
 
 <p align="justify">Per l'autore può sembrare chiaro, ma <strong>“quello giusto”</strong> non definisce una regola eseguibile.</p>
 
 <p align="justify">Un algoritmo deve comunicare la decisione, non solo l'intenzione.</p>
 
-<p align="justify">Versione migliore:</p>
+<p align="justify">La versione esplicita assegna un risultato a ciascuna relazione possibile tra A e B: maggiore il primo, maggiore il secondo oppure uguali. In questo modo un'altra persona pu&ograve; eseguire la procedura senza dover indovinare la regola.</p>
 
-```text
-se A > B
-    risultato ← A
-altrimenti se B > A
-    risultato ← B
-altrimenti
-    risultato ← "uguali"
-```
-
-<p align="justify">Qui la freccia <code>←</code> significa “assegna/aggiorna il valore concettuale”, non è sintassi Python.</p>
+<p align="justify">Quando scriviamo che un risultato viene assegnato o aggiornato, descriviamo un cambiamento dello stato concettuale. La notazione aiuta a ragionare sull'algoritmo; la sintassi Python verr&agrave; introdotta in seguito.</p>
 
 ---
 
