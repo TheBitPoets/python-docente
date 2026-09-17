@@ -84,6 +84,18 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 
 <p align="justify">Nel nostro esempio, il prezzo e il pagamento sono i dati di ingresso. Il resto è il risultato che vogliamo comunicare. Il pagamento deve essere almeno uguale al prezzo: se il cliente paga meno, la consegna non descrive più un normale calcolo del resto e dobbiamo decidere come gestire quel caso.</p>
 
+<table align="center">
+<thead>
+<tr><th>Parte della specifica</th><th>Che cosa osserviamo</th><th>Esito</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Input</strong></td><td>prezzo, pagamento</td><td>i due valori forniti al procedimento</td></tr>
+<tr><td><strong>Output</strong></td><td>resto</td><td>pagamento - prezzo</td></tr>
+<tr><td><strong>Vincolo rispettato</strong></td><td>pagamento &ge; prezzo</td><td><strong>OK:</strong> si può calcolare e consegnare il resto</td></tr>
+<tr><td><strong>Vincolo violato</strong></td><td>pagamento &lt; prezzo</td><td><strong>Errore:</strong> gestire il pagamento insufficiente</td></tr>
+</tbody>
+</table>
+
 <p align="justify">Una possibile procedura legge i due dati, calcola la differenza e comunica il risultato. Questa procedura è un piccolo <strong>algoritmo</strong>: non è ancora scritto in Python, ma è già abbastanza preciso da poter essere seguito e controllato da un'altra persona.</p>
 
 ---
