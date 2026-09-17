@@ -77,26 +77,14 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Una bottiglia costa 2 euro. Un cliente paga con 5 euro. Quanto resto deve ricevere?</p>
 </blockquote>
 
-<p align="justify">La domanda non chiede ancora Python, un flow chart o una formula da memorizzare.</p>
+<p align="justify">La domanda non chiede ancora Python, un flow chart o una formula da memorizzare. Chiede di capire una situazione: quali dati conosciamo, quale risultato serve e quale condizione deve essere rispettata perché il risultato abbia senso.</p>
 
-<p align="justify">Prima dobbiamo capire:</p>
+<p align="center"><img src="../../assets/python/m00-modello-problema.svg" alt="Tre pannelli collegati: una richiesta concreta diventa analisi del problema, poi algoritmo e infine programma. Ogni pannello esplicita una domanda diversa." width="960"></p>
+<p align="center"><em>Il programma arriva dopo aver chiarito la richiesta e ordinato i passi.</em></p>
 
-```text
-INPUT  → prezzo, denaro ricevuto
-OUTPUT → resto
-VINCOLO → il pagamento deve essere sufficiente
-```
+<p align="justify">Nel nostro esempio, il prezzo e il pagamento sono i dati di ingresso. Il resto è il risultato che vogliamo comunicare. Il pagamento deve essere almeno uguale al prezzo: se il cliente paga meno, la consegna non descrive più un normale calcolo del resto e dobbiamo decidere come gestire quel caso.</p>
 
-<p align="justify">Una possibile procedura è:</p>
-
-```text
-1. leggi il prezzo
-2. leggi quanto è stato pagato
-3. calcola pagato - prezzo
-4. comunica il resto
-```
-
-<p align="justify">Questa procedura è un piccolo <strong>algoritmo</strong>.</p>
+<p align="justify">Una possibile procedura legge i due dati, calcola la differenza e comunica il risultato. Questa procedura è un piccolo <strong>algoritmo</strong>: non è ancora scritto in Python, ma è già abbastanza preciso da poter essere seguito e controllato da un'altra persona.</p>
 
 ---
 
@@ -104,13 +92,11 @@ VINCOLO → il pagamento deve essere sufficiente
 
 ## Problema
 
-<p align="justify">È ciò che vogliamo risolvere.</p>
-
-<p align="justify">Può essere espresso in linguaggio naturale e può contenere informazioni incomplete o ambigue.</p>
+<p align="justify">È ciò che vogliamo risolvere. Una richiesta come “calcola il resto” sembra semplice, ma diventa realmente utilizzabile solo quando sappiamo quale prezzo e quale pagamento considerare e che cosa fare se il pagamento non è sufficiente.</p>
 
 ## Algoritmo
 
-<p align="justify">È una procedura abbastanza precisa da poter essere seguita passo-passo.</p>
+<p align="justify">È una procedura abbastanza precisa da poter essere seguita passo-passo. “Precisa” non significa lunga: significa che ogni passo fornisce le informazioni necessarie a svolgere quello successivo e che il risultato può essere controllato con un esempio.</p>
 
 <p align="justify">Per i nostri primi problemi deve essere:</p>
 
@@ -123,21 +109,12 @@ VINCOLO → il pagamento deve essere sufficiente
 
 ## Programma
 
-<p align="justify">È una descrizione dell'algoritmo in un linguaggio che il computer può eseguire.</p>
+<p align="justify">È una descrizione dell'algoritmo in un linguaggio che il computer può eseguire. Un programma può essere scritto senza errori di sintassi e produrre comunque il risultato sbagliato se l'algoritmo o la comprensione della richiesta erano sbagliati.</p>
 
-<p align="justify">Il percorso del corso sarà spesso:</p>
+<p align="center"><img src="../../assets/python/m00-modello-problema.svg" alt="Il percorso dal problema all'algoritmo e al programma, con frecce che indicano un aumento progressivo della precisione." width="960"></p>
+<p align="center"><em>La stessa idea viene resa progressivamente più precisa: problema, algoritmo, programma.</em></p>
 
-```text
-problema
-→ analisi
-→ algoritmo
-→ rappresentazione / trace
-→ programma
-→ test
-→ debug
-```
-
-<p align="justify">Il programma non sostituisce il ragionamento che viene prima.</p>
+<p align="justify">Nel corso useremo spesso questa sequenza: capire la richiesta, estrarre i dati, progettare i passi, rappresentarli, scrivere il programma, provarlo e correggerlo. Il programma è quindi una parte del percorso: non sostituisce il ragionamento che viene prima.</p>
 
 ---
 
@@ -149,18 +126,10 @@ problema
 <p align="justify">Dati la temperatura attuale e una soglia, indica se la temperatura supera la soglia.</p>
 </blockquote>
 
-<p align="justify">Possiamo estrarre:</p>
+<p align="justify">Possiamo estrarre due dati in ingresso: la temperatura attuale e la soglia. Il risultato è una risposta sì/no alla domanda “la temperatura supera la soglia?”. Un vincolo importante è che i due valori usino la stessa unità di misura: confrontare 20 gradi Celsius con una soglia espressa in Fahrenheit senza conversione produrrebbe una decisione senza significato.</p>
 
-```text
-INPUT
-- temperatura attuale
-- soglia
-
-OUTPUT
-- sì/no: supera la soglia?
-```
-
-<p align="justify">Un vincolo potrebbe essere, per esempio, l'unità di misura comune.</p>
+<p align="center"><img src="../../assets/python/m00-input-output.svg" alt="Il prezzo e il pagamento entrano in una trasformazione; il risultato è il resto e il pagamento sufficiente è un vincolo." width="960"></p>
+<p align="center"><em>Input, trasformazione, output e vincolo rispondono a domande diverse.</em></p>
 
 ## Informazioni inutili
 
@@ -196,23 +165,12 @@ OUTPUT
 
 ## 5. I passi devono essere operativi
 
-<p align="justify">Confronta:</p>
+<p align="justify">Confronta una frase vaga come “fai il calcolo giusto e mostra il risultato” con una sequenza che dichiara esplicitamente i dati, la trasformazione e l'output.</p>
 
-```text
-1. fai il calcolo giusto
-2. mostra il risultato
-```
+<p align="center"><img src="../../assets/python/m00-passi-operativi.svg" alt="Confronto fra un'istruzione vaga e quattro passi osservabili: acquisire base, acquisire altezza, calcolare il prodotto e mostrarlo." width="960"></p>
+<p align="center"><em>Un algoritmo leggibile rende visibili dati, trasformazione e risultato.</em></p>
 
-<p align="justify">con:</p>
-
-```text
-1. acquisisci base
-2. acquisisci altezza
-3. calcola base × altezza
-4. mostra il prodotto
-```
-
-<p align="justify">La seconda versione è più utile perché rende espliciti dati e trasformazione.</p>
+<p align="justify">La seconda versione è più utile perché rende espliciti dati e trasformazione. Un compagno può controllare se abbiamo letto davvero base e altezza, se abbiamo usato la formula corretta e se il risultato è stato mostrato nel momento giusto.</p>
 
 <p align="justify">Non significa che ogni algoritmo debba avere molti passi: significa che i passi essenziali non devono essere nascosti dietro parole vaghe.</p>
 
@@ -222,28 +180,12 @@ OUTPUT
 
 <p align="justify">Supponiamo di avere un algoritmo che dovrebbe restituire il maggiore tra due numeri.</p>
 
-<p align="justify">Con il caso:</p>
+<p align="justify">Con il caso A = 8 e B = 3 l'algoritmo restituisce 8. È un primo controllo, ma non è sufficiente per dire che la soluzione funziona sempre: abbiamo visto soltanto una disposizione dei dati.</p>
 
-```text
-A = 8
-B = 3
-```
+<p align="justify">Per esplorare meglio il comportamento proviamo almeno un caso con l'ordine invertito, un caso in cui i valori sono uguali e un caso con valori negativi. Ogni prova pone una domanda: la soluzione tratta entrambi gli ordini? Sa che il maggiore può essere uguale a entrambi? Confronta correttamente anche numeri sotto zero?</p>
 
-<p align="justify">ottiene 8.</p>
-
-<p align="justify">È sufficiente per dire che l'algoritmo funziona sempre?</p>
-
-<p align="justify">No.</p>
-
-<p align="justify">Proviamo almeno:</p>
-
-```text
-A = 3, B = 8
-A = 5, B = 5
-A = -2, B = -7
-```
-
-<p align="justify">Un caso riuscito è <strong>evidence</strong>, non una dimostrazione generale.</p>
+<p align="center"><img src="../../assets/python/m00-test-errori.svg" alt="Tre casi di test per il maggiore fra due numeri: caso normale, valori uguali e ordine invertito. A destra sono distinti errore di comprensione, errore dell'algoritmo ed errore di esecuzione." width="960"></p>
+<p align="center"><em>Un esempio riuscito è un'evidenza su un caso, non una dimostrazione generale.</em></p>
 
 <p align="justify">Nel secondo anno costruire casi di test diventerà una normale abitudine di lavoro.</p>
 
@@ -261,14 +203,7 @@ A = -2, B = -7
 
 <p align="justify">È vicino a un confine importante.</p>
 
-<p align="justify">Esempi:</p>
-
-```text
-13
-14
-```
-
-<p align="justify">per la soglia 14.</p>
+<p align="justify">Esempi: 13 e 14 per la soglia 14. Il primo sta appena sotto il confine; il secondo è esattamente sul confine. Possiamo aggiungere 15 per osservare il lato opposto. Il caso limite non è “un caso strano”: è un caso scelto perché una piccola differenza può cambiare il risultato.</p>
 
 ## Controesempio
 
@@ -294,24 +229,28 @@ A = -2, B = -7
 
 <p align="justify">L'algoritmo può essere corretto, ma un futuro programma può contenere un errore di sintassi, un dato non valido o un altro problema di esecuzione.</p>
 
-<p align="justify">Questa distinzione ci aiuterà a fare debug senza cambiare cose a caso.</p>
+<p align="center"><img src="../../assets/python/m00-test-errori.svg" alt="La diagnosi separa tre origini dell'errore: richiesta compresa male, algoritmo ordinato male e futura esecuzione che fallisce." width="960"></p>
+<p align="center"><em>Prima di correggere, identifica quale livello del ragionamento è in errore.</em></p>
+
+<p align="justify">Questa distinzione ci aiuterà a fare debug senza cambiare cose a caso. Se abbiamo scelto la richiesta sbagliata, modificare una formula non risolve il problema; se l'algoritmo è corretto ma l'esecuzione fallisce, dobbiamo invece cercare il difetto nella traduzione in programma.</p>
 
 ---
 
 ## 9. Micro-lab senza computer
 
-<p align="justify">Per ciascuna consegna annota:</p>
+<p align="justify">Per ciascuna consegna annota, in questo ordine, quali dati entrano, quale risultato deve uscire, quali vincoli devono essere rispettati, quali passi proponi e almeno un caso normale e uno vicino a un confine. Non serve usare parole tecniche perfette: serve lasciare una traccia che un compagno possa seguire senza chiederti che cosa intendevi.</p>
 
-```text
-INPUT
-OUTPUT
-VINCOLI
-PASSI
-UN CASO NORMALE
-UN CASO LIMITE
-```
+<table align="center">
+<thead><tr><th>Domanda</th><th>Esempio sul resto</th></tr></thead>
+<tbody>
+<tr><td>Quali dati entrano?</td><td>Prezzo e pagamento.</td></tr>
+<tr><td>Che cosa deve uscire?</td><td>Il resto, se il pagamento è sufficiente.</td></tr>
+<tr><td>Quale vincolo vale?</td><td>Pagamento maggiore o uguale al prezzo.</td></tr>
+<tr><td>Come controllo l'idea?</td><td>Provo pagamento uguale, maggiore e insufficiente.</td></tr>
+</tbody>
+</table>
 
-<p align="justify">Proposte:</p>
+<p align="justify">Le proposte da analizzare sono:</p>
 
 <ol>
   <li>calcolare il resto;</li>
@@ -320,7 +259,7 @@ UN CASO LIMITE
   <li>descrivere un percorso di tre mosse su una griglia.</li>
 </ol>
 
-<p align="justify">Poi scambia il foglio con un compagno: deve poter seguire i passi senza chiederti che cosa intendevi.</p>
+<p align="justify">Poi scambia il foglio con un compagno. Il compagno deve poter ricostruire la tua idea e indicare dove manca un dato, un controllo o un passo. Se deve interromperti spesso per chiedere spiegazioni, non è un problema del compagno: è un segnale che la specifica o l'algoritmo sono ancora troppo vaghi.</p>
 
 ---
 
@@ -337,7 +276,7 @@ UN CASO LIMITE
   <li>quale risultato è richiesto?;</li>
   <li>quale passo manca?;</li>
   <li>questo procedimento termina?;</li>
-  <li>quale esempio proveresti per primo?.</li>
+  <li>quale esempio proveresti per primo?</li>
 </ul>
 
 <p align="justify">Non serve conoscere parole tecniche perfette: conta il ragionamento.</p>
@@ -359,12 +298,7 @@ UN CASO LIMITE
 
 ## Recap
 
-```text
-capire il problema
-→ separare dati e risultato
-→ costruire passi eseguibili
-→ provare esempi diversi
-→ correggere il modello prima del codice
-```
+<p align="center"><img src="../../assets/python/m00-modello-problema.svg" alt="Il percorso riassuntivo va dalla richiesta alla sua analisi, all'algoritmo e al programma; i test e il debug verificano il risultato del percorso." width="960"></p>
+<p align="center"><em>Capire prima, rappresentare poi, eseguire e controllare infine.</em></p>
 
-<p align="justify">Prossimo modulo: trasformiamo il problema in pseudocodice e impariamo a fare un trace manuale sistematico.</p>
+<p align="justify">Prima di scrivere codice, chiediti: ho capito la richiesta? Ho separato dati, risultato e vincoli? I passi sono osservabili? Ho scelto almeno due casi diversi? Se una risposta è “non ancora”, torna al modello del problema e correggilo. Prossimo modulo: trasformiamo il problema in pseudocodice e impariamo a fare un trace manuale sistematico.</p>

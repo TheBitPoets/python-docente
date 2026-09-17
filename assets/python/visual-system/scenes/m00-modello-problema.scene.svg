@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m00-modello-problema.svg">
+<title id="title">Dal problema al programma</title>
+<desc id="desc">Una richiesta concreta viene analizzata, trasformata in algoritmo e rappresentata in un programma. Ogni passaggio aggiunge precisione e non sostituisce il precedente.</desc>
+<defs id="visual-kit-components"/><defs><marker id="arrow" markerWidth="16" markerHeight="16" refX="13" refY="6" orient="auto"><path d="M0 0L13 6L0 12z" fill="{{line}}"/></marker></defs>
+<rect width="1920" height="1080" fill="{{canvas}}"/><g font-family="{{family}}">
+<text x="64" y="100" font-size="48" fill="{{surface}}">Dal problema al programma</text><text x="64" y="150" font-size="28" fill="{{muted}}">Prima comprendiamo la richiesta; poi rendiamo la soluzione eseguibile.</text>
+<g><rect x="64" y="230" width="520" height="570" rx="24" fill="{{panel}}"/><rect x="700" y="230" width="520" height="570" rx="24" fill="{{panel}}"/><rect x="1336" y="230" width="520" height="570" rx="24" fill="{{panel}}"/></g>
+<use href="#tpsi-document" x="220" y="300" width="190" height="230"/><text x="120" y="600" font-size="40" fill="{{surface}}">PROBLEMA</text><text x="120" y="655" font-size="27" fill="{{muted}}">Che cosa vogliamo ottenere?</text><text x="120" y="704" font-size="27" fill="{{muted}}">Quali dati e quali vincoli</text><text x="120" y="744" font-size="27" fill="{{muted}}">sono davvero necessari?</text>
+<use href="#tpsi-step" x="865" y="330" width="190" height="142"/><use href="#tpsi-step" x="865" y="495" width="190" height="142"/><text x="756" y="700" font-size="40" fill="{{surface}}">ALGORITMO</text><text x="756" y="755" font-size="27" fill="{{muted}}">Passi finiti, ordinati e verificabili.</text>
+<use href="#tpsi-terminal" x="1468" y="330" width="255" height="170"/><text x="1392" y="600" font-size="40" fill="{{surface}}">PROGRAMMA</text><text x="1392" y="655" font-size="27" fill="{{muted}}">Una descrizione in un linguaggio</text><text x="1392" y="704" font-size="27" fill="{{muted}}">che il computer può eseguire.</text>
+<g fill="none" stroke="{{line}}" stroke-width="8" marker-end="url(#arrow)"><path d="M584 515H686"/><path d="M1220 515h104"/></g><text x="64" y="920" font-size="30" fill="{{surface}}">Domanda guida: se il programma produce un risultato sbagliato, quale passaggio dobbiamo controllare per primo?</text>
+</g></svg>

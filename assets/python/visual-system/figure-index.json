@@ -15,8 +15,8 @@
     "asset": null,
     "alt_draft": "Tre piani distinti: consegna del resto, procedura ordinata, sua futura traduzione in programma. Il programma non sostituisce l'analisi.",
     "caption_draft": "Dal problema al programma. Tre piani distinti: consegna del resto, procedura ordinata, sua futura traduzione in programma. Il programma non sostituisce l'analisi.",
-    "existing_images": 0,
-    "existing_text_blocks": 11
+    "existing_images": 7,
+    "existing_text_blocks": 0
   },
   {
     "id": "py-m01-01",
@@ -609,5 +609,61 @@
     "caption_draft": "Mappa del capstone verificabile. Specifica collegata a responsabilità di almeno due oggetti, invariante e test; I/O separato e repository come storia delle revisioni, non requisito nuovo.",
     "existing_images": 0,
     "existing_text_blocks": 17
+  },
+  {
+    "id": "py-m00-02",
+    "module": "M00",
+    "title": "Input, trasformazione, output e vincoli",
+    "lesson_section": "content/python/00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md#3-input-output-e-vincoli",
+    "purpose": "Il prezzo e il pagamento entrano nella trasformazione del resto; il vincolo controlla se il calcolo è valido.",
+    "components": [
+      "tpsi-value",
+      "tpsi-function",
+      "tpsi-decision"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m00-input-output.svg",
+    "alt_draft": "Il prezzo e il pagamento entrano nella trasformazione del resto; il vincolo controlla se il calcolo è valido.",
+    "caption_draft": "Input, trasformazione, output e vincoli",
+    "existing_images": 4,
+    "existing_text_blocks": 0
+  },
+  {
+    "id": "py-m00-03",
+    "module": "M00",
+    "title": "Passi operativi",
+    "lesson_section": "content/python/00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md#5-i-passi-devono-essere-operativi",
+    "purpose": "Confronto fra istruzione vaga e passi osservabili con dati, trasformazione e risultato.",
+    "components": [
+      "tpsi-step",
+      "tpsi-error"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m00-passi-operativi.svg",
+    "alt_draft": "Confronto fra istruzione vaga e passi osservabili con dati, trasformazione e risultato.",
+    "caption_draft": "Passi operativi",
+    "existing_images": 4,
+    "existing_text_blocks": 0
+  },
+  {
+    "id": "py-m00-04",
+    "module": "M00",
+    "title": "Test e diagnosi degli errori",
+    "lesson_section": "content/python/00_PROBLEMA_ALGORITMO_INPUT_OUTPUT.md#6-un-esempio-non-dimostra-tutto",
+    "purpose": "Casi normale, limite e ordine invertito collegati ai tre livelli della diagnosi.",
+    "components": [
+      "tpsi-document",
+      "tpsi-error",
+      "tpsi-terminal"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m00-test-errori.svg",
+    "alt_draft": "Casi normale, limite e ordine invertito collegati ai tre livelli della diagnosi.",
+    "caption_draft": "Test e diagnosi degli errori",
+    "existing_images": 4,
+    "existing_text_blocks": 0
   }
 ]

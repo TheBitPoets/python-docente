@@ -49,6 +49,19 @@ def outputs() -> dict[Path, str]:
             f'{figure["priority"]}; ' + ('esempio composto, non inserito' if n == 21 else 'da costruire'),
             f'{figure["existing_images"]} immagini; {figure["existing_text_blocks"]} blocchi text',
         ]) + '</tr>')
+    # M00 is deliberately richer than the one-figure-per-module baseline:
+    # each conceptual boundary gets its own readable replacement for an ASCII sketch.
+    m00_extras = [
+        ("py-m00-02", "m00-input-output.svg", "Input, trasformazione, output e vincoli", "3. Input, output e vincoli", "tpsi-value,tpsi-function,tpsi-decision", "Il prezzo e il pagamento entrano nella trasformazione del resto; il vincolo controlla se il calcolo è valido."),
+        ("py-m00-03", "m00-passi-operativi.svg", "Passi operativi", "5. I passi devono essere operativi", "tpsi-step,tpsi-error", "Confronto fra istruzione vaga e passi osservabili con dati, trasformazione e risultato."),
+        ("py-m00-04", "m00-test-errori.svg", "Test e diagnosi degli errori", "6. Un esempio non dimostra tutto", "tpsi-document,tpsi-error,tpsi-terminal", "Casi normale, limite e ordine invertito collegati ai tre livelli della diagnosi."),
+    ]
+    lesson = next((ROOT / "content/python").glob("00_*.md"))
+    for ident, asset, title, section, component_text, purpose in m00_extras:
+        components = [f"{part}" for part in component_text.split(",")]
+        target = lesson.relative_to(ROOT).as_posix() + "#" + anchor(section)
+        figures.append({"id": ident, "module": "M00", "title": title, "lesson_section": target, "purpose": purpose, "components": components, "priority": "P1", "status": "prototype-realized", "asset": f"assets/python/{asset}", "alt_draft": purpose, "caption_draft": title, "existing_images": 4, "existing_text_blocks": 0})
+        rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [f'<a href="../{escape(target, quote=True)}">M00 — {escape(section)}</a>', escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components), 'P1; prototipo realizzato', 'immagine inserita']) + '</tr>')
     audit = '''# Audit delle immagini del corso Python
 
 <p align="justify">Audit del 16 settembre 2026: tutte le 31 lezioni canoniche M00–M30. La lettura di obiettivi, spiegazioni, schemi testuali e attività individua una prima figura principale per ciascun modulo. L'inventario automatico conta i riferimenti a immagini e i blocchi <code>text</code>; questi ultimi comprendono anche output e pseudocodice, non soltanto schemi da sostituire.</p>
