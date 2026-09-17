@@ -89,6 +89,9 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 <p align="justify">Che cosa deve essere vero dell'output per ogni input ammesso?</p>
 </blockquote>
 
+
+<p align="justify"><strong>Passaggio:</strong> La specifica ci dice che cosa deve uscire; adesso la scomponiamo in passi ordinati, abbastanza piccoli da poter essere controllati.</p>
+
 ---
 
 ## 2. Decomporre non significa complicare
@@ -109,6 +112,9 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
   <li>parti che potremo verificare separatamente.</li>
 </ul>
 
+
+<p align="justify"><strong>Passaggio:</strong> Una sequenza di passi ? utile solo se ogni istruzione ha lo stesso significato per chi la scrive e per chi la esegue.</p>
+
 ---
 
 ## 3. Ambiguo per chi?
@@ -125,6 +131,9 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 <p align="justify">La versione esplicita assegna un risultato a ciascuna relazione possibile tra A e B: maggiore il primo, maggiore il secondo oppure uguali. In questo modo un'altra persona pu&ograve; eseguire la procedura senza dover indovinare la regola.</p>
 
 <p align="justify">Quando scriviamo che un risultato viene assegnato o aggiornato, descriviamo un cambiamento dello stato concettuale. La notazione aiuta a ragionare sull'algoritmo; la sintassi Python verr&agrave; introdotta in seguito.</p>
+
+
+<p align="justify"><strong>Passaggio:</strong> Dopo aver reso esplicite le decisioni, scegliamo una notazione leggibile che descriva l?idea senza legarla ancora a Python.</p>
 
 ---
 
@@ -177,6 +186,9 @@ FINE SE
 ```
 
 <p align="justify">Quando arriverà Python, collegheremo idee già comprese a una sintassi concreta.</p>
+
+
+<p align="justify"><strong>Passaggio:</strong> La procedura ? stata scritta: il passo seguente ? interpretarla come farebbe una macchina, annotando ogni cambiamento prima di pensare al codice.</p>
 
 ---
 
@@ -262,6 +274,9 @@ MOSTRA finale
 
 <p align="justify">Il trace rende visibile lo <strong>stato</strong> dell'algoritmo.</p>
 
+
+<p align="justify"><strong>Passaggio:</strong> La tabella del dry-run mostra i valori in momenti diversi; ora isoliamo proprio questo concetto, lo stato, per imparare a seguirlo.</p>
+
 ---
 
 ## 7. Lo stato cambia nel tempo
@@ -281,6 +296,9 @@ MOSTRA finale
 
 <p align="justify">Questa domanda tornerà nei cicli, nei contatori e negli accumulatori.</p>
 
+
+<p align="justify"><strong>Passaggio:</strong> Seguire lo stato permette di scoprire quando un valore viene usato troppo presto: l?ordine non ? un dettaglio grafico, ? parte della correttezza.</p>
+
 ---
 
 ## 8. Ordine dei passi
@@ -291,6 +309,9 @@ MOSTRA finale
 <p align="center"><em>Prima si determina il dato, poi lo si comunica; i test controllano i rami della specifica.</em></p>
 
 <p align="justify">Il debug non richiede sempre di riscrivere tutto: cerca la <strong>modifica minima che ripristina il contratto</strong>.</p>
+
+
+<p align="justify"><strong>Passaggio:</strong> Un ordine corretto deve anche arrivare a una conclusione: verifichiamo quindi che la procedura abbia un punto di uscita riconoscibile.</p>
 
 ---
 
@@ -317,6 +338,9 @@ aggiornamento
 uscita
 ```
 
+
+<p align="justify"><strong>Passaggio:</strong> Quando la procedura finisce, non significa ancora che sia generale: scegliamo casi complementari per controllare tutti i rami della specifica.</p>
+
 ---
 
 ## 10. Test prima del programma
@@ -324,6 +348,9 @@ uscita
 <p align="justify">Per il problema &ldquo;maggiore tra due prezzi&rdquo; scegliamo i tre casi che cambiano l'esito: il primo prezzo maggiore, il secondo prezzo maggiore e i prezzi uguali. Se la specifica ammette anche zero o valori negativi, aggiungiamo almeno un esempio per verificare quei vincoli.</p>
 
 <p align="justify">Non dobbiamo aspettare di avere un programma per progettare test utili.</p>
+
+
+<p align="justify"><strong>Passaggio:</strong> I test ci indicano dove cercare; l?Error Clinic collega ogni sintomo al tipo di errore e alla modifica minima da provare.</p>
 
 ---
 
@@ -353,6 +380,9 @@ uscita
   <li>qual è la modifica minima?.</li>
 </ol>
 
+
+<p align="justify"><strong>Passaggio:</strong> Dopo aver studiato il metodo su esempi guidati, lo applichiamo a una nuova consegna e chiediamo a un compagno di eseguirla senza spiegazioni aggiuntive.</p>
+
 ---
 
 ## 12. Laboratorio: dal testo all'algoritmo
@@ -379,6 +409,9 @@ TRACE di almeno un caso
 ```
 
 <p align="justify">Il compagno che riceve il tuo lavoro deve poter simulare l'algoritmo senza chiederti spiegazioni aggiuntive.</p>
+
+
+<p align="justify"><strong>Passaggio:</strong> Il laboratorio chiude il ciclo: ora verifichiamo se sai ripeterlo autonomamente, dalla specifica ai test.</p>
 
 ---
 
