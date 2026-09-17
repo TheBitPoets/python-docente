@@ -113,13 +113,13 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 </ul>
 
 
-<p align="justify"><strong>Passaggio:</strong> Una sequenza di passi ? utile solo se ogni istruzione ha lo stesso significato per chi la scrive e per chi la esegue.</p>
+<p align="justify"><strong>Passaggio:</strong> Una sequenza di passi &egrave; utile solo se ogni istruzione ha lo stesso significato per chi la scrive e per chi la esegue.</p>
 
 ---
 
 ## 3. Ambiguo per chi?
 
-<p align="justify">Considera una descrizione volutamente vaga: dice di scegliere ?quello giusto?, ma non spiega come riconoscerlo.</p>
+<p align="justify">Considera una descrizione volutamente vaga: dice di scegliere &ldquo;quello giusto&rdquo;, ma non spiega come riconoscerlo.</p>
 
 <p align="center"><img src="../../assets/python/m01-ambiguita.svg" alt="Confronto fra una descrizione vaga senza regola e una decisione esplicita che copre A maggiore, B maggiore e valori uguali." width="960"></p>
 <p align="center"><em>La figura rende visibile la differenza tra intenzione e regola eseguibile.</em></p>
@@ -133,7 +133,7 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 <p align="justify">Quando scriviamo che un risultato viene assegnato o aggiornato, descriviamo un cambiamento dello stato concettuale. La notazione aiuta a ragionare sull'algoritmo; la sintassi Python verr&agrave; introdotta in seguito.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Dopo aver reso esplicite le decisioni, scegliamo una notazione leggibile che descriva l?idea senza legarla ancora a Python.</p>
+<p align="justify"><strong>Passaggio:</strong> Dopo aver reso esplicite le decisioni, scegliamo una notazione leggibile che descriva l'idea senza legarla ancora a Python.</p>
 
 ---
 
@@ -188,7 +188,7 @@ FINE SE
 <p align="justify">Quando arriverà Python, collegheremo idee già comprese a una sintassi concreta.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> La procedura ? stata scritta: il passo seguente ? interpretarla come farebbe una macchina, annotando ogni cambiamento prima di pensare al codice.</p>
+<p align="justify"><strong>Passaggio:</strong> La procedura &egrave; stata scritta: il passo seguente &egrave; interpretarla come farebbe una macchina, annotando ogni cambiamento prima di pensare al codice.</p>
 
 ---
 
@@ -297,7 +297,7 @@ MOSTRA finale
 <p align="justify">Questa domanda tornerà nei cicli, nei contatori e negli accumulatori.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Seguire lo stato permette di scoprire quando un valore viene usato troppo presto: l?ordine non ? un dettaglio grafico, ? parte della correttezza.</p>
+<p align="justify"><strong>Passaggio:</strong> Seguire lo stato permette di scoprire quando un valore viene usato troppo presto: l'ordine non &egrave; un dettaglio grafico, &egrave; parte della correttezza.</p>
 
 ---
 
@@ -350,7 +350,7 @@ uscita
 <p align="justify">Non dobbiamo aspettare di avere un programma per progettare test utili.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> I test ci indicano dove cercare; l?Error Clinic collega ogni sintomo al tipo di errore e alla modifica minima da provare.</p>
+<p align="justify"><strong>Passaggio:</strong> I test ci indicano dove cercare; l'Error Clinic collega ogni sintomo al tipo di errore e alla modifica minima da provare.</p>
 
 ---
 

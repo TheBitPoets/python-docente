@@ -99,7 +99,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Una possibile procedura legge i due dati, calcola la differenza e comunica il risultato. Questa procedura è un piccolo <strong>algoritmo</strong>: non è ancora scritto in Python, ma è già abbastanza preciso da poter essere seguito e controllato da un'altra persona.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Abbiamo chiarito la situazione concreta; ora diamo un nome ai tre livelli del percorso: ci? che dobbiamo risolvere, la procedura che immaginiamo e il programma che potr? eseguirla.</p>
+<p align="justify"><strong>Passaggio:</strong> Abbiamo chiarito la situazione concreta; ora diamo un nome ai tre livelli del percorso: ci&ograve; che dobbiamo risolvere, la procedura che immaginiamo e il programma che potr&agrave; eseguirla.</p>
 
 ---
 
@@ -168,7 +168,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Un buon programmatore non usa automaticamente ogni dato disponibile: chiede <strong>quale dato serve davvero alla decisione</strong>.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Una volta riconosciuti i dati presenti, chiediamoci se bastano davvero: un algoritmo non pu? inventare ci? che la consegna non fornisce.</p>
+<p align="justify"><strong>Passaggio:</strong> Una volta riconosciuti i dati presenti, chiediamoci se bastano davvero: un algoritmo non pu&ograve; inventare ci&ograve; che la consegna non fornisce.</p>
 
 ---
 
@@ -189,7 +189,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Prima si chiarisce il problema.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Quando sappiamo quali informazioni servono, dobbiamo trasformare l?idea in istruzioni osservabili, che un?altra persona possa seguire senza interpretazioni personali.</p>
+<p align="justify"><strong>Passaggio:</strong> Quando sappiamo quali informazioni servono, dobbiamo trasformare l'idea in istruzioni osservabili, che un'altra persona possa seguire senza interpretazioni personali.</p>
 
 ---
 
@@ -205,7 +205,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Non significa che ogni algoritmo debba avere molti passi: significa che i passi essenziali non devono essere nascosti dietro parole vaghe.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Una procedura apparentemente chiara va messa alla prova: un solo esempio pu? confermare un caso, ma non mostrare gli errori negli altri.</p>
+<p align="justify"><strong>Passaggio:</strong> Una procedura apparentemente chiara va messa alla prova: un solo esempio pu&ograve; confermare un caso, ma non mostrare gli errori negli altri.</p>
 
 ---
 
@@ -223,7 +223,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Nel secondo anno costruire casi di test diventerà una normale abitudine di lavoro.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Per controllare davvero la soluzione scegliamo esempi con ruoli diversi: il caso abituale, il confine e il dato che pu? smentire la nostra ipotesi.</p>
+<p align="justify"><strong>Passaggio:</strong> Per controllare davvero la soluzione scegliamo esempi con ruoli diversi: il caso abituale, il confine e il dato che pu&ograve; smentire la nostra ipotesi.</p>
 
 ---
 
@@ -248,7 +248,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Cercare controesempi non significa voler “rompere” il lavoro di qualcuno: significa verificarlo seriamente.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Quando un controllo fallisce, il passo successivo ? capire a quale livello si trova il problema: nella comprensione, nell?algoritmo oppure nell?esecuzione.</p>
+<p align="justify"><strong>Passaggio:</strong> Quando un controllo fallisce, il passo successivo &egrave; capire a quale livello si trova il problema: nella comprensione, nell'algoritmo oppure nell'esecuzione.</p>
 
 ---
 
@@ -274,7 +274,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Questa distinzione ci aiuterà a fare debug senza cambiare cose a caso. Se abbiamo scelto la richiesta sbagliata, modificare una formula non risolve il problema; se l'algoritmo è corretto ma l'esecuzione fallisce, dobbiamo invece cercare il difetto nella traduzione in programma.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Ora ricomponiamo il percorso in una piccola attivit?: dalla consegna alla specifica, fino alla verifica su carta.</p>
+<p align="justify"><strong>Passaggio:</strong> Ora ricomponiamo il percorso in una piccola attivit&agrave;: dalla consegna alla specifica, fino alla verifica su carta.</p>
 
 ---
 
@@ -304,7 +304,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Poi scambia il foglio con un compagno. Il compagno deve poter ricostruire la tua idea e indicare dove manca un dato, un controllo o un passo. Se deve interromperti spesso per chiedere spiegazioni, non è un problema del compagno: è un segnale che la specifica o l'algoritmo sono ancora troppo vaghi.</p>
 
 
-<p align="justify"><strong>Passaggio:</strong> Il micro-lab ci ha fatto usare il metodo; il diagnostic serve a rendere visibile quali passaggi sono gi? solidi e quali richiedono una nuova prova.</p>
+<p align="justify"><strong>Passaggio:</strong> Il micro-lab ci ha fatto usare il metodo; il diagnostic serve a rendere visibile quali passaggi sono gi&agrave; solidi e quali richiedono una nuova prova.</p>
 
 ---
 
