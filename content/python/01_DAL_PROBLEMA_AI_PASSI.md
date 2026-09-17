@@ -182,7 +182,22 @@ FINE SE
 
 ## 6. Dry-run: eseguire con carta e penna
 
-<p align="justify">Algoritmo:</p>
+<p align="justify">Prima di eseguire una traccia manuale costruiamo l'algoritmo partendo da una consegna concreta:</p>
+
+<blockquote>
+<p align="justify">Un negozio applica uno sconto di 10 euro quando il prezzo supera 100 euro. Calcola il prezzo finale.</p>
+</blockquote>
+
+<p align="justify">Applichiamo il metodo visto in M00 e nei paragrafi precedenti:</p>
+
+<ol>
+  <li><strong>Input:</strong> il prezzo iniziale.</li>
+  <li><strong>Output:</strong> il prezzo finale da comunicare.</li>
+  <li><strong>Regola:</strong> lo sconto vale solo quando il prezzo è maggiore di 100; in tutti gli altri casi lo sconto è zero.</li>
+  <li><strong>Passi:</strong> leggiamo il prezzo, inizializziamo lo sconto, verifichiamo la condizione, calcoliamo il finale e mostriamo il risultato.</li>
+</ol>
+
+<p align="justify">La sequenza dei passi è già un algoritmo: il pseudocodice seguente la rende abbastanza precisa da poter essere eseguita a mano. Solo dopo averlo scritto scegliamo un valore di prova e registriamo come cambia lo stato.</p>
 
 ```text
 LEGGI prezzo
