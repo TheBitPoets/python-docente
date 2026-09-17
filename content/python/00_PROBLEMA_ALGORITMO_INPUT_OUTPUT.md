@@ -120,13 +120,13 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 
 ## 3. Input, output e vincoli
 
-<p align="justify">Prendiamo una seconda consegna:</p>
+<p align="justify">Restiamo nella situazione della bottiglia: per descrivere bene il problema dobbiamo separare i dati che entrano, l'operazione che li trasforma e il risultato che deve uscire.</p>
 
 <blockquote>
-<p align="justify">Dati la temperatura attuale e una soglia, indica se la temperatura supera la soglia.</p>
+<p align="justify">Una bottiglia costa 2 euro. Un cliente paga con 5 euro. Quanto resto deve ricevere?</p>
 </blockquote>
 
-<p align="justify">Possiamo estrarre due dati in ingresso: la temperatura attuale e la soglia. Il risultato è una risposta sì/no alla domanda “la temperatura supera la soglia?”. Un vincolo importante è che i due valori usino la stessa unità di misura: confrontare 20 gradi Celsius con una soglia espressa in Fahrenheit senza conversione produrrebbe una decisione senza significato.</p>
+<p align="justify">Gli input sono il prezzo della bottiglia e il pagamento ricevuto. La trasformazione consiste nel calcolare la differenza tra pagamento e prezzo; l'output è il resto da consegnare. C'è anche un vincolo: il pagamento deve essere maggiore o uguale al prezzo. Se il cliente paga meno, non possiamo chiamare la differenza “resto” senza prima decidere come segnalare il pagamento insufficiente.</p>
 
 <p align="center"><img src="../../assets/python/m00-input-output.svg" alt="Il prezzo e il pagamento entrano in una trasformazione; il risultato è il resto e il pagamento sufficiente è un vincolo." width="960"></p>
 <p align="center"><em>Input, trasformazione, output e vincolo rispondono a domande diverse.</em></p>
@@ -139,7 +139,7 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 <p align="justify">Il sensore è di colore blu.</p>
 </blockquote>
 
-<p align="justify">il colore probabilmente non serve a decidere se la temperatura supera la soglia.</p>
+<p align="justify">il colore probabilmente non serve a calcolare il resto.</p>
 
 <p align="justify">Un buon programmatore non usa automaticamente ogni dato disponibile: chiede <strong>quale dato serve davvero alla decisione</strong>.</p>
 
