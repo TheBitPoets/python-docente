@@ -2,7 +2,7 @@
 
 <!-- COURSE-FRAME:START -->
 <table align="center">
-<tr><td>
+<tr><td style="text-align: justify;">
 <details>
 <summary>&#129517; <strong>Orientamento della sezione</strong></summary>
 
