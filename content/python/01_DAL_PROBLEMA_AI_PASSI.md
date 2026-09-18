@@ -151,8 +151,8 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 <tr><td><strong>Input</strong></td><td><code>LEGGI &lt;nome_variabile&gt;</code></td><td>ricevi un dato e conservalo in una variabile</td><td><code>LEGGI prezzo</code></td></tr>
 <tr><td><strong>Output</strong></td><td><code>MOSTRA &lt;nome_variabile&gt;</code></td><td>comunica il valore o il messaggio richiesto</td><td><code>MOSTRA finale</code></td></tr>
 <tr><td><strong>Assegnamento</strong></td><td><code>ASSEGNA &lt;nome_variabile&gt; &larr; &lt;valore&gt;</code></td><td>crea o aggiorna un valore durante la procedura</td><td><code>ASSEGNA totale &larr; prezzo + 3</code></td></tr>
-<tr><td><strong>Selezione</strong></td><td><code>SE &lt;condizione&gt; ... ALTRIMENTI ... FINE SE</code></td><td>scegli un percorso in base a una condizione</td><td><code>SE prezzo &gt; 100</code></td></tr>
-<tr><td><strong>Ciclo</strong></td><td><code>MENTRE &lt;condizione&gt; ... FINE MENTRE</code></td><td>ripeti i passi finché la condizione resta vera</td><td><code>MENTRE tentativi &lt; 3</code></td></tr>
+<tr><td><strong>Selezione</strong></td><td><code>SE &lt;condizione&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;...<br>ALTRIMENTI<br>&nbsp;&nbsp;&nbsp;&nbsp;...<br>FINE SE</code></td><td>scegli un percorso in base a una condizione</td><td><code>SE prezzo &gt; 100<br>&nbsp;&nbsp;&nbsp;&nbsp;ASSEGNA sconto &larr; 10<br>ALTRIMENTI<br>&nbsp;&nbsp;&nbsp;&nbsp;ASSEGNA sconto &larr; 0<br>FINE SE</code></td></tr>
+<tr><td><strong>Ciclo</strong></td><td><code>MENTRE &lt;condizione&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;...<br>FINE MENTRE</code></td><td>ripeti i passi finché la condizione resta vera</td><td><code>MENTRE tentativi &lt; 3<br>&nbsp;&nbsp;&nbsp;&nbsp;ASSEGNA tentativi &larr; tentativi + 1<br>FINE MENTRE</code></td></tr>
 </tbody>
 </table>
 
