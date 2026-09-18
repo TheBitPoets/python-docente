@@ -387,29 +387,108 @@ uscita
 
 ## 12. Laboratorio: dal testo all'algoritmo
 
-<p align="justify">Scegli uno dei problemi:</p>
+<p align="justify">Qui applichiamo l'intero percorso della lezione a quattro problemi. Per ciascuno partiamo dalla consegna, separiamo input, output e vincoli, ordiniamo i passi, scriviamo uno pseudocodice e controlliamo il comportamento con un caso generale e con casi di contorno.</p>
 
-<ul>
-  <li>tariffa base + supplemento sopra una soglia;</li>
-  <li>maggiore tra due valori;</li>
-  <li>temperatura dentro/fuori intervallo;</li>
-  <li>tre mosse di un robot su griglia.</li>
-</ul>
+<h3>12.1 Tariffa base e supplemento sopra una soglia</h3>
 
-<p align="justify">Consegna:</p>
+<blockquote><p align="justify"><strong>Problema:</strong> una corsa ha una tariffa base di 10 euro. Se la distanza supera 20 km, si aggiungono 3 euro. Calcola il totale.</p></blockquote>
+<table align="center"><thead><tr><th>Elemento</th><th>Specifica</th></tr></thead><tbody>
+<tr><td><strong>Input</strong></td><td>distanza in chilometri</td></tr>
+<tr><td><strong>Output</strong></td><td>totale della tariffa</td></tr>
+<tr><td><strong>Vincoli</strong></td><td>distanza maggiore o uguale a zero; la soglia &egrave; superata solo con distanza &gt; 20</td></tr>
+</tbody></table>
+<p align="justify"><strong>Passi:</strong> leggiamo la distanza; partiamo dal totale base di 10 euro; controlliamo se la distanza supera 20; aggiungiamo 3 euro solo in quel caso; comunichiamo il totale.</p>
+<p align="justify"><strong>Caso generale:</strong> per distanza 35 km la condizione &egrave; vera e il totale diventa 13 euro.</p>
+<p align="justify"><strong>Casi limite o di contorno:</strong> con 20 km la soglia non &egrave; superata e il totale resta 10 euro; con 0 km verifichiamo il minimo ammesso e il totale resta 10 euro.</p>
+<pre><code>LEGGI distanza
+ASSEGNA totale &larr; 10
+SE distanza &gt; 20
+    ASSEGNA totale &larr; totale + 3
+FINE SE
+MOSTRA totale</code></pre>
+<table align="center"><thead><tr><th>Prova</th><th>Condizione</th><th>Totale</th></tr></thead><tbody>
+<tr><td>Generale: 35 km</td><td>35 &gt; 20</td><td>13 euro</td></tr>
+<tr><td>Limite: 20 km</td><td>20 &gt; 20 &egrave; falso</td><td>10 euro</td></tr>
+<tr><td>Contorno: 0 km</td><td>0 &gt; 20 &egrave; falso</td><td>10 euro</td></tr>
+</tbody></table>
 
-```text
-INPUT
-OUTPUT
-VINCOLI
-PSEUDOCODICE
-2 casi normali/alternativi
-1 caso limite
-TRACE di almeno un caso
-```
+<h3>12.2 Maggiore tra due valori</h3>
 
-<p align="justify">Il compagno che riceve il tuo lavoro deve poter simulare l'algoritmo senza chiederti spiegazioni aggiuntive.</p>
+<blockquote><p align="justify"><strong>Problema:</strong> leggi due valori e comunica il maggiore; se sono uguali, dichiaralo.</p></blockquote>
+<table align="center"><thead><tr><th>Elemento</th><th>Specifica</th></tr></thead><tbody>
+<tr><td><strong>Input</strong></td><td>valore A e valore B</td></tr>
+<tr><td><strong>Output</strong></td><td>A, B oppure il messaggio &ldquo;uguali&rdquo;</td></tr>
+<tr><td><strong>Vincoli</strong></td><td>i due valori devono essere confrontabili; il caso A = B deve essere gestito</td></tr>
+</tbody></table>
+<p align="justify"><strong>Passi:</strong> leggiamo A e B; confrontiamo A con B; se A &egrave; maggiore comunichiamo A; altrimenti, se B &egrave; maggiore comunichiamo B; se nessuna delle due condizioni &egrave; vera, i valori sono uguali.</p>
+<p align="justify"><strong>Caso generale:</strong> con A = 8 e B = 3 comunichiamo 8.</p>
+<p align="justify"><strong>Casi limite o di contorno:</strong> con A = B = 5 comunichiamo &ldquo;uguali&rdquo;; con A = -2 e B = -7 verifichiamo che il confronto funzioni anche con valori negativi e comunichiamo -2.</p>
+<pre><code>LEGGI A
+LEGGI B
+SE A &gt; B
+    MOSTRA A
+ALTRIMENTI SE B &gt; A
+    MOSTRA B
+ALTRIMENTI
+    MOSTRA "uguali"
+FINE SE</code></pre>
+<table align="center"><thead><tr><th>Prova</th><th>Primo confronto vero</th><th>Output</th></tr></thead><tbody>
+<tr><td>Generale: 8, 3</td><td>A &gt; B</td><td>8</td></tr>
+<tr><td>Limite: 5, 5</td><td>nessuno dei due</td><td>uguali</td></tr>
+<tr><td>Contorno: -2, -7</td><td>A &gt; B</td><td>-2</td></tr>
+</tbody></table>
 
+<h3>12.3 Temperatura dentro o fuori intervallo</h3>
+
+<blockquote><p align="justify"><strong>Problema:</strong> indica se una temperatura &egrave; dentro l'intervallo di comfort da 18 &deg;C a 26 &deg;C, estremi compresi.</p></blockquote>
+<table align="center"><thead><tr><th>Elemento</th><th>Specifica</th></tr></thead><tbody>
+<tr><td><strong>Input</strong></td><td>temperatura in gradi Celsius</td></tr>
+<tr><td><strong>Output</strong></td><td>&ldquo;dentro&rdquo; oppure &ldquo;fuori&rdquo;</td></tr>
+<tr><td><strong>Vincoli</strong></td><td>18 e 26 appartengono all'intervallo; la misura deve usare i gradi Celsius</td></tr>
+</tbody></table>
+<p align="justify"><strong>Passi:</strong> leggiamo la temperatura; verifichiamo insieme il limite inferiore e quello superiore; comunichiamo &ldquo;dentro&rdquo; solo se entrambe le condizioni sono vere; in tutti gli altri casi comunichiamo &ldquo;fuori&rdquo;.</p>
+<p align="justify"><strong>Caso generale:</strong> con 22 &deg;C entrambe le condizioni sono vere e l'output &egrave; &ldquo;dentro&rdquo;.</p>
+<p align="justify"><strong>Casi limite o di contorno:</strong> 18 &deg;C e 26 &deg;C sono dentro perch&eacute; gli estremi sono compresi; 17 &deg;C e 27 &deg;C sono fuori.</p>
+<pre><code>LEGGI temperatura
+SE temperatura &gt;= 18 E temperatura &lt;= 26
+    MOSTRA "dentro"
+ALTRIMENTI
+    MOSTRA "fuori"
+FINE SE</code></pre>
+<table align="center"><thead><tr><th>Prova</th><th>Verifica</th><th>Output</th></tr></thead><tbody>
+<tr><td>Generale: 22 &deg;C</td><td>18 &le; 22 &le; 26</td><td>dentro</td></tr>
+<tr><td>Limite inferiore: 18 &deg;C</td><td>18 &le; 18 &le; 26</td><td>dentro</td></tr>
+<tr><td>Limite superiore: 26 &deg;C</td><td>18 &le; 26 &le; 26</td><td>dentro</td></tr>
+<tr><td>Contorno: 17 &deg;C</td><td>17 &lt; 18</td><td>fuori</td></tr>
+</tbody></table>
+
+<h3>12.4 Tre mosse di un robot su una griglia</h3>
+
+<blockquote><p align="justify"><strong>Problema:</strong> un robot parte dalla casella (0, 0) e riceve esattamente tre comandi. Ogni comando &egrave; N, S, E oppure O; indica la posizione finale.</p></blockquote>
+<table align="center"><thead><tr><th>Elemento</th><th>Specifica</th></tr></thead><tbody>
+<tr><td><strong>Input</strong></td><td>tre comandi di movimento: N, S, E, O</td></tr>
+<tr><td><strong>Output</strong></td><td>coordinata finale (x, y)</td></tr>
+<tr><td><strong>Vincoli</strong></td><td>partenza fissa (0, 0); esattamente tre comandi validi; N/S cambiano y, E/O cambiano x</td></tr>
+</tbody></table>
+<p align="justify"><strong>Passi:</strong> inizializziamo x e y a zero; leggiamo i tre comandi uno alla volta; aggiorniamo una sola coordinata per ogni comando; dopo il terzo comando comunichiamo la posizione finale.</p>
+<p align="justify"><strong>Caso generale:</strong> con N, E, N il robot passa da (0, 0) a (0, 1), poi (1, 1), infine (1, 2).</p>
+<p align="justify"><strong>Casi limite o di contorno:</strong> con E, O, E verifichiamo che due movimenti opposti si annullino e arriviamo a (1, 0); con N, S, O arriviamo a (-1, 0), quindi controlliamo anche le coordinate negative.</p>
+<pre><code>ASSEGNA x &larr; 0
+ASSEGNA y &larr; 0
+RIPETI per ciascuno dei 3 comandi
+    SE comando = "N"     ASSEGNA y &larr; y + 1
+    SE comando = "S"     ASSEGNA y &larr; y - 1
+    SE comando = "E"     ASSEGNA x &larr; x + 1
+    SE comando = "O"     ASSEGNA x &larr; x - 1
+FINE RIPETI
+MOSTRA (x, y)</code></pre>
+<table align="center"><thead><tr><th>Prova</th><th>Traccia delle posizioni</th><th>Output</th></tr></thead><tbody>
+<tr><td>Generale: N, E, N</td><td>(0,0) &rarr; (0,1) &rarr; (1,1) &rarr; (1,2)</td><td>(1,2)</td></tr>
+<tr><td>Contorno: E, O, E</td><td>(0,0) &rarr; (1,0) &rarr; (0,0) &rarr; (1,0)</td><td>(1,0)</td></tr>
+<tr><td>Contorno: N, S, O</td><td>(0,0) &rarr; (0,1) &rarr; (0,0) &rarr; (-1,0)</td><td>(-1,0)</td></tr>
+</tbody></table>
+
+<p align="justify">In tutti e quattro i problemi il metodo &egrave; lo stesso: comprendere la consegna, dichiarare il contratto, ordinare i passi, scrivere una procedura leggibile e verificarla su casi che coprono sia il comportamento normale sia i confini.</p>
 
 <p align="justify"><strong>Passaggio:</strong> Il laboratorio chiude il ciclo: ora verifichiamo se sai ripeterlo autonomamente, dalla specifica ai test.</p>
 
