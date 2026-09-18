@@ -483,12 +483,19 @@ FINE SE</code></pre>
 <p align="justify"><strong>Casi limite o di contorno:</strong> con E, O, E verifichiamo che due movimenti opposti si annullino e arriviamo a (1, 0); con N, S, O arriviamo a (-1, 0), quindi controlliamo anche le coordinate negative.</p>
 <pre><code>ASSEGNA x &larr; 0
 ASSEGNA y &larr; 0
-RIPETI per ciascuno dei 3 comandi
-    SE comando = "N"     ASSEGNA y &larr; y + 1
-    SE comando = "S"     ASSEGNA y &larr; y - 1
-    SE comando = "E"     ASSEGNA x &larr; x + 1
-    SE comando = "O"     ASSEGNA x &larr; x - 1
-FINE RIPETI
+ASSEGNA mosse &larr; 0
+MENTRE mosse &lt; 3
+    LEGGI comando
+    SE comando = "N"
+        ASSEGNA y &larr; y + 1
+    SE comando = "S"
+        ASSEGNA y &larr; y - 1
+    SE comando = "E"
+        ASSEGNA x &larr; x + 1
+    SE comando = "O"
+        ASSEGNA x &larr; x - 1
+    ASSEGNA mosse &larr; mosse + 1
+FINE MENTRE
 MOSTRA (x, y)</code></pre>
 <table align="center"><thead><tr><th>Prova</th><th>Traccia delle posizioni</th><th>Output</th></tr></thead><tbody>
 <tr><td>Generale: N, E, N</td><td>(0,0) &rarr; (0,1) &rarr; (1,1) &rarr; (1,2)</td><td>(1,2)</td></tr>
