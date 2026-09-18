@@ -148,9 +148,9 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 <tr><th>Idea</th><th>Forma</th><th>Che cosa significa</th><th>Esempio</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>Input</strong></td><td><code>LEGGI &lt;nome_variabile&gt;</code></td><td>ricevi un dato e conservalo in una variabile</td><td><code>LEGGI prezzo</code></td></tr>
-<tr><td><strong>Output</strong></td><td><code>MOSTRA &lt;nome_variabile&gt;</code></td><td>comunica il valore o il messaggio richiesto</td><td><code>MOSTRA finale</code></td></tr>
-<tr><td><strong>Assegnamento</strong></td><td><code>ASSEGNA &lt;nome_variabile&gt; &larr; &lt;valore&gt;</code></td><td>crea o aggiorna un valore durante la procedura</td><td><code>ASSEGNA totale &larr; prezzo + 3</code></td></tr>
+<tr><td><strong>Input</strong></td><td><pre><code>LEGGI &lt;nome_variabile&gt;</code></pre></td><td>ricevi un dato e conservalo in una variabile</td><td><pre><code>LEGGI prezzo</code></pre></td></tr>
+<tr><td><strong>Output</strong></td><td><pre><code>MOSTRA &lt;nome_variabile&gt;</code></pre></td><td>comunica il valore o il messaggio richiesto</td><td><pre><code>MOSTRA finale</code></pre></td></tr>
+<tr><td><strong>Assegnamento</strong></td><td><pre><code>ASSEGNA &lt;nome_variabile&gt; &larr; &lt;valore&gt;</code></pre></td><td>crea o aggiorna un valore durante la procedura</td><td><pre><code>ASSEGNA totale &larr; prezzo + 3</code></pre></td></tr>
 <tr><td><strong>Selezione</strong></td><td><pre><code>SE &lt;condizione&gt;
     ...
 ALTRIMENTI
