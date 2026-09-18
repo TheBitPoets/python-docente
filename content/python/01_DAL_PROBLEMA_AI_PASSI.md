@@ -141,26 +141,22 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 <p align="justify">Lo pseudocodice non ha un unico standard universale per il nostro corso.</p>
 
-<p align="justify">Usiamo convenzioni semplici e coerenti:</p>
+<p align="justify">Usiamo convenzioni semplici e coerenti. La tabella seguente è la nostra sintassi di riferimento:</p>
 
-```text
-LEGGI dato
-ASSEGNA nome ← espressione
-SE condizione
-    ...
-ALTRIMENTI
-    ...
-FINE SE
-MOSTRA valore
-```
+<table align="center">
+<thead>
+<tr><th>Idea</th><th>Forma</th><th>Che cosa significa</th><th>Esempio</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Input</strong></td><td><code>LEGGI &lt;nome_variabile&gt;</code></td><td>ricevi un dato e conservalo in una variabile</td><td><code>LEGGI prezzo</code></td></tr>
+<tr><td><strong>Output</strong></td><td><code>MOSTRA &lt;nome_variabile&gt;</code></td><td>comunica il valore o il messaggio richiesto</td><td><code>MOSTRA finale</code></td></tr>
+<tr><td><strong>Assegnamento</strong></td><td><code>ASSEGNA &lt;nome_variabile&gt; &larr; &lt;valore&gt;</code></td><td>crea o aggiorna un valore durante la procedura</td><td><code>ASSEGNA totale &larr; prezzo + 3</code></td></tr>
+<tr><td><strong>Selezione</strong></td><td><code>SE &lt;condizione&gt; ... ALTRIMENTI ... FINE SE</code></td><td>scegli un percorso in base a una condizione</td><td><code>SE prezzo &gt; 100</code></td></tr>
+<tr><td><strong>Ciclo</strong></td><td><code>MENTRE &lt;condizione&gt; ... FINE MENTRE</code></td><td>ripeti i passi finché la condizione resta vera</td><td><code>MENTRE tentativi &lt; 3</code></td></tr>
+</tbody>
+</table>
 
-<p align="justify">Più avanti useremo anche:</p>
-
-```text
-MENTRE condizione
-    ...
-FINE MENTRE
-```
+<p align="justify">Le parole tra parentesi angolari sono segnaposto: <code>&lt;nome_variabile&gt;</code> indica che dobbiamo sostituirle con un nome concreto, come <code>prezzo</code> o <code>totale</code>. I tre puntini rappresentano i passi che appartengono a quel blocco.</p>
 
 <p align="justify">Lo scopo è esprimere l'algoritmo senza essere bloccati dalla sintassi di un linguaggio.</p>
 
