@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m01-selezione-punteggio.svg">
+<title id="title">Punteggio: conta la prima condizione vera</title>
+<desc id="desc">Con punteggio &gt;= 90 mostriamo fascia alta e saltiamo il secondo confronto. Altrimenti controlliamo punteggio &gt;= 60: se vero fascia media, se falso fascia bassa.</desc>
+<defs id="visual-kit-components"/>
+<defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}"/></marker></defs>
+<rect width="1920" height="1080" fill="{{canvas}}"/>
+<g font-family="{{family}}">
+<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Punteggio: conta la prima condizione vera</text>
+<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">La seconda condizione viene controllata solo se la prima è falsa.</text>
+<rect x="360.0" y="188" width="240" height="72" rx="36" fill="#dbeafe" stroke="{{process}}" stroke-width="4"/><text x="480" y="234" text-anchor="middle" font-size="30" fill="{{ink}}">INIZIO</text>
+<path d="M480 260 V288" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4"/><text x="480" y="338" text-anchor="middle" font-size="30" fill="{{ink}}">LEGGI punteggio</text>
+<path d="M480 368 V398" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<path d="M480 398 L680 478 L480 558 L280 478 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4"/><text x="480" y="488" text-anchor="middle" font-size="30" fill="{{ink}}">punteggio &gt;= 90</text>
+<path d="M480 558 V680" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<text x="520" y="624" text-anchor="middle" font-size="30" fill="{{line}}">vero</text>
+<path d="M680 478 H960" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<text x="820" y="452" text-anchor="middle" font-size="30" fill="{{line}}">falso</text>
+<text x="1160" y="374" text-anchor="middle" font-size="26" fill="{{muted}}">ALTRIMENTI SE</text>
+<path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4"/><text x="1160" y="488" text-anchor="middle" font-size="30" fill="{{ink}}">punteggio &gt;= 60</text>
+<path d="M1160 558 V680" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<text x="1200" y="624" text-anchor="middle" font-size="30" fill="{{line}}">vero</text>
+<path d="M1360 478 H1660 V680" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<text x="1500" y="452" text-anchor="middle" font-size="30" fill="{{line}}">falso</text>
+<text x="1616" y="624" text-anchor="end" font-size="26" fill="{{muted}}">ALTRIMENTI</text>
+<path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4"/><text x="480" y="730" text-anchor="middle" font-size="30" fill="{{ink}}">MOSTRA “fascia alta”</text>
+<path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4"/><text x="1160" y="730" text-anchor="middle" font-size="30" fill="{{ink}}">MOSTRA “fascia media”</text>
+<path d="M1496.0 680 H1848.0 L1824.0 760 H1472.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4"/><text x="1660" y="730" text-anchor="middle" font-size="30" fill="{{ink}}">MOSTRA “fascia bassa”</text>
+<path d="M480 760 V856 H1160" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<path d="M1660 760 V856 H1160" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<path d="M1160 760 V856" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<circle cx="1160" cy="856" r="7" fill="{{line}}"/>
+<text x="1190" y="888" text-anchor="start" font-size="26" fill="{{muted}}">FINE SE</text>
+<path d="M1160 856 V920" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
+<rect x="1040.0" y="920" width="240" height="72" rx="36" fill="#dbeafe" stroke="{{process}}" stroke-width="4"/><text x="1160" y="966" text-anchor="middle" font-size="30" fill="{{ink}}">FINE</text>
+<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = flusso di esecuzione. Il punto di ricongiungimento corrisponde a FINE SE.</text>
+</g>
+</svg>

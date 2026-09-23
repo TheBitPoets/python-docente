@@ -369,9 +369,37 @@ Una <strong>condizione</strong> è un'affermazione che può essere vera o falsa,
 
 <p align="justify">Le condizioni vengono controllate dall'alto verso il basso: si esegue <strong>solo il ramo della prima condizione vera</strong>, poi si prosegue dopo <code>FINE SE</code>. Il ramo finale <code>ALTRIMENTI</code> non ha una condizione: raccoglie tutti i casi in cui le condizioni precedenti sono false. Si possono ripetere più rami <code>ALTRIMENTI SE</code> prima dell'eventuale <code>ALTRIMENTI</code>.</p>
 
+<p align="justify">Riprendiamo i <strong>flowchart</strong> già incontrati l'anno scorso per vedere i percorsi degli esempi. Le frecce indicano l'ordine dei passi; il rombo contiene una condizione e ha due uscite, <strong>vero</strong> e <strong>falso</strong>; il rettangolo rappresenta un'operazione e il parallelogramma una lettura o un output. Le forme arrotondate indicano inizio e fine. Ritroveremo questi simboli in <a href="02_FLOWCHART_SEQUENZA_SELEZIONE.md">M02</a>.</p>
+
+<p align="justify"><strong>Due rami: lo sconto.</strong> Riprendiamo la selezione semplice della tabella: se <code>prezzo &gt; 100</code> assegniamo 10 a <code>sconto</code>, altrimenti assegniamo 0. Viene eseguito un solo assegnamento; poi i due percorsi si ricongiungono dopo <code>FINE SE</code>. Con prezzo 100 seguiamo il ramo falso.</p>
+
+<p align="center"><img src="../../assets/python/m01-selezione-due-rami.svg" alt="Dopo la lettura del prezzo, il rombo prezzo maggiore di 100 conduce, sul ramo vero, a sconto ← 10 e, sul ramo falso, a sconto ← 0. Entrambi i percorsi si ricongiungono dopo FINE SE." width="960"></p>
+<p align="center"><em>Una condizione, due rami alternativi: in ogni esecuzione ne percorriamo uno solo.</em></p>
+
 <p align="justify">Nell'esempio della tabella, con A pari a 8 e B pari a 3 il primo confronto è vero e mostriamo A; con A pari a 3 e B pari a 8 il primo è falso, il secondo è vero e mostriamo B; con A e B entrambi pari a 5 i due confronti sono falsi e mostriamo &ldquo;uguali&rdquo;. Abbiamo quindi <strong>due condizioni e tre casi</strong>.</p>
 
+<p align="center"><img src="../../assets/python/m01-selezione-tre-casi.svg" alt="Dopo la lettura di A e B, se A è maggiore di B mostriamo A. Solo se il primo confronto è falso controlliamo B maggiore di A: se vero mostriamo B, altrimenti mostriamo uguali. I tre percorsi si ricongiungono dopo FINE SE." width="960"></p>
+<p align="center"><em>Ogni rombo ha sempre due uscite. Il secondo rombo, raggiunto solo dal primo ramo falso, permette di distinguere tre casi complessivi.</em></p>
+
 <p align="justify">L'ordine conta anche quando più condizioni potrebbero essere vere: se controlliamo prima <code>punteggio &gt;= 90</code> e poi <code>punteggio &gt;= 60</code>, un punteggio di 95 entra solo nel primo ramo. Con due <code>SE</code> separati, invece, entrambi i blocchi potrebbero essere eseguiti.</p>
+
+<p align="justify">Completiamo l'esempio del punteggio con tre messaggi, così possiamo seguirne il flusso:</p>
+
+```text
+LEGGI punteggio
+SE punteggio >= 90
+    MOSTRA "fascia alta"
+ALTRIMENTI SE punteggio >= 60
+    MOSTRA "fascia media"
+ALTRIMENTI
+    MOSTRA "fascia bassa"
+FINE SE
+```
+
+<p align="center"><img src="../../assets/python/m01-selezione-punteggio.svg" alt="Il confronto punteggio maggiore o uguale a 90 porta alla fascia alta se vero. Solo se falso si controlla punteggio maggiore o uguale a 60: il ramo vero porta alla fascia media e quello falso alla fascia bassa. Ogni output prosegue al ricongiungimento dopo FINE SE." width="960"></p>
+<p align="center"><em>Con 95 il secondo confronto non viene eseguito. Con 75 seguiamo falso, poi vero; con 40 seguiamo falso, poi falso.</em></p>
+
+<p align="justify">Nel secondo rombo sappiamo già che <code>punteggio &lt; 90</code>: per questo il ramo <code>punteggio &gt;= 60</code> seleziona solo i valori da 60 incluso a 90 escluso. Con 90 scegliamo la fascia alta; con 60 la fascia media. I rami si ricongiungono nel punto che corrisponde a <code>FINE SE</code>: da lì l'algoritmo continua con le eventuali istruzioni successive, senza passare dagli altri rami.</p>
 
 <p align="justify">Il ramo <code>ALTRIMENTI</code> è facoltativo anche nella selezione semplice: se manca e la condizione è falsa, non eseguiamo il blocco e proseguiamo dopo <code>FINE SE</code>.</p>
 

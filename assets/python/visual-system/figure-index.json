@@ -34,8 +34,8 @@
     "asset": null,
     "alt_draft": "Affiancare passo eseguito e fotografia dello stato, distinguendo dati iniziali e valori aggiornati. Leggere la traccia dall'alto verso il basso.",
     "caption_draft": "Lo stato lungo una traccia. Affiancare passo eseguito e fotografia dello stato, distinguendo dati iniziali e valori aggiornati. Leggere la traccia dall'alto verso il basso.",
-    "existing_images": 5,
-    "existing_text_blocks": 8
+    "existing_images": 8,
+    "existing_text_blocks": 9
   },
   {
     "id": "py-m02-01",
@@ -734,6 +734,64 @@
     "asset": "assets/python/m01-ordine-test.svg",
     "alt_draft": "Il valore viene calcolato prima dell'output e i test coprono i casi principali.",
     "caption_draft": "Ordine dei passi e test",
+    "existing_images": 0,
+    "existing_text_blocks": 1
+  },
+  {
+    "id": "py-m01-06",
+    "module": "M01",
+    "title": "Selezione semplice: due rami",
+    "lesson_section": "content/python/01_DAL_PROBLEMA_AI_PASSI.md#41-selezione-a-più-casi-altrimenti-se",
+    "purpose": "Un confronto sul prezzo sceglie fra due assegnamenti; i rami si ricongiungono dopo FINE SE.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m01-selezione-due-rami.svg",
+    "alt_draft": "Un confronto sul prezzo sceglie fra due assegnamenti; i rami si ricongiungono dopo FINE SE.",
+    "caption_draft": "Selezione semplice: due rami",
+    "existing_images": 0,
+    "existing_text_blocks": 1
+  },
+  {
+    "id": "py-m01-07",
+    "module": "M01",
+    "title": "Due condizioni, tre casi",
+    "lesson_section": "content/python/01_DAL_PROBLEMA_AI_PASSI.md#41-selezione-a-più-casi-altrimenti-se",
+    "purpose": "Il secondo confronto fra A e B viene raggiunto solo dal ramo falso del primo; un solo output viene eseguito.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m01-selezione-tre-casi.svg",
+    "alt_draft": "Il secondo confronto fra A e B viene raggiunto solo dal ramo falso del primo; un solo output viene eseguito.",
+    "caption_draft": "Due condizioni, tre casi",
+    "existing_images": 0,
+    "existing_text_blocks": 1
+  },
+  {
+    "id": "py-m01-08",
+    "module": "M01",
+    "title": "Punteggio e ordine delle condizioni",
+    "lesson_section": "content/python/01_DAL_PROBLEMA_AI_PASSI.md#41-selezione-a-più-casi-altrimenti-se",
+    "purpose": "Le soglie 90 e 60 distinguono tre fasce: dopo la prima condizione vera le altre vengono saltate.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision"
+    ],
+    "priority": "P1",
+    "status": "prototype-realized",
+    "asset": "assets/python/m01-selezione-punteggio.svg",
+    "alt_draft": "Le soglie 90 e 60 distinguono tre fasce: dopo la prima condizione vera le altre vengono saltate.",
+    "caption_draft": "Punteggio e ordine delle condizioni",
     "existing_images": 0,
     "existing_text_blocks": 1
   }
