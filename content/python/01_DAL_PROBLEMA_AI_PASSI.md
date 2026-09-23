@@ -160,6 +160,19 @@ FINE SE</code></pre></td><td>scegli un percorso in base a una condizione</td><td
 ALTRIMENTI
     ASSEGNA sconto &larr; 0
 FINE SE</code></pre></td></tr>
+<tr><td><strong>Selezione a più casi</strong></td><td><pre><code>SE &lt;condizione_1&gt;
+    ...
+ALTRIMENTI SE &lt;condizione_2&gt;
+    ...
+ALTRIMENTI
+    ...
+FINE SE</code></pre></td><td>scegli il primo caso con condizione vera; se nessuna è vera, esegui il caso finale</td><td><pre><code>SE A &gt; B
+    MOSTRA A
+ALTRIMENTI SE B &gt; A
+    MOSTRA B
+ALTRIMENTI
+    MOSTRA "uguali"
+FINE SE</code></pre></td></tr>
 <tr><td><strong>Ciclo</strong></td><td><pre><code>MENTRE &lt;condizione&gt;
     ...
 FINE MENTRE</code></pre></td><td>ripeti i passi finch? la condizione resta vera</td><td><pre><code>MENTRE tentativi &lt; 3
@@ -171,6 +184,59 @@ FINE MENTRE</code></pre></td></tr>
 <p align="justify">Le parole tra parentesi angolari sono segnaposto: <code>&lt;nome_variabile&gt;</code> indica che dobbiamo sostituirle con un nome concreto, come <code>prezzo</code> o <code>totale</code>. I tre puntini rappresentano i passi che appartengono a quel blocco.</p>
 
 <p align="justify">Lo scopo è esprimere l'algoritmo senza essere bloccati dalla sintassi di un linguaggio.</p>
+
+### 4.1 Selezione a più casi: ALTRIMENTI SE
+
+<p align="justify">Una <strong>condizione</strong> è un'affermazione che può essere vera o falsa, come <code>A &gt; B</code>. Con <code>SE ... ALTRIMENTI</code> scegliamo fra due percorsi. Quando i casi possibili sono più di due, possiamo aggiungere uno o più rami <code>ALTRIMENTI SE &lt;condizione&gt;</code>.</p>
+
+<p align="justify">Le condizioni vengono controllate dall'alto verso il basso: si esegue <strong>solo il ramo della prima condizione vera</strong>, poi si prosegue dopo <code>FINE SE</code>. Il ramo finale <code>ALTRIMENTI</code> non ha una condizione: raccoglie tutti i casi in cui le condizioni precedenti sono false. Si possono ripetere più rami <code>ALTRIMENTI SE</code> prima dell'eventuale <code>ALTRIMENTI</code>.</p>
+
+<p align="justify">Nell'esempio della tabella, con A = 8 e B = 3 il primo confronto è vero e mostriamo A; con A = 3 e B = 8 il primo è falso, il secondo è vero e mostriamo B; con A = B = 5 entrambi sono falsi e mostriamo &ldquo;uguali&rdquo;. Abbiamo quindi <strong>due condizioni e tre casi</strong>.</p>
+
+<p align="justify">L'ordine conta anche quando più condizioni potrebbero essere vere: se controlliamo prima <code>punteggio &gt;= 90</code> e poi <code>punteggio &gt;= 60</code>, un punteggio di 95 entra solo nel primo ramo. Con due <code>SE</code> separati, invece, entrambi i blocchi potrebbero essere eseguiti.</p>
+
+<p align="justify">Il ramo <code>ALTRIMENTI</code> è facoltativo anche nella selezione semplice: se manca e la condizione è falsa, non eseguiamo il blocco e proseguiamo dopo <code>FINE SE</code>.</p>
+
+### 4.2 Combinare condizioni: E, O, NON
+
+<p align="justify">A volte una decisione dipende da più condizioni insieme. Gli <strong>operatori booleani</strong>, detti anche operatori logici, permettono di combinarle o negarle e producono ancora un risultato vero o falso. Nel nostro pseudocodice usiamo <code>E</code>, <code>O</code> e <code>NON</code>; i nomi inglesi corrispondenti sono <code>AND</code>, <code>OR</code> e <code>NOT</code>.</p>
+
+<table align="center">
+<thead><tr><th>Operatore</th><th>Quando il risultato è vero</th><th>Esempio</th></tr></thead>
+<tbody>
+<tr><td><strong>E (AND)</strong></td><td>quando entrambe le condizioni sono vere</td><td><code>(quantita &gt;= 1) E (quantita &lt;= 10)</code>: la quantità è compresa tra 1 e 10, estremi inclusi</td></tr>
+<tr><td><strong>O (OR)</strong></td><td>quando almeno una delle condizioni è vera, anche se lo sono entrambe</td><td><code>(prezzo &gt;= 100) O (quantita &gt;= 10)</code>: basta raggiungere almeno una delle due soglie</td></tr>
+<tr><td><strong>NON (NOT)</strong></td><td>quando la condizione negata è falsa; se era vera, diventa falsa</td><td><code>NON (quantita &gt; 0)</code>: la quantità è zero o negativa</td></tr>
+</tbody>
+</table>
+
+<p align="justify"><strong>Esempio con E:</strong> accettiamo un ordine solo se la quantità è compresa tra 1 e 10, estremi inclusi. I due confronti formano un'unica condizione composta.</p>
+
+```text
+LEGGI quantita
+SE (quantita >= 1) E (quantita <= 10)
+    MOSTRA "quantità ammessa"
+ALTRIMENTI
+    MOSTRA "quantità non ammessa"
+FINE SE
+```
+
+<table align="center">
+<thead><tr><th>quantita</th><th>quantita &gt;= 1</th><th>quantita &lt;= 10</th><th>Risultato con E</th><th>Output</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>falso</td><td>vero</td><td>falso</td><td>quantità non ammessa</td></tr>
+<tr><td>1</td><td>vero</td><td>vero</td><td>vero</td><td>quantità ammessa</td></tr>
+<tr><td>5</td><td>vero</td><td>vero</td><td>vero</td><td>quantità ammessa</td></tr>
+<tr><td>10</td><td>vero</td><td>vero</td><td>vero</td><td>quantità ammessa</td></tr>
+<tr><td>11</td><td>vero</td><td>falso</td><td>falso</td><td>quantità non ammessa</td></tr>
+</tbody>
+</table>
+
+<p align="justify"><strong>Esempio con O:</strong> uno sconto spetta se <code>(prezzo &gt;= 100) O (quantita &gt;= 10)</code>. Con prezzo 120 e quantità 2 la condizione è vera grazie al prezzo; con prezzo 80 e quantità 10 è vera grazie alla quantità; con prezzo 120 e quantità 10 è ancora vera, perché OR comprende anche il caso in cui entrambe le condizioni sono vere. Con prezzo 80 e quantità 2 è falsa.</p>
+
+<p align="justify"><strong>Esempio con NON:</strong> <code>NON (quantita &gt; 0)</code> è vera con quantità 0, perché il confronto <code>0 &gt; 0</code> è falso; è falsa con quantità 5, perché <code>5 &gt; 0</code> è vero. Possiamo negare anche una condizione composta: <code>NON ((quantita &gt;= 1) E (quantita &lt;= 10))</code> riconosce le quantità fuori dall'intervallo, come 0 e 11. In questo caso equivale a <code>(quantita &lt; 1) O (quantita &gt; 10)</code>.</p>
+
+<p align="justify">Usiamo le <strong>parentesi</strong> per rendere espliciti i gruppi di condizioni e, con <code>NON</code>, che cosa stiamo negando. Ogni confronto deve essere completo: scriviamo <code>(quantita &gt;= 1) E (quantita &lt;= 10)</code>, ripetendo il dato da confrontare.</p>
 
 ---
 
