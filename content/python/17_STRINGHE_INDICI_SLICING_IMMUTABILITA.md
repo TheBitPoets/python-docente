@@ -72,6 +72,17 @@ Disegna gli indici di una stringa breve e prevedi una slice, un indice negativo 
 
 ## 1. Una stringa è una sequenza
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — stringa:</strong>
+Una stringa <code>str</code> è una sequenza ordinata e immutabile di testo Unicode. Possiamo leggere gli elementi tramite indici, ma non modificarli direttamente nella stringa esistente.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 parola = "python"
 ```
@@ -90,6 +101,17 @@ indice neg. -6 -5 -4 -3 -2 -1
 
 ## 2. Lunghezza
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — lunghezza — len():</strong>
+<code>len(testo)</code> restituisce il numero di elementi della stringa. La stringa vuota ha lunghezza 0.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 len("python")
 ```
@@ -105,6 +127,17 @@ len("python")
 ---
 
 ## 3. Accesso con indice
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — indice:</strong>
+Un indice identifica una posizione nella sequenza. Gli indici non negativi iniziano da 0; gli indici negativi contano dalla fine, con <code>-1</code> per l'ultimo elemento.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 parola[0]   # 'p'
@@ -133,6 +166,17 @@ parola[6]
 ---
 
 ## 5. Slicing
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — slicing:</strong>
+Lo slicing seleziona una parte di una sequenza. Nella forma <code>testo[start:stop:step]</code>, <code>start</code> è incluso, <code>stop</code> è escluso e <code>step</code> indica il passo.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 parola[1:4]
@@ -213,7 +257,16 @@ parola[::-1]
 parola[0] = "P"
 ```
 
-<p align="justify">Una stringa non viene modificata “in posto” carattere per carattere.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — immutabilità:</strong>
+Una stringa è immutabile: il suo contenuto non può essere modificato in posto. Per ottenere un testo diverso creiamo una nuova stringa.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Per ottenere un nuovo valore:</p>
 
@@ -273,6 +326,17 @@ for i in range(len(parola)):
 ---
 
 ## 13. Letterali ed escape
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — letterale stringa ed escape:</strong>
+Un letterale stringa scrive direttamente un valore testuale nel codice, delimitandolo con virgolette. Una sequenza di escape usa la barra inversa per rappresentare caratteri speciali, come <code>\n</code> per un ritorno a capo.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Consolidare:</p>
 

@@ -79,6 +79,17 @@ Prepara modello, casi di test e una prima funzionalità completa; usa le evidenz
 
 ## 1. Non è “un programma grande”
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — capstone:</strong>
+Un capstone è un progetto conclusivo che integra le competenze del percorso. Qui richiede di analizzare un problema, modellare dati e oggetti, implementare collaborazioni e verificarle con test.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Un capstone non viene valutato per numero di righe.</p>
 
 <p align="justify">È un problema abbastanza ricco da richiedere:</p>

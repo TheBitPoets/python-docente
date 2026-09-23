@@ -125,6 +125,17 @@ totale > 50
 
 ## 2. Una condizione è un'espressione che produce `bool`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — condizione booleana:</strong>
+Negli esempi di questo modulo una condizione è un'espressione che produce un valore di tipo <code>bool</code>: <code>True</code> oppure <code>False</code>. Questa risposta determina il ramo da eseguire.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Nel REPL, prima prevedi:</p>
 
 ```python
@@ -235,7 +246,16 @@ esattamente 10   → == 10
 eta = 15
 ```
 
-<p align="justify">Questo è un <strong>assegnamento</strong>: associa un nome a un valore.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — assegnamento:</strong>
+Un <strong>assegnamento</strong> associa un nome al valore prodotto dall'espressione a destra di <code>=</code>.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Per fare una domanda di uguaglianza usiamo:</p>
 
@@ -262,6 +282,17 @@ True oppure False
 
 ## 5. Primo `if`: esegui qualcosa soltanto quando la condizione è vera
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — selezione semplice — if:</strong>
+<code>if</code> esegue il proprio blocco quando la condizione è vera. Quando è falsa, il blocco viene saltato e l'esecuzione prosegue.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Specifica:</p>
 
 <blockquote>
@@ -284,6 +315,17 @@ if temperatura < 0:
 ---
 
 ## 6. I due punti e l'indentazione fanno parte della struttura
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — blocco e indentazione:</strong>
+Un blocco è un gruppo di istruzioni che appartengono alla stessa struttura. In Python l'indentazione, cioè il rientro all'inizio delle righe, delimita il blocco.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Osserva:</p>
 
@@ -382,9 +424,16 @@ else:
 
 <p align="justify"><code>else</code> significa:</p>
 
-<blockquote>
-<p align="justify">se la condizione dell'<code>if</code> non è vera, esegui questo altro ramo.</p>
-</blockquote>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — else:</strong>
+<code>else</code> introduce il ramo eseguito quando la condizione dell'<code>if</code> è falsa.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Non serve riscrivere la condizione opposta.</p>
 

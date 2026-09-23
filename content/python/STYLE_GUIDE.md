@@ -13,6 +13,30 @@
 <li>Le slide restano nel formato Marp. Runbook, checkpoint, attività e documentazione operativa mantengono i propri contratti: questa normalizzazione riguarda le dispense canoniche.</li>
 </ul>
 
+## Definizioni
+
+<p align="justify">Le definizioni usano un riquadro HTML centrato, sempre visibile, con icona libro <code>&amp;#128214;</code> ed etichetta <strong>Definizione — termine:</strong>. La cornice riprende i riquadri didattici di <a href="https://github.com/TheBitPoets/2cornot2c/blob/main/README.md">2cornot2c</a>; icona ed etichetta seguono i <a href="https://github.com/TheBitPoets/tpsi-quinto-docente/blob/main/content/tpsi5/STYLE_GUIDE.md#callout-semantici">callout semantici di TPSI quinto</a>.</p>
+
+<pre><code>&lt;table align="center"&gt;
+&lt;tr&gt;
+&lt;td&gt;
+&lt;p align="justify"&gt;
+&lt;strong&gt;&lt;span style="font-size: 1.15em;"&gt;&amp;#128214;&lt;/span&gt; Definizione — termine:&lt;/strong&gt;
+Testo breve, autonomo e preciso.
+&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+<ul>
+<li>Rendere riconoscibile la definizione nel punto in cui il concetto viene introdotto, prima che sia necessario per capire gli esempi.</li>
+<li>Usare la stessa forma per definizioni originariamente presenti nella prosa, in citazioni o implicite in un titolo e nello schema immediatamente successivo.</li>
+<li>Scrivere una frase comprensibile anche da sola; mantenere esempi, codice, confronti e spiegazioni accanto al riquadro.</li>
+<li>Non usare <code>details</code> per nascondere una definizione e non inserire blocchi di codice Markdown dentro la tabella.</li>
+<li>Le tabelle di operatori o metodi possono dettagliare una definizione comune, senza un riquadro annidato per ogni riga.</li>
+<li>Distinguere una definizione da una consegna, un consiglio, una domanda o un richiamo a un caso concreto: questi mantengono la propria forma.</li>
+</ul>
+
 ## Orientamento della sezione
 
 <p align="justify">Subito dopo il titolo, una tabella centrata contiene <code>details</code> e un <code>summary</code> con bussola e titolo. Le definizioni e la spiegazione fondamentale restano visibili nel corpo della lezione.</p>

@@ -73,6 +73,17 @@ Calcola unione, intersezione e differenza dei corsi frequentati, senza dipendere
 
 ## 1. Il set non è una lista senza duplicati
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — insieme — set:</strong>
+Un <code>set</code> è una collezione mutabile di valori distinti. Rappresenta appartenenza e unicità; non offre posizioni indicizzate né un ordine su cui basare la soluzione.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 tag = {"python", "git", "linux"}
 ```
@@ -153,6 +164,17 @@ set  → progettato per membership tramite hashing
 
 ## 5. `add()`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — add():</strong>
+<code>insieme.add(valore)</code> aggiunge un valore al set. Se è già presente, l'insieme conserva una sola occorrenza.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 tag.add("docker")
 ```
@@ -164,6 +186,17 @@ tag.add("docker")
 ---
 
 ## 6. `remove()` vs `discard()`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — remove() e discard() sui set:</strong>
+Entrambi rimuovono il valore indicato dal set. Se il valore manca, <code>remove()</code> segnala <code>KeyError</code>, mentre <code>discard()</code> lascia l'insieme invariato senza segnalare errore.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 insieme.remove(x)
@@ -188,6 +221,17 @@ insieme.discard(x)
 
 ## 7. Unione
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — unione di insiemi:</strong>
+L'unione contiene gli elementi presenti in almeno uno dei due insiemi, senza duplicati.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 A | B
 ```
@@ -208,6 +252,17 @@ A.union(B)
 
 ## 8. Intersezione
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — intersezione di insiemi:</strong>
+L'intersezione contiene soltanto gli elementi presenti in entrambi gli insiemi.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 A & B
 ```
@@ -223,6 +278,17 @@ A & B
 ---
 
 ## 9. Differenza
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — differenza di insiemi:</strong>
+La differenza <code>A - B</code> contiene gli elementi presenti in A e assenti da B. Scambiando l'ordine degli insiemi può cambiare il risultato.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 A - B
@@ -305,7 +371,16 @@ solo_python = python - git
 
 ## 12. Hashability beginner
 
-<p align="justify">Per appartenere a un set, un elemento deve poter essere usato come valore hashable/stabile.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — hashable:</strong>
+Un valore è <em>hashable</em> se ha un valore hash che resta stabile durante la sua vita e coerente con l'uguaglianza: valori uguali devono avere lo stesso hash. Gli elementi di un set e le chiavi di un dizionario devono essere hashable.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Candidati comuni:</p>
 

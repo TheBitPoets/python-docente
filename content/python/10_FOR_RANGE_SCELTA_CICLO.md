@@ -120,6 +120,17 @@ for i in range(5):
 
 ## 2. Modello del `for`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — for:</strong>
+Un ciclo <code>for</code> attraversa i valori forniti da un oggetto iterabile, come <code>range</code>, ed esegue il corpo per ciascuno di essi.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Nel nostro primo uso:</p>
 
 ```python
@@ -147,6 +158,17 @@ incremento del contatore
 ---
 
 ## 3. `range(stop)`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — range:</strong>
+<code>range(start, stop, step)</code> descrive una sequenza di interi: parte da <code>start</code>, avanza di <code>step</code> ed esclude <code>stop</code>. Con un solo argomento la partenza è 0; il passo predefinito è 1.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 range(5)
@@ -464,6 +486,17 @@ ultimo valore effettivo = ?
 
 ## 14. `break`: interrompere quando l'obiettivo è già raggiunto
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — break:</strong>
+<code>break</code> interrompe il ciclo più interno che lo contiene. L'esecuzione prosegue con l'istruzione successiva a quel ciclo.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Esempio controllato:</p>
 
 ```python
@@ -482,6 +515,17 @@ for i in range(10):
 ---
 
 ## 15. `continue`: passa all'iterazione successiva
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — continue:</strong>
+<code>continue</code> salta il resto del corpo dell'iterazione corrente e passa alla successiva iterazione del ciclo.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 for i in range(5):

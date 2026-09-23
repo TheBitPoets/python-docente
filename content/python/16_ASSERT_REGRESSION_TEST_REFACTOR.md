@@ -113,7 +113,16 @@ assert doppio(0) == 0
 assert doppio(-2) == -4
 ```
 
-<p align="justify"><code>assert</code> rende eseguibile una aspettativa.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — assert:</strong>
+<code>assert</code> è un'istruzione che verifica un'aspettativa espressa come condizione. Se la condizione è falsa segnala <code>AssertionError</code>; altrimenti l'esecuzione continua.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -239,7 +248,16 @@ specifica / contratto
   <li>riesegui il nuovo test e quelli precedenti.</li>
 </ol>
 
-<p align="justify">Questo test protegge dal ritorno dello stesso bug in futuro.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — regression test:</strong>
+Un regression test verifica che un comportamento già corretto continui a funzionare dopo una modifica. Il test aggiunto per un bug protegge dal ritorno dello stesso errore.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -279,9 +297,16 @@ def massimo(a, b):
 
 <p align="justify">Definizione operativa:</p>
 
-<blockquote>
-<p align="justify">migliorare la struttura del codice senza cambiare il comportamento richiesto.</p>
-</blockquote>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — refactoring:</strong>
+Il refactoring consiste nel migliorare la struttura del codice senza cambiare il comportamento richiesto.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Esempi:</p>
 

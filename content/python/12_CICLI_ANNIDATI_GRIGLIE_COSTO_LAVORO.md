@@ -97,7 +97,16 @@ for riga in range(righe):
         print(riga, colonna)
 ```
 
-<p align="justify">Il ciclo interno completa il proprio percorso <strong>per ogni</strong> valore del ciclo esterno.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — cicli annidati:</strong>
+Due cicli sono annidati quando uno si trova nel corpo dell'altro. Il ciclo interno completa il proprio percorso <strong>per ogni</strong> valore del ciclo esterno.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 

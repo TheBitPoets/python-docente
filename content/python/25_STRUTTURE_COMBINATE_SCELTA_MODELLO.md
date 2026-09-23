@@ -111,6 +111,17 @@ chiave → valore / lookup                  → dict
 
 ## 3. Liste parallele: modello fragile
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — liste parallele:</strong>
+Le liste parallele conservano campi collegati in liste diverse: gli elementi nella stessa posizione appartengono allo stesso record. La loro corrispondenza deve rimanere sincronizzata.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 nomi = ["Anna", "Luca", "Marta"]
 voti = [8, 7, 9]
@@ -400,7 +411,16 @@ catalogo = {
 {"nome": "Anna", "voto": 8}
 ```
 
-<p align="justify">rappresenta un record con campi nominati.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — record:</strong>
+Un record raggruppa i dati relativi a una stessa entità in campi con ruoli precisi. Nell'esempio il dizionario rappresenta un record con campi nominati.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Più avanti potremo chiederci:</p>
 
@@ -415,6 +435,17 @@ catalogo = {
 ---
 
 ## 16. Matrix sparse come enrichment
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — matrice sparsa:</strong>
+Una matrice sparsa contiene molti valori nulli. Possiamo rappresentarla conservando soltanto le celle significative, per esempio in un dizionario che associa una coppia di coordinate al valore della cella.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Dopo tuple + dict possiamo rappresentare solo celle non zero:</p>
 

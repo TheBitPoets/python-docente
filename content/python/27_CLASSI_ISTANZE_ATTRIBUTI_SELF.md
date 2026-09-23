@@ -104,9 +104,27 @@ class Studente:
     pass
 ```
 
-<p align="justify">La classe è una definizione.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — classe:</strong>
+Una classe definisce un tipo di oggetto, descrivendo i dati e i comportamenti che le sue istanze possono avere.
+</p>
+</td>
+</tr>
+</table>
 
-<p align="justify">Un'istanza è un oggetto concreto creato da quella classe.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — istanza:</strong>
+Un'istanza è un oggetto concreto creato da una classe.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 anna = Studente()
@@ -118,6 +136,17 @@ luca = Studente()
 ---
 
 ## 3. `__init__`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — __init__:</strong>
+<code>__init__</code> è il metodo chiamato per inizializzare una nuova istanza. Imposta gli attributi necessari a lasciare l'oggetto in uno stato utilizzabile.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 class Studente:
@@ -150,7 +179,16 @@ anna.nome
 anna.voto
 ```
 
-<p align="justify">Gli attributi rappresentano stato dell'istanza.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — attributo di istanza:</strong>
+Un attributo di istanza è un dato associato a uno specifico oggetto. Gli attributi ne rappresentano lo stato e si raggiungono tramite il nome dell'istanza e il punto, come <code>anna.voto</code>.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Con:</p>
 
@@ -163,6 +201,17 @@ luca = Studente("Luca", 6)
 ---
 
 ## 5. Che cos'è `self`?
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — self:</strong>
+<code>self</code> è il nome convenzionale del primo parametro di un metodo di istanza: fa riferimento all'oggetto su cui il metodo sta operando.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 class Studente:
@@ -187,6 +236,17 @@ self → l'istanza concreta su cui il metodo sta lavorando
 ---
 
 ## 6. Metodo = comportamento legato all'oggetto
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — metodo di istanza:</strong>
+Un metodo di istanza è una funzione definita nella classe che opera su una specifica istanza. Tramite <code>self</code> può leggerne o modificarne lo stato.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 class Studente:

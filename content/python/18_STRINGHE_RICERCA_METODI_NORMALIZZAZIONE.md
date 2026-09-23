@@ -96,7 +96,16 @@ if "@" in email:
 "x" not in "python"  # True
 ```
 
-<p align="justify">Membership risponde:</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — membership — in e not in:</strong>
+La membership verifica l'appartenenza. Nelle stringhe <code>parte in testo</code> è vero quando la sottostringa è presente; <code>not in</code> verifica la sua assenza. Il risultato è booleano, non una posizione.
+</p>
+</td>
+</tr>
+</table>
 
 ```text
 esiste questa sottostringa?
@@ -112,7 +121,16 @@ esiste questa sottostringa?
 posizione = testo.find("@")
 ```
 
-<p align="justify">Se la sottostringa viene trovata, restituisce l'indice della prima occorrenza.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — find():</strong>
+<code>find()</code> cerca una sottostringa e restituisce l'indice della prima occorrenza; restituisce <code>-1</code> se non la trova.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Se non viene trovata:</p>
 
@@ -152,6 +170,17 @@ if testo.find("a"):
 ---
 
 ## 5. `count()`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — count():</strong>
+<code>count()</code> restituisce il numero di occorrenze non sovrapposte della sottostringa cercata.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 "banana".count("a")
@@ -199,6 +228,17 @@ testo = testo.lower()
 
 ## 7. `lower()` e `upper()`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — lower() e upper():</strong>
+<code>lower()</code> restituisce una nuova stringa con le lettere convertite in minuscolo; <code>upper()</code> le converte in maiuscolo. La stringa originale resta invariata.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 nome.lower()
 nome.upper()
@@ -224,7 +264,16 @@ if risposta == "si":
 "  ciao  ".strip()
 ```
 
-<p align="justify">rimuove caratteri di whitespace ai bordi secondo la semantica del metodo.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — strip():</strong>
+<code>strip()</code>, senza argomenti, restituisce una nuova stringa rimuovendo i caratteri di spazio, tabulazione e ritorno a capo dai bordi. Non rimuove quelli interni.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Attenzione:</p>
 
@@ -237,6 +286,17 @@ strip(chars)
 ---
 
 ## 9. Prefissi e suffissi
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — prefisso e suffisso:</strong>
+Un prefisso è una parte iniziale del testo; un suffisso è una parte finale. <code>startswith()</code> e <code>endswith()</code> verificano rispettivamente se il testo inizia o termina con la parte indicata.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 testo.startswith("http")
@@ -253,7 +313,16 @@ testo.endswith(".py")
 nuovo = testo.replace("-", " ")
 ```
 
-<p align="justify">restituisce una nuova stringa con le sostituzioni previste.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — replace():</strong>
+<code>replace()</code> restituisce una nuova stringa sostituendo le occorrenze indicate con un altro testo.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Domanda:</p>
 
@@ -324,7 +393,16 @@ normalizzato = testo.strip().lower()
   <li>sto perdendo un'informazione che invece serviva?.</li>
 </ul>
 
-<p align="justify">Normalizzare significa cambiare la rappresentazione per confrontarla/elaborarla in modo coerente.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — normalizzazione:</strong>
+Normalizzare significa cambiare la rappresentazione per confrontarla/elaborarla in modo coerente.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 

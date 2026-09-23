@@ -85,7 +85,16 @@ voti = {"Anna": 8, "Luca": 7}
 
 <p align="justify">Quando il processo termina, quella struttura non diventa automaticamente persistente.</p>
 
-<p align="justify">Un file permette di conservare dati tra esecuzioni.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — persistenza e file:</strong>
+La persistenza è la conservazione dei dati oltre la singola esecuzione del programma. Un file permette di salvare dati e rileggerli nelle esecuzioni successive.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -97,7 +106,16 @@ from pathlib import Path
 percorso = Path("dati") / "messaggio.txt"
 ```
 
-<p align="justify"><code>percorso</code> rappresenta <strong>dove</strong> si trova il file.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — percorso:</strong>
+Un percorso identifica una posizione nel filesystem. Un oggetto <code>Path</code> rappresenta quel percorso, non il contenuto del file.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Il contenuto è ciò che leggiamo o scriviamo in quel percorso.</p>
 
@@ -157,7 +175,16 @@ percorso.write_text("ciao\n", encoding="utf-8")
 
 ## 6. Perché dichiariamo UTF-8
 
-<p align="justify">Un file testo è una sequenza di byte che deve essere interpretata secondo un encoding.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — file di testo ed encoding:</strong>
+Un file di testo conserva byte che rappresentano caratteri secondo un <strong>encoding</strong>, cioè una regola di codifica. Per leggere o scrivere correttamente il testo occorre usare la codifica prevista, come UTF-8.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Nel corso scegliamo esplicitamente:</p>
 
@@ -188,7 +215,16 @@ with percorso.open("r", encoding="utf-8") as file:
     contenuto = file.read()
 ```
 
-<p align="justify">All'uscita dal blocco <code>with</code>, la risorsa viene chiusa correttamente anche se durante il blocco si verifica un'eccezione.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — gestione della risorsa con with:</strong>
+Un context manager gestisce l'ingresso e l'uscita da un blocco <code>with</code>. Nel caso di <code>with open(...)</code>, il file viene chiuso all'uscita dal blocco anche se durante il blocco si verifica un'eccezione.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -232,6 +268,17 @@ risultato = conta_righe_non_vuote(testo)
 
 ## 10. `FileNotFoundError`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — FileNotFoundError:</strong>
+<code>FileNotFoundError</code> segnala che un'operazione richiede un file o un percorso che non esiste.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Se proviamo a leggere un file che non esiste:</p>
 
 ```python
@@ -271,6 +318,17 @@ except Exception:
 ---
 
 ## 12. `PermissionError`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — PermissionError:</strong>
+<code>PermissionError</code> segnala che l'operazione è stata negata perché il processo non dispone dei permessi richiesti.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Un altro possibile problema esterno è:</p>
 

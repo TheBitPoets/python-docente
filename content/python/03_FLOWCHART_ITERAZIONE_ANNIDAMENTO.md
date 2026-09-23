@@ -112,6 +112,17 @@ valido?
 
 ## 3. Ciclo controllato da condizione
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — ciclo controllato da condizione:</strong>
+Un ciclo controllato da condizione ripete un blocco di passi, detto <strong>corpo</strong>, finché la condizione di continuazione è vera. Ogni esecuzione del corpo è un'iterazione.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Pseudocodice:</p>
 
 ```text
@@ -356,6 +367,17 @@ scelta == "esegui"?
 ---
 
 ## 10. Primo ciclo annidato
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — ciclo annidato:</strong>
+Un ciclo è annidato quando il suo corpo si trova dentro il corpo di un altro ciclo. Per ogni iterazione del ciclo esterno viene eseguito il ciclo interno.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Una piccola griglia 2 × 3 può essere descritta così:</p>
 

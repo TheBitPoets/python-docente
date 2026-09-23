@@ -121,13 +121,33 @@ def solo_lettere(testo):
     return risultato
 ```
 
-<p align="justify">Qui <code>risultato</code> è un accumulatore testuale.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — accumulatore testuale:</strong>
+Un accumulatore testuale conserva il testo costruito finora e viene aggiornato aggiungendo nuovi frammenti. Nell'esempio questo ruolo è svolto da <code>risultato</code>.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Teacher note: per grandi quantità di frammenti esistono strategie più efficienti; non serve complicare ora il modello.</p>
 
 ---
 
 ## 4. Palindromo: prima l'algoritmo
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — palindromo:</strong>
+Un testo è palindromo se si legge allo stesso modo da sinistra a destra e da destra a sinistra, dopo l'eventuale normalizzazione prevista dalla specifica.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Problema:</p>
 
@@ -230,7 +250,16 @@ def codice_valido(codice):
     return codice[:3].isalpha() and codice[3] == "-" and codice[4:].isdigit()
 ```
 
-<p align="justify">Questo è parsing posizionale semplice, senza regex.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — parsing posizionale:</strong>
+Il parsing interpreta un testo secondo un formato per riconoscerne le parti e ricavarne dati. Nel parsing posizionale usiamo posizioni note, indici e slicing.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -318,13 +347,31 @@ parti = "rosso,verde,blu".split(",")
 list
 ```
 
-<p align="justify">Per ora basta sapere che <code>split()</code> produce più pezzi raccolti in una struttura. Nella prossima UDA studieremo davvero liste, mutabilità, alias e metodi.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — split():</strong>
+<code>split()</code> divide una stringa in più parti e le restituisce in una lista. Per ora osserviamo il risultato; nella prossima UDA studieremo liste, mutabilità, alias e metodi.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
 ## 13. `join()` come preview controllata
 
-<p align="justify">Se abbiamo già una sequenza di frammenti, Python può unirli:</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — join():</strong>
+<code>separatore.join(frammenti)</code> costruisce una stringa unendo frammenti testuali e inserendo il separatore fra un frammento e il successivo.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 ",".join(parti)

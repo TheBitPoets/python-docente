@@ -73,6 +73,17 @@ Verifica stato iniziale, transizione valida e tentativo oltre il limite di Conta
 
 ## 1. Stato
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — stato di un oggetto:</strong>
+Lo stato di un oggetto è l'insieme dei valori correnti dei suoi attributi. Può cambiare quando vengono eseguite operazioni sull'oggetto.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Per un conto semplice:</p>
 
 ```python
@@ -101,13 +112,33 @@ class Conto:
         return self.saldo
 ```
 
-<p align="justify">Non modifica lo stato.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — metodo osservatore:</strong>
+Un metodo osservatore risponde a una domanda sull'oggetto senza modificarne lo stato.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Risponde a una domanda sull'oggetto.</p>
 
 ---
 
 ## 3. Metodo che cambia lo stato
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — metodo mutante:</strong>
+Un metodo mutante modifica lo stato dell'oggetto. Il suo contratto stabilisce quali cambiamenti sono ammessi e come vengono segnalati quelli rifiutati.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 class Conto:
@@ -127,7 +158,16 @@ class Conto:
 
 ## 4. Invariante
 
-<p align="justify">Un'invariante è una proprietà che vogliamo mantenere vera per gli stati validi dell'oggetto.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — invariante:</strong>
+Un'invariante è una proprietà che vogliamo mantenere vera per gli stati validi dell'oggetto.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Esempio semplificato:</p>
 
@@ -167,6 +207,17 @@ class Serbatoio:
 ---
 
 ## 6. Transizione valida
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — transizione di stato:</strong>
+Una transizione è il passaggio da uno stato a un altro in seguito a un'operazione. È valida quando rispetta le regole del dominio e conserva gli invarianti richiesti.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 class Serbatoio:

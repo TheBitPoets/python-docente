@@ -99,7 +99,16 @@ b ─┘
 
 ## 2. Alias
 
-<p align="justify">Un alias è un altro nome per lo stesso oggetto.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — alias:</strong>
+Un alias è un altro nome per lo stesso oggetto.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Se l'oggetto è mutabile, una mutazione osservata tramite un nome è visibile anche tramite gli altri alias.</p>
 
@@ -151,9 +160,16 @@ b ─> [ ─────> [1, 9], ─────> [2] ]
 
 <p align="justify">Per il core basta capire:</p>
 
-<blockquote>
-<p align="justify">una copia superficiale copia il contenitore esterno, non ricrea ricorsivamente tutto ciò che contiene.</p>
-</blockquote>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — copia superficiale:</strong>
+Una copia superficiale copia il contenitore esterno, non ricrea ricorsivamente tutto ciò che contiene.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify"><code>deepcopy</code> non è prerequisito.</p>
 
@@ -230,6 +246,17 @@ for valore in numeri.copy():
 
 ## 9. Filtrare
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — filtro:</strong>
+Filtrare una sequenza significa selezionare gli elementi che soddisfano una condizione. Qui costruiamo una nuova lista con gli elementi scelti.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 def solo_positivi(numeri):
     risultato = []
@@ -248,6 +275,17 @@ loop + if + append + return + test
 ---
 
 ## 10. Trasformare
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — trasformazione di una sequenza:</strong>
+Trasformare una sequenza significa applicare un'operazione ai suoi elementi per ottenere nuovi valori. Qui li raccogliamo in una nuova lista.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 def doppi(numeri):
@@ -276,6 +314,17 @@ positivi = [x for x in numeri if x > 0]
 ---
 
 ## 12. `sort()` vs `sorted()`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — sort() e sorted():</strong>
+<code>lista.sort()</code> ordina la lista in posto e restituisce <code>None</code>. <code>sorted(iterabile)</code> restituisce una nuova lista ordinata.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 numeri.sort()

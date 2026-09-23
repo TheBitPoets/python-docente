@@ -107,11 +107,29 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 
 ## Problema
 
-<p align="justify">È ciò che vogliamo risolvere. Una richiesta come “calcola il resto” sembra semplice, ma diventa realmente utilizzabile solo quando sappiamo quale prezzo e quale pagamento considerare e che cosa fare se il pagamento non è sufficiente.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — problema:</strong>
+Un problema è ciò che vogliamo risolvere. Una richiesta come “calcola il resto” sembra semplice, ma diventa realmente utilizzabile solo quando sappiamo quale prezzo e quale pagamento considerare e che cosa fare se il pagamento non è sufficiente.
+</p>
+</td>
+</tr>
+</table>
 
 ## Algoritmo
 
-<p align="justify">È una procedura abbastanza precisa da poter essere seguita passo-passo. “Precisa” non significa lunga: significa che ogni passo fornisce le informazioni necessarie a svolgere quello successivo e che il risultato può essere controllato con un esempio.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — algoritmo:</strong>
+Un algoritmo è una procedura abbastanza precisa da poter essere seguita passo-passo. “Precisa” non significa lunga: significa che ogni passo fornisce le informazioni necessarie a svolgere quello successivo e che il risultato può essere controllato con un esempio.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Per i nostri primi problemi deve essere:</p>
 
@@ -124,13 +142,40 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
   <li>verificabile con esempi concreti.</li>
 </ul>
 
-<p align="justify">Un esempio serve a controllare l'idea, ma non definisce da solo la soluzione. Un algoritmo è generale quando applica la stessa regola a ogni caso previsto dalla consegna, anche quando i valori sono diversi da quelli usati durante la spiegazione.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — generalità:</strong>
+Un esempio serve a controllare l'idea, ma non definisce da solo la soluzione. Un algoritmo è generale quando applica la stessa regola a ogni caso previsto dalla consegna, anche quando i valori sono diversi da quelli usati durante la spiegazione.
+</p>
+</td>
+</tr>
+</table>
 
-<p align="justify">È deterministico quando, mantenendo uguali gli input e le regole, il risultato non cambia da un'esecuzione all'altra. Se la stessa richiesta producesse ogni volta un output diverso senza una ragione prevista, non potremmo verificare con sicurezza la correttezza dell'algoritmo.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — determinismo:</strong>
+Un algoritmo è deterministico quando, mantenendo uguali gli input e le regole, il risultato non cambia da un'esecuzione all'altra. Se la stessa richiesta producesse ogni volta un output diverso senza una ragione prevista, non potremmo verificare con sicurezza la correttezza dell'algoritmo.
+</p>
+</td>
+</tr>
+</table>
 
 ## Programma
 
-<p align="justify">È una descrizione dell'algoritmo in un linguaggio che il computer può eseguire. Un programma può essere scritto senza errori di sintassi e produrre comunque il risultato sbagliato se l'algoritmo o la comprensione della richiesta erano sbagliati.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — programma:</strong>
+Un programma è una descrizione dell'algoritmo in un linguaggio che il computer può eseguire. Un programma può essere scritto senza errori di sintassi e produrre comunque il risultato sbagliato se l'algoritmo o la comprensione della richiesta erano sbagliati.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="center"><img src="../../assets/python/m00-modello-problema.svg" alt="Il percorso dal problema all'algoritmo e al programma, con frecce che indicano un aumento progressivo della precisione." width="960"></p>
 <p align="center"><em>La stessa idea viene resa progressivamente più precisa: problema, algoritmo, programma.</em></p>
@@ -143,6 +188,17 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 ---
 
 ## 3. Input, output e vincoli
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — input, output e vincoli:</strong>
+Gli <strong>input</strong> sono i dati forniti alla procedura; gli <strong>output</strong> sono i risultati richiesti. I <strong>vincoli</strong> sono le condizioni che dati e soluzione devono rispettare.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Restiamo nella situazione della bottiglia: per descrivere bene il problema dobbiamo separare i dati che entrano, l'operazione che li trasforma e il risultato che deve uscire.</p>
 
@@ -231,19 +287,46 @@ Analizza il problema del resto: indica input, output, vincolo e un caso che non 
 
 ## Caso normale
 
-<p align="justify">Rappresenta una situazione comune.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — caso normale:</strong>
+Un caso normale rappresenta una situazione comune fra quelle ammesse dal problema.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Esempio: età 15 in una verifica <code>età &gt;= 14</code>.</p>
 
 ## Caso limite
 
-<p align="justify">È vicino a un confine importante.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — caso limite:</strong>
+Un caso limite è un caso di prova sul confine o vicino a un confine importante del problema.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Esempi: 13 e 14 per la soglia 14. Il primo sta appena sotto il confine; il secondo è esattamente sul confine. Possiamo aggiungere 15 per osservare il lato opposto. Il caso limite non è “un caso strano”: è un caso scelto perché una piccola differenza può cambiare il risultato.</p>
 
 ## Controesempio
 
-<p align="justify">È un dato che mostra che la nostra soluzione non funziona come pensavamo.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — controesempio:</strong>
+Un controesempio è un dato che mostra che la nostra soluzione non funziona come pensavamo.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Cercare controesempi non significa voler “rompere” il lavoro di qualcuno: significa verificarlo seriamente.</p>
 

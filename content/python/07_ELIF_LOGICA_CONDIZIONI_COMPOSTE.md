@@ -121,6 +121,17 @@ else:
 
 ## 2. `elif` significa “altrimenti, se…”
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — elif:</strong>
+<code>elif</code> significa “altrimenti, se”: verifica una nuova condizione soltanto quando le condizioni precedenti della stessa catena sono false. La catena esegue il primo ramo vero, oppure l'eventuale <code>else</code> finale.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Una catena:</p>
 
 ```python
@@ -233,7 +244,16 @@ voto < 6
 <p align="justify">Se piove, porta l'ombrello. Se fa freddo, indossa la giacca.</p>
 </blockquote>
 
-<p align="justify">Le due condizioni sono indipendenti: possono essere vere entrambe.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — condizioni indipendenti:</strong>
+Due condizioni sono gestite come indipendenti quando ciascuna può determinare il proprio effetto, senza escludere l'altra. Possono essere vere entrambe, come nell'esempio di pioggia e freddo.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 if piove:
@@ -294,7 +314,16 @@ if indipendenti
 eta >= 18 and biglietto_valido
 ```
 
-<p align="justify"><code>and</code> produce <code>True</code> solo quando entrambe le parti sono vere.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — and:</strong>
+Fra condizioni booleane, <code>and</code> produce <code>True</code> solo quando entrambe le parti sono vere.
+</p>
+</td>
+</tr>
+</table>
 
 <table align="center">
 <thead>
@@ -378,11 +407,31 @@ eta < 6 or eta >= 65
 
 <p align="justify"><code>or</code> non significa “scegli una delle due condizioni a caso”.</p>
 
-<p align="justify">Significa che il risultato complessivo è vero se almeno una parte è vera.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — or:</strong>
+Fra condizioni booleane, <code>or</code> produce <code>True</code> quando almeno una parte è vera, anche quando lo sono entrambe.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
 ## 9. `not`: nega una condizione già compresa
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — not:</strong>
+<code>not</code> nega una condizione: produce <code>True</code> se la condizione è falsa e <code>False</code> se è vera.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Se:</p>
 
@@ -621,6 +670,17 @@ if eta < 6 and eta >= 65:
 ---
 
 ## 16. Short-circuit: un'intuizione utile
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — short-circuit:</strong>
+La valutazione short-circuit evita di valutare la seconda parte quando la prima determina già il risultato: con <code>and</code> se la prima è falsa, con <code>or</code> se la prima è vera.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Python valuta <code>and</code> e <code>or</code> da sinistra a destra e può non aver bisogno di valutare la seconda parte.</p>
 

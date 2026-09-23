@@ -108,6 +108,17 @@ iterazione successiva
 
 ## 2. Pattern contatore
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — contatore:</strong>
+Un contatore è una variabile che registra quanti elementi o eventi soddisfano una regola. Viene inizializzato prima del ciclo e incrementato quando si verifica l'evento da contare.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Problema:</p>
 
 <blockquote>
@@ -177,6 +188,17 @@ print(conteggio)
 ---
 
 ## 3. Pattern accumulatore
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — accumulatore:</strong>
+Un accumulatore è una variabile che conserva un risultato parziale e lo aggiorna incorporando i dati via via elaborati, per esempio la somma dei valori già letti.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Problema:</p>
 
@@ -349,7 +371,16 @@ else:
 
 ## 7. Flag booleani
 
-<p align="justify">Un flag è una variabile booleana che rappresenta uno stato significativo.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — flag:</strong>
+Un flag è una variabile booleana che rappresenta uno stato significativo.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Esempio:</p>
 
@@ -542,6 +573,17 @@ for ...:
 ---
 
 ## 12. Ricerca lineare: ragionare sul lavoro
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — ricerca lineare:</strong>
+Una ricerca lineare esamina gli elementi uno alla volta per trovare quelli che soddisfano una condizione. Può fermarsi al primo risultato oppure continuare, secondo la specifica.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Se controlliamo i valori uno dopo l'altro, nel caso peggiore possiamo doverli esaminare tutti.</p>
 

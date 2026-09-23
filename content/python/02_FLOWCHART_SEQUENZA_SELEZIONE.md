@@ -71,9 +71,27 @@ Disegna la selezione sulla soglia e segui entrambi i rami con due input concreti
 
 ## 1. Perché un diagramma?
 
-<p align="justify">Lo pseudocodice descrive i passi con testo.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — pseudocodice:</strong>
+Lo pseudocodice descrive i passi con testo.
+</p>
+</td>
+</tr>
+</table>
 
-<p align="justify">Un flow chart rende visibile il <strong>flusso di controllo</strong>:</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — flow chart e flusso di controllo:</strong>
+Un <strong>flow chart</strong>, o diagramma di flusso, rappresenta i passi di un algoritmo con simboli e collegamenti. Il <strong>flusso di controllo</strong> è l'ordine in cui vengono eseguiti i passi e scelti i percorsi.
+</p>
+</td>
+</tr>
+</table>
 
 ```text
 inizio
@@ -169,7 +187,16 @@ END
 
 <p align="justify">Ogni passo ha un solo successore.</p>
 
-<p align="justify">Questa è una <strong>sequenza</strong>.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — sequenza:</strong>
+Una sequenza è un insieme di passi eseguiti in ordine, uno dopo l'altro. Ogni passo ha un solo successore, fino alla fine della sequenza.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -254,11 +281,31 @@ temperatura > 30 ?
      "sopra soglia"  "entro soglia"
 ```
 
-<p align="justify">Una condizione deve poter essere valutata come vera o falsa nel punto in cui viene usata.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — condizione:</strong>
+Una condizione deve poter essere valutata come vera o falsa nel punto in cui viene usata.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
 ## 6. Selezione doppia
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — selezione doppia:</strong>
+Una selezione doppia sceglie fra due rami: uno viene eseguito quando la condizione è vera, l'altro quando è falsa.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Nel nostro Flowchart Lab i rami di una decisione sono espliciti:</p>
 

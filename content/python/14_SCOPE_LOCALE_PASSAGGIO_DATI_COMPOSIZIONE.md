@@ -73,6 +73,17 @@ Traccia due chiamate della stessa funzione e poi il flusso di dati del calcolo d
 
 ## 1. Una chiamata crea il proprio contesto locale
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — contesto locale:</strong>
+Ogni chiamata di funzione ha il proprio contesto locale: i parametri e le variabili locali appartengono a quella chiamata. Lo <strong>scope</strong> di un nome è l'ambito in cui quel nome può essere usato.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 def doppio(numero):
     risultato = numero * 2
@@ -136,6 +147,17 @@ def costo(prezzo, quantita):
 ---
 
 ## 4. Dipendenza globale nascosta
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — nome globale e dipendenza globale:</strong>
+Un nome definito al livello del modulo è globale rispetto alle funzioni del modulo. Una funzione ha una dipendenza globale quando usa un dato esterno alla chiamata invece di riceverlo esplicitamente.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Confronta:</p>
 
@@ -205,7 +227,16 @@ costo = costo_pittura(area, 8)
 print(costo)
 ```
 
-<p align="justify">Il risultato della prima funzione diventa dato della seconda.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — composizione di funzioni:</strong>
+La composizione di funzioni usa il risultato di una funzione come dato di ingresso di un'altra.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -246,7 +277,16 @@ main
 → costo_pittura
 ```
 
-<p align="justify">possiamo rappresentare quali funzioni chiamano quali altre.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — call graph:</strong>
+Un call graph è uno schema che rappresenta quali funzioni chiamano quali altre.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Non serve ancora un tool speciale: basta uno schema leggibile.</p>
 

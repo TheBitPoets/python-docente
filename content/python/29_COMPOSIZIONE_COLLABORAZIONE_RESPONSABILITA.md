@@ -116,7 +116,16 @@ class Veicolo:
 
 <p align="justify"><code>Veicolo</code> <strong>ha un</strong> <code>Motore</code>.</p>
 
-<p align="justify">Questo è un rapporto di composizione/collaborazione.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — composizione:</strong>
+Nel modello del corso la composizione è una relazione in cui un oggetto contiene o usa altri oggetti per svolgere la propria responsabilità. Nell'esempio <code>Veicolo</code> ha un <code>Motore</code>.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -130,7 +139,16 @@ Ordine ha una lista di RigheOrdine
 Veicolo ha un Motore
 ```
 
-<p align="justify">Ereditarietà cerca invece una relazione:</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — ereditarietà:</strong>
+L'ereditarietà permette di definire una classe a partire da un'altra, come specializzazione. Cerca una relazione “è un”, mentre la composizione descrive una relazione “ha un” o “usa un”:
+</p>
+</td>
+</tr>
+</table>
 
 ```text
 X è un tipo di Y
@@ -243,6 +261,17 @@ proteggi stock >= 0
 ---
 
 ## 9. God class
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — god class:</strong>
+Una god class concentra troppe responsabilità diverse, per esempio input, file e regole del dominio. Il problema è la difficoltà di capire, modificare e testare separatamente quei compiti, non un numero fisso di righe.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Smell:</p>
 

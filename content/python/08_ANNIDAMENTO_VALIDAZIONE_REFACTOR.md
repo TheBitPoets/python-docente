@@ -120,7 +120,16 @@ else:
 
 ## 2. Che cosa significa “annidare”
 
-<p align="justify">Un <code>if</code> è annidato quando compare dentro il blocco di un'altra selezione.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — selezione annidata:</strong>
+Un <code>if</code> è annidato quando compare dentro il blocco di un'altra selezione.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 if condizione_1:
@@ -281,11 +290,31 @@ meno livelli = sempre meglio
   <li>quale struttura rende evidente il percorso.</li>
 </ol>
 
-<p align="justify">Il refactoring deve preservare il comportamento richiesto, non soltanto ridurre l'indentazione.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — refactoring:</strong>
+Il refactoring è una modifica della struttura del codice che conserva il comportamento richiesto. Può migliorare la leggibilità senza cambiare i risultati osservabili.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
 ## 7. Validazione: separare dati validi e non validi
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — validazione:</strong>
+La validazione controlla se un dato rispetta i vincoli della specifica. Un dato del tipo corretto può comunque essere fuori dal dominio ammesso, come un voto intero fuori dall'intervallo previsto.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Problema:</p>
 
@@ -556,6 +585,17 @@ account disabilitato
 ---
 
 ## 15. Path coverage: quali percorsi abbiamo davvero provato?
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — percorso di esecuzione — path:</strong>
+Un path è il percorso seguito durante un'esecuzione: la successione dei rami scelti in base ai dati e alle condizioni incontrate.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Per una selezione annidata non basta dire “ho fatto tre test”.</p>
 

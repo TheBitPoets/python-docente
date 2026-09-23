@@ -122,6 +122,17 @@ print(risultato)
 
 # 2. Che cosa fa l'interprete Python
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — interprete:</strong>
+L'interprete Python è il programma che legge ed esegue le istruzioni scritte in Python.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Un file Python contiene testo con istruzioni Python.</p>
 
 <p align="justify">Quando esegui:</p>
@@ -174,7 +185,16 @@ prevedere
 >>>
 ```
 
-<p align="justify">REPL significa:</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — REPL:</strong>
+Il REPL è l'ambiente interattivo in cui Python legge ciò che scriviamo, lo valuta o esegue, mostra il risultato quando appropriato e attende il comando successivo. Il nome deriva da <em>Read, Eval, Print, Loop</em>:
+</p>
+</td>
+</tr>
+</table>
 
 ```text
 Read   → leggi ciò che scrivi
@@ -225,7 +245,16 @@ Loop   → torna al prompt
 
 <p align="justify">Un programma lavora con dati.</p>
 
-<p align="justify">Python distingue diversi tipi di valore.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — tipo:</strong>
+Il tipo di un valore ne identifica la categoria e determina quali operazioni hanno senso su quel valore. Python distingue, per esempio, numeri interi, numeri in virgola mobile, stringhe e booleani.
+</p>
+</td>
+</tr>
+</table>
 
 ## Interi: `int`
 
@@ -235,7 +264,16 @@ Loop   → torna al prompt
 0
 ```
 
-<p align="justify">sono valori interi.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — intero — int:</strong>
+<code>int</code> è il tipo dei numeri interi, come 42, -7 e 0.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Nel REPL:</p>
 
@@ -245,6 +283,17 @@ Loop   → torna al prompt
 ```
 
 ## Numeri con parte decimale: `float`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — numero in virgola mobile — float:</strong>
+<code>float</code> è il tipo usato per rappresentare numeri in virgola mobile, come <code>3.5</code> e <code>2.0</code>. La rappresentazione ha precisione limitata.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 3.5
@@ -267,7 +316,16 @@ Loop   → torna al prompt
 "Python"
 ```
 
-<p align="justify">sono stringhe.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — stringa — str:</strong>
+Una stringa è un valore testuale di tipo <code>str</code>. Nei letterali stringa, le virgolette delimitano il testo: <code>"42"</code> è testo, mentre <code>42</code> è un intero.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Nota importante:</p>
 
@@ -280,7 +338,16 @@ Loop   → torna al prompt
 
 ## Booleani: `bool`
 
-<p align="justify">I valori booleani sono:</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — booleano — bool:</strong>
+Un booleano è un valore di tipo <code>bool</code>: <code>True</code> rappresenta vero e <code>False</code> rappresenta falso.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 True
@@ -325,7 +392,16 @@ eta + 1
 eta ──> 15
 ```
 
-<p align="justify">Il nome <code>eta</code> permette di riferirsi al valore.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — variabile:</strong>
+Una variabile è un nome associato a un valore. Nell'esempio, il nome <code>eta</code> permette di riferirsi al valore 15.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Più avanti renderemo questo modello più preciso quando studieremo oggetti, mutabilità e alias.</p>
 
@@ -337,7 +413,16 @@ eta ──> 15
 eta = 15
 ```
 
-<p align="justify"><code>=</code> rappresenta un <strong>assegnamento</strong>: associa il nome <code>eta</code> al valore prodotto a destra.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — assegnamento:</strong>
+<code>=</code> rappresenta un <strong>assegnamento</strong>: associa il nome <code>eta</code> al valore prodotto a destra.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Se poi scrivi:</p>
 
@@ -368,6 +453,17 @@ x = 25
 ---
 
 # 6. `print()`: produrre output
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — print():</strong>
+<code>print()</code> produce output: mostra i valori indicati, normalmente sul terminale.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Nel REPL:</p>
 
@@ -424,6 +520,17 @@ print(2 + 3)
 ---
 
 # 7. `input()`: ricevere dati
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — input():</strong>
+<code>input()</code> legge una riga di testo e la restituisce come stringa, anche quando i caratteri inseriti sembrano un numero.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Prova:</p>
 
@@ -500,6 +607,17 @@ print(type(dato))
 
 # 9. Conversioni: trasformare il dato quando il problema lo richiede
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — conversione di tipo:</strong>
+Una conversione produce un valore del tipo richiesto a partire da un altro valore, quando la trasformazione è possibile. <code>int()</code>, <code>float()</code> e <code>str()</code> permettono rispettivamente di ottenere un intero, un numero in virgola mobile o una stringa.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Se vuoi usare come numero ciò che è stato letto con <code>input()</code>, devi convertirlo.</p>
 
 ```python
@@ -568,6 +686,17 @@ str(42)
 ---
 
 # 10. Dal REPL al primo script
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — script:</strong>
+Uno script Python è un programma salvato in un file di testo, normalmente con estensione <code>.py</code>, che possiamo eseguire nuovamente.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Un esperimento REPL scompare quando chiudi la sessione.</p>
 
@@ -865,6 +994,17 @@ soluzione corretta
 ---
 
 # 15. Come leggere un traceback beginner
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — traceback:</strong>
+Un traceback è il resoconto delle chiamate e delle posizioni del programma coinvolte in un'eccezione. L'ultima riga indica il tipo di errore e il relativo messaggio.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Non devi capire subito ogni riga.</p>
 

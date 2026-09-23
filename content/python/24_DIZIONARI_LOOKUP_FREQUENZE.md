@@ -73,6 +73,17 @@ Traccia le frequenze di un testo breve, includendo la prima comparsa e una ripet
 
 ## 1. Il modello non è posizione: è chiave→valore
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — dizionario — dict:</strong>
+Un dizionario <code>dict</code> associa chiavi uniche a valori. Per leggere un valore si usa la sua chiave, invece di una posizione numerica.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Lista:</p>
 
 ```python
@@ -104,6 +115,17 @@ chiave → valore
 ---
 
 ## 2. Creazione e lookup
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — lookup:</strong>
+Un lookup è la ricerca del valore associato a una chiave. Con <code>dizionario[chiave]</code> chiediamo il valore di quella chiave; se manca, Python segnala <code>KeyError</code>.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 voti = {"Anna": 8, "Luca": 7}
@@ -174,6 +196,17 @@ if "Paolo" in voti:
 
 ## 6. `get()`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — get():</strong>
+<code>dizionario.get(chiave, default)</code> restituisce il valore della chiave se è presente, altrimenti il valore predefinito. Se il default non è indicato, restituisce <code>None</code>.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 voto = voti.get("Paolo")
 ```
@@ -218,6 +251,17 @@ for nome, voto in voti.items():
 
 ## 8. `keys()`, `values()`, `items()`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — viste di un dizionario:</strong>
+<code>keys()</code>, <code>values()</code> e <code>items()</code> forniscono viste delle chiavi, dei valori e delle coppie chiave-valore. Le viste seguono il contenuto del dizionario e possono essere percorse con un ciclo.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Nei Python moderni:</p>
 
 ```python
@@ -251,6 +295,17 @@ voti.items()
 ---
 
 ## 10. Pattern frequenze
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — frequenza:</strong>
+La frequenza è il numero di volte in cui un valore compare nei dati. Un dizionario di frequenze associa ciascun valore al proprio conteggio.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Problema:</p>
 

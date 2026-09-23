@@ -73,6 +73,17 @@ Proponi le firme del calcolatore di spedizione e annota input e risultato atteso
 
 ## 1. Prima il progetto, poi i dettagli
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — progettazione top-down:</strong>
+La progettazione top-down parte dal problema complessivo e lo scompone in responsabilità e sotto-problemi, fino a poter implementare e verificare ciascuna parte.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Quando il programma cresce, iniziare subito a scrivere righe può produrre un unico blocco difficile da controllare.</p>
 
 <p align="justify">Processo top-down:</p>
@@ -115,6 +126,17 @@ calcola_totale
 ---
 
 ## 3. Scrivere prima le firme
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — firma di funzione:</strong>
+Nel modello introduttivo del corso, la firma di una funzione ne indica il nome e i parametri. Permette di progettare come chiamarla prima di scriverne il corpo.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Prima dei corpi:</p>
 
@@ -189,6 +211,17 @@ main()
 
 ## 6. Contratto intuitivo
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — contratto di funzione:</strong>
+Il contratto descrive quali dati una funzione accetta, quali condizioni assume e quale risultato o comportamento garantisce.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Per una funzione possiamo scrivere:</p>
 
 ```text
@@ -207,7 +240,16 @@ non stampa
 
 ## 7. Pre-condizione
 
-<p align="justify">Una pre-condizione descrive ciò che deve essere vero prima di usare correttamente la funzione.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — pre-condizione:</strong>
+Una pre-condizione descrive ciò che deve essere vero prima di usare correttamente la funzione.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Esempio:</p>
 
@@ -228,7 +270,16 @@ percentuale deve essere tra 0 e 100
 
 ## 8. Post-condizione
 
-<p align="justify">Descrive ciò che deve essere vero sul risultato se la funzione termina correttamente.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — post-condizione:</strong>
+Una post-condizione descrive ciò che deve essere vero sul risultato se la funzione termina correttamente.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Esempio:</p>
 

@@ -74,6 +74,17 @@ Traccia append e pop distinguendo lo stato della lista dal valore restituito dal
 
 ## 1. Da `str` a `list`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — lista e mutabilità:</strong>
+Una lista <code>list</code> è una sequenza ordinata e mutabile di elementi. È mutabile perché possiamo cambiare gli elementi, aggiungerli o rimuoverli nello stesso oggetto.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Con una stringa:</p>
 
 ```python
@@ -152,7 +163,16 @@ numeri.append(30)
 [10, 20, 30]
 ```
 
-<p align="justify"><code>append()</code> aggiunge <strong>un elemento</strong> in fondo.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — append():</strong>
+<code>append()</code> aggiunge <strong>un elemento</strong> in fondo.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -178,6 +198,17 @@ numeri → None
 ---
 
 ## 6. `append()` vs `extend()`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — extend():</strong>
+<code>extend()</code> aggiunge alla lista gli elementi di un iterabile, uno alla volta. <code>append()</code> aggiunge invece l'argomento come singolo elemento.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 x = [1, 2]
@@ -213,6 +244,17 @@ x.extend([3, 4])
 
 ## 7. `insert()`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — insert():</strong>
+<code>lista.insert(indice, valore)</code> inserisce un elemento nella posizione indicata, spostando gli elementi successivi.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 nomi = ["Anna", "Carlo"]
 nomi.insert(1, "Bruno")
@@ -230,13 +272,31 @@ nomi.insert(1, "Bruno")
 valori.remove(7)
 ```
 
-<p align="justify">rimuove la prima occorrenza del <strong>valore</strong> <code>7</code>.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — remove():</strong>
+<code>remove(valore)</code> rimuove la prima occorrenza del valore indicato; se non è presente, segnala <code>ValueError</code>. Nell'esempio il valore da rimuovere è 7.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 ultimo = valori.pop()
 ```
 
-<p align="justify">rimuove e restituisce l'ultimo elemento.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — pop():</strong>
+<code>pop()</code> rimuove e restituisce l'ultimo elemento; <code>pop(indice)</code> rimuove e restituisce quello nella posizione indicata.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 x = valori.pop(2)
@@ -276,6 +336,17 @@ for i in range(len(numeri)):
 
 ## 11. `enumerate()`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — enumerate():</strong>
+<code>enumerate()</code> permette di attraversare una sequenza ottenendo insieme l'indice e il valore di ciascun elemento. Il conteggio parte da 0 se non viene indicato un altro inizio.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Quando servono insieme indice e valore:</p>
 
 ```python
@@ -305,7 +376,16 @@ for i, numero in enumerate(numeri):
 prima_parte = numeri[:3]
 ```
 
-<p align="justify">produce una nuova lista superficiale con gli elementi selezionati.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — slicing di lista:</strong>
+Lo slicing di una lista produce una nuova lista superficiale con gli elementi selezionati: il contenitore è nuovo, mentre gli elementi sono gli stessi oggetti selezionati dall'originale.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Nel prossimo modulo distingueremo in dettaglio:</p>
 

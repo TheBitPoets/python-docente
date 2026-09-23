@@ -74,6 +74,17 @@ Costruisci una matrice con righe indipendenti e confrontala con la versione che 
 
 ## 1. Una tupla è una sequenza immutabile
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — tupla:</strong>
+Una tupla <code>tuple</code> è una sequenza ordinata e immutabile. I suoi elementi hanno posizioni accessibili tramite indici, ma non possono essere riassegnati nella tupla.
+</p>
+</td>
+</tr>
+</table>
+
 ```python
 punto = (3, 5)
 ```
@@ -137,6 +148,17 @@ y = (40,)
 
 ## 4. Packing
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — packing:</strong>
+Il packing raggruppa più valori in una tupla. Nel raggruppamento non vuoto la virgola distingue la tupla da una semplice espressione fra parentesi.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Python può creare una tupla anche tramite comma expression:</p>
 
 ```python
@@ -152,6 +174,17 @@ punto = (3, 5)
 ---
 
 ## 5. Unpacking
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — unpacking:</strong>
+L'unpacking associa gli elementi di una sequenza a più nomi in un assegnamento. Nella forma semplice il numero dei nomi deve corrispondere al numero degli elementi.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 punto = (3, 5)
@@ -211,15 +244,33 @@ t[1].append(9)
 
 <p align="justify">Quindi:</p>
 
-<blockquote>
-<p align="justify">immutabilità della tupla significa che i riferimenti dei suoi elementi non possono essere riassegnati tramite la tupla; non significa che ogni oggetto contenuto diventi magicamente immutabile.</p>
-</blockquote>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — immutabilità della tupla:</strong>
+L'immutabilità della tupla significa che i riferimenti dei suoi elementi non possono essere riassegnati tramite la tupla; non significa che ogni oggetto contenuto diventi immutabile.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Questo è enrichment, non prerequisito della scelta list/tuple.</p>
 
 ---
 
 ## 8. Liste annidate
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — matrice come lista di liste:</strong>
+Nel modello del corso una matrice è rappresentata da una lista di righe, ciascuna a sua volta una lista. Due indici, riga e colonna, individuano una cella; una matrice rettangolare ha righe tutte della stessa lunghezza.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 matrice = [

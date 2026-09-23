@@ -96,6 +96,17 @@ def area_rettangolo(base, altezza):
 
 ## 2. Definizione e chiamata non sono la stessa cosa
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — definizione e chiamata di funzione:</strong>
+La definizione di una funzione ne stabilisce nome, parametri e corpo. La chiamata ne esegue il comportamento con argomenti concreti.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Definizione:</p>
 
 ```python
@@ -122,7 +133,16 @@ def doppio(numero):
     return numero * 2
 ```
 
-<p align="justify"><code>numero</code> è un <strong>parametro</strong>: il nome usato nella definizione.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — parametro:</strong>
+Un <strong>parametro</strong> è un nome dichiarato nella definizione di una funzione per ricevere un dato alla chiamata. Nell'esempio il parametro è <code>numero</code>.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Nella chiamata:</p>
 
@@ -130,7 +150,16 @@ def doppio(numero):
 doppio(7)
 ```
 
-<p align="justify"><code>7</code> è l'<strong>argomento</strong> fornito a quella chiamata.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — argomento:</strong>
+Un <strong>argomento</strong> è un valore fornito a una chiamata di funzione. Nell'esempio l'argomento è <code>7</code>.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Modello:</p>
 
@@ -166,7 +195,16 @@ return → 5
 risultato → 5
 ```
 
-<p align="justify"><code>return</code> restituisce un valore al chiamante.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — return:</strong>
+<code>return</code> restituisce un valore al chiamante.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -265,6 +303,17 @@ return          → 36
 
 ## 8. Predicate: funzioni che rispondono sì/no
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — funzione predicato:</strong>
+Una funzione predicato risponde a una domanda restituendo un booleano. Il suo risultato può essere usato come condizione.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Dopo aver studiato le condizioni, possiamo dare un nome a una domanda booleana:</p>
 
 ```python
@@ -284,6 +333,17 @@ if eta_valida(eta):
 ---
 
 ## 9. Funzione senza `return` esplicito
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — None:</strong>
+<code>None</code> è il valore usato in Python per rappresentare l'assenza di un valore significativo. Una funzione che termina senza restituire esplicitamente un valore restituisce <code>None</code>.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 def saluta(nome):

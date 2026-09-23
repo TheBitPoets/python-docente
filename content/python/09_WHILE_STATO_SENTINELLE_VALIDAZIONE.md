@@ -133,7 +133,16 @@ while condizione:
     corpo
 ```
 
-<p align="justify">Il corpo viene ripetuto finché la condizione continua a produrre <code>True</code>.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — while:</strong>
+Un ciclo <code>while</code> controlla la condizione prima di ogni iterazione e ripete il corpo finché la condizione produce <code>True</code>. Se è subito falsa, il corpo viene eseguito zero volte.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 
@@ -247,6 +256,17 @@ i parte da 0
 ---
 
 ## 6. Ciclo infinito: aggiornamento mancante
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — ciclo infinito:</strong>
+Un ciclo infinito continua a ripetere il corpo senza raggiungere una condizione di uscita. Un aggiornamento mancante può impedire alla condizione di diventare falsa.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Bug:</p>
 
@@ -440,7 +460,16 @@ while numero != -1:
     numero = int(input())
 ```
 
-<p align="justify"><code>-1</code> è la <strong>sentinella</strong>.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — sentinella:</strong>
+Una sentinella è un valore speciale che segnala la fine degli input e non viene elaborato come dato ordinario. Nell'esempio la sentinella è <code>-1</code>.
+</p>
+</td>
+</tr>
+</table>
 
 ---
 

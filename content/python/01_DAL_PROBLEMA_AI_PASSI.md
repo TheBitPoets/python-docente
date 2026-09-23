@@ -70,6 +70,17 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 ## 1. Una specifica è un contratto da capire
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — specifica:</strong>
+Una specifica descrive quali dati riceve una procedura, quale risultato deve produrre e quali vincoli deve rispettare per ogni input ammesso.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Problema:</p>
 
 <blockquote>
@@ -95,6 +106,17 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 ---
 
 ## 2. Decomporre non significa complicare
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — decomposizione:</strong>
+La decomposizione consiste nel dividere un problema in passi o sotto-problemi più piccoli, ciascuno con uno scopo riconoscibile e controllabile.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Una soluzione utile pu&ograve; essere divisa in passi abbastanza piccoli da poter essere controllati, senza descrivere ogni gesto irrilevante.</p>
 
@@ -139,13 +161,53 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 ## 4. Pseudocodice: scrivere per persone
 
-<p align="justify">Lo pseudocodice non ha un unico standard universale per il nostro corso.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — pseudocodice:</strong>
+Lo pseudocodice è una descrizione testuale dei passi di un algoritmo, scritta per essere letta dalle persone. Usa convenzioni coerenti senza richiedere la sintassi completa di un linguaggio di programmazione; non ha un unico standard universale.
+</p>
+</td>
+</tr>
+</table>
 
-<p align="justify">Un <strong>operatore</strong> indica un'operazione da eseguire su uno o più valori. Nel nostro pseudocodice usiamo già i simboli aritmetici e di confronto che ritroveremo in Python.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — operatore:</strong>
+Un <strong>operatore</strong> indica un'operazione da eseguire su uno o più valori. Nel nostro pseudocodice usiamo già i simboli aritmetici e di confronto che ritroveremo in Python.
+</p>
+</td>
+</tr>
+</table>
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — espressione:</strong>
+Un'espressione è un singolo valore, un nome a cui è associato un valore oppure una combinazione di valori, nomi e operatori che, quando viene valutata, produce un valore. Valutare un'espressione significa determinarne il risultato usando i valori disponibili in quel momento.
+</p>
+</td>
+</tr>
+</table>
+
+<p align="justify">Sono espressioni <code>5</code>, <code>prezzo</code>, <code>prezzo + 3</code> e <code>prezzo &gt; 100</code>. Se <code>prezzo</code> vale 120, producono rispettivamente 5, 120, 123 e vero. Un'espressione può quindi produrre anche una risposta vero/falso. <code>ASSEGNA totale &larr; prezzo + 3</code> è invece un'istruzione che usa il risultato di un'espressione per aggiornare una variabile.</p>
 
 ### Operatori aritmetici
 
-<p align="justify">Gli <strong>operatori aritmetici</strong> permettono di calcolare un nuovo valore numerico. Un'espressione come <code>prezzo + 3</code> indica un calcolo; per conservarne il risultato useremo un assegnamento.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — operatori aritmetici:</strong>
+Gli <strong>operatori aritmetici</strong> permettono di calcolare un nuovo valore numerico. Un'espressione come <code>prezzo + 3</code> indica un calcolo; per conservarne il risultato useremo un assegnamento.
+</p>
+</td>
+</tr>
+</table>
 
 <table align="center">
 <thead><tr><th>Operatore</th><th>Significato</th><th>Esempio</th><th>Risultato</th></tr></thead>
@@ -163,7 +225,16 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 ### Divisione intera e resto: formare gruppi
 
-<p align="justify">Per introdurre <code>//</code> e <code>%</code> lavoriamo con una <strong>quantità intera non negativa</strong> e una <strong>dimensione del gruppo intera positiva</strong>. In questi casi <code>//</code> conta quanti gruppi completi possiamo formare e <code>%</code> conta quanti elementi avanzano. Il comportamento con numeri negativi sarà approfondito in <a href="05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md">M05</a>.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — divisione intera e resto:</strong>
+Per introdurre <code>//</code> e <code>%</code> lavoriamo con una <strong>quantità intera non negativa</strong> e una <strong>dimensione del gruppo intera positiva</strong>. In questi casi <code>//</code> conta quanti gruppi completi possiamo formare e <code>%</code> conta quanti elementi avanzano. Il comportamento con numeri negativi sarà approfondito in <a href="05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md">M05</a>.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify"><strong>Esempio:</strong> con 17 oggetti e scatole da 3, <code>17 // 3</code> produce 5 scatole complete e <code>17 % 3</code> produce 2 oggetti avanzati. Possiamo controllare il risultato ricomponendo il totale: <code>5 * 3 + 2</code> produce proprio 17. Il simbolo <code>%</code> indica il resto, non il calcolo di una percentuale.</p>
 
@@ -193,7 +264,16 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 ### Operatori di confronto
 
-<p align="justify">Gli <strong>operatori di confronto</strong> confrontano due valori e producono una risposta <strong>vera o falsa</strong>. Questa risposta permette a una selezione di scegliere il percorso da eseguire.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — operatori di confronto:</strong>
+Gli <strong>operatori di confronto</strong> confrontano due valori e producono una risposta <strong>vera o falsa</strong>. Questa risposta permette a una selezione di scegliere il percorso da eseguire.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Nel nostro pseudocodice usiamo già gli stessi simboli di confronto che ritroveremo in Python:</p>
 
@@ -213,7 +293,18 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 <p align="justify">Possiamo verificare l'uguaglianza anche fra testi: <code>comando == "N"</code> chiede se il valore letto è il testo <code>"N"</code>. È vero quando il comando è N e falso quando è S. Le virgolette delimitano il testo da confrontare; <code>comando</code> è invece il nome della variabile che contiene il dato letto.</p>
 
-<p align="justify"><strong>Confrontare e assegnare sono operazioni diverse:</strong> <code>ASSEGNA quantita &larr; 5</code> memorizza 5 nella variabile; <code>quantita == 5</code> controlla il valore senza modificarlo. Se la quantità contiene 3, il confronto è falso e la quantità resta 3. Nel nostro pseudocodice usiamo <code>&larr;</code> per assegnare e <code>==</code> per confrontare l'uguaglianza. In Python l'assegnamento si scriverà con <code>=</code>, mentre il confronto resterà <code>==</code>.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — assegnamento:</strong>
+Un assegnamento crea o aggiorna il valore associato a una variabile. Nel nostro pseudocodice usiamo <code>&larr;</code> per assegnare e <code>==</code> per confrontare l'uguaglianza. In Python l'assegnamento si scriverà con <code>=</code>, mentre il confronto resterà <code>==</code>.
+</p>
+</td>
+</tr>
+</table>
+
+<p align="justify"><strong>Confrontare e assegnare sono operazioni diverse:</strong> <code>ASSEGNA quantita &larr; 5</code> memorizza 5 nella variabile; <code>quantita == 5</code> controlla il valore senza modificarlo. Se la quantità contiene 3, il confronto è falso e la quantità resta 3.</p>
 
 <p align="justify">Nell'assegnamento calcoliamo prima l'espressione a destra della freccia, poi memorizziamo il risultato nella variabile a sinistra. Per esempio, se <code>quantita</code> contiene 5, <code>ASSEGNA quantita &larr; quantita + 1</code> calcola 6 usando il valore precedente e poi aggiorna la variabile a 6.</p>
 
@@ -265,7 +356,16 @@ FINE MENTRE</code></pre></td></tr>
 
 ### 4.1 Selezione a più casi: ALTRIMENTI SE
 
-<p align="justify">Una <strong>condizione</strong> è un'affermazione che può essere vera o falsa, come <code>A &gt; B</code>. Con <code>SE ... ALTRIMENTI</code> scegliamo fra due percorsi. Quando i casi possibili sono più di due, possiamo aggiungere uno o più rami <code>ALTRIMENTI SE &lt;condizione&gt;</code>.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — condizione e selezione:</strong>
+Una <strong>condizione</strong> è un'affermazione che può essere vera o falsa, come <code>A &gt; B</code>. Con <code>SE ... ALTRIMENTI</code> scegliamo fra due percorsi. Quando i casi possibili sono più di due, possiamo aggiungere uno o più rami <code>ALTRIMENTI SE &lt;condizione&gt;</code>.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Le condizioni vengono controllate dall'alto verso il basso: si esegue <strong>solo il ramo della prima condizione vera</strong>, poi si prosegue dopo <code>FINE SE</code>. Il ramo finale <code>ALTRIMENTI</code> non ha una condizione: raccoglie tutti i casi in cui le condizioni precedenti sono false. Si possono ripetere più rami <code>ALTRIMENTI SE</code> prima dell'eventuale <code>ALTRIMENTI</code>.</p>
 
@@ -277,7 +377,16 @@ FINE MENTRE</code></pre></td></tr>
 
 ### 4.2 Combinare condizioni: E, O, NON
 
-<p align="justify">A volte una decisione dipende da più condizioni insieme. Gli <strong>operatori booleani</strong>, detti anche operatori logici, permettono di combinarle o negarle e producono ancora un risultato vero o falso. Nel nostro pseudocodice usiamo <code>E</code>, <code>O</code> e <code>NON</code>; i nomi inglesi corrispondenti sono <code>AND</code>, <code>OR</code> e <code>NOT</code>.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — operatori booleani:</strong>
+A volte una decisione dipende da più condizioni insieme. Gli <strong>operatori booleani</strong>, detti anche operatori logici, permettono di combinarle o negarle e producono ancora un risultato vero o falso. Nel nostro pseudocodice usiamo <code>E</code>, <code>O</code> e <code>NON</code>; i nomi inglesi corrispondenti sono <code>AND</code>, <code>OR</code> e <code>NOT</code>.
+</p>
+</td>
+</tr>
+</table>
 
 <table align="center">
 <thead><tr><th>Operatore</th><th>Quando il risultato è vero</th><th>Esempio</th></tr></thead>
@@ -320,7 +429,16 @@ FINE SE
 
 ### Esempio: riconoscere un numero pari o dispari
 
-<p align="justify">Il resto permette anche di riconoscere se un numero è pari: un intero è <strong>pari</strong> quando la divisione per 2 ha resto zero. Usiamo come input un intero non negativo e combiniamo il calcolo del resto con un confronto:</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — numero pari:</strong>
+Il resto permette anche di riconoscere se un numero è pari: un intero è <strong>pari</strong> quando la divisione per 2 ha resto zero. Usiamo come input un intero non negativo e combiniamo il calcolo del resto con un confronto:
+</p>
+</td>
+</tr>
+</table>
 
 ```text
 LEGGI numero
@@ -362,6 +480,17 @@ FINE SE
 ---
 
 ## 6. Dry-run: eseguire con carta e penna
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — dry-run o trace manuale:</strong>
+Un dry-run è l'esecuzione a mano dei passi di un algoritmo su dati scelti. Il trace è la traccia in cui annotiamo i passi eseguiti, i valori delle variabili e gli output prodotti.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Prima di eseguire una traccia manuale costruiamo l'algoritmo partendo da una consegna concreta:</p>
 
@@ -450,12 +579,23 @@ MOSTRA finale
 
 ## 7. Lo stato cambia nel tempo
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — stato:</strong>
+Lo stato di un algoritmo è l'insieme dei valori disponibili in un determinato momento dell'esecuzione.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Una variabile concettuale non è soltanto un'etichetta su un foglio.</p>
 
 <p align="justify">Durante il trace pu&ograve; cambiare. Per esempio, il prezzo 120 parte senza sconto, riceve lo sconto quando la condizione &egrave; vera e produce il valore finale 110.</p>
 
 <p align="center"><img src="../../assets/python/m01-trace-stato.svg" alt="Il trace segue prezzo, sconto e valore finale attraverso input, stato, decisione e output." width="960"></p>
-<p align="center"><em>Lo stato &egrave; l'insieme dei valori disponibili in un determinato momento dell'esecuzione.</em></p>
+<p align="center"><em>La traccia mostra come lo stato cambia da un passo al successivo.</em></p>
 
 <p align="justify">Per capire un algoritmo chiediti spesso:</p>
 
@@ -496,7 +636,16 @@ ripeti "prova ancora"
 
 <p align="justify">Non è dichiarato.</p>
 
-<p align="justify">Una procedura automatica deve avere una regola di terminazione o un numero finito di passi.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — terminazione:</strong>
+Una procedura termina quando raggiunge la fine dopo un numero finito di passi. Una regola di uscita o un numero finito di ripetizioni permette di descrivere quando il lavoro si conclude.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">In M03 studieremo i cicli e impareremo a cercare esplicitamente:</p>
 

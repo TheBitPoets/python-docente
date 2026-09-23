@@ -120,6 +120,17 @@ resto             → 17
 
 ## 2. Un'espressione produce un valore
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — espressione:</strong>
+Un'espressione è una parte di codice che viene valutata per produrre un valore: può contenere valori, nomi, operatori o chiamate di funzione.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Nel REPL:</p>
 
 ```python
@@ -245,7 +256,16 @@ assegnamento / return / print / altra espressione
 4.0
 ```
 
-<p align="justify">In Python 3, <code>/</code> produce un risultato di tipo <code>float</code>, anche quando matematicamente il risultato è intero.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — divisione — /:</strong>
+In Python 3, <code>/</code> produce un risultato di tipo <code>float</code>, anche quando matematicamente il risultato è intero.
+</p>
+</td>
+</tr>
+</table>
 
 ## `//` — floor division
 
@@ -265,9 +285,29 @@ assegnamento / return / print / altra espressione
 <p align="justify">quanti gruppi completi da 3 stanno in 17?</p>
 </blockquote>
 
-<p align="justify">Attenzione però: <code>//</code> è <strong>floor division</strong>, non una generica regola "taglia la parte decimale". Con numeri negativi vedremo che il comportamento segue il pavimento matematico. Per il core beginner useremo soprattutto casi positivi quando modelliamo gruppi completi.</p>
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — divisione intera — //:</strong>
+<code>//</code> calcola il quoziente arrotondato verso il basso, cioè verso meno infinito: è <em>floor division</em>, non una generica regola "taglia la parte decimale". Per interi non negativi e divisore positivo conta i gruppi completi. Per il core beginner useremo soprattutto questi casi; con numeri negativi segue comunque l'arrotondamento verso meno infinito.
+</p>
+</td>
+</tr>
+</table>
 
 ## `%` — resto
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — resto — %:</strong>
+<code>%</code> calcola il resto della divisione. Per interi non negativi e divisore positivo indica quanti elementi avanzano dopo aver formato i gruppi completi.
+</p>
+</td>
+</tr>
+</table>
 
 ```python
 17 % 3
@@ -388,6 +428,17 @@ numero % 2 == 0
 
 ## 7. Potenze: `**`, non `^`
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — potenza — **:</strong>
+<code>base ** esponente</code> calcola la potenza della base. Con un esponente intero positivo, corrisponde a moltiplicare la base per se stessa tante volte quanto indica l'esponente.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">In Python:</p>
 
 ```python
@@ -419,6 +470,17 @@ potenza → **
 ---
 
 ## 8. Precedenza: Python deve sapere cosa calcolare prima
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — precedenza degli operatori:</strong>
+La precedenza stabilisce quali operatori vengono applicati prima quando un'espressione ne contiene più di uno. Le parentesi permettono di rendere esplicito o cambiare il raggruppamento.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Considera:</p>
 
@@ -559,6 +621,17 @@ prevedere
 
 ## 11. Built-in: usare uno strumento quando esprime bene l'intenzione
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — funzione built-in:</strong>
+Una funzione built-in è una funzione già disponibile in Python senza doverla definire o importare, come <code>len()</code>, <code>min()</code> e <code>max()</code>.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Python fornisce funzioni built-in utili.</p>
 
 <p align="justify">Esempi semplici:</p>
@@ -584,6 +657,17 @@ len("Python")
 ---
 
 ## 12. Output leggibile con f-string
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — f-string:</strong>
+Una f-string è una stringa preceduta da <code>f</code> che inserisce nel testo i valori delle espressioni racchiuse tra parentesi graffe.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Per un programma destinato a una persona possiamo voler scrivere:</p>
 
@@ -652,6 +736,17 @@ presentazione → print(area)
 
 ## 14. Prima funzione: dare un nome a una trasformazione
 
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — funzione:</strong>
+Una funzione è un blocco di istruzioni con un nome che svolge un compito. Una chiamata ne esegue il corpo e può fornire dati di ingresso e ottenere un valore di ritorno.
+</p>
+</td>
+</tr>
+</table>
+
 <p align="justify">Possiamo dare un nome al calcolo dell'area:</p>
 
 ```python
@@ -685,6 +780,17 @@ valore prodotto
 ---
 
 ## 15. `return` non è `print`
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — return:</strong>
+<code>return</code> termina la chiamata della funzione e restituisce un valore al chiamante. Il valore restituito può essere usato in altri calcoli; non viene stampato automaticamente.
+</p>
+</td>
+</tr>
+</table>
 
 <p align="justify">Queste due funzioni non hanno lo stesso comportamento:</p>
 
