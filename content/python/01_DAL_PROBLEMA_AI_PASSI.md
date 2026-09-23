@@ -141,9 +141,59 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 <p align="justify">Lo pseudocodice non ha un unico standard universale per il nostro corso.</p>
 
+<p align="justify">Un <strong>operatore</strong> indica un'operazione da eseguire su uno o più valori. Nel nostro pseudocodice usiamo già i simboli aritmetici e di confronto che ritroveremo in Python.</p>
+
+### Operatori aritmetici
+
+<p align="justify">Gli <strong>operatori aritmetici</strong> permettono di calcolare un nuovo valore numerico. Un'espressione come <code>prezzo + 3</code> indica un calcolo; per conservarne il risultato useremo un assegnamento.</p>
+
+<table align="center">
+<thead><tr><th>Operatore</th><th>Significato</th><th>Esempio</th><th>Risultato</th></tr></thead>
+<tbody>
+<tr><td><code>+</code></td><td>addizione</td><td><code>7 + 2</code></td><td>9</td></tr>
+<tr><td><code>-</code></td><td>sottrazione</td><td><code>7 - 2</code></td><td>5</td></tr>
+<tr><td><code>*</code></td><td>moltiplicazione</td><td><code>7 * 2</code></td><td>14</td></tr>
+<tr><td><code>/</code></td><td>divisione</td><td><code>7 / 2</code></td><td>3.5</td></tr>
+<tr><td><code>//</code></td><td>divisione intera</td><td><code>7 // 2</code></td><td>3</td></tr>
+<tr><td><code>%</code></td><td>resto della divisione intera</td><td><code>7 % 2</code></td><td>1</td></tr>
+</tbody>
+</table>
+
+<p align="justify">Usiamo <code>*</code> per la moltiplicazione e il punto per i decimali: <code>3.5</code> significa tre e mezzo. Per <code>/</code>, <code>//</code> e <code>%</code> il divisore deve essere diverso da zero.</p>
+
+### Divisione intera e resto: formare gruppi
+
+<p align="justify">Per introdurre <code>//</code> e <code>%</code> lavoriamo con una <strong>quantità intera non negativa</strong> e una <strong>dimensione del gruppo intera positiva</strong>. In questi casi <code>//</code> conta quanti gruppi completi possiamo formare e <code>%</code> conta quanti elementi avanzano. Il comportamento con numeri negativi sarà approfondito in <a href="05_ESPRESSIONI_OPERATORI_PRIME_FUNZIONI.md">M05</a>.</p>
+
+<p align="justify"><strong>Esempio:</strong> con 17 oggetti e scatole da 3, <code>17 // 3</code> produce 5 scatole complete e <code>17 % 3</code> produce 2 oggetti avanzati. Possiamo controllare il risultato ricomponendo il totale: <code>5 * 3 + 2</code> produce proprio 17. Il simbolo <code>%</code> indica il resto, non il calcolo di una percentuale.</p>
+
+<table align="center">
+<thead><tr><th>Oggetti</th><th>Posti per scatola</th><th>Scatole complete con //</th><th>Oggetti avanzati con %</th></tr></thead>
+<tbody>
+<tr><td>17</td><td>3</td><td>5</td><td>2</td></tr>
+<tr><td>18</td><td>3</td><td>6</td><td>0</td></tr>
+<tr><td>2</td><td>3</td><td>0</td><td>2</td></tr>
+<tr><td>0</td><td>3</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+
+### Parentesi e ordine delle operazioni
+
+<p align="justify">Un'espressione può contenere più operazioni. Per gli operatori aritmetici appena introdotti seguiamo questo ordine:</p>
+
+<ol>
+  <li>calcoliamo prima le espressioni fra <strong>parentesi</strong>, partendo da quelle più interne;</li>
+  <li>eseguiamo <code>*</code>, <code>/</code>, <code>//</code> e <code>%</code>, che hanno la stessa priorità, da sinistra verso destra;</li>
+  <li>eseguiamo <code>+</code> e <code>-</code>, che hanno la stessa priorità, da sinistra verso destra.</li>
+</ol>
+
+<p align="justify"><strong>Esempio:</strong> <code>2 + 3 * 4</code> produce 14, perché prima calcoliamo <code>3 * 4</code>. Invece <code>(2 + 3) * 4</code> produce 20. A parità di priorità conta l'ordine da sinistra: <code>12 / 3 * 2</code> produce 8, mentre <code>12 / (3 * 2)</code> produce 2.</p>
+
+<p align="justify">Le parentesi aiutano anche a rendere visibile la regola del problema: per la media di due valori scriviamo <code>(A + B) / 2</code>, perché dobbiamo sommare entrambi prima di dividere.</p>
+
 ### Operatori di confronto
 
-<p align="justify">Un <strong>operatore</strong> indica un'operazione da eseguire su uno o più valori. Gli <strong>operatori di confronto</strong> confrontano due valori e producono una risposta <strong>vera o falsa</strong>. Questa risposta permette a una selezione di scegliere il percorso da eseguire.</p>
+<p align="justify">Gli <strong>operatori di confronto</strong> confrontano due valori e producono una risposta <strong>vera o falsa</strong>. Questa risposta permette a una selezione di scegliere il percorso da eseguire.</p>
 
 <p align="justify">Nel nostro pseudocodice usiamo già gli stessi simboli di confronto che ritroveremo in Python:</p>
 
@@ -164,6 +214,8 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 <p align="justify">Possiamo verificare l'uguaglianza anche fra testi: <code>comando == "N"</code> chiede se il valore letto è il testo <code>"N"</code>. È vero quando il comando è N e falso quando è S. Le virgolette delimitano il testo da confrontare; <code>comando</code> è invece il nome della variabile che contiene il dato letto.</p>
 
 <p align="justify"><strong>Confrontare e assegnare sono operazioni diverse:</strong> <code>ASSEGNA quantita &larr; 5</code> memorizza 5 nella variabile; <code>quantita == 5</code> controlla il valore senza modificarlo. Se la quantità contiene 3, il confronto è falso e la quantità resta 3. Nel nostro pseudocodice usiamo <code>&larr;</code> per assegnare e <code>==</code> per confrontare l'uguaglianza. In Python l'assegnamento si scriverà con <code>=</code>, mentre il confronto resterà <code>==</code>.</p>
+
+<p align="justify">Nell'assegnamento calcoliamo prima l'espressione a destra della freccia, poi memorizziamo il risultato nella variabile a sinistra. Per esempio, se <code>quantita</code> contiene 5, <code>ASSEGNA quantita &larr; quantita + 1</code> calcola 6 usando il valore precedente e poi aggiorna la variabile a 6.</p>
 
 ### Convenzioni per le istruzioni
 
@@ -263,6 +315,23 @@ FINE SE
 <p align="justify"><strong>Esempio con NON:</strong> <code>NON (quantita &gt; 0)</code> è vera con quantità 0, perché il confronto <code>0 &gt; 0</code> è falso; è falsa con quantità 5, perché <code>5 &gt; 0</code> è vero. Possiamo negare anche una condizione composta: <code>NON ((quantita &gt;= 1) E (quantita &lt;= 10))</code> riconosce le quantità fuori dall'intervallo, come 0 e 11. In questo caso equivale a <code>(quantita &lt; 1) O (quantita &gt; 10)</code>.</p>
 
 <p align="justify">Usiamo le <strong>parentesi</strong> per rendere espliciti i gruppi di condizioni e, con <code>NON</code>, che cosa stiamo negando. Ogni confronto deve essere completo: scriviamo <code>(quantita &gt;= 1) E (quantita &lt;= 10)</code>, ripetendo il dato da confrontare.</p>
+
+<p align="justify">Quando combiniamo calcoli e condizioni, eseguiamo prima i calcoli aritmetici, poi i confronti, infine gli operatori logici nell'ordine <code>NON</code>, <code>E</code>, <code>O</code>. Le parentesi permettono di scegliere esplicitamente i gruppi: <code>NON ((quantita &gt;= 1) E (quantita &lt;= 10))</code> nega il risultato dell'intera combinazione con <code>E</code>.</p>
+
+### Esempio: riconoscere un numero pari o dispari
+
+<p align="justify">Il resto permette anche di riconoscere se un numero è pari: un intero è <strong>pari</strong> quando la divisione per 2 ha resto zero. Usiamo come input un intero non negativo e combiniamo il calcolo del resto con un confronto:</p>
+
+```text
+LEGGI numero
+SE (numero % 2) == 0
+    MOSTRA "pari"
+ALTRIMENTI
+    MOSTRA "dispari"
+FINE SE
+```
+
+<p align="justify">Con 8, il resto <code>8 % 2</code> è 0: il confronto <code>0 == 0</code> è vero e mostriamo &ldquo;pari&rdquo;. Con 7, il resto è 1: <code>1 == 0</code> è falso e mostriamo &ldquo;dispari&rdquo;. Anche 0 è pari, perché <code>0 % 2</code> produce 0.</p>
 
 ---
 
