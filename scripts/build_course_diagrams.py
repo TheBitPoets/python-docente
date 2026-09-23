@@ -14,6 +14,8 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
+from build_flowchart_animations import planned_animations
+
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets" / "python"
 VISUAL_ROOT = ASSETS / "visual-system"
@@ -104,6 +106,9 @@ def planned_outputs() -> list[tuple[Path, bytes]]:
     if not scenes:
         raise ValueError("no scenes")
     outputs = [render_scene(path, list(defs), tokens) for path in scenes]
+    outputs.extend(planned_animations(outputs))
+    for _, payload in outputs:
+        validate_svg(ET.fromstring(payload))
     targets = [path for path, _ in outputs]
     if len(targets) != len(set(targets)):
         raise ValueError("two scenes declare the same output")

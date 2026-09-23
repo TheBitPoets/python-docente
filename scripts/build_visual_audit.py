@@ -75,7 +75,10 @@ def outputs() -> dict[Path, str]:
         components = component_text.split(",")
         target = f"content/python/01_DAL_PROBLEMA_AI_PASSI.md#{anchor(section)}"
         figures.append({"id": ident, "module": "M01", "title": title, "lesson_section": target, "purpose": purpose, "components": components, "priority": "P1", "status": "prototype-realized", "asset": f"assets/python/{asset}", "alt_draft": purpose, "caption_draft": title, "existing_images": 0, "existing_text_blocks": 1})
-        rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [f'<a href="../{escape(target, quote=True)}">M01 — {escape(section)}</a>', escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components), 'P1; prototipo realizzato', 'immagine inserita']) + '</tr>')
+        animated = asset.startswith('m01-selezione-')
+        if animated:
+            figures[-1]['animated_asset'] = f"assets/python/{asset.removesuffix('.svg')}-anime.svg"
+        rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [f'<a href="../{escape(target, quote=True)}">M01 — {escape(section)}</a>', escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components), 'P1; prototipo realizzato', 'animazione e schema fermo' if animated else 'immagine inserita']) + '</tr>')
     audit = '''# Audit delle immagini del corso Python
 
 <p align="justify">Audit del 16 settembre 2026: tutte le 31 lezioni canoniche M00–M30. La lettura di obiettivi, spiegazioni, schemi testuali e attività individua una prima figura principale per ciascun modulo. L'inventario automatico conta i riferimenti a immagini e i blocchi <code>text</code>; questi ultimi comprendono anche output e pseudocodice, non soltanto schemi da sostituire.</p>

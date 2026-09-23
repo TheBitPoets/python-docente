@@ -755,7 +755,8 @@
     "alt_draft": "Un confronto sul prezzo sceglie fra due assegnamenti; i rami si ricongiungono dopo FINE SE.",
     "caption_draft": "Selezione semplice: due rami",
     "existing_images": 0,
-    "existing_text_blocks": 1
+    "existing_text_blocks": 1,
+    "animated_asset": "assets/python/m01-selezione-due-rami-anime.svg"
   },
   {
     "id": "py-m01-07",
@@ -774,7 +775,8 @@
     "alt_draft": "Il secondo confronto fra A e B viene raggiunto solo dal ramo falso del primo; un solo output viene eseguito.",
     "caption_draft": "Due condizioni, tre casi",
     "existing_images": 0,
-    "existing_text_blocks": 1
+    "existing_text_blocks": 1,
+    "animated_asset": "assets/python/m01-selezione-tre-casi-anime.svg"
   },
   {
     "id": "py-m01-08",
@@ -793,6 +795,7 @@
     "alt_draft": "Le soglie 90 e 60 distinguono tre fasce: dopo la prima condizione vera le altre vengono saltate.",
     "caption_draft": "Punteggio e ordine delle condizioni",
     "existing_images": 0,
-    "existing_text_blocks": 1
+    "existing_text_blocks": 1,
+    "animated_asset": "assets/python/m01-selezione-punteggio-anime.svg"
   }
 ]

@@ -59,6 +59,10 @@ python scripts/build_course_diagrams.py --check
 python scripts/build_visual_audit.py --check
 python tests/course_presentation.py</code></pre>
 
+## Animazioni
+
+<p align="justify"><strong>Animazioni della selezione in M01:</strong> il generatore produce anche tre varianti <code>-anime.svg</code>, a partire dagli stessi schemi statici. Gli ID <code>node-*</code> ed <code>edge-*</code> delle scene identificano nodi e archi; <a href="../../../scripts/build_flowchart_animations.py">build_flowchart_animations.py</a> definisce gli input e costruisce le tracce. Ogni passo dura due secondi, il percorso si azzera tra un caso e il successivo e il ciclo si ripete. Le animazioni CSS sono interne agli SVG, senza script o risorse esterne; rispettano <code>prefers-reduced-motion</code>. La lezione mantiene i collegamenti agli schemi fermi. Il normale comando di costruzione e l'opzione <code>--check</code> includono entrambe le versioni.</p>
+
 ## Provenienza
 
 <p align="justify">Architettura e grammatica derivate dai Visual System di <a href="https://github.com/TheBitPoets/tpsi-quinto-docente/tree/main/assets/tpsi5/visual-system">TPSI quinto</a> e <a href="https://github.com/TheBitPoets/tpsi-quarto-docente/tree/main/assets/tpsi4/visual-system">TPSI quarto</a>, consultati il 16 settembre 2026. Documento, terminale, repository e test sono ripresi dalla libreria della quarta, che ne registra l'origine nella quinta. I restanti 21 simboli e le scene Python sono originali. La palette mantiene la continuità visiva; nessun logo ufficiale o asset remoto è necessario alla visualizzazione.</p>

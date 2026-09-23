@@ -1,29 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m01-selezione-due-rami.svg">
-<title id="title">Selezione semplice: due rami</title>
-<desc id="desc">Letto il prezzo, se prezzo &gt; 100 si assegna 10 a sconto, altrimenti 0. I due rami si ricongiungono prima della fine.</desc>
-<defs id="visual-kit-components"/>
-<defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}"/></marker></defs>
-<rect width="1920" height="1080" fill="{{canvas}}"/>
-<g font-family="{{family}}">
-<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Selezione semplice: due rami</text>
-<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">Un solo confronto decide quale assegnamento eseguire.</text>
-<rect x="840.0" y="188" width="240" height="72" rx="36" fill="#dbeafe" stroke="{{process}}" stroke-width="4"/><text x="960" y="234" text-anchor="middle" font-size="30" fill="{{ink}}">INIZIO</text>
-<path d="M960 260 V288" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
-<path d="M804.0 288 H1140.0 L1116.0 368 H780.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4"/><text x="960" y="338" text-anchor="middle" font-size="30" fill="{{ink}}">LEGGI prezzo</text>
-<path d="M960 368 V398" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
-<path d="M960 398 L1160 478 L960 558 L760 478 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4"/><text x="960" y="488" text-anchor="middle" font-size="30" fill="{{ink}}">prezzo &gt; 100</text>
-<path d="M760 478 H500 V644" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
-<text x="620" y="456" text-anchor="middle" font-size="30" fill="{{line}}">vero</text>
-<path d="M1160 478 H1420 V644" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
-<text x="1300" y="456" text-anchor="middle" font-size="30" fill="{{line}}">falso</text>
-<rect x="320.0" y="644" width="360" height="72" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4"/><text x="500" y="690" text-anchor="middle" font-size="30" fill="{{ink}}">sconto ← 10</text>
-<rect x="1240.0" y="644" width="360" height="72" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4"/><text x="1420" y="690" text-anchor="middle" font-size="30" fill="{{ink}}">sconto ← 0</text>
-<path d="M500 716 V848 H960" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
-<path d="M1420 716 V848 H960" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
-<circle cx="960" cy="848" r="7" fill="{{line}}"/>
-<text x="990" y="884" text-anchor="start" font-size="26" fill="{{muted}}">FINE SE</text>
-<path d="M960 848 V904" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)"/>
-<rect x="840.0" y="904" width="240" height="72" rx="36" fill="#dbeafe" stroke="{{process}}" stroke-width="4"/><text x="960" y="950" text-anchor="middle" font-size="30" fill="{{ink}}">FINE</text>
-<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = flusso di esecuzione. Il punto di ricongiungimento corrisponde a FINE SE.</text>
-</g>
+  <title id="title">Selezione semplice: due rami</title>
+  <desc id="desc">Letto il prezzo, se prezzo &gt; 100 si assegna 10 a sconto, altrimenti 0. I due rami si ricongiungono prima della fine.</desc>
+  <defs id="visual-kit-components" />
+  <defs>
+    <marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" />
+    </marker>
+  </defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+    <text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Selezione semplice: due rami</text>
+    <text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">Un solo confronto decide quale assegnamento eseguire.</text>
+    <rect x="840.0" y="188" width="240" height="72" rx="36" fill="#dbeafe" stroke="{{process}}" stroke-width="4" id="node-start" />
+    <text x="960" y="234" text-anchor="middle" font-size="30" fill="{{ink}}">INIZIO</text>
+    <path d="M960 260 V288" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-start-read" />
+    <path d="M804.0 288 H1140.0 L1116.0 368 H780.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" id="node-read" />
+    <text x="960" y="338" text-anchor="middle" font-size="30" fill="{{ink}}">LEGGI prezzo</text>
+    <path d="M960 368 V398" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-read-test" />
+    <path d="M960 398 L1160 478 L960 558 L760 478 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" id="node-test-1" />
+    <text x="960" y="488" text-anchor="middle" font-size="30" fill="{{ink}}">prezzo &gt; 100</text>
+    <path d="M760 478 H500 V644" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-1-true" />
+    <text x="620" y="456" text-anchor="middle" font-size="30" fill="{{line}}">vero</text>
+    <path d="M1160 478 H1420 V644" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-1-false" />
+    <text x="1300" y="456" text-anchor="middle" font-size="30" fill="{{line}}">falso</text>
+    <rect x="320.0" y="644" width="360" height="72" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" id="node-output-1" />
+    <text x="500" y="690" text-anchor="middle" font-size="30" fill="{{ink}}">sconto ← 10</text>
+    <rect x="1240.0" y="644" width="360" height="72" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" id="node-output-2" />
+    <text x="1420" y="690" text-anchor="middle" font-size="30" fill="{{ink}}">sconto ← 0</text>
+    <path d="M500 716 V848 H960" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-output-1-merge" />
+    <path d="M1420 716 V848 H960" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-output-2-merge" />
+    <circle cx="960" cy="848" r="7" fill="{{line}}" id="node-merge" />
+    <text x="990" y="884" text-anchor="start" font-size="26" fill="{{muted}}">FINE SE</text>
+    <path d="M960 848 V904" fill="none" stroke="{{line}}" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-merge-end" />
+    <rect x="840.0" y="904" width="240" height="72" rx="36" fill="#dbeafe" stroke="{{process}}" stroke-width="4" id="node-end" />
+    <text x="960" y="950" text-anchor="middle" font-size="30" fill="{{ink}}">FINE</text>
+    <text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = flusso di esecuzione. Il punto di ricongiungimento corrisponde a FINE SE.</text>
+  </g>
 </svg>

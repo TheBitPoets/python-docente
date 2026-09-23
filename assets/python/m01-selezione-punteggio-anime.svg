@@ -1,0 +1,612 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Punteggio: conta la prima condizione vera — esecuzioni animate</title>
+  <desc id="desc">Con punteggio &gt;= 90 mostriamo fascia alta e saltiamo il secondo confronto. Altrimenti controlliamo punteggio &gt;= 60: se vero fascia media, se falso fascia bassa. Animazione passo per passo di tutti i rami con input concreti. Le linee dorate indicano il percorso già eseguito; il bordo tratteggiato indica il passo corrente. Ogni caso riparte da INIZIO.</desc>
+  <defs>
+    <style>.tpsi-line{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:8}.tpsi-thin{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:5}</style>
+    <symbol id="tpsi-step" viewBox="0 0 240 180">
+      <rect x="20" y="40" width="200" height="100" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="6" />
+      <path d="M58 75h124M58 105h84" stroke="#2563eb" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-terminator" viewBox="0 0 240 180">
+      <rect x="20" y="45" width="200" height="90" rx="45" fill="#dbeafe" stroke="#2563eb" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-io" viewBox="0 0 240 180">
+      <path d="M52 40h174l-38 100H14z" fill="#ccfbf1" stroke="#0d9488" stroke-width="6" />
+      <path d="M65 78h112M56 103h112" stroke="#0d9488" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-decision" viewBox="0 0 240 180">
+      <path d="M120 12l108 78-108 78L12 90z" fill="#fef3c7" stroke="#d97706" stroke-width="6" />
+      <path d="M102 62a20 20 0 1 1 30 19l-12 10v13" fill="none" stroke="#102a43" stroke-width="6" />
+      <circle cx="120" cy="123" r="4" fill="#102a43" />
+    </symbol>
+    <symbol id="tpsi-binding" viewBox="0 0 240 180">
+      <path d="M20 42h145l55 48-55 48H20z" fill="#e0f2fe" stroke="#2563eb" stroke-width="6" />
+      <circle cx="181" cy="90" r="9" fill="#f8fafc" stroke="#2563eb" stroke-width="4" />
+      <path d="M47 77h95M47 102h70" stroke="#2563eb" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-value" viewBox="0 0 240 180">
+      <rect x="42" y="30" width="156" height="120" rx="20" fill="#eef2ff" stroke="#4f46e5" stroke-width="6" />
+      <circle cx="120" cy="90" r="30" fill="#c7d2fe" stroke="#4f46e5" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-reference" viewBox="0 0 240 180">
+      <rect x="14" y="59" width="48" height="62" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="5" />
+      <path d="M62 90h95m-20-18 20 18-20 18" fill="none" stroke="#4f46e5" stroke-width="6" />
+      <rect x="173" y="40" width="52" height="100" rx="10" fill="#eef2ff" stroke="#4f46e5" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-sequence" viewBox="0 0 240 180">
+      <rect x="15" y="50" width="210" height="80" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="6" />
+      <path d="M85 50v80M155 50v80" stroke="#4f46e5" stroke-width="5" />
+      <circle cx="50" cy="90" r="12" fill="#818cf8" />
+      <circle cx="120" cy="90" r="12" fill="#818cf8" />
+      <circle cx="190" cy="90" r="12" fill="#818cf8" />
+    </symbol>
+    <symbol id="tpsi-tuple" viewBox="0 0 240 180">
+      <path d="M35 38C8 65 8 115 35 142M205 38c27 27 27 77 0 104" fill="none" stroke="#4f46e5" stroke-width="7" />
+      <rect x="54" y="60" width="54" height="60" rx="7" fill="#e0e7ff" stroke="#4f46e5" stroke-width="4" />
+      <rect x="132" y="60" width="54" height="60" rx="7" fill="#e0e7ff" stroke="#4f46e5" stroke-width="4" />
+      <path d="M116 118l-4 12" stroke="#4f46e5" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-grid" viewBox="0 0 240 180">
+      <rect x="20" y="20" width="200" height="140" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="6" />
+      <path d="M20 90h200M87 20v140M153 20v140" stroke="#4f46e5" stroke-width="4" />
+      <rect x="25" y="25" width="57" height="60" rx="4" fill="#818cf8" />
+    </symbol>
+    <symbol id="tpsi-set" viewBox="0 0 240 180">
+      <ellipse cx="120" cy="90" rx="103" ry="73" fill="#eef2ff" stroke="#4f46e5" stroke-width="6" />
+      <circle cx="71" cy="76" r="19" fill="#818cf8" />
+      <rect x="121" y="49" width="35" height="35" rx="5" fill="#a5b4fc" />
+      <path d="M125 106l23 32h-46z" fill="#4f46e5" />
+    </symbol>
+    <symbol id="tpsi-mapping" viewBox="0 0 240 180">
+      <g fill="#eef2ff" stroke="#4f46e5" stroke-width="5">
+        <rect x="15" y="27" width="70" height="50" rx="6" />
+        <rect x="15" y="103" width="70" height="50" rx="6" />
+        <rect x="155" y="27" width="70" height="50" rx="6" />
+        <rect x="155" y="103" width="70" height="50" rx="6" />
+      </g>
+      <path d="M91 52h55m-12-12 12 12-12 12M91 128h55m-12-12 12 12-12 12" fill="none" stroke="#4f46e5" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-trace" viewBox="0 0 240 180">
+      <rect x="25" y="15" width="190" height="150" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="5" />
+      <path d="M25 55h190M25 93h190M25 131h190M88 15v150M153 15v150" stroke="#93c5fd" stroke-width="4" />
+      <path d="M42 72h29M105 110h29M170 148h29" stroke="#2563eb" stroke-width="7" />
+    </symbol>
+    <symbol id="tpsi-runtime" viewBox="0 0 240 180">
+      <rect x="45" y="25" width="150" height="130" rx="15" fill="#fef3c7" stroke="#d97706" stroke-width="6" />
+      <path d="M105 58l45 32-45 32z" fill="#d97706" />
+      <path d="M20 50h25M20 90h25M20 130h25M195 50h25M195 90h25M195 130h25" stroke="#d97706" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-function" viewBox="0 0 240 180">
+      <rect x="58" y="28" width="124" height="124" rx="18" fill="#ccfbf1" stroke="#0d9488" stroke-width="6" />
+      <path d="M12 90h38m-12-13 12 13-12 13M190 90h38m-12-13 12 13-12 13" fill="none" stroke="#0d9488" stroke-width="6" />
+      <path d="M105 55h30M120 55v70M105 125h30" stroke="#0d9488" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-frame" viewBox="0 0 240 180">
+      <rect x="15" y="15" width="210" height="150" rx="12" fill="#f0fdfa" stroke="#0d9488" stroke-width="6" />
+      <path d="M15 52h210" stroke="#0d9488" stroke-width="5" />
+      <rect x="36" y="76" width="63" height="28" rx="5" fill="#99f6e4" />
+      <rect x="141" y="116" width="63" height="28" rx="5" fill="#99f6e4" />
+      <path d="M103 90h61v18" fill="none" stroke="#0d9488" stroke-width="5" />
+    </symbol>
+    <symbol id="tpsi-contract" viewBox="0 0 240 180">
+      <path d="M120 14l86 30v56c0 34-40 55-86 68-46-13-86-34-86-68V44z" fill="#ede9fe" stroke="#7c3aed" stroke-width="6" />
+      <path d="M79 89l26 28 56-58" fill="none" stroke="#7c3aed" stroke-width="8" />
+    </symbol>
+    <symbol id="tpsi-error" viewBox="0 0 240 180">
+      <path d="M120 15l107 145H13z" fill="#ffe4e6" stroke="#e11d48" stroke-width="6" />
+      <path d="M120 62v49" stroke="#e11d48" stroke-width="9" stroke-linecap="round" />
+      <circle cx="120" cy="133" r="6" fill="#e11d48" />
+    </symbol>
+    <symbol id="tpsi-path" viewBox="0 0 240 180">
+      <path d="M20 50V27h75l20 23h105v108H20z" fill="#fef3c7" stroke="#d97706" stroke-width="6" />
+      <path d="M48 82h45v43h84m-16-15 16 15-16 15" fill="none" stroke="#d97706" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-class" viewBox="0 0 240 180">
+      <rect x="25" y="15" width="190" height="150" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="6" />
+      <path d="M25 60h190M25 113h190" stroke="#2563eb" stroke-width="4" />
+      <path d="M62 37h116M49 85h78M49 139h115" stroke="#2563eb" stroke-width="6" />
+    </symbol>
+    <symbol id="tpsi-instance" viewBox="0 0 240 180">
+      <rect x="25" y="15" width="190" height="150" rx="24" fill="#eef2ff" stroke="#4f46e5" stroke-width="6" />
+      <path d="M55 46h130M55 54h130M25 72h190" stroke="#4f46e5" stroke-width="4" />
+      <rect x="51" y="95" width="51" height="40" rx="6" fill="#a5b4fc" />
+      <rect x="138" y="95" width="51" height="40" rx="6" fill="#818cf8" />
+    </symbol>
+    <symbol id="tpsi-document" viewBox="0 0 280 340">
+      <path d="M35 10h140l70 70v250H35z" fill="#f8fafc" stroke="#94a3b8" stroke-width="6" />
+      <path d="M175 10v70h70" fill="#dbeafe" stroke="#94a3b8" stroke-width="6" />
+      <path d="M72 130h136M72 174h136M72 218h105M72 262h120" class="tpsi-thin" stroke="#64748b" />
+    </symbol>
+    <symbol id="tpsi-terminal" viewBox="0 0 420 280">
+      <rect x="10" y="15" width="400" height="250" rx="24" fill="#111827" stroke="#64748b" stroke-width="6" />
+      <path d="M10 60h400" stroke="#64748b" stroke-width="5" />
+      <circle cx="38" cy="38" r="8" fill="#ef4444" />
+      <circle cx="64" cy="38" r="8" fill="#f59e0b" />
+      <circle cx="90" cy="38" r="8" fill="#22c55e" />
+      <path d="M65 115l38 32-38 32M129 185h95" class="tpsi-line" stroke="#a7f3d0" />
+    </symbol>
+    <symbol id="tpsi-repository" viewBox="0 0 360 280">
+      <rect x="45" y="32" width="270" height="64" rx="14" fill="#d1fae5" stroke="#34d399" stroke-width="5" />
+      <rect x="45" y="108" width="270" height="64" rx="14" fill="#a7f3d0" stroke="#10b981" stroke-width="5" />
+      <rect x="45" y="184" width="270" height="64" rx="14" fill="#6ee7b7" stroke="#059669" stroke-width="5" />
+      <path d="M82 64h196M82 140h196M82 216h196" class="tpsi-thin" stroke="#065f46" />
+    </symbol>
+    <symbol id="tpsi-test" viewBox="0 0 300 320">
+      <path d="M108 20h84M126 20v89L55 261a27 27 0 0 0 25 39h140a27 27 0 0 0 25-39l-71-152V20" fill="#ede9fe" stroke="#7c3aed" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M83 238h134" stroke="#a78bfa" stroke-width="45" stroke-linecap="round" opacity=".7" />
+      <path d="M106 220l31 31 66-76" class="tpsi-line" stroke="#16a34a" />
+    </symbol>
+  </defs>
+  <defs>
+    <marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#7dd3fc" />
+    </marker>
+  </defs>
+  <rect width="1920" height="1080" fill="#08192c" />
+  <g font-family="Arial, sans-serif">
+    <text x="64" y="96" text-anchor="start" font-size="48" fill="#f8fafc">Punteggio: conta la prima condizione vera</text>
+    <text x="64" y="148" text-anchor="start" font-size="28" fill="#b9ccdf" class="static-caption">La seconda condizione viene controllata solo se la prima è falsa.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="#dbeafe" stroke="#2563eb" stroke-width="4" id="node-start" />
+    <text x="480" y="234" text-anchor="middle" font-size="30" fill="#102a43">INIZIO</text>
+    <path d="M480 260 V288" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-start-read" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" id="node-read" />
+    <text x="480" y="338" text-anchor="middle" font-size="30" fill="#102a43">LEGGI punteggio</text>
+    <path d="M480 368 V398" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-read-test" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="#fef3c7" stroke="#d97706" stroke-width="4" id="node-test-1" />
+    <text x="480" y="488" text-anchor="middle" font-size="30" fill="#102a43">punteggio &gt;= 90</text>
+    <path d="M480 558 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-1-true" />
+    <text x="520" y="624" text-anchor="middle" font-size="30" fill="#7dd3fc">vero</text>
+    <path d="M680 478 H960" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-1-false" />
+    <text x="820" y="452" text-anchor="middle" font-size="30" fill="#7dd3fc">falso</text>
+    <text x="1160" y="374" text-anchor="middle" font-size="26" fill="#b9ccdf">ALTRIMENTI SE</text>
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="#fef3c7" stroke="#d97706" stroke-width="4" id="node-test-2" />
+    <text x="1160" y="488" text-anchor="middle" font-size="30" fill="#102a43">punteggio &gt;= 60</text>
+    <path d="M1160 558 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-2-true" />
+    <text x="1200" y="624" text-anchor="middle" font-size="30" fill="#7dd3fc">vero</text>
+    <path d="M1360 478 H1660 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-2-false" />
+    <text x="1500" y="452" text-anchor="middle" font-size="30" fill="#7dd3fc">falso</text>
+    <text x="1616" y="624" text-anchor="end" font-size="26" fill="#b9ccdf">ALTRIMENTI</text>
+    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" id="node-output-1" />
+    <text x="480" y="730" text-anchor="middle" font-size="30" fill="#102a43">MOSTRA “fascia alta”</text>
+    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" id="node-output-2" />
+    <text x="1160" y="730" text-anchor="middle" font-size="30" fill="#102a43">MOSTRA “fascia media”</text>
+    <path d="M1496.0 680 H1848.0 L1824.0 760 H1472.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" id="node-output-3" />
+    <text x="1660" y="730" text-anchor="middle" font-size="30" fill="#102a43">MOSTRA “fascia bassa”</text>
+    <path d="M480 760 V856 H1160" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-output-1-merge" />
+    <path d="M1660 760 V856 H1160" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-output-3-merge" />
+    <path d="M1160 760 V856" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-output-2-merge" />
+    <circle cx="1160" cy="856" r="7" fill="#7dd3fc" id="node-merge" />
+    <text x="1190" y="888" text-anchor="start" font-size="26" fill="#b9ccdf">FINE SE</text>
+    <path d="M1160 856 V920" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-merge-end" />
+    <rect x="1040.0" y="920" width="240" height="72" rx="36" fill="#dbeafe" stroke="#2563eb" stroke-width="4" id="node-end" />
+    <text x="1160" y="966" text-anchor="middle" font-size="30" fill="#102a43">FINE</text>
+    <text x="64" y="1032" text-anchor="start" font-size="28" fill="#b9ccdf" class="static-caption">Frecce = flusso di esecuzione. Il punto di ricongiungimento corrisponde a FINE SE.</text>
+  </g>
+  <defs>
+    <marker id="trace-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#fbbf24" />
+    </marker>
+  </defs>
+  <g id="trace-0" class="trace-frame" data-case="1" data-step="start">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 1/5  |  punteggio: 95  |  PASSO 1/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Inizia una nuova esecuzione: il percorso precedente si azzera.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-1" class="trace-frame" data-case="1" data-step="read">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 1/5  |  punteggio: 95  |  PASSO 2/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Leggi punteggio: 95.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-2" class="trace-frame" data-case="1" data-step="test-1">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 1/5  |  punteggio: 95  |  PASSO 3/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">95 &gt;= 90 → VERO.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-3" class="trace-frame" data-case="1" data-step="output-1">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 1/5  |  punteggio: 95  |  PASSO 4/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Mostra “fascia alta”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-4" class="trace-frame" data-case="1" data-step="merge">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 1/5  |  punteggio: 95  |  PASSO 5/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">FINE SE: il secondo confronto è stato saltato.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 760 V856 H1160" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-5" class="trace-frame" data-case="1" data-step="end">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 1/5  |  punteggio: 95  |  PASSO 6/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Fine di questa esecuzione. Mostra “fascia alta”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 760 V856 H1160" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 856 V920" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <rect x="1040.0" y="920" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-6" class="trace-frame" data-case="2" data-step="start">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 2/5  |  punteggio: 75  |  PASSO 1/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Inizia una nuova esecuzione: il percorso precedente si azzera.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-7" class="trace-frame" data-case="2" data-step="read">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 2/5  |  punteggio: 75  |  PASSO 2/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Leggi punteggio: 75.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-8" class="trace-frame" data-case="2" data-step="test-1">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 2/5  |  punteggio: 75  |  PASSO 3/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">75 &gt;= 90 → FALSO.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-9" class="trace-frame" data-case="2" data-step="test-2">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 2/5  |  punteggio: 75  |  PASSO 4/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">75 &gt;= 60 → VERO.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-10" class="trace-frame" data-case="2" data-step="output-2">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 2/5  |  punteggio: 75  |  PASSO 5/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Mostra “fascia media”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-11" class="trace-frame" data-case="2" data-step="merge">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 2/5  |  punteggio: 75  |  PASSO 6/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">FINE SE: i rami si ricongiungono; gli altri blocchi non vengono eseguiti.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 760 V856" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-12" class="trace-frame" data-case="2" data-step="end">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 2/5  |  punteggio: 75  |  PASSO 7/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Fine di questa esecuzione. Mostra “fascia media”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 760 V856" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 856 V920" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <rect x="1040.0" y="920" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-13" class="trace-frame" data-case="3" data-step="start">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 3/5  |  punteggio: 40  |  PASSO 1/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Inizia una nuova esecuzione: il percorso precedente si azzera.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-14" class="trace-frame" data-case="3" data-step="read">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 3/5  |  punteggio: 40  |  PASSO 2/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Leggi punteggio: 40.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-15" class="trace-frame" data-case="3" data-step="test-1">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 3/5  |  punteggio: 40  |  PASSO 3/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">40 &gt;= 90 → FALSO.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-16" class="trace-frame" data-case="3" data-step="test-2">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 3/5  |  punteggio: 40  |  PASSO 4/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">40 &gt;= 60 → FALSO.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-17" class="trace-frame" data-case="3" data-step="output-3">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 3/5  |  punteggio: 40  |  PASSO 5/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Mostra “fascia bassa”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1360 478 H1660 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1496.0 680 H1848.0 L1824.0 760 H1472.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-18" class="trace-frame" data-case="3" data-step="merge">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 3/5  |  punteggio: 40  |  PASSO 6/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">FINE SE: i rami si ricongiungono; gli altri blocchi non vengono eseguiti.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1360 478 H1660 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1496.0 680 H1848.0 L1824.0 760 H1472.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1660 760 V856 H1160" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-19" class="trace-frame" data-case="3" data-step="end">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 3/5  |  punteggio: 40  |  PASSO 7/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Fine di questa esecuzione. Mostra “fascia bassa”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1360 478 H1660 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1496.0 680 H1848.0 L1824.0 760 H1472.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1660 760 V856 H1160" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 856 V920" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <rect x="1040.0" y="920" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-20" class="trace-frame" data-case="4" data-step="start">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 4/5  |  punteggio: 90  |  PASSO 1/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Inizia una nuova esecuzione: il percorso precedente si azzera.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-21" class="trace-frame" data-case="4" data-step="read">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 4/5  |  punteggio: 90  |  PASSO 2/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Leggi punteggio: 90.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-22" class="trace-frame" data-case="4" data-step="test-1">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 4/5  |  punteggio: 90  |  PASSO 3/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">90 &gt;= 90 → VERO.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-23" class="trace-frame" data-case="4" data-step="output-1">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 4/5  |  punteggio: 90  |  PASSO 4/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Mostra “fascia alta”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-24" class="trace-frame" data-case="4" data-step="merge">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 4/5  |  punteggio: 90  |  PASSO 5/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">FINE SE: il secondo confronto è stato saltato.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 760 V856 H1160" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-25" class="trace-frame" data-case="4" data-step="end">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 4/5  |  punteggio: 90  |  PASSO 6/6</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Fine di questa esecuzione. Mostra “fascia alta”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 760 V856 H1160" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 856 V920" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <rect x="1040.0" y="920" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-26" class="trace-frame" data-case="5" data-step="start">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 5/5  |  punteggio: 60  |  PASSO 1/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Inizia una nuova esecuzione: il percorso precedente si azzera.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-27" class="trace-frame" data-case="5" data-step="read">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 5/5  |  punteggio: 60  |  PASSO 2/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Leggi punteggio: 60.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-28" class="trace-frame" data-case="5" data-step="test-1">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 5/5  |  punteggio: 60  |  PASSO 3/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">60 &gt;= 90 → FALSO.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-29" class="trace-frame" data-case="5" data-step="test-2">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 5/5  |  punteggio: 60  |  PASSO 4/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">60 &gt;= 60 → VERO.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-30" class="trace-frame" data-case="5" data-step="output-2">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 5/5  |  punteggio: 60  |  PASSO 5/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Mostra “fascia media”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-31" class="trace-frame" data-case="5" data-step="merge">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 5/5  |  punteggio: 60  |  PASSO 6/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">FINE SE: i rami si ricongiungono; gli altri blocchi non vengono eseguiti.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 760 V856" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <g id="trace-32" class="trace-frame" data-case="5" data-step="end">
+    <text x="64" y="148" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">CASO 5/5  |  punteggio: 60  |  PASSO 7/7</text>
+    <text x="64" y="1032" font-size="30" font-family="Arial, sans-serif" fill="#f8fafc">Fine di questa esecuzione. Mostra “fascia media”.</text>
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 260 V288" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M480 368 V398" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M680 478 H960" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 558 V680" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 760 V856" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <circle cx="1160" cy="856" r="7" fill="none" stroke="#fbbf24" stroke-width="6" />
+    <path d="M1160 856 V920" fill="none" stroke="#fbbf24" stroke-width="6" marker-end="url(#trace-arrow)" />
+    <rect x="1040.0" y="920" width="240" height="72" rx="36" fill="none" stroke="#fbbf24" stroke-width="10" stroke-dasharray="18 8" />
+  </g>
+  <style>.trace-frame { visibility: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+.static-caption { visibility: hidden; }
+#trace-0 { animation: frame-0 66s step-end infinite; }
+@keyframes frame-0 { 0.00000000% { visibility: visible; } 3.03030303% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-1 { animation: frame-1 66s step-end infinite; }
+@keyframes frame-1 { 0% { visibility: hidden; } 3.03030303% { visibility: visible; } 6.06060606% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-2 { animation: frame-2 66s step-end infinite; }
+@keyframes frame-2 { 0% { visibility: hidden; } 6.06060606% { visibility: visible; } 9.09090909% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-3 { animation: frame-3 66s step-end infinite; }
+@keyframes frame-3 { 0% { visibility: hidden; } 9.09090909% { visibility: visible; } 12.12121212% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-4 { animation: frame-4 66s step-end infinite; }
+@keyframes frame-4 { 0% { visibility: hidden; } 12.12121212% { visibility: visible; } 15.15151515% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-5 { animation: frame-5 66s step-end infinite; }
+@keyframes frame-5 { 0% { visibility: hidden; } 15.15151515% { visibility: visible; } 18.18181818% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-6 { animation: frame-6 66s step-end infinite; }
+@keyframes frame-6 { 0% { visibility: hidden; } 18.18181818% { visibility: visible; } 21.21212121% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-7 { animation: frame-7 66s step-end infinite; }
+@keyframes frame-7 { 0% { visibility: hidden; } 21.21212121% { visibility: visible; } 24.24242424% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-8 { animation: frame-8 66s step-end infinite; }
+@keyframes frame-8 { 0% { visibility: hidden; } 24.24242424% { visibility: visible; } 27.27272727% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-9 { animation: frame-9 66s step-end infinite; }
+@keyframes frame-9 { 0% { visibility: hidden; } 27.27272727% { visibility: visible; } 30.30303030% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-10 { animation: frame-10 66s step-end infinite; }
+@keyframes frame-10 { 0% { visibility: hidden; } 30.30303030% { visibility: visible; } 33.33333333% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-11 { animation: frame-11 66s step-end infinite; }
+@keyframes frame-11 { 0% { visibility: hidden; } 33.33333333% { visibility: visible; } 36.36363636% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-12 { animation: frame-12 66s step-end infinite; }
+@keyframes frame-12 { 0% { visibility: hidden; } 36.36363636% { visibility: visible; } 39.39393939% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-13 { animation: frame-13 66s step-end infinite; }
+@keyframes frame-13 { 0% { visibility: hidden; } 39.39393939% { visibility: visible; } 42.42424242% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-14 { animation: frame-14 66s step-end infinite; }
+@keyframes frame-14 { 0% { visibility: hidden; } 42.42424242% { visibility: visible; } 45.45454545% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-15 { animation: frame-15 66s step-end infinite; }
+@keyframes frame-15 { 0% { visibility: hidden; } 45.45454545% { visibility: visible; } 48.48484848% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-16 { animation: frame-16 66s step-end infinite; }
+@keyframes frame-16 { 0% { visibility: hidden; } 48.48484848% { visibility: visible; } 51.51515152% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-17 { animation: frame-17 66s step-end infinite; }
+@keyframes frame-17 { 0% { visibility: hidden; } 51.51515152% { visibility: visible; } 54.54545455% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-18 { animation: frame-18 66s step-end infinite; }
+@keyframes frame-18 { 0% { visibility: hidden; } 54.54545455% { visibility: visible; } 57.57575758% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-19 { animation: frame-19 66s step-end infinite; }
+@keyframes frame-19 { 0% { visibility: hidden; } 57.57575758% { visibility: visible; } 60.60606061% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-20 { animation: frame-20 66s step-end infinite; }
+@keyframes frame-20 { 0% { visibility: hidden; } 60.60606061% { visibility: visible; } 63.63636364% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-21 { animation: frame-21 66s step-end infinite; }
+@keyframes frame-21 { 0% { visibility: hidden; } 63.63636364% { visibility: visible; } 66.66666667% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-22 { animation: frame-22 66s step-end infinite; }
+@keyframes frame-22 { 0% { visibility: hidden; } 66.66666667% { visibility: visible; } 69.69696970% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-23 { animation: frame-23 66s step-end infinite; }
+@keyframes frame-23 { 0% { visibility: hidden; } 69.69696970% { visibility: visible; } 72.72727273% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-24 { animation: frame-24 66s step-end infinite; }
+@keyframes frame-24 { 0% { visibility: hidden; } 72.72727273% { visibility: visible; } 75.75757576% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-25 { animation: frame-25 66s step-end infinite; }
+@keyframes frame-25 { 0% { visibility: hidden; } 75.75757576% { visibility: visible; } 78.78787879% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-26 { animation: frame-26 66s step-end infinite; }
+@keyframes frame-26 { 0% { visibility: hidden; } 78.78787879% { visibility: visible; } 81.81818182% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-27 { animation: frame-27 66s step-end infinite; }
+@keyframes frame-27 { 0% { visibility: hidden; } 81.81818182% { visibility: visible; } 84.84848485% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-28 { animation: frame-28 66s step-end infinite; }
+@keyframes frame-28 { 0% { visibility: hidden; } 84.84848485% { visibility: visible; } 87.87878788% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-29 { animation: frame-29 66s step-end infinite; }
+@keyframes frame-29 { 0% { visibility: hidden; } 87.87878788% { visibility: visible; } 90.90909091% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-30 { animation: frame-30 66s step-end infinite; }
+@keyframes frame-30 { 0% { visibility: hidden; } 90.90909091% { visibility: visible; } 93.93939394% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-31 { animation: frame-31 66s step-end infinite; }
+@keyframes frame-31 { 0% { visibility: hidden; } 93.93939394% { visibility: visible; } 96.96969697% { visibility: hidden; } 100% { visibility: hidden; } }
+#trace-32 { animation: frame-32 66s step-end infinite; }
+@keyframes frame-32 { 0% { visibility: hidden; } 96.96969697% { visibility: visible; } 100.00000000% { visibility: hidden; } }
+}</style>
+</svg>

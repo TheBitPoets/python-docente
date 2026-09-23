@@ -371,15 +371,17 @@ Una <strong>condizione</strong> è un'affermazione che può essere vera o falsa,
 
 <p align="justify">Riprendiamo i <strong>flowchart</strong> già incontrati l'anno scorso per vedere i percorsi degli esempi. Le frecce indicano l'ordine dei passi; il rombo contiene una condizione e ha due uscite, <strong>vero</strong> e <strong>falso</strong>; il rettangolo rappresenta un'operazione e il parallelogramma una lettura o un output. Le forme arrotondate indicano inizio e fine. Ritroveremo questi simboli in <a href="02_FLOWCHART_SEQUENZA_SELEZIONE.md">M02</a>.</p>
 
+<p align="justify"><strong>Come leggere le animazioni:</strong> ogni immagine esegue a turno i casi indicati, un passo ogni due secondi. In alto trovi i valori in ingresso e il numero del passo; in basso il confronto valutato o l'istruzione eseguita. Il <strong>percorso dorato</strong> mostra i passi già attraversati, mentre il <strong>bordo tratteggiato</strong> indica il passo corrente. Alla fine di ogni caso il percorso si azzera e una nuova esecuzione riparte da <code>INIZIO</code>. Puoi consultare lo schema fermo tramite il collegamento sotto ogni figura; con la preferenza di sistema per il movimento ridotto viene mostrato lo schema senza animazione.</p>
+
 <p align="justify"><strong>Due rami: lo sconto.</strong> Riprendiamo la selezione semplice della tabella: se <code>prezzo &gt; 100</code> assegniamo 10 a <code>sconto</code>, altrimenti assegniamo 0. Viene eseguito un solo assegnamento; poi i due percorsi si ricongiungono dopo <code>FINE SE</code>. Con prezzo 100 seguiamo il ramo falso.</p>
 
-<p align="center"><img src="../../assets/python/m01-selezione-due-rami.svg" alt="Dopo la lettura del prezzo, il rombo prezzo maggiore di 100 conduce, sul ramo vero, a sconto ← 10 e, sul ramo falso, a sconto ← 0. Entrambi i percorsi si ricongiungono dopo FINE SE." width="960"></p>
-<p align="center"><em>Una condizione, due rami alternativi: in ogni esecuzione ne percorriamo uno solo.</em></p>
+<p align="center"><img src="../../assets/python/m01-selezione-due-rami-anime.svg" alt="Animazione di tre esecuzioni: prezzo 120 segue il ramo vero e assegna sconto 10; prezzo 80 e prezzo 100 seguono il ramo falso e assegnano sconto 0. Ogni percorso si ricongiunge a FINE SE." width="960"></p>
+<p align="center"><em>Prezzi 120, 80 e 100: una condizione, due rami alternativi. Ne percorriamo uno solo per esecuzione.</em> <a href="../../assets/python/m01-selezione-due-rami.svg">Schema fermo</a>.</p>
 
 <p align="justify">Nell'esempio della tabella, con A pari a 8 e B pari a 3 il primo confronto è vero e mostriamo A; con A pari a 3 e B pari a 8 il primo è falso, il secondo è vero e mostriamo B; con A e B entrambi pari a 5 i due confronti sono falsi e mostriamo &ldquo;uguali&rdquo;. Abbiamo quindi <strong>due condizioni e tre casi</strong>.</p>
 
-<p align="center"><img src="../../assets/python/m01-selezione-tre-casi.svg" alt="Dopo la lettura di A e B, se A è maggiore di B mostriamo A. Solo se il primo confronto è falso controlliamo B maggiore di A: se vero mostriamo B, altrimenti mostriamo uguali. I tre percorsi si ricongiungono dopo FINE SE." width="960"></p>
-<p align="center"><em>Ogni rombo ha sempre due uscite. Il secondo rombo, raggiunto solo dal primo ramo falso, permette di distinguere tre casi complessivi.</em></p>
+<p align="center"><img src="../../assets/python/m01-selezione-tre-casi-anime.svg" alt="Animazione di tre esecuzioni: A 8 e B 3 portano a MOSTRA A saltando il secondo confronto; A 3 e B 8 passano da falso a vero e portano a MOSTRA B; A 5 e B 5 passano da falso a falso e portano a MOSTRA uguali." width="960"></p>
+<p align="center"><em>Coppie (8, 3), (3, 8) e (5, 5): ogni rombo ha due uscite; il secondo, raggiunto solo dal primo ramo falso, distingue tre casi complessivi.</em> <a href="../../assets/python/m01-selezione-tre-casi.svg">Schema fermo</a>.</p>
 
 <p align="justify">L'ordine conta anche quando più condizioni potrebbero essere vere: se controlliamo prima <code>punteggio &gt;= 90</code> e poi <code>punteggio &gt;= 60</code>, un punteggio di 95 entra solo nel primo ramo. Con due <code>SE</code> separati, invece, entrambi i blocchi potrebbero essere eseguiti.</p>
 
@@ -396,8 +398,8 @@ ALTRIMENTI
 FINE SE
 ```
 
-<p align="center"><img src="../../assets/python/m01-selezione-punteggio.svg" alt="Il confronto punteggio maggiore o uguale a 90 porta alla fascia alta se vero. Solo se falso si controlla punteggio maggiore o uguale a 60: il ramo vero porta alla fascia media e quello falso alla fascia bassa. Ogni output prosegue al ricongiungimento dopo FINE SE." width="960"></p>
-<p align="center"><em>Con 95 il secondo confronto non viene eseguito. Con 75 seguiamo falso, poi vero; con 40 seguiamo falso, poi falso.</em></p>
+<p align="center"><img src="../../assets/python/m01-selezione-punteggio-anime.svg" alt="Animazione dei punteggi 95, 75, 40, 90 e 60: 95 e 90 portano alla fascia alta senza valutare la seconda condizione; 75 e 60 passano da falso a vero e portano alla fascia media; 40 passa da falso a falso e porta alla fascia bassa." width="960"></p>
+<p align="center"><em>Con 95 il secondo confronto viene saltato; con 75 seguiamo falso, poi vero; con 40 falso, poi falso. I casi 90 e 60 mostrano i valori di confine.</em> <a href="../../assets/python/m01-selezione-punteggio.svg">Schema fermo</a>.</p>
 
 <p align="justify">Nel secondo rombo sappiamo già che <code>punteggio &lt; 90</code>: per questo il ramo <code>punteggio &gt;= 60</code> seleziona solo i valori da 60 incluso a 90 escluso. Con 90 scegliamo la fascia alta; con 60 la fascia media. I rami si ricongiungono nel punto che corrisponde a <code>FINE SE</code>: da lì l'algoritmo continua con le eventuali istruzioni successive, senza passare dagli altri rami.</p>
 

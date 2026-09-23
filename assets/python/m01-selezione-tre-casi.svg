@@ -147,39 +147,39 @@
   <g font-family="Arial, sans-serif">
     <text x="64" y="96" text-anchor="start" font-size="48" fill="#f8fafc">Confrontare A e B: due condizioni, tre casi</text>
     <text x="64" y="148" text-anchor="start" font-size="28" fill="#b9ccdf">La seconda condizione viene controllata solo se la prima è falsa.</text>
-    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="#dbeafe" stroke="#2563eb" stroke-width="4" />
+    <rect x="360.0" y="188" width="240" height="72" rx="36" fill="#dbeafe" stroke="#2563eb" stroke-width="4" id="node-start" />
     <text x="480" y="234" text-anchor="middle" font-size="30" fill="#102a43">INIZIO</text>
-    <path d="M480 260 V288" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
-    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" />
+    <path d="M480 260 V288" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-start-read" />
+    <path d="M314.0 288 H670.0 L646.0 368 H290.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" id="node-read" />
     <text x="480" y="338" text-anchor="middle" font-size="30" fill="#102a43">LEGGI A, B</text>
-    <path d="M480 368 V398" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
-    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="#fef3c7" stroke="#d97706" stroke-width="4" />
+    <path d="M480 368 V398" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-read-test" />
+    <path d="M480 398 L680 478 L480 558 L280 478 Z" fill="#fef3c7" stroke="#d97706" stroke-width="4" id="node-test-1" />
     <text x="480" y="488" text-anchor="middle" font-size="30" fill="#102a43">A &gt; B</text>
-    <path d="M480 558 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
+    <path d="M480 558 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-1-true" />
     <text x="520" y="624" text-anchor="middle" font-size="30" fill="#7dd3fc">vero</text>
-    <path d="M680 478 H960" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
+    <path d="M680 478 H960" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-1-false" />
     <text x="820" y="452" text-anchor="middle" font-size="30" fill="#7dd3fc">falso</text>
     <text x="1160" y="374" text-anchor="middle" font-size="26" fill="#b9ccdf">ALTRIMENTI SE</text>
-    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="#fef3c7" stroke="#d97706" stroke-width="4" />
+    <path d="M1160 398 L1360 478 L1160 558 L960 478 Z" fill="#fef3c7" stroke="#d97706" stroke-width="4" id="node-test-2" />
     <text x="1160" y="488" text-anchor="middle" font-size="30" fill="#102a43">B &gt; A</text>
-    <path d="M1160 558 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
+    <path d="M1160 558 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-2-true" />
     <text x="1200" y="624" text-anchor="middle" font-size="30" fill="#7dd3fc">vero</text>
-    <path d="M1360 478 H1660 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
+    <path d="M1360 478 H1660 V680" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-test-2-false" />
     <text x="1500" y="452" text-anchor="middle" font-size="30" fill="#7dd3fc">falso</text>
     <text x="1616" y="624" text-anchor="end" font-size="26" fill="#b9ccdf">ALTRIMENTI</text>
-    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" />
+    <path d="M316.0 680 H668.0 L644.0 760 H292.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" id="node-output-1" />
     <text x="480" y="730" text-anchor="middle" font-size="30" fill="#102a43">MOSTRA A</text>
-    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" />
+    <path d="M996.0 680 H1348.0 L1324.0 760 H972.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" id="node-output-2" />
     <text x="1160" y="730" text-anchor="middle" font-size="30" fill="#102a43">MOSTRA B</text>
-    <path d="M1496.0 680 H1848.0 L1824.0 760 H1472.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" />
+    <path d="M1496.0 680 H1848.0 L1824.0 760 H1472.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" id="node-output-3" />
     <text x="1660" y="730" text-anchor="middle" font-size="30" fill="#102a43">MOSTRA “uguali”</text>
-    <path d="M480 760 V856 H1160" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
-    <path d="M1660 760 V856 H1160" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
-    <path d="M1160 760 V856" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
-    <circle cx="1160" cy="856" r="7" fill="#7dd3fc" />
+    <path d="M480 760 V856 H1160" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-output-1-merge" />
+    <path d="M1660 760 V856 H1160" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-output-3-merge" />
+    <path d="M1160 760 V856" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-output-2-merge" />
+    <circle cx="1160" cy="856" r="7" fill="#7dd3fc" id="node-merge" />
     <text x="1190" y="888" text-anchor="start" font-size="26" fill="#b9ccdf">FINE SE</text>
-    <path d="M1160 856 V920" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" />
-    <rect x="1040.0" y="920" width="240" height="72" rx="36" fill="#dbeafe" stroke="#2563eb" stroke-width="4" />
+    <path d="M1160 856 V920" fill="none" stroke="#7dd3fc" stroke-width="4" marker-end="url(#flow-arrow)" id="edge-merge-end" />
+    <rect x="1040.0" y="920" width="240" height="72" rx="36" fill="#dbeafe" stroke="#2563eb" stroke-width="4" id="node-end" />
     <text x="1160" y="966" text-anchor="middle" font-size="30" fill="#102a43">FINE</text>
     <text x="64" y="1032" text-anchor="start" font-size="28" fill="#b9ccdf">Frecce = flusso di esecuzione. Il punto di ricongiungimento corrisponde a FINE SE.</text>
   </g>
