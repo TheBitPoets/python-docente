@@ -344,7 +344,7 @@ ripeti per 5 valori
 <p align="justify">Qui la decisione avviene prima:</p>
 
 ```text
-scelta = esegui?
+scelta == "esegui"?
  true → ciclo
  false → end
 ```

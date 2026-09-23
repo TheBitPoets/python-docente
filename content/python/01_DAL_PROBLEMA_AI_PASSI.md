@@ -141,6 +141,32 @@ Scrivi lo pseudocodice del resto ed eseguilo su carta, annotando ogni cambiament
 
 <p align="justify">Lo pseudocodice non ha un unico standard universale per il nostro corso.</p>
 
+### Operatori di confronto
+
+<p align="justify">Un <strong>operatore</strong> indica un'operazione da eseguire su uno o più valori. Gli <strong>operatori di confronto</strong> confrontano due valori e producono una risposta <strong>vera o falsa</strong>. Questa risposta permette a una selezione di scegliere il percorso da eseguire.</p>
+
+<p align="justify">Nel nostro pseudocodice usiamo già gli stessi simboli di confronto che ritroveremo in Python:</p>
+
+<table align="center">
+<thead><tr><th>Operatore</th><th>Significato</th><th>Esempio vero</th><th>Esempio falso</th></tr></thead>
+<tbody>
+<tr><td><code>==</code></td><td>uguale a</td><td><code>5 == 5</code></td><td><code>5 == 3</code></td></tr>
+<tr><td><code>!=</code></td><td>diverso da</td><td><code>5 != 3</code></td><td><code>5 != 5</code></td></tr>
+<tr><td><code>&lt;</code></td><td>minore di</td><td><code>3 &lt; 5</code></td><td><code>5 &lt; 5</code></td></tr>
+<tr><td><code>&lt;=</code></td><td>minore o uguale a</td><td><code>5 &lt;= 5</code></td><td><code>6 &lt;= 5</code></td></tr>
+<tr><td><code>&gt;</code></td><td>maggiore di</td><td><code>5 &gt; 3</code></td><td><code>5 &gt; 5</code></td></tr>
+<tr><td><code>&gt;=</code></td><td>maggiore o uguale a</td><td><code>5 &gt;= 5</code></td><td><code>3 &gt;= 5</code></td></tr>
+</tbody>
+</table>
+
+<p align="justify">La differenza fra <code>&gt;</code> e <code>&gt;=</code>, oppure fra <code>&lt;</code> e <code>&lt;=</code>, riguarda il valore di confine: <code>eta &gt;= 14</code> è vera anche quando l'età è proprio 14, mentre <code>eta &gt; 14</code> è falsa.</p>
+
+<p align="justify">Possiamo verificare l'uguaglianza anche fra testi: <code>comando == "N"</code> chiede se il valore letto è il testo <code>"N"</code>. È vero quando il comando è N e falso quando è S. Le virgolette delimitano il testo da confrontare; <code>comando</code> è invece il nome della variabile che contiene il dato letto.</p>
+
+<p align="justify"><strong>Confrontare e assegnare sono operazioni diverse:</strong> <code>ASSEGNA quantita &larr; 5</code> memorizza 5 nella variabile; <code>quantita == 5</code> controlla il valore senza modificarlo. Se la quantità contiene 3, il confronto è falso e la quantità resta 3. Nel nostro pseudocodice usiamo <code>&larr;</code> per assegnare e <code>==</code> per confrontare l'uguaglianza. In Python l'assegnamento si scriverà con <code>=</code>, mentre il confronto resterà <code>==</code>.</p>
+
+### Convenzioni per le istruzioni
+
 <p align="justify">Usiamo convenzioni semplici e coerenti. La tabella seguente è la nostra sintassi di riferimento:</p>
 
 <table align="center">
@@ -191,7 +217,7 @@ FINE MENTRE</code></pre></td></tr>
 
 <p align="justify">Le condizioni vengono controllate dall'alto verso il basso: si esegue <strong>solo il ramo della prima condizione vera</strong>, poi si prosegue dopo <code>FINE SE</code>. Il ramo finale <code>ALTRIMENTI</code> non ha una condizione: raccoglie tutti i casi in cui le condizioni precedenti sono false. Si possono ripetere più rami <code>ALTRIMENTI SE</code> prima dell'eventuale <code>ALTRIMENTI</code>.</p>
 
-<p align="justify">Nell'esempio della tabella, con A = 8 e B = 3 il primo confronto è vero e mostriamo A; con A = 3 e B = 8 il primo è falso, il secondo è vero e mostriamo B; con A = B = 5 entrambi sono falsi e mostriamo &ldquo;uguali&rdquo;. Abbiamo quindi <strong>due condizioni e tre casi</strong>.</p>
+<p align="justify">Nell'esempio della tabella, con A pari a 8 e B pari a 3 il primo confronto è vero e mostriamo A; con A pari a 3 e B pari a 8 il primo è falso, il secondo è vero e mostriamo B; con A e B entrambi pari a 5 i due confronti sono falsi e mostriamo &ldquo;uguali&rdquo;. Abbiamo quindi <strong>due condizioni e tre casi</strong>.</p>
 
 <p align="justify">L'ordine conta anche quando più condizioni potrebbero essere vere: se controlliamo prima <code>punteggio &gt;= 90</code> e poi <code>punteggio &gt;= 60</code>, un punteggio di 95 entra solo nel primo ramo. Con due <code>SE</code> separati, invece, entrambi i blocchi potrebbero essere eseguiti.</p>
 
@@ -295,7 +321,7 @@ ASSEGNA finale ← prezzo - sconto
 MOSTRA finale
 ```
 
-<p align="justify">Proviamo <code>prezzo = 120</code>.</p>
+<p align="justify">Proviamo con un <code>prezzo</code> pari a 120.</p>
 
 <table align="center">
 <thead>
@@ -440,7 +466,7 @@ uscita
 
 ## Caso non coperto
 
-<p align="justify">Gestisco A &gt; B e B &gt; A, ma non A = B.</p>
+<p align="justify">Gestisco <code>A &gt; B</code> e <code>B &gt; A</code>, ma non <code>A == B</code>.</p>
 
 ## Procedura non terminante
 
@@ -492,11 +518,11 @@ MOSTRA totale</code></pre>
 <table align="center"><thead><tr><th>Elemento</th><th>Specifica</th></tr></thead><tbody>
 <tr><td><strong>Input</strong></td><td>valore A e valore B</td></tr>
 <tr><td><strong>Output</strong></td><td>A, B oppure il messaggio &ldquo;uguali&rdquo;</td></tr>
-<tr><td><strong>Vincoli</strong></td><td>i due valori devono essere confrontabili; il caso A = B deve essere gestito</td></tr>
+<tr><td><strong>Vincoli</strong></td><td>i due valori devono essere confrontabili; il caso <code>A == B</code> deve essere gestito</td></tr>
 </tbody></table>
 <p align="justify"><strong>Passi:</strong> leggiamo A e B; confrontiamo A con B; se A &egrave; maggiore comunichiamo A; altrimenti, se B &egrave; maggiore comunichiamo B; se nessuna delle due condizioni &egrave; vera, i valori sono uguali.</p>
-<p align="justify"><strong>Caso generale:</strong> con A = 8 e B = 3 comunichiamo 8.</p>
-<p align="justify"><strong>Casi limite o di contorno:</strong> con A = B = 5 comunichiamo &ldquo;uguali&rdquo;; con A = -2 e B = -7 verifichiamo che il confronto funzioni anche con valori negativi e comunichiamo -2.</p>
+<p align="justify"><strong>Caso generale:</strong> con A pari a 8 e B pari a 3 comunichiamo 8.</p>
+<p align="justify"><strong>Casi limite o di contorno:</strong> con A e B entrambi pari a 5 comunichiamo &ldquo;uguali&rdquo;; con A pari a -2 e B pari a -7 verifichiamo che il confronto funzioni anche con valori negativi e comunichiamo -2.</p>
 <pre><code>LEGGI A
 LEGGI B
 SE A &gt; B
@@ -552,14 +578,18 @@ ASSEGNA y &larr; 0
 ASSEGNA mosse &larr; 0
 MENTRE mosse &lt; 3
     LEGGI comando
-    SE comando = "N"
+    SE comando == "N"
         ASSEGNA y &larr; y + 1
-    SE comando = "S"
+    FINE SE
+    SE comando == "S"
         ASSEGNA y &larr; y - 1
-    SE comando = "E"
+    FINE SE
+    SE comando == "E"
         ASSEGNA x &larr; x + 1
-    SE comando = "O"
+    FINE SE
+    SE comando == "O"
         ASSEGNA x &larr; x - 1
+    FINE SE
     ASSEGNA mosse &larr; mosse + 1
 FINE MENTRE
 MOSTRA (x, y)</code></pre>

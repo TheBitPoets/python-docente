@@ -34,7 +34,7 @@ CASI?
 ```text
 A > B
 B > A
-A = B
+A == B
 ```
 
 Se progetti solo i primi due casi, la soluzione è incompleta.
@@ -122,7 +122,7 @@ finale ← prezzo - sconto
 MOSTRA finale
 ```
 
-Proviamo `prezzo = 120`.
+Proviamo con un `prezzo` pari a 120.
 
 ---
 

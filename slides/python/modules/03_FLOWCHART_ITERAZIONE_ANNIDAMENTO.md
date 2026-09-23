@@ -204,7 +204,7 @@ La selezione decide **quando aggiornare**.
 # Ciclo dentro una selezione
 
 ```text
-scelta = esegui?
+scelta == "esegui"?
  true → ripeti operazione 3 volte
  false → end
 ```
