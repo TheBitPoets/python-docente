@@ -93,15 +93,15 @@ Un <strong>flow chart</strong>, o diagramma di flusso, rappresenta i passi di un
 </tr>
 </table>
 
-<p align="center"><img src="../../assets/python/m02-flusso-controllo.svg" alt="Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi." width="960"></p>
+<p align="center"><img src="../../assets/python/m02-flusso-controllo.svg" alt="Dopo l’input, il valore di un’espressione viene assegnato alla variabile risultato; una decisione divide il flusso in due rami alternativi." width="960"></p>
 <p align="center"><em>Le frecce indicano il prossimo passo; una decisione sceglie uno dei due rami.</em></p>
 
-<p align="justify"><strong>Pseudocodice dello schema:</strong> dati, calcolo e condizione sono segnaposto da precisare per il problema scelto.</p>
+<p align="justify"><strong>Pseudocodice dello schema:</strong> dati, espressione e condizione sono segnaposto da precisare per il problema scelto. <code>ASSEGNA risultato ← espressione</code> valuta l’espressione a destra della freccia e ne memorizza il valore nella variabile <code>risultato</code>, come in M01.</p>
 
 ```text
 INIZIO
 LEGGI dati
-ESEGUI calcolo
+ASSEGNA risultato ← espressione
 SE condizione
     ESEGUI passi del ramo vero
 ALTRIMENTI

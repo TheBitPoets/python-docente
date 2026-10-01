@@ -803,7 +803,7 @@
     "module": "M02",
     "title": "Il flusso di controllo",
     "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#1-perché-un-diagramma",
-    "purpose": "Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi.",
+    "purpose": "Dopo l’input, il valore di un’espressione viene assegnato alla variabile risultato; una decisione divide il flusso in due rami alternativi.",
     "components": [
       "tpsi-terminator",
       "tpsi-io",
@@ -813,7 +813,7 @@
     "priority": "P1",
     "status": "in-lesson",
     "asset": "assets/python/m02-flusso-controllo.svg",
-    "alt_draft": "Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi.",
+    "alt_draft": "Dopo l’input, il valore di un’espressione viene assegnato alla variabile risultato; una decisione divide il flusso in due rami alternativi.",
     "caption_draft": "Il flusso di controllo",
     "existing_images": 16,
     "existing_text_blocks": 15

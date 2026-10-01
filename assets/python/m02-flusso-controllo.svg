@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
   <title id="title">Il flusso di controllo</title>
-  <desc id="desc">Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi.</desc>
+  <desc id="desc">Dopo l’input, il valore di un’espressione viene assegnato alla variabile risultato; una decisione divide il flusso in due rami alternativi.</desc>
   <defs>
     <style>.tpsi-line{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:8}.tpsi-thin{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:5}</style>
     <symbol id="tpsi-step" viewBox="0 0 240 180">
@@ -154,8 +154,8 @@
     <path d="M804.0 344 H1140.0 L1116.0 424 H780.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" />
     <text x="960" y="394.0" text-anchor="middle" font-size="30" fill="#102a43">input</text>
     <path d="M960 424 V480" fill="none" stroke="#7dd3fc" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
-    <rect x="780.0" y="480" width="360" height="80" rx="0" fill="#dbeafe" stroke="#2563eb" stroke-width="4" />
-    <text x="960" y="530.0" text-anchor="middle" font-size="30" fill="#102a43">calcolo</text>
+    <rect x="680" y="480" width="560" height="80" rx="0" fill="#dbeafe" stroke="#2563eb" stroke-width="4" />
+    <text x="960" y="530.0" text-anchor="middle" font-size="30" fill="#102a43">risultato ← espressione</text>
     <path d="M960 560 V616" fill="none" stroke="#7dd3fc" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
     <path d="M960 616 L1200.0 696.0 L960 776 L720.0 696.0 Z" fill="#fef3c7" stroke="#d97706" stroke-width="4" />
     <text x="960" y="706.0" text-anchor="middle" font-size="30" fill="#102a43">decisione?</text>
