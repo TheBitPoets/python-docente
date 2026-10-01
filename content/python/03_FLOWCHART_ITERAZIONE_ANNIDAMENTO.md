@@ -697,4 +697,6 @@ spiegazione della terminazione
 <p align="center"><img src="../../assets/python/m03-recap.svg" alt="Il percorso collega problema, algoritmo, flow chart, trace, test e debug." width="960"></p>
 <p align="center"><em>Dalla specifica si passa al modello, poi alle prove e alla diagnosi degli errori.</em></p>
 
+<p align="justify"><strong>Laboratorio:</strong> passa alla <a href="../../student/LAB_M02_M03_FLOWCHART.md">scheda di esercizi su selezioni e cicli nei flow chart</a>: 12 esercizi con percorsi da 60 e 90 minuti, da svolgere con diagrammi, pseudocodice e trace.</p>
+
 <p align="justify">Nel prossimo modulo useremo Python per tradurre procedure che sappiamo già leggere, simulare e verificare.</p>
