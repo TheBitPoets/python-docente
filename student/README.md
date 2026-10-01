@@ -14,6 +14,7 @@ Per PY2-01 il Flowchart Lab ha un consumer candidate reale e testato su Ubuntu/W
 - **M01** — [Dal problema ai passi: specifica, pseudocodice e trace](../content/python/01_DAL_PROBLEMA_AI_PASSI.md) · [slide](../slides/python/modules/01_DAL_PROBLEMA_AI_PASSI.md).
 - **M02** — [Flow chart: sequenza, input/output e selezione](../content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md) · [slide](../slides/python/modules/02_FLOWCHART_SEQUENZA_SELEZIONE.md).
 - **M03** — [Flow chart: iterazione, terminazione e annidamento](../content/python/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md) · [slide](../slides/python/modules/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md).
+- **Laboratorio M02–M03** — [Selezioni e cicli nei flow chart](LAB_M02_M03_FLOWCHART.md): 12 esercizi, con percorsi da 60 e 90 minuti.
 
 In queste tre settimane non serve conoscere Python. Il percorso è:
 
