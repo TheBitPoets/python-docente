@@ -96,6 +96,19 @@ Un <strong>flow chart</strong>, o diagramma di flusso, rappresenta i passi di un
 <p align="center"><img src="../../assets/python/m02-flusso-controllo.svg" alt="Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi." width="960"></p>
 <p align="center"><em>Le frecce indicano il prossimo passo; una decisione sceglie uno dei due rami.</em></p>
 
+<p align="justify"><strong>Pseudocodice dello schema:</strong> dati, calcolo e condizione sono segnaposto da precisare per il problema scelto.</p>
+
+```text
+INIZIO
+LEGGI dati
+ESEGUI calcolo
+SE condizione
+    ESEGUI passi del ramo vero
+ALTRIMENTI
+    ESEGUI passi del ramo falso
+FINE SE
+```
+
 <p align="justify">Non serve a “decorare” l'algoritmo. Serve a mostrare:</p>
 
 <ul>
@@ -170,6 +183,17 @@ Un <strong>flow chart</strong>, o diagramma di flusso, rappresenta i passi di un
 
 <p align="center"><img src="../../assets/python/m02-sequenza-somma.svg" alt="START, INPUT A, INPUT B, SOMMA ← A + B, OUTPUT SOMMA, END: i passi vengono eseguiti in questo ordine." width="960"></p>
 <p align="center"><em>Prima si acquisiscono A e B, poi si calcola la somma e infine la si mostra.</em></p>
+
+<p align="justify"><strong>Pseudocodice:</strong></p>
+
+```text
+INIZIO
+LEGGI A
+LEGGI B
+ASSEGNA SOMMA ← A + B
+MOSTRA SOMMA
+FINE
+```
 
 <p align="justify">Ogni passo ha un solo successore.</p>
 
@@ -262,6 +286,16 @@ temperatura > 30 ?
 <p align="center"><img src="../../assets/python/m02-decisione-soglia.svg" alt="Il rombo temperatura &gt; 30? porta con true a OUTPUT sopra soglia e con false a OUTPUT entro soglia." width="960"></p>
 <p align="center"><em>La temperatura 30 segue il ramo false: la soglia non è superata.</em></p>
 
+<p align="justify"><strong>Pseudocodice del frammento:</strong> la temperatura è già stata acquisita.</p>
+
+```text
+SE temperatura > 30
+    MOSTRA "sopra soglia"
+ALTRIMENTI
+    MOSTRA "entro soglia"
+FINE SE
+```
+
 <table align="center">
 <tr>
 <td>
@@ -300,6 +334,19 @@ false
 <p align="center"><img src="../../assets/python/m02-selezione-doppia.svg" alt="Dopo START e INPUT temperatura, temperatura &gt; 30? sceglie OUTPUT alta sul ramo true oppure OUTPUT normale sul ramo false. I rami si ricongiungono prima di END." width="960"></p>
 <p align="center"><em>Entrambi i rami arrivano a END; la condizione decide quale output produrre.</em></p>
 
+<p align="justify"><strong>Pseudocodice:</strong></p>
+
+```text
+INIZIO
+LEGGI temperatura
+SE temperatura > 30
+    MOSTRA "alta"
+ALTRIMENTI
+    MOSTRA "normale"
+FINE SE
+FINE
+```
+
 <p align="justify">Domanda importante:</p>
 
 <blockquote>
@@ -323,6 +370,15 @@ false
 <p align="center"><img src="../../assets/python/m02-selezione-semplice.svg" alt="Se saldo &lt; 0? è true si mostra AVVISO; il ramo false salta l’avviso. Entrambi raggiungono il prossimo passo." width="960"></p>
 <p align="center"><em>Il ramo false salta l’avviso e si ricongiunge al flusso comune.</em></p>
 
+<p align="justify"><strong>Pseudocodice del frammento:</strong> il saldo è già disponibile. Il prossimo passo si esegue in entrambi i casi.</p>
+
+```text
+SE saldo < 0
+    MOSTRA "AVVISO"
+FINE SE
+ESEGUI prossimo passo
+```
+
 <p align="justify">Anche quando un ramo “non fa nulla”, il flusso deve restare chiaro.</p>
 
 ---
@@ -339,6 +395,16 @@ false
 
 <p align="center"><img src="../../assets/python/m02-condizione-invertita.svg" alt="Diagramma volutamente sbagliato: età &gt;= 14? conduce con true a OUTPUT non ammesso e con false a OUTPUT ammesso." width="960"></p>
 <p align="center"><em>Esempio errato: le frecce sono valide, ma gli output violano la specifica.</em></p>
+
+<p align="justify"><strong>Pseudocodice volutamente errato:</strong> riproduce gli output invertiti del diagramma; l’età è già disponibile.</p>
+
+```text
+SE età >= 14
+    MOSTRA "non ammesso"
+ALTRIMENTI
+    MOSTRA "ammesso"
+FINE SE
+```
 
 <p align="justify">Il diagramma può essere strutturalmente valido ma semanticamente sbagliato.</p>
 
@@ -365,6 +431,18 @@ file/schema valido ≠ algoritmo corretto
 <p align="center"><img src="../../assets/python/m02-output-anticipato.svg" alt="Il frammento sbagliato legge prezzo, mostra subito prezzo e soltanto dopo raggiunge la decisione sullo sconto." width="960"></p>
 <p align="center"><em>L’ordine sbagliato comunica il prezzo prima di aver stabilito lo sconto.</em></p>
 
+<p align="justify"><strong>Pseudocodice del frammento volutamente errato:</strong> l’output precede la decisione. I puntini indicano i passi successivi, omessi anche nell’immagine.</p>
+
+```text
+LEGGI prezzo
+MOSTRA prezzo
+SE prezzo > 100
+    ...
+ALTRIMENTI
+    ...
+FINE SE
+```
+
 <p align="justify">Il risultato viene mostrato <strong>prima</strong> della decisione che dovrebbe modificarlo.</p>
 
 <p align="justify">Il trace individua immediatamente il primo punto di divergenza.</p>
@@ -383,6 +461,20 @@ file/schema valido ≠ algoritmo corretto
 
 <p align="center"><img src="../../assets/python/m02-tre-casi.svg" alt="Se n &lt; 0 è true si mostra negativo. Altrimenti si valuta n == 0: true mostra zero, false mostra positivo." width="960"></p>
 <p align="center"><em>Le due condizioni coprono valori negativi, zero e valori positivi.</em></p>
+
+<p align="justify"><strong>Pseudocodice del frammento:</strong> il valore di <code>n</code> è già disponibile. Il secondo confronto si esegue soltanto quando il primo è falso.</p>
+
+```text
+SE n < 0
+    MOSTRA "negativo"
+ALTRIMENTI
+    SE n == 0
+        MOSTRA "zero"
+    ALTRIMENTI
+        MOSTRA "positivo"
+    FINE SE
+FINE SE
+```
 
 <p align="justify">Non abbiamo bisogno di un nuovo simbolo per ogni possibile problema.</p>
 
@@ -515,5 +607,21 @@ caso che lo rivela
 
 <p align="center"><img src="../../assets/python/m02-recap.svg" alt="La sequenza segue un percorso; la selezione sceglie un ramo; il trace rende visibili stato e percorso; i test provano casi diversi, soprattutto i confini." width="960"></p>
 <p align="center"><em>Il diagramma mostra i percorsi; trace e test aiutano a verificarne il comportamento.</em></p>
+
+<p align="justify"><strong>Pseudocodice degli schemi del riepilogo:</strong> nella sequenza i tre passi si eseguono in ordine; nella selezione si esegue uno solo dei due rami.</p>
+
+```text
+ESEGUI primo passo
+ESEGUI secondo passo
+ESEGUI terzo passo
+```
+
+```text
+SE condizione
+    ESEGUI passi del ramo vero
+ALTRIMENTI
+    ESEGUI passi del ramo falso
+FINE SE
+```
 
 <p align="justify">Prossimo modulo: introduciamo ripetizione, terminazione e annidamento nei diagrammi.</p>

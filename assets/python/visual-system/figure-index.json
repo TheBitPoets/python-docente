@@ -55,7 +55,7 @@
     "alt_draft": "Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
     "caption_draft": "Due rami, una decisione. Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m03-01",
@@ -816,7 +816,7 @@
     "alt_draft": "Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi.",
     "caption_draft": "Il flusso di controllo",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-12",
@@ -833,7 +833,7 @@
     "alt_draft": "Rettangolo con estremit? arrotondate: inizio o fine del diagramma.",
     "caption_draft": "Terminatore",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-13",
@@ -850,7 +850,7 @@
     "alt_draft": "Parallelogramma: dato acquisito o mostrato.",
     "caption_draft": "Input/output",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-14",
@@ -867,7 +867,7 @@
     "alt_draft": "Rettangolo: calcolo o assegnamento.",
     "caption_draft": "Elaborazione",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-15",
@@ -884,7 +884,7 @@
     "alt_draft": "Rombo con punto interrogativo: condizione con rami.",
     "caption_draft": "Decisione",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-16",
@@ -899,7 +899,7 @@
     "alt_draft": "Freccia continua: direzione verso il prossimo passo.",
     "caption_draft": "Collegamento",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-03",
@@ -919,7 +919,7 @@
     "alt_draft": "START, INPUT A, INPUT B, SOMMA ← A + B, OUTPUT SOMMA, END: i passi vengono eseguiti in questo ordine.",
     "caption_draft": "Una sequenza: sommare due numeri",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-04",
@@ -939,7 +939,7 @@
     "alt_draft": "Il rombo temperatura > 30? porta con true a OUTPUT sopra soglia e con false a OUTPUT entro soglia.",
     "caption_draft": "Una condizione, due possibilità",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-05",
@@ -959,7 +959,7 @@
     "alt_draft": "Se saldo < 0? è true si mostra AVVISO; il ramo false salta l’avviso. Entrambi raggiungono il prossimo passo.",
     "caption_draft": "Selezione semplice: un avviso se serve",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-06",
@@ -979,7 +979,7 @@
     "alt_draft": "Diagramma volutamente sbagliato: età >= 14? conduce con true a OUTPUT non ammesso e con false a OUTPUT ammesso.",
     "caption_draft": "Errore: gli output sono invertiti",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-07",
@@ -999,7 +999,7 @@
     "alt_draft": "Il frammento sbagliato legge prezzo, mostra subito prezzo e soltanto dopo raggiunge la decisione sullo sconto.",
     "caption_draft": "Errore: l’output arriva troppo presto",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-08",
@@ -1019,7 +1019,7 @@
     "alt_draft": "Se n < 0 è true si mostra negativo. Altrimenti si valuta n == 0: true mostra zero, false mostra positivo.",
     "caption_draft": "Due decisioni per distinguere tre casi",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-09",
@@ -1039,7 +1039,7 @@
     "alt_draft": "TheBitLab apre il Flowchart Lab locale e la browser UI; si costruisce il diagramma, si usano Run, Step e Reset, si osserva il variable watch e si salva algorithm.flow.json nel workspace.",
     "caption_draft": "Il percorso nel Flowchart Lab",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-10",
@@ -1059,7 +1059,7 @@
     "alt_draft": "Carta, lavagna o template si affiancano a trace table, casi di test e rubric docente: tutti contribuiscono al lavoro sul diagramma.",
     "caption_draft": "Il percorso manuale resta disponibile",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   },
   {
     "id": "py-m02-11",
@@ -1079,6 +1079,6 @@
     "alt_draft": "La sequenza segue un percorso; la selezione sceglie un ramo; il trace rende visibili stato e percorso; i test provano casi diversi, soprattutto i confini.",
     "caption_draft": "Sequenza, selezione, trace e test",
     "existing_images": 16,
-    "existing_text_blocks": 5
+    "existing_text_blocks": 15
   }
 ]
