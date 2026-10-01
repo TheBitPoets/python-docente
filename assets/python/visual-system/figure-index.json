@@ -54,8 +54,8 @@
     "asset": "assets/python/m02-selezione-doppia.svg",
     "alt_draft": "Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
     "caption_draft": "Due rami, una decisione. Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m03-01",
@@ -815,8 +815,8 @@
     "asset": "assets/python/m02-flusso-controllo.svg",
     "alt_draft": "Dopo l’input, il valore di un’espressione viene assegnato alla variabile risultato; una decisione divide il flusso in due rami alternativi.",
     "caption_draft": "Il flusso di controllo",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-12",
@@ -832,8 +832,8 @@
     "asset": "assets/python/m02-simbolo-terminatore.svg",
     "alt_draft": "Rettangolo con estremit? arrotondate: inizio o fine del diagramma.",
     "caption_draft": "Terminatore",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-13",
@@ -849,8 +849,8 @@
     "asset": "assets/python/m02-simbolo-input-output.svg",
     "alt_draft": "Parallelogramma: dato acquisito o mostrato.",
     "caption_draft": "Input/output",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-14",
@@ -866,8 +866,8 @@
     "asset": "assets/python/m02-simbolo-elaborazione.svg",
     "alt_draft": "Rettangolo: calcolo o assegnamento.",
     "caption_draft": "Elaborazione",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-15",
@@ -883,8 +883,8 @@
     "asset": "assets/python/m02-simbolo-decisione.svg",
     "alt_draft": "Rombo con punto interrogativo: condizione con rami.",
     "caption_draft": "Decisione",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-16",
@@ -898,8 +898,8 @@
     "asset": "assets/python/m02-simbolo-freccia.svg",
     "alt_draft": "Freccia continua: direzione verso il prossimo passo.",
     "caption_draft": "Collegamento",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-03",
@@ -918,8 +918,8 @@
     "asset": "assets/python/m02-sequenza-somma.svg",
     "alt_draft": "START, INPUT A, INPUT B, SOMMA ← A + B, OUTPUT SOMMA, END: i passi vengono eseguiti in questo ordine.",
     "caption_draft": "Una sequenza: sommare due numeri",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-04",
@@ -938,8 +938,8 @@
     "asset": "assets/python/m02-decisione-soglia.svg",
     "alt_draft": "Il rombo temperatura > 30? porta con true a OUTPUT sopra soglia e con false a OUTPUT entro soglia.",
     "caption_draft": "Una condizione, due possibilità",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-05",
@@ -958,8 +958,8 @@
     "asset": "assets/python/m02-selezione-semplice.svg",
     "alt_draft": "Se saldo < 0? è true si mostra AVVISO; il ramo false salta l’avviso. Entrambi raggiungono il prossimo passo.",
     "caption_draft": "Selezione semplice: un avviso se serve",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-06",
@@ -978,8 +978,8 @@
     "asset": "assets/python/m02-condizione-invertita.svg",
     "alt_draft": "Diagramma volutamente sbagliato: età >= 14? conduce con true a OUTPUT non ammesso e con false a OUTPUT ammesso.",
     "caption_draft": "Errore: gli output sono invertiti",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-07",
@@ -998,8 +998,8 @@
     "asset": "assets/python/m02-output-anticipato.svg",
     "alt_draft": "Il frammento sbagliato legge prezzo, mostra subito prezzo e soltanto dopo raggiunge la decisione sullo sconto.",
     "caption_draft": "Errore: l’output arriva troppo presto",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-08",
@@ -1018,8 +1018,28 @@
     "asset": "assets/python/m02-tre-casi.svg",
     "alt_draft": "Se n < 0 è true si mostra negativo. Altrimenti si valuta n == 0: true mostra zero, false mostra positivo.",
     "caption_draft": "Due decisioni per distinguere tre casi",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
+  },
+  {
+    "id": "py-m02-17",
+    "module": "M02",
+    "title": "Tre casi con ALTRIMENTI SE",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#10-più-casi",
+    "purpose": "La catena controlla n minore di zero, n uguale a zero e n maggiore di zero. Ogni condizione vera mostra il rispettivo messaggio e salta le condizioni successive. Per un numero intero o reale uno dei tre casi è sempre vero.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-tre-casi-altrimenti-se.svg",
+    "alt_draft": "La catena controlla n minore di zero, n uguale a zero e n maggiore di zero. Ogni condizione vera mostra il rispettivo messaggio e salta le condizioni successive. Per un numero intero o reale uno dei tre casi è sempre vero.",
+    "caption_draft": "Tre casi con ALTRIMENTI SE",
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-09",
@@ -1038,8 +1058,8 @@
     "asset": "assets/python/m02-flowchart-lab.svg",
     "alt_draft": "TheBitLab apre il Flowchart Lab locale e la browser UI; si costruisce il diagramma, si usano Run, Step e Reset, si osserva il variable watch e si salva algorithm.flow.json nel workspace.",
     "caption_draft": "Il percorso nel Flowchart Lab",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-10",
@@ -1058,8 +1078,8 @@
     "asset": "assets/python/m02-fallback-manuale.svg",
     "alt_draft": "Carta, lavagna o template si affiancano a trace table, casi di test e rubric docente: tutti contribuiscono al lavoro sul diagramma.",
     "caption_draft": "Il percorso manuale resta disponibile",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   },
   {
     "id": "py-m02-11",
@@ -1078,7 +1098,7 @@
     "asset": "assets/python/m02-recap.svg",
     "alt_draft": "La sequenza segue un percorso; la selezione sceglie un ramo; il trace rende visibili stato e percorso; i test provano casi diversi, soprattutto i confini.",
     "caption_draft": "Sequenza, selezione, trace e test",
-    "existing_images": 16,
-    "existing_text_blocks": 15
+    "existing_images": 17,
+    "existing_text_blocks": 16
   }
 ]

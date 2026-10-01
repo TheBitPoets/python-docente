@@ -88,6 +88,7 @@ def outputs() -> dict[Path, str]:
     body = lesson.read_text(encoding="utf-8")
     extra_index = 2
     symbol_index = 12
+    additional_ids = {"m02-tre-casi-altrimenti-se.svg": 17}
     for match in re.finditer(r'<img src="../../assets/python/(m02-[^"]+\.svg)"', body):
         asset = match.group(1)
         if asset == "m02-selezione-doppia.svg":
@@ -102,7 +103,7 @@ def outputs() -> dict[Path, str]:
         if is_symbol:
             components = [node.get("href")[1:] for node in scene.iter("{http://www.w3.org/2000/svg}use")]
         figures.append({
-            "id": f"py-m02-{symbol_index if is_symbol else extra_index:02d}", "module": "M02", "title": title,
+            "id": f"py-m02-{additional_ids.get(asset, symbol_index if is_symbol else extra_index):02d}", "module": "M02", "title": title,
             "lesson_section": target, "purpose": purpose, "components": components,
             "priority": "P1", "status": "in-lesson", "asset": f"assets/python/{asset}",
             "alt_draft": purpose, "caption_draft": title,
@@ -111,7 +112,7 @@ def outputs() -> dict[Path, str]:
         })
         if is_symbol:
             symbol_index += 1
-        else:
+        elif asset not in additional_ids:
             extra_index += 1
         rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [
             f'<a href="../{escape(target, quote=True)}">M02 — {escape(section)}</a>',
@@ -125,6 +126,8 @@ def outputs() -> dict[Path, str]:
 <p align="justify"><strong>Esito:</strong> 31 figure pianificate, 25 oggetti SVG disponibili, tre cataloghi e un esempio composto su alias e copia. Le figure pianificate non sono immagini già presenti nelle lezioni. Il lavoro corrente prepara la loro costruzione; la revisione dei contenuti e l'inserimento delle figure definitive costituiscono la fase successiva.</p>
 
 <p align="justify"><strong>Aggiornamento M02:</strong> gli schemi testuali sono sostituiti da 11 figure SVG inserite nella lezione, con scene sorgente, alt e didascalie. Cinque immagini aggiuntive mostrano i simboli nella tabella del paragrafo 2. Espressioni, casi di test e checklist rimangono testo copiabile. Il registro distingue le figure inserite dal backlog iniziale.</p>
+
+<p align="justify">Il paragrafo 10 include anche un flow chart con due rami ALTRIMENTI SE, pseudocodice e confronto con la versione annidata: i due algoritmi classificano gli stessi numeri come negativi, zero o positivi.</p>
 
 ## Fonti effettivamente consultate
 

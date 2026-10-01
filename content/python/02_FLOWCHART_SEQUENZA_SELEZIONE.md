@@ -480,6 +480,38 @@ FINE SE
 
 <p align="justify">Componiamo poche primitive chiare.</p>
 
+<h3>La stessa classificazione con ALTRIMENTI SE</h3>
+
+<p align="justify">Possiamo scrivere la stessa scelta come una <strong>selezione a più rami</strong>, usando <code>ALTRIMENTI SE</code> come in M01. Per vedere due rami <code>ALTRIMENTI SE</code>, rendiamo esplicito anche il confronto <code>n &gt; 0</code>. Consideriamo <code>n</code> un numero intero o reale, già disponibile.</p>
+
+<p align="center"><img src="../../assets/python/m02-tre-casi-altrimenti-se.svg" alt="Catena di tre condizioni: SE n minore di zero mostra negativo; ALTRIMENTI SE n uguale a zero mostra zero; ALTRIMENTI SE n maggiore di zero mostra positivo. Ogni output salta le condizioni successive e raggiunge il punto comune dopo FINE SE." width="960"></p>
+<p align="center"><em>Ogni ALTRIMENTI SE si raggiunge solo dal ramo false precedente. Dopo il primo caso vero si prosegue oltre FINE SE.</em></p>
+
+<p align="justify"><strong>Pseudocodice equivalente:</strong></p>
+
+```text
+SE n < 0
+    MOSTRA "negativo"
+ALTRIMENTI SE n == 0
+    MOSTRA "zero"
+ALTRIMENTI SE n > 0
+    MOSTRA "positivo"
+FINE SE
+```
+
+<p align="justify">Nell’esempio precedente il secondo <code>SE</code> era dentro il ramo <code>ALTRIMENTI</code>. Qui <code>ALTRIMENTI SE</code> esprime la stessa dipendenza: <strong>si controlla la condizione successiva soltanto se le precedenti sono false</strong>. Si esegue un solo <code>MOSTRA</code>.</p>
+
+<table align="center">
+<thead><tr><th>n</th><th>Versione annidata</th><th>Versione con ALTRIMENTI SE</th><th>Output in entrambe</th></tr></thead>
+<tbody>
+<tr><td>-2</td><td>Il primo SE è vero</td><td>Il primo SE è vero; gli altri confronti vengono saltati</td><td><code>negativo</code></td></tr>
+<tr><td>0</td><td>Il primo SE è falso, quello interno è vero</td><td>Il primo ALTRIMENTI SE è vero; il confronto n &gt; 0 viene saltato</td><td><code>zero</code></td></tr>
+<tr><td>5</td><td>Entrambi i SE sono falsi: si esegue l’ALTRIMENTI interno</td><td>I primi due confronti sono falsi; n &gt; 0 è vero</td><td><code>positivo</code></td></tr>
+</tbody>
+</table>
+
+<p align="justify"><strong>Perché sono equivalenti?</strong> Ogni numero intero o reale è negativo, zero oppure positivo. Se <code>n &lt; 0</code> e <code>n == 0</code> sono falsi, <code>n &gt; 0</code> è necessariamente vero. Il terzo confronto rende esplicito il caso positivo, ma non cambia l’output. Possiamo quindi abbreviare l’ultimo <code>ALTRIMENTI SE n &gt; 0</code> in <code>ALTRIMENTI</code>: otteniamo la stessa classificazione con due soli confronti, come nel diagramma iniziale.</p>
+
 ---
 
 ## 11. Flowchart Lab: che cosa deve fare per noi

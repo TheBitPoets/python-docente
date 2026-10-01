@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-tre-casi-altrimenti-se.svg">
+  <title id="title">Tre casi con ALTRIMENTI SE</title>
+  <desc id="desc">La catena controlla n minore di zero, n uguale a zero e n maggiore di zero. Ogni condizione vera mostra il rispettivo messaggio e salta le condizioni successive. Per un numero intero o reale uno dei tre casi è sempre vero.</desc>
+  <defs id="visual-kit-components" />
+  <defs>
+    <marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" />
+    </marker>
+  </defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+    <text x="64" y="96" font-size="48" fill="{{surface}}">Tre casi con ALTRIMENTI SE</text>
+    <text x="64" y="148" font-size="28" fill="{{muted}}">Stessi output della versione annidata; il caso positivo ha un confronto esplicito.</text>
+    <g fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)">
+      <path d="M640 368 V448" />
+      <path d="M640 592 V672" />
+      <path d="M640 816 V864" />
+      <path d="M840 296 H1132" />
+      <path d="M840 520 H1132" />
+      <path d="M840 744 H1132" />
+      <path d="M1676 296 H1760 V864 H640" />
+      <path d="M1676 520 H1760" />
+      <path d="M1676 744 H1760" />
+      <path d="M640 864 V920" />
+    </g>
+    <g fill="#fef3c7" stroke="{{runtime}}" stroke-width="4">
+      <path d="M640 224 L840 296 L640 368 L440 296 Z" />
+      <path d="M640 448 L840 520 L640 592 L440 520 Z" />
+      <path d="M640 672 L840 744 L640 816 L440 744 Z" />
+    </g>
+    <g fill="#ccfbf1" stroke="{{thread}}" stroke-width="4">
+      <path d="M1144 256 H1688 L1664 336 H1120 Z" />
+      <path d="M1144 480 H1688 L1664 560 H1120 Z" />
+      <path d="M1144 704 H1688 L1664 784 H1120 Z" />
+    </g>
+    <g text-anchor="middle" font-size="30" fill="{{ink}}">
+      <text x="640" y="306">n &lt; 0?</text>
+      <text x="640" y="530">n == 0?</text>
+      <text x="640" y="754">n &gt; 0?</text>
+      <text x="1404" y="306">MOSTRA “negativo”</text>
+      <text x="1404" y="530">MOSTRA “zero”</text>
+      <text x="1404" y="754">MOSTRA “positivo”</text>
+    </g>
+    <g font-size="30" fill="{{surface}}">
+      <text x="96" y="306">SE</text>
+      <text x="96" y="530">ALTRIMENTI SE</text>
+      <text x="96" y="754">ALTRIMENTI SE</text>
+    </g>
+    <g font-size="28" fill="{{line}}">
+      <text x="960" y="272">true</text>
+      <text x="960" y="496">true</text>
+      <text x="960" y="720">true</text>
+      <text x="672" y="416">false</text>
+      <text x="672" y="640">false</text>
+      <text x="672" y="848">false: impossibile per n intero o reale</text>
+    </g>
+    <circle cx="640" cy="864" r="7" fill="{{line}}" />
+    <text x="96" y="880" font-size="30" fill="{{surface}}">FINE SE</text>
+    <rect x="440" y="920" width="400" height="64" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+    <text x="640" y="962" text-anchor="middle" font-size="30" fill="{{ink}}">prossimo passo</text>
+    <text x="64" y="1032" font-size="28" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso. Un solo output per ogni n.</text>
+  </g>
+</svg>
