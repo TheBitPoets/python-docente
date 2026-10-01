@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-simbolo-decisione.svg">
+  <title id="title">Decisione</title>
+  <desc id="desc">Rombo con punto interrogativo: condizione con rami.</desc>
+  <defs id="visual-kit-components" />
+  <rect width="1920" height="1080" rx="96" fill="{{canvas}}" />
+  <use href="#tpsi-decision" x="240" y="0" width="1440" height="1080" />
+</svg>

@@ -116,6 +116,7 @@ Un <strong>flow chart</strong>, o diagramma di flusso, rappresenta i passi di un
 <tr>
 <th>Idea</th>
 <th>Forma convenzionale</th>
+<th>Simbolo</th>
 <th>Significato</th>
 </tr>
 </thead>
@@ -123,26 +124,31 @@ Un <strong>flow chart</strong>, o diagramma di flusso, rappresenta i passi di un
 <tr>
 <td>start/end</td>
 <td>terminatore</td>
+<td align="center"><img src="../../assets/python/m02-simbolo-terminatore.svg" alt="Terminatore: rettangolo con estremità arrotondate." width="120" height="68"></td>
 <td>inizio/fine</td>
 </tr>
 <tr>
 <td>input/output</td>
 <td>parallelogramma</td>
+<td align="center"><img src="../../assets/python/m02-simbolo-input-output.svg" alt="Input/output: parallelogramma." width="120" height="68"></td>
 <td>dato acquisito o mostrato</td>
 </tr>
 <tr>
 <td>processing</td>
 <td>rettangolo</td>
+<td align="center"><img src="../../assets/python/m02-simbolo-elaborazione.svg" alt="Elaborazione: rettangolo." width="120" height="68"></td>
 <td>calcolo/assegnamento</td>
 </tr>
 <tr>
 <td>decision</td>
 <td>rombo</td>
+<td align="center"><img src="../../assets/python/m02-simbolo-decisione.svg" alt="Decisione: rombo con punto interrogativo." width="120" height="68"></td>
 <td>condizione con rami</td>
 </tr>
 <tr>
 <td>freccia</td>
 <td>collegamento</td>
+<td align="center"><img src="../../assets/python/m02-simbolo-freccia.svg" alt="Collegamento: freccia orientata verso il prossimo passo." width="120" height="68"></td>
 <td>prossimo passo</td>
 </tr>
 </tbody>

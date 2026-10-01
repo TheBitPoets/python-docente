@@ -87,6 +87,7 @@ def outputs() -> dict[Path, str]:
     lesson = ROOT / "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md"
     body = lesson.read_text(encoding="utf-8")
     extra_index = 2
+    symbol_index = 12
     for match in re.finditer(r'<img src="../../assets/python/(m02-[^"]+\.svg)"', body):
         asset = match.group(1)
         if asset == "m02-selezione-doppia.svg":
@@ -97,19 +98,25 @@ def outputs() -> dict[Path, str]:
         purpose = scene.findtext("{http://www.w3.org/2000/svg}desc")
         target = lesson.relative_to(ROOT).as_posix() + "#" + anchor(section)
         components = ["tpsi-terminator", "tpsi-io", "tpsi-decision", "tpsi-step"]
+        is_symbol = asset.startswith("m02-simbolo-")
+        if is_symbol:
+            components = [node.get("href")[1:] for node in scene.iter("{http://www.w3.org/2000/svg}use")]
         figures.append({
-            "id": f"py-m02-{extra_index:02d}", "module": "M02", "title": title,
+            "id": f"py-m02-{symbol_index if is_symbol else extra_index:02d}", "module": "M02", "title": title,
             "lesson_section": target, "purpose": purpose, "components": components,
             "priority": "P1", "status": "in-lesson", "asset": f"assets/python/{asset}",
             "alt_draft": purpose, "caption_draft": title,
             "existing_images": len(re.findall(r"<img\b", body)),
             "existing_text_blocks": len(re.findall(r"^```text\s*$", body, re.M)),
         })
-        extra_index += 1
+        if is_symbol:
+            symbol_index += 1
+        else:
+            extra_index += 1
         rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [
             f'<a href="../{escape(target, quote=True)}">M02 — {escape(section)}</a>',
             escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components),
-            'P1; immagine inserita', 'SVG statico con alt e didascalia',
+            'P1; immagine inserita', 'simbolo nella tabella' if is_symbol else 'SVG statico con alt e didascalia',
         ]) + '</tr>')
     audit = '''# Audit delle immagini del corso Python
 
@@ -117,7 +124,7 @@ def outputs() -> dict[Path, str]:
 
 <p align="justify"><strong>Esito:</strong> 31 figure pianificate, 25 oggetti SVG disponibili, tre cataloghi e un esempio composto su alias e copia. Le figure pianificate non sono immagini già presenti nelle lezioni. Il lavoro corrente prepara la loro costruzione; la revisione dei contenuti e l'inserimento delle figure definitive costituiscono la fase successiva.</p>
 
-<p align="justify"><strong>Aggiornamento M02:</strong> gli schemi testuali sono sostituiti da 11 figure SVG inserite nella lezione, con scene sorgente, alt e didascalie. Espressioni, casi di test e checklist rimangono testo copiabile. Il registro distingue le figure inserite dal backlog iniziale.</p>
+<p align="justify"><strong>Aggiornamento M02:</strong> gli schemi testuali sono sostituiti da 11 figure SVG inserite nella lezione, con scene sorgente, alt e didascalie. Cinque immagini aggiuntive mostrano i simboli nella tabella del paragrafo 2. Espressioni, casi di test e checklist rimangono testo copiabile. Il registro distingue le figure inserite dal backlog iniziale.</p>
 
 ## Fonti effettivamente consultate
 

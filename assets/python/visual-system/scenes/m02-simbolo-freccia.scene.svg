@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-simbolo-freccia.svg">
+  <title id="title">Collegamento</title>
+  <desc id="desc">Freccia continua: direzione verso il prossimo passo.</desc>
+  <defs id="visual-kit-components" />
+  <rect width="1920" height="1080" rx="96" fill="{{canvas}}" />
+  <path d="M360 540 H1440" fill="none" stroke="{{line}}" stroke-width="48" /><path d="M1360 360 L1600 540 L1360 720 Z" fill="{{line}}" />
+</svg>
