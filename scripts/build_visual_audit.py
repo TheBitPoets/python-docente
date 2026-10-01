@@ -124,6 +124,12 @@ def outputs() -> dict[Path, str]:
     lesson = ROOT / "content/python/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md"
     body = lesson.read_text(encoding="utf-8")
     extra_index = 2
+    # Keep these figure IDs stable when the introductory examples are reordered.
+    introductory_ids = {
+        "m03-ritorno-lettura.svg": 2,
+        "m03-aggiornamento-mancante.svg": 3,
+        "m03-contatore.svg": 4,
+    }
     for match in re.finditer(r'<img src="../../assets/python/(m03-[^"]+\.svg)"', body):
         asset = match.group(1)
         if asset == "m03-ciclo-condizione.svg":
@@ -137,7 +143,7 @@ def outputs() -> dict[Path, str]:
         if asset in ("m03-fallback-manuale.svg", "m03-recap.svg"):
             components = ["tpsi-step", "tpsi-io", "tpsi-test"]
         figures.append({
-            "id": f"py-m03-{extra_index:02d}", "module": "M03", "title": title,
+            "id": f"py-m03-{introductory_ids.get(asset, extra_index):02d}", "module": "M03", "title": title,
             "lesson_section": target, "purpose": purpose, "components": components,
             "priority": "P1", "status": "in-lesson", "asset": f"assets/python/{asset}",
             "alt_draft": purpose, "caption_draft": title,

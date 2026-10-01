@@ -69,52 +69,17 @@ Traccia un ciclo con zero, una e più iterazioni; individua l&#x27;aggiornamento
 
 ---
 
-## 1. Quando una freccia torna indietro
+## 1. Stampare i numeri da 0 a 9
+
+<a id="1-quando-una-freccia-torna-indietro"></a>
 
 <p align="justify">Problema:</p>
 
 <blockquote>
-<p align="justify">Chiedi un valore finché non è compreso tra 1 e 10.</p>
+<p align="justify">Mostra i numeri interi da 0 a 9, uno dopo l’altro.</p>
 </blockquote>
 
-<p align="justify">Una sequenza non basta, perché non sappiamo in anticipo quante volte l'utente fornirà un dato non valido.</p>
-
-<p align="justify">Serve una ripetizione:</p>
-
-<p align="center"><img src="../../assets/python/m03-ritorno-lettura.svg" alt="Si legge valore e si verifica che sia compreso tra 1 e 10. Il ramo false torna alla lettura; il ramo true prosegue." width="960"></p>
-<p align="center"><em>Il diagramma esce quando il dato è valido; MENTRE ripete mentre NON è valido.</em></p>
-
-<p align="justify"><strong>Pseudocodice:</strong></p>
-
-```text
-LEGGI valore
-MENTRE NON ((valore >= 1) E (valore <= 10))
-    LEGGI valore
-FINE MENTRE
-```
-
-<p align="justify">La freccia che ritorna non significa “ripeti per sempre”.</p>
-
-<p align="justify">Deve esistere una condizione che permette di uscire.</p>
-
----
-
-## 2. Le quattro domande del ciclo
-
-<p align="justify">Per ogni ciclo chiedi:</p>
-
-```text
-1. che stato esiste prima del ciclo?
-2. quando il corpo deve essere eseguito?
-3. che cosa cambia nel corpo?
-4. perché prima o poi la condizione cambia abbastanza da uscire?
-```
-
-<p align="justify">Queste domande sono più importanti del nome che il futuro linguaggio userà per il ciclo.</p>
-
----
-
-## 3. Ciclo controllato da condizione
+<p align="justify">Il passo da ripetere è mostrare il valore corrente. Usiamo la variabile <code>i</code>: parte da 0 e aumenta di 1 dopo ogni output. Prima di ogni giro controlliamo <code>i &lt; 10</code>.</p>
 
 <table align="center">
 <tr>
@@ -126,6 +91,71 @@ Un ciclo controllato da condizione ripete un blocco di passi, detto <strong>corp
 </td>
 </tr>
 </table>
+
+<p align="center"><img src="../../assets/python/m03-contatore.svg" alt="i parte da 0; mentre i è minore di 10 si mostra i, si assegna i più 1 a i e si torna al controllo. Quando i vale 10 il ciclo termina." width="960"></p>
+<p align="center"><em>La freccia di ritorno raggiunge la condizione. L’incremento fa avanzare i verso il limite.</em></p>
+
+<p align="justify"><strong>Pseudocodice:</strong></p>
+
+```text
+ASSEGNA i ← 0
+MENTRE i < 10
+    MOSTRA i
+    ASSEGNA i ← i + 1
+FINE MENTRE
+```
+
+<p align="justify"><strong>Output, in ordine:</strong></p>
+
+```text
+0 1 2 3 4 5 6 7 8 9
+```
+
+<p align="justify">Dopo aver mostrato 9, l’assegnamento porta <code>i</code> a 10. Il controllo <code>10 &lt; 10</code> è falso: il corpo non viene eseguito di nuovo e 10 non viene mostrato. Il ciclo compie esattamente dieci iterazioni.</p>
+
+---
+
+## 2. Aggiornamento mancante
+
+<a id="4-aggiornamento-mancante"></a>
+
+<p align="justify">Riprendiamo il ciclo che deve mostrare i numeri da 0 a 9 e togliamo soltanto l’incremento di <code>i</code>:</p>
+
+<p align="center"><img src="../../assets/python/m03-aggiornamento-mancante.svg" alt="Esempio errato: i parte da 0; mentre i è minore di 10 si mostra i e si torna al controllo senza aggiornarlo. Il ramo false non viene mai raggiunto." width="960"></p>
+<p align="center"><em>Esempio errato: il ritorno al test non cambia automaticamente il contatore.</em></p>
+
+<p align="justify"><strong>Pseudocodice volutamente errato:</strong></p>
+
+```text
+ASSEGNA i ← 0
+MENTRE i < 10
+    MOSTRA i
+FINE MENTRE
+```
+
+<p align="justify">Che cosa cambia <code>i</code>?</p>
+
+<p align="justify">Nulla.</p>
+
+<p align="justify"><code>i</code> resta sempre 0: il ciclo mostra 0 a ogni giro, la condizione <code>i &lt; 10</code> resta vera e il ciclo non termina.</p>
+
+<p align="justify">Correzione:</p>
+
+```text
+ASSEGNA i ← i + 1
+```
+
+<p align="justify">L’istruzione va nel corpo, subito dopo <code>MOSTRA i</code> e prima del ritorno alla condizione: si ottiene il ciclo corretto del primo esempio.</p>
+
+---
+
+## 3. Ciclo controllato da condizione
+
+<p align="justify">Nel primo esempio sappiamo già che il ciclo deve compiere dieci iterazioni. Ora il numero di ripetizioni dipende dai dati inseriti.</p>
+
+<blockquote>
+<p align="justify">Chiedi un valore finché non è compreso tra 1 e 10, estremi inclusi.</p>
+</blockquote>
 
 <p align="justify">Il diagramma controlla se il valore è fuori dall’intervallo:</p>
 
@@ -183,91 +213,70 @@ MOSTRA "valido"
 
 <p align="justify">Il numero di ripetizioni dipende dai dati.</p>
 
----
+<p align="justify">Se il primo valore è già valido, il corpo di <code>MENTRE</code> viene saltato. Con 1 o 10 il ciclo termina subito. La lettura nel corpo aggiorna <code>valore</code>: si esce quando viene inserito un dato valido; se arrivano sempre dati non validi, la richiesta continua.</p>
 
-## 4. Aggiornamento mancante
+<h3>Lo stesso ritorno alla lettura, con il test di validità</h3>
 
-<p align="justify">Algoritmo:</p>
+<p align="justify">Possiamo anche chiedere nel rombo se il dato è valido. In questa rappresentazione il ramo <code>false</code> torna a leggere e il ramo <code>true</code> prosegue. Lo pseudocodice usa <code>NON</code> perché <code>MENTRE</code> ripete quando la sua condizione è vera.</p>
 
-<p align="center"><img src="../../assets/python/m03-aggiornamento-mancante.svg" alt="Esempio errato: i parte da 0; mentre i è minore di 3 si mostra i e si torna al controllo senza aggiornarlo. Il ramo false non viene mai raggiunto." width="960"></p>
-<p align="center"><em>Esempio errato: il ritorno al test non cambia automaticamente il contatore.</em></p>
+<p align="center"><img src="../../assets/python/m03-ritorno-lettura.svg" alt="Si legge valore e si verifica che sia compreso tra 1 e 10. Il ramo false torna alla lettura; il ramo true prosegue." width="960"></p>
+<p align="center"><em>Il diagramma esce quando il dato è valido; MENTRE ripete mentre NON è valido.</em></p>
 
-<p align="justify"><strong>Pseudocodice volutamente errato:</strong></p>
+<p align="justify"><strong>Pseudocodice:</strong></p>
 
 ```text
-ASSEGNA i ← 0
-MENTRE i < 3
-    MOSTRA i
+LEGGI valore
+MENTRE NON ((valore >= 1) E (valore <= 10))
+    LEGGI valore
 FINE MENTRE
 ```
 
-<p align="justify">Che cosa cambia <code>i</code>?</p>
+<p align="justify">La freccia che ritorna non significa “ripeti per sempre”.</p>
 
-<p align="justify">Nulla.</p>
+<p align="justify">Deve esistere una condizione che permette di uscire.</p>
 
-<p align="justify">La condizione <code>i &lt; 3</code> resta vera e il ciclo non termina.</p>
+---
 
-<p align="justify">Correzione:</p>
+## 4. Le quattro domande del ciclo
+
+<a id="2-le-quattro-domande-del-ciclo"></a>
+
+<p align="justify">Per ogni ciclo chiedi:</p>
 
 ```text
-ASSEGNA i ← i + 1
+1. che stato esiste prima del ciclo?
+2. quando il corpo deve essere eseguito?
+3. che cosa cambia nel corpo?
+4. perché prima o poi la condizione cambia abbastanza da uscire?
 ```
 
-<p align="justify">nel punto appropriato del corpo.</p>
+<p align="justify">Queste domande sono più importanti del nome che il futuro linguaggio userà per il ciclo.</p>
+
+<p align="justify">Nel ciclo da 0 a 9: inizializziamo <code>i</code> a 0, ripetiamo mentre <code>i &lt; 10</code>, aggiorniamo con <code>ASSEGNA i ← i + 1</code> e usciamo quando <code>i</code> raggiunge 10. Nel ciclo di input, invece, l’aggiornamento è una nuova lettura e l’uscita dipende dall’arrivo di un valore valido.</p>
 
 ---
 
 ## 5. Contatore: stato che racconta quante volte
 
-<p align="center"><img src="../../assets/python/m03-contatore.svg" alt="i parte da 0; mentre i è minore di 3 si mostra i, si assegna i più 1 a i e si torna al controllo. Quando i vale 3 il ciclo termina." width="960"></p>
-<p align="center"><em>L’incremento porta i verso il limite; il ramo false chiude il ciclo.</em></p>
-
-<p align="justify"><strong>Pseudocodice:</strong></p>
-
-```text
-ASSEGNA i ← 0
-MENTRE i < 3
-    MOSTRA i
-    ASSEGNA i ← i + 1
-FINE MENTRE
-```
-
-<p align="justify">Trace:</p>
+<p align="justify">Seguiamo il contatore del primo esempio. Prima di ogni iterazione, <code>i</code> è il prossimo numero da mostrare; dopo l’incremento indica anche quanti numeri abbiamo già mostrato.</p>
 
 <table align="center">
-<thead>
-<tr>
-<th>passo ciclo</th>
-<th>i prima</th>
-<th>output</th>
-<th>i dopo</th>
-</tr>
-</thead>
+<thead><tr><th>passo ciclo</th><th>i prima</th><th>output</th><th>i dopo</th></tr></thead>
 <tbody>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>2</td>
-<td>2</td>
-<td>3</td>
-</tr>
+<tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>2</td><td>1</td><td>1</td><td>2</td></tr>
+<tr><td>3</td><td>2</td><td>2</td><td>3</td></tr>
+<tr><td>4</td><td>3</td><td>3</td><td>4</td></tr>
+<tr><td>5</td><td>4</td><td>4</td><td>5</td></tr>
+<tr><td>6</td><td>5</td><td>5</td><td>6</td></tr>
+<tr><td>7</td><td>6</td><td>6</td><td>7</td></tr>
+<tr><td>8</td><td>7</td><td>7</td><td>8</td></tr>
+<tr><td>9</td><td>8</td><td>8</td><td>9</td></tr>
+<tr><td>10</td><td>9</td><td>9</td><td>10</td></tr>
 </tbody>
 </table>
 
-<p align="justify">Al controllo successivo <code>3 &lt; 3</code> è falso.</p>
-
-<p align="justify">Quindi il ciclo termina.</p>
+<p align="justify">Dopo la decima iterazione, <code>i</code> vale 10. Al controllo successivo <code>10 &lt; 10</code> è falso: non si entra più nel corpo e il ciclo termina.</p>
 
 ---
 
@@ -598,7 +607,7 @@ FINE MENTRE
 <p align="justify">Diagramma iniziale:</p>
 
 <blockquote>
-<p align="justify">mostra i valori da 0 a 2.</p>
+<p align="justify">mostra i valori da 0 a 9, come nel primo esempio.</p>
 </blockquote>
 
 <p align="justify">Modifica richiesta:</p>

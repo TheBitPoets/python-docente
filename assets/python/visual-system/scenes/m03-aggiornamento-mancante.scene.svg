@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-aggiornamento-mancante.svg">
   <title id="title">Errore: manca l’aggiornamento</title>
-  <desc id="desc">Esempio errato: i parte da 0; mentre i è minore di 3 si mostra i e si torna al controllo senza aggiornarlo. Il ramo false non viene mai raggiunto.</desc>
+  <desc id="desc">Esempio errato: i parte da 0; mentre i è minore di 10 si mostra i e si torna al controllo senza aggiornarlo. Il ramo false non viene mai raggiunto.</desc>
   <defs id="visual-kit-components" />
   <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
   <rect width="1920" height="1080" fill="{{canvas}}" />
@@ -13,7 +13,7 @@
 <path d="M760 288 V352" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
 <circle cx="760" cy="320" r="6" fill="{{line}}" />
 <path d="M760 352 L960.0 432.0 L760 512 L560.0 432.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
-<text x="760" y="442.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt; 3?</text>
+<text x="760" y="442.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt; 10?</text>
 <path d="M760 512 V584" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
 <text x="808" y="560" font-size="30" text-anchor="middle" fill="{{line}}">true</text>
 <path d="M544.0 584 H1000.0 L976.0 664 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />

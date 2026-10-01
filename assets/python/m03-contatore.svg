@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
-  <title id="title">Il contatore avanza a ogni iterazione</title>
-  <desc id="desc">i parte da 0; mentre i è minore di 3 si mostra i, si assegna i più 1 a i e si torna al controllo. Quando i vale 3 il ciclo termina.</desc>
+  <title id="title">Stampare i numeri da 0 a 9</title>
+  <desc id="desc">i parte da 0; mentre i è minore di 10 si mostra i, si assegna i più 1 a i e si torna al controllo. Quando i vale 10 il ciclo termina.</desc>
   <defs>
     <style>.tpsi-line{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:8}.tpsi-thin{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:5}</style>
     <symbol id="tpsi-step" viewBox="0 0 240 180">
@@ -145,15 +145,15 @@
   </defs>
   <rect width="1920" height="1080" fill="#08192c" />
   <g font-family="Arial, sans-serif">
-    <text x="64" y="96" font-size="48" text-anchor="start" fill="#f8fafc">Il contatore avanza a ogni iterazione</text>
-    <text x="64" y="148" font-size="28" text-anchor="start" fill="#b9ccdf">Output: 0, 1, 2. Il controllo successivo trova i = 3 e fa uscire.</text>
+    <text x="64" y="96" font-size="48" text-anchor="start" fill="#f8fafc">Stampare i numeri da 0 a 9</text>
+    <text x="64" y="148" font-size="28" text-anchor="start" fill="#b9ccdf">Output: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Quando i = 10 il ciclo termina.</text>
     <text x="64" y="1032" font-size="28" text-anchor="start" fill="#b9ccdf">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
     <rect x="520.0" y="208" width="480" height="80" rx="0" fill="#dbeafe" stroke="#2563eb" stroke-width="4" />
     <text x="760" y="258.0" font-size="30" text-anchor="middle" fill="#102a43">i ← 0</text>
     <path d="M760 288 V352" fill="none" stroke="#7dd3fc" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
     <circle cx="760" cy="320" r="6" fill="#7dd3fc" />
     <path d="M760 352 L960.0 432.0 L760 512 L560.0 432.0 Z" fill="#fef3c7" stroke="#d97706" stroke-width="4" />
-    <text x="760" y="442.0" font-size="30" text-anchor="middle" fill="#102a43">i &lt; 3?</text>
+    <text x="760" y="442.0" font-size="30" text-anchor="middle" fill="#102a43">i &lt; 10?</text>
     <path d="M760 512 V584" fill="none" stroke="#7dd3fc" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
     <text x="808" y="560" font-size="30" text-anchor="middle" fill="#7dd3fc">true</text>
     <path d="M544.0 584 H1000.0 L976.0 664 H520.0 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="4" />
