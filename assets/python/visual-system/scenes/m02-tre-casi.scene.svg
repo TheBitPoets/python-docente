@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-tre-casi.svg">
+  <title id="title">Due decisioni per distinguere tre casi</title>
+  <desc id="desc">Se n &lt; 0 è true si mostra negativo. Altrimenti si valuta n == 0: true mostra zero, false mostra positivo.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Due decisioni per distinguere tre casi</text>
+<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">La seconda decisione si raggiunge solo se n non è negativo.</text>
+<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<path d="M720 248 L920.0 336.0 L720 424 L520.0 336.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="720" y="346.0" text-anchor="middle" font-size="30" fill="{{ink}}">n &lt; 0?</text>
+<path d="M520 336 H328 V704" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="424" y="312" text-anchor="middle" font-size="30" fill="{{line}}">true</text>
+<path d="M920 336 H1280 V456" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1096" y="312" text-anchor="middle" font-size="30" fill="{{line}}">false</text>
+<path d="M1280 456 L1480.0 544.0 L1280 632 L1080.0 544.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="1280" y="554.0" text-anchor="middle" font-size="30" fill="{{ink}}">n == 0?</text>
+<path d="M1080 544 H1000 V704" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1480 544 H1600 V704" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1040.0" y="520" text-anchor="middle" font-size="30" fill="{{line}}">true</text>
+<text x="1540.0" y="520" text-anchor="middle" font-size="30" fill="{{line}}">false</text>
+<path d="M152.0 704 H528.0 L504.0 816 H128.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="328" y="752.0" text-anchor="middle" font-size="30" fill="{{ink}}">OUTPUT</text>
+<text x="328" y="788.0" text-anchor="middle" font-size="30" fill="{{ink}}">“negativo”</text>
+<path d="M824.0 704 H1200.0 L1176.0 816 H800.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1000" y="752.0" text-anchor="middle" font-size="30" fill="{{ink}}">OUTPUT</text>
+<text x="1000" y="788.0" text-anchor="middle" font-size="30" fill="{{ink}}">“zero”</text>
+<path d="M1424.0 704 H1800.0 L1776.0 816 H1400.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1600" y="752.0" text-anchor="middle" font-size="30" fill="{{ink}}">OUTPUT</text>
+<text x="1600" y="788.0" text-anchor="middle" font-size="30" fill="{{ink}}">“positivo”</text>
+  </g>
+</svg>

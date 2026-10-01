@@ -50,12 +50,12 @@
       "tpsi-step"
     ],
     "priority": "P1",
-    "status": "planned",
-    "asset": null,
+    "status": "in-lesson",
+    "asset": "assets/python/m02-selezione-doppia.svg",
     "alt_draft": "Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
     "caption_draft": "Due rami, una decisione. Flow chart completo con inizio, input, rombo della soglia, rami sì/no etichettati, output e ricongiungimento prima della fine.",
-    "existing_images": 0,
-    "existing_text_blocks": 17
+    "existing_images": 11,
+    "existing_text_blocks": 5
   },
   {
     "id": "py-m03-01",
@@ -797,5 +797,205 @@
     "existing_images": 0,
     "existing_text_blocks": 1,
     "animated_asset": "assets/python/m01-selezione-punteggio-anime.svg"
+  },
+  {
+    "id": "py-m02-02",
+    "module": "M02",
+    "title": "Il flusso di controllo",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#1-perché-un-diagramma",
+    "purpose": "Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-flusso-controllo.svg",
+    "alt_draft": "Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi.",
+    "caption_draft": "Il flusso di controllo",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-03",
+    "module": "M02",
+    "title": "Una sequenza: sommare due numeri",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#3-prima-sequenza",
+    "purpose": "START, INPUT A, INPUT B, SOMMA ← A + B, OUTPUT SOMMA, END: i passi vengono eseguiti in questo ordine.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-sequenza-somma.svg",
+    "alt_draft": "START, INPUT A, INPUT B, SOMMA ← A + B, OUTPUT SOMMA, END: i passi vengono eseguiti in questo ordine.",
+    "caption_draft": "Una sequenza: sommare due numeri",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-04",
+    "module": "M02",
+    "title": "Una condizione, due possibilità",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#5-la-decisione",
+    "purpose": "Il rombo temperatura > 30? porta con true a OUTPUT sopra soglia e con false a OUTPUT entro soglia.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-decisione-soglia.svg",
+    "alt_draft": "Il rombo temperatura > 30? porta con true a OUTPUT sopra soglia e con false a OUTPUT entro soglia.",
+    "caption_draft": "Una condizione, due possibilità",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-05",
+    "module": "M02",
+    "title": "Selezione semplice: un avviso se serve",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#7-selezione-semplice",
+    "purpose": "Se saldo < 0? è true si mostra AVVISO; il ramo false salta l’avviso. Entrambi raggiungono il prossimo passo.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-selezione-semplice.svg",
+    "alt_draft": "Se saldo < 0? è true si mostra AVVISO; il ramo false salta l’avviso. Entrambi raggiungono il prossimo passo.",
+    "caption_draft": "Selezione semplice: un avviso se serve",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-06",
+    "module": "M02",
+    "title": "Errore: gli output sono invertiti",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#8-condizione-invertita",
+    "purpose": "Diagramma volutamente sbagliato: età >= 14? conduce con true a OUTPUT non ammesso e con false a OUTPUT ammesso.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-condizione-invertita.svg",
+    "alt_draft": "Diagramma volutamente sbagliato: età >= 14? conduce con true a OUTPUT non ammesso e con false a OUTPUT ammesso.",
+    "caption_draft": "Errore: gli output sono invertiti",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-07",
+    "module": "M02",
+    "title": "Errore: l’output arriva troppo presto",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#9-output-troppo-presto",
+    "purpose": "Il frammento sbagliato legge prezzo, mostra subito prezzo e soltanto dopo raggiunge la decisione sullo sconto.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-output-anticipato.svg",
+    "alt_draft": "Il frammento sbagliato legge prezzo, mostra subito prezzo e soltanto dopo raggiunge la decisione sullo sconto.",
+    "caption_draft": "Errore: l’output arriva troppo presto",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-08",
+    "module": "M02",
+    "title": "Due decisioni per distinguere tre casi",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#10-più-casi",
+    "purpose": "Se n < 0 è true si mostra negativo. Altrimenti si valuta n == 0: true mostra zero, false mostra positivo.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-tre-casi.svg",
+    "alt_draft": "Se n < 0 è true si mostra negativo. Altrimenti si valuta n == 0: true mostra zero, false mostra positivo.",
+    "caption_draft": "Due decisioni per distinguere tre casi",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-09",
+    "module": "M02",
+    "title": "Il percorso nel Flowchart Lab",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#11-flowchart-lab-che-cosa-deve-fare-per-noi",
+    "purpose": "TheBitLab apre il Flowchart Lab locale e la browser UI; si costruisce il diagramma, si usano Run, Step e Reset, si osserva il variable watch e si salva algorithm.flow.json nel workspace.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-flowchart-lab.svg",
+    "alt_draft": "TheBitLab apre il Flowchart Lab locale e la browser UI; si costruisce il diagramma, si usano Run, Step e Reset, si osserva il variable watch e si salva algorithm.flow.json nel workspace.",
+    "caption_draft": "Il percorso nel Flowchart Lab",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-10",
+    "module": "M02",
+    "title": "Il percorso manuale resta disponibile",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#importante",
+    "purpose": "Carta, lavagna o template si affiancano a trace table, casi di test e rubric docente: tutti contribuiscono al lavoro sul diagramma.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-fallback-manuale.svg",
+    "alt_draft": "Carta, lavagna o template si affiancano a trace table, casi di test e rubric docente: tutti contribuiscono al lavoro sul diagramma.",
+    "caption_draft": "Il percorso manuale resta disponibile",
+    "existing_images": 11,
+    "existing_text_blocks": 5
+  },
+  {
+    "id": "py-m02-11",
+    "module": "M02",
+    "title": "Sequenza, selezione, trace e test",
+    "lesson_section": "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md#recap",
+    "purpose": "La sequenza segue un percorso; la selezione sceglie un ramo; il trace rende visibili stato e percorso; i test provano casi diversi, soprattutto i confini.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/m02-recap.svg",
+    "alt_draft": "La sequenza segue un percorso; la selezione sceglie un ramo; il trace rende visibili stato e percorso; i test provano casi diversi, soprattutto i confini.",
+    "caption_draft": "Sequenza, selezione, trace e test",
+    "existing_images": 11,
+    "existing_text_blocks": 5
   }
 ]

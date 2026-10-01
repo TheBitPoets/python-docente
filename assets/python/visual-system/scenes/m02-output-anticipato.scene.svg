@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-output-anticipato.svg">
+  <title id="title">Errore: l’output arriva troppo presto</title>
+  <desc id="desc">Il frammento sbagliato legge prezzo, mostra subito prezzo e soltanto dopo raggiunge la decisione sullo sconto.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Errore: l’output arriva troppo presto</text>
+<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">Il prezzo viene mostrato prima della decisione che potrebbe modificarlo.</text>
+<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<path d="M464.0 240 H920.0 L896.0 320 H440.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="680" y="290.0" text-anchor="middle" font-size="30" fill="{{ink}}">INPUT prezzo</text>
+<path d="M680 320 V432" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M464.0 432 H920.0 L896.0 512 H440.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="680" y="482.0" text-anchor="middle" font-size="30" fill="{{ink}}">OUTPUT prezzo</text>
+<path d="M680 512 V656" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M680 656 L920.0 744.0 L680 832 L440.0 744.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="680" y="754.0" text-anchor="middle" font-size="30" fill="{{ink}}">prezzo &gt; 100?</text>
+<text x="1340" y="424" text-anchor="middle" font-size="32" fill="{{surface}}">OUTPUT TROPPO PRESTO</text>
+<rect x="1052.0" y="464" width="576" height="136" rx="0" fill="#ffe4e6" stroke="{{security}}" stroke-width="4" />
+<text x="1340" y="524.0" text-anchor="middle" font-size="30" fill="{{ink}}">Lo sconto non è stato</text>
+<text x="1340" y="560.0" text-anchor="middle" font-size="30" fill="{{ink}}">ancora applicato.</text>
+<text x="960" y="952" text-anchor="middle" font-size="28" fill="{{muted}}">Frammento errato: i rami successivi non sono mostrati.</text>
+  </g>
+</svg>

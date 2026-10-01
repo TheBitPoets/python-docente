@@ -6,6 +6,7 @@ from html import escape
 import json
 from pathlib import Path
 import re
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 KIT = ROOT / "assets/python/visual-system"
@@ -41,12 +42,14 @@ def outputs() -> dict[Path, str]:
             "existing_images": len(re.findall(r"<img\b|!\[", text)),
             "existing_text_blocks": len(re.findall(r"^```text\s*$", text, re.M)),
         }
+        if n == 2:
+            figure.update(status="in-lesson", asset="assets/python/m02-selezione-doppia.svg")
         figures.append(figure)
         rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [
             f'<a href="../{escape(target, quote=True)}">M{n:02d} — {escape(heading)}</a>',
             escape(record["figure"]), escape(record["visual"]),
             ', '.join(f'<code>{c}</code>' for c in components),
-            f'{figure["priority"]}; ' + ('esempio composto, non inserito' if n == 21 else 'da costruire'),
+            f'{figure["priority"]}; ' + ('immagine inserita' if n == 2 else 'esempio composto, non inserito' if n == 21 else 'da costruire'),
             f'{figure["existing_images"]} immagini; {figure["existing_text_blocks"]} blocchi text',
         ]) + '</tr>')
     # M00 is deliberately richer than the one-figure-per-module baseline:
@@ -79,11 +82,42 @@ def outputs() -> dict[Path, str]:
         if animated:
             figures[-1]['animated_asset'] = f"assets/python/{asset.removesuffix('.svg')}-anime.svg"
         rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [f'<a href="../{escape(target, quote=True)}">M01 — {escape(section)}</a>', escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components), 'P1; prototipo realizzato', 'animazione e schema fermo' if animated else 'immagine inserita']) + '</tr>')
+    # M02 replaces every text diagram; derive the additional records from the
+    # actual lesson placements and accessible scene descriptions.
+    lesson = ROOT / "content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md"
+    body = lesson.read_text(encoding="utf-8")
+    extra_index = 2
+    for match in re.finditer(r'<img src="../../assets/python/(m02-[^"]+\.svg)"', body):
+        asset = match.group(1)
+        if asset == "m02-selezione-doppia.svg":
+            continue  # Already registered as the module's main figure.
+        section = re.findall(r"^## (.+)$", body[:match.start()], re.M)[-1]
+        scene = ET.parse(KIT / "scenes" / asset.replace(".svg", ".scene.svg")).getroot()
+        title = scene.findtext("{http://www.w3.org/2000/svg}title")
+        purpose = scene.findtext("{http://www.w3.org/2000/svg}desc")
+        target = lesson.relative_to(ROOT).as_posix() + "#" + anchor(section)
+        components = ["tpsi-terminator", "tpsi-io", "tpsi-decision", "tpsi-step"]
+        figures.append({
+            "id": f"py-m02-{extra_index:02d}", "module": "M02", "title": title,
+            "lesson_section": target, "purpose": purpose, "components": components,
+            "priority": "P1", "status": "in-lesson", "asset": f"assets/python/{asset}",
+            "alt_draft": purpose, "caption_draft": title,
+            "existing_images": len(re.findall(r"<img\b", body)),
+            "existing_text_blocks": len(re.findall(r"^```text\s*$", body, re.M)),
+        })
+        extra_index += 1
+        rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [
+            f'<a href="../{escape(target, quote=True)}">M02 — {escape(section)}</a>',
+            escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components),
+            'P1; immagine inserita', 'SVG statico con alt e didascalia',
+        ]) + '</tr>')
     audit = '''# Audit delle immagini del corso Python
 
 <p align="justify">Audit del 16 settembre 2026: tutte le 31 lezioni canoniche M00–M30. La lettura di obiettivi, spiegazioni, schemi testuali e attività individua una prima figura principale per ciascun modulo. L'inventario automatico conta i riferimenti a immagini e i blocchi <code>text</code>; questi ultimi comprendono anche output e pseudocodice, non soltanto schemi da sostituire.</p>
 
 <p align="justify"><strong>Esito:</strong> 31 figure pianificate, 25 oggetti SVG disponibili, tre cataloghi e un esempio composto su alias e copia. Le figure pianificate non sono immagini già presenti nelle lezioni. Il lavoro corrente prepara la loro costruzione; la revisione dei contenuti e l'inserimento delle figure definitive costituiscono la fase successiva.</p>
+
+<p align="justify"><strong>Aggiornamento M02:</strong> gli schemi testuali sono sostituiti da 11 figure SVG inserite nella lezione, con scene sorgente, alt e didascalie. Espressioni, casi di test e checklist rimangono testo copiabile. Il registro distingue le figure inserite dal backlog iniziale.</p>
 
 ## Fonti effettivamente consultate
 

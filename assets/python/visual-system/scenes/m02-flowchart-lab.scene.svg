@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-flowchart-lab.svg">
+  <title id="title">Il percorso nel Flowchart Lab</title>
+  <desc id="desc">TheBitLab apre il Flowchart Lab locale e la browser UI; si costruisce il diagramma, si usano Run, Step e Reset, si osserva il variable watch e si salva algorithm.flow.json nel workspace.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Il percorso nel Flowchart Lab</text>
+<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">Dal diagramma alla sua esecuzione e al salvataggio dell’artifact.</text>
+<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = ordine delle operazioni nel laboratorio, non flusso dell’algoritmo dello studente.</text>
+<rect x="104.0" y="256" width="480" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="344" y="322.0" text-anchor="middle" font-size="30" fill="{{ink}}">TheBitLab</text>
+<rect x="720.0" y="256" width="480" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="322.0" text-anchor="middle" font-size="30" fill="{{ink}}">Flowchart Lab locale</text>
+<path d="M1360.0 256 H1816.0 L1792.0 368 H1336.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1576" y="322.0" text-anchor="middle" font-size="30" fill="{{ink}}">browser UI</text>
+<rect x="1336.0" y="536" width="480" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1576" y="602.0" text-anchor="middle" font-size="30" fill="{{ink}}">diagramma</text>
+<rect x="720.0" y="536" width="480" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="602.0" text-anchor="middle" font-size="30" fill="{{ink}}">Run / Step / Reset</text>
+<path d="M128.0 536 H584.0 L560.0 648 H104.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="344" y="602.0" text-anchor="middle" font-size="30" fill="{{ink}}">variable watch</text>
+<path d="M128.0 824 H584.0 L560.0 936 H104.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="344" y="872.0" text-anchor="middle" font-size="30" fill="{{ink}}">algorithm.flow.json</text>
+<text x="344" y="908.0" text-anchor="middle" font-size="30" fill="{{ink}}">nel workspace</text>
+<path d="M584 312 H720" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1200 312 H1336" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1576 368 V536" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1336 592 H1200" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M720 592 H584" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M344 648 V824" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+  </g>
+</svg>

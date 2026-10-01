@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-condizione-invertita.svg">
+  <title id="title">Errore: gli output sono invertiti</title>
+  <desc id="desc">Diagramma volutamente sbagliato: età &gt;= 14? conduce con true a OUTPUT non ammesso e con false a OUTPUT ammesso.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Errore: gli output sono invertiti</text>
+<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">Specifica: mostrare “ammesso” quando età &gt;= 14.</text>
+<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<path d="M960 264 L1200.0 352.0 L960 440 L720.0 352.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="960" y="362.0" text-anchor="middle" font-size="30" fill="{{ink}}">età &gt;= 14?</text>
+<path d="M720 352 H500 V584" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1200 352 H1420 V584" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="610.0" y="328" text-anchor="middle" font-size="30" fill="{{line}}">true</text>
+<text x="1310.0" y="328" text-anchor="middle" font-size="30" fill="{{line}}">false</text>
+<path d="M284.0 584 H740.0 L716.0 696 H260.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="500" y="632.0" text-anchor="middle" font-size="30" fill="{{ink}}">OUTPUT</text>
+<text x="500" y="668.0" text-anchor="middle" font-size="30" fill="{{ink}}">“non ammesso”</text>
+<path d="M1204.0 584 H1660.0 L1636.0 696 H1180.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1420" y="632.0" text-anchor="middle" font-size="30" fill="{{ink}}">OUTPUT</text>
+<text x="1420" y="668.0" text-anchor="middle" font-size="30" fill="{{ink}}">“ammesso”</text>
+<rect x="368.0" y="824" width="1184" height="112" rx="0" fill="#ffe4e6" stroke="{{security}}" stroke-width="4" />
+<text x="960" y="890.0" text-anchor="middle" font-size="30" fill="{{ink}}">ERRORE • con età = 14 si ottiene “non ammesso”</text>
+  </g>
+</svg>

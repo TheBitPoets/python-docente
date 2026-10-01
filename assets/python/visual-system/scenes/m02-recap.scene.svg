@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-recap.svg">
+  <title id="title">Sequenza, selezione, trace e test</title>
+  <desc id="desc">La sequenza segue un percorso; la selezione sceglie un ramo; il trace rende visibili stato e percorso; i test provano casi diversi, soprattutto i confini.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Sequenza, selezione, trace e test</text>
+<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">Quattro strumenti per costruire e controllare un algoritmo.</text>
+<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = flusso di controllo nei due schemi superiori. In basso: osservazioni e casi di prova.</text>
+<rect x="64" y="208" width="864" height="352" rx="24" fill="{{panel}}" />
+<rect x="992" y="208" width="864" height="352" rx="24" fill="{{panel}}" />
+<rect x="64" y="608" width="864" height="352" rx="24" fill="{{panel}}" />
+<rect x="992" y="608" width="864" height="352" rx="24" fill="{{panel}}" />
+<text x="112" y="264" text-anchor="start" font-size="32" fill="{{surface}}">SEQUENZA • un percorso</text>
+<rect x="136.0" y="376" width="192" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="232" y="426.0" text-anchor="middle" font-size="30" fill="{{ink}}">passo</text>
+<rect x="400.0" y="376" width="192" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="496" y="426.0" text-anchor="middle" font-size="30" fill="{{ink}}">passo</text>
+<rect x="664.0" y="376" width="192" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="426.0" text-anchor="middle" font-size="30" fill="{{ink}}">passo</text>
+<path d="M328 416 H400" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M592 416 H664" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1040" y="264" text-anchor="start" font-size="32" fill="{{surface}}">SELEZIONE • un solo ramo</text>
+<path d="M1424 312 L1544.0 368.0 L1424 424 L1304.0 368.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="1424" y="378.0" text-anchor="middle" font-size="30" fill="{{ink}}">test?</text>
+<path d="M1304 368 H1160 V440" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1544 368 H1688 V440" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1216" y="344" text-anchor="middle" font-size="28" fill="{{line}}">true</text>
+<text x="1632" y="344" text-anchor="middle" font-size="28" fill="{{line}}">false</text>
+<rect x="1056.0" y="440" width="208" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1160" y="482.0" text-anchor="middle" font-size="30" fill="{{ink}}">ramo</text>
+<rect x="1584.0" y="440" width="208" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1688" y="482.0" text-anchor="middle" font-size="30" fill="{{ink}}">ramo</text>
+<text x="112" y="664" text-anchor="start" font-size="32" fill="{{surface}}">TRACE • stato e percorso</text>
+<text x="248" y="736" text-anchor="middle" font-size="30" fill="{{surface}}">passo</text>
+<text x="616" y="736" text-anchor="middle" font-size="30" fill="{{muted}}">stato osservato</text>
+<text x="248" y="808" text-anchor="middle" font-size="30" fill="{{surface}}">input</text>
+<text x="616" y="808" text-anchor="middle" font-size="30" fill="{{muted}}">A = 2, B = 3</text>
+<text x="248" y="880" text-anchor="middle" font-size="30" fill="{{surface}}">calcolo</text>
+<text x="616" y="880" text-anchor="middle" font-size="30" fill="{{muted}}">SOMMA = 5</text>
+<text x="1040" y="664" text-anchor="start" font-size="32" fill="{{surface}}">TEST • casi e confini</text>
+<rect x="1072.0" y="688" width="704" height="64" rx="0" fill="#ede9fe" stroke="{{testing}}" stroke-width="4" />
+<text x="1424" y="730.0" text-anchor="middle" font-size="30" fill="{{ink}}">29: entro soglia</text>
+<rect x="1072.0" y="768" width="704" height="64" rx="0" fill="#ede9fe" stroke="{{testing}}" stroke-width="4" />
+<text x="1424" y="810.0" text-anchor="middle" font-size="30" fill="{{ink}}">30: entro soglia • confine</text>
+<rect x="1072.0" y="848" width="704" height="64" rx="0" fill="#ede9fe" stroke="{{testing}}" stroke-width="4" />
+<text x="1424" y="890.0" text-anchor="middle" font-size="30" fill="{{ink}}">31: sopra soglia</text>
+  </g>
+</svg>

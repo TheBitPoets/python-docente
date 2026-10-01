@@ -93,17 +93,8 @@ Un <strong>flow chart</strong>, o diagramma di flusso, rappresenta i passi di un
 </tr>
 </table>
 
-```text
-inizio
-  ↓
-input
-  ↓
-calcolo
-  ↓
-decisione
- ↙      ↘
-...     ...
-```
+<p align="center"><img src="../../assets/python/m02-flusso-controllo.svg" alt="Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi." width="960"></p>
+<p align="center"><em>Le frecce indicano il prossimo passo; una decisione sceglie uno dei due rami.</em></p>
 
 <p align="justify">Non serve a “decorare” l'algoritmo. Serve a mostrare:</p>
 
@@ -171,19 +162,8 @@ decisione
 
 <p align="justify">Modello:</p>
 
-```text
-START
-  ↓
-INPUT A
-  ↓
-INPUT B
-  ↓
-SOMMA ← A + B
-  ↓
-OUTPUT SOMMA
-  ↓
-END
-```
+<p align="center"><img src="../../assets/python/m02-sequenza-somma.svg" alt="START, INPUT A, INPUT B, SOMMA ← A + B, OUTPUT SOMMA, END: i passi vengono eseguiti in questo ordine." width="960"></p>
+<p align="center"><em>Prima si acquisiscono A e B, poi si calcola la somma e infine la si mostra.</em></p>
 
 <p align="justify">Ogni passo ha un solo successore.</p>
 
@@ -273,13 +253,8 @@ temperatura > 30 ?
 
 <p align="justify">Dal rombo partono due possibilità:</p>
 
-```text
-           temperatura > 30?
-              /      \
-           true      false
-            /          \
-     "sopra soglia"  "entro soglia"
-```
+<p align="center"><img src="../../assets/python/m02-decisione-soglia.svg" alt="Il rombo temperatura &gt; 30? porta con true a OUTPUT sopra soglia e con false a OUTPUT entro soglia." width="960"></p>
+<p align="center"><em>La temperatura 30 segue il ramo false: la soglia non è superata.</em></p>
 
 <table align="center">
 <tr>
@@ -316,17 +291,8 @@ false
 
 <p align="justify">Per la soglia:</p>
 
-```text
-START
- ↓
-INPUT temperatura
- ↓
-[temperatura > 30?]
-  true ↙       ↘ false
-OUTPUT alta   OUTPUT normale
-       ↘       ↙
-          END
-```
+<p align="center"><img src="../../assets/python/m02-selezione-doppia.svg" alt="Dopo START e INPUT temperatura, temperatura &gt; 30? sceglie OUTPUT alta sul ramo true oppure OUTPUT normale sul ramo false. I rami si ricongiungono prima di END." width="960"></p>
+<p align="center"><em>Entrambi i rami arrivano a END; la condizione decide quale output produrre.</em></p>
 
 <p align="justify">Domanda importante:</p>
 
@@ -348,13 +314,8 @@ OUTPUT alta   OUTPUT normale
 <p align="justify">Se il saldo è negativo, mostra un avviso; poi continua.</p>
 </blockquote>
 
-```text
-[saldo < 0?]
- true ↙     ↘ false
-AVVISO       |
-     \       /
-      prossimo passo
-```
+<p align="center"><img src="../../assets/python/m02-selezione-semplice.svg" alt="Se saldo &lt; 0? è true si mostra AVVISO; il ramo false salta l’avviso. Entrambi raggiungono il prossimo passo." width="960"></p>
+<p align="center"><em>Il ramo false salta l’avviso e si ricongiunge al flusso comune.</em></p>
 
 <p align="justify">Anche quando un ramo “non fa nulla”, il flusso deve restare chiaro.</p>
 
@@ -370,11 +331,8 @@ AVVISO       |
 
 <p align="justify">Diagramma sbagliato:</p>
 
-```text
-età >= 14?
-true  → "non ammesso"
-false → "ammesso"
-```
+<p align="center"><img src="../../assets/python/m02-condizione-invertita.svg" alt="Diagramma volutamente sbagliato: età &gt;= 14? conduce con true a OUTPUT non ammesso e con false a OUTPUT ammesso." width="960"></p>
+<p align="center"><em>Esempio errato: le frecce sono valide, ma gli output violano la specifica.</em></p>
 
 <p align="justify">Il diagramma può essere strutturalmente valido ma semanticamente sbagliato.</p>
 
@@ -398,13 +356,8 @@ file/schema valido ≠ algoritmo corretto
 
 <p align="justify">Errore:</p>
 
-```text
-INPUT prezzo
-↓
-OUTPUT prezzo
-↓
-decisione sconto
-```
+<p align="center"><img src="../../assets/python/m02-output-anticipato.svg" alt="Il frammento sbagliato legge prezzo, mostra subito prezzo e soltanto dopo raggiunge la decisione sullo sconto." width="960"></p>
+<p align="center"><em>L’ordine sbagliato comunica il prezzo prima di aver stabilito lo sconto.</em></p>
 
 <p align="justify">Il risultato viene mostrato <strong>prima</strong> della decisione che dovrebbe modificarlo.</p>
 
@@ -422,13 +375,8 @@ decisione sconto
 
 <p align="justify">Possiamo usare due decisioni:</p>
 
-```text
-n < 0?
- true → negativo
- false → n == 0?
-          true → zero
-          false → positivo
-```
+<p align="center"><img src="../../assets/python/m02-tre-casi.svg" alt="Se n &lt; 0 è true si mostra negativo. Altrimenti si valuta n == 0: true mostra zero, false mostra positivo." width="960"></p>
+<p align="center"><em>Le due condizioni coprono valori negativi, zero e valori positivi.</em></p>
 
 <p align="justify">Non abbiamo bisogno di un nuovo simbolo per ogni possibile problema.</p>
 
@@ -440,15 +388,8 @@ n < 0?
 
 <p align="justify">Quando il runtime managed è disponibile, il percorso è:</p>
 
-```text
-TheBitLab
-→ Flowchart Lab locale
-→ browser UI
-→ diagramma
-→ Run / Step / Reset
-→ variable watch
-→ algorithm.flow.json nel workspace
-```
+<p align="center"><img src="../../assets/python/m02-flowchart-lab.svg" alt="TheBitLab apre il Flowchart Lab locale e la browser UI; si costruisce il diagramma, si usano Run, Step e Reset, si osserva il variable watch e si salva algorithm.flow.json nel workspace." width="960"></p>
+<p align="center"><em>Il laboratorio permette di costruire, eseguire, osservare e salvare il diagramma.</em></p>
 
 <p align="justify">Il browser non esegue Python dello studente.</p>
 
@@ -458,12 +399,8 @@ TheBitLab
 
 <p align="justify">Finché <code>flowchart.lab.v1</code> non è certificata nei profili classroom, il corso mantiene il fallback:</p>
 
-```text
-carta / lavagna / template
-+ trace table
-+ casi di test
-+ rubric docente
-```
+<p align="center"><img src="../../assets/python/m02-fallback-manuale.svg" alt="Carta, lavagna o template si affiancano a trace table, casi di test e rubric docente: tutti contribuiscono al lavoro sul diagramma." width="960"></p>
+<p align="center"><em>Disegno, trace, test e valutazione docente restano disponibili nel percorso manuale.</em></p>
 
 <p align="justify">Gli outcome didattici non dipendono dalla disponibilità del tool.</p>
 
@@ -517,9 +454,7 @@ carta / lavagna / template
 
 <p align="justify">Parti dal diagramma funzionante e cambia soltanto:</p>
 
-```text
-soglia 30 → soglia 25
-```
+<p align="justify">Porta la soglia da <code>30</code> a <code>25</code>.</p>
 
 <p align="justify">Poi aggiorna i casi di test.</p>
 
@@ -572,11 +507,7 @@ caso che lo rivela
 
 ## Recap
 
-```text
-sequenza → un percorso
-selezione → il flusso sceglie un ramo
-trace → rende visibile stato e percorso
-test → prova casi diversi, soprattutto i confini
-```
+<p align="center"><img src="../../assets/python/m02-recap.svg" alt="La sequenza segue un percorso; la selezione sceglie un ramo; il trace rende visibili stato e percorso; i test provano casi diversi, soprattutto i confini." width="960"></p>
+<p align="center"><em>Il diagramma mostra i percorsi; trace e test aiutano a verificarne il comportamento.</em></p>
 
 <p align="justify">Prossimo modulo: introduciamo ripetizione, terminazione e annidamento nei diagrammi.</p>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-flusso-controllo.svg">
+  <title id="title">Il flusso di controllo</title>
+  <desc id="desc">Inizio, input e calcolo si susseguono; una decisione divide il flusso in due rami alternativi.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Il flusso di controllo</text>
+<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">La posizione dei nodi e le frecce rendono visibile l’ordine dei passi.</text>
+<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<rect x="780.0" y="208" width="360" height="80" rx="40.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="258.0" text-anchor="middle" font-size="30" fill="{{ink}}">inizio</text>
+<path d="M960 288 V344" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M804.0 344 H1140.0 L1116.0 424 H780.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="960" y="394.0" text-anchor="middle" font-size="30" fill="{{ink}}">input</text>
+<path d="M960 424 V480" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="780.0" y="480" width="360" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="530.0" text-anchor="middle" font-size="30" fill="{{ink}}">calcolo</text>
+<path d="M960 560 V616" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M960 616 L1200.0 696.0 L960 776 L720.0 696.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="960" y="706.0" text-anchor="middle" font-size="30" fill="{{ink}}">decisione?</text>
+<path d="M720 696 H500 V856" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1200 696 H1420 V856" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="610.0" y="672" text-anchor="middle" font-size="30" fill="{{line}}">true</text>
+<text x="1310.0" y="672" text-anchor="middle" font-size="30" fill="{{line}}">false</text>
+<rect x="320.0" y="856" width="360" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="500" y="906.0" text-anchor="middle" font-size="30" fill="{{ink}}">ramo vero …</text>
+<rect x="1240.0" y="856" width="360" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1420" y="906.0" text-anchor="middle" font-size="30" fill="{{ink}}">ramo falso …</text>
+  </g>
+</svg>

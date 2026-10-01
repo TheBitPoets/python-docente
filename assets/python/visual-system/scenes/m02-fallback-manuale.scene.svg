@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m02-fallback-manuale.svg">
+  <title id="title">Il percorso manuale resta disponibile</title>
+  <desc id="desc">Carta, lavagna o template si affiancano a trace table, casi di test e rubric docente: tutti contribuiscono al lavoro sul diagramma.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" text-anchor="start" font-size="48" fill="{{surface}}">Il percorso manuale resta disponibile</text>
+<text x="64" y="148" text-anchor="start" font-size="28" fill="{{muted}}">Gli stessi obiettivi didattici si possono raggiungere anche senza il laboratorio.</text>
+<text x="64" y="1032" text-anchor="start" font-size="28" fill="{{muted}}">Linee senza punta = strumenti complementari; non indicano un ordine di esecuzione.</text>
+<rect x="680.0" y="472" width="560" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="538.0" text-anchor="middle" font-size="30" fill="{{ink}}">Lavoro sul diagramma</text>
+<rect x="160.0" y="256" width="640" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="480" y="322.0" text-anchor="middle" font-size="30" fill="{{ink}}">carta / lavagna / template</text>
+<path d="M1144.0 256 H1760.0 L1736.0 368 H1120.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1440" y="322.0" text-anchor="middle" font-size="30" fill="{{ink}}">trace table</text>
+<rect x="160.0" y="776" width="640" height="112" rx="0" fill="#ede9fe" stroke="{{testing}}" stroke-width="4" />
+<text x="480" y="842.0" text-anchor="middle" font-size="30" fill="{{ink}}">casi di test</text>
+<rect x="1120.0" y="776" width="640" height="112" rx="0" fill="#ede9fe" stroke="{{testing}}" stroke-width="4" />
+<text x="1440" y="842.0" text-anchor="middle" font-size="30" fill="{{ink}}">rubric docente</text>
+<path d="M480 368 V416 H800 V472" fill="none" stroke="{{line}}" stroke-width="4" />
+<path d="M1440 368 V416 H1120 V472" fill="none" stroke="{{line}}" stroke-width="4" />
+<path d="M800 584 V696 H480 V776" fill="none" stroke="{{line}}" stroke-width="4" />
+<path d="M1120 584 V696 H1440 V776" fill="none" stroke="{{line}}" stroke-width="4" />
+  </g>
+</svg>
