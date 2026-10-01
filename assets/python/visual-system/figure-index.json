@@ -1290,5 +1290,245 @@
     "caption_draft": "Dal problema al debug",
     "existing_images": 11,
     "existing_text_blocks": 19
+  },
+  {
+    "id": "py-lab-m02-m03-01",
+    "module": "M02",
+    "title": "1. Spedizione gratuita",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-1",
+    "purpose": "Si legge importo. Se importo >= 50 è vero si mostra 0, altrimenti si mostra 5. I rami si ricongiungono prima della fine.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-01.svg",
+    "alt_draft": "Si legge importo. Se importo >= 50 è vero si mostra 0, altrimenti si mostra 5. I rami si ricongiungono prima della fine.",
+    "caption_draft": "Si legge importo. Se importo >= 50 è vero si mostra 0, altrimenti si mostra 5. I rami si ricongiungono prima della fine.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-02",
+    "module": "M02",
+    "title": "2. Pari oppure dispari",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-2",
+    "purpose": "Si legge numero. Se numero % 2 == 0 è vero si mostra \"pari\", altrimenti si mostra \"dispari\". I rami si ricongiungono prima della fine.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-02.svg",
+    "alt_draft": "Si legge numero. Se numero % 2 == 0 è vero si mostra \"pari\", altrimenti si mostra \"dispari\". I rami si ricongiungono prima della fine.",
+    "caption_draft": "Si legge numero. Se numero % 2 == 0 è vero si mostra \"pari\", altrimenti si mostra \"dispari\". I rami si ricongiungono prima della fine.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-03",
+    "module": "M02",
+    "title": "3. Quattro fasce di punteggio",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-3",
+    "purpose": "Letto punteggio, si controllano in ordine punteggio >= 90, punteggio >= 75, punteggio >= 60. Il primo confronto vero sceglie il proprio output; se sono tutti falsi si esegue il ramo ALTRIMENTI. Un solo output raggiunge FINE.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-03.svg",
+    "alt_draft": "Letto punteggio, si controllano in ordine punteggio >= 90, punteggio >= 75, punteggio >= 60. Il primo confronto vero sceglie il proprio output; se sono tutti falsi si esegue il ramo ALTRIMENTI. Un solo output raggiunge FINE.",
+    "caption_draft": "Letto punteggio, si controllano in ordine punteggio >= 90, punteggio >= 75, punteggio >= 60. Il primo confronto vero sceglie il proprio output; se sono tutti falsi si esegue il ramo ALTRIMENTI. Un solo output raggiunge FINE.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-04",
+    "module": "M02",
+    "title": "4. Biglietto del museo",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-4",
+    "purpose": "Letto eta, si controllano in ordine eta < 6, eta < 14, eta < 65. Il primo confronto vero sceglie il proprio output; se sono tutti falsi si esegue il ramo ALTRIMENTI. Un solo output raggiunge FINE.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-04.svg",
+    "alt_draft": "Letto eta, si controllano in ordine eta < 6, eta < 14, eta < 65. Il primo confronto vero sceglie il proprio output; se sono tutti falsi si esegue il ramo ALTRIMENTI. Un solo output raggiunge FINE.",
+    "caption_draft": "Letto eta, si controllano in ordine eta < 6, eta < 14, eta < 65. Il primo confronto vero sceglie il proprio output; se sono tutti falsi si esegue il ramo ALTRIMENTI. Un solo output raggiunge FINE.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-05",
+    "module": "M02",
+    "title": "5. Consegna urgente",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-5",
+    "purpose": "Si leggono prezzo e urgente. Finale parte da prezzo; solo se urgente è si aumenta di 3. Dopo il ricongiungimento si mostra finale.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-05.svg",
+    "alt_draft": "Si leggono prezzo e urgente. Finale parte da prezzo; solo se urgente è si aumenta di 3. Dopo il ricongiungimento si mostra finale.",
+    "caption_draft": "Si leggono prezzo e urgente. Finale parte da prezzo; solo se urgente è si aumenta di 3. Dopo il ricongiungimento si mostra finale.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-06",
+    "module": "M02",
+    "title": "6. Bonus missione",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-6",
+    "purpose": "Si leggono punti e completata. Finale parte da punti; solo se completata è si aumenta di 10. Dopo il ricongiungimento si mostra finale.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-06.svg",
+    "alt_draft": "Si leggono punti e completata. Finale parte da punti; solo se completata è si aumenta di 10. Dopo il ricongiungimento si mostra finale.",
+    "caption_draft": "Si leggono punti e completata. Finale parte da punti; solo se completata è si aumenta di 10. Dopo il ricongiungimento si mostra finale.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-07",
+    "module": "M03",
+    "title": "7. Un voto valido",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-7",
+    "purpose": "Si legge voto. Finché è minore di 0 o maggiore di 10 si legge di nuovo. Quando è valido si mostra il voto una sola volta e si termina.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-07.svg",
+    "alt_draft": "Si legge voto. Finché è minore di 0 o maggiore di 10 si legge di nuovo. Quando è valido si mostra il voto una sola volta e si termina.",
+    "caption_draft": "Si legge voto. Finché è minore di 0 o maggiore di 10 si legge di nuovo. Quando è valido si mostra il voto una sola volta e si termina.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-08",
+    "module": "M03",
+    "title": "8. Somma fino allo zero",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-8",
+    "purpose": "Totale parte da zero. Si legge valore; mentre è diverso da zero si aggiunge a totale e si legge il valore successivo. Lo zero fa uscire verso MOSTRA totale.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-08.svg",
+    "alt_draft": "Totale parte da zero. Si legge valore; mentre è diverso da zero si aggiunge a totale e si legge il valore successivo. Lo zero fa uscire verso MOSTRA totale.",
+    "caption_draft": "Totale parte da zero. Si legge valore; mentre è diverso da zero si aggiunge a totale e si legge il valore successivo. Lo zero fa uscire verso MOSTRA totale.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-09",
+    "module": "M03",
+    "title": "9. I primi N numeri",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-9",
+    "purpose": "Si legge N e si inizializza i a zero. Mentre i è minore di N si mostra i e si incrementa i. Con N uguale a zero si salta il corpo.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-09.svg",
+    "alt_draft": "Si legge N e si inizializza i a zero. Mentre i è minore di N si mostra i e si incrementa i. Con N uguale a zero si salta il corpo.",
+    "caption_draft": "Si legge N e si inizializza i a zero. Mentre i è minore di N si mostra i e si incrementa i. Con N uguale a zero si salta il corpo.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-10",
+    "module": "M03",
+    "title": "10. N letture, una somma",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-10",
+    "purpose": "Si legge N; i e totale partono da zero. Mentre i è minore di N si legge un valore, lo si somma a totale e si incrementa i. Dopo il ciclo si mostra totale.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-10.svg",
+    "alt_draft": "Si legge N; i e totale partono da zero. Mentre i è minore di N si legge un valore, lo si somma a totale e si incrementa i. Dopo il ciclo si mostra totale.",
+    "caption_draft": "Si legge N; i e totale partono da zero. Mentre i è minore di N si legge un valore, lo si somma a totale e si incrementa i. Dopo il ciclo si mostra totale.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-11",
+    "module": "M03",
+    "title": "11. Contare i numeri pari",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-11",
+    "purpose": "i e conteggio partono da zero. Si leggono cinque numeri; se numero modulo 2 è zero si incrementa conteggio. i aumenta sempre. Dopo cinque letture si mostra conteggio.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-11.svg",
+    "alt_draft": "i e conteggio partono da zero. Si leggono cinque numeri; se numero modulo 2 è zero si incrementa conteggio. i aumenta sempre. Dopo cinque letture si mostra conteggio.",
+    "caption_draft": "i e conteggio partono da zero. Si leggono cinque numeri; se numero modulo 2 è zero si incrementa conteggio. i aumenta sempre. Dopo cinque letture si mostra conteggio.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
+  },
+  {
+    "id": "py-lab-m02-m03-12",
+    "module": "M03",
+    "title": "12. Avvio facoltativo",
+    "lesson_section": "student/LAB_M02_M03_SOLUZIONI.md#esercizio-12",
+    "purpose": "Si legge scelta. Se è avvia si inizializza i e si mostra pronto tre volte incrementando i. Con stop si salta il ciclo e si raggiunge FINE senza output.",
+    "components": [
+      "tpsi-terminator",
+      "tpsi-io",
+      "tpsi-decision",
+      "tpsi-step"
+    ],
+    "priority": "P1",
+    "status": "in-lesson",
+    "asset": "assets/python/lab-m02-m03-12.svg",
+    "alt_draft": "Si legge scelta. Se è avvia si inizializza i e si mostra pronto tre volte incrementando i. Con stop si salta il ciclo e si raggiunge FINE senza output.",
+    "caption_draft": "Si legge scelta. Se è avvia si inizializza i e si mostra pronto tre volte incrementando i. Con stop si salta il ciclo e si raggiunge FINE senza output.",
+    "existing_images": 12,
+    "existing_text_blocks": 12
   }
 ]

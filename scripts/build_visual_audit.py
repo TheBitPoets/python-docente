@@ -156,6 +156,28 @@ def outputs() -> dict[Path, str]:
             escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components),
             'P1; immagine inserita', 'SVG statico con alt e didascalia',
         ]) + '</tr>')
+    solutions = ROOT / "student/LAB_M02_M03_SOLUZIONI.md"
+    body = solutions.read_text(encoding="utf-8")
+    for match in re.finditer(r'<img src="../assets/python/(lab-m02-m03-(\d+)\.svg)"', body):
+        asset, number = match.group(1), int(match.group(2))
+        scene = ET.parse(KIT / "scenes" / asset.replace(".svg", ".scene.svg")).getroot()
+        title = scene.findtext("{http://www.w3.org/2000/svg}title")
+        purpose = scene.findtext("{http://www.w3.org/2000/svg}desc")
+        target = solutions.relative_to(ROOT).as_posix() + f"#esercizio-{number}"
+        components = ["tpsi-terminator", "tpsi-io", "tpsi-decision", "tpsi-step"]
+        figures.append({
+            "id": f"py-lab-m02-m03-{number:02d}", "module": "M02" if number <= 6 else "M03",
+            "title": title, "lesson_section": target, "purpose": purpose, "components": components,
+            "priority": "P1", "status": "in-lesson", "asset": f"assets/python/{asset}",
+            "alt_draft": purpose, "caption_draft": purpose,
+            "existing_images": len(re.findall(r"<img\b", body)),
+            "existing_text_blocks": len(re.findall(r"^```text\s*$", body, re.M)),
+        })
+        rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [
+            f'<a href="../{escape(target, quote=True)}">Laboratorio M02–M03 — esercizio {number}</a>',
+            escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components),
+            'P1; immagine inserita', 'soluzione con flow chart e pseudocodice',
+        ]) + '</tr>')
     audit = '''# Audit delle immagini del corso Python
 
 <p align="justify">Audit del 16 settembre 2026: tutte le 31 lezioni canoniche M00–M30. La lettura di obiettivi, spiegazioni, schemi testuali e attività individua una prima figura principale per ciascun modulo. L'inventario automatico conta i riferimenti a immagini e i blocchi <code>text</code>; questi ultimi comprendono anche output e pseudocodice, non soltanto schemi da sostituire.</p>
@@ -167,6 +189,8 @@ def outputs() -> dict[Path, str]:
 <p align="justify">Il paragrafo 10 include anche un flow chart con due rami ALTRIMENTI SE, pseudocodice e confronto con la versione annidata: i due algoritmi classificano gli stessi numeri come negativi, zero o positivi.</p>
 
 <p align="justify"><strong>Aggiornamento M03:</strong> 11 figure SVG illustrano cicli, contatori, accumulatore, confini, annidamento, percorso manuale e riepilogo. I nove flow chart algoritmici hanno lo pseudocodice sotto l’immagine; il confronto dei confini include entrambe le versioni. L’esempio senza aggiornamento resta esplicitamente errato. Trace, output e checklist rimangono testo copiabile.</p>
+
+<p align="justify"><strong>Laboratorio M02–M03:</strong> la scheda delle soluzioni contiene 12 flow chart con pseudocodice e spiegazione dei casi di prova. Le figure riusano la palette e i simboli del corso e sono collegate dalle singole consegne.</p>
 
 ## Fonti effettivamente consultate
 

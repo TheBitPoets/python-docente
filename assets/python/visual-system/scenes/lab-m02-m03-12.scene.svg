@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../lab-m02-m03-12.svg">
+  <title id="title">12. Avvio facoltativo</title>
+  <desc id="desc">Si legge scelta. Se è avvia si inizializza i e si mostra pronto tre volte incrementando i. Con stop si salta il ciclo e si raggiunge FINE senza output.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">12. Avvio facoltativo</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">La selezione decide se entrare nell’intero ciclo.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso. ← dentro un nodo = assegnamento.</text>
+<rect x="840.0" y="176" width="240" height="48" rx="24.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="210.0" font-size="30" text-anchor="middle" fill="{{ink}}">INIZIO</text>
+<path d="M960 224 V248" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M744.0 248 H1200.0 L1176.0 312 H720.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="960" y="290.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI scelta</text>
+<path d="M960 312 V360" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M960 360 L1240.0 424.0 L960 488 L680.0 424.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="960" y="434.0" font-size="30" text-anchor="middle" fill="{{ink}}">scelta == &quot;avvia&quot;?</text>
+<path d="M680 424 H640 V536" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="600" y="480" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<rect x="440.0" y="536" width="400" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="640" y="578.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← 0</text>
+<path d="M640 600 V648" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="640" cy="624" r="6" fill="{{line}}" />
+<path d="M640 648 L840.0 704.0 L640 760 L440.0 704.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="640" y="714.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt; 3?</text>
+<path d="M640 760 V800" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="688" y="792" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M424.0 800 H880.0 L856.0 864 H400.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="640" y="842.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA &quot;pronto&quot;</text>
+<path d="M640 864 V912" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="440.0" y="912" width="400" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="640" y="954.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← i + 1</text>
+<path d="M640 976 V1000 H176 V624 H640" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M840 704 H1480 V888" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1064" y="680" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M1240 424 H1744 V888 H1480" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1480" y="400" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<circle cx="1480" cy="888" r="6" fill="{{line}}" />
+<path d="M1480 888 V920" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="1360.0" y="920" width="240" height="64" rx="32.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1480" y="962.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+  </g>
+</svg>

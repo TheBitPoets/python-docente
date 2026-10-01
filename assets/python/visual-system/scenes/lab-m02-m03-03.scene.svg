@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../lab-m02-m03-03.svg">
+  <title id="title">3. Quattro fasce di punteggio</title>
+  <desc id="desc">Letto punteggio, si controllano in ordine punteggio &gt;= 90, punteggio &gt;= 75, punteggio &gt;= 60. Il primo confronto vero sceglie il proprio output; se sono tutti falsi si esegue il ramo ALTRIMENTI. Un solo output raggiunge FINE.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">3. Quattro fasce di punteggio</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Ogni false passa al confronto successivo; ogni true salta gli altri casi.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso. ← dentro un nodo = assegnamento.</text>
+<rect x="520.0" y="176" width="240" height="56" rx="28.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="640" y="214.0" font-size="30" text-anchor="middle" fill="{{ink}}">INIZIO</text>
+<path d="M640 232 V248" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M424.0 248 H880.0 L856.0 312 H400.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="640" y="290.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI punteggio</text>
+<path d="M640 312 V352" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M640 352 L880.0 408.0 L640 464 L400.0 408.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="640" y="418.0" font-size="30" text-anchor="middle" fill="{{ink}}">punteggio &gt;= 90?</text>
+<path d="M880 408 H1132" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="992" y="384" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M1144.0 376 H1600.0 L1576.0 440 H1120.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1360" y="418.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA &quot;ottimo&quot;</text>
+<path d="M1588 408 H1776 V952 H1480" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M640 464 V528" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="688" y="504" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M640 528 L880.0 584.0 L640 640 L400.0 584.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="640" y="594.0" font-size="30" text-anchor="middle" fill="{{ink}}">punteggio &gt;= 75?</text>
+<path d="M880 584 H1132" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="992" y="560" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M1144.0 552 H1600.0 L1576.0 616 H1120.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1360" y="594.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA &quot;buono&quot;</text>
+<path d="M1588 584 H1776" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M640 640 V704" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="688" y="680" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M640 704 L880.0 760.0 L640 816 L400.0 760.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="640" y="770.0" font-size="30" text-anchor="middle" fill="{{ink}}">punteggio &gt;= 60?</text>
+<path d="M880 760 H1132" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="992" y="736" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M1144.0 728 H1600.0 L1576.0 792 H1120.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1360" y="770.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA &quot;sufficiente&quot;</text>
+<path d="M1588 760 H1776" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M640 816 V856" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="688" y="848" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M384.0 856 H920.0 L896.0 920 H360.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="640" y="898.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA &quot;insufficiente&quot;</text>
+<path d="M640 920 V952 H1240" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="1240.0" y="920" width="240" height="64" rx="32.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1360" y="962.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+  </g>
+</svg>

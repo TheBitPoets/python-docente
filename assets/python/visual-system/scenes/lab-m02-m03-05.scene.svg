@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../lab-m02-m03-05.svg">
+  <title id="title">5. Consegna urgente</title>
+  <desc id="desc">Si leggono prezzo e urgente. Finale parte da prezzo; solo se urgente è si aumenta di 3. Dopo il ricongiungimento si mostra finale.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">5. Consegna urgente</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Il ramo false salta l’aggiornamento e raggiunge l’output comune.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso. ← dentro un nodo = assegnamento.</text>
+<rect x="840.0" y="176" width="240" height="56" rx="28.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="214.0" font-size="30" text-anchor="middle" fill="{{ink}}">INIZIO</text>
+<path d="M960 232 V264" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M704.0 264 H1240.0 L1216.0 360 H680.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="960" y="304.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI prezzo</text>
+<text x="960" y="340.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI urgente</text>
+<path d="M960 360 V400" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="720.0" y="400" width="480" height="72" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="446.0" font-size="30" text-anchor="middle" fill="{{ink}}">finale ← prezzo</text>
+<path d="M960 472 V528" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M960 528 L1240.0 592.0 L960 656 L680.0 592.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="960" y="602.0" font-size="30" text-anchor="middle" fill="{{ink}}">urgente == &quot;si&quot;?</text>
+<path d="M680 592 H600 V704" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="548" y="640" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<rect x="360.0" y="704" width="480" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="600" y="746.0" font-size="30" text-anchor="middle" fill="{{ink}}">finale ← finale + 3</text>
+<path d="M600 768 V808 H960" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1240 592 H1424 V808 H960" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1336" y="568" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<circle cx="960" cy="808" r="6" fill="{{line}}" />
+<path d="M960 808 V856" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M744.0 856 H1200.0 L1176.0 928 H720.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="960" y="902.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA finale</text>
+<path d="M1188 892 H1416" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="1416.0" y="860" width="240" height="64" rx="32.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1536" y="902.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+  </g>
+</svg>

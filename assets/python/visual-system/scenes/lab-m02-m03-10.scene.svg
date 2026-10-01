@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../lab-m02-m03-10.svg">
+  <title id="title">10. N letture, una somma</title>
+  <desc id="desc">Si legge N; i e totale partono da zero. Mentre i è minore di N si legge un valore, lo si somma a totale e si incrementa i. Dopo il ciclo si mostra totale.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">10. N letture, una somma</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Si leggono esattamente N valori; zero è un dato da sommare.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso. ← dentro un nodo = assegnamento.</text>
+<rect x="640.0" y="176" width="240" height="56" rx="28.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="214.0" font-size="30" text-anchor="middle" fill="{{ink}}">INIZIO</text>
+<path d="M760 232 V264" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M544.0 264 H1000.0 L976.0 328 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="306.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI N</text>
+<path d="M760 328 V368" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="520.0" y="368" width="480" height="96" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="408.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← 0</text>
+<text x="760" y="444.0" font-size="30" text-anchor="middle" fill="{{ink}}">totale ← 0</text>
+<path d="M760 464 V504" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="760" cy="480" r="6" fill="{{line}}" />
+<path d="M760 504 L960.0 568.0 L760 632 L560.0 568.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="760" y="578.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt; N?</text>
+<path d="M760 632 V680" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="808" y="672" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M544.0 680 H1000.0 L976.0 744 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="722.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI valore</text>
+<path d="M760 744 V784" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="480.0" y="784" width="560" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="826.0" font-size="30" text-anchor="middle" fill="{{ink}}">totale ← totale + valore</text>
+<path d="M760 848 V888" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="520.0" y="888" width="480" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="930.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← i + 1</text>
+<path d="M760 952 V984 H240 V480 H760" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M960 568 H1504 V680" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1200" y="544" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M1288.0 680 H1744.0 L1720.0 744 H1264.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1504" y="722.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA totale</text>
+<path d="M1504 744 V888" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="1384.0" y="888" width="240" height="64" rx="32.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1504" y="930.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../lab-m02-m03-09.svg">
+  <title id="title">9. I primi N numeri</title>
+  <desc id="desc">Si legge N e si inizializza i a zero. Mentre i è minore di N si mostra i e si incrementa i. Con N uguale a zero si salta il corpo.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">9. I primi N numeri</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">N decide il numero di iterazioni. L’ultimo numero mostrato, se N &gt; 0, è N − 1.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso. ← dentro un nodo = assegnamento.</text>
+<rect x="640.0" y="176" width="240" height="56" rx="28.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="214.0" font-size="30" text-anchor="middle" fill="{{ink}}">INIZIO</text>
+<path d="M760 232 V264" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M544.0 264 H1000.0 L976.0 328 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="306.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI N</text>
+<path d="M760 328 V368" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="520.0" y="368" width="480" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="410.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← 0</text>
+<path d="M760 432 V504" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="760" cy="472" r="6" fill="{{line}}" />
+<path d="M760 504 L960.0 568.0 L760 632 L560.0 568.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="760" y="578.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt; N?</text>
+<path d="M760 632 V704" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="808" y="672" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M544.0 704 H1000.0 L976.0 776 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="750.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA i</text>
+<path d="M760 776 V848" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="520.0" y="848" width="480" height="72" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="894.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← i + 1</text>
+<path d="M760 920 V976 H240 V472 H760" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M960 568 H1504 V888" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1200" y="544" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<rect x="1384.0" y="888" width="240" height="64" rx="32.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1504" y="930.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+  </g>
+</svg>

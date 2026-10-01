@@ -3,6 +3,8 @@
 **Durata:** 60–90 minuti.  
 **Prerequisiti:** [pseudocodice e trace (M01)](../content/python/01_DAL_PROBLEMA_AI_PASSI.md), [selezione (M02)](../content/python/02_FLOWCHART_SEQUENZA_SELEZIONE.md), [cicli e annidamento (M03)](../content/python/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md).
 
+**Soluzioni:** [flow chart e pseudocodice dei 12 esercizi](LAB_M02_M03_SOLUZIONI.md).
+
 ## Organizzazione del lavoro
 
 Lavora individualmente o in coppia. In coppia, alternate chi costruisce l’algoritmo e chi lo esegue a mano, scambiandovi i ruoli a ogni esercizio.
@@ -45,6 +47,8 @@ Usa `SE ... ALTRIMENTI`: per ogni input si esegue uno solo dei due rami.
 
 ### 1. Spedizione gratuita — essenziale, 6 minuti
 
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-1).
+
 Un negozio applica **5 euro** di spedizione quando l’importo degli acquisti è inferiore a **50 euro**. Da 50 euro in poi la spedizione è gratuita.
 
 Leggi `importo`, un numero intero non negativo, e mostra **soltanto il costo della spedizione**.
@@ -58,6 +62,8 @@ Leggi `importo`, un numero intero non negativo, e mostra **soltanto il costo del
 **Controlla:** a quale ramo appartiene esattamente 50?
 
 ### 2. Pari oppure dispari — variante, 4 minuti
+
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-2).
 
 Leggi un intero `numero` maggiore o uguale a zero. Mostra `pari` se il resto della divisione per 2 è zero, altrimenti mostra `dispari`. Usa l’operatore `%` studiato in M01.
 
@@ -74,6 +80,8 @@ Leggi un intero `numero` maggiore o uguale a zero. Mostra `pari` se il resto del
 Usa una catena con **almeno due `ALTRIMENTI SE`**. Dopo il primo caso vero, gli altri rami vengono saltati.
 
 ### 3. Quattro fasce di punteggio — essenziale, 8 minuti
+
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-3).
 
 Leggi un `punteggio` intero da 0 a 100 e mostra una sola valutazione:
 
@@ -94,6 +102,8 @@ L’input è già nell’intervallo ammesso. Disegna un rombo per ogni confronto
 **Aggiungi due test:** 74 e 89, scrivendo tu l’output atteso. Spiega perché 95 deve produrre un solo messaggio, anche se supera tutte e tre le soglie.
 
 ### 4. Biglietto del museo — variante, 5 minuti
+
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-4).
 
 Per questo esercizio il museo usa queste tariffe:
 
@@ -119,6 +129,8 @@ Usa `SE ... FINE SE`, **senza `ALTRIMENTI`**. Il ramo falso salta l’azione fac
 
 ### 5. Consegna urgente — essenziale, 6 minuti
 
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-5).
+
 Leggi `prezzo`, un intero non negativo, e `urgente`, che può valere soltanto `si` oppure `no`.
 
 Il prezzo finale parte dal prezzo letto. **Solo se la consegna è urgente**, aggiungi 3 euro. Mostra il prezzo finale in entrambi i casi, dopo il ricongiungimento dei rami.
@@ -132,6 +144,8 @@ Il prezzo finale parte dal prezzo letto. **Solo se la consegna è urgente**, agg
 **Controlla:** il valore da mostrare deve essere disponibile anche quando la condizione è falsa.
 
 ### 6. Bonus missione — variante, 4 minuti
+
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-6).
 
 Leggi `punti`, un intero non negativo, e `completata`, che vale `si` oppure `no`. Se la missione è completata, aggiungi **10 punti**; altrimenti i punti rimangono quelli iniziali. Mostra sempre il punteggio finale.
 
@@ -149,6 +163,8 @@ Il numero di ripetizioni dipende dai valori letti. Usa `MENTRE` e rendi visibile
 
 ### 7. Un voto valido — essenziale, 8 minuti
 
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-7).
+
 Leggi un voto intero. Se è fuori dall’intervallo **0–10**, estremi inclusi, chiedilo di nuovo. Continua finché ricevi un voto valido, poi mostra **una sola volta quel voto**.
 
 | Input successivi | Output atteso | Nuove letture dopo la prima |
@@ -162,6 +178,8 @@ Leggi un voto intero. Se è fuori dall’intervallo **0–10**, estremi inclusi,
 **Spiega:** se continuano ad arrivare voti non validi, il ciclo termina? Da quale evento dipende l’uscita?
 
 ### 8. Somma fino allo zero — variante, 5 minuti
+
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-8).
 
 Leggi una sequenza di interi non negativi. Lo **zero termina l’inserimento**. Somma i valori precedenti allo zero e mostra il totale soltanto alla fine. Non leggere altri dati dopo lo zero.
 
@@ -179,6 +197,8 @@ Leggiamo prima quante ripetizioni svolgere: da quel momento il numero di giri è
 
 ### 9. I primi N numeri — essenziale, 8 minuti
 
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-9).
+
 Leggi `N`, un intero non negativo. Mostra **esattamente N numeri interi consecutivi, partendo da 0**, uno per iterazione. Se `N` vale zero, non mostrare nessun numero.
 
 | Input: N | Output atteso, in ordine |
@@ -192,6 +212,8 @@ Per `N = 5`, prepara una trace con queste colonne: numero dell’iterazione, val
 **Controlla:** con `N = 5` devono esserci esattamente cinque iterazioni. L’ultimo numero mostrato è 4; il numero 5 non deve essere mostrato.
 
 ### 10. N letture, una somma — variante, 5 minuti
+
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-10).
 
 Leggi `N`, un intero non negativo, poi leggi **esattamente N numeri interi**, anche negativi o nulli. Mostra la loro somma dopo l’ultima lettura. Se `N` vale zero, non leggere altri dati e mostra 0.
 
@@ -209,6 +231,8 @@ Tra i valori da sommare, **zero è un dato** e non interrompe il ciclo. `N` indi
 
 ### 11. Contare i numeri pari — essenziale, 14 minuti
 
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-11).
+
 Leggi **esattamente cinque interi non negativi** e conta quanti sono pari. Mostra soltanto il conteggio finale.
 
 Usa una **selezione dentro il ciclo**: ogni numero viene letto, ma il conteggio dei pari aumenta soltanto quando il resto della divisione per 2 è zero. Anche zero è pari.
@@ -224,6 +248,8 @@ Usa una **selezione dentro il ciclo**: ogni numero viene letto, ma il conteggio 
 **Controlla:** il numero di letture deve aumentare anche quando il valore è dispari. Che cosa succederebbe se aggiornassi quel contatore soltanto nel ramo vero?
 
 ### 12. Avvio facoltativo — variante, 7 minuti
+
+[Soluzione: flow chart e pseudocodice](LAB_M02_M03_SOLUZIONI.md#esercizio-12).
 
 Leggi `scelta`, che può valere soltanto `avvia` oppure `stop`. Se la scelta è `avvia`, mostra il messaggio `pronto` **esattamente tre volte**; se è `stop`, termina senza mostrare messaggi.
 
