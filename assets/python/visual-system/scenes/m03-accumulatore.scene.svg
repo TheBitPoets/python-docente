@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-accumulatore.svg">
+  <title id="title">Accumulare la somma di tre valori</title>
+  <desc id="desc">Totale e contatore partono da zero. Finché contatore è minore di 3 si legge un valore, lo si somma a totale e si incrementa contatore. Alla fine si mostra totale.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Accumulare la somma di tre valori</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Il contatore registra quanti dati sono stati letti; totale conserva la loro somma.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<rect x="520.0" y="184" width="480" height="96" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="224.0" font-size="30" text-anchor="middle" fill="{{ink}}">totale ← 0</text>
+<text x="760" y="260.0" font-size="30" text-anchor="middle" fill="{{ink}}">contatore ← 0</text>
+<path d="M760 280 V344" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="760" cy="312" r="6" fill="{{line}}" />
+<path d="M760 344 L1000.0 416.0 L760 488 L520.0 416.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="760" y="426.0" font-size="30" text-anchor="middle" fill="{{ink}}">contatore &lt; 3?</text>
+<path d="M760 488 V552" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="808" y="528" font-size="30" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M544.0 552 H1000.0 L976.0 632 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="602.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI valore</text>
+<path d="M760 632 V688" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="480.0" y="688" width="560" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="738.0" font-size="30" text-anchor="middle" fill="{{ink}}">totale ← totale + valore</text>
+<path d="M760 768 V824" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="480.0" y="824" width="560" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="874.0" font-size="30" text-anchor="middle" fill="{{ink}}">contatore ← contatore + 1</text>
+<path d="M760 904 V960 H280 V312 H760" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1000 416 H1520 V552" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1232" y="392" font-size="30" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M1304.0 552 H1760.0 L1736.0 632 H1280.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1520" y="602.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA totale</text>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-cicli-annidati.svg">
+  <title id="title">Due cicli per visitare una griglia 2 × 3</title>
+  <desc id="desc">Riga parte da zero. Per ogni riga minore di 2 si azzera colonna e si mostrano le coordinate delle tre celle incrementando colonna. Finite le colonne si incrementa riga.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Due cicli per visitare una griglia 2 × 3</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Il ritorno del ciclo interno conserva riga; il ciclo esterno reimposta colonna a zero.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<rect x="680.0" y="184" width="400" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="880" y="226.0" font-size="30" text-anchor="middle" fill="{{ink}}">riga ← 0</text>
+<path d="M880 248 V296" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="880" cy="272" r="6" fill="{{line}}" />
+<path d="M880 296 L1080.0 360.0 L880 424 L680.0 360.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="880" y="370.0" font-size="30" text-anchor="middle" fill="{{ink}}">riga &lt; 2?</text>
+<path d="M880 424 V472" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="928" y="460" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<rect x="680.0" y="472" width="400" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="880" y="514.0" font-size="30" text-anchor="middle" fill="{{ink}}">colonna ← 0</text>
+<path d="M880 536 V576" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="880" cy="552" r="6" fill="{{line}}" />
+<path d="M880 576 L1080.0 640.0 L880 704 L680.0 640.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="880" y="650.0" font-size="30" text-anchor="middle" fill="{{ink}}">colonna &lt; 3?</text>
+<path d="M880 704 V744" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="928" y="736" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M664.0 744 H1120.0 L1096.0 808 H640.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="880" y="786.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA riga, colonna</text>
+<path d="M880 808 V856" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="640.0" y="856" width="480" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="880" y="898.0" font-size="30" text-anchor="middle" fill="{{ink}}">colonna ← colonna + 1</text>
+<path d="M880 920 V960 H480 V552 H880" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1080 640 H1400 V744" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1224" y="616" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<rect x="1200.0" y="744" width="400" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1400" y="786.0" font-size="30" text-anchor="middle" fill="{{ink}}">riga ← riga + 1</text>
+<path d="M1400 808 V848 H1680 V272 H880" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M680 360 H240 V896" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="456" y="336" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<rect x="120.0" y="896" width="240" height="72" rx="36.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="240" y="942.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+  </g>
+</svg>

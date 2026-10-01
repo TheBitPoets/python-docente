@@ -81,12 +81,16 @@ Traccia un ciclo con zero, una e più iterazioni; individua l&#x27;aggiornamento
 
 <p align="justify">Serve una ripetizione:</p>
 
+<p align="center"><img src="../../assets/python/m03-ritorno-lettura.svg" alt="Si legge valore e si verifica che sia compreso tra 1 e 10. Il ramo false torna alla lettura; il ramo true prosegue." width="960"></p>
+<p align="center"><em>Il diagramma esce quando il dato è valido; MENTRE ripete mentre NON è valido.</em></p>
+
+<p align="justify"><strong>Pseudocodice:</strong></p>
+
 ```text
-leggi valore
-↓
-valido?
-  sì → continua
-  no → torna a leggere
+LEGGI valore
+MENTRE NON ((valore >= 1) E (valore <= 10))
+    LEGGI valore
+FINE MENTRE
 ```
 
 <p align="justify">La freccia che ritorna non significa “ripeti per sempre”.</p>
@@ -123,11 +127,16 @@ Un ciclo controllato da condizione ripete un blocco di passi, detto <strong>corp
 </tr>
 </table>
 
-<p align="justify">Pseudocodice:</p>
+<p align="justify">Il diagramma controlla se il valore è fuori dall’intervallo:</p>
+
+<p align="center"><img src="../../assets/python/m03-ciclo-condizione.svg" alt="La prima lettura precede il controllo. Se valore è minore di 1 o maggiore di 10 si legge di nuovo e si torna al controllo; altrimenti si mostra valido." width="960"></p>
+<p align="center"><em>Il ritorno raggiunge la condizione, senza ripetere la lettura iniziale.</em></p>
+
+<p align="justify"><strong>Pseudocodice:</strong></p>
 
 ```text
 LEGGI valore
-MENTRE valore < 1 O valore > 10
+MENTRE (valore < 1) O (valore > 10)
     LEGGI valore
 FINE MENTRE
 MOSTRA "valido"
@@ -180,6 +189,11 @@ MOSTRA "valido"
 
 <p align="justify">Algoritmo:</p>
 
+<p align="center"><img src="../../assets/python/m03-aggiornamento-mancante.svg" alt="Esempio errato: i parte da 0; mentre i è minore di 3 si mostra i e si torna al controllo senza aggiornarlo. Il ramo false non viene mai raggiunto." width="960"></p>
+<p align="center"><em>Esempio errato: il ritorno al test non cambia automaticamente il contatore.</em></p>
+
+<p align="justify"><strong>Pseudocodice volutamente errato:</strong></p>
+
 ```text
 ASSEGNA i ← 0
 MENTRE i < 3
@@ -204,6 +218,11 @@ ASSEGNA i ← i + 1
 ---
 
 ## 5. Contatore: stato che racconta quante volte
+
+<p align="center"><img src="../../assets/python/m03-contatore.svg" alt="i parte da 0; mentre i è minore di 3 si mostra i, si assegna i più 1 a i e si torna al controllo. Quando i vale 3 il ciclo termina." width="960"></p>
+<p align="center"><em>L’incremento porta i verso il limite; il ramo false chiude il ciclo.</em></p>
+
+<p align="justify"><strong>Pseudocodice:</strong></p>
 
 ```text
 ASSEGNA i ← 0
@@ -262,16 +281,29 @@ FINE MENTRE
 
 <p align="justify">Confronta:</p>
 
+<p align="center"><img src="../../assets/python/m03-confine-ciclo.svg" alt="Con i iniziale uguale a 1 e incremento di 1, i minore di 3 mostra 1 e 2; i minore o uguale a 3 mostra 1, 2 e 3." width="960"></p>
+<p align="center"><em>Con la stessa inizializzazione e lo stesso aggiornamento, &lt; e &lt;= producono un numero diverso di iterazioni.</em></p>
+
+<p align="justify"><strong>Pseudocodice della versione a sinistra:</strong></p>
+
 ```text
-i ← 1
+ASSEGNA i ← 1
 MENTRE i < 3
+    MOSTRA i
+    ASSEGNA i ← i + 1
+FINE MENTRE
 ```
 
-<p align="justify">con:</p>
+<p align="justify">La versione che include anche 3:</p>
+
+<p align="justify"><strong>Pseudocodice della versione a destra:</strong></p>
 
 ```text
-i ← 1
+ASSEGNA i ← 1
 MENTRE i <= 3
+    MOSTRA i
+    ASSEGNA i ← i + 1
+FINE MENTRE
 ```
 
 <p align="justify">Una sola differenza nel confine cambia il numero di iterazioni.</p>
@@ -290,14 +322,19 @@ MENTRE i <= 3
 
 <p align="justify">Possiamo mantenere uno stato <code>totale</code>:</p>
 
+<p align="center"><img src="../../assets/python/m03-accumulatore.svg" alt="Totale e contatore partono da zero. Finché contatore è minore di 3 si legge un valore, lo si somma a totale e si incrementa contatore. Alla fine si mostra totale." width="960"></p>
+<p align="center"><em>L’output è dopo il ciclo: mostra la somma di tutti e tre i valori.</em></p>
+
+<p align="justify"><strong>Pseudocodice:</strong></p>
+
 ```text
-totale ← 0
-contatore ← 0
+ASSEGNA totale ← 0
+ASSEGNA contatore ← 0
 
 MENTRE contatore < 3
     LEGGI valore
-    totale ← totale + valore
-    contatore ← contatore + 1
+    ASSEGNA totale ← totale + valore
+    ASSEGNA contatore ← contatore + 1
 FINE MENTRE
 
 MOSTRA totale
@@ -329,11 +366,22 @@ MOSTRA totale
 
 <p align="justify">Struttura:</p>
 
+<p align="center"><img src="../../assets/python/m03-selezione-nel-ciclo.svg" alt="Si leggono cinque valori. Per ciascuno, se valore è maggiore di zero si incrementa conteggio. i aumenta in entrambi i rami; dopo cinque letture si mostra conteggio." width="960"></p>
+<p align="center"><em>Il ramo false di valore &gt; 0 salta l’incremento del conteggio, ma raggiunge comunque i ← i + 1.</em></p>
+
+<p align="justify"><strong>Pseudocodice:</strong></p>
+
 ```text
-ripeti per 5 valori
-    leggi valore
-    se valore > 0
-        incrementa conteggio
+ASSEGNA i ← 0
+ASSEGNA conteggio ← 0
+MENTRE i < 5
+    LEGGI valore
+    SE valore > 0
+        ASSEGNA conteggio ← conteggio + 1
+    FINE SE
+    ASSEGNA i ← i + 1
+FINE MENTRE
+MOSTRA conteggio
 ```
 
 <p align="justify">Il ciclo decide <strong>quante volte osservare</strong>.</p>
@@ -354,10 +402,20 @@ ripeti per 5 valori
 
 <p align="justify">Qui la decisione avviene prima:</p>
 
+<p align="center"><img src="../../assets/python/m03-ciclo-nella-selezione.svg" alt="Si legge scelta. Solo se scelta è esegui si inizializza i a zero e si mostra operazione tre volte incrementando i. Il ramo false salta l’intero ciclo e termina." width="960"></p>
+<p align="center"><em>Il ramo false della scelta salta anche l’inizializzazione: il ciclo viene eseguito solo su richiesta.</em></p>
+
+<p align="justify"><strong>Pseudocodice: l’operazione scelta per l’esempio è mostrare un messaggio.</strong></p>
+
 ```text
-scelta == "esegui"?
- true → ciclo
- false → end
+LEGGI scelta
+SE scelta == "esegui"
+    ASSEGNA i ← 0
+    MENTRE i < 3
+        MOSTRA "operazione"
+        ASSEGNA i ← i + 1
+    FINE MENTRE
+FINE SE
 ```
 
 <p align="justify">Non esiste una regola “il ciclo va sempre fuori” o “la decisione va sempre dentro”.</p>
@@ -381,10 +439,21 @@ Un ciclo è annidato quando il suo corpo si trova dentro il corpo di un altro ci
 
 <p align="justify">Una piccola griglia 2 × 3 può essere descritta così:</p>
 
+<p align="center"><img src="../../assets/python/m03-cicli-annidati.svg" alt="Riga parte da zero. Per ogni riga minore di 2 si azzera colonna e si mostrano le coordinate delle tre celle incrementando colonna. Finite le colonne si incrementa riga." width="960"></p>
+<p align="center"><em>Ogni visita è rappresentata dall’output delle coordinate. La colonna riparte da 0 per ciascuna riga.</em></p>
+
+<p align="justify"><strong>Pseudocodice:</strong></p>
+
 ```text
-per ogni riga
-    per ogni colonna
-        visita cella
+ASSEGNA riga ← 0
+MENTRE riga < 2
+    ASSEGNA colonna ← 0
+    MENTRE colonna < 3
+        MOSTRA riga, colonna
+        ASSEGNA colonna ← colonna + 1
+    FINE MENTRE
+    ASSEGNA riga ← riga + 1
+FINE MENTRE
 ```
 
 <p align="justify">A livello di flow chart possiamo rappresentare due stati:</p>
@@ -395,6 +464,8 @@ colonna
 ```
 
 <p align="justify">Il ciclo interno completa le colonne di una riga; poi il ciclo esterno passa alla riga successiva.</p>
+
+<p align="justify">Per la griglia 2 × 3, le coordinate mostrate sono (0,0), (0,1), (0,2), (1,0), (1,1), (1,2).</p>
 
 <p align="justify">Non serve ancora formalizzare complessità Big-O.</p>
 
@@ -408,7 +479,7 @@ colonna
 
 ## 11. Trace di cicli annidati
 
-<p align="justify">Per 2 righe × 2 colonne:</p>
+<p align="justify">Per confrontare una griglia più piccola, mantieni <code>riga &lt; 2</code> e cambia il limite interno in <code>colonna &lt; 2</code>. Il trace per 2 righe × 2 colonne è:</p>
 
 <table align="center">
 <thead>
@@ -467,13 +538,8 @@ colonna
 
 <p align="justify">Finché <code>flowchart.lab.v1</code> non è classroom-certified, lo stesso esercizio deve poter essere svolto senza il tool usando:</p>
 
-```text
-carta / lavagna / template
-+ pseudocodice
-+ trace table
-+ casi di test
-+ rubric docente
-```
+<p align="center"><img src="../../assets/python/m03-fallback-manuale.svg" alt="Carta, lavagna o template, pseudocodice, trace table, casi di test e rubric docente sono strumenti complementari per progettare e verificare i cicli." width="960"></p>
+<p align="center"><em>Disegno, pseudocodice, trace, test e valutazione docente si completano a vicenda.</em></p>
 
 <p align="justify">Il fallback manuale non è un corso diverso: preserva gli stessi outcome di algoritmo, terminazione, trace e debug.</p>
 
@@ -501,10 +567,10 @@ carta / lavagna / template
 <p align="justify">Vogliamo contare eventi:</p>
 
 ```text
-conteggio ← 0
+ASSEGNA conteggio ← 0
 MENTRE ...
     ...
-    conteggio ← conteggio + 1
+    ASSEGNA conteggio ← conteggio + 1
 FINE MENTRE
 ```
 
@@ -512,8 +578,8 @@ FINE MENTRE
 
 ```text
 MENTRE ...
-    conteggio ← 0
-    conteggio ← conteggio + 1
+    ASSEGNA conteggio ← 0
+    ASSEGNA conteggio ← conteggio + 1
 FINE MENTRE
 ```
 
@@ -598,13 +664,7 @@ spiegazione della terminazione
 
 ## Recap
 
-```text
-problema
-→ algoritmo
-→ flow chart
-→ trace
-→ test
-→ debug
-```
+<p align="center"><img src="../../assets/python/m03-recap.svg" alt="Il percorso collega problema, algoritmo, flow chart, trace, test e debug." width="960"></p>
+<p align="center"><em>Dalla specifica si passa al modello, poi alle prove e alla diagnosi degli errori.</em></p>
 
 <p align="justify">Nel prossimo modulo useremo Python per tradurre procedure che sappiamo già leggere, simulare e verificare.</p>

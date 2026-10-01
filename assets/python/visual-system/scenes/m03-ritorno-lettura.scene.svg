@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-ritorno-lettura.svg">
+  <title id="title">Leggere ancora finché il dato è valido</title>
+  <desc id="desc">Si legge valore e si verifica che sia compreso tra 1 e 10. Il ramo false torna alla lettura; il ramo true prosegue.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Leggere ancora finché il dato è valido</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Una nuova lettura può cambiare il valore e rendere vera la condizione di uscita.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<path d="M544.0 248 H1000.0 L976.0 328 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="298.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI valore</text>
+<path d="M760 328 V440" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M760 440 L1080.0 536.0 L760 632 L440.0 536.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="760" y="528.0" font-size="30" text-anchor="middle" fill="{{ink}}">(valore &gt;= 1)</text>
+<text x="760" y="564.0" font-size="30" text-anchor="middle" fill="{{ink}}">E (valore &lt;= 10)?</text>
+<path d="M440 536 H240 V208 H760 V248" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="328" y="512" font-size="30" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M760 632 V824" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="808" y="720" font-size="30" text-anchor="middle" fill="{{line}}">true</text>
+<rect x="520.0" y="824" width="480" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="874.0" font-size="30" text-anchor="middle" fill="{{ink}}">continua</text>
+<text x="1400" y="456" font-size="32" text-anchor="middle" fill="{{surface}}">Dato non valido:</text>
+<text x="1400" y="504" font-size="30" text-anchor="middle" fill="{{muted}}">si torna a leggere.</text>
+  </g>
+</svg>

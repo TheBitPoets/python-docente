@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-selezione-nel-ciclo.svg">
+  <title id="title">Una selezione dentro il ciclo</title>
+  <desc id="desc">Si leggono cinque valori. Per ciascuno, se valore è maggiore di zero si incrementa conteggio. i aumenta in entrambi i rami; dopo cinque letture si mostra conteggio.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Una selezione dentro il ciclo</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">L’indice i avanza sempre; conteggio aumenta solo per i valori positivi.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<rect x="640.0" y="184" width="480" height="96" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="880" y="224.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← 0</text>
+<text x="880" y="260.0" font-size="30" text-anchor="middle" fill="{{ink}}">conteggio ← 0</text>
+<path d="M880 280 V320" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="880" cy="296" r="6" fill="{{line}}" />
+<path d="M880 320 L1080.0 384.0 L880 448 L680.0 384.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="880" y="394.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt; 5?</text>
+<path d="M880 448 V504" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="928" y="488" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M704.0 504 H1080.0 L1056.0 568 H680.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="880" y="546.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI valore</text>
+<path d="M880 568 V608" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M880 608 L1080.0 672.0 L880 736 L680.0 672.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="880" y="682.0" font-size="30" text-anchor="middle" fill="{{ink}}">valore &gt; 0?</text>
+<path d="M1080 672 H1340 V736" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1200" y="648" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<rect x="1060.0" y="736" width="560" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1340" y="778.0" font-size="30" text-anchor="middle" fill="{{ink}}">conteggio ← conteggio + 1</text>
+<path d="M680 672 H560 V856 H880" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="608" y="648" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M1340 800 V856 H880" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="880" cy="856" r="6" fill="{{line}}" />
+<path d="M880 856 V896" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="680.0" y="896" width="400" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="880" y="938.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← i + 1</text>
+<path d="M880 960 V984 H368 V296 H880" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1080 384 H1640 V504" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1336" y="360" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M1464.0 504 H1840.0 L1816.0 584 H1440.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1640" y="554.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA conteggio</text>
+  </g>
+</svg>

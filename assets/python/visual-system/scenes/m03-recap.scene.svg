@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-recap.svg">
+  <title id="title">Dal problema al debug</title>
+  <desc id="desc">Il percorso collega problema, algoritmo, flow chart, trace, test e debug.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Dal problema al debug</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Il diagramma descrive i percorsi; trace e test permettono di controllarli.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = ordine delle attività di lavoro, non flusso di esecuzione dell’algoritmo.</text>
+<rect x="104.0" y="272" width="480" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="344" y="338.0" font-size="30" text-anchor="middle" fill="{{ink}}">problema</text>
+<rect x="720.0" y="272" width="480" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="338.0" font-size="30" text-anchor="middle" fill="{{ink}}">algoritmo</text>
+<rect x="1336.0" y="272" width="480" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1576" y="338.0" font-size="30" text-anchor="middle" fill="{{ink}}">flow chart</text>
+<path d="M1360.0 696 H1816.0 L1792.0 808 H1336.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1576" y="762.0" font-size="30" text-anchor="middle" fill="{{ink}}">trace</text>
+<rect x="720.0" y="696" width="480" height="112" rx="0" fill="#ede9fe" stroke="{{testing}}" stroke-width="4" />
+<text x="960" y="762.0" font-size="30" text-anchor="middle" fill="{{ink}}">test</text>
+<rect x="104.0" y="696" width="480" height="112" rx="0" fill="#ffe4e6" stroke="{{security}}" stroke-width="4" />
+<text x="344" y="762.0" font-size="30" text-anchor="middle" fill="{{ink}}">debug</text>
+<path d="M584 328 H720" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1200 328 H1336" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1576 384 V696" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1336 752 H1200" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M720 752 H584" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+  </g>
+</svg>

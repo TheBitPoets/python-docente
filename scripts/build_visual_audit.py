@@ -44,12 +44,14 @@ def outputs() -> dict[Path, str]:
         }
         if n == 2:
             figure.update(status="in-lesson", asset="assets/python/m02-selezione-doppia.svg")
+        if n == 3:
+            figure.update(status="in-lesson", asset="assets/python/m03-ciclo-condizione.svg")
         figures.append(figure)
         rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [
             f'<a href="../{escape(target, quote=True)}">M{n:02d} — {escape(heading)}</a>',
             escape(record["figure"]), escape(record["visual"]),
             ', '.join(f'<code>{c}</code>' for c in components),
-            f'{figure["priority"]}; ' + ('immagine inserita' if n == 2 else 'esempio composto, non inserito' if n == 21 else 'da costruire'),
+            f'{figure["priority"]}; ' + ('immagine inserita' if n in (2, 3) else 'esempio composto, non inserito' if n == 21 else 'da costruire'),
             f'{figure["existing_images"]} immagini; {figure["existing_text_blocks"]} blocchi text',
         ]) + '</tr>')
     # M00 is deliberately richer than the one-figure-per-module baseline:
@@ -119,6 +121,35 @@ def outputs() -> dict[Path, str]:
             escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components),
             'P1; immagine inserita', 'simbolo nella tabella' if is_symbol else 'SVG statico con alt e didascalia',
         ]) + '</tr>')
+    lesson = ROOT / "content/python/03_FLOWCHART_ITERAZIONE_ANNIDAMENTO.md"
+    body = lesson.read_text(encoding="utf-8")
+    extra_index = 2
+    for match in re.finditer(r'<img src="../../assets/python/(m03-[^"]+\.svg)"', body):
+        asset = match.group(1)
+        if asset == "m03-ciclo-condizione.svg":
+            continue
+        section = re.findall(r"^## (.+)$", body[:match.start()], re.M)[-1]
+        scene = ET.parse(KIT / "scenes" / asset.replace(".svg", ".scene.svg")).getroot()
+        title = scene.findtext("{http://www.w3.org/2000/svg}title")
+        purpose = scene.findtext("{http://www.w3.org/2000/svg}desc")
+        target = lesson.relative_to(ROOT).as_posix() + "#" + anchor(section)
+        components = ["tpsi-step", "tpsi-io", "tpsi-decision"]
+        if asset in ("m03-fallback-manuale.svg", "m03-recap.svg"):
+            components = ["tpsi-step", "tpsi-io", "tpsi-test"]
+        figures.append({
+            "id": f"py-m03-{extra_index:02d}", "module": "M03", "title": title,
+            "lesson_section": target, "purpose": purpose, "components": components,
+            "priority": "P1", "status": "in-lesson", "asset": f"assets/python/{asset}",
+            "alt_draft": purpose, "caption_draft": title,
+            "existing_images": len(re.findall(r"<img\b", body)),
+            "existing_text_blocks": len(re.findall(r"^```text\s*$", body, re.M)),
+        })
+        extra_index += 1
+        rows.append('<tr>' + ''.join(f'<td>{cell}</td>' for cell in [
+            f'<a href="../{escape(target, quote=True)}">M03 — {escape(section)}</a>',
+            escape(title), escape(purpose), ', '.join(f'<code>{c}</code>' for c in components),
+            'P1; immagine inserita', 'SVG statico con alt e didascalia',
+        ]) + '</tr>')
     audit = '''# Audit delle immagini del corso Python
 
 <p align="justify">Audit del 16 settembre 2026: tutte le 31 lezioni canoniche M00–M30. La lettura di obiettivi, spiegazioni, schemi testuali e attività individua una prima figura principale per ciascun modulo. L'inventario automatico conta i riferimenti a immagini e i blocchi <code>text</code>; questi ultimi comprendono anche output e pseudocodice, non soltanto schemi da sostituire.</p>
@@ -128,6 +159,8 @@ def outputs() -> dict[Path, str]:
 <p align="justify"><strong>Aggiornamento M02:</strong> gli schemi testuali sono sostituiti da 11 figure SVG inserite nella lezione, con scene sorgente, alt e didascalie. Cinque immagini aggiuntive mostrano i simboli nella tabella del paragrafo 2. Espressioni, casi di test e checklist rimangono testo copiabile. Il registro distingue le figure inserite dal backlog iniziale.</p>
 
 <p align="justify">Il paragrafo 10 include anche un flow chart con due rami ALTRIMENTI SE, pseudocodice e confronto con la versione annidata: i due algoritmi classificano gli stessi numeri come negativi, zero o positivi.</p>
+
+<p align="justify"><strong>Aggiornamento M03:</strong> 11 figure SVG illustrano cicli, contatori, accumulatore, confini, annidamento, percorso manuale e riepilogo. I nove flow chart algoritmici hanno lo pseudocodice sotto l’immagine; il confronto dei confini include entrambe le versioni. L’esempio senza aggiornamento resta esplicitamente errato. Trace, output e checklist rimangono testo copiabile.</p>
 
 ## Fonti effettivamente consultate
 

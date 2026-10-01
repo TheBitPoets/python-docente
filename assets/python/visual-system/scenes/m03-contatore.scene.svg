@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-contatore.svg">
+  <title id="title">Il contatore avanza a ogni iterazione</title>
+  <desc id="desc">i parte da 0; mentre i è minore di 3 si mostra i, si assegna i più 1 a i e si torna al controllo. Quando i vale 3 il ciclo termina.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Il contatore avanza a ogni iterazione</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Output: 0, 1, 2. Il controllo successivo trova i = 3 e fa uscire.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<rect x="520.0" y="208" width="480" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="258.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← 0</text>
+<path d="M760 288 V352" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="760" cy="320" r="6" fill="{{line}}" />
+<path d="M760 352 L960.0 432.0 L760 512 L560.0 432.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="760" y="442.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt; 3?</text>
+<path d="M760 512 V584" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="808" y="560" font-size="30" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M544.0 584 H1000.0 L976.0 664 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="634.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA i</text>
+<path d="M760 664 V768" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="520.0" y="768" width="480" height="80" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="760" y="818.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← i + 1</text>
+<path d="M760 848 V912 H280 V320 H760" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M960 432 H1480 V720" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1184" y="408" font-size="30" text-anchor="middle" fill="{{line}}">false</text>
+<rect x="1360.0" y="720" width="240" height="72" rx="36.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1480" y="766.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+  </g>
+</svg>

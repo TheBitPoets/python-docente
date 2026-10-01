@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-fallback-manuale.svg">
+  <title id="title">Studiare i cicli anche senza il laboratorio</title>
+  <desc id="desc">Carta, lavagna o template, pseudocodice, trace table, casi di test e rubric docente sono strumenti complementari per progettare e verificare i cicli.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Studiare i cicli anche senza il laboratorio</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Il percorso manuale mantiene gli stessi obiettivi didattici.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Linee senza punta = strumenti complementari; non indicano un ordine di esecuzione.</text>
+<rect x="640.0" y="472" width="640" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="960" y="538.0" font-size="30" text-anchor="middle" fill="{{ink}}">Progettare e verificare il ciclo</text>
+<rect x="200.0" y="248" width="560" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="480" y="314.0" font-size="30" text-anchor="middle" fill="{{ink}}">carta / lavagna / template</text>
+<rect x="1160.0" y="248" width="560" height="112" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="1440" y="314.0" font-size="30" text-anchor="middle" fill="{{ink}}">pseudocodice</text>
+<path d="M96.0 824 H632.0 L608.0 936 H72.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="352" y="890.0" font-size="30" text-anchor="middle" fill="{{ink}}">trace table</text>
+<rect x="680.0" y="824" width="560" height="112" rx="0" fill="#ede9fe" stroke="{{testing}}" stroke-width="4" />
+<text x="960" y="890.0" font-size="30" text-anchor="middle" fill="{{ink}}">casi di test</text>
+<rect x="1288.0" y="824" width="560" height="112" rx="0" fill="#ede9fe" stroke="{{testing}}" stroke-width="4" />
+<text x="1568" y="890.0" font-size="30" text-anchor="middle" fill="{{ink}}">rubric docente</text>
+<path d="M480 360 V408 H800 V472" fill="none" stroke="{{line}}" stroke-width="4" />
+<path d="M1440 360 V408 H1120 V472" fill="none" stroke="{{line}}" stroke-width="4" />
+<path d="M800 584 V728 H352 V824" fill="none" stroke="{{line}}" stroke-width="4" />
+<path d="M960 584 V824" fill="none" stroke="{{line}}" stroke-width="4" />
+<path d="M1120 584 V728 H1568 V824" fill="none" stroke="{{line}}" stroke-width="4" />
+  </g>
+</svg>

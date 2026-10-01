@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-confine-ciclo.svg">
+  <title id="title">Un confine cambia il numero di iterazioni</title>
+  <desc id="desc">Con i iniziale uguale a 1 e incremento di 1, i minore di 3 mostra 1 e 2; i minore o uguale a 3 mostra 1, 2 e 3.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Un confine cambia il numero di iterazioni</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Per mostrare anche 3, la condizione deve includere il valore di confine.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<g transform="translate(64 0)">
+<text x="432" y="232" font-size="32" text-anchor="middle" fill="{{surface}}">Condizione i &lt; 3</text>
+<rect x="200.0" y="280" width="320" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="360" y="322.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← 1</text>
+<path d="M360 344 V416" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="360" cy="384" r="6" fill="{{line}}" />
+<path d="M360 416 L520.0 480.0 L360 544 L200.0 480.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="360" y="490.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt; 3?</text>
+<path d="M360 544 V624" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="408" y="592" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M224.0 624 H520.0 L496.0 688 H200.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="360" y="666.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA i</text>
+<path d="M360 688 V768" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="200.0" y="768" width="320" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="360" y="810.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← i + 1</text>
+<path d="M360 832 V896 H96 V384 H360" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M520 480 H704 V624" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="624" y="456" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<rect x="616.0" y="624" width="176" height="64" rx="32.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="704" y="666.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+<text x="432" y="968" font-size="30" text-anchor="middle" fill="{{surface}}">Output: 1, 2</text>
+</g>
+<g transform="translate(992 0)">
+<text x="432" y="232" font-size="32" text-anchor="middle" fill="{{surface}}">Condizione i &lt;= 3</text>
+<rect x="200.0" y="280" width="320" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="360" y="322.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← 1</text>
+<path d="M360 344 V416" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="360" cy="384" r="6" fill="{{line}}" />
+<path d="M360 416 L520.0 480.0 L360 544 L200.0 480.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="360" y="490.0" font-size="30" text-anchor="middle" fill="{{ink}}">i &lt;= 3?</text>
+<path d="M360 544 V624" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="408" y="592" font-size="28" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M224.0 624 H520.0 L496.0 688 H200.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="360" y="666.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA i</text>
+<path d="M360 688 V768" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<rect x="200.0" y="768" width="320" height="64" rx="0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="360" y="810.0" font-size="30" text-anchor="middle" fill="{{ink}}">i ← i + 1</text>
+<path d="M360 832 V896 H96 V384 H360" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M520 480 H704 V624" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="624" y="456" font-size="28" text-anchor="middle" fill="{{line}}">false</text>
+<rect x="616.0" y="624" width="176" height="64" rx="32.0" fill="#dbeafe" stroke="{{process}}" stroke-width="4" />
+<text x="704" y="666.0" font-size="30" text-anchor="middle" fill="{{ink}}">FINE</text>
+<text x="432" y="968" font-size="30" text-anchor="middle" fill="{{surface}}">Output: 1, 2, 3</text>
+</g>
+  </g>
+</svg>

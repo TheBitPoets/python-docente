@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc" data-output="../../m03-ciclo-condizione.svg">
+  <title id="title">Il ciclo controllato da condizione</title>
+  <desc id="desc">La prima lettura precede il controllo. Se valore è minore di 1 o maggiore di 10 si legge di nuovo e si torna al controllo; altrimenti si mostra valido.</desc>
+  <defs id="visual-kit-components" />
+  <defs><marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="{{line}}" /></marker></defs>
+  <rect width="1920" height="1080" fill="{{canvas}}" />
+  <g font-family="{{family}}">
+<text x="64" y="96" font-size="48" text-anchor="start" fill="{{surface}}">Il ciclo controllato da condizione</text>
+<text x="64" y="148" font-size="28" text-anchor="start" fill="{{muted}}">Inizializzazione, condizione, corpo e aggiornamento sono riconoscibili nel diagramma.</text>
+<text x="64" y="1032" font-size="28" text-anchor="start" fill="{{muted}}">Frecce = flusso di esecuzione; true = vero, false = falso.</text>
+<path d="M544.0 216 H1000.0 L976.0 296 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="266.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI valore</text>
+<path d="M760 296 V408" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<circle cx="760" cy="360" r="6" fill="{{line}}" />
+<path d="M760 408 L1080.0 496.0 L760 584 L440.0 496.0 Z" fill="#fef3c7" stroke="{{runtime}}" stroke-width="4" />
+<text x="760" y="488.0" font-size="30" text-anchor="middle" fill="{{ink}}">(valore &lt; 1)</text>
+<text x="760" y="524.0" font-size="30" text-anchor="middle" fill="{{ink}}">O (valore &gt; 10)?</text>
+<path d="M760 584 V704" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="808" y="648" font-size="30" text-anchor="middle" fill="{{line}}">true</text>
+<path d="M544.0 704 H1000.0 L976.0 784 H520.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="760" y="754.0" font-size="30" text-anchor="middle" fill="{{ink}}">LEGGI valore</text>
+<path d="M760 784 V896 H240 V360 H760" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<path d="M1080 496 H1520 V704" fill="none" stroke="{{line}}" stroke-width="4" stroke-linejoin="round" marker-end="url(#flow-arrow)" />
+<text x="1264" y="472" font-size="30" text-anchor="middle" fill="{{line}}">false</text>
+<path d="M1304.0 704 H1760.0 L1736.0 784 H1280.0 Z" fill="#ccfbf1" stroke="{{thread}}" stroke-width="4" />
+<text x="1520" y="754.0" font-size="30" text-anchor="middle" fill="{{ink}}">MOSTRA “valido”</text>
+<text x="1520" y="264" font-size="30" text-anchor="middle" fill="{{surface}}">PRIMA DEL CICLO</text>
+<text x="1520" y="312" font-size="28" text-anchor="middle" fill="{{muted}}">Acquisire il primo valore.</text>
+<text x="1520" y="872" font-size="30" text-anchor="middle" fill="{{surface}}">NEL CORPO</text>
+<text x="1520" y="920" font-size="28" text-anchor="middle" fill="{{muted}}">La lettura aggiorna valore.</text>
+  </g>
+</svg>
