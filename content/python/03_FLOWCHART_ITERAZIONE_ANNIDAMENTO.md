@@ -69,6 +69,27 @@ Traccia un ciclo con zero, una e più iterazioni; individua l&#x27;aggiornamento
 
 ---
 
+## Che cos'è un ciclo e a cosa serve
+
+<table align="center">
+<tr>
+<td>
+<p align="justify">
+<strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — ciclo e iterazione:</strong>
+Un <strong>ciclo</strong>, o <strong>struttura iterativa</strong>, è una struttura di controllo che permette di ripetere un blocco di passi di un algoritmo secondo una regola di continuazione. Il blocco da ripetere si chiama <strong>corpo del ciclo</strong>; ogni singola esecuzione del corpo è un'<strong>iterazione</strong>.
+</p>
+</td>
+</tr>
+</table>
+
+<p align="justify">Un ciclo serve a descrivere una sola volta i passi da ripetere, senza riscriverli per ogni ripetizione. Per mostrare i numeri da 0 a 9, per esempio, possiamo ripetere il passo «mostra il numero corrente», aggiornando ogni volta il numero. Se volessimo arrivare a 99, basterebbe cambiare il limite, senza scrivere cento istruzioni di output.</p>
+
+<p align="justify">Non sempre sappiamo in anticipo quante ripetizioni serviranno: per chiedere un valore finché non è valido, ripetiamo la richiesta mentre il dato inserito non rispetta i requisiti. In questa lezione vedremo entrambi i casi: un numero di ripetizioni stabilito in partenza e un numero che dipende dai dati.</p>
+
+<p align="justify">Il ciclo è quindi l'intera struttura che organizza la ripetizione; un'iterazione è un singolo giro. Per comprenderlo dobbiamo riconoscere quali passi si ripetono, quale condizione permette di continuare e che cosa cambia tra un giro e il successivo, rendendo possibile l'uscita.</p>
+
+---
+
 ## 1. Stampare i numeri da 0 a 9
 
 <a id="1-quando-una-freccia-torna-indietro"></a>
@@ -86,7 +107,7 @@ Traccia un ciclo con zero, una e più iterazioni; individua l&#x27;aggiornamento
 <td>
 <p align="justify">
 <strong><span style="font-size: 1.15em;">&#128214;</span> Definizione — ciclo controllato da condizione:</strong>
-Un ciclo controllato da condizione ripete un blocco di passi, detto <strong>corpo</strong>, finché la condizione di continuazione è vera. Ogni esecuzione del corpo è un'iterazione.
+Un <strong>ciclo controllato da condizione</strong> ripete il proprio corpo finché la condizione di continuazione è vera. Nei cicli con controllo iniziale, la condizione viene valutata prima di ogni eventuale esecuzione del corpo: se è falsa già al primo controllo, il corpo non viene eseguito neppure una volta.
 </p>
 </td>
 </tr>
