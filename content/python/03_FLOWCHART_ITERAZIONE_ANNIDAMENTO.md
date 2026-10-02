@@ -262,18 +262,65 @@ FINE MENTRE
 
 <a id="2-le-quattro-domande-del-ciclo"></a>
 
-<p align="justify">Per ogni ciclo chiedi:</p>
+<p align="justify">Le quattro domande servono a capire <strong>come parte un ciclo, quando si ripete e come termina</strong>. Applichiamole all’esempio che mostra dieci numeri consecutivi, da 0 a 9:</p>
 
 ```text
-1. che stato esiste prima del ciclo?
-2. quando il corpo deve essere eseguito?
-3. che cosa cambia nel corpo?
-4. perché prima o poi la condizione cambia abbastanza da uscire?
+ASSEGNA i ← 0
+MENTRE i < 10
+    MOSTRA i
+    ASSEGNA i ← i + 1
+FINE MENTRE
 ```
 
-<p align="justify">Queste domande sono più importanti del nome che il futuro linguaggio userà per il ciclo.</p>
+<p align="justify">L’output è:</p>
 
-<p align="justify">Nel ciclo da 0 a 9: inizializziamo <code>i</code> a 0, ripetiamo mentre <code>i &lt; 10</code>, aggiorniamo con <code>ASSEGNA i ← i + 1</code> e usciamo quando <code>i</code> raggiunge 10. Nel ciclo di input, invece, l’aggiornamento è una nuova lettura e l’uscita dipende dall’arrivo di un valore valido.</p>
+```text
+0 1 2 3 4 5 6 7 8 9
+```
+
+<h3>1. Che stato esiste prima del ciclo?</h3>
+
+<p align="justify">Significa: <strong>quali variabili servono e quali valori hanno prima del primo controllo?</strong> La parola <strong>stato</strong> indica i valori delle variabili in un determinato momento.</p>
+
+<p align="justify">Qui serve la variabile <code>i</code>, che rappresenta il numero da mostrare. L’istruzione <code>ASSEGNA i ← 0</code> la inizializza a 0 prima di raggiungere <code>MENTRE</code>: al primo controllo, quindi, <code>i</code> vale 0.</p>
+
+<h3>2. Quando il corpo deve essere eseguito?</h3>
+
+<p align="justify">Significa: <strong>quale condizione deve essere vera per fare un giro?</strong> Qui la condizione è <code>i &lt; 10</code> e viene controllata prima di ogni eventuale esecuzione del corpo.</p>
+
+<ul>
+  <li>Se la condizione è vera, si eseguono <code>MOSTRA i</code> e <code>ASSEGNA i ← i + 1</code>, poi si torna al controllo.</li>
+  <li>Se la condizione è falsa, si esce dal ciclo e si prosegue dopo <code>FINE MENTRE</code>.</li>
+</ul>
+
+<p align="justify">Al primo controllo <code>0 &lt; 10</code> è vero, quindi il corpo viene eseguito. Se invece inizializzassimo <code>i</code> a 10, la condizione sarebbe falsa già al primo controllo e il corpo non verrebbe eseguito neppure una volta.</p>
+
+<h3>3. Che cosa cambia nel corpo?</h3>
+
+<p align="justify">Significa: <strong>quale istruzione aggiorna i dati durante ogni giro?</strong> Qui <code>ASSEGNA i ← i + 1</code> aumenta <code>i</code> di uno: da 0 a 1, poi a 2 e così via. Il valore aggiornato viene usato al controllo successivo.</p>
+
+<p align="justify"><code>MOSTRA i</code> visualizza il valore e lo lascia invariato. Senza l’incremento, <code>i</code> rimarrebbe sempre 0: la condizione sarebbe sempre vera e il ciclo continuerebbe a mostrare 0, come nell’esempio dell’aggiornamento mancante.</p>
+
+<h3>4. Che cosa fa diventare falsa la condizione, permettendo di uscire?</h3>
+
+<p align="justify">Significa: <strong>perché l’aggiornamento permette di raggiungere l’uscita?</strong> Nel nostro esempio <code>i</code> parte da 0 e aumenta di uno a ogni giro, quindi raggiunge 10 dopo dieci iterazioni.</p>
+
+<p align="justify">Seguiamo l’ultimo giro: con <code>i</code> uguale a 9, il confronto <code>9 &lt; 10</code> è vero. Il corpo mostra 9 e poi porta <code>i</code> a 10. Al controllo successivo <code>10 &lt; 10</code> è falso: si esce e 10 non viene mostrato.</p>
+
+<p align="justify">L’espressione <code>i &lt; 10</code> rimane uguale durante tutto il ciclo. Cambiano <strong>il valore di <code>i</code></strong> e, quando raggiunge 10, <strong>il risultato del confronto</strong>, che passa da vero a falso.</p>
+
+<h3>E nel ciclo che legge un valore tra 1 e 10?</h3>
+
+<p align="justify">Le stesse quattro domande si applicano al ciclo del paragrafo precedente:</p>
+
+<ol>
+  <li><strong>Stato iniziale:</strong> <code>valore</code> contiene il dato ottenuto dalla prima lettura, prima del ciclo.</li>
+  <li><strong>Condizione:</strong> si ripete mentre <code>(valore &lt; 1) O (valore &gt; 10)</code>, cioè mentre il dato è fuori dall’intervallo ammesso.</li>
+  <li><strong>Aggiornamento:</strong> <code>LEGGI valore</code> acquisisce un altro dato e lo memorizza nella stessa variabile.</li>
+  <li><strong>Uscita:</strong> quando viene inserito un valore tra 1 e 10, estremi inclusi, la condizione diventa falsa. Se continuano ad arrivare valori fuori intervallo, il ciclo continua: la terminazione dipende dall’input.</li>
+</ol>
+
+<p align="justify">Per esempio, con gli input <code>0, 12, 7</code> si ripete la lettura dopo 0 e dopo 12; con 7 si esce. Una nuova lettura può anche restituire lo stesso valore di prima: per questo non basta avere un aggiornamento per garantire che il ciclo termini.</p>
 
 ---
 

@@ -75,7 +75,7 @@
     "alt_draft": "Inizializzazione fuori dal ciclo, test prima del corpo, aggiornamento e freccia di ritorno al test; ramo falso verso l'uscita.",
     "caption_draft": "Anatomia del ciclo. Inizializzazione fuori dal ciclo, test prima del corpo, aggiornamento e freccia di ritorno al test; ramo falso verso l'uscita.",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m04-01",
@@ -1118,7 +1118,7 @@
     "alt_draft": "i parte da 0; mentre i è minore di 10 si mostra i, si assegna i più 1 a i e si torna al controllo. Quando i vale 10 il ciclo termina.",
     "caption_draft": "Stampare i numeri da 0 a 9",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-03",
@@ -1137,7 +1137,7 @@
     "alt_draft": "Esempio errato: i parte da 0; mentre i è minore di 10 si mostra i e si torna al controllo senza aggiornarlo. Il ramo false non viene mai raggiunto.",
     "caption_draft": "Errore: manca l’aggiornamento",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-02",
@@ -1156,7 +1156,7 @@
     "alt_draft": "Si legge valore e si verifica che sia compreso tra 1 e 10. Il ramo false torna alla lettura; il ramo true prosegue.",
     "caption_draft": "Leggere ancora finché il dato è valido",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-05",
@@ -1175,7 +1175,7 @@
     "alt_draft": "Con i iniziale uguale a 1 e incremento di 1, i minore di 3 mostra 1 e 2; i minore o uguale a 3 mostra 1, 2 e 3.",
     "caption_draft": "Un confine cambia il numero di iterazioni",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-06",
@@ -1194,7 +1194,7 @@
     "alt_draft": "Totale e contatore partono da zero. Finché contatore è minore di 3 si legge un valore, lo si somma a totale e si incrementa contatore. Alla fine si mostra totale.",
     "caption_draft": "Accumulare la somma di tre valori",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-07",
@@ -1213,7 +1213,7 @@
     "alt_draft": "Si leggono cinque valori. Per ciascuno, se valore è maggiore di zero si incrementa conteggio. i aumenta in entrambi i rami; dopo cinque letture si mostra conteggio.",
     "caption_draft": "Una selezione dentro il ciclo",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-08",
@@ -1232,7 +1232,7 @@
     "alt_draft": "Si legge scelta. Solo se scelta è esegui si inizializza i a zero e si mostra operazione tre volte incrementando i. Il ramo false salta l’intero ciclo e termina.",
     "caption_draft": "Un ciclo dentro una selezione",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-09",
@@ -1251,7 +1251,7 @@
     "alt_draft": "Riga parte da zero. Per ogni riga minore di 2 si azzera colonna e si mostrano le coordinate delle tre celle incrementando colonna. Finite le colonne si incrementa riga.",
     "caption_draft": "Due cicli per visitare una griglia 2 × 3",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-10",
@@ -1270,7 +1270,7 @@
     "alt_draft": "Carta, lavagna o template, pseudocodice, trace table, casi di test e rubric docente sono strumenti complementari per progettare e verificare i cicli.",
     "caption_draft": "Studiare i cicli anche senza il laboratorio",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-m03-11",
@@ -1289,7 +1289,7 @@
     "alt_draft": "Il percorso collega problema, algoritmo, flow chart, trace, test e debug.",
     "caption_draft": "Dal problema al debug",
     "existing_images": 11,
-    "existing_text_blocks": 19
+    "existing_text_blocks": 20
   },
   {
     "id": "py-lab-m02-m03-01",
